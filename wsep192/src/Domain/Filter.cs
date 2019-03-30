@@ -8,7 +8,7 @@ namespace src.Domain
         private String productName;
         private String category;
         private String keyword;
-        private KeyValuePair<int, int> priceRange;
+        private Pair <int, int> priceRange;
         private int productRate;
         private int storeRate;
     }
