@@ -8,5 +8,6 @@ namespace src.Domain
 {
     class System
     {
+
     }
 }
