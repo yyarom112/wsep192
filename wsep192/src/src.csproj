@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Domain\DiscountPolicy.cs" />
     <Compile Include="Domain\Encryption.cs" />
+    <Compile Include="Domain\Filter.cs" />
     <Compile Include="Domain\FinancialSystem.cs" />
     <Compile Include="Domain\Manager.cs" />
     <Compile Include="Domain\Owner.cs" />
