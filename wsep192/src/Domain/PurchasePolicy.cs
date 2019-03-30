@@ -8,5 +8,8 @@ namespace src.Domain
 {
     class PurchasePolicy
     {
+        private int id;
+        private String details;
+        private Dictionary<int, ProductInStore> products;
     }
 }

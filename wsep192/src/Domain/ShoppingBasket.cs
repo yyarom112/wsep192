@@ -8,5 +8,7 @@ namespace src.Domain
 {
     class ShoppingBasket
     {
+        private Dictionary<int, ShoppingCart> shoppingCarts;
+   
     }
 }

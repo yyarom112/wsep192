@@ -8,5 +8,6 @@ namespace src.Domain
 {
     class Manager
     {
+        private List<int> permissions;
     }
 }

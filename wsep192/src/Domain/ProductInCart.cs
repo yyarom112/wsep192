@@ -8,5 +8,8 @@ namespace src.Domain
 {
     class ProductInCart
     {
+        private int quantity;
+        private ShoppingCart shoppingCart;
+        private Product product;
     }
 }

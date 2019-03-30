@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    class Product
+    class Filter
     {
-        private int id;
         private String productName;
         private String category;
-        private String details;
-        private int price;
+        private String keyword;
+        private KeyValuePair<int, int> priceRange;
         private int productRate;
+        private int storeRate;
     }
 }
