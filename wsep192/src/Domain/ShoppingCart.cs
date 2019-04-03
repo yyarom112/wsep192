@@ -10,36 +10,46 @@ namespace src.Domain
     {
         private int storeId;
         private Store store;
-        private Dictionary<int, KeyValuePair<ProductInCart, int>> products;
+        private Dictionary<int, ProductInCart> products;
 
-
-
-        public bool addProducts(LinkedListNode<KeyValuePair<Product, int>> productsToInsert)
+        public ShoppingCart(int storeId, Store store)
         {
-            bool output= true;
-            if (productsToInsert == null)
-                output = false;
-            foreach (KeyValuePair<Product, int> product in productsToInsert.List)
-            {
-                if (products.ContainsKey(product.Key.getId()))
-                {
+            this.storeId = storeId;
+            this.store = store;
+            this.products = new Dictionary< int, ProductInCart >();
+            this.storeId = storeId;
+        }
 
+        public int StoreId
+        {
+            get { return storeId; }
+            set { storeId = value; }
+        }
+        internal Store Store
+        {
+            get { return store; }
+            set { store = value; }
+        }
+        internal Dictionary<int, ProductInCart> Products
+        { get { return products; } set { products = value; } }
+
+        public void addProducts(LinkedList<KeyValuePair<Product, int>> productsToInsert)
+        {
+            foreach (KeyValuePair<Product, int> toInsert in productsToInsert)
+            {
+                if (this.products.ContainsKey(toInsert.Key.Id))
+                {
+                    products[toInsert.Key.Id].Quantity = this.products[toInsert.Key.Id].Quantity + toInsert.Value;
+                }
+                else
+                {
+                    products.Add(toInsert.Key.Id, new ProductInCart(toInsert.Value, this, toInsert.Key));
                 }
             }
 
         }
 
 
-        public ShoppingCart(int storeId, Store store, Dictionary<int, ProductInCart> products)
-        {
-            this.storeId = storeId;
-            this.store = store;
-            this.products = products;
-            this.storeId = storeId;
-        }
 
-        public int StoreId { get => storeId; set => storeId = value; }
-        internal Store Store { get => store; set => store = value; }
-        internal Dictionary<int, ProductInCart> Products { get => products; set => products = value; }
     }
 }

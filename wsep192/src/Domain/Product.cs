@@ -25,8 +25,8 @@ namespace src.Domain
             this.ProductRate = productRate;
         }
 
-        public int Id { get => id; set => id = value; }
-        public string ProductName { get => productName; set => productName = value; }
+        public int Id { get { return id; } set { id = value; } }
+        public string ProductName { get { productName; set => productName = value; }
         public string Category { get => category; set => category = value; }
         public string Details { get => details; set => details = value; }
         public int Price { get => price; set => price = value; }

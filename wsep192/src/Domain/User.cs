@@ -19,31 +19,145 @@ namespace src.Domain
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
 
+        
+
         public User(int id, string userName, string password, string address, state state, bool isAdmin, bool isRegistered, ShoppingBasket basket, Dictionary<int, Role> roles)
         {
-            this.id = id;
-            this.userName = userName;
-            this.password = password;
-            this.address = address;
-            this.state = state;
-            this.isAdmin = isAdmin;
-            this.isRegistered = isRegistered;
-            this.basket = basket;
+            this.Id = id;
+            this.UserName = userName;
+            this.Password = password;
+            this.Address = address;
+            this.State = state;
+            this.IsAdmin = isAdmin;
+            this.IsRegistered = isRegistered;
+            this.Basket = basket;
             if (roles == null)
-                this.roles = new Dictionary<int, Role>();
+                this.Roles = new Dictionary<int, Role>();
             else
-                this.roles = roles;
+                this.Roles = roles;
 
         }
 
-        public int Id { get => id; set => id = value; }
-        public string UserName { get => userName; set => userName = value; }
-        public string Password { get => password; set => password = value; }
-        public string Address { get => address; set => address = value; }
-        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
-        public bool IsRegistered { get => isRegistered; set => isRegistered = value; }
-        internal state State { get => state; set => state = value; }
-        internal ShoppingBasket Basket { get => basket; set => basket = value; }
-        internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public String UserName
+        {
+            get
+            {
+                return userName;
+            }
+
+            set
+            {
+                userName = value;
+            }
+        }
+
+        public String Password
+        {
+            get
+            {
+                return password;
+            }
+
+            set
+            {
+                password = value;
+            }
+        }
+
+        public String Address
+        {
+            get
+            {
+                return address;
+            }
+
+            set
+            {
+                address = value;
+            }
+        }
+
+        internal state State
+        {
+            get
+            {
+                return state;
+            }
+
+            set
+            {
+                state = value;
+            }
+        }
+
+        public Boolean IsAdmin
+        {
+            get
+            {
+                return isAdmin;
+            }
+
+            set
+            {
+                isAdmin = value;
+            }
+        }
+
+        public Boolean IsRegistered
+        {
+            get
+            {
+                return isRegistered;
+            }
+
+            set
+            {
+                isRegistered = value;
+            }
+        }
+
+        internal ShoppingBasket Basket
+        {
+            get
+            {
+                return basket;
+            }
+
+            set
+            {
+                basket = value;
+            }
+        }
+
+        internal Dictionary<int, Role> Roles
+        {
+            get
+            {
+                return roles;
+            }
+
+            set
+            {
+                roles = value;
+            }
+        }
+
+        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert,Store store)
+        {
+            return this.basket.addProductsToCart(productsToInsert, store);
+        }
     }
 }

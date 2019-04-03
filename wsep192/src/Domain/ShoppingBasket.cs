@@ -10,11 +10,26 @@ namespace src.Domain
     {
         private Dictionary<int, ShoppingCart> shoppingCarts;
 
-        public ShoppingBasket(Dictionary<int, ShoppingCart> shoppingCarts)
+        public ShoppingBasket()
         {
-            this.ShoppingCarts = shoppingCarts;
+            this.shoppingCarts = new Dictionary<int, ShoppingCart>(); 
         }
 
-        internal Dictionary<int, ShoppingCart> ShoppingCarts { get => shoppingCarts; set => shoppingCarts = value; }
+        internal Dictionary<int, ShoppingCart> ShoppingCarts { get { return shoppingCarts; } set { shoppingCarts = value; } }
+
+        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeID)
+        {
+            bool exist = true;
+            if (!this.shoppingCarts.ContainsKey(storeID))
+            {
+                exist = false;
+                shoppingCarts.Add(storeID, new ShoppingCart(storeID, null));
+            
+            }
+            shoppingCarts[storeID].addProducts(productsToInsert);
+            if (!exist)
+                return shoppingCarts[storeID];
+            return null;
+        }
     }
 }

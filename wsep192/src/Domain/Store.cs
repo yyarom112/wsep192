@@ -18,15 +18,18 @@ namespace src.Domain
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
-        public Store(int id, string name, Dictionary<int, ProductInStore> products, int storeRate, ITree<Role> roles, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy)
+        public Store(int id, string name, int storeRate, User owner  )
         {
             this.id = id;
             this.name = name;
-            this.products = products;
+            this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
-            this.roles = roles;
-            this.purchasePolicy = purchasePolicy;
-            this.discountPolicy = discountPolicy;
+            this.roles = new NodeTree<Role>(owner);
+            this.purchasePolicy = new List < PurchasePolicy >();
+            this.discountPolicy = new List<DiscountPolicy>();
+        }
+        public Store()
+        {
         }
 
         public int Id { get => id; set => id = value; }
