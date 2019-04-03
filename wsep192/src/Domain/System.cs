@@ -18,17 +18,17 @@ namespace src.Domain
         private int purchasePolicyCounter;
         private int discountPolicyCounter;
 
-        public System(Dictionary<int, User> users, Dictionary<int, Store> stores, ProductSupplySystem supplySystem, FinancialSystem financialSystem, int productCounter, int storeCounter, int userCounter, int purchasePolicyCounter, int discountPolicyCounter)
+        public System(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
         {
-            this.users = users;
-            this.stores = stores;
+            this.users = new Dictionary<int, User>();
+            this.stores = new Dictionary<int, Store>();
             this.supplySystem = supplySystem;
             this.financialSystem = financialSystem;
-            this.productCounter = productCounter;
-            this.storeCounter = storeCounter;
-            this.userCounter = userCounter;
-            this.purchasePolicyCounter = purchasePolicyCounter;
-            this.discountPolicyCounter = discountPolicyCounter;
+            this.productCounter = 0;
+            this.storeCounter = 0;
+            this.userCounter = 0;
+            this.purchasePolicyCounter = 0;
+            this.discountPolicyCounter = 0;
         }
 
         public int ProductCounter { get => productCounter; set => productCounter = value; }
