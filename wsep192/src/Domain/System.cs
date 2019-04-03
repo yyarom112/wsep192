@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    class System
+    public class System
     {
         private Dictionary<int,User> users;
         private Dictionary<int,Store> stores;
@@ -30,7 +30,7 @@ namespace src.Domain
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter = 0;
         }
-
+        public bool removeOwner()
         public int ProductCounter { get => productCounter; set => productCounter = value; }
         public int StoreCounter { get => storeCounter; set => storeCounter = value; }
         public int UserCounter { get => userCounter; set => userCounter = value; }
