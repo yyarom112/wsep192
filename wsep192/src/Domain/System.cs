@@ -30,7 +30,11 @@ namespace src.Domain
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter = 0;
         }
-        public bool removeOwner()
+        public bool removeOwner(int userID,int userIDToRemove,int storeID)
+        {
+            Store s = ;
+
+        }
         public int ProductCounter { get => productCounter; set => productCounter = value; }
         public int StoreCounter { get => storeCounter; set => storeCounter = value; }
         public int UserCounter { get => userCounter; set => userCounter = value; }
