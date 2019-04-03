@@ -9,5 +9,12 @@ namespace src.Domain
     class Manager
     {
         private List<int> permissions;
+
+        public Manager(List<int> permissions)
+        {
+            this.Permissions = permissions;
+        }
+
+        public List<int> Permissions { get => permissions; set => permissions = value; }
     }
 }
