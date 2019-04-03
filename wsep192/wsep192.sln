@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{D0A7D42E-90E8-4611-AE4E-D94B20A8057D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{39A05C52-3D38-4BD1-96D8-4C8613505402}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9BDBDF0-61E6-425F-AE9A-0FE743CFEA93} = {E9BDBDF0-61E6-425F-AE9A-0FE743CFEA93}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceptance Tests", "Acceptance Tests\Acceptance Tests.csproj", "{0EC1E2D0-494B-45F0-929A-8270B53C9345}"
 EndProject
