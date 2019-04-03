@@ -12,11 +12,11 @@ namespace src.Domain
         private Store store;
         private Dictionary<int,ProductInCart> products;
 
-        public ShoppingCart(int storeId, Store store, Dictionary<int, ProductInCart> products)
+        public ShoppingCart(int storeId, Store store)
         {
             this.storeId = storeId;
             this.store = store;
-            this.products = products;
+            this.products = new Dictionary<int, ProductInCart>();
             this.storeId = storeId;
         }
 

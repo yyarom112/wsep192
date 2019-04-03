@@ -28,7 +28,23 @@ namespace src.Domain
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
-
+        public void removeOwner(int userID)
+        {
+            Role role = searchOwner(userID);
+            if (role != null)
+            {
+                role.User.Roles.Remove(id);
+                roles.Remove(role);
+            }
+            
+        }
+        public Role searchOwner(int userID)
+        {
+            foreach (Role role in roles.Values)
+                if (role.User.Id == userID)
+                    return role;
+            return null;
+        }
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }

@@ -10,9 +10,9 @@ namespace src.Domain
     {
         private Dictionary<int, ShoppingCart> shoppingCarts;
 
-        public ShoppingBasket(Dictionary<int, ShoppingCart> shoppingCarts)
+        public ShoppingBasket()
         {
-            this.ShoppingCarts = shoppingCarts;
+            this.ShoppingCarts = new Dictionary<int, ShoppingCart>();
         }
 
         internal Dictionary<int, ShoppingCart> ShoppingCarts { get => shoppingCarts; set => shoppingCarts = value; }

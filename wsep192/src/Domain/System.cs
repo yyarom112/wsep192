@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    public class System
+    class System
     {
         private Dictionary<int,User> users;
         private Dictionary<int,Store> stores;
@@ -30,10 +30,25 @@ namespace src.Domain
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter = 0;
         }
-        public bool removeOwner(int userID,int userIDToRemove,int storeID)
+        public void removeOwner(int userID,int userIDToRemove,int storeID)
         {
-            Store s = ;
-
+            User u = searchUser(userID);
+            if (u != null)
+                u.removeOwner(userIDToRemove, storeID);
+        }
+        public User searchUser(int userID)
+        {
+            foreach (User u in users.Values)
+                if (u.Id == userID)
+                    return u;
+            return null;
+        }
+        public Store searchStore(int storeID)
+        {
+            foreach (Store s in stores.Values)
+                if (s.Id == storeID)
+                    return s;
+            return null;
         }
         public int ProductCounter { get => productCounter; set => productCounter = value; }
         public int StoreCounter { get => storeCounter; set => storeCounter = value; }
