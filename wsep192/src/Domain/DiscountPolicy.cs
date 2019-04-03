@@ -12,15 +12,50 @@ namespace src.Domain
         private String details;
         private Dictionary<int, ProductInStore> products;
 
-        public DiscountPolicy(int id, string details, Dictionary<int, ProductInStore> products)
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public String Details
+        {
+            get
+            {
+                return details;
+            }
+
+            set
+            {
+                details = value;
+            }
+        }
+
+        internal Dictionary<int, ProductInStore> Products
+        {
+            get
+            {
+                return products;
+            }
+
+            set
+            {
+                products = value;
+            }
+        }
+
+        public DiscountPolicy(int id, String details, Dictionary<int, ProductInStore> products)
         {
             this.Id = id;
             this.Details = details;
             this.Products = products;
         }
-
-        public int Id { get => id; set => id = value; }
-        public string Details { get => details; set => details = value; }
-        internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }
     }
 }
