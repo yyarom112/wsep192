@@ -18,7 +18,7 @@ namespace src.Domain
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
-        public Store(int id, string name, Dictionary<int, ProductInStore> products, int storeRate, Tree<Role> roles, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy)
+        public Store(int id, string name, Dictionary<int, ProductInStore> products, int storeRate, ITree<Role> roles, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy)
         {
             this.id = id;
             this.name = name;
@@ -33,7 +33,7 @@ namespace src.Domain
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }
         internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }
-        internal Tree<Role> Roles { get => roles; set => roles = value; }
+        internal ITree<Role> Roles { get => roles; set => roles = value; }
         internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
     }
