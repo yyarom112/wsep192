@@ -11,9 +11,16 @@ namespace src.Domain
         private int quantity;
         private Store store;
         private Product product;
-        public bool compareProduct(Filter filter)
+
+        public ProductInStore(int quantity, Store store, Product product)
         {
-            return this.product.compareProduct(filter);
+            this.Quantity = quantity;
+            this.Store = store;
+            this.Product = product;
         }
+
+        public int Quantity { get => quantity; set => quantity = value; }
+        internal Store Store { get => store; set => store = value; }
+        internal Product Product { get => product; set => product = value; }
     }
 }
