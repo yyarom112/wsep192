@@ -14,5 +14,11 @@ namespace src.Domain
         private String details;
         private int price;
         private int productRate;
+
+
+        public int getId()
+        {
+            return this.id;
+        }
     }
 }
