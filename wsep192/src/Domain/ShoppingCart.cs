@@ -30,5 +30,16 @@ namespace src.Domain
         }
 
 
+        public ShoppingCart(int storeId, Store store, Dictionary<int, ProductInCart> products)
+        {
+            this.storeId = storeId;
+            this.store = store;
+            this.products = products;
+            this.storeId = storeId;
+        }
+
+        public int StoreId { get => storeId; set => storeId = value; }
+        internal Store Store { get => store; set => store = value; }
+        internal Dictionary<int, ProductInCart> Products { get => products; set => products = value; }
     }
 }
