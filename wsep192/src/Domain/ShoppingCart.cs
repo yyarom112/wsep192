@@ -10,25 +10,7 @@ namespace src.Domain
     {
         private int storeId;
         private Store store;
-        private Dictionary<int, KeyValuePair<ProductInCart, int>> products;
-
-
-
-        public bool addProducts(LinkedListNode<KeyValuePair<Product, int>> productsToInsert)
-        {
-            bool output= true;
-            if (productsToInsert == null)
-                output = false;
-            foreach (KeyValuePair<Product, int> product in productsToInsert.List)
-            {
-                if (products.ContainsKey(product.Key.getId()))
-                {
-
-                }
-            }
-
-        }
-
+        private Dictionary<int,ProductInCart> products;
 
         public ShoppingCart(int storeId, Store store, Dictionary<int, ProductInCart> products)
         {
