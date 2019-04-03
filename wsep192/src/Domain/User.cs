@@ -18,6 +18,14 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
+        public int getID()
+        {
+            return this.id;
+        }
+        public void searchProduct(String name)
+        {
+
+        }
 
     }
 }

@@ -11,5 +11,9 @@ namespace src.Domain
         private int quantity;
         private Store store;
         private Product product;
+        public bool compareProduct(Filter filter)
+        {
+            return this.product.compareProduct(filter);
+        }
     }
 }

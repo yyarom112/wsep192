@@ -14,5 +14,17 @@ namespace src.Domain
         private String details;
         private int price;
         private int productRate;
+        public bool compareProduct(Filter filter)
+        {
+            if (!filter.getProductName().Equals(productName))
+                return false;
+            if (filter.getCategory() != "" && !filter.getCategory().Equals(category))
+                return false;
+            if (filter.getProductRate() != -1 && filter.getProductRate() != productRate)
+                return false;
+            /*if() TODO: fix details and compare them
+                return false;*/
+            return true;
+        }
     }
 }
