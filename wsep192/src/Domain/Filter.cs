@@ -16,36 +16,19 @@ namespace src.Domain
             KeyValuePair<int, int> priceRange,
             int productRate, int storeRate)
         {
-            this.productName = productName;
-            this.category = category;
-            this.keyword = keyword;
-            this.priceRange = priceRange;
-            this.productRate = productRate;
-            this.storeRate = storeRate;
+            this.ProductName = productName;
+            this.Category = category;
+            this.Keyword = keyword;
+            this.PriceRange = priceRange;
+            this.ProductRate = productRate;
+            this.StoreRate = storeRate;
         }
-        public String getProductName()
-        {
-            return this.productName;
-        }
-        public String getCategory()
-        {
-            return this.category;
-        }
-        public String getKeyword()
-        {
-            return this.keyword;
-        }
-        public KeyValuePair<int,int> getPriceRange()
-        {
-            return this.priceRange;
-        }
-        public int getProductRate()
-        {
-            return this.productRate;
-        }
-        public int getStoreRate()
-        {
-            return this.storeRate;
-        }
+
+        public string ProductName { get => productName; set => productName = value; }
+        public string Category { get => category; set => category = value; }
+        public string Keyword { get => keyword; set => keyword = value; }
+        public KeyValuePair<int, int> PriceRange { get => priceRange; set => priceRange = value; }
+        public int ProductRate { get => productRate; set => productRate = value; }
+        public int StoreRate { get => storeRate; set => storeRate = value; }
     }
 }

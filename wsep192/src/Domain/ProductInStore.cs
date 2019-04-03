@@ -18,7 +18,6 @@ namespace src.Domain
             this.Store = store;
             this.Product = product;
         }
-
         public int Quantity { get => quantity; set => quantity = value; }
         internal Store Store { get => store; set => store = value; }
         internal Product Product { get => product; set => product = value; }

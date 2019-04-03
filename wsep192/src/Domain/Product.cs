@@ -14,16 +14,34 @@ namespace src.Domain
         private String details;
         private int price;
         private int productRate;
+
+        public Product(int id, string productName, string category, string details, int price, int productRate)
+        {
+            this.Id = id;
+            this.ProductName = productName;
+            this.Category = category;
+            this.Details = details;
+            this.Price = price;
+            this.ProductRate = productRate;
+        }
+
+        public int Id { get => id; set => id = value; }
+        public string ProductName { get => productName; set => productName = value; }
+        public string Category { get => category; set => category = value; }
+        public string Details { get => details; set => details = value; }
+        public int Price { get => price; set => price = value; }
+        public int ProductRate { get => productRate; set => productRate = value; }
+
         public bool compareProduct(Filter filter)
         {
-            if (!filter.getProductName().Equals(productName))
+            if (!filter.ProductName.Equals(ProductName))
                 return false;
-            if (filter.getCategory() != "" && !filter.getCategory().Equals(category))
+            if (filter.Category != "" && !filter.Category.Equals(Category))
                 return false;
-            if (filter.getProductRate() != -1 && filter.getProductRate() != productRate)
+            if (filter.ProductRate != -1 && filter.ProductRate != ProductRate)
                 return false;
-            /*if() TODO: fix details and compare them
-                return false;*/
+            if (filter.PriceRange.Equals(null) && (filter.PriceRange.Key < this.price || filter.PriceRange.Value > this.price))
+                return false;
             return true;
         }
     }

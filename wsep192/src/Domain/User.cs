@@ -18,15 +18,6 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
-        public int getID()
-        {
-            return this.id;
-        }
-        public void searchProduct(String name)
-        {
-
-        }
-
         public User(int id, string userName, string password, string address, state state, bool isAdmin, bool isRegistered, ShoppingBasket basket, Dictionary<int, Role> roles)
         {
             this.id = id;

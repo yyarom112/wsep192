@@ -18,17 +18,46 @@ namespace src.Domain
         private int purchasePolicyCounter;
         private int discountPolicyCounter;
 
-        public System(Dictionary<int, User> users, Dictionary<int, Store> stores, ProductSupplySystem supplySystem, FinancialSystem financialSystem, int productCounter, int storeCounter, int userCounter, int purchasePolicyCounter, int discountPolicyCounter)
+        public System(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
         {
-            this.users = users;
-            this.stores = stores;
+            this.users = new Dictionary<int, User>();
+            this.stores = new Dictionary<int, Store>();
             this.supplySystem = supplySystem;
             this.financialSystem = financialSystem;
-            this.productCounter = productCounter;
-            this.storeCounter = storeCounter;
-            this.userCounter = userCounter;
-            this.purchasePolicyCounter = purchasePolicyCounter;
-            this.discountPolicyCounter = discountPolicyCounter;
+            this.productCounter = 1;
+            this.storeCounter = 1;
+            this.userCounter = 1;
+            this.purchasePolicyCounter = 1;
+            this.discountPolicyCounter = 1;
+        }
+        public List<ProductInStore> searchProduct(String details)
+        {
+            List<ProductInStore> products  = new List<ProductInStore>();
+            String[] detailsForFilter = details.Split(' ');
+            KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
+                Int32.Parse(detailsForFilter[4]));
+            Filter filter = new Filter(detailsForFilter[0],
+                detailsForFilter[1], detailsForFilter[2], priceRange,
+                Int32.Parse(detailsForFilter[5]), Int32.Parse(detailsForFilter[6]));
+            foreach (Store s in stores.Values)
+            {
+                s.searchProduct(filter,products);
+            }
+            return products;
+        }
+        public User searchUser(int userID)
+        {
+            foreach (User u in users.Values)
+                if (u.Id == userID)
+                    return u;
+            return null;
+        }
+        public Store searchStore(int storeID)
+        {
+            foreach (Store s in stores.Values)
+                if (s.Id == storeID)
+                    return s;
+            return null;
         }
 
         public int ProductCounter { get => productCounter; set => productCounter = value; }
