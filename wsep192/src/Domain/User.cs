@@ -18,7 +18,8 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
-        public User(int id, string userName, string password, string address, state state, bool isAdmin, bool isRegistered, ShoppingBasket basket, Dictionary<int, Role> roles)
+
+        public User(int id, string userName, string password, string address, state state, bool isAdmin, bool isRegistered)
         {
             this.id = id;
             this.userName = userName;
@@ -27,11 +28,8 @@ namespace src.Domain
             this.state = state;
             this.isAdmin = isAdmin;
             this.isRegistered = isRegistered;
-            this.basket = basket;
-            if (roles == null)
-                this.roles = new Dictionary<int, Role>();
-            else
-                this.roles = roles;
+            this.basket = new ShoppingBasket();
+            this.roles = new Dictionary<int, Role>();
 
         }
 
