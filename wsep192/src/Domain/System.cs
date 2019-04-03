@@ -24,11 +24,11 @@ namespace src.Domain
             this.stores = new Dictionary<int, Store>();
             this.supplySystem = supplySystem;
             this.financialSystem = financialSystem;
-            this.productCounter = 1;
-            this.storeCounter = 1;
-            this.userCounter = 1;
-            this.purchasePolicyCounter = 1;
-            this.discountPolicyCounter = 1;
+            this.productCounter = 0;
+            this.storeCounter = 0;
+            this.userCounter = 0;
+            this.purchasePolicyCounter = 0;
+            this.discountPolicyCounter = 0;
         }
         public List<ProductInStore> searchProduct(String details)
         {
