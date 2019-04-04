@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Collections.IList;
 using Common;
 
 namespace src.Domain
@@ -38,8 +39,7 @@ namespace src.Domain
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
 
         public Boolean assignManager(Role newManager, int ownerId)
-        {
-            
+        { 
             return false;
         }
     }

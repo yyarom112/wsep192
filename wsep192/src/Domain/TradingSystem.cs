@@ -59,8 +59,7 @@ namespace src.Domain
                     }
                     else
                         return false;
-                }
-                return true;       
+                }      
             }
             return false;
         }
