@@ -28,7 +28,7 @@ namespace src.Domain
             this.storeCounter = 0;
             this.userCounter = 0;
             this.purchasePolicyCounter = 0;
-            this.discountPolicyCounter = 0;
+            this.discountPolicyCounter =  0;
         }
 
         public int ProductCounter { get => productCounter; set => productCounter = value; }
