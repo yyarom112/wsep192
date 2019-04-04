@@ -35,8 +35,11 @@ namespace src.Domain
         public void removeOwner(int userID,int storeID)
         {
             Role role = searchRoleByStoreID(storeID);
-            if (role != null&&role.GetType()==typeof(Owner))
-                role.Store.removeOwner(userID);
+            if (role != null && role.GetType() == typeof(Owner))
+            {
+                Owner owner = (Owner)role;
+                owner.removeOwner(userID);
+            }
             
         }
         public Role searchRoleByStoreID(int storeID)

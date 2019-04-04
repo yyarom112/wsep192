@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    class Manager
+    class Manager : Role
     {
         private List<int> permissions;
 
-        public Manager(List<int> permissions)
+        public Manager(Store store,User user,List<int> permissions) : base(store,user)
         {
             this.Permissions = permissions;
         }

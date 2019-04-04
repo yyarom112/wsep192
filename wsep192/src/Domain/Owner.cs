@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    class Owner
+    class Owner : Role
     {
+        public Owner(Store store, User user) : base(store, user)
+        {
+        }
+
+        public void removeOwner(int userID)
+        {
+            Store.removeOwner(userID);
+        }
     }
 }
