@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    class System
+    class TradingSystem
     {
         private Dictionary<int,User> users;
         private Dictionary<int,Store> stores;
@@ -19,7 +19,7 @@ namespace src.Domain
         private int purchasePolicyCounter;
         private int discountPolicyCounter;
 
-        public System(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
+        public TradingSystem(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
         {
             this.users = new Dictionary<int, User>();
             this.stores = new Dictionary<int, Store>();
@@ -43,6 +43,26 @@ namespace src.Domain
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
 
+
+        public Boolean register(String userName, String password, String userId)
+        {
+            int currUserId = Convert.ToInt32(userId);
+            if (this.users.ContainsKey(currUserId))
+            {
+                if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
+                    || userName.Equals("") || password.Equals("") || userName.Contains(" "))
+                    return false;
+                User currUser = this.users[currUserId];
+                if (currUser != null)
+                {
+                    password = this.encryption.encrypt(userName + password);
+                    return currUser.register(userName, password);
+                }
+                return false;
+            }
+            else
+                return false;
+        }
         public Boolean signIn(String userName, String password, String userId){
             int currUserId = Convert.ToInt32(userId);
             if(this.users.ContainsKey(currUserId)){
@@ -61,21 +81,6 @@ namespace src.Domain
             return false;
         }
 
-        public Boolean register(String userName, String password, String userId){
-            int currUserId = Convert.ToInt32(userId);
-            if(this.users.ContainsKey(currUserId)){
-                if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
-                    || userName.Equals("") || password.Equals("") || userName.Contains(" "))
-                    return false;
-                User currUser = this.users[currUserId];
-                if(currUser != null){
-                    password = this.encryption.encrypt(userName + password);
-                    return currUser.register(userName,password);                             
-                }
-                return false;
-            }
-            else
-                return false;   
-        }
+        
     }
 }

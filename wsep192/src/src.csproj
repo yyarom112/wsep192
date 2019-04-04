@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Domain\DiscountPolicy.cs" />
     <Compile Include="Domain\Encryption.cs" />
+    <Compile Include="Domain\EncryptionImpl.cs" />
     <Compile Include="Domain\Filter.cs" />
     <Compile Include="Domain\FinancialSystem.cs" />
     <Compile Include="Domain\Manager.cs" />
@@ -73,7 +74,7 @@
     <Compile Include="Domain\ShoppingBasket.cs" />
     <Compile Include="Domain\ShoppingCart.cs" />
     <Compile Include="Domain\Store.cs" />
-    <Compile Include="Domain\System.cs" />
+    <Compile Include="Domain\TradingSystem.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
