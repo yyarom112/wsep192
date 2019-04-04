@@ -19,7 +19,12 @@ namespace src.Domain
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
 
-        
+
+        public User()
+        {
+            this.id = -1;
+
+        }
 
         public User(int id, string userName, string password, string address, state state, bool isAdmin, bool isRegistered, ShoppingBasket basket, Dictionary<int, Role> roles)
         {
@@ -155,9 +160,9 @@ namespace src.Domain
             }
         }
 
-        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert,Store store)
+        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert,int storeId)
         {
-            return this.basket.addProductsToCart(productsToInsert, store);
+            return this.basket.addProductsToCart(productsToInsert, storeId);
         }
     }
 }

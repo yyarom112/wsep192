@@ -139,28 +139,26 @@ namespace src.Domain
         }
 
 
-        public bool addProductsToCart(LinkedList<KeyValuePair<int, int>> productsToInsert, int storeID , int userID)
+        public void addProductsToCart(LinkedList<KeyValuePair<int, int>> productsToInsert, int storeID , int userID)
         {           
             if(!this.Users.ContainsKey(userID)||!this.Stores.ContainsKey(storeID))
             {
                 Console.WriteLine("The store or user does not exist\n");
-                return false;
             }
-            this.Users[userID].addProductsToCart(searchProductById(productsToInsert, storeID), this.Stores[storeID]);
+            this.Users[userID].addProductsToCart(searchProductById(productsToInsert, storeID), storeID);
 
 
         }
 
-        private LinkedList<KeyValuePair<ProductInCart>> makeProductInCartList(LinkedList<KeyValuePair<int, int>> productsToInsert , int storeId)
+        private LinkedList<KeyValuePair<Product, int>> searchProductById(LinkedList<KeyValuePair<int, int>> productsToInsert , int storeId)
         {
-            LinkedList<KeyValuePair<ProductInCart, int>> output = new LinkedList<KeyValuePair<ProductInCart, int>>();
+            LinkedList<KeyValuePair<Product, int>> output = new LinkedList<KeyValuePair<Product, int>>();
             Store store = this.stores[storeId];
             foreach(KeyValuePair<int, int> product in productsToInsert)
             {
                 if (!store.Products.ContainsKey(product.Key))
                 {
-                    output.AddLast(new KeyValuePair<ProductInCart, int>(new ProductInCart(product.Value)))
-                        //output.AddLast(new LinkedListNode<KeyValuePair<Product, int>>(new KeyValuePair<Product, int>(store.Products[product.Key].Product, product.Value)));
+                    output.AddLast(new KeyValuePair<Product, int>(store.Products[product.Key].Product, product.Value));
                 }
 
             }
