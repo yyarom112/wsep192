@@ -37,3 +37,6 @@ using System.Runtime.InteropServices;
 
 
 [assembly: InternalsVisibleTo("UnitTests")]
+[assembly: InternalsVisibleTo("IntegrationTests")]
+[assembly: InternalsVisibleTo("Acceptance Tests")]
+
