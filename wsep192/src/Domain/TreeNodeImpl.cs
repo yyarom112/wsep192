@@ -13,14 +13,13 @@ namespace src.Domain
         private readonly int _level;
         private readonly List<TreeNodeImpl<T>> _children;
 
-        public TreeNodeImpl(T data)
+        public TreeNodeImpl()
         {
-            _data = data;
             _children = new List<TreeNodeImpl<T>>();
             _level = 0;
         }
 
-        public TreeNodeImpl(T data, TreeNodeImpl<T> parent) : this(data)
+        public TreeNodeImpl( TreeNodeImpl<T> parent) 
         {
             _parent = parent;
             _level = _parent != null ? _parent.Level + 1 : 0;
@@ -45,7 +44,7 @@ namespace src.Domain
 
         public TreeNodeImpl<T> AddChild(T value)
         {
-            TreeNodeImpl<T> node = new TreeNodeImpl<T>(value, this);
+            TreeNodeImpl<T> node = new TreeNodeImpl<T>(this);
             _children.Add(node);
 
             return node;
@@ -71,24 +70,6 @@ namespace src.Domain
         public bool RemoveChild(TreeNodeImpl<T> node)
         {
             return _children.Remove(node);
-        }
-
-        public void Traverse(TraversalDataDelegate handler)
-        {
-            if (handler(_data))
-            {
-                int i = 0, l = Count;
-                for (; i < l; ++i) _children[i].Traverse(handler);
-            }
-        }
-
-        public void Traverse(TraversalNodeDelegate handler)
-        {
-            if (handler(this))
-            {
-                int i = 0, l = Count;
-                for (; i < l; ++i) _children[i].Traverse(handler);
-            }
         }
     }
 }

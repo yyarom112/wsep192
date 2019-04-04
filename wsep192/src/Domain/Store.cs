@@ -15,7 +15,7 @@ namespace src.Domain
         private String name;
         private Dictionary<int, ProductInStore> products;
         private int storeRate;
-        private ITree<Role> roles;
+        private TreeNodeImpl<Role> roles;
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
@@ -25,7 +25,7 @@ namespace src.Domain
             this.name = name;
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
-            this.roles = NodeTree<Role>.NewTree();
+            this.roles = new TreeNodeImpl<Role>();
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
@@ -34,12 +34,19 @@ namespace src.Domain
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }
         internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }
-        internal ITree<Role> Roles { get => roles; set => roles = value; }
+        internal TreeNodeImpl<Role> Roles { get => roles; set => roles = value; }
         internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
 
-        public Boolean assignManager(Role newManager, int ownerId)
-        { 
+        public Boolean assignManager(Role newManager, Owner owner)
+        {
+            
+            TreeNodeImpl < Role > currOwner = roles.FindInChildren(owner);
+            if(currOwner != null)
+            {
+                currOwner.AddChild(newManager);
+                return true;
+            }
             return false;
         }
     }

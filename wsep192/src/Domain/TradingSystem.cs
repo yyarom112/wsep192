@@ -46,6 +46,7 @@ namespace src.Domain
             if (this.users.ContainsKey(ownerId) && this.users.ContainsKey(managerId))
             {
                 User ownerUser = this.users[ownerId];
+                Owner owner = (Owner)ownerUser.Roles[ownerId];
                 User managerUser = this.users[managerId];
                 Role newManager = ownerUser.assignManager(managerUser, storeId, permissionToManager);
                 if (newManager != null)
@@ -54,7 +55,7 @@ namespace src.Domain
                         Store currStore = this.stores[storeId];
                         if (currStore != null)
                         {
-                            return currStore.assignManager(newManager,ownerId);
+                            return currStore.assignManager(newManager,owner);
                         }
                     }
                     else
