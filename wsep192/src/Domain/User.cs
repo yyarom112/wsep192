@@ -32,6 +32,25 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
 
         }
+        public int basketCheckout(String address)
+        {
+            this.address = address;
+            return basket.basketCheckout()+calcAddressFee(address);
+        }
+        private int calcAddressFee(string address)
+        {
+            switch (address)
+            {
+                case "telaviv":
+                    return 50;
+                case "beersheva":
+                    return 10;
+                case "haifa":
+                    return 60;
+                default:
+                    return 40;
+            }
+        }
 
         public int Id { get => id; set => id = value; }
         public string UserName { get => userName; set => userName = value; }

@@ -18,7 +18,6 @@ namespace src.Domain
             this.ShoppingCart = shoppingCart;
             this.Product = product;
         }
-
         public int Quantity { get => quantity; set => quantity = value; }
         internal ShoppingCart ShoppingCart { get => shoppingCart; set => shoppingCart = value; }
         internal Product Product { get => product; set => product = value; }

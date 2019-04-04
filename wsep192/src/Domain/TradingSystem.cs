@@ -30,7 +30,23 @@ namespace src.Domain
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter =  0;
         }
+        public int basketCheckout(String address,int userID)
+        {
+            if (!this.users.ContainsKey(userID))
+                return -1;
+            else
+                return this.users[userID].basketCheckout(address);
+        }
+        public ShoppingBasket payForBasket(long cardNumber,DateTime date,int userID)
+        {
+            ShoppingBasket basket = users[userID].Basket;
+            foreach(ShoppingCart cart in basket.ShoppingCarts.Values)
+            {
+                cart.Store.updateCart(cart);
+            }
 
+            return basket;
+        }
         public int ProductCounter { get => productCounter; set => productCounter = value; }
         public int StoreCounter { get => storeCounter; set => storeCounter = value; }
         public int UserCounter { get => userCounter; set => userCounter = value; }

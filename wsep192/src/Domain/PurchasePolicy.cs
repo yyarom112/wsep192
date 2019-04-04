@@ -18,7 +18,10 @@ namespace src.Domain
             this.details = details;
             this.products = products;
         }
-
+        public bool confirmPolicy()
+        {
+            return true;
+        }
         public int Id { get => id; set => id = value; }
         public string Details { get => details; set => details = value; }
         internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }

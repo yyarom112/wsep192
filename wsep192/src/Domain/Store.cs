@@ -28,7 +28,50 @@ namespace src.Domain
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
+        public void updateCart(ShoppingCart cart)
+        {
+            foreach (ProductInCart p in cart.Products.Values)
+            {
+                if (p.Quantity <= this.products[p.Product.Id].Quantity)
+                    this.products[p.Product.Id].Quantity -= p.Quantity;
+                else
+                {
+                    p.Quantity = this.products[p.Product.Id].Quantity;
+                    this.products[p.Product.Id].Quantity = 0;
+                }
+            }
+        }
+        public bool confirmPurchasePolicy(Dictionary<int,ProductInCart> products)
+        {
+            List<ProductInStore> productsInStore = new List<ProductInStore>();
+            foreach(ProductInCart p in products.Values)
+            {
+                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
+                productsInStore.Add(productInStore);
+            }
+            foreach(PurchasePolicy pp in purchasePolicy)
+            {
+                if (!pp.confirmPolicy())
+                    return false;
+            }
+            return true;
 
+        }
+        public int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
+        {
+            int sum = 0;
+            List<ProductInStore> productsInStore = new List<ProductInStore>();
+            foreach (ProductInCart p in products.Values)
+            {
+                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
+                productsInStore.Add(productInStore);
+            }
+            foreach (DiscountPolicy dp in discountPolicy)
+            {
+                sum += dp.calculate(productsInStore);
+            }
+            return sum;
+        }
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }

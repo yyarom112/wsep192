@@ -19,7 +19,18 @@ namespace src.Domain
             this.products = products;
             this.storeId = storeId;
         }
-
+        public int cartCheckout()
+        {
+            if (!store.confirmPurchasePolicy(products))
+                return -1;
+            int sum = 0;
+            foreach (ProductInCart p in products.Values)
+                sum += p.Product.Price * p.Quantity;
+            int discount = store.calculateDiscountPolicy(products);
+            return sum - discount;
+            
+        }
+        
         public int StoreId { get => storeId; set => storeId = value; }
         internal Store Store { get => store; set => store = value; }
         internal Dictionary<int, ProductInCart> Products { get => products; set => products = value; }
