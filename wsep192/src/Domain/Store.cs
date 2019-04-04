@@ -24,7 +24,7 @@ namespace src.Domain
             this.name = name;
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
-            this.roles = new NodeTree<Role>(owner);
+            this.roles =  NodeTree<Role>.NewTree();
             this.purchasePolicy = new List < PurchasePolicy >();
             this.discountPolicy = new List<DiscountPolicy>();
         }
@@ -32,12 +32,12 @@ namespace src.Domain
         {
         }
 
-        public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public int StoreRate { get => storeRate; set => storeRate = value; }
-        internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }
-        internal ITree<Role> Roles { get => roles; set => roles = value; }
-        internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
-        internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
+        public int Id { get { return id; } set { id = value; } }
+        public string Name { get { return name; } set { name = value; } }
+        public int StoreRate { get { return storeRate; } set { storeRate = value; } }
+        internal Dictionary<int, ProductInStore> Products { get { return products; } set { products = value; } }
+        internal ITree<Role> Roles { get { return roles; } set { roles = value; } }
+        internal List<PurchasePolicy> PurchasePolicy { get { return purchasePolicy; } set { purchasePolicy = value; } }
+        internal List<DiscountPolicy> DiscountPolicy { get { return discountPolicy; } set { discountPolicy = value; } }
     }
 }

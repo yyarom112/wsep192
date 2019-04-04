@@ -20,6 +20,8 @@ namespace src.Domain
         public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeID)
         {
             bool exist = true;
+            if (productsToInsert.Count == 0)
+                return null;
             if (!this.shoppingCarts.ContainsKey(storeID))
             {
                 exist = false;

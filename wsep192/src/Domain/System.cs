@@ -20,7 +20,6 @@ namespace src.Domain
 
 
 
-
         internal Dictionary<Int32, User> Users
         {
             get

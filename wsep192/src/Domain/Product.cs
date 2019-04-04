@@ -25,11 +25,86 @@ namespace src.Domain
             this.ProductRate = productRate;
         }
 
-        public int Id { get { return id; } set { id = value; } }
-        public string ProductName { get { productName; set => productName = value; }
-        public string Category { get => category; set => category = value; }
-        public string Details { get => details; set => details = value; }
-        public int Price { get => price; set => price = value; }
-        public int ProductRate { get => productRate; set => productRate = value; }
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public String ProductName
+        {
+            get
+            {
+                return productName;
+            }
+
+            set
+            {
+                productName = value;
+            }
+        }
+
+        public String Category
+        {
+            get
+            {
+                return category;
+            }
+
+            set
+            {
+                category = value;
+            }
+        }
+
+        public String Details
+        {
+            get
+            {
+                return details;
+            }
+
+            set
+            {
+                details = value;
+            }
+        }
+
+        public int Price
+        {
+            get
+            {
+                return price;
+            }
+
+            set
+            {
+                price = value;
+            }
+        }
+
+        public int ProductRate
+        {
+            get
+            {
+                return productRate;
+            }
+
+            set
+            {
+                productRate = value;
+            }
+        }
+
+        
+
+
     }
 }
