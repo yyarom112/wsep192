@@ -30,7 +30,6 @@ namespace src.Domain
             this.isRegistered = isRegistered;
             this.basket = new ShoppingBasket();
             this.roles = new Dictionary<int, Role>();
-
         }
 
         public int Id { get => id; set => id = value; }
@@ -42,5 +41,23 @@ namespace src.Domain
         internal state State { get => state; set => state = value; }
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+
+        public Role assignManager(User managerUser, int storeId, List<int> permissionToManager)
+        {
+            if(this.state != state.signedIn || managerUser.state != state.signedIn)
+            {
+                return null;
+            }
+            Role role = roles[this.id];
+            if (role != null && role.GetType() == typeof(Owner))
+            {
+                Owner owner = (Owner)role;
+                Role managerRole = owner.assignManager(managerUser, permissionToManager);
+                return managerRole;
+            }
+            return null;          
+        }
+
+        
     }
 }

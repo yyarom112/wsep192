@@ -40,5 +40,29 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+
+        public Boolean assignManager(int ownerId, int managerId, int storeId, List<int> permissionToManager)
+        {
+            if (this.users.ContainsKey(ownerId) && this.users.ContainsKey(managerId))
+            {
+                User ownerUser = this.users[ownerId];
+                User managerUser = this.users[managerId];
+                Role newManager = ownerUser.assignManager(managerUser, storeId, permissionToManager);
+                if (newManager != null)
+                {
+                    if (this.stores.ContainsKey(storeId)){
+                        Store currStore = this.stores[storeId];
+                        if (currStore != null)
+                        {
+                            return currStore.assignManager(newManager,ownerId);
+                        }
+                    }
+                    else
+                        return false;
+                }
+                return true;       
+            }
+            return false;
+        }
     }
 }

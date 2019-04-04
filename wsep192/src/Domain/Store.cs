@@ -36,5 +36,11 @@ namespace src.Domain
         internal ITree<Role> Roles { get => roles; set => roles = value; }
         internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
+
+        public Boolean assignManager(Role newManager, int ownerId)
+        {
+            
+            return false;
+        }
     }
 }

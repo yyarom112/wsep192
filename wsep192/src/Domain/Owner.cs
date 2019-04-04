@@ -10,6 +10,13 @@ namespace src.Domain
     {
         public Owner(Store store, User user) : base(store, user)
         {
+
+        }
+
+        public Role assignManager(User managerUser, List<int> permissionToManager)
+        {
+            Manager newManager = new Manager(null, managerUser, permissionToManager);
+            return newManager;
         }
     }
 }
