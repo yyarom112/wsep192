@@ -40,5 +40,13 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+
+        public bool signOut(int id) {
+            if (!users.ContainsKey(id))
+                return false;
+            return users[id].signOut();
+
+        }
+
     }
 }
