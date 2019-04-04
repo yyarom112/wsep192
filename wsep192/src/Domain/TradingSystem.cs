@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    class System
+    class TradingSystem
     {
         private Dictionary<int,User> users;
         private Dictionary<int,Store> stores;
@@ -18,7 +18,7 @@ namespace src.Domain
         private int purchasePolicyCounter;
         private int discountPolicyCounter;
 
-        public System(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
+        public TradingSystem(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
         {
             this.users = new Dictionary<int, User>();
             this.stores = new Dictionary<int, Store>();
