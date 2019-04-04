@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    enum state { visitor,signedIn }
+    enum state {visitor,signedIn};
     class User
     {
         private int id;
@@ -42,5 +42,27 @@ namespace src.Domain
         internal state State { get => state; set => state = value; }
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+
+        public Boolean signIn(string userName,string password){
+            if(userName != null && password != null){
+                this.userName = userName;
+                this.password = password;
+                this.state = state.signedIn;
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean register(string userName,string password){
+            if(userName == null || password == null){
+                return false;
+            }
+            this.userName = userName;
+            this.password = password;  
+            this.IsRegistered = true;
+            return true;
+        }
+
+
     }
 }

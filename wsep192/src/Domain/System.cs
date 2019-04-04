@@ -12,6 +12,7 @@ namespace src.Domain
         private Dictionary<int,Store> stores;
         private ProductSupplySystem supplySystem;
         private FinancialSystem financialSystem;
+        private Encryption encryption;
         private int productCounter;
         private int storeCounter;
         private int userCounter;
@@ -29,6 +30,7 @@ namespace src.Domain
             this.userCounter = 0;
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter = 0;
+            this.encryption = new EncryptionImpl();
         }
 
         public int ProductCounter { get => productCounter; set => productCounter = value; }
@@ -40,5 +42,40 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+
+        public Boolean signIn(String userName, String password, String userId){
+            int currUserId = Convert.ToInt32(userId);
+            if(this.users.ContainsKey(currUserId)){
+                User currUser = this.users[currUserId];
+                if(currUser != null){
+                    if(currUser.IsRegistered){
+                        return false;
+                    }
+                    password = this.encryption.encrypt(userName + password);
+                    if(currUser.Password == password){
+                        return currUser.signIn(userName,password);
+                    }                
+                }
+                return false;
+            }
+            return false;
+        }
+
+        public Boolean register(String userName, String password, String userId){
+            int currUserId = Convert.ToInt32(userId);
+            if(this.users.ContainsKey(currUserId)){
+                if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
+                    || userName.Equals("") || password.Equals("") || userName.Contains(" "))
+                    return false;
+                User currUser = this.users[currUserId];
+                if(currUser != null){
+                    password = this.encryption.encrypt(userName + password);
+                    return currUser.register(userName,password);                             
+                }
+                return false;
+            }
+            else
+                return false;   
+        }
     }
 }

@@ -8,5 +8,8 @@ namespace src.Domain
 {
     interface Encryption
     {
+        void connect();
+
+        String encrypt(String password);
     }
 }
