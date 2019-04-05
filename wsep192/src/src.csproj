@@ -74,6 +74,7 @@
     <Compile Include="Domain\ShoppingCart.cs" />
     <Compile Include="Domain\Store.cs" />
     <Compile Include="Domain\TradingSystem.cs" />
+    <Compile Include="Domain\TreeNodeImpl.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
