@@ -21,5 +21,11 @@ namespace src.Domain
         public int Quantity { get => quantity; set => quantity = value; }
         internal Store Store { get => store; set => store = value; }
         internal Product Product { get => product; set => product = value; }
+        public bool compareProduct(ProductInStore product)
+        {
+            return this.quantity == product.quantity &&
+                    this.store == product.store &&
+                    this.product == product.product;
+        }
     }
 }
