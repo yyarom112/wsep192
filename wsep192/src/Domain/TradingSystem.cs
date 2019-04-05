@@ -10,6 +10,7 @@ namespace src.Domain
     {
         private Dictionary<int,User> users;
         private Dictionary<int,Store> stores;
+        private Encryption encryption;
         private ProductSupplySystem supplySystem;
         private FinancialSystem financialSystem;
         private int productCounter;
@@ -22,13 +23,14 @@ namespace src.Domain
         {
             this.users = new Dictionary<int, User>();
             this.stores = new Dictionary<int, Store>();
+            //this.Encryption = new EncryptionImpl();
             this.supplySystem = supplySystem;
             this.financialSystem = financialSystem;
             this.productCounter = 0;
             this.storeCounter = 0;
             this.userCounter = 0;
             this.purchasePolicyCounter = 0;
-            this.discountPolicyCounter = 0;
+            this.discountPolicyCounter =  0;
         }
         public List<ProductInStore> searchProduct(String details)
         {
@@ -69,5 +71,6 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+        internal Encryption Encryption { get => encryption; set => encryption = value; }
     }
 }
