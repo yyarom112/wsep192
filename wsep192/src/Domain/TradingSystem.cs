@@ -36,6 +36,8 @@ namespace src.Domain
         {
             List<ProductInStore> products  = new List<ProductInStore>();
             String[] detailsForFilter = details.Split(' ');
+            if (detailsForFilter.Length != 7)
+                return products;
             KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
                 Int32.Parse(detailsForFilter[4]));
             Filter filter = new Filter(detailsForFilter[0],
