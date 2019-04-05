@@ -18,6 +18,8 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
+        private state signedIn;
+        private state visitor;
 
         public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
         {
@@ -42,5 +44,14 @@ namespace src.Domain
         internal state State { get => state; set => state = value; }
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+
+        internal bool signOut()
+        {
+            if (state != state.signedIn)
+                return false;
+            state = state.visitor;
+            return true;
+
+        }
     }
 }
