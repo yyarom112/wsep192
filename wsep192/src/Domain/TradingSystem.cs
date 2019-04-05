@@ -40,5 +40,12 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+
+        public string showCart(int storeId, int userId) {
+            if (users.ContainsKey(storeId) || !stores.ContainsKey(userId))
+                return "Error : Invalid user or store";
+            return users[userId].showCart(storeId);
+
+        }
     }
 }

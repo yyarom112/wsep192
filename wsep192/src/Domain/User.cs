@@ -42,5 +42,10 @@ namespace src.Domain
         internal state State { get => state; set => state = value; }
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+
+        internal string showCart(int storeId)
+        {
+            return basket.showCart(storeId);
+        }
     }
 }
