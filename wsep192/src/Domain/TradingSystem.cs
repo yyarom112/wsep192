@@ -42,9 +42,25 @@ namespace src.Domain
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
 
         public string showCart(int storeId, int userId) {
-            if (users.ContainsKey(storeId) || !stores.ContainsKey(userId))
+            if (!users.ContainsKey(storeId) || !stores.ContainsKey(userId))
                 return "Error : Invalid user or store";
             return users[userId].showCart(storeId);
+
+        }
+
+        public bool editProductQuantityInCart(  int productId, int quantity, int storeId, int userId)
+        {
+            if (!users.ContainsKey(storeId) || !stores.ContainsKey(userId))
+                return false;
+            return users[userId].editProductQuantityInCart(productId, quantity, storeId);
+
+        }
+
+        public bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove,int storeId, int userId)
+        {
+            if (!users.ContainsKey(storeId) || !stores.ContainsKey(userId))
+                return false;
+            return users[userId].removeProductsFromCart(productsToRemove,storeId);
 
         }
     }

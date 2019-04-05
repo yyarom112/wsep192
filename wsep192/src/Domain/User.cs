@@ -47,5 +47,15 @@ namespace src.Domain
         {
             return basket.showCart(storeId);
         }
+
+        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        {
+            return basket.removeProductsFromCart(productsToRemove,storeId);
+        }
+
+        internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
+        {
+            return basket.editProductQuantityInCart(productId, quantity,storeId);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace src.Domain
     {
         private int storeId;
         private Store store;
-        private Dictionary<int,ProductInCart> products;
+        private Dictionary<int, ProductInCart> products;
 
         public ShoppingCart(int storeId, Store store, Dictionary<int, ProductInCart> products)
         {
@@ -30,7 +30,9 @@ namespace src.Domain
 
         private string createOutputTable()
         {
-            string table = "Store Name: "+store.Name+"\n";
+            string table = "Store Name: " + store.Name + "\n";
+            if (products.Count == 0)
+                return table + "Cart is empty\n";
             int idx = 0;
             table += "Product Name\t\t\tQuantity\n";
             foreach (int key in products.Keys)
@@ -42,6 +44,28 @@ namespace src.Domain
 
 
             return table;
+        }
+
+        internal bool editProductQuantityInCart(int productId, int quantity)
+        {
+            if (!products.ContainsKey(productId))
+                return false;
+            products[productId].Quantity = quantity;
+            return true;
+        }
+
+        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove)
+        {
+            foreach (KeyValuePair<int, int> pair in productsToRemove)
+            {
+                if (!products.ContainsKey(pair.Key) || products[pair.Key].Quantity < pair.Value)
+                    return false;
+            }
+            foreach (KeyValuePair<int, int> pair in productsToRemove)
+            {
+                products[pair.Key].Quantity -= pair.Value;
+            }
+            return true;
         }
     }
 }

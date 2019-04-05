@@ -19,10 +19,23 @@ namespace src.Domain
 
         internal string showCart(int storeId)
         {
-            if (!shoppingCarts.ContainsKey(storeId)) {
+            if (!shoppingCarts.ContainsKey(storeId)) 
                 return "Error : Shopping basket does not contain this store";
-            }
+
             return shoppingCarts[storeId].showCart();
+        }
+
+        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        {
+            if (!shoppingCarts.ContainsKey(storeId))
+                return false;
+            return shoppingCarts[storeId].removeProductsFromCart(productsToRemove);
+        }
+        internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
+        {
+            if (!shoppingCarts.ContainsKey(storeId))
+                return false;
+            return shoppingCarts[storeId].editProductQuantityInCart(productId, quantity);
         }
     }
 }
