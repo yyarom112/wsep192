@@ -17,6 +17,7 @@ namespace src.Domain
         private int userCounter;
         private int purchasePolicyCounter;
         private int discountPolicyCounter;
+        private Encryption encryption;
 
         public TradingSystem(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
         {
@@ -29,6 +30,7 @@ namespace src.Domain
             this.userCounter = 0;
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter =  0;
+            this.encryption = new EncryptionImpl();
         }
 
         public int ProductCounter { get => productCounter; set => productCounter = value; }
@@ -40,5 +42,17 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+
+
+        public bool init(string adminUserName,string adminPassword) {
+            User admin = new User(userCounter,adminUserName,adminPassword,null,state.visitor,true,true);
+            users.Add(userCounter, admin);
+            userCounter++;
+            if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
+                return false;
+
+            return true;
+        }
+
     }
 }
