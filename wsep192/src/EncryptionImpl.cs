@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    class Owner : Role
+    class EncryptionImpl : Domain.Encryption
     {
-        public Owner(Store store, User user) : base(store, user)
+        public bool connect()
         {
+            return true;
         }
     }
 }

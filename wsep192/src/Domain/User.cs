@@ -18,152 +18,40 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
+        private state signedIn;
+        private state visitor;
 
-
-        public User()
+        public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
         {
-            this.id = -1;
-            basket = new ShoppingBasket();
+            this.id = id;
+            this.userName = userName;
+            this.password = password;
+            this.address = "";
+            this.state = state.visitor;
+            this.isAdmin = isAdmin;
+            this.isRegistered = isRegistered;
+            this.basket = new ShoppingBasket();
+            this.roles = new Dictionary<int, Role>();
 
         }
 
-        public User(int id, string userName, string password, string address, state state, bool isAdmin, bool isRegistered, ShoppingBasket basket, Dictionary<int, Role> roles)
+        public int Id { get => id; set => id = value; }
+        public string UserName { get => userName; set => userName = value; }
+        public string Password { get => password; set => password = value; }
+        public string Address { get => address; set => address = value; }
+        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
+        public bool IsRegistered { get => isRegistered; set => isRegistered = value; }
+        internal state State { get => state; set => state = value; }
+        internal ShoppingBasket Basket { get => basket; set => basket = value; }
+        internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+
+        internal bool signOut()
         {
-            this.Id = id;
-            this.UserName = userName;
-            this.Password = password;
-            this.Address = address;
-            this.State = state;
-            this.IsAdmin = isAdmin;
-            this.IsRegistered = isRegistered;
-            this.Basket = basket;
-            if (roles == null)
-                this.Roles = new Dictionary<int, Role>();
-            else
-                this.Roles = roles;
+            if (state != state.signedIn)
+                return false;
+            state = state.visitor;
+            return true;
 
-        }
-
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-            }
-        }
-
-        public String UserName
-        {
-            get
-            {
-                return userName;
-            }
-
-            set
-            {
-                userName = value;
-            }
-        }
-
-        public String Password
-        {
-            get
-            {
-                return password;
-            }
-
-            set
-            {
-                password = value;
-            }
-        }
-
-        public String Address
-        {
-            get
-            {
-                return address;
-            }
-
-            set
-            {
-                address = value;
-            }
-        }
-
-        internal state State
-        {
-            get
-            {
-                return state;
-            }
-
-            set
-            {
-                state = value;
-            }
-        }
-
-        public Boolean IsAdmin
-        {
-            get
-            {
-                return isAdmin;
-            }
-
-            set
-            {
-                isAdmin = value;
-            }
-        }
-
-        public Boolean IsRegistered
-        {
-            get
-            {
-                return isRegistered;
-            }
-
-            set
-            {
-                isRegistered = value;
-            }
-        }
-
-        internal ShoppingBasket Basket
-        {
-            get
-            {
-                return basket;
-            }
-
-            set
-            {
-                basket = value;
-            }
-        }
-
-        internal Dictionary<int, Role> Roles
-        {
-            get
-            {
-                return roles;
-            }
-
-            set
-            {
-                roles = value;
-            }
-        }
-
-        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert,int storeId)
-        {
-            return this.basket.addProductsToCart(productsToInsert, storeId);
         }
     }
 }

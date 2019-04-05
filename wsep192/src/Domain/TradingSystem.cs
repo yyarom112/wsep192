@@ -17,154 +17,79 @@ namespace src.Domain
         private int userCounter;
         private int purchasePolicyCounter;
         private int discountPolicyCounter;
+        private Encryption encryption;
 
-
-
-        internal Dictionary<Int32, User> Users
+        public TradingSystem(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
         {
-            get
-            {
-                return users;
-            }
-
-            set
-            {
-                users = value;
-            }
+            this.users = new Dictionary<int, User>();
+            this.stores = new Dictionary<int, Store>();
+            this.supplySystem = supplySystem;
+            this.financialSystem = financialSystem;
+            this.productCounter = 0;
+            this.storeCounter = 0;
+            this.userCounter = 0;
+            this.purchasePolicyCounter = 0;
+            this.discountPolicyCounter =  0;
+            this.encryption = new EncryptionImpl();
         }
-
-        internal Dictionary<Int32, Store> Stores
+        public List<ProductInStore> searchProduct(String details)
         {
-            get
+            List<ProductInStore> products  = new List<ProductInStore>();
+            String[] detailsForFilter = details.Split(' ');
+            if (detailsForFilter.Length != 7)
+                return products;
+            KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
+                Int32.Parse(detailsForFilter[4]));
+            Filter filter = new Filter(detailsForFilter[0],
+                detailsForFilter[1], detailsForFilter[2], priceRange,
+                Int32.Parse(detailsForFilter[5]), Int32.Parse(detailsForFilter[6]));
+            foreach (Store s in stores.Values)
             {
-                return stores;
+                s.searchProduct(filter,products);
             }
-
-            set
-            {
-                stores = value;
-            }
+            return products;
         }
-
-        internal ProductSupplySystem SupplySystem
+        public User searchUser(int userID)
         {
-            get
-            {
-                return supplySystem;
-            }
-
-            set
-            {
-                supplySystem = value;
-            }
+            foreach (User u in users.Values)
+                if (u.Id == userID)
+                    return u;
+            return null;
         }
-
-        internal FinancialSystem FinancialSystem
+        public Store searchStore(int storeID)
         {
-            get
-            {
-                return financialSystem;
-            }
-
-            set
-            {
-                financialSystem = value;
-            }
+            foreach (Store s in stores.Values)
+                if (s.Id == storeID)
+                    return s;
+            return null;
         }
 
-        public Int32 ProductCounter
+        public int ProductCounter { get => productCounter; set => productCounter = value; }
+        public int StoreCounter { get => storeCounter; set => storeCounter = value; }
+        public int UserCounter { get => userCounter; set => userCounter = value; }
+        public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
+        public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
+        internal Dictionary<int, User> Users { get => users; set => users = value; }
+        internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
+        internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
+        internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+        public bool init(string adminUserName, string adminPassword)
         {
-            get
-            {
-                return productCounter;
-            }
+            User admin = new User(userCounter, adminUserName, adminPassword, true, true);
+            users.Add(userCounter, admin);
+            userCounter++;
+            if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
+                return false;
 
-            set
-            {
-                productCounter = value;
-            }
+            return true;
         }
 
-        public Int32 StoreCounter
-        {
-            get
-            {
-                return storeCounter;
-            }
-
-            set
-            {
-                storeCounter = value;
-            }
-        }
-
-        public Int32 UserCounter
-        {
-            get
-            {
-                return userCounter;
-            }
-
-            set
-            {
-                userCounter = value;
-            }
-        }
-
-        public Int32 PurchasePolicyCounter
-        {
-            get
-            {
-                return purchasePolicyCounter;
-            }
-
-            set
-            {
-                purchasePolicyCounter = value;
-            }
-        }
-
-        public Int32 DiscountPolicyCounter
-        {
-            get
-            {
-                return discountPolicyCounter;
-            }
-
-            set
-            {
-                discountPolicyCounter = value;
-            }
-        }
-
-
-        public void addProductsToCart(LinkedList<KeyValuePair<int, int>> productsToInsert, int storeID , int userID)
-        {           
-            if(!this.Users.ContainsKey(userID)||!this.Stores.ContainsKey(storeID))
-            {
-                Console.WriteLine("The store or user does not exist\n");
-            }
-            this.Users[userID].addProductsToCart(searchProductById(productsToInsert, storeID), storeID);
-
+        public bool signOut(int id) {
+            if (!users.ContainsKey(id))
+                return false;
+            return users[id].signOut();
 
         }
-
-        private LinkedList<KeyValuePair<Product, int>> searchProductById(LinkedList<KeyValuePair<int, int>> productsToInsert , int storeId)
-        {
-            LinkedList<KeyValuePair<Product, int>> output = new LinkedList<KeyValuePair<Product, int>>();
-            Store store = this.stores[storeId];
-            foreach(KeyValuePair<int, int> product in productsToInsert)
-            {
-                if (!store.Products.ContainsKey(product.Key))
-                {
-                    output.AddLast(new KeyValuePair<Product, int>(store.Products[product.Key].Product, product.Value));
-                }
-
-            }
-            return output;
-        }
-
-
 
     }
 }

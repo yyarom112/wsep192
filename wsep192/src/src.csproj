@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Domain\DiscountPolicy.cs" />
     <Compile Include="Domain\Encryption.cs" />
+    <Compile Include="EncryptionImpl.cs" />
     <Compile Include="Domain\Filter.cs" />
     <Compile Include="Domain\FinancialSystem.cs" />
     <Compile Include="Domain\Manager.cs" />
@@ -74,10 +75,13 @@
     <Compile Include="Domain\ShoppingCart.cs" />
     <Compile Include="Domain\Store.cs" />
     <Compile Include="Domain\TradingSystem.cs" />
+    <Compile Include="Domain\TreeNodeImpl.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="FinancialSystemImpl.cs" />
+    <Compile Include="ProductSupplySystemImpl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domain\tree.cs" />
+    <Compile Include="tree.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -94,7 +98,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -8,5 +8,7 @@ namespace src.Domain
 {
     interface Encryption
     {
+        bool connect();
+        
     }
 }

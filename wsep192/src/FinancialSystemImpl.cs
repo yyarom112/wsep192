@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace src.Domain
+namespace src
 {
-    class Owner : Role
+    class FinancialSystemImpl : Domain.FinancialSystem
     {
-        public Owner(Store store, User user) : base(store, user)
+        public bool connect()
         {
+            return true;
         }
     }
 }
