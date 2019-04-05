@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    class System
+    class TradingSystem
     {
         private Dictionary<int,User> users;
         private Dictionary<int,Store> stores;

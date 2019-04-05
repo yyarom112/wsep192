@@ -23,6 +23,7 @@ namespace src.Domain
         public User()
         {
             this.id = -1;
+            basket = new ShoppingBasket();
 
         }
 
