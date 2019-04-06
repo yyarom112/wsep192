@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace src.Domain
 {
@@ -12,12 +9,12 @@ namespace src.Domain
         private Dictionary<int,Store> stores;
         private ProductSupplySystem supplySystem;
         private FinancialSystem financialSystem;
-        private Encryption encryption;
         private int productCounter;
         private int storeCounter;
         private int userCounter;
         private int purchasePolicyCounter;
         private int discountPolicyCounter;
+        private Encryption encryption;
 
         public TradingSystem(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
         {
