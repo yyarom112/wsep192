@@ -160,6 +160,15 @@ namespace IntegrationTests
 
             Assert.AreEqual(true, sys.addProductsToCart(toInsert, store.Id, user.Id));
 
+            ShoppingCart cart = sys.Users[user.Id].Basket.ShoppingCarts[store.Id];
+
+            Assert.AreEqual(true,cart.Products.ContainsKey(p1.Id));
+            Assert.AreEqual(true, cart.Products.ContainsKey(p2.Id));
+            Assert.AreEqual(true, cart.Products.ContainsKey(p3.Id));
+            Assert.AreEqual(true, cart.Products.ContainsKey(p4.Id));
+
+
+
         }
 
 
