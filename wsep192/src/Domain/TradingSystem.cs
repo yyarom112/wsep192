@@ -91,5 +91,38 @@ namespace src.Domain
 
         }
 
+        public bool addProductsToCart(LinkedList<KeyValuePair<int, int>> products,int storeId,int userId)
+        {
+            if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products==null)
+                return false;
+            LinkedList<KeyValuePair<Product, int>> toInsert = createProductsList(products, storeId);
+            if (toInsert == null)
+                return false;
+            ShoppingCart newCartCheck= this.users[userId].addProductsToCart(toInsert, storeId);
+            if (newCartCheck != null)
+                newCartCheck.Store = this.stores[storeId];
+            return true;
+        }
+
+        public LinkedList<KeyValuePair<Product, int>> createProductsList(LinkedList<KeyValuePair<int, int>> products, int storeId)
+        {
+            bool check = true;
+            LinkedList<KeyValuePair<Product, int>> output = new LinkedList<KeyValuePair<Product, int>>();
+            foreach (KeyValuePair<int, int> productId in products)
+            {
+                if (!this.Stores[storeId].Products.ContainsKey(productId.Key))
+                {
+                    check = false;
+                }
+                else
+                {
+                    output.AddLast(new KeyValuePair<Product, int>(this.Stores[storeId].Products[productId.Key].Product, productId.Value));
+                }
+            }
+            if (!check)
+                return null;
+            return output;
+        }
+
     }
 }

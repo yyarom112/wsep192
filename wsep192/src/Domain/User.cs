@@ -53,5 +53,10 @@ namespace src.Domain
             return true;
 
         }
+
+        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
+        {
+            return this.basket.addProductsToCart(productsToInsert, storeId);
+        }
     }
 }

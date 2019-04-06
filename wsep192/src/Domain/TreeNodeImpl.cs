@@ -20,6 +20,12 @@ namespace src.Domain
             _level = 0;
         }
 
+        public TreeNodeImpl()
+        {
+            _children = new List<TreeNodeImpl<T>>();
+            _level = 0;
+        }
+
         public TreeNodeImpl(T data, TreeNodeImpl<T> parent) : this(data)
         {
             _parent = parent;
