@@ -27,7 +27,19 @@ namespace src.Domain
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
-
+        public bool searchProduct(Filter filter,List<ProductInStore> listToAdd)
+        {
+            bool result = false;
+            foreach(ProductInStore p in products.Values)
+            {
+                if (p.Product.compareProduct(filter)&&filter.StoreRate!=-1&&filter.StoreRate==this.storeRate)
+                {
+                    listToAdd.Add(p);
+                    result = true;
+                }
+            }
+            return result;
+        }
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }
