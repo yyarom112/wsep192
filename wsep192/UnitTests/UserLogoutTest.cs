@@ -22,7 +22,7 @@ namespace UnitTests
             {
 
                 system = new TradingSystem(null, null);
-                user = new User(1, "user", "1234", null, state.visitor, false, true);
+                user = new User(1, "user", "1234" , false, true);
             }
             //Testing User class method
             [TestMethod]
