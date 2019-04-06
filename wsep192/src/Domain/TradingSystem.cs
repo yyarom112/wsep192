@@ -84,7 +84,7 @@ namespace src.Domain
 
         public Boolean assignManager(int ownerId, int managerId, int storeId, List<int> permissionToManager)
         {
-            if (this.users.ContainsKey(ownerId) && this.users.ContainsKey(managerId))
+            if (this.users.ContainsKey(ownerId) && this.users.ContainsKey(managerId) && ownerId != managerId)
             {
                 User ownerUser = this.users[ownerId];
                 User managerUser = this.users[managerId];

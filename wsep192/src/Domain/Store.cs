@@ -13,7 +13,7 @@ namespace src.Domain
         private String name;
         private Dictionary<int, ProductInStore> products;
         private int storeRate;
-        private TreeNodeImpl<Role> roles;
+        private TreeNode<Role> roles;
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
@@ -23,10 +23,11 @@ namespace src.Domain
             this.name = name;
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
-            this.roles = new TreeNodeImpl<Role>();
+            this.roles = new TreeNode<Role>(null);
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
+
         public bool searchProduct(Filter filter,List<ProductInStore> listToAdd)
         {
             bool result = false;
@@ -44,17 +45,22 @@ namespace src.Domain
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }
         internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }
-        internal TreeNodeImpl<Role> Roles { get => roles; set => roles = value; }
+        internal TreeNode<Role> Roles { get => roles; set => roles = value; }
         internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
 
         public Boolean assignManager(Role newManager, Owner owner)
         {
-            TreeNodeImpl < Role > currOwner = roles.FindInChildren(owner);
+            TreeNode < Role > currOwner = roles.FindInChildren(owner);
             if(currOwner != null)
             {
-                currOwner.AddChild(newManager);
-                return true;
+                TreeNode<Role> tmp = currOwner.FindInChildren(newManager);
+                if (currOwner.FindInChildren(newManager) == null)
+                {
+                    currOwner.AddChild(newManager);
+                    return true;
+                }
+               
             }
             return false;
         }

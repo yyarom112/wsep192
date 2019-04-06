@@ -72,13 +72,16 @@ namespace src.Domain
             {
                 return false;
             }
-            Role role = roles[this.id];
-            if (role != null && role.GetType() == typeof(Owner))
+            if (this.roles.ContainsKey(this.id))
             {
-                Owner owner = (Owner)role;
-                return owner.assignManager(managerUser, permissionToManager);
-                
-            }
+                Role role = roles[this.id];
+                if (role != null && role.GetType() == typeof(Owner))
+                {
+                    Owner owner = (Owner)role;
+                    return owner.assignManager(managerUser, permissionToManager);
+
+                }
+            } 
             return false;
         }
 
