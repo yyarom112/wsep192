@@ -14,7 +14,7 @@ namespace UnitTests
         public void setUp()
         {
             system = new TradingSystem(null, null);
-            user1 = new User(4567, "Yuval", "3399", "Ramat-gan", false, false);
+            user1 = new User(4567, "Yuval", "3399", false, false);
             system.Users.Add(user1.Id, user1);
         }
 

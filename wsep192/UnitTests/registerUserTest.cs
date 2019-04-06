@@ -13,7 +13,7 @@ namespace UnitTests
         public void setUp()
         {
             system = new TradingSystem(null,null);
-            user1 = new User(1234, "Seifan", "2457", "Ashdod", false, false);
+            user1 = new User(1234, "Seifan", "2457", false, false);
             system.Users.Add(user1.Id, user1);
         }
 
