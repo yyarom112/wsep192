@@ -32,38 +32,7 @@ namespace src.Domain
             this.discountPolicyCounter =  0;
             this.encryption = new EncryptionImpl();
         }
-        public List<ProductInStore> searchProduct(String details)
-        {
-            List<ProductInStore> products  = new List<ProductInStore>();
-            String[] detailsForFilter = details.Split(' ');
-            if (detailsForFilter.Length != 7)
-                return products;
-            KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
-                Int32.Parse(detailsForFilter[4]));
-            Filter filter = new Filter(detailsForFilter[0],
-                detailsForFilter[1], detailsForFilter[2], priceRange,
-                Int32.Parse(detailsForFilter[5]), Int32.Parse(detailsForFilter[6]));
-            foreach (Store s in stores.Values)
-            {
-                s.searchProduct(filter,products);
-            }
-            return products;
-        }
-        public User searchUser(int userID)
-        {
-            foreach (User u in users.Values)
-                if (u.Id == userID)
-                    return u;
-            return null;
-        }
-        public Store searchStore(int storeID)
-        {
-            foreach (Store s in stores.Values)
-                if (s.Id == storeID)
-                    return s;
-            return null;
-        }
-
+        
         public int ProductCounter { get => productCounter; set => productCounter = value; }
         public int StoreCounter { get => storeCounter; set => storeCounter = value; }
         public int UserCounter { get => userCounter; set => userCounter = value; }
@@ -73,23 +42,33 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
-        public bool init(string adminUserName, string adminPassword)
+
+        public Boolean assignManager(int ownerId, int managerId, int storeId, List<int> permissionToManager)
         {
-            User admin = new User(userCounter, adminUserName, adminPassword, true, true);
-            users.Add(userCounter, admin);
-            userCounter++;
-            if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
-                return false;
-
-            return true;
+            if (this.users.ContainsKey(ownerId) && this.users.ContainsKey(managerId))
+            {
+                User ownerUser = this.users[ownerId];
+                Owner owner = (Owner)ownerUser.Roles[ownerId];
+                User managerUser = this.users[managerId];
+                Role newManager = ownerUser.assignManager(managerUser, storeId, permissionToManager);
+                if (newManager != null)
+                {
+                    if (this.stores.ContainsKey(storeId))
+                    {
+                        Store currStore = this.stores[storeId];
+                        if (currStore != null)
+                        {
+                            return currStore.assignManager(newManager, owner);
+                        }
+                    }
+                    else
+                        return false;
+                }
+            }
+            return false;
         }
-
-        public bool signOut(int id) {
-            if (!users.ContainsKey(id))
-                return false;
-            return users[id].signOut();
-
-        }
-
     }
+
+
+}
 }
