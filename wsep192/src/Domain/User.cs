@@ -19,13 +19,13 @@ namespace src.Domain
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
 
-        public User(int id, string userName, string password, string address, state state, bool isAdmin, bool isRegistered)
+        public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
         {
             this.id = id;
             this.userName = userName;
             this.password = password;
-            this.address = address;
-            this.state = state;
+            this.address = "";
+            this.state = state.visitor;
             this.isAdmin = isAdmin;
             this.isRegistered = isRegistered;
             this.basket = new ShoppingBasket();
