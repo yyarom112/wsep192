@@ -6,7 +6,7 @@ namespace src.Domain
 {
     class EncryptionImpl : Encryption
     {
-        public void connect()
+        public bool connect()
         {
             throw new NotImplementedException();
         }
