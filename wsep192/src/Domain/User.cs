@@ -42,23 +42,47 @@ namespace src.Domain
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
-        public Role assignManager(User managerUser, int storeId, List<int> permissionToManager)
+        public Boolean signIn(string userName, string password)
+        {
+            if (userName != null && password != null)
+            {
+                this.userName = userName;
+                this.password = password;
+                this.state = state.signedIn;
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean register(string userName, string password)
+        {
+            if (userName == null || password == null)
+            {
+                return false;
+            }
+            this.userName = userName;
+            this.password = password;
+            this.IsRegistered = true;
+            return true;
+        }
+
+        public Boolean assignManager(User managerUser, int storeId, List<int> permissionToManager)
         {
             if (this.state != state.signedIn || managerUser.state != state.signedIn)
             {
-                return null;
+                return false;
             }
             Role role = roles[this.id];
             if (role != null && role.GetType() == typeof(Owner))
             {
                 Owner owner = (Owner)role;
-                Role managerRole = owner.assignManager(managerUser, permissionToManager);
-                return managerRole;
+                return owner.assignManager(managerUser, permissionToManager);
+                
             }
-            return null;
+            return false;
         }
 
 
     }
 }
-}
+

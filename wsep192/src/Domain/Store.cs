@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Collections.IList;
 using Common;
 
 namespace src.Domain
@@ -52,7 +50,6 @@ namespace src.Domain
 
         public Boolean assignManager(Role newManager, Owner owner)
         {
-            
             TreeNodeImpl < Role > currOwner = roles.FindInChildren(owner);
             if(currOwner != null)
             {

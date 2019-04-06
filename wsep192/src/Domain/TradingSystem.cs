@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace src.Domain
 {
@@ -43,27 +41,54 @@ namespace src.Domain
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
 
+        public Boolean register(String userName, String password, String userId)
+        {
+            int currUserId = Convert.ToInt32(userId);
+            if (this.users.ContainsKey(currUserId))
+            {
+                if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
+                    || userName.Equals("") || password.Equals("") || userName.Contains(" "))
+                    return false;
+                User currUser = this.users[currUserId];
+                if (currUser != null && userName == currUser.UserName && password == currUser.Password)
+                {
+                    password = encryption.encrypt(userName + password);
+                    return currUser.register(userName, password);
+                }
+                return false;
+            }
+            return false;
+        }
+        public Boolean signIn(String userName, String password, String userId)
+        {
+            int currUserId = Convert.ToInt32(userId);
+            if (this.users.ContainsKey(currUserId))
+            {
+                User currUser = this.users[currUserId];
+                if (currUser != null)
+                {
+                    if (!currUser.IsRegistered)
+                    {
+                        return false;
+                    }
+                    password = encryption.encrypt(userName + password);
+                    if (currUser.Password == password)
+                    {
+                        return currUser.signIn(userName, password);
+                    }
+                }
+                return false;
+            }
+            return false;
+        }
+
         public Boolean assignManager(int ownerId, int managerId, int storeId, List<int> permissionToManager)
         {
             if (this.users.ContainsKey(ownerId) && this.users.ContainsKey(managerId))
             {
                 User ownerUser = this.users[ownerId];
-                Owner owner = (Owner)ownerUser.Roles[ownerId];
                 User managerUser = this.users[managerId];
-                Role newManager = ownerUser.assignManager(managerUser, storeId, permissionToManager);
-                if (newManager != null)
-                {
-                    if (this.stores.ContainsKey(storeId))
-                    {
-                        Store currStore = this.stores[storeId];
-                        if (currStore != null)
-                        {
-                            return currStore.assignManager(newManager, owner);
-                        }
-                    }
-                    else
-                        return false;
-                }
+                return ownerUser.assignManager(managerUser, storeId, permissionToManager);
             }
             return false;
         }
@@ -71,4 +96,4 @@ namespace src.Domain
 
 
 }
-}
+

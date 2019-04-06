@@ -13,10 +13,11 @@ namespace src.Domain
 
         }
 
-        public Role assignManager(User managerUser, List<int> permissionToManager)
+        public Boolean assignManager(User managerUser, List<int> permissionToManager)
         {
             Manager newManager = new Manager(null, managerUser, permissionToManager);
-            return newManager;
+            return Store.assignManager(newManager, this);
+            
         }
     }
 }
