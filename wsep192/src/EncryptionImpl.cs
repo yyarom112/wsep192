@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    interface Encryption
+    class EncryptionImpl : Domain.Encryption
     {
-        bool connect();
-        
+        public bool connect()
+        {
+            return true;
+        }
     }
 }

@@ -8,5 +8,6 @@ namespace src.Domain
 {
     interface FinancialSystem
     {
+        bool connect();
     }
 }

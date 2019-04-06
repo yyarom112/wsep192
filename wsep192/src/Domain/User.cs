@@ -18,6 +18,8 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
+        private state signedIn;
+        private state visitor;
 
         public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
         {
@@ -43,22 +45,13 @@ namespace src.Domain
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
-        public Role assignManager(User managerUser, int storeId, List<int> permissionToManager)
+        internal bool signOut()
         {
-            if(this.state != state.signedIn || managerUser.state != state.signedIn)
-            {
-                return null;
-            }
-            Role role = roles[this.id];
-            if (role != null && role.GetType() == typeof(Owner))
-            {
-                Owner owner = (Owner)role;
-                Role managerRole = owner.assignManager(managerUser, permissionToManager);
-                return managerRole;
-            }
-            return null;          
-        }
+            if (state != state.signedIn)
+                return false;
+            state = state.visitor;
+            return true;
 
-        
+        }
     }
 }
