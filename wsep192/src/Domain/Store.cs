@@ -14,7 +14,7 @@ namespace src.Domain
         private String name;
         private Dictionary<int, ProductInStore> products;
         private int storeRate;
-        private ITree<Role> roles;
+        private TreeNode<Role> roles;
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
@@ -24,32 +24,28 @@ namespace src.Domain
             this.name = name;
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
-            this.roles = NodeTree<Role>.NewTree();
+            this.roles = new TreeNode<Role>(null);
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
-        public void removeOwner(int userID)
+        public bool searchProduct(Filter filter,List<ProductInStore> listToAdd)
         {
-            Role role = searchOwner(userID);
-            if (role != null)
+            bool result = false;
+            foreach(ProductInStore p in products.Values)
             {
-                role.User.Roles.Remove(id);
-                roles.Remove(role);
+                if (p.Product.compareProduct(filter)&&filter.StoreRate!=-1&&filter.StoreRate==this.storeRate)
+                {
+                    listToAdd.Add(p);
+                    result = true;
+                }
             }
-            
-        }
-        public Role searchOwner(int userID)
-        {
-            foreach (Role role in roles.Values)
-                if (role.User.Id == userID)
-                    return role;
-            return null;
+            return result;
         }
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }
         internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }
-        internal ITree<Role> Roles { get => roles; set => roles = value; }
+        internal TreeNode<Role> Roles { get => roles; set => roles = value; }
         internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
     }
