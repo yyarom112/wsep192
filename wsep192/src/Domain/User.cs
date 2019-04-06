@@ -62,6 +62,15 @@ namespace src.Domain
             return true;
         }
 
+        internal bool signOut()
+        {
+            if (state != state.signedIn)
+                return false;
+            state = state.visitor;
+            return true;
+
+        }
+
 
     }
 }
