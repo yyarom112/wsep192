@@ -11,8 +11,10 @@ namespace src.Domain
         private KeyValuePair <int, int> priceRange;
         private int productRate;
         private int storeRate;
-
-        public Filter(String productName, String category, String keyword, KeyValuePair<int, int> priceRange, int productRate, int storeRate)
+        public Filter(String productName,
+            String category, String keyword,
+            KeyValuePair<int, int> priceRange,
+            int productRate, int storeRate)
         {
             this.ProductName = productName;
             this.Category = category;
