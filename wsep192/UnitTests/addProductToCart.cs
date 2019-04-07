@@ -215,7 +215,7 @@ namespace UnitTests
         }
 
         //only update
-        public void addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert)
+        public override void addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert)
         {
             foreach (KeyValuePair<Product, int> toInsert in productsToInsert)
             {
@@ -243,7 +243,7 @@ namespace UnitTests
 
 
         //only update
-        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
+        public override ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
         {
             if (Carts_entrys.ContainsKey(storeId))
             {
