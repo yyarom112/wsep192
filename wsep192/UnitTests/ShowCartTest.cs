@@ -57,8 +57,8 @@ namespace UnitTests
 
         private void addProducts()
         {
-            Product p1 = new Product(1, "p1", null, null, -1, 0);
-            Product p2 = new Product(2, "p2", null, null, -1, 0);
+            Product p1 = new Product(1, "p1", null, null, -1);
+            Product p2 = new Product(2, "p2", null, null, -1);
             ProductInCart pc1 = new ProductInCart(3, user.Basket.ShoppingCarts[store.Id], p1);
             ProductInCart pc2 = new ProductInCart(1, user.Basket.ShoppingCarts[store.Id], p2);
             user.Basket.ShoppingCarts[store.Id].Products.Add(1,pc1);

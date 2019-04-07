@@ -50,7 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="EditorRemoveProductsCartTests.cs" />
+    <Compile Include="EditProductInCartTests.cs" />
+    <Compile Include="RemoveProductsFromCartTests.cs" />
     <Compile Include="ShowCartTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

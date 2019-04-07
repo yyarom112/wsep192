@@ -48,7 +48,7 @@ namespace src.Domain
 
         }
 
-        public bool editProductQuantityInCart(  int productId, int quantity, int storeId, int userId)
+        public bool editProductQuantityInCart( int productId, int quantity, int storeId, int userId)
         {
             if (!users.ContainsKey(storeId) || !stores.ContainsKey(userId))
                 return false;
