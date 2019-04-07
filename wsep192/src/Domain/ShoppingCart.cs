@@ -19,7 +19,7 @@ namespace src.Domain
             this.products = products;
             this.storeId = storeId;
         }
-        public int cartCheckout()
+        public virtual int cartCheckout()
         {
             if (!store.confirmPurchasePolicy(products))
                 return -1;

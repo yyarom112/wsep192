@@ -34,7 +34,7 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
 
         }
-        public int basketCheckout(String address)
+        public virtual int basketCheckout(String address)
         {
             this.address = address;
             return basket.basketCheckout()+calcAddressFee(address);

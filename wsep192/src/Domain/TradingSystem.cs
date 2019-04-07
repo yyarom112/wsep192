@@ -109,7 +109,7 @@ namespace src.Domain
             User admin = new User(userCounter, adminUserName, adminPassword, true, true);
             users.Add(userCounter, admin);
             userCounter++;
-            if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
+            if (!financialSystem.Connect() || !supplySystem.connect() || !encryption.connect())
                 return false;
 
             return true;

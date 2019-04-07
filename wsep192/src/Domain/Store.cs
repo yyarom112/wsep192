@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Common;
 
 namespace src.Domain
@@ -28,7 +27,22 @@ namespace src.Domain
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
-        public void updateCart(ShoppingCart cart, String opt)
+
+        public bool searchProduct(Filter filter, List<ProductInStore> listToAdd)
+        {
+            bool result = false;
+            foreach (ProductInStore p in products.Values)
+            {
+                if (p.Product.compareProduct(filter) && filter.StoreRate != -1 && filter.StoreRate == this.storeRate)
+                {
+                    listToAdd.Add(p);
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+        public virtual void updateCart(ShoppingCart cart, String opt)
         {
             foreach (ProductInCart p in cart.Products.Values)
             {
@@ -51,8 +65,10 @@ namespace src.Domain
                 
             }
         }
-        public bool confirmPurchasePolicy(Dictionary<int,ProductInCart> products)
+        public virtual bool confirmPurchasePolicy(Dictionary<int,ProductInCart> products)
         {
+            if (this.PurchasePolicy == null)
+                return true;
             List<ProductInStore> productsInStore = new List<ProductInStore>();
             foreach(ProductInCart p in products.Values)
             {
@@ -67,8 +83,10 @@ namespace src.Domain
             return true;
 
         }
-        public int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
+        public virtual int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
         {
+            if (this.DiscountPolicy == null)
+                return 0;
             int sum = 0;
             List<ProductInStore> productsInStore = new List<ProductInStore>();
             foreach (ProductInCart p in products.Values)
