@@ -72,7 +72,7 @@ namespace UnitTests
             store.Products.Add(p2.Id, pis2);
             store.Products.Add(p3.Id, pis3);
             store.Products.Add(p4.Id, pis4);
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1,cart,p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -93,7 +93,7 @@ namespace UnitTests
             store.Products.Add(p2.Id, pis2);
             store.Products.Add(p3.Id, pis3);
             store.Products.Add(p4.Id, pis4);
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -115,7 +115,7 @@ namespace UnitTests
             store.Products.Add(p2.Id, pis2);
             store.Products.Add(p3.Id, pis3);
             store.Products.Add(p4.Id, pis4);
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -131,7 +131,7 @@ namespace UnitTests
         public void TestMethod1_confirmPurchasePolicy_PolicyDictionryEmpty()
         {
             setUp();
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -148,7 +148,7 @@ namespace UnitTests
         public void TestMethod1_calculateDiscountPolicy_DiscountDictionryEmpty()
         {
             setUp();
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -220,7 +220,7 @@ namespace UnitTests
         public void TestMethod1_updateCart_minus()
         {
             setUp();
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
 
@@ -234,7 +234,7 @@ namespace UnitTests
         public void TestMethod1_updateCart_plus()
         {
             setUp();
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
 
@@ -253,7 +253,7 @@ namespace UnitTests
             sys.FinancialSystem = new StubFinancialSystem(true);
             sys.SupplySystem = new StubProductSupplySystem(true);
 
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -276,7 +276,7 @@ namespace UnitTests
             sys.FinancialSystem = new StubFinancialSystem(false);
             sys.SupplySystem = new StubProductSupplySystem(true);
 
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -299,7 +299,7 @@ namespace UnitTests
             sys.FinancialSystem = new StubFinancialSystem(true);
             sys.SupplySystem = new StubProductSupplySystem(false);
 
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -358,9 +358,10 @@ namespace UnitTests
     {
         private int retVal;
 
-        public Stubcart(int storeId, Store store, Dictionary<int, ProductInCart> products, int retval) : base(storeId, store, products)
+        public Stubcart(int storeId, Store store, Dictionary<int, ProductInCart> products, int retval) : base(storeId, store)
         {
             this.retVal = retval;
+            this.Products = products;
         }
 
         public override int cartCheckout()
@@ -394,7 +395,7 @@ namespace UnitTests
             this.retVal = ret;
         }
 
-        public override int basketCheckout(String address)
+        public int basketCheckout(String address)
         {
             return retVal;
         }

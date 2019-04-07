@@ -63,6 +63,12 @@ namespace src.Domain
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
+
+        public int basketCheckout(String address)
+        {
+            this.address = address;
+            return basket.basketCheckout() + calcAddressFee(address);
+        }
         internal bool signOut()
         {
             if (state != state.signedIn)
@@ -86,6 +92,20 @@ namespace src.Domain
                 return true;
             }
             return false;
+        }
+        private int calcAddressFee(string address)
+        {
+            switch (address)
+            {
+                case "telaviv":
+                    return 50;
+                case "beersheva":
+                    return 10;
+                case "haifa":
+                    return 60;
+                default:
+                    return 40;
+            }
         }
 
         public Boolean register(string userName, string password)

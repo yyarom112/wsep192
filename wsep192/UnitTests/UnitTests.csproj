@@ -58,6 +58,7 @@
     <Compile Include="loginUserTest.cs" />
     <Compile Include="ManagerPermissionTest.cs" />
     <Compile Include="registerUserTest.cs" />
+    <Compile Include="BuyingBasketReq2.8.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">
