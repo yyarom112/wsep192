@@ -34,10 +34,64 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
 
         }
-        public virtual int basketCheckout(String address)
+        public bool removeOwner(int userID,int storeID)
+        {
+            Role role = searchRoleByStoreID(storeID);
+            if (role != null && role.GetType() == typeof(Owner))
+            {
+                Owner owner = (Owner)role;
+                return owner.removeOwner(userID);
+                
+            }
+            return false;
+            
+        }
+        public Role searchRoleByStoreID(int storeID)
+        {
+            foreach (Role role in roles.Values)
+                if (role.Store.Id == storeID)
+                    return role;
+            return null;
+        }
+        public int Id { get => id; set => id = value; }
+        public string UserName { get => userName; set => userName = value; }
+        public string Password { get => password; set => password = value; }
+        public string Address { get => address; set => address = value; }
+        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
+        public bool IsRegistered { get => isRegistered; set => isRegistered = value; }
+        internal state State { get => state; set => state = value; }
+        internal ShoppingBasket Basket { get => basket; set => basket = value; }
+        internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+
+
+        public int basketCheckout(String address)
         {
             this.address = address;
-            return basket.basketCheckout()+calcAddressFee(address);
+            return basket.basketCheckout() + calcAddressFee(address);
+        }
+        internal bool signOut()
+        {
+            if (state != state.signedIn)
+                return false;
+            state = state.visitor;
+            return true;
+
+        }
+
+        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
+        {
+            return this.basket.addProductsToCart(productsToInsert, storeId);
+        }
+        public Boolean signIn(string userName, string password)
+        {
+            if (userName != null && password != null)
+            {
+                this.userName = userName;
+                this.password = password;
+                this.state = state.signedIn;
+                return true;
+            }
+            return false;
         }
         private int calcAddressFee(string address)
         {
@@ -54,23 +108,16 @@ namespace src.Domain
             }
         }
 
-        public int Id { get => id; set => id = value; }
-        public string UserName { get => userName; set => userName = value; }
-        public string Password { get => password; set => password = value; }
-        public string Address { get => address; set => address = value; }
-        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
-        public bool IsRegistered { get => isRegistered; set => isRegistered = value; }
-        internal state State { get => state; set => state = value; }
-        internal ShoppingBasket Basket { get => basket; set => basket = value; }
-        internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
-
-        internal bool signOut()
+        public Boolean register(string userName, string password)
         {
-            if (state != state.signedIn)
+            if (userName == null || password == null)
+            {
                 return false;
-            state = state.visitor;
+            }
+            this.userName = userName;
+            this.password = password;
+            this.IsRegistered = true;
             return true;
-
         }
     }
 }
