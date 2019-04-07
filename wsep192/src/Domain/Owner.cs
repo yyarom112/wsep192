@@ -11,5 +11,10 @@ namespace src.Domain
         public Owner(Store store, User user) : base(store, user)
         {
         }
+
+        public bool removeOwner(int userID)
+        {
+            return Store.removeOwner(userID);
+        }
     }
 }

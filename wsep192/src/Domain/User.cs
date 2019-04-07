@@ -34,7 +34,25 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
 
         }
-
+        public bool removeOwner(int userID,int storeID)
+        {
+            Role role = searchRoleByStoreID(storeID);
+            if (role != null && role.GetType() == typeof(Owner))
+            {
+                Owner owner = (Owner)role;
+                return owner.removeOwner(userID);
+                
+            }
+            return false;
+            
+        }
+        public Role searchRoleByStoreID(int storeID)
+        {
+            foreach (Role role in roles.Values)
+                if (role.Store.Id == storeID)
+                    return role;
+            return null;
+        }
         public int Id { get => id; set => id = value; }
         public string UserName { get => userName; set => userName = value; }
         public string Password { get => password; set => password = value; }
@@ -52,6 +70,34 @@ namespace src.Domain
             state = state.visitor;
             return true;
 
+        }
+
+        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
+        {
+            return this.basket.addProductsToCart(productsToInsert, storeId);
+        }
+        public Boolean signIn(string userName, string password)
+        {
+            if (userName != null && password != null)
+            {
+                this.userName = userName;
+                this.password = password;
+                this.state = state.signedIn;
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean register(string userName, string password)
+        {
+            if (userName == null || password == null)
+            {
+                return false;
+            }
+            this.userName = userName;
+            this.password = password;
+            this.IsRegistered = true;
+            return true;
         }
     }
 }

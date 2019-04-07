@@ -13,7 +13,6 @@ namespace UnitTests
         private TradingSystem sys;
         private Encryption encrypt;
         private User admin;
-        private ShoppingBasket basket_admin;
         private User user;
         private ShoppingBasket basket_user;
         private Product p1;
