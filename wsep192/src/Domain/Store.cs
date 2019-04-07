@@ -152,6 +152,6 @@ namespace src.Domain
         internal TreeNode<Role> Roles { get => roles; set => roles = value; }
         internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
-        internal Dictionary<int, Role> RolesDictionary { get => RolesDictionary; set => RolesDictionary = value; }
+        internal Dictionary<int, Role> RolesDictionary { get => rolesDictionary; set => RolesDictionary = value; }
     }
 }
