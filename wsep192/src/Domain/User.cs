@@ -64,7 +64,7 @@ namespace src.Domain
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
 
-        public int basketCheckout(String address)
+        public virtual int basketCheckout(String address)
         {
             this.address = address;
             return basket.basketCheckout() + calcAddressFee(address);

@@ -68,7 +68,7 @@ namespace IntegrationTests
         public void TestMethod1_confirmPurchasePolicy_PolicyDictionryEmpty()
         {
             setUp();
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -85,7 +85,7 @@ namespace IntegrationTests
         public void TestMethod1_calculateDiscountPolicy_DiscountDictionryEmpty()
         {
             setUp();
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -103,7 +103,7 @@ namespace IntegrationTests
         {
             setUp();
 
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -156,7 +156,7 @@ namespace IntegrationTests
         public void TestMethod1_ShoppingBasket_basketCheckout_succ()
         {
             setUp();
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(2, cart, p2));
             cart.Products.Add(p3.Id, new ProductInCart(3, cart, p3));
@@ -182,7 +182,7 @@ namespace IntegrationTests
         {
             setUp();
             user.Basket = basket_user;
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(2, cart, p2));
             cart.Products.Add(p3.Id, new ProductInCart(3, cart, p3));
@@ -194,7 +194,7 @@ namespace IntegrationTests
         public void TestMethod1_TradingSystem_basketCheckout_succ()
         {
             setUp();
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(2, cart, p2));
             cart.Products.Add(p3.Id, new ProductInCart(3, cart, p3));
@@ -215,7 +215,7 @@ namespace IntegrationTests
         public void TestMethod1_updateCart_minus()
         {
             setUp();
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
 
@@ -229,7 +229,7 @@ namespace IntegrationTests
         public void TestMethod1_updateCart_plus()
         {
             setUp();
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
 
@@ -248,7 +248,7 @@ namespace IntegrationTests
             sys.FinancialSystem = new FinancialSystemImpl();
             sys.SupplySystem = new ProductSupplySystemImpl();
 
-            ShoppingCart cart = new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>());
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
@@ -259,7 +259,7 @@ namespace IntegrationTests
 
             ShoppingBasket check = user.Basket;
 
-            Assert.AreEqual(check, sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id));
+            Assert.AreEqual(sys.ConvertBasketToString(check), sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id));
 
         }
 

@@ -264,7 +264,7 @@ namespace UnitTests
 
             ShoppingBasket check = user.Basket;
 
-            Assert.AreEqual(check, sys.payForBasket(0,new DateTime(1990,1,1),user.Id));
+            Assert.AreEqual(sys.ConvertBasketToString(check), sys.payForBasket(0,new DateTime(1990,1,1),user.Id));
 
         }
 
@@ -395,7 +395,7 @@ namespace UnitTests
             this.retVal = ret;
         }
 
-        public int basketCheckout(String address)
+        public override int basketCheckout(String address)
         {
             return retVal;
         }

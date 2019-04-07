@@ -74,7 +74,7 @@ namespace src.Domain
             else
                 return this.users[userID].basketCheckout(address);
         }
-        public ShoppingBasket payForBasket(long cardNumber,DateTime date,int userID)
+        public String payForBasket(long cardNumber,DateTime date,int userID)
         {
             ShoppingBasket basket = users[userID].Basket;
             foreach(ShoppingCart cart in basket.ShoppingCarts.Values)
@@ -97,7 +97,37 @@ namespace src.Domain
                 return null;
             }
 
-            return basket;
+            return ConvertBasketToString(basket);
+        }
+
+        internal String ConvertBasketToString (ShoppingBasket basket)
+        {
+            int i = 1;
+            String output = "Id          Name            Store name          Quntity          Price Per One         Total Price \n";
+            foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
+            {
+                foreach(ProductInCart product in cart.Products.Values)
+                {
+                    output += i.ToString() + panding(12 - i.ToString().Length);
+                    output += product.Product.ProductName+ panding(16 - product.Product.ProductName.Length);
+                    output += cart.Store.Name + panding(21 - cart.Store.Name.Length);
+                    output += product.Quantity.ToString() + panding(17 - product.Quantity.ToString().Length);
+                    output += product.Product.Price.ToString() + panding(22 - product.Product.Price.ToString().Length);
+                    output += (product.Product.Price* product.Quantity).ToString() + panding(12 - (product.Product.Price * product.Quantity).ToString().Length);
+                    output += "\n";
+                }
+            }
+            return output;
+        } 
+
+        private String panding(int pandding)
+        {
+            String output = "";
+            for(int i = 0; i < pandding; i++)
+            {
+                output += " ";
+            }
+            return output;
         }
         public int ProductCounter { get => productCounter; set => productCounter = value; }
         public int StoreCounter { get => storeCounter; set => storeCounter = value; }
