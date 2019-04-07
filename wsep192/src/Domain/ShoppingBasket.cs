@@ -14,7 +14,7 @@ namespace src.Domain
         {
             this.ShoppingCarts = new Dictionary<int, ShoppingCart>();
         }
-        public int basketCheckout()
+        public virtual int basketCheckout()
         {
             int sum = 0;
             int tmp = 0;
