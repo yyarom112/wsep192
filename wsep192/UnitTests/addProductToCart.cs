@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace UnitTests
 {
     [TestClass]
-    public class addProductsToChart
+    public class addProductToCart
     {
         private TradingSystem sys;
         private Encryption encrypt;
