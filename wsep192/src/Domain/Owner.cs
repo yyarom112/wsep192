@@ -12,9 +12,9 @@ namespace src.Domain
         {
         }
 
-        public void removeOwner(int userID)
+        public bool removeOwner(int userID)
         {
-            Store.removeOwner(userID);
+            return Store.removeOwner(userID);
         }
     }
 }

@@ -34,14 +34,16 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
 
         }
-        public void removeOwner(int userID,int storeID)
+        public bool removeOwner(int userID,int storeID)
         {
             Role role = searchRoleByStoreID(storeID);
             if (role != null && role.GetType() == typeof(Owner))
             {
                 Owner owner = (Owner)role;
-                owner.removeOwner(userID);
+                return owner.removeOwner(userID);
+                
             }
+            return false;
             
         }
         public Role searchRoleByStoreID(int storeID)

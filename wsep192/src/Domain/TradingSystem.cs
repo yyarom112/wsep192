@@ -32,6 +32,10 @@ namespace src.Domain
             this.discountPolicyCounter =  0;
             this.encryption = new EncryptionImpl();
         }
+        public bool removeOwner(int userID,int userIDToRemove,int storeID)
+        {
+            return users[userID].removeOwner(userIDToRemove, storeID);
+        }
         public List<ProductInStore> searchProduct(String details)
         {
             List<ProductInStore> products  = new List<ProductInStore>();

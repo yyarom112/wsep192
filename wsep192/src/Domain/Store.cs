@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common;
 
 namespace src.Domain
 {
@@ -25,7 +24,7 @@ namespace src.Domain
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
             this.roles = new TreeNode<Role>(null);
-            this.rolesDictionary = new Dictionary<int,Role>();
+            this.RolesDictionary = new Dictionary<int,Role>();
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
@@ -42,18 +41,36 @@ namespace src.Domain
             }
             return result;
         }
-        public void removeOwner(int userID)
+        public bool removeOwner(int userID)
         {
-            Role role = rolesDictionary[userID];
+            Role role = null;
+            if (RolesDictionary.ContainsKey(userID))
+                role = RolesDictionary[userID];
             if (role != null)
             {
-                roles.RemoveChild(roles.FindInChildren(role));
-                rolesDictionary.Remove(userID);
-                role.User.Roles.Remove(this.Id);
+                if (roles.RemoveChild(roles.FindInChildren(role))
+                     && RolesDictionary.Remove(userID)
+                    && role.User.Roles.Remove(this.Id))
+                    return true;
             }
+            return false;
             
         }
+        public Boolean assignManager(Role newManager, Owner owner)
+        {
+            TreeNode<Role> currOwner = roles.FindInChildren(owner);
+            if (currOwner != null)
+            {
+                TreeNode<Role> tmp = currOwner.FindInChildren(newManager);
+                if (currOwner.FindInChildren(newManager) == null)
+                {
+                    currOwner.AddChild(newManager);
+                    return true;
+                }
 
+            }
+            return false;
+        }
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }
@@ -61,5 +78,6 @@ namespace src.Domain
         internal TreeNode<Role> Roles { get => roles; set => roles = value; }
         internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
+        internal Dictionary<int, Role> RolesDictionary { get => rolesDictionary; set => rolesDictionary = value; }
     }
 }
