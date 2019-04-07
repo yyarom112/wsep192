@@ -12,5 +12,10 @@ namespace src
         {
             return true;
         }
+
+        public bool payment(long cardNumber, DateTime date, int amount)
+        {
+            return true;
+        }
     }
 }
