@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Common;
 
 namespace src.Domain
 {
@@ -14,7 +12,8 @@ namespace src.Domain
         private String name;
         private Dictionary<int, ProductInStore> products;
         private int storeRate;
-        private ITree<Role> roles;
+        private TreeNode<Role> roles;
+        private Dictionary<int,Role> rolesDictionary;
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
@@ -24,60 +23,61 @@ namespace src.Domain
             this.name = name;
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
-            this.roles = NodeTree<Role>.NewTree();
+            this.roles = new TreeNode<Role>(null);
+            this.RolesDictionary = new Dictionary<int,Role>();
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
-        public void updateCart(ShoppingCart cart)
+        public bool searchProduct(Filter filter,List<ProductInStore> listToAdd)
         {
-            foreach (ProductInCart p in cart.Products.Values)
+            bool result = false;
+            foreach(ProductInStore p in products.Values)
             {
-                if (p.Quantity <= this.products[p.Product.Id].Quantity)
-                    this.products[p.Product.Id].Quantity -= p.Quantity;
-                else
+                if (p.Product.compareProduct(filter)&&filter.StoreRate!=-1&&filter.StoreRate==this.storeRate)
                 {
-                    p.Quantity = this.products[p.Product.Id].Quantity;
-                    this.products[p.Product.Id].Quantity = 0;
+                    listToAdd.Add(p);
+                    result = true;
                 }
             }
+            return result;
         }
-        public bool confirmPurchasePolicy(Dictionary<int,ProductInCart> products)
+        public bool removeOwner(int userID)
         {
-            List<ProductInStore> productsInStore = new List<ProductInStore>();
-            foreach(ProductInCart p in products.Values)
+            Role role = null;
+            if (RolesDictionary.ContainsKey(userID))
+                role = RolesDictionary[userID];
+            if (role != null)
             {
-                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
-                productsInStore.Add(productInStore);
+                if (roles.RemoveChild(roles.FindInChildren(role))
+                     && RolesDictionary.Remove(userID)
+                    && role.User.Roles.Remove(this.Id))
+                    return true;
             }
-            foreach(PurchasePolicy pp in purchasePolicy)
+            return false;
+            
+        }
+        public Boolean assignManager(Role newManager, Owner owner)
+        {
+            TreeNode<Role> currOwner = roles.FindInChildren(owner);
+            if (currOwner != null)
             {
-                if (!pp.confirmPolicy())
-                    return false;
-            }
-            return true;
+                TreeNode<Role> tmp = currOwner.FindInChildren(newManager);
+                if (currOwner.FindInChildren(newManager) == null)
+                {
+                    currOwner.AddChild(newManager);
+                    return true;
+                }
 
-        }
-        public int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
-        {
-            int sum = 0;
-            List<ProductInStore> productsInStore = new List<ProductInStore>();
-            foreach (ProductInCart p in products.Values)
-            {
-                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
-                productsInStore.Add(productInStore);
             }
-            foreach (DiscountPolicy dp in discountPolicy)
-            {
-                sum += dp.calculate(productsInStore);
-            }
-            return sum;
+            return false;
         }
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }
         internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }
-        internal ITree<Role> Roles { get => roles; set => roles = value; }
+        internal TreeNode<Role> Roles { get => roles; set => roles = value; }
         internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
+        internal Dictionary<int, Role> RolesDictionary { get => rolesDictionary; set => rolesDictionary = value; }
     }
 }

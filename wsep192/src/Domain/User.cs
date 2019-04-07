@@ -18,40 +18,41 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
+        private state signedIn;
+        private state visitor;
 
-        public User(int id, string userName, string password, string address, state state, bool isAdmin, bool isRegistered)
+        public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
         {
             this.id = id;
             this.userName = userName;
             this.password = password;
-            this.address = address;
-            this.state = state;
+            this.address = "";
+            this.state = state.visitor;
             this.isAdmin = isAdmin;
             this.isRegistered = isRegistered;
             this.basket = new ShoppingBasket();
             this.roles = new Dictionary<int, Role>();
 
         }
-        public int basketCheckout(String address)
+        public bool removeOwner(int userID,int storeID)
         {
-            this.address = address;
-            return basket.basketCheckout()+calcAddressFee(address);
-        }
-        private int calcAddressFee(string address)
-        {
-            switch (address)
+            Role role = searchRoleByStoreID(storeID);
+            if (role != null && role.GetType() == typeof(Owner))
             {
-                case "telaviv":
-                    return 50;
-                case "beersheva":
-                    return 10;
-                case "haifa":
-                    return 60;
-                default:
-                    return 40;
+                Owner owner = (Owner)role;
+                return owner.removeOwner(userID);
+                
             }
+            return false;
+            
         }
-
+        public Role searchRoleByStoreID(int storeID)
+        {
+            foreach (Role role in roles.Values)
+                if (role.Store.Id == storeID)
+                    return role;
+            return null;
+        }
         public int Id { get => id; set => id = value; }
         public string UserName { get => userName; set => userName = value; }
         public string Password { get => password; set => password = value; }
@@ -61,5 +62,42 @@ namespace src.Domain
         internal state State { get => state; set => state = value; }
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+
+        internal bool signOut()
+        {
+            if (state != state.signedIn)
+                return false;
+            state = state.visitor;
+            return true;
+
+        }
+
+        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
+        {
+            return this.basket.addProductsToCart(productsToInsert, storeId);
+        }
+        public Boolean signIn(string userName, string password)
+        {
+            if (userName != null && password != null)
+            {
+                this.userName = userName;
+                this.password = password;
+                this.state = state.signedIn;
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean register(string userName, string password)
+        {
+            if (userName == null || password == null)
+            {
+                return false;
+            }
+            this.userName = userName;
+            this.password = password;
+            this.IsRegistered = true;
+            return true;
+        }
     }
 }
