@@ -76,5 +76,28 @@ namespace src.Domain
         {
             return this.basket.addProductsToCart(productsToInsert, storeId);
         }
+        public Boolean signIn(string userName, string password)
+        {
+            if (userName != null && password != null)
+            {
+                this.userName = userName;
+                this.password = password;
+                this.state = state.signedIn;
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean register(string userName, string password)
+        {
+            if (userName == null || password == null)
+            {
+                return false;
+            }
+            this.userName = userName;
+            this.password = password;
+            this.IsRegistered = true;
+            return true;
+        }
     }
 }

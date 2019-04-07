@@ -9,6 +9,7 @@ namespace src.Domain
     interface Encryption
     {
         bool connect();
-        
+
+        String encrypt(String password);
     }
 }
