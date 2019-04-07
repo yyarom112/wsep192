@@ -17,7 +17,7 @@ namespace src.Domain
             this.user = user;
         }
 
-        internal Store Store { get => store; set => store = value; }
-        internal User User { get => user; set => user = value; }
+        internal Store Store { get { return store; } set { store = value; } }
+        internal User User { get { return user; } set { user = value; } }
     }
 }
