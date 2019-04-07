@@ -14,7 +14,7 @@ namespace src.Domain
         private Dictionary<int, ProductInStore> products;
         private int storeRate;
         private TreeNode<Role> roles;
-        private List<Role> rolesList;
+        private Dictionary<int,Role> rolesDictionary;
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
@@ -25,7 +25,7 @@ namespace src.Domain
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
             this.roles = new TreeNode<Role>(null);
-            this.rolesList = new List<Role>();
+            this.rolesDictionary = new Dictionary<int,Role>();
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
@@ -44,14 +44,11 @@ namespace src.Domain
         }
         public void removeOwner(int userID)
         {
-            Role role = null;
-            foreach (Role r in rolesList)
-                if (r.User.Id == userID)
-                    role = r;
+            Role role = rolesDictionary[userID];
             if (role != null)
             {
                 roles.RemoveChild(roles.FindInChildren(role));
-                rolesList.Remove(role);
+                rolesDictionary.Remove(userID);
                 role.User.Roles.Remove(this.Id);
             }
             
