@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Common;
 
 namespace src.Domain
@@ -15,6 +14,7 @@ namespace src.Domain
         private Dictionary<int, ProductInStore> products;
         private int storeRate;
         private TreeNode<Role> roles;
+        private List<Role> rolesList;
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
@@ -25,6 +25,7 @@ namespace src.Domain
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
             this.roles = new TreeNode<Role>(null);
+            this.rolesList = new List<Role>();
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
@@ -41,6 +42,21 @@ namespace src.Domain
             }
             return result;
         }
+        public void removeOwner(int userID)
+        {
+            Role role = null;
+            foreach (Role r in rolesList)
+                if (r.User.Id == userID)
+                    role = r;
+            if (role != null)
+            {
+                roles.RemoveChild(roles.FindInChildren(role));
+                rolesList.Remove(role);
+                role.User.Roles.Remove(this.Id);
+            }
+            
+        }
+
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }
