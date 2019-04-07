@@ -94,6 +94,46 @@ namespace src.Domain
             return users[id].signOut();
 
         }
+        public Boolean register(String userName, String password, String userId)
+        {
+            int currUserId = Convert.ToInt32(userId);
+            if (this.users.ContainsKey(currUserId))
+            {
+                if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
+                    || userName.Equals("") || password.Equals("") || userName.Contains(" "))
+                    return false;
+                User currUser = this.users[currUserId];
+                if (currUser != null && userName == currUser.UserName && password == currUser.Password)
+                {
+                    password = encryption.encrypt(userName + password);
+                    return currUser.register(userName, password);
+                }
+                return false;
+            }
+            return false;
+        }
+        public Boolean signIn(String userName, String password, String userId)
+        {
+            int currUserId = Convert.ToInt32(userId);
+            if (this.users.ContainsKey(currUserId))
+            {
+                User currUser = this.users[currUserId];
+                if (currUser != null)
+                {
+                    if (!currUser.IsRegistered)
+                    {
+                        return false;
+                    }
+                    password = encryption.encrypt(userName + password);
+                    if (currUser.Password == password)
+                    {
+                        return currUser.signIn(userName, password);
+                    }
+                }
+                return false;
+            }
+            return false;
+        }
 
         public bool addProductsToCart(LinkedList<KeyValuePair<int, int>> products,int storeId,int userId)
         {
