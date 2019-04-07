@@ -31,5 +31,18 @@ namespace src.Domain
         public string Details { get => details; set => details = value; }
         public int Price { get => price; set => price = value; }
         public int ProductRate { get => productRate; set => productRate = value; }
+
+        public bool compareProduct(Filter filter)
+        {
+            if (!filter.ProductName.Equals(ProductName))
+                return false;
+            if (filter.Category != "" && !filter.Category.Equals(Category))
+                return false;
+            if (filter.ProductRate != -1 && filter.ProductRate != ProductRate)
+                return false;
+            if (filter.PriceRange.Equals(null) && (filter.PriceRange.Key < this.price || filter.PriceRange.Value > this.price))
+                return false;
+            return true;
+        }
     }
 }

@@ -18,14 +18,16 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
+        private state signedIn;
+        private state visitor;
 
-        public User(int id, string userName, string password, string address, state state, bool isAdmin, bool isRegistered)
+        public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
         {
             this.id = id;
             this.userName = userName;
             this.password = password;
-            this.address = address;
-            this.state = state;
+            this.address = "";
+            this.state = state.visitor;
             this.isAdmin = isAdmin;
             this.isRegistered = isRegistered;
             this.basket = new ShoppingBasket();
@@ -61,5 +63,14 @@ namespace src.Domain
         internal state State { get => state; set => state = value; }
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+
+        internal bool signOut()
+        {
+            if (state != state.signedIn)
+                return false;
+            state = state.visitor;
+            return true;
+
+        }
     }
 }
