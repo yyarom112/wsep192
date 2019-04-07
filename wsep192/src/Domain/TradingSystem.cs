@@ -42,7 +42,22 @@ namespace src.Domain
             ShoppingBasket basket = users[userID].Basket;
             foreach(ShoppingCart cart in basket.ShoppingCarts.Values)
             {
-                cart.Store.updateCart(cart);
+                cart.Store.updateCart(cart,"-");
+            }
+
+            if(!this.financialSystem.Payment(cardNumber, date, basket.basketCheckout()))
+            {
+                foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
+                {
+                    cart.Store.updateCart(cart,"+");
+                }
+                return null;
+            }
+
+
+            if (!this.supplySystem.deliverToCustomer(this.Users[userID].Address,"Some package Details"))
+            {
+                return null;
             }
 
             return basket;

@@ -62,12 +62,14 @@
     <Compile Include="Domain\Encryption.cs" />
     <Compile Include="Domain\Filter.cs" />
     <Compile Include="Domain\FinancialSystem.cs" />
+    <Compile Include="Domain\FinancialSystemImpl.cs" />
     <Compile Include="Domain\Manager.cs" />
     <Compile Include="Domain\Owner.cs" />
     <Compile Include="Domain\Product.cs" />
     <Compile Include="Domain\ProductInCart.cs" />
     <Compile Include="Domain\ProductInStore.cs" />
     <Compile Include="Domain\ProductSupplySystem.cs" />
+    <Compile Include="Domain\ProductSupplySystemImpl.cs" />
     <Compile Include="Domain\PurchasePolicy.cs" />
     <Compile Include="Domain\Role.cs" />
     <Compile Include="Domain\ShoppingBasket.cs" />

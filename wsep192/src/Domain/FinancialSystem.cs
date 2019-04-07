@@ -8,5 +8,8 @@ namespace src.Domain
 {
     interface FinancialSystem
     {
+        bool Connect();
+        bool Payment(long cardNumber, DateTime date, int sum);
+
     }
 }

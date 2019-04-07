@@ -28,17 +28,27 @@ namespace src.Domain
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
-        public void updateCart(ShoppingCart cart)
+        public void updateCart(ShoppingCart cart, String opt)
         {
             foreach (ProductInCart p in cart.Products.Values)
             {
-                if (p.Quantity <= this.products[p.Product.Id].Quantity)
-                    this.products[p.Product.Id].Quantity -= p.Quantity;
+                if (opt.Equals("-"))
+                {
+                    if (p.Quantity <= this.products[p.Product.Id].Quantity)
+                        if (opt.Equals("-"))
+                            this.products[p.Product.Id].Quantity -= p.Quantity;
+
+                        else
+                        {
+                            p.Quantity = this.products[p.Product.Id].Quantity;
+                            this.products[p.Product.Id].Quantity = 0;
+                        }
+                }
                 else
                 {
-                    p.Quantity = this.products[p.Product.Id].Quantity;
-                    this.products[p.Product.Id].Quantity = 0;
+                    this.products[p.Product.Id].Quantity += p.Quantity;
                 }
+                
             }
         }
         public bool confirmPurchasePolicy(Dictionary<int,ProductInCart> products)
