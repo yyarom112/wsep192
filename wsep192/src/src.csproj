@@ -60,7 +60,6 @@
   <ItemGroup>
     <Compile Include="Domain\DiscountPolicy.cs" />
     <Compile Include="Domain\Encryption.cs" />
-    <Compile Include="Domain\LogManager.cs" />
     <Compile Include="EncryptionImpl.cs" />
     <Compile Include="Domain\Filter.cs" />
     <Compile Include="Domain\FinancialSystem.cs" />

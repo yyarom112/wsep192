@@ -52,7 +52,10 @@ namespace src.Domain
         public virtual int cartCheckout()
         {
             if (!store.confirmPurchasePolicy(products))
+            {
+                LogManager.Instance.WriteToLog("ShoppingCart- cart checkout failed- Buying cart " + StoreId + " does not match the story policy\n");
                 return -1;
+            }
             int sum = 0;
             foreach (ProductInCart p in products.Values)
                 sum += p.Product.Price * p.Quantity;

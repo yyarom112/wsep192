@@ -70,7 +70,10 @@ namespace src.Domain
         public int basketCheckout(String address,int userID)
         {
             if (!this.users.ContainsKey(userID))
+            {
+                LogManager.Instance.WriteToLog("TradingSystem- BasketCheckout failed- User "+userID+" does not exist\n");
                 return -1;
+            }
             else
                 return this.users[userID].basketCheckout(address);
         }
@@ -84,6 +87,7 @@ namespace src.Domain
 
             if(!this.financialSystem.Payment(cardNumber, date, basket.basketCheckout()))
             {
+                LogManager.Instance.WriteToLog("TradingSystem- Pay for basket failed- failed to initiate credit charge\n");
                 foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
                 {
                     cart.Store.updateCart(cart,"+");
@@ -94,9 +98,16 @@ namespace src.Domain
 
             if (!this.supplySystem.deliverToCustomer(this.Users[userID].Address,"Some package Details"))
             {
+                LogManager.Instance.WriteToLog("TradingSystem- Pay for basket failed- The shipping company can not provide the service\n");
+                foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
+                {
+                    cart.Store.updateCart(cart, "+");
+                }
+
                 return null;
             }
-
+            LogManager.Instance.WriteToLog("TradingSystem- Pay for basket success\n");
+            this.Users[userID].Basket = new ShoppingBasket();
             return ConvertBasketToString(basket);
         }
 
