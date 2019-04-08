@@ -25,6 +25,7 @@ namespace src.Domain
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
             this.roles = new TreeNode<Role>(null);
+            this.rolesDictionary = new Dictionary<int, Role>();
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
@@ -79,6 +80,7 @@ namespace src.Domain
                     && role.User.Roles.Remove(this.Id))
                     return true;
             }
+            LogManager.Instance.WriteToLog("Store-Remove manager Fail- The user " + userID + " is not manger in the store " + this.id + ".\n");
             return false;
         }
 

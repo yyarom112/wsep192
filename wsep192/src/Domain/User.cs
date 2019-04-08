@@ -84,17 +84,29 @@ namespace src.Domain
             return false;
         }
 
-        public bool removeManager(int userID, int storeID)
+
+        public virtual bool removeManager(int userID, int storeID)
         {
+            if (this.state!=state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User-Remove manager fail- User is not logged in\n");
+                return false;
+            }
             Role role = searchRoleByStoreID(storeID);
-            if (role != null && role.GetType() == typeof(Owner))
+            try
             {
                 Owner owner = (Owner)role;
-                return owner.removeOwner(userID);
-
+                return owner.removeManager(userID);
             }
-            return false;
+            catch(Exception)
+            {
+                LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                return false;
+            }
+
         }
+
+
         public Role searchRoleByStoreID(int storeID)
         {
             foreach (Role role in roles.Values)
@@ -102,6 +114,8 @@ namespace src.Domain
                     return role;
             return null;
         }
+
+
         internal bool signOut()
         {
             if (state != state.signedIn)
