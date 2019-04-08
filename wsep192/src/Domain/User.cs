@@ -36,6 +36,8 @@ namespace src.Domain
         }
         public bool removeOwner(int userID,int storeID)
         {
+            if (this.state != state.signedIn)
+                return false;
             Role role = searchRoleByStoreID(storeID);
             if (role != null && role.GetType() == typeof(Owner))
             {
