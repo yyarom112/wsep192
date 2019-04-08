@@ -9,28 +9,11 @@ namespace src.ServiceLayer
 {
     class ServiceLayer
     {
-        //TODO: convert to strings
-        public enum Permission
-        {
-            AddDiscountPolicy = 1,
-            AddPurchasePolicy = 2,
-            EditProductQuantityInStore = 3,
-            AddProductToStore = 4,
-            RemoveProductFromStore = 5,
-            EditProductInStore = 6,
-            RemoveManager = 7,
-            RemoveOwner = 8,
-            CommunicationWithCustomers = 9,
-            PurchasesHistory = 10,
-            AssignOwner = 11,
-            AssignManager = 12,
-            CloseStore = 13
-        }
 
         private TradingSystem system;
         private Dictionary<String, int> users;
         private Dictionary<String, int> stores;
-
+        private Dictionary<String, int> permissions;
         private int storeCounter;
         private int userCounter;
         private int purchasePolicyCounter;
@@ -43,11 +26,34 @@ namespace src.ServiceLayer
             system = new TradingSystem(null, null);
             users = new Dictionary<String, int>();
             stores = new Dictionary<String, int>();
+            permissions = new Dictionary<String, int>();
             storeCounter = 0;
             userCounter = 0;
             purchasePolicyCounter = 0;
             discountPolicyCounter = 0;
+            addPermissions();
         }
+
+
+        private void addPermissions() {
+
+        permissions.Add("AddDiscountPolicy",1);
+            permissions.Add("AddPurchasePolicy", 2);
+            permissions.Add("EditProductQuantityInStore", 3);
+            permissions.Add("AddProductToStore", 4);
+            permissions.Add("RemoveProductFromStore", 5);
+            permissions.Add("EditProductInStore", 6);
+            permissions.Add("RemoveManager", 7);
+            permissions.Add("RemoveOwner", 8);
+            permissions.Add("CommunicationWithCustomers", 9);
+            permissions.Add("PurchasesHistory", 10);
+            permissions.Add("AssignOwner", 11);
+            permissions.Add("AssignManager", 12);
+            permissions.Add("CloseStore", 13);
+
+        }
+
+
 
         //req1.1
         public bool init(String adminName, String adminPassword)
@@ -227,9 +233,10 @@ namespace src.ServiceLayer
 
         private bool validatePermissions(List<string> permissions)
         {
-            foreach(String p in permissions){
-               //TODO if(!Permission)
-               //return false;
+            foreach(String p in permissions)
+            {
+               if(!this.permissions.ContainsKey(p))
+               return false;
             }
             return true;
         }
@@ -239,7 +246,7 @@ namespace src.ServiceLayer
             List<int> list = new List<int>();
             foreach (String p in permissions)
             {
-                //TODO: convert to int from string
+                list.Add(this.permissions[p]);
             }
             return list;
         }
