@@ -98,7 +98,7 @@ namespace UnitTests
         public void User_searchRoleByStoreID_succ()
         {
             setUp();
-            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id).Store);
+            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id,manager.Id).Store);
         }
 
 
@@ -107,7 +107,7 @@ namespace UnitTests
         public void User_searchRoleByStoreID_fail()
         {
             setUp();
-            Assert.AreEqual(null, manager.searchRoleByStoreID(0));
+            Assert.AreEqual(null, manager.searchRoleByStoreID(0,manager.Id));
         }
 
         [TestMethod]

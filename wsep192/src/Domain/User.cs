@@ -38,7 +38,7 @@ namespace src.Domain
         {
             if (this.state != state.signedIn)
                 return false;
-            Role role = searchRoleByStoreID(storeID);
+            Role role = searchRoleByStoreID(storeID,this.Id);
             if (role != null && role.GetType() == typeof(Owner))
             {
                 Owner owner = (Owner)role;
@@ -48,10 +48,10 @@ namespace src.Domain
             return false;
             
         }
-        public Role searchRoleByStoreID(int storeID)
+        public Role searchRoleByStoreID(int storeID,int userID)
         {
             foreach (Role role in roles.Values)
-                if (role.Store.Id == storeID)
+                if (role.Store.Id == storeID&&role.User.Id == userID)
                     return role;
             return null;
         }
@@ -116,5 +116,25 @@ namespace src.Domain
             return basket.editProductQuantityInCart(productId, quantity, storeId);
         }
 
+        public virtual bool removeManager(int userID, int storeID)
+        {
+            if (this.state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User-Remove manager fail- User is not logged in\n");
+                return false;
+            }
+            Role role = searchRoleByStoreID(storeID,userID);
+            try
+            {
+                Owner owner = (Owner)role;
+                return owner.removeManager(userID);
+            }
+            catch (Exception)
+            {
+                LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                return false;
+            }
+
+        }
     }
 }

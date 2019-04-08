@@ -61,9 +61,9 @@ namespace src.Domain
             if (role != null)
             {
                 if (role.GetType() == typeof(Owner))
-                    foreach (TreeNode<Role> t in roles.FindInChildren(role).getChildren())
+                    foreach (TreeNode<Role> t in roles.FindInChildren(role).getChildren()) //NEED TO FIX FIND IN CHILDREN
                     {
-                        role.User.removeOwner(t.Data.User.Id, this.Id);
+                        role.Store.removeOwner(t.Data.User.Id);
                         if (roles.RemoveChild(roles.FindInChildren(role))
                                && RolesDictionary.Remove(userID)
                                 && role.User.Roles.Remove(this.Id))
@@ -71,8 +71,7 @@ namespace src.Domain
                     }
                 else
                 {
-                    //return removeManager(role.User.Id, this.Id);
-                    return true;
+                    return removeManager(role.User.Id);
                 }
 
             }
