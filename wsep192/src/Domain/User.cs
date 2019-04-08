@@ -111,6 +111,10 @@ namespace src.Domain
         {
             return basket.removeProductsFromCart(productsToRemove, storeId);
         }
+        internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
+        {
+            return basket.editProductQuantityInCart(productId, quantity, storeId);
+        }
 
     }
 }
