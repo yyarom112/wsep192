@@ -53,14 +53,26 @@ namespace src.ServiceLayer
 
         }
 
-
+        public bool initUser(String user)
+        {
+            bool result = system.initUserGuest(user, userCounter);
+            if (result)
+            {
+                users.Add(user, userCounter);
+                userCounter++;
+            }
+            return result;
+        }
 
         //req1.1
         public bool init(String adminName, String adminPassword)
-        {
-            users.Add(adminName, userCounter);
+        { 
             bool result = system.init(adminName, adminPassword, userCounter);
-            userCounter++;
+            if (result)
+            {
+                users.Add(adminName, userCounter);
+                userCounter++;
+            }
             return result;
         }
         //req2.2

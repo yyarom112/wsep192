@@ -51,6 +51,15 @@ namespace src.Domain
             }
             return products;
         }
+
+        internal bool initUserGuest(string user,int userCounter)
+        {
+            User guest = new User(userCounter, user , null,false,false);
+            users.Add(userCounter, guest);
+
+            return true;
+        }
+
         public User searchUser(int userID)
         {
             foreach (User u in users.Values)
@@ -88,7 +97,6 @@ namespace src.Domain
         {
             User admin = new User(userCounter, adminUserName, adminPassword, true, true);
             users.Add(userCounter, admin);
-            userCounter++;
             if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
                 return false;
 
