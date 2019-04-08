@@ -17,6 +17,6 @@ namespace src.Domain
             return Store.removeOwner(userID);
         }
 
-        public virtual bool removeManager(int userID) => Store.removeOwner(userID);
+        public virtual bool removeManager(int userID) => Store.removeManager(userID);
     }
 }
