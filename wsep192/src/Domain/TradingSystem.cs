@@ -26,8 +26,6 @@ namespace src.Domain
             this.supplySystem = supplySystem;
             this.financialSystem = financialSystem;
             this.productCounter = 0;
-            this.storeCounter = 0;
-            this.userCounter = 0;
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter =  0;
             this.encryption = new EncryptionImpl();
@@ -73,6 +71,12 @@ namespace src.Domain
         public int UserCounter { get => userCounter; set => userCounter = value; }
         public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
         public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
+
+        internal bool productExist(string product, int store)
+        {
+            return Stores[store].productExist(product);
+        }
+
         internal Dictionary<int, User> Users { get => users; set => users = value; }
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
@@ -80,7 +84,7 @@ namespace src.Domain
 
 
 
-        public bool init(string adminUserName, string adminPassword)
+        public bool init(string adminUserName, string adminPassword,int userCounter)
         {
             User admin = new User(userCounter, adminUserName, adminPassword, true, true);
             users.Add(userCounter, admin);
@@ -172,6 +176,9 @@ namespace src.Domain
             return output;
         }
 
-
+        internal int getProduct(string product, int store)
+        {
+            return Stores[store].getProduct(product);
+        }
     }
 }

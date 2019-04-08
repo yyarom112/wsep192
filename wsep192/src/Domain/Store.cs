@@ -81,5 +81,24 @@ namespace src.Domain
             }
             return false;
         }
+
+        internal bool productExist(string product)
+        {
+            foreach (int p in Products.Keys)
+            {
+                if ((Products[p].Product.ProductName).Equals(product))
+                    return true;
+            }
+            return false;
+        }
+
+        internal int getProduct(string product)
+        {
+            foreach (int p in Products.Keys) {
+                if((Products[p].Product.ProductName).Equals(product))
+                return p;
+            }
+            return -1;
+        }
     }
 }
