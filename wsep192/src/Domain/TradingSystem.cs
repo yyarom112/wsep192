@@ -36,6 +36,22 @@ namespace src.Domain
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
         }
+
+        public bool removeManager(int userID, int userIDToRemove, int storeID)
+        {
+            if(!this.users.ContainsKey(userID)|| !this.users.ContainsKey(userIDToRemove) || !this.stores.ContainsKey(storeID))
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-Remove manager fail- The store or user is not exist\n");
+                return false;
+            }
+            if( users[userID].removeManager(userIDToRemove, storeID))
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-Remove manager id"+userIDToRemove+" from store "+storeID+" success\n");
+                return true;
+            }
+            return false;
+        }
+
         public List<ProductInStore> searchProduct(String details)
         {
             List<ProductInStore> products  = new List<ProductInStore>();
