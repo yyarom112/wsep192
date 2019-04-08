@@ -18,8 +18,6 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
-        private state signedIn;
-        private state visitor;
 
         public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
         {
@@ -34,25 +32,7 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
 
         }
-        public bool removeOwner(int userID,int storeID)
-        {
-            Role role = searchRoleByStoreID(storeID);
-            if (role != null && role.GetType() == typeof(Owner))
-            {
-                Owner owner = (Owner)role;
-                return owner.removeOwner(userID);
-                
-            }
-            return false;
-            
-        }
-        public Role searchRoleByStoreID(int storeID)
-        {
-            foreach (Role role in roles.Values)
-                if (role.Store.Id == storeID)
-                    return role;
-            return null;
-        }
+
         public int Id { get => id; set => id = value; }
         public string UserName { get => userName; set => userName = value; }
         public string Password { get => password; set => password = value; }
@@ -63,18 +43,9 @@ namespace src.Domain
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
-        internal bool signOut()
+        internal string showCart(int storeId)
         {
-            if (state != state.signedIn)
-                return false;
-            state = state.visitor;
-            return true;
-
-        }
-
-        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
-        {
-            return this.basket.addProductsToCart(productsToInsert, storeId);
+            return basket.showCart(storeId);
         }
         public Boolean signIn(string userName, string password)
         {
@@ -87,7 +58,46 @@ namespace src.Domain
             }
             return false;
         }
+        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
+        {
+            return this.basket.addProductsToCart(productsToInsert, storeId);
+        }
 
+        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        {
+            return basket.removeProductsFromCart(productsToRemove,storeId);
+        }
+
+        internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
+        {
+            return basket.editProductQuantityInCart(productId, quantity,storeId);
+        }
+        public bool removeOwner(int userID, int storeID)
+        {
+            Role role = searchRoleByStoreID(storeID);
+            if (role != null && role.GetType() == typeof(Owner))
+            {
+                Owner owner = (Owner)role;
+                return owner.removeOwner(userID);
+
+            }
+            return false;
+        }
+        public Role searchRoleByStoreID(int storeID)
+        {
+            foreach (Role role in roles.Values)
+                if (role.Store.Id == storeID)
+                    return role;
+            return null;
+        }
+        internal bool signOut()
+        {
+            if (state != state.signedIn)
+                return false;
+            state = state.visitor;
+            return true;
+
+        }
         public Boolean register(string userName, string password)
         {
             if (userName == null || password == null)
@@ -99,5 +109,6 @@ namespace src.Domain
             this.IsRegistered = true;
             return true;
         }
+
     }
-}
+    }
