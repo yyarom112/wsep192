@@ -53,6 +53,7 @@
     <Compile Include="addProductToCart.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LogoutTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">
