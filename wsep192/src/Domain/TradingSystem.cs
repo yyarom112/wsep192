@@ -91,7 +91,7 @@ namespace src.Domain
 
         }
 
-        public bool addProductsToCart(LinkedList<KeyValuePair<int, int>> products,int storeId,int userId)
+        public bool addProductsToCart(List<KeyValuePair<int, int>> products,int storeId,int userId)
         {
             if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products==null)
                 return false;
@@ -104,7 +104,7 @@ namespace src.Domain
             return true;
         }
 
-        public LinkedList<KeyValuePair<Product, int>> createProductsList(LinkedList<KeyValuePair<int, int>> products, int storeId)
+        public LinkedList<KeyValuePair<Product, int>> createProductsList(List<KeyValuePair<int, int>> products, int storeId)
         {
             bool check = true;
             LinkedList<KeyValuePair<Product, int>> output = new LinkedList<KeyValuePair<Product, int>>();

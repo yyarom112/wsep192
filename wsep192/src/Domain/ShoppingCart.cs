@@ -33,7 +33,7 @@ namespace src.Domain
         internal Dictionary<int, ProductInCart> Products
         { get { return products; } set { products = value; } }
 
-        public void addProducts(LinkedList<KeyValuePair<Product, int>> productsToInsert)
+        public virtual void addProducts(LinkedList<KeyValuePair<Product, int>> productsToInsert)
         {
             foreach (KeyValuePair<Product, int> toInsert in productsToInsert)
             {

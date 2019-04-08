@@ -67,16 +67,16 @@ namespace Acceptance_Tests
         {
             setUp();
 
-            LinkedList<KeyValuePair<int, int>> toInsert = new LinkedList<KeyValuePair<int, int>>();
+            List<KeyValuePair<int, int>> toInsert = new List<KeyValuePair<int, int>>();
 
-            toInsert.AddLast(new KeyValuePair<int, int>(p1.Id, 1));
-            toInsert.AddLast(new KeyValuePair<int, int>(p2.Id, 1));
-            toInsert.AddLast(new KeyValuePair<int, int>(p3.Id, 1));
+            toInsert.Add(new KeyValuePair<int, int>(p1.Id, 1));
+            toInsert.Add(new KeyValuePair<int, int>(p2.Id, 1));
+            toInsert.Add(new KeyValuePair<int, int>(p3.Id, 1));
 
             Assert.AreEqual(true, sys.addProductsToCart(toInsert, store.Id, user.Id));
 
-            toInsert = new LinkedList<KeyValuePair<int, int>>();
-            toInsert.AddLast(new KeyValuePair<int, int>(p4.Id, 1));
+            toInsert = new List<KeyValuePair<int, int>>();
+            toInsert.Add(new KeyValuePair<int, int>(p4.Id, 1));
 
             Assert.AreEqual(true, sys.addProductsToCart(toInsert, store.Id, user.Id));
 
