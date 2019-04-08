@@ -101,5 +101,16 @@ namespace src.Domain
             this.IsRegistered = true;
             return true;
         }
+
+        internal string showCart(int storeId)
+        {
+            return basket.showCart(storeId);
+        }
+
+        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        {
+            return basket.removeProductsFromCart(productsToRemove, storeId);
+        }
+
     }
 }
