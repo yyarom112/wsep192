@@ -83,6 +83,18 @@ namespace src.Domain
             }
             return false;
         }
+
+        public bool removeManager(int userID, int storeID)
+        {
+            Role role = searchRoleByStoreID(storeID);
+            if (role != null && role.GetType() == typeof(Owner))
+            {
+                Owner owner = (Owner)role;
+                return owner.removeOwner(userID);
+
+            }
+            return false;
+        }
         public Role searchRoleByStoreID(int storeID)
         {
             foreach (Role role in roles.Values)

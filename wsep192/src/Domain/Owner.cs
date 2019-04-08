@@ -16,5 +16,7 @@ namespace src.Domain
         {
             return Store.removeOwner(userID);
         }
+
+        public bool removeManager(int userID) => Store.removeOwner(userID);
     }
 }
