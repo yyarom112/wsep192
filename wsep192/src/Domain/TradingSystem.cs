@@ -112,6 +112,7 @@ namespace src.Domain
             }
             return false;
         }
+
         public Boolean signIn(String userName, String password, String userId)
         {
             int currUserId = Convert.ToInt32(userId);
@@ -167,6 +168,7 @@ namespace src.Domain
                 return null;
             return output;
         }
+
 
     }
 }

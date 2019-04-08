@@ -27,7 +27,7 @@ namespace UnitTests
         {
             system.Users.Add(user.Id, user);
             system.Stores.Add(store.Id, store);
-            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>()));
+            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
             ProductInCart pc = new ProductInCart(2, user.Basket.ShoppingCarts[store.Id], product);
             user.Basket.ShoppingCarts[store.Id].Products.Add(product.Id, pc);
         }
@@ -50,7 +50,7 @@ namespace UnitTests
             Assert.AreEqual(false, user.Basket.editProductQuantityInCart(product.Id, 3, store.Id));
 
             //failure cart edit
-            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>()));
+            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
             ProductInCart pc = new ProductInCart(2, user.Basket.ShoppingCarts[store.Id], product);
             user.Basket.ShoppingCarts[store.Id].Products.Add(product.Id, pc);
             
