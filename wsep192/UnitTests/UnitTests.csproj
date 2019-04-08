@@ -60,6 +60,9 @@
     <Compile Include="loginUserTest.cs" />
     <Compile Include="ManagerPermissionTest.cs" />
     <Compile Include="registerUserTest.cs" />
+    <Compile Include="EditProductInCartTests.cs" />
+    <Compile Include="RemoveProductsFromCartTests.cs" />
+    <Compile Include="ShowCartTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">
