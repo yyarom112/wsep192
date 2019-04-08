@@ -8,8 +8,8 @@ namespace src.Domain
 {
     class Role
     {
-        private Store store;
-        private User user;
+        protected Store store;
+        protected User user;
 
         public Role(Store store, User user)
         {

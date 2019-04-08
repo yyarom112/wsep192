@@ -15,14 +15,14 @@ namespace src.Domain
         private int price;
         private int productRate;
 
-        public Product(int id, string productName, string category, string details, int price, int productRate)
+        public Product(int id, string productName, string category, string details, int price)
         {
             this.Id = id;
             this.ProductName = productName;
             this.Category = category;
             this.Details = details;
             this.Price = price;
-            this.ProductRate = productRate;
+            this.ProductRate = 0;
         }
 
         public int Id { get => id; set => id = value; }
