@@ -39,10 +39,10 @@ namespace UnitTests
 
             store = new Store(-1, "store", 0, null, null);
 
-            p1 = new Product(0, "first", null, "", 5000, 0);
-            p2 = new Product(1, "second", null, "", 5000, 0);
-            p3 = new Product(2, "third", null, "", 5000, 0);
-            p4 = new Product(3, "fourth", null, "", 5000, 0);
+            p1 = new Product(0, "first", null, "", 5000);
+            p2 = new Product(1, "second", null, "", 5000);
+            p3 = new Product(2, "third", null, "", 5000);
+            p4 = new Product(3, "fourth", null, "", 5000);
             pis1 = new ProductInStore(10000000, store, p1);
             pis2 = new ProductInStore(10000000, store, p2);
             pis3 = new ProductInStore(10000000, store, p3);
