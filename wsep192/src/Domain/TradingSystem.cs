@@ -138,6 +138,9 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+
+
+
         public bool init(string adminUserName, string adminPassword)
         {
             User admin = new User(userCounter, adminUserName, adminPassword, true, true);
@@ -173,6 +176,7 @@ namespace src.Domain
             }
             return false;
         }
+
         public Boolean signIn(String userName, String password, String userId)
         {
             int currUserId = Convert.ToInt32(userId);
@@ -228,6 +232,7 @@ namespace src.Domain
                 return null;
             return output;
         }
+
 
     }
 }
