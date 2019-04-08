@@ -139,16 +139,26 @@ namespace src.Domain
             return false;
         }
 
-        public bool addProductsToCart(List<KeyValuePair<int, int>> products,int storeId,int userId)
+        public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
         {
-            if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products==null)
+            if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products == null)
+            {
+                LogManager.Instance.WriteToLog("TradingSystem- addProductsToCart fail- The pre-condtion does not exist\n");
                 return false;
+
+            }
             LinkedList<KeyValuePair<Product, int>> toInsert = createProductsList(products, storeId);
             if (toInsert == null)
+            {
+                LogManager.Instance.WriteToLog("TradingSystem- addProductsToCart fail-One or more products do not exist\n");
                 return false;
+
+            }
             ShoppingCart newCartCheck= this.users[userId].addProductsToCart(toInsert, storeId);
             if (newCartCheck != null)
                 newCartCheck.Store = this.stores[storeId];
+            LogManager.Instance.WriteToLog("TradingSystem- addProductsToCart success\n");
+
             return true;
         }
 
