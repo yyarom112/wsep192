@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common;
+//using Common;
 
 namespace src.Domain
 {
@@ -13,7 +13,8 @@ namespace src.Domain
         private String name;
         private Dictionary<int, ProductInStore> products;
         private int storeRate;
-        private ITree<Role> roles;
+        private TreeNode<Role> roles;
+        private Dictionary<int, Role> rolesDictionary;
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
@@ -23,7 +24,7 @@ namespace src.Domain
             this.name = name;
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
-            this.roles = NodeTree<Role>.NewTree();
+            this.roles = new TreeNode<Role>(null);
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
@@ -32,8 +33,53 @@ namespace src.Domain
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }
         internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }
-        internal ITree<Role> Roles { get => roles; set => roles = value; }
+        internal TreeNode<Role> Roles { get => roles; set => roles = value; }
         internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
+        internal Dictionary<int, Role> RolesDictionary { get => rolesDictionary; set => rolesDictionary = value; }
+
+        public bool searchProduct(Filter filter, List<ProductInStore> listToAdd)
+        {
+            bool result = false;
+            foreach (ProductInStore p in products.Values)
+            {
+                if (p.Product.compareProduct(filter) && filter.StoreRate != -1 && filter.StoreRate == this.storeRate)
+                {
+                    listToAdd.Add(p);
+                    result = true;
+                }
+            }
+            return result;
+        }
+        public bool removeOwner(int userID)
+        {
+            Role role = null;
+            if (RolesDictionary.ContainsKey(userID))
+                role = RolesDictionary[userID];
+            if (role != null)
+            {
+                if (roles.RemoveChild(roles.FindInChildren(role))
+                     && RolesDictionary.Remove(userID)
+                    && role.User.Roles.Remove(this.Id))
+                    return true;
+            }
+            return false;
+
+        }
+        public Boolean assignManager(Role newManager, Owner owner)
+        {
+            TreeNode<Role> currOwner = roles.FindInChildren(owner);
+            if (currOwner != null)
+            {
+                TreeNode<Role> tmp = currOwner.FindInChildren(newManager);
+                if (currOwner.FindInChildren(newManager) == null)
+                {
+                    currOwner.AddChild(newManager);
+                    return true;
+                }
+
+            }
+            return false;
+        }
     }
 }

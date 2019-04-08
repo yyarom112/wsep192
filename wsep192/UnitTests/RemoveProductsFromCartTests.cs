@@ -30,7 +30,7 @@ namespace UnitTests
         {
             system.Users.Add(user.Id, user);
             system.Stores.Add(store.Id, store);
-            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>()));
+            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
             ProductInCart pc = new ProductInCart(2, user.Basket.ShoppingCarts[store.Id], product);
             user.Basket.ShoppingCarts[store.Id].Products.Add(product.Id, pc);
             productsToRemove = new List<KeyValuePair<int, int>>();
@@ -60,7 +60,7 @@ namespace UnitTests
             Assert.AreEqual(false, user.Basket.removeProductsFromCart(null, store.Id));
 
             //failure cart remove
-            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store, new Dictionary<int, ProductInCart>()));
+            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id,store));
             productsToRemove = new List<KeyValuePair<int, int>>();
             KeyValuePair<int, int> pair = new KeyValuePair<int, int>(product.Id,5);
             productsToRemove.Add(pair);

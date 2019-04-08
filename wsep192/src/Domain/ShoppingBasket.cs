@@ -24,6 +24,22 @@ namespace src.Domain
 
             return shoppingCarts[storeId].showCart();
         }
+        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeID)
+        {
+            bool exist = true;
+            if (productsToInsert.Count == 0)
+                return null;
+            if (!this.shoppingCarts.ContainsKey(storeID))
+            {
+                exist = false;
+                shoppingCarts.Add(storeID, new ShoppingCart(storeID, null));
+
+            }
+            shoppingCarts[storeID].addProducts(productsToInsert);
+            if (!exist)
+                return shoppingCarts[storeID];
+            return null;
+        }
 
         internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
         {

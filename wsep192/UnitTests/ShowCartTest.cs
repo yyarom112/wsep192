@@ -69,7 +69,7 @@ namespace UnitTests
         {
             system.Users.Add(user.Id, user);
             system.Stores.Add(store.Id, store);
-            user.Basket.ShoppingCarts.Add(store.Id,new ShoppingCart(store.Id,store,new Dictionary<int, ProductInCart>()));
+            user.Basket.ShoppingCarts.Add(store.Id,new ShoppingCart(store.Id,store));
         }
     }
 }
