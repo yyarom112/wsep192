@@ -6,11 +6,12 @@ namespace Acceptance_Tests
     [TestClass]
     public class InitTests
     {
-        ServiceLayer service ;
+        ServiceLayer service;
 
         public void setUp()
         {
             service = new ServiceLayer();
+            service.initUser("tmpuser");
         }
 
         [TestMethod]
