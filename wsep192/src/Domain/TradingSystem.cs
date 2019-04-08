@@ -77,6 +77,9 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+
+
+
         public bool init(string adminUserName, string adminPassword)
         {
             User admin = new User(userCounter, adminUserName, adminPassword, true, true);
