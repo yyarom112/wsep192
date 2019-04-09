@@ -1,196 +1,212 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using src.Domain;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//using Common;
 
-namespace UnitTests
+namespace src.Domain
 {
-    [TestClass]
-    public class RemoveManager_Req46
+    class Store
     {
-        private TradingSystem sys;
-        private Encryption encrypt;
+        private int id;
+        private String name;
+        private Dictionary<int, ProductInStore> products;
+        private int storeRate;
+        private TreeNode<Role> roles;
+        private Dictionary<int, TreeNode<Role>> rolesDictionary;
+        private List<PurchasePolicy> purchasePolicy;
+        private List<DiscountPolicy> discountPolicy;
 
-        private User admin;
-        private ShoppingBasket basket_admin;
-
-        private User user;
-        private ShoppingBasket basket_user;
-
-        private User manager;
-
-
-        private Product p1;
-        private Product p2;
-        private Product p3;
-        private Product p4;
-        private ProductInStore pis1;
-        private ProductInStore pis2;
-        private ProductInStore pis3;
-        private ProductInStore pis4;
-
-        private Store store;
-
-
-        public void setUp()
+        public Store(int id, string name, int storeRate, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy)
         {
-            admin = new User(0, "admin", "123456", true, true);
-            admin.State = state.signedIn;
-            basket_admin = admin.Basket;
-            user = new User(1, null, null, false, false);
-            basket_user = user.Basket;
-            manager = new User(2, "a", "1234", false, true);
+            this.id = id;
+            this.name = name;
+            this.products = new Dictionary<int, ProductInStore>();
+            this.storeRate = storeRate;
+            this.roles = new TreeNode<Role>(null);
+            this.rolesDictionary = new Dictionary<int, TreeNode<Role>>();
+            this.purchasePolicy = purchasePolicy;
+            this.discountPolicy = discountPolicy;
+        }
 
-            store = new Store(-1, "store", 0, null, null);
+        public int Id { get => id; set => id = value; }
+        public string Name { get => name; set => name = value; }
+        public int StoreRate { get => storeRate; set => storeRate = value; }
+        internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }
+        internal TreeNode<Role> Roles { get => roles; set => roles = value; }
+        internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
+        internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
+        internal Dictionary<int, TreeNode<Role>> RolesDictionary { get => rolesDictionary; set => rolesDictionary = value; }
 
-            Owner storeOwner = new Owner(store, admin);
-            Manager storeManager = new Manager(store, manager, new List<int>());
+        public bool searchProduct(Filter filter, List<ProductInStore> listToAdd)
+        {
+            bool result = false;
+            foreach (ProductInStore p in products.Values)
+            {
+                if (p.Product.compareProduct(filter) && filter.StoreRate != -1 && filter.StoreRate == this.storeRate)
+                {
+                    listToAdd.Add(p);
+                    result = true;
+                }
+            }
+            return result;
+        }
+       
+        public Boolean assignManager(Role newManager, Owner owner)
+        {
+            TreeNode<Role> currOwner = roles.FindInChildren(owner);
+            if (currOwner != null)
+            {
+                TreeNode<Role> tmp = currOwner.FindInChildren(newManager);
+                if (currOwner.FindInChildren(newManager) == null)
+                {
+                    currOwner.AddChild(newManager);
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+        public virtual void updateCart(ShoppingCart cart, String opt)
+        {
+            foreach (ProductInCart p in cart.Products.Values)
+            {
+                if (opt.Equals("-"))
+                {
+                    if (p.Quantity <= this.products[p.Product.Id].Quantity)
+                        if (opt.Equals("-"))
+                            this.products[p.Product.Id].Quantity -= p.Quantity;
+
+                        else
+                        {
+                            p.Quantity = this.products[p.Product.Id].Quantity;
+                            this.products[p.Product.Id].Quantity = 0;
+                        }
+                }
+                else
+                {
+                    this.products[p.Product.Id].Quantity += p.Quantity;
+                }
+
+            }
+        }
+        public virtual bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products)
+        {
+            if (this.PurchasePolicy == null)
+                return true;
+            List<ProductInStore> productsInStore = new List<ProductInStore>();
+            foreach (ProductInCart p in products.Values)
+            {
+                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
+                productsInStore.Add(productInStore);
+            }
+            foreach (PurchasePolicy pp in purchasePolicy)
+            {
+                if (!pp.confirmPolicy())
+                    return false;
+            }
+            return true;
+
+        }
+        public void updateCart(ShoppingCart cart)
+        {
+            foreach (ProductInCart p in cart.Products.Values)
+            {
+                if (p.Quantity <= this.products[p.Product.Id].Quantity)
+                    this.products[p.Product.Id].Quantity -= p.Quantity;
+                else
+                {
+                    p.Quantity = this.products[p.Product.Id].Quantity;
+                    this.products[p.Product.Id].Quantity = 0;
+                }
+            }
+        }
+
+        public virtual int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
+        {
+            if (this.DiscountPolicy == null)
+                return 0;
+            int sum = 0;
+            List<ProductInStore> productsInStore = new List<ProductInStore>();
+            foreach (ProductInCart p in products.Values)
+            {
+                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
+                productsInStore.Add(productInStore);
+            }
+            foreach (DiscountPolicy dp in discountPolicy)
+            {
+                sum += dp.calculate(productsInStore);
+            }
+            return sum;
+        }
+
+        public bool removeOwner(int userID,Role owner)
+        {
+            TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
+            TreeNode<Role> roleNode = null;
+            bool flag = false;
+            
+            if (RolesDictionary.ContainsKey(userID))
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
+            {
+                if (roleNode.Data.GetType() == typeof(Owner))
+                {
+                    if (roleNode.getChildren() == null || roleNode.getChildren().Count == 0)
+                        flag = true;
+                    foreach(TreeNode<Role> child in roleNode.getChildren())
+                        flag = removeOwner(child.Data.User.Id, roleNode.Data);
+                }
+                if (flag&&ownerNode.RemoveChild(roleNode)
+                     && RolesDictionary.Remove(userID)
+                    && roleNode.Data.User.Roles.Remove(this.Id))
+                    return true;
 
 
-            admin.Roles.Add(store.Id,storeOwner);
-            manager.Roles.Add(store.Id, storeManager);
+            }
+            //LogManager.Instance.WriteToLog("Store-Remove owner Fail- The user " + userID);
 
-
-            store.Roles = new TreeNode<Role>(storeOwner);
-            store.RolesDictionary.Add(admin.Id, storeOwner);
-            store.Roles.AddChild(storeManager);
-            store.RolesDictionary.Add(manager.Id, storeManager);
-
-            p1 = new Product(0, "first", null, "", 5000);
-            p2 = new Product(1, "second", null, "", 5000);
-            p3 = new Product(2, "third", null, "", 5000);
-            p4 = new Product(3, "fourth", null, "", 5000);
-            pis1 = new ProductInStore(10000000, store, p1);
-            pis2 = new ProductInStore(10000000, store, p2);
-            pis3 = new ProductInStore(10000000, store, p3);
-            pis4 = new ProductInStore(10000000, store, p4);
-            store.Products.Add(p1.Id, pis1);
-            store.Products.Add(p2.Id, pis2);
-            store.Products.Add(p3.Id, pis3);
-            store.Products.Add(p4.Id, pis4);
-            sys = new TradingSystem(null, null);
-            sys.StoreCounter = 1;
-            sys.ProductCounter = 4;
-            sys.UserCounter = 2;
-            sys.Stores.Add(store.Id, store);
-            sys.Users.Add(admin.Id, admin);
-            sys.Users.Add(user.Id, user);
-            sys.Users.Add(manager.Id, manager);
-
+            return false;
 
         }
 
-        [TestMethod]
-        public void Store_RemoveManager_succ()
+        public bool removeManager(int userID,Role owner)
         {
-            setUp();
-            Assert.AreEqual(true, store.removeManager(manager.Id));
-        }
-
-        [TestMethod]
-        public void Store_RemoveManager_fail_theUserIsNotManager()
-        {
-            setUp();
-            Assert.AreEqual(false, store.removeManager(user.Id));
-        }
-
-        [TestMethod]
-        public void User_searchRoleByStoreID_succ()
-        {
-            setUp();
-            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id).Store);
+            TreeNode<Role> roleNode = null;
+            TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
+            if (RolesDictionary.ContainsKey(userID))
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
+            {
+                if (ownerNode.RemoveChild(roleNode)
+                     && RolesDictionary.Remove(userID)
+                    && roleNode.Data.User.Roles.Remove(this.Id))
+                    return true;
+            }
+            //LogManager.Instance.WriteToLog("Store-Remove manager Fail- The user " + userID + " is not manger in the store " + this.id + ".\n");
+            return false;
         }
 
 
-
-        [TestMethod]
-        public void User_searchRoleByStoreID_fail()
+        internal bool productExist(string product)
         {
-            setUp();
-            Assert.AreEqual(null, manager.searchRoleByStoreID(0));
+            foreach (int p in Products.Keys)
+            {
+                if ((Products[p].Product.ProductName).Equals(product))
+                    return true;
+            }
+            return false;
         }
 
-        [TestMethod]
-        public void User_removeManager_succ()
+        internal int getProduct(string product)
         {
-            setUp();
-            admin.Roles.Remove(store.Id);
-            admin.Roles.Add(store.Id, new StubOwner(store, admin, true));
-            Assert.AreEqual(true, admin.removeManager(manager.Id,store.Id));
-        }
-
-        [TestMethod]
-        public void User_removeManager_fail_noPremission()
-        {
-            setUp();
-            Assert.AreEqual(false, manager.removeManager(manager.Id, store.Id));
-        }
-
-        [TestMethod]
-        public void User_removeManager_fail_NoRoleInTheStore()
-        {
-            setUp();
-            admin.Roles.Remove(store.Id);
-            Assert.AreEqual(false, admin.removeManager(manager.Id, store.Id));
-        }
-
-        [TestMethod]
-        public void TradingSystem_removeManager_succ()
-        {
-            setUp();
-            sys.Users.Add(3, new StubUser(3, null, null, false, false, true));
-            Assert.AreEqual(true, sys.removeManager(3,admin.Id,store.Id));
-        }
-
-        [TestMethod]
-        public void TradingSystem_removeManager_fail_preCondDoesNotExist()
-        {
-            setUp();
-            Assert.AreEqual(false, sys.removeManager(4, admin.Id, store.Id));
-        }
-
-        [TestMethod]
-        public void TradingSystem_fail_getFalseFromUser()
-        {
-            setUp();
-            sys.Users.Add(3, new StubUser(3, null, null, false, false, false));
-            Assert.AreEqual(false, sys.removeManager(3, admin.Id, store.Id));
+            foreach (int p in Products.Keys) {
+                if((Products[p].Product.ProductName).Equals(product))
+                return p;
+            }
+            return -1;
         }
     }
-
-    //----------------------------@@stub class@@----------------------------
-
-
-    class StubOwner : Owner
-    {
-        private bool retVal;
-
-
-        public StubOwner(Store store, User user,bool ret) : base(store, user)
-        {
-            this.retVal = ret;
-        }
-
-
-        public override bool removeManager(int userID)
-        { 
-            return retVal;
-        }
-    }
-
-    class StubUser : User
-    {
-        bool retVal;
-        public StubUser(int id, string userName, string password, bool isAdmin, bool isRegistered, bool ret) : base(id, userName, password, isAdmin, isRegistered)
-        {
-            this.retVal = ret;
-        }
-
-        public override bool removeManager(int userID, int storeID)
-        {
-            return retVal;
-        }
-    }
-
-
 }
