@@ -31,7 +31,7 @@ namespace Acceptance_Tests
 
         private Store store;
 
-
+        /*
         public void setUp()
         {
             admin = new User(0, "admin", "123456", true, true);
@@ -103,5 +103,6 @@ namespace Acceptance_Tests
             setUp();
             Assert.AreEqual(false, sys.removeManager(user.Id, manager.Id, store.Id));
         }
+        */
     }
 }

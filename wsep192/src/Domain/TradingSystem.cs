@@ -34,12 +34,12 @@ namespace src.Domain
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
         }
-        public List<ProductInStore> searchProduct(String details)
+        public String searchProduct(String details)
         {
             List<ProductInStore> products  = new List<ProductInStore>();
             String[] detailsForFilter = details.Split(' ');
             if (detailsForFilter.Length != 7)
-                return products;
+                return "";
             KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
                 Int32.Parse(detailsForFilter[4]));
             Filter filter = new Filter(detailsForFilter[0],
@@ -49,9 +49,20 @@ namespace src.Domain
             {
                 s.searchProduct(filter,products);
             }
-            return products;
+            return productsToString(products);
         }
-
+        private String productsToString(List<ProductInStore> products)
+        {
+            String res = "";
+            foreach(ProductInStore p in products)
+            {
+                res += res + "Name: " + p.Product.ProductName + "\n"
+                     + "Store Name: " + p.Store.Name +"\n"
+                    + "Quantity: " + p.Quantity
+                    ;
+            }
+            return res;
+        }
         internal bool initUserGuest(string user,int userCounter)
         {
             User guest = new User(userCounter, user , null,false,false);

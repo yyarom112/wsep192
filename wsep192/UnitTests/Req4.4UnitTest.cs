@@ -27,23 +27,27 @@ namespace UnitTests
             store = new Store(0, "blabla", 0, purchasePolicies, discountPolicies);
             Owner owner = new Owner(store, user);
             user.Roles.Add(store.Id, owner);
-            store.RolesDictionary.Add(1, owner);
-            store.Roles.AddChild(owner);
+            TreeNode<Role> ownerNode = store.Roles.AddChild(owner);
+            store.RolesDictionary.Add(1, ownerNode);
+            
             user2 = new User(2, "liraz", "123", false, false);
             Owner owner2 = new Owner(store, user2);
-            user2.Roles.Add(store.Id, owner);
-            store.Roles.FindInChildren(owner).AddChild(owner2);
-            store.RolesDictionary.Add(2, owner);
+            user2.Roles.Add(store.Id, owner2);
+            TreeNode<Role> owner2Node = ownerNode.AddChild(owner2);
+            store.RolesDictionary.Add(2, owner2Node);
             basket_user = user.Basket;
+            admin = new User(0, "admin", "1234", true, false);
 
+
+            sys.Stores.Add(store.Id, store);
             sys.StoreCounter = 1;
             sys.ProductCounter = 4;
-            sys.UserCounter = 3;
-            admin = new User(0, "admin", "1234", true, false);
-            sys.Stores.Add(store.Id, store);
+            
             sys.Users.Add(admin.Id, admin);
             sys.Users.Add(user.Id, user);
             sys.Users.Add(user2.Id, user2);
+            sys.UserCounter = 3;
+            user.State = state.signedIn;
 
 
         }
