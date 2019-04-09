@@ -8,6 +8,7 @@ namespace UnitTests
     [TestClass]
     public class ManagerPermissionTest
     {
+
         private TradingSystem system;
         private User user;
         private Store store;

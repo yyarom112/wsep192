@@ -123,10 +123,9 @@ namespace src.Domain
             return users[id].signOut();
 
         }
-        public Boolean register(String userName, String password, String userId)
+        public Boolean register(String userName, String password, int userId)
         {
-            int currUserId = Convert.ToInt32(userId);
-            if (this.users.ContainsKey(currUserId))
+            if (this.users.ContainsKey(userId))
             {
                 if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
                     || userName.Equals("") || password.Equals("") || userName.Contains(" "))
@@ -135,7 +134,7 @@ namespace src.Domain
                     return false;
                 }
 
-                User currUser = this.users[currUserId];
+                User currUser = this.users[userId];
                 if (currUser != null && userName == currUser.UserName && password == currUser.Password)
                 {
                     password = encryption.encrypt(userName + password);
@@ -146,12 +145,11 @@ namespace src.Domain
             }
             return false;
         }
-        public Boolean signIn(String userName, String password, String userId)
+        public Boolean signIn(String userName, String password, int userId)
         {
-            int currUserId = Convert.ToInt32(userId);
-            if (this.users.ContainsKey(currUserId))
+            if (this.users.ContainsKey(userId))
             {
-                User currUser = this.users[currUserId];
+                User currUser = this.users[userId];
                 if (currUser != null)
                 {
                     if (!currUser.IsRegistered)
