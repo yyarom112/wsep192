@@ -59,8 +59,8 @@ namespace UnitTests
             String password = "1111";
             int userId = tmpUser.Id;
             system.Users.Add(tmpUser.Id, tmpUser);
-            system.register(userName, password, userId.ToString());
-            Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
+            system.register(userName, password, userId);
+            Assert.AreEqual(false, system.signIn(userName, password, userId));
         }
 
         [TestMethod]
@@ -72,8 +72,8 @@ namespace UnitTests
             String password = tmpUser.Password;
             int userId = tmpUser.Id;
             system.Users.Add(tmpUser.Id, tmpUser);
-            system.register(userName, password, userId.ToString());
-            Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
+            system.register(userName, password, userId);
+            Assert.AreEqual(false, system.signIn(userName, password, userId));
         }
 
         [TestMethod]
@@ -85,8 +85,8 @@ namespace UnitTests
             String password = "7777";
             int userId = tmpUser.Id;
             system.Users.Add(tmpUser.Id, tmpUser);
-            system.register(userName, password, userId.ToString());
-            Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
+            system.register(userName, password, userId);
+            Assert.AreEqual(false, system.signIn(userName, password, userId));
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ namespace UnitTests
             String password = tmpUser.Password;
             int userId = tmpUser.Id;
             system.Users.Add(tmpUser.Id, tmpUser);
-            Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
+            Assert.AreEqual(false, system.signIn(userName, password, userId));
         }
 
         /*------------------------stub-classes------------------------------------*/

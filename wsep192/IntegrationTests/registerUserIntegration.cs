@@ -27,7 +27,7 @@ namespace IntegrationTests
             String userName = user1.UserName;
             String password = user1.Password;
             int userId = user1.Id;
-            Assert.AreEqual(true, system.register(userName, password, userId.ToString()));
+            Assert.AreEqual(true, system.register(userName, password, userId));
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace IntegrationTests
             String userName = user1.UserName;
             String password = " ";
             int userId = user1.Id;
-            Assert.AreEqual(false, system.register(userName, password, userId.ToString()));
+            Assert.AreEqual(false, system.register(userName, password, userId));
         }
 
         [TestMethod]
@@ -47,7 +47,7 @@ namespace IntegrationTests
             String userName = "blabla";
             String password = user1.Password;
             int userId = user1.Id;
-            Assert.AreEqual(false, system.register(userName, password, userId.ToString()));
+            Assert.AreEqual(false, system.register(userName, password, userId));
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace IntegrationTests
             String userName = "blabla";
             String password = "9999";
             int userId = user1.Id;
-            Assert.AreEqual(false, system.register(userName, password, userId.ToString()));
+            Assert.AreEqual(false, system.register(userName, password, userId));
         }
     }
 }

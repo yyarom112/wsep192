@@ -28,8 +28,8 @@ namespace IntegrationTests
             String userName = user1.UserName;
             String password = user1.Password;
             int userId = user1.Id;
-            system.register(userName, password, userId.ToString());
-            Assert.AreEqual(true, system.signIn(userName, password, userId.ToString()));
+            system.register(userName, password, userId);
+            Assert.AreEqual(true, system.signIn(userName, password, userId));
         }
 
         [TestMethod]
@@ -39,8 +39,8 @@ namespace IntegrationTests
             String userName = user1.UserName;
             String password = "2222";
             int userId = user1.Id;
-            system.register(userName, password, userId.ToString());
-            Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
+            system.register(userName, password, userId);
+            Assert.AreEqual(false, system.signIn(userName, password, userId));
         }
 
         [TestMethod]
@@ -50,8 +50,8 @@ namespace IntegrationTests
             String userName = "blabla";
             String password = user1.Password;
             int userId = user1.Id;
-            system.register(userName, password, userId.ToString());
-            Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
+            system.register(userName, password, userId);
+            Assert.AreEqual(false, system.signIn(userName, password, userId));
         }
 
         [TestMethod]
@@ -61,8 +61,8 @@ namespace IntegrationTests
             String userName = "blabla";
             String password = "1233";
             int userId = user1.Id;
-            system.register(userName, password, userId.ToString());
-            Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
+            system.register(userName, password, userId);
+            Assert.AreEqual(false, system.signIn(userName, password, userId));
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace IntegrationTests
             String userName = user1.UserName;
             String password = user1.Password;
             int userId = user1.Id;
-            Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
+            Assert.AreEqual(false, system.signIn(userName, password, userId));
         }
     }
 }

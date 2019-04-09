@@ -13,7 +13,7 @@ namespace Acceptance_Tests
         {
             service = new ServiceLayer();
             service.initUser("tmpuser");
-            service.openStore();
+            //service.openStore();
         }
 
         [TestMethod]

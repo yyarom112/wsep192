@@ -63,6 +63,47 @@ namespace src.Domain
 
             return basket;
         }
+        public String showCart(int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return "";
+            return Users[user].showCart(store);
+
+        }
+        public bool editProductQuantityInCart(int product, int quantity, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return false;
+            return Users[user].editProductQuantityInCart(product, quantity, store);
+        }
+        public bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return false;
+            return Users[user].removeProductsFromCart(productsToRemove, store);
+        }
+
+
+        internal bool productExist(string product, int store)
+        {
+            return Stores[store].productExist(product);
+        }
+
+
+        public bool removeManager(int userID, int userIDToRemove, int storeID)
+        {
+            if (!this.users.ContainsKey(userID) || !this.users.ContainsKey(userIDToRemove) || !this.stores.ContainsKey(storeID))
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-Remove manager fail- The store or user is not exist\n");
+                return false;
+            }
+            if (users[userID].removeManager(userIDToRemove, storeID))
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-Remove manager id" + userIDToRemove + " from store " + storeID + " success\n");
+                return true;
+            }
+            return false;
+        }
 
 
         public bool init(string adminUserName, string adminPassword)
@@ -140,10 +181,6 @@ namespace src.Domain
         public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
         public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
 
-        internal bool productExist(string product, int store)
-        {
-            return Stores[store].productExist(product);
-        }
 
         internal Dictionary<int, User> Users { get => users; set => users = value; }
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
@@ -187,26 +224,6 @@ namespace src.Domain
             return false;
         }
 
-        internal string showCart(int store, int user)
-        {
-            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return "Error : Invalid user or store";
-            return Users[user].showCart(store);
-        }
-
-        internal bool editProductQuantityInCart(int product, int quantity, int store, int user)
-        {
-            if (!Users.ContainsKey(user) || !this.Stores.ContainsKey(store))
-                return false;
-            return Users[user].editProductQuantityInCart(product, quantity, store);
-        }
-
-        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
-        {
-            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return false;
-            return Users[user].removeProductsFromCart(productsToRemove, store);
-        }
 
         public Boolean signIn(String userName, String password, int userId)
         {

@@ -8,7 +8,7 @@ namespace Acceptance_Tests
     public class ShowCartTests
     {
         ServiceLayer service;
-
+        /*
         public void setUp()
         {
             service = new ServiceLayer();
@@ -28,5 +28,6 @@ namespace Acceptance_Tests
             setUpSuccess();
             Assert.AreEqual(true, service.showCart(1));
         }
+        */
     }
 }

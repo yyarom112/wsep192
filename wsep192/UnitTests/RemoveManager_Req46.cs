@@ -190,6 +190,13 @@ namespace UnitTests
         {
             return retVal;
         }
+        public override int basketCheckout(String address)
+        {
+            if (retVal)
+                return 1;
+            return -1;
+                
+        }
     }
 
 
