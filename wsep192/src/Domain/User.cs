@@ -92,9 +92,9 @@ namespace src.Domain
             {
                 return false;
             }
-            if (this.roles.ContainsKey(this.id))
+            if (this.Roles.ContainsKey(this.id))
             {
-                Role role = roles[this.id];
+                Role role = Roles[this.id];
                 if (role != null && role.GetType() == typeof(Owner))
                 {
                     Owner owner = (Owner)role;

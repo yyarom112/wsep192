@@ -61,8 +61,9 @@ namespace src.Domain
             {
                 if (!RolesDictionary.ContainsKey(newManager.User.Id))
                 {
-                    currOwner.AddChild(newManager);
-                    RolesDictionary.Add(newManager.User.Id, RolesDictionary[newManager.User.Id]);
+                    
+                    TreeNode<Role> managerRole = currOwner.AddChild(newManager);
+                    RolesDictionary.Add(newManager.User.Id, managerRole);
                     newManager.User.Roles.Add(newManager.User.Id, newManager);
                     return true;
                 }
