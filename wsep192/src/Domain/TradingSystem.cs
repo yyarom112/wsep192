@@ -26,8 +26,6 @@ namespace src.Domain
             this.supplySystem = supplySystem;
             this.financialSystem = financialSystem;
             this.productCounter = 0;
-            this.storeCounter = 0;
-            this.userCounter = 0;
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter =  0;
             this.encryption = new EncryptionImpl();
@@ -36,28 +34,12 @@ namespace src.Domain
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
         }
-
-        public bool removeManager(int userID, int userIDToRemove, int storeID)
-        {
-            if(!this.users.ContainsKey(userID)|| !this.users.ContainsKey(userIDToRemove) || !this.stores.ContainsKey(storeID))
-            {
-                LogManager.Instance.WriteToLog("TradingSystem-Remove manager fail- The store or user is not exist\n");
-                return false;
-            }
-            if( users[userID].removeManager(userIDToRemove, storeID))
-            {
-                LogManager.Instance.WriteToLog("TradingSystem-Remove manager id"+userIDToRemove+" from store "+storeID+" success\n");
-                return true;
-            }
-            return false;
-        }
-
-        public List<ProductInStore> searchProduct(String details)
+        public String searchProduct(String details)
         {
             List<ProductInStore> products  = new List<ProductInStore>();
             String[] detailsForFilter = details.Split(' ');
             if (detailsForFilter.Length != 7)
-                return products;
+                return "";
             KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
                 Int32.Parse(detailsForFilter[4]));
             Filter filter = new Filter(detailsForFilter[0],
@@ -67,8 +49,28 @@ namespace src.Domain
             {
                 s.searchProduct(filter,products);
             }
-            return products;
+            return productsToString(products);
         }
+        private String productsToString(List<ProductInStore> products)
+        {
+            String res = "";
+            foreach(ProductInStore p in products)
+            {
+                res += res + "Name: " + p.Product.ProductName + "\n"
+                     + "Store Name: " + p.Store.Name +"\n"
+                    + "Quantity: " + p.Quantity
+                    ;
+            }
+            return res;
+        }
+        internal bool initUserGuest(string user,int userCounter)
+        {
+            User guest = new User(userCounter, user , null,false,false);
+            users.Add(userCounter, guest);
+
+            return true;
+        }
+
         public User searchUser(int userID)
         {
             foreach (User u in users.Values)
@@ -89,15 +91,23 @@ namespace src.Domain
         public int UserCounter { get => userCounter; set => userCounter = value; }
         public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
         public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
+
+        internal bool productExist(string product, int store)
+        {
+            return Stores[store].productExist(product);
+        }
+
         internal Dictionary<int, User> Users { get => users; set => users = value; }
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
-        public bool init(string adminUserName, string adminPassword)
+
+
+
+        public bool init(string adminUserName, string adminPassword,int userCounter)
         {
             User admin = new User(userCounter, adminUserName, adminPassword, true, true);
             users.Add(userCounter, admin);
-            userCounter++;
             if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
                 return false;
 
@@ -128,6 +138,35 @@ namespace src.Domain
             }
             return false;
         }
+
+       
+
+        internal bool removeManager(int id1, int id2, int id3)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal string showCart(int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return "Error : Invalid user or store";
+            return Users[user].showCart(store);
+        }
+
+        internal bool editProductQuantityInCart(int product, int quantity, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !this.Stores.ContainsKey(store))
+                return false;
+            return Users[user].editProductQuantityInCart(product, quantity, store);
+        }
+
+        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return false;
+            return Users[user].removeProductsFromCart(productsToRemove, store);
+        }
+
         public Boolean signIn(String userName, String password, String userId)
         {
             int currUserId = Convert.ToInt32(userId);
@@ -151,6 +190,17 @@ namespace src.Domain
             return false;
         }
 
+        internal int basketCheckout(string address, int v)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal string payForBasket(long cardNum, DateTime date, int v)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public bool addProductsToCart(LinkedList<KeyValuePair<int, int>> products,int storeId,int userId)
         {
             if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products==null)
@@ -162,6 +212,11 @@ namespace src.Domain
             if (newCartCheck != null)
                 newCartCheck.Store = this.stores[storeId];
             return true;
+        }
+
+        internal bool openStore(string storeName, int v, int storeCounter)
+        {
+            throw new NotImplementedException();
         }
 
         public LinkedList<KeyValuePair<Product, int>> createProductsList(LinkedList<KeyValuePair<int, int>> products, int storeId)
@@ -184,32 +239,44 @@ namespace src.Domain
             return output;
         }
 
-
-
-
-        public String showCart(int store, int user)
+        internal bool createNewProductInStore(string productName, string category, string details, int price, int v1, int v2)
         {
-            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return "";
-            return Users[user].showCart(store);
-
-        }
-        public bool editProductQuantityInCart(int product, int quantity, int store, int user)
-        {
-            if(!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return false;
-            return Users[user].editProductQuantityInCart(product,quantity,store);
-        }
-        public bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
-        {
-            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return false;
-            return Users[user].removeProductsFromCart(productsToRemove,store);
+            throw new NotImplementedException();
         }
 
+        internal bool addProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
 
+        internal int getProduct(string product, int store)
+        {
+            return Stores[store].getProduct(product);
+        }
 
+        internal bool removeProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
 
+        internal bool removeUser(int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
 
+        internal bool assignManager(int v1, int v2, int v3, List<int> list)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool assignOwner(int v1, int v2, int v3)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool editProductInStore(int v1, string productName, string category, string details, int price, int v2, int v3)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
