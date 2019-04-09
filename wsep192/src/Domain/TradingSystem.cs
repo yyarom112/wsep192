@@ -36,6 +36,22 @@ namespace src.Domain
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
         }
+
+        public bool removeManager(int userID, int userIDToRemove, int storeID)
+        {
+            if(!this.users.ContainsKey(userID)|| !this.users.ContainsKey(userIDToRemove) || !this.stores.ContainsKey(storeID))
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-Remove manager fail- The store or user is not exist\n");
+                return false;
+            }
+            if( users[userID].removeManager(userIDToRemove, storeID))
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-Remove manager id"+userIDToRemove+" from store "+storeID+" success\n");
+                return true;
+            }
+            return false;
+        }
+
         public List<ProductInStore> searchProduct(String details)
         {
             List<ProductInStore> products  = new List<ProductInStore>();
@@ -77,9 +93,6 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
-
-
-
         public bool init(string adminUserName, string adminPassword)
         {
             User admin = new User(userCounter, adminUserName, adminPassword, true, true);
@@ -115,7 +128,6 @@ namespace src.Domain
             }
             return false;
         }
-
         public Boolean signIn(String userName, String password, String userId)
         {
             int currUserId = Convert.ToInt32(userId);
@@ -181,6 +193,32 @@ namespace src.Domain
                 return null;
             return output;
         }
+
+
+
+
+        public String showCart(int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return "";
+            return Users[user].showCart(store);
+
+        }
+        public bool editProductQuantityInCart(int product, int quantity, int store, int user)
+        {
+            if(!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return false;
+            return Users[user].editProductQuantityInCart(product,quantity,store);
+        }
+        public bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return false;
+            return Users[user].removeProductsFromCart(productsToRemove,store);
+        }
+
+
+
 
 
     }

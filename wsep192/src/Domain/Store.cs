@@ -25,6 +25,7 @@ namespace src.Domain
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
             this.roles = new TreeNode<Role>(null);
+            this.rolesDictionary = new Dictionary<int, Role>();
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
@@ -66,6 +67,23 @@ namespace src.Domain
             return false;
 
         }
+
+        public bool removeManager(int userID)
+        {
+            Role role = null;
+            if (RolesDictionary.ContainsKey(userID))
+                role = RolesDictionary[userID];
+            if (role != null)
+            {
+                if (roles.RemoveChild(roles.FindInChildren(role))
+                     && RolesDictionary.Remove(userID)
+                    && role.User.Roles.Remove(this.Id))
+                    return true;
+            }
+            LogManager.Instance.WriteToLog("Store-Remove manager Fail- The user " + userID + " is not manger in the store " + this.id + ".\n");
+            return false;
+        }
+
         public Boolean assignManager(Role newManager, Owner owner)
         {
             TreeNode<Role> currOwner = roles.FindInChildren(owner);
