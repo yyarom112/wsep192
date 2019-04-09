@@ -8,7 +8,7 @@ namespace Acceptance_Tests
     public class LogoutTests
     {
         ServiceLayer service;
-
+        [TestMethod]
         public void setUp()
         {
             service = new ServiceLayer();
@@ -19,7 +19,7 @@ namespace Acceptance_Tests
 
 
    
-        [TestMethod]
+       // [TestMethod]
         public void TestMethod1_success()
         {
             setUp();
