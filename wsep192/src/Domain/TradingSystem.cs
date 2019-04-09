@@ -66,7 +66,7 @@ namespace src.Domain
         public String showCart(int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return "";
+                return "Error : Invalid user or store";
             return Users[user].showCart(store);
 
         }
@@ -214,7 +214,7 @@ namespace src.Domain
                     || userName.Equals("") || password.Equals("") || userName.Contains(" "))
                     return false;
                 User currUser = this.users[currUserId];
-                if (currUser != null && userName == currUser.UserName && password == currUser.Password)
+                if (currUser != null)
                 {
                     password = encryption.encrypt(userName + password);
                     return currUser.register(userName, password);

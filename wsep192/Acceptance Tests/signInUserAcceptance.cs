@@ -6,7 +6,7 @@ using src.ServiceLayer;
 
 namespace Acceptance_Tests
 {
-   
+
     [TestClass]
     public class signInUserAcceptance
     {
@@ -23,39 +23,49 @@ namespace Acceptance_Tests
         public void TestMethod1_success_scenario()
         {
             setUp();
-            service.register("Seifan", "5656", "1313");
-            Assert.AreEqual(true, service.signIn("Seifan", "5656", "1313"));
+            String userName = "Seifan";
+            String password = "2345";
+            service.register(userName, password, "tmpuser");
+            Assert.AreEqual(true, service.signIn(userName, password, "tmpuser"));
         }
 
         [TestMethod]
         public void TestMethod1_fail_password_scenario()
         {
             setUp();
-            service.register("Seifan", "5656", "1313");
-            Assert.AreEqual(false, service.signIn("Seifan", "4343", "1313"));
+            String userName = "Seifan";
+            String password = " ";
+            service.register(userName, password, "tmpuser");
+            Assert.AreEqual(false, service.signIn(userName, password, "tmpuser"));
         }
 
         [TestMethod]
         public void TestMethod1_fail_userName_scenario()
         {
             setUp();
-            service.register("Seifan", "5656", "1313");
-            Assert.AreEqual(false, service.signIn("blabla", "5656", "1313"));
+            String userName = "bla bla";
+            String password = "2345";
+            service.register(userName, password, "tmpuser");
+            Assert.AreEqual(false, service.signIn(userName, password, "tmpuser"));
         }
 
         [TestMethod]
         public void TestMethod1_fail_userName_password_scenario()
         {
             setUp();
-            service.register("Seifan", "5656", "1313");
-            Assert.AreEqual(false, service.signIn("blabla", "4343", "1313"));
+            String userName = "bla bla";
+            String password = " ";
+            service.register(userName, password, "tmpuser");
+            Assert.AreEqual(false, service.signIn(userName, password, "tmpuser"));
         }
 
         [TestMethod]
         public void TestMethod1_fail_user_notRegister_scenario()
         {
             setUp();
-            Assert.AreEqual(false, service.signIn("Seifan", "5656", "1313"));
+            String userName = "Seifan";
+            String password = "2345";
+            Assert.AreEqual(false, service.signIn(userName, password, "tmpuser"));
         }
     }
 }

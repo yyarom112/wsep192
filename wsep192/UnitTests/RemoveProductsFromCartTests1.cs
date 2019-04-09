@@ -6,10 +6,11 @@ using src.Domain;
 namespace UnitTests
 {
     [TestClass]
-    
-        class RemoveProductsFromCartTests
-        {
-            TradingSystem system;
+    public class RemoveProductsFromCartTests1
+    {
+        
+
+           TradingSystem system;
             User user;
             Store store;
             Product product;
@@ -102,7 +103,5 @@ namespace UnitTests
             }
 
 
-        }
-    
-
+    }
 }

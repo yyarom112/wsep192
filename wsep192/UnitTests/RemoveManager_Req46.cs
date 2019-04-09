@@ -49,12 +49,12 @@ namespace UnitTests
 
             admin.Roles.Add(store.Id, storeOwner);
             manager.Roles.Add(store.Id, storeManager);
-        }
-            /*
+
+
             store.Roles = new TreeNode<Role>(storeOwner);
-            store.RolesDictionary.Add(admin.Id, storeOwner);
+            store.RolesDictionary.Add(admin.Id, new TreeNode<Role>(storeOwner));
             store.Roles.AddChild(storeManager);
-            store.RolesDictionary.Add(manager.Id, storeManager);
+            store.RolesDictionary.Add(manager.Id, new TreeNode<Role>(storeOwner));
 
             p1 = new Product(0, "first", null, "", 5000);
             p2 = new Product(1, "second", null, "", 5000);
@@ -84,21 +84,29 @@ namespace UnitTests
         public void Store_RemoveManager_succ()
         {
             setUp();
-            Assert.AreEqual(true, store.removeManager(manager.Id));
+            Assert.AreEqual(true, store.removeManager(admin.Id,manager.Roles[store.Id]));
         }
 
         [TestMethod]
         public void Store_RemoveManager_fail_theUserIsNotManager()
         {
             setUp();
-            Assert.AreEqual(false, store.removeManager(user.Id));
+            try
+            {
+                store.removeManager(admin.Id, manager.Roles[user.Id]);
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual(true, true);
+
+            }
         }
-        */
+
         [TestMethod]
         public void User_searchRoleByStoreID_succ()
         {
             setUp();
-            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id,manager.Id).Store);
+            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id,admin.Id).Store);
         }
 
 
@@ -107,7 +115,7 @@ namespace UnitTests
         public void User_searchRoleByStoreID_fail()
         {
             setUp();
-            Assert.AreEqual(null, manager.searchRoleByStoreID(0,manager.Id));
+            Assert.AreEqual(null, manager.searchRoleByStoreID(0,user.Id));
         }
 
         [TestMethod]
@@ -116,7 +124,7 @@ namespace UnitTests
             setUp();
             admin.Roles.Remove(store.Id);
             admin.Roles.Add(store.Id, new StubOwner(store, admin, true));
-            Assert.AreEqual(true, admin.removeManager(manager.Id,store.Id));
+            Assert.AreEqual(true, admin.removeManager(manager.Id, store.Id));
         }
 
         [TestMethod]
@@ -139,7 +147,7 @@ namespace UnitTests
         {
             setUp();
             sys.Users.Add(3, new StubUser(3, null, null, false, false, true));
-            Assert.AreEqual(true, sys.removeManager(3,admin.Id,store.Id));
+            Assert.AreEqual(true, sys.removeManager(3, admin.Id, store.Id));
         }
 
         [TestMethod]
@@ -166,14 +174,14 @@ namespace UnitTests
         private bool retVal;
 
 
-        public StubOwner(Store store, User user,bool ret) : base(store, user)
+        public StubOwner(Store store, User user, bool ret) : base(store, user)
         {
             this.retVal = ret;
         }
 
 
         public override bool removeManager(int userID)
-        { 
+        {
             return retVal;
         }
     }
@@ -189,13 +197,6 @@ namespace UnitTests
         public override bool removeManager(int userID, int storeID)
         {
             return retVal;
-        }
-        public override int basketCheckout(String address)
-        {
-            if (retVal)
-                return 1;
-            return -1;
-                
         }
     }
 

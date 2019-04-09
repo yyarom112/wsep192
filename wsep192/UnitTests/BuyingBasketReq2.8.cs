@@ -200,7 +200,7 @@ namespace UnitTests
             bool retval = true;
             StubUser user = new StubUser(2, null, null, false, false, retval);
             sys.Users.Add(user.Id, user);
-            Assert.AreEqual(retval, sys.basketCheckout("telaviv",2));
+            Assert.AreEqual(1, sys.basketCheckout("telaviv",2));
 
 
         }
