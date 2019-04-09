@@ -128,24 +128,32 @@ namespace src.Domain
             return false;
         }
 
-        internal string showCart(string store, string user)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool editProductQuantityInCart(int v1, int quantity, int v2, int v3)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         internal bool removeManager(int id1, int id2, int id3)
         {
             throw new NotImplementedException();
         }
 
-        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> list, int v1, int v2)
+        internal string showCart(int store, int user)
         {
-            throw new NotImplementedException();
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return "Error : Invalid user or store";
+            return Users[user].showCart(store);
+        }
+
+        internal bool editProductQuantityInCart(int product, int quantity, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !this.Stores.ContainsKey(store))
+                return false;
+            return Users[user].editProductQuantityInCart(product, quantity, store);
+        }
+
+        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return false;
+            return Users[user].removeProductsFromCart(productsToRemove, store);
         }
 
         public Boolean signIn(String userName, String password, String userId)
