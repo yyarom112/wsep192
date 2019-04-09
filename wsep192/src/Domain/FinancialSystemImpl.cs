@@ -8,12 +8,12 @@ namespace src.Domain
 {
     class FinancialSystemImpl : FinancialSystem
     {
-        public bool Connect()
+        public bool connect()
         {
             return true;
         }
 
-        public bool Payment(long cardNumber, DateTime date, int sum)
+        public bool payment(long cardNumber, DateTime date, int sum)
         {
             return true;
         }

@@ -30,6 +30,52 @@ namespace src.Domain
             this.discountPolicyCounter =  0;
             this.encryption = new EncryptionImpl();
         }
+
+        public int basketCheckout(String address, int userID)
+        {
+            if (!this.users.ContainsKey(userID))
+                return -1;
+            else
+                return this.users[userID].basketCheckout(address);
+        }
+        public ShoppingBasket payForBasket(long cardNumber, DateTime date, int userID)
+        {
+            ShoppingBasket basket = users[userID].Basket;
+            foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
+            {
+                cart.Store.updateCart(cart, "-");
+            }
+
+            if (!this.financialSystem.payment(cardNumber, date, basket.basketCheckout()))
+            {
+                foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
+                {
+                    cart.Store.updateCart(cart, "+");
+                }
+                return null;
+            }
+
+
+            if (!this.supplySystem.deliverToCustomer(this.Users[userID].Address, "Some package Details"))
+            {
+                return null;
+            }
+
+            return basket;
+        }
+
+
+        public bool init(string adminUserName, string adminPassword)
+        {
+            User admin = new User(userCounter, adminUserName, adminPassword, true, true);
+            users.Add(userCounter, admin);
+            userCounter++;
+            if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
+                return false;
+
+            return true;
+        }
+
         public bool removeOwner(int userID,int userIDToRemove,int storeID)
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
@@ -139,13 +185,6 @@ namespace src.Domain
             return false;
         }
 
-       
-
-        internal bool removeManager(int id1, int id2, int id3)
-        {
-            throw new NotImplementedException();
-        }
-
         internal string showCart(int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
@@ -190,15 +229,6 @@ namespace src.Domain
             return false;
         }
 
-        internal int basketCheckout(string address, int v)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal string payForBasket(long cardNum, DateTime date, int v)
-        {
-            throw new NotImplementedException();
-        }
 
 
         public bool addProductsToCart(LinkedList<KeyValuePair<int, int>> products,int storeId,int userId)
