@@ -26,8 +26,6 @@ namespace src.Domain
             this.supplySystem = supplySystem;
             this.financialSystem = financialSystem;
             this.productCounter = 0;
-            this.storeCounter = 0;
-            this.userCounter = 0;
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter =  0;
             this.encryption = new EncryptionImpl();
@@ -36,22 +34,6 @@ namespace src.Domain
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
         }
-
-        public bool removeManager(int userID, int userIDToRemove, int storeID)
-        {
-            if(!this.users.ContainsKey(userID)|| !this.users.ContainsKey(userIDToRemove) || !this.stores.ContainsKey(storeID))
-            {
-                LogManager.Instance.WriteToLog("TradingSystem-Remove manager fail- The store or user is not exist\n");
-                return false;
-            }
-            if( users[userID].removeManager(userIDToRemove, storeID))
-            {
-                LogManager.Instance.WriteToLog("TradingSystem-Remove manager id"+userIDToRemove+" from store "+storeID+" success\n");
-                return true;
-            }
-            return false;
-        }
-
         public List<ProductInStore> searchProduct(String details)
         {
             List<ProductInStore> products  = new List<ProductInStore>();
@@ -69,6 +51,15 @@ namespace src.Domain
             }
             return products;
         }
+
+        internal bool initUserGuest(string user,int userCounter)
+        {
+            User guest = new User(userCounter, user , null,false,false);
+            users.Add(userCounter, guest);
+
+            return true;
+        }
+
         public User searchUser(int userID)
         {
             foreach (User u in users.Values)
@@ -89,15 +80,23 @@ namespace src.Domain
         public int UserCounter { get => userCounter; set => userCounter = value; }
         public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
         public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
+
+        internal bool productExist(string product, int store)
+        {
+            return Stores[store].productExist(product);
+        }
+
         internal Dictionary<int, User> Users { get => users; set => users = value; }
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
-        public bool init(string adminUserName, string adminPassword)
+
+
+
+        public bool init(string adminUserName, string adminPassword,int userCounter)
         {
             User admin = new User(userCounter, adminUserName, adminPassword, true, true);
             users.Add(userCounter, admin);
-            userCounter++;
             if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
                 return false;
 
@@ -128,6 +127,7 @@ namespace src.Domain
             }
             return false;
         }
+
         public Boolean signIn(String userName, String password, String userId)
         {
             int currUserId = Convert.ToInt32(userId);
@@ -184,32 +184,9 @@ namespace src.Domain
             return output;
         }
 
-
-
-
-        public String showCart(int store, int user)
+        internal int getProduct(string product, int store)
         {
-            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return "";
-            return Users[user].showCart(store);
-
+            return Stores[store].getProduct(product);
         }
-        public bool editProductQuantityInCart(int product, int quantity, int store, int user)
-        {
-            if(!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return false;
-            return Users[user].editProductQuantityInCart(product,quantity,store);
-        }
-        public bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
-        {
-            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return false;
-            return Users[user].removeProductsFromCart(productsToRemove,store);
-        }
-
-
-
-
-
     }
 }
