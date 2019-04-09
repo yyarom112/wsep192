@@ -13,6 +13,7 @@ namespace Acceptance_Tests
         {
             service = new ServiceLayer();
             service.initUser("tmpuser");
+
             service.register("user", "password", "tmpuser");
             service.signIn("user", "password", "tmpuser");
         }
