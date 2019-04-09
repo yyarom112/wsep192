@@ -36,7 +36,9 @@ namespace src.Domain
         }
         public bool removeOwner(int userID,int storeID)
         {
-            Role role = searchRoleByStoreID(storeID);
+            if (this.state != state.signedIn)
+                return false;
+            Role role = searchRoleByStoreID(storeID,this.Id);
             if (role != null && role.GetType() == typeof(Owner))
             {
                 Owner owner = (Owner)role;
@@ -46,10 +48,10 @@ namespace src.Domain
             return false;
             
         }
-        public Role searchRoleByStoreID(int storeID)
+        public Role searchRoleByStoreID(int storeID,int userID)
         {
             foreach (Role role in roles.Values)
-                if (role.Store.Id == storeID)
+                if (role.Store.Id == storeID&&role.User.Id == userID)
                     return role;
             return null;
         }
@@ -63,12 +65,6 @@ namespace src.Domain
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
-
-        public virtual int basketCheckout(String address)
-        {
-            this.address = address;
-            return basket.basketCheckout() + calcAddressFee(address);
-        }
         internal bool signOut()
         {
             if (state != state.signedIn)
@@ -93,20 +89,6 @@ namespace src.Domain
             }
             return false;
         }
-        private int calcAddressFee(string address)
-        {
-            switch (address)
-            {
-                case "telaviv":
-                    return 50;
-                case "beersheva":
-                    return 10;
-                case "haifa":
-                    return 60;
-                default:
-                    return 40;
-            }
-        }
 
         public Boolean register(string userName, string password)
         {
@@ -118,6 +100,41 @@ namespace src.Domain
             this.password = password;
             this.IsRegistered = true;
             return true;
+        }
+
+        internal string showCart(int storeId)
+        {
+            return basket.showCart(storeId);
+        }
+
+        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        {
+            return basket.removeProductsFromCart(productsToRemove, storeId);
+        }
+        internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
+        {
+            return basket.editProductQuantityInCart(productId, quantity, storeId);
+        }
+
+        public virtual bool removeManager(int userID, int storeID)
+        {
+            if (this.state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User-Remove manager fail- User is not logged in\n");
+                return false;
+            }
+            Role role = searchRoleByStoreID(storeID,userID);
+            try
+            {
+                Owner owner = (Owner)role;
+                return owner.removeManager(userID);
+            }
+            catch (Exception)
+            {
+                LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                return false;
+            }
+
         }
     }
 }

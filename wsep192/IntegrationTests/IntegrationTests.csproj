@@ -50,7 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="BuyingBasketReq28.cs" />
+    <Compile Include="addProductToCart.cs" />
+    <Compile Include="RemoveManager_Req46.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

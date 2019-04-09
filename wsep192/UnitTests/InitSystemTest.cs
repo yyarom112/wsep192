@@ -19,7 +19,7 @@ namespace UnitTests
         {
             setUp();
             Assert.AreEqual(true, system.Users.Keys.Count==0);
-            Assert.AreEqual(true, system.init("admin","1234"));
+            Assert.AreEqual(true, system.init("admin","1234",0));
             Assert.AreEqual(true, system.Users.ContainsKey(0));
             Assert.AreEqual(true, system.Users[0].IsAdmin);
             Assert.AreEqual(true, system.Users[0].Password=="1234");
