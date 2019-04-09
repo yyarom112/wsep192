@@ -90,10 +90,10 @@ namespace src.ServiceLayer
             return system.register(username, password, user);
         }
         //req2.5
-        public String searchProduct(String details)
-        {
-            return system.searchProduct(details);
-        }
+        //public String searchProduct(String details)
+        //{
+        //    return system.searchProduct(details);
+        //}
         //req2.6
         public bool addProductsToCart(List<KeyValuePair<String, int>> products, String store, String user)
         {
