@@ -14,7 +14,7 @@ namespace src.Domain
         private Dictionary<int, ProductInStore> products;
         private int storeRate;
         private TreeNode<Role> roles;
-        private Dictionary<int, Role> rolesDictionary;
+        private Dictionary<int, TreeNode<Role>> rolesDictionary;
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
@@ -25,7 +25,7 @@ namespace src.Domain
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
             this.roles = new TreeNode<Role>(null);
-            this.rolesDictionary = new Dictionary<int, Role>();
+            this.rolesDictionary = new Dictionary<int, TreeNode<Role>>();
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
@@ -37,7 +37,7 @@ namespace src.Domain
         internal TreeNode<Role> Roles { get => roles; set => roles = value; }
         internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
-        internal Dictionary<int, Role> RolesDictionary { get => rolesDictionary; set => rolesDictionary = value; }
+        internal Dictionary<int, TreeNode<Role>> RolesDictionary { get => rolesDictionary; set => rolesDictionary = value; }
 
         public bool searchProduct(Filter filter, List<ProductInStore> listToAdd)
         {
@@ -52,46 +52,50 @@ namespace src.Domain
             }
             return result;
         }
-        public bool removeOwner(int userID)
+        public bool removeOwner(int userID,Role owner)
         {
-
-            Role role = null;
+            TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
+            TreeNode<Role> roleNode = null;
+            bool flag = false;
+            
             if (RolesDictionary.ContainsKey(userID))
-                role = RolesDictionary[userID];
-            if (role != null)
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
             {
-                if (role.GetType() == typeof(Owner))
-                    foreach (TreeNode<Role> t in roles.FindInChildren(role).getChildren()) //NEED TO FIX FIND IN CHILDREN
-                    {
-                        role.Store.removeOwner(t.Data.User.Id);
-                        if (roles.RemoveChild(roles.FindInChildren(role))
-                               && RolesDictionary.Remove(userID)
-                                && role.User.Roles.Remove(this.Id))
-                            return true;
-                    }
-                else
+                if (roleNode.Data.GetType() == typeof(Owner))
                 {
-                    return removeManager(role.User.Id);
+                    if (roleNode.getChildren() == null || roleNode.getChildren().Count == 0)
+                        flag = true;
+                    foreach(TreeNode<Role> child in roleNode.getChildren())
+                        flag = removeOwner(child.Data.User.Id, roleNode.Data);
                 }
+                if (flag&&ownerNode.RemoveChild(roleNode)
+                     && RolesDictionary.Remove(userID)
+                    && roleNode.Data.User.Roles.Remove(this.Id))
+                    return true;
+
 
             }
+            //LogManager.Instance.WriteToLog("Store-Remove owner Fail- The user " + userID);
+
             return false;
 
         }
 
-        public bool removeManager(int userID)
+        public bool removeManager(int userID,Role owner)
         {
-            Role role = null;
+            TreeNode<Role> roleNode = null;
+            TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
             if (RolesDictionary.ContainsKey(userID))
-                role = RolesDictionary[userID];
-            if (role != null)
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
             {
-                if (roles.RemoveChild(roles.FindInChildren(role))
+                if (ownerNode.RemoveChild(roleNode)
                      && RolesDictionary.Remove(userID)
-                    && role.User.Roles.Remove(this.Id))
+                    && roleNode.Data.User.Roles.Remove(this.Id))
                     return true;
             }
-            LogManager.Instance.WriteToLog("Store-Remove manager Fail- The user " + userID + " is not manger in the store " + this.id + ".\n");
+            //LogManager.Instance.WriteToLog("Store-Remove manager Fail- The user " + userID + " is not manger in the store " + this.id + ".\n");
             return false;
         }
 

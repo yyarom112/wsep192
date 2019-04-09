@@ -31,7 +31,7 @@ namespace IntegrationTests
 
         private Store store;
 
-
+        /*
         public void setUp()
         {
             admin = new User(0, "admin", "123456", true, true);
@@ -152,5 +152,6 @@ namespace IntegrationTests
             setUp();
             Assert.AreEqual(false, sys.removeManager(admin.Id, user.Id, store.Id));
         }
+        */
     }
 }
