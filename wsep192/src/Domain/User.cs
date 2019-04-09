@@ -43,7 +43,7 @@ namespace src.Domain
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
         public virtual Boolean signIn(string userName,string password){
-            if(userName != null && password != null || !this.isRegistered){
+            if(userName != null && password != null){
                 this.userName = userName;
                 this.password = password;
                 this.state = state.signedIn;

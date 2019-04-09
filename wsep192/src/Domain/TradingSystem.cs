@@ -69,11 +69,11 @@ namespace src.Domain
                 User currUser = this.users[currUserId];
                 if (currUser != null)
                 {
-                    /*if (!currUser.IsRegistered)
+                    if (!currUser.IsRegistered)
                     {
                         return false;
-                    }*/
-                    password = this.encryption.encrypt(userName + password);
+                    }
+                    password = encryption.encrypt(userName + password);
                     if (currUser.Password == password)
                     {
                         return currUser.signIn(userName, password);
