@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using src.ServiceLayer;
 
 namespace Acceptance_Tests
 {
@@ -12,39 +13,17 @@ namespace Acceptance_Tests
         {
             service = new ServiceLayer();
             service.initUser("tmpuser");
-        }
-
-
-        [TestMethod]
-        public void TestMethod1_failure1()
-        {
-            setUp();
             service.register("user", "password", "tmpuser");
-            Assert.AreEqual(false, service.signout("user"));
+            service.signIn("user", "password", "tmpuser");
         }
 
-        [TestMethod]
-        public void TestMethod1_failure2()
-        {
-            setUp();
-            service.signIn("user", "password");
-            Assert.AreEqual(false, service.signout("user"));
-        }
 
-        [TestMethod]
-        public void TestMethod1_failure3()
-        {
-            setUp();
-            Assert.AreEqual(false, service.signout("user"));
-        }
-
+   
         [TestMethod]
         public void TestMethod1_success()
         {
             setUp();
-            service.register("user","password","tmpuser");
-            service.signIn("user", "password");
-            Assert.AreEqual(true, service.signout("user"));
+            Assert.AreEqual(true, service.signOut("user"));
         }
     }
 }
