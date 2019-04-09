@@ -5,7 +5,7 @@ using src.ServiceLayer;
 namespace Acceptance_Tests
 {
     [TestClass]
-    public class InitTests
+    public class ShowCartTests
     {
         ServiceLayer service;
 
@@ -13,13 +13,20 @@ namespace Acceptance_Tests
         {
             service = new ServiceLayer();
             service.initUser("tmpuser");
-            service.openStore();
+        }
+
+        public void setUpSuccess()
+        {
+            service.openStore("store", "tmpuser");
+            service.
         }
 
         [TestMethod]
         public void TestMethod1_success()
         {
-            Assert.AreEqual(true, service.init("Admin","SecretPassword1D4F6Yt7"));
+            setUp();
+            setUpSuccess();
+            Assert.AreEqual(true, service.showCart(1));
         }
     }
 }
