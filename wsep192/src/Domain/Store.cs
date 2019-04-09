@@ -69,16 +69,18 @@ namespace src.Domain
 
         public Boolean assignManager(Role newManager, Owner owner)
         {
-            TreeNode<Role> currOwner = roles.FindInChildren(owner);
+
+            TreeNode<Role> currOwner = RolesDictionary[owner.User.Id];
             if (currOwner != null)
             {
-                TreeNode<Role> tmp = currOwner.FindInChildren(newManager);
-                if (currOwner.FindInChildren(newManager) == null)
+                if (!RolesDictionary.ContainsKey(newManager.User.Id))
                 {
-                    currOwner.AddChild(newManager);
+
+                    TreeNode<Role> managerRole = currOwner.AddChild(newManager);
+                    RolesDictionary.Add(newManager.User.Id, managerRole);
+                    newManager.User.Roles.Add(newManager.User.Id, newManager);
                     return true;
                 }
-
             }
             return false;
         }

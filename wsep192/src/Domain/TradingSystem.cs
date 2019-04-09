@@ -370,10 +370,15 @@ namespace src.Domain
             throw new NotImplementedException();
         }
 
-
-        internal bool assignManager(int v1, int v2, int v3, List<int> list)
+        public Boolean assignManager(int ownerId, int managerId, int storeId, List<int> permissionToManager)
         {
-            throw new NotImplementedException();
+            if (this.users.ContainsKey(ownerId) && this.users.ContainsKey(managerId) && ownerId != managerId)
+            {
+                User ownerUser = this.users[ownerId];
+                User managerUser = this.users[managerId];
+                return ownerUser.assignManager(managerUser, storeId, permissionToManager);
+            }
+            return false;
         }
 
         internal bool assignOwner(int v1, int v2, int v3)
