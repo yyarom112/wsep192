@@ -31,6 +31,17 @@ namespace src.Domain
             this.encryption = new EncryptionImpl();
         }
 
+        public Boolean assignManager(int ownerId, int managerId, int storeId, List<int> permissionToManager)
+        {
+            if (this.users.ContainsKey(ownerId) && this.users.ContainsKey(managerId) && ownerId != managerId)
+            {
+                User ownerUser = this.users[ownerId];
+                User managerUser = this.users[managerId];
+                return ownerUser.assignManager(managerUser, storeId, permissionToManager);
+            }
+            return false;
+        }
+
         public int basketCheckout(String address, int userID)
         {
             if (!this.users.ContainsKey(userID))
@@ -315,11 +326,7 @@ namespace src.Domain
             throw new NotImplementedException();
         }
 
-        internal bool assignManager(int v1, int v2, int v3, List<int> list)
-        {
-            throw new NotImplementedException();
-        }
-
+       
         internal bool assignOwner(int v1, int v2, int v3)
         {
             throw new NotImplementedException();

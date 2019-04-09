@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="assignManagerTest.cs" />
     <Compile Include="addProductToCart.cs" />
     <Compile Include="InitSystemTest.cs" />
     <Compile Include="RemoveManager_Req46.cs" />

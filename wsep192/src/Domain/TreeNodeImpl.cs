@@ -11,6 +11,10 @@ public class TreeNode<T>
     private readonly TreeNode<T> _parent;
     private readonly int _level;
     private readonly List<TreeNode<T>> _children;
+    public List<TreeNode<T>> getChildren()
+    {
+        return _children;
+    }
 
     public TreeNode(T data)
     {

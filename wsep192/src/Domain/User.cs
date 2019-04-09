@@ -86,6 +86,24 @@ namespace src.Domain
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
+        public virtual Boolean assignManager(User managerUser, int storeId, List<int> permissionToManager)
+        {
+            if (this.state != state.signedIn || managerUser.state != state.signedIn)
+            {
+                return false;
+            }
+            if (this.roles.ContainsKey(this.id))
+            {
+                Role role = roles[this.id];
+                if (role != null && role.GetType() == typeof(Owner))
+                {
+                    Owner owner = (Owner)role;
+                    return owner.assignManager(managerUser, permissionToManager);
+
+                }
+            }
+            return false;
+        }
 
         public virtual int basketCheckout(String address)
         {
