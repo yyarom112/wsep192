@@ -15,13 +15,16 @@ namespace Acceptance_Tests
         {
             service = new ServiceLayer();
             service.initUser("tmpuser");
+            
         }
 
         [TestMethod]
         public void TestMethod1_success_scenario()
         {
-            setUp();         
-            Assert.AreEqual(true, service.register("Seifan", "2356", "1414"));
+            setUp();
+            String userName = "Seifan";
+            String password = "2345";
+            Assert.AreEqual(true, service.register(userName,password,"tmpuser"));
         }
 
         [TestMethod]

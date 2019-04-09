@@ -37,7 +37,7 @@ namespace UnitTests
             Assert.AreEqual(false, user1.signIn(userName, password));
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestMethod1_success_scenario()
         {
             setUp();
@@ -49,7 +49,7 @@ namespace UnitTests
             //system.register(userName, password, userId);
             tmpUser.IsRegistered = true;
             Assert.AreEqual(true, system.signIn(userName, password, userId));
-        }
+        }*/
 
         [TestMethod]
         public void TestMethod1_fail_password_scenario()

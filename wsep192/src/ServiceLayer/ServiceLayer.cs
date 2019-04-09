@@ -135,7 +135,7 @@ namespace src.ServiceLayer
             {
                 return "Error: Invalid user or store";
             }
-            return system.showCart(store, user);
+            return system.showCart(stores[store], users[user]);
         }
         public bool editProductQuantityInCart(String product, int quantity, String store, String user)
         {
