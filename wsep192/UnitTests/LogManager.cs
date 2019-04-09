@@ -31,7 +31,7 @@ namespace UnitTests
 
         public String readLog()
         {
-            return System.IO.File.ReadAllText(@"C:\Logs\MarketLog.txt");
+            return System.IO.File.ReadAllText(@"MarketLog.txt");
 
         }
     }
