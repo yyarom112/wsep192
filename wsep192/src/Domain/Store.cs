@@ -208,5 +208,12 @@ namespace src.Domain
             }
             return -1;
         }
+
+		 public Role initOwner(User user)
+        {
+            Owner owner = new Owner(this, user);
+            RolesDictionary.Add(user.Id, owner);
+            return owner;
+        }
     }
 }

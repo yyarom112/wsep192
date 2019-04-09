@@ -8,6 +8,7 @@ namespace src.Domain
 {
     class TradingSystem
     {
+		const int noRate = -1;
         private Dictionary<int,User> users;
         private Dictionary<int,Store> stores;
         private ProductSupplySystem supplySystem;
@@ -234,9 +235,23 @@ namespace src.Domain
 
 
 
-        internal bool openStore(string storeName, int v, int storeCounter)
+        internal bool openStore(string storeName, int userID , int storeCounter)
         {
-            throw new NotImplementedException();
+		List<PurchasePolicy> purchasePolicy = new List<PurchasePolicy>();
+            List<DiscountPolicy> discountPolicy = new List<DiscountPolicy>();
+            if (!stores.ContainsKey(storeCounter))
+            {
+                Store store = new Store(storeCounter, StoreName, noRate, purchasePolicy, discountPolicy);
+                if (Users.ContainsKey(userID) && Users[userID].IsRegistered)
+                {
+                    Stores.Add(storeCounter,store);
+                    User user = searchUser(userID);
+                    store.initOwner(user);
+                    user.addRole(new Owner(store, user));
+                    return true;
+                }
+            }
+            return false;	
         }
 
         public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
@@ -293,9 +308,17 @@ namespace src.Domain
             throw new NotImplementedException();
         }
 
-        internal bool removeUser(int v1, int v2)
+        internal bool removeUser(int userID, int storeID)
         {
-            throw new NotImplementedException();
+              if(stores.ContainsKey(storeID)){
+                stores[storeID].RolesDictionary.Remove(userID);
+                stores[storeID].Roles.RemoveChild(roles.FindInChildren(role));
+                if(users.ContainsKey(userID)){
+                   users.Remove(userID);
+                   return true;
+                }
+              }
+            return false;
         }
 
         internal bool assignManager(int v1, int v2, int v3, List<int> list)

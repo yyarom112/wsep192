@@ -131,6 +131,7 @@ namespace src.Domain
         {
             return basket.removeProductsFromCart(productsToRemove, storeId);
         }
+		
         internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
         {
             return basket.editProductQuantityInCart(productId, quantity, storeId);
@@ -155,6 +156,11 @@ namespace src.Domain
                 return false;
             }
 
+        }
+
+		 public void addRole(Role role)
+        {
+            Roles.Add(Id, role);
         }
     }
 }
