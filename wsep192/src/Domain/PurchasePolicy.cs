@@ -14,13 +14,51 @@ namespace src.Domain
 
         public PurchasePolicy(int id, string details, Dictionary<int, ProductInStore> products)
         {
-            this.id = id;
-            this.details = details;
-            this.products = products;
+            this.Id = id;
+            this.Details = details;
+            this.Products = products;
         }
 
-        public int Id { get => id; set => id = value; }
-        public string Details { get => details; set => details = value; }
-        internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public String Details
+        {
+            get
+            {
+                return details;
+            }
+
+            set
+            {
+                details = value;
+            }
+        }
+
+        internal Dictionary<int, ProductInStore> Products
+        {
+            get
+            {
+                return products;
+            }
+
+            set
+            {
+                products = value;
+            }
+        }
+
+        
+
     }
 }
