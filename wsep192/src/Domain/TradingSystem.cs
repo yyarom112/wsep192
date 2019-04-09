@@ -75,6 +75,8 @@ namespace src.Domain
 
             return true;
         }
+       
+
 
         public bool removeOwner(int userID,int userIDToRemove,int storeID)
         {
@@ -231,25 +233,13 @@ namespace src.Domain
 
 
 
-        public bool addProductsToCart(LinkedList<KeyValuePair<int, int>> products,int storeId,int userId)
-        {
-            if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products==null)
-                return false;
-            LinkedList<KeyValuePair<Product, int>> toInsert = createProductsList(products, storeId);
-            if (toInsert == null)
-                return false;
-            ShoppingCart newCartCheck= this.users[userId].addProductsToCart(toInsert, storeId);
-            if (newCartCheck != null)
-                newCartCheck.Store = this.stores[storeId];
-            return true;
-        }
 
         internal bool openStore(string storeName, int v, int storeCounter)
         {
             throw new NotImplementedException();
         }
 
-        public LinkedList<KeyValuePair<Product, int>> createProductsList(LinkedList<KeyValuePair<int, int>> products, int storeId)
+        public LinkedList<KeyValuePair<Product, int>> createProductsList(List<KeyValuePair<int, int>> products, int storeId)
         {
             bool check = true;
             LinkedList<KeyValuePair<Product, int>> output = new LinkedList<KeyValuePair<Product, int>>();
