@@ -30,19 +30,7 @@ namespace src.Domain
             this.discountPolicy = discountPolicy;
         }
 
-        public bool searchProduct(Filter filter,List<ProductInStore> listToAdd)
-        {
-            bool result = false;
-            foreach(ProductInStore p in products.Values)
-            {
-                if (p.Product.compareProduct(filter)&&filter.StoreRate!=-1&&filter.StoreRate==this.storeRate)
-                {
-                    listToAdd.Add(p);
-                    result = true;
-                }
-            }
-            return result;
-        }
+       
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }
@@ -50,6 +38,7 @@ namespace src.Domain
         internal TreeNode<Role> Roles { get => roles; set => roles = value; }
         internal List<PurchasePolicy> PurchasePolicy { get => purchasePolicy; set => purchasePolicy = value; }
         internal List<DiscountPolicy> DiscountPolicy { get => discountPolicy; set => discountPolicy = value; }
+        internal Dictionary<int, Role> RolesDictionary { get => rolesDictionary; set => rolesDictionary = value; }
 
         public Boolean assignManager(Role newManager, Owner owner)
         {
@@ -65,6 +54,20 @@ namespace src.Domain
                 }
             }
             return false;
+        }
+
+        public bool searchProduct(Filter filter, List<ProductInStore> listToAdd)
+        {
+            bool result = false;
+            foreach (ProductInStore p in products.Values)
+            {
+                if (p.Product.compareProduct(filter) && filter.StoreRate != -1 && filter.StoreRate == this.storeRate)
+                {
+                    listToAdd.Add(p);
+                    result = true;
+                }
+            }
+            return result;
         }
     }
 }

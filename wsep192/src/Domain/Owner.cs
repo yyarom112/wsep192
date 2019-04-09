@@ -13,7 +13,7 @@ namespace src.Domain
 
         }
 
-        public Boolean assignManager(User managerUser, List<int> permissionToManager)
+        public virtual Boolean assignManager(User managerUser, List<int> permissionToManager)
         {
             Manager newManager = new Manager(null, managerUser, permissionToManager);
             return Store.assignManager(newManager, this);
