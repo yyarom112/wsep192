@@ -80,14 +80,14 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(user))
                 return false;
-            return system.signIn(username, password, user);
+            return system.signIn(username, password, users[user]);
         }
         //req2.3
         public bool register(String username, String password, String user)
         {
             if (!users.ContainsKey(user))
                 return false;
-            return system.register(username, password, user);
+            return system.register(username, password, users[user]);
         }
         //req2.5
         public String searchProduct(String details)
@@ -165,11 +165,11 @@ namespace src.ServiceLayer
         }
 
         //req3.1
-        public bool signout(String user)
+        public bool signOut(String user)
         {
             if (!users.ContainsKey(user))
                 return false;
-            return system.signout(users[user]);
+            return system.signOut(users[user]);
         }
 
         //req3.1
