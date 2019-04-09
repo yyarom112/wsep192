@@ -128,26 +128,6 @@ namespace src.Domain
             return false;
         }
 
-        internal string showCart(string store, string user)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool editProductQuantityInCart(int v1, int quantity, int v2, int v3)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool removeManager(int id1, int id2, int id3)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> list, int v1, int v2)
-        {
-            throw new NotImplementedException();
-        }
-
         public Boolean signIn(String userName, String password, String userId)
         {
             int currUserId = Convert.ToInt32(userId);
@@ -171,17 +151,6 @@ namespace src.Domain
             return false;
         }
 
-        internal int basketCheckout(string address, int v)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal string payForBasket(long cardNum, DateTime date, int v)
-        {
-            throw new NotImplementedException();
-        }
-
-
         public bool addProductsToCart(LinkedList<KeyValuePair<int, int>> products,int storeId,int userId)
         {
             if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products==null)
@@ -193,11 +162,6 @@ namespace src.Domain
             if (newCartCheck != null)
                 newCartCheck.Store = this.stores[storeId];
             return true;
-        }
-
-        internal bool openStore(string storeName, int v, int storeCounter)
-        {
-            throw new NotImplementedException();
         }
 
         public LinkedList<KeyValuePair<Product, int>> createProductsList(LinkedList<KeyValuePair<int, int>> products, int storeId)
@@ -220,44 +184,9 @@ namespace src.Domain
             return output;
         }
 
-        internal bool createNewProductInStore(string productName, string category, string details, int price, int v1, int v2)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool addProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
-        {
-            throw new NotImplementedException();
-        }
-
         internal int getProduct(string product, int store)
         {
             return Stores[store].getProduct(product);
-        }
-
-        internal bool removeProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool removeUser(int v1, int v2)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool assignManager(int v1, int v2, int v3, List<int> list)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool assignOwner(int v1, int v2, int v3)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool editProductInStore(int v1, string productName, string category, string details, int price, int v2, int v3)
-        {
-            throw new NotImplementedException();
         }
     }
 }
