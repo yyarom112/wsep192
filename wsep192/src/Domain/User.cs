@@ -42,8 +42,8 @@ namespace src.Domain
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
-        public Boolean signIn(string userName,string password){
-            if(userName != null && password != null){
+        public virtual Boolean signIn(string userName,string password){
+            if(userName != null && password != null || !this.isRegistered){
                 this.userName = userName;
                 this.password = password;
                 this.state = state.signedIn;
@@ -52,7 +52,7 @@ namespace src.Domain
             return false;
         }
 
-        public Boolean register(string userName,string password){
+        public virtual Boolean register(string userName,string password){
             if(userName == null || password == null){
                 return false;
             }

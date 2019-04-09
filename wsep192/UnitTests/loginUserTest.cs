@@ -19,25 +19,46 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void TestMethod1_success_scenario()
+        public void TestMethod1_success_user_scenario()
         {
             setUp();
             String userName = user1.UserName;
             String password = user1.Password;
-            int userId = user1.Id;
-            system.register(userName, password, userId.ToString());
-            system.signIn(userName, password, userId.ToString());
-            Assert.AreEqual(true, system.signIn(userName, password, userId.ToString()));
-
+            Assert.AreEqual(true, user1.signIn(userName, password));
         }
+
+        [TestMethod]
+        public void TestMethod1_fail_user_scenario()
+        {
+            setUp();
+            String userName = user1.UserName;
+            String password = null;
+            user1.IsRegistered = true;
+            Assert.AreEqual(false, user1.signIn(userName, password));
+        }
+
+        /*[TestMethod]
+        public void TestMethod1_success_scenario()
+        {
+            setUp();
+            StubUser tmpUser = new StubUser(123, "yuval", "4567", false, false, true);
+            String userName = tmpUser.UserName;
+            String password = tmpUser.Password;
+            int userId = tmpUser.Id;
+            system.Users.Add(tmpUser.Id, tmpUser);
+            system.register(userName, password, userId.ToString());
+            Assert.AreEqual(true, system.signIn(userName, password, userId.ToString()));
+        }*/
 
         [TestMethod]
         public void TestMethod1_fail_password_scenario()
         {
             setUp();
-            String userName = user1.UserName;
+            StubUser tmpUser = new StubUser(123, "yuval", "4567", false, false, true);
+            String userName = tmpUser.UserName;
             String password = "1111";
-            int userId = user1.Id;
+            int userId = tmpUser.Id;
+            system.Users.Add(tmpUser.Id, tmpUser);
             system.register(userName, password, userId.ToString());
             Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
         }
@@ -46,9 +67,11 @@ namespace UnitTests
         public void TestMethod1_fail_userName_scenario()
         {
             setUp();
+            StubUser tmpUser = new StubUser(123, "yuval", "4567", false, false, true);
             String userName = "blabla";
-            String password = user1.Password;
-            int userId = user1.Id;
+            String password = tmpUser.Password;
+            int userId = tmpUser.Id;
+            system.Users.Add(tmpUser.Id, tmpUser);
             system.register(userName, password, userId.ToString());
             Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
         }
@@ -57,9 +80,11 @@ namespace UnitTests
         public void TestMethod1_fail_userName_password_scenario()
         {
             setUp();
+            StubUser tmpUser = new StubUser(123, "yuval", "4567", false, false, true);
             String userName = "blabla";
             String password = "7777";
-            int userId = user1.Id;
+            int userId = tmpUser.Id;
+            system.Users.Add(tmpUser.Id, tmpUser);
             system.register(userName, password, userId.ToString());
             Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
         }
@@ -68,10 +93,33 @@ namespace UnitTests
         public void TestMethod1_fail_user_notRegister_scenario()
         {
             setUp();
-            String userName = user1.UserName;
-            String password = user1.Password;
-            int userId = user1.Id;
+            StubUser tmpUser = new StubUser(123, "yuval", "4567", false, false, true);
+            String userName = tmpUser.UserName;
+            String password = tmpUser.Password;
+            int userId = tmpUser.Id;
+            system.Users.Add(tmpUser.Id, tmpUser);
             Assert.AreEqual(false, system.signIn(userName, password, userId.ToString()));
+        }
+
+        /*------------------------stub-classes------------------------------------*/
+
+        class StubUser : User
+        {
+            bool retVal;
+            public StubUser(int id, string userName, string password, bool isAdmin, bool isRegistered, bool ret) : base(id, userName, password, isAdmin, isRegistered)
+            {
+                this.retVal = ret;
+            }
+
+            public override bool register(string userName, string password)
+            {
+                return retVal;
+            }
+
+            public override bool signIn(string userName, string password)
+            {
+                return retVal;
+            }
         }
     }
 }
