@@ -110,7 +110,6 @@ namespace src.Domain
                     currOwner.AddChild(newManager);
                     return true;
                 }
-
             }
             return false;
         }
