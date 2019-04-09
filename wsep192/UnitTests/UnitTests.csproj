@@ -64,6 +64,7 @@
     <Compile Include="EditProductInCartTests.cs" />
     <Compile Include="RemoveProductsFromCartTests.cs" />
     <Compile Include="ShowCartTest.cs" />
+    <Compile Include="BuyingBasketReq2.8.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">

@@ -156,17 +156,17 @@ namespace UnitTests
             sys.Users.Add(2, stubUser);
 
 
-            LinkedList<KeyValuePair<int, int>> toInsert = new LinkedList<KeyValuePair<int, int>>();
+            List<KeyValuePair<int, int>> toInsert = new List<KeyValuePair<int, int>>();
 
-            toInsert.AddLast(new KeyValuePair<int, int>(p1.Id,1));
-            toInsert.AddLast(new KeyValuePair<int, int>(p2.Id, 1));
-            toInsert.AddLast(new KeyValuePair<int, int>(p3.Id, 1));
+            toInsert.Add(new KeyValuePair<int, int>(p1.Id,1));
+            toInsert.Add(new KeyValuePair<int, int>(p2.Id, 1));
+            toInsert.Add(new KeyValuePair<int, int>(p3.Id, 1));
             Assert.AreEqual(false, ((stubUser)sys.Users[stubUser.Id]).Carts_entrys.ContainsKey(store.Id));
 
             Assert.AreEqual(true, sys.addProductsToCart(toInsert, store.Id, stubUser.Id));
 
-            toInsert = new LinkedList<KeyValuePair<int, int>>();
-            toInsert.AddLast(new KeyValuePair<int, int>(p4.Id, 1));
+            toInsert = new List<KeyValuePair<int, int>>();
+            toInsert.Add(new KeyValuePair<int, int>(p4.Id, 1));
 
             Assert.AreEqual(true, sys.addProductsToCart(toInsert, store.Id, stubUser.Id));
 
@@ -183,12 +183,12 @@ namespace UnitTests
             Assert.AreEqual(false, sys.addProductsToCart(null, store.Id, stubUser.Id));
 
 
-            LinkedList<KeyValuePair<int, int>> toInsert = new LinkedList<KeyValuePair<int, int>>();
+            List<KeyValuePair<int, int>> toInsert = new List<KeyValuePair<int, int>>();
 
 
             Assert.AreEqual(false, sys.addProductsToCart(toInsert, 10, stubUser.Id));
             Assert.AreEqual(false, sys.addProductsToCart(toInsert, store.Id, 10));
-            toInsert.AddLast(new KeyValuePair<int, int>(10, 10));
+            toInsert.Add(new KeyValuePair<int, int>(10, 10));
             Assert.AreEqual(false, sys.addProductsToCart(toInsert, store.Id, stubUser.Id));
 
 
@@ -215,7 +215,7 @@ namespace UnitTests
         }
 
         //only update
-        public void addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert)
+        public override void addProducts(LinkedList<KeyValuePair<Product, int>> productsToInsert)
         {
             foreach (KeyValuePair<Product, int> toInsert in productsToInsert)
             {
