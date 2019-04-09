@@ -18,6 +18,7 @@ namespace Acceptance_Tests
         [TestMethod]
         public void TestMethod1_success()
         {
+            setUp();
             Assert.AreEqual(true, service.init("Admin","SecretPassword1D4F6Yt7"));
         }
     }

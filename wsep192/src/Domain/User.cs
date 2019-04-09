@@ -48,7 +48,24 @@ namespace src.Domain
             return false;
             
         }
+        public virtual Boolean assignManager(User managerUser, int storeId, List<int> permissionToManager)
+        {
+            if (this.state != state.signedIn || managerUser.state != state.signedIn)
+            {
+                return false;
+            }
+            if (this.Roles.ContainsKey(this.id))
+            {
+                Role role = Roles[this.id];
+                if (role != null && role.GetType() == typeof(Owner))
+                {
+                    Owner owner = (Owner)role;
+                    return owner.assignManager(managerUser, permissionToManager);
 
+                }
+            }
+            return false;
+        }
 
         internal string showCart(int storeId)
         {
@@ -68,7 +85,13 @@ namespace src.Domain
             return true;
         }
 
+        public void addRole(Role role)
 
+        {
+
+            Roles.Add(Id, role);
+
+        }
         public Role searchRoleByStoreID(int storeID,int userID)
         {
             foreach (Role role in roles.Values)

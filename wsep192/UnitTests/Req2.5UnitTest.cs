@@ -31,7 +31,7 @@ namespace UnitTests
             discountPolicies = new List<DiscountPolicy>();
             purchasePolicies = new List<PurchasePolicy>();
             user = new User(1, "aviv", "123", false, false);
-            store = new Store(0, "blabla", 0,purchasePolicies,discountPolicies);
+            store = new Store(0, "blabla",purchasePolicies,discountPolicies);
             Owner owner = new Owner(store, user);
             store.Roles.AddChild(owner);
             basket_user = user.Basket;

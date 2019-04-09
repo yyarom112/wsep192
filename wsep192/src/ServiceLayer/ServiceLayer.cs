@@ -23,7 +23,7 @@ namespace src.ServiceLayer
 
         public ServiceLayer()
         {
-            system = new TradingSystem(null, null);
+            system = new TradingSystem(new ProductSupplySystemImpl(), new FinancialSystemImpl());
             users = new Dictionary<String, int>();
             stores = new Dictionary<String, int>();
             permissions = new Dictionary<String, int>();
@@ -77,18 +77,27 @@ namespace src.ServiceLayer
             return result;
         }
         //req2.2
-        public bool signIn(String username, String password, String user)
+        public bool signIn(String username, String password)
         {
-            if (!users.ContainsKey(user))
+            if (!users.ContainsKey(username))
                 return false;
-            return system.signIn(username, password, users[user]);
+            return system.signIn(username, password, users[username]);
         }
         //req2.3
         public bool register(String username, String password, String user)
         {
             if (!users.ContainsKey(user))
                 return false;
-            return system.register(username, password, users[user]);
+            
+            bool result= system.register(username, password, users[user]);
+            if (result)
+            {
+                int key = users[user];
+                users.Remove(user);
+                users.Add(username, key);
+            }
+                
+            return result;
         }
         //req2.5
         public String searchProduct(String details)

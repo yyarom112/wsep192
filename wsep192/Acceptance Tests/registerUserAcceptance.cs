@@ -14,7 +14,7 @@ namespace Acceptance_Tests
         public void setUp()
         {
             service = new ServiceLayer();
-            //service.init("Yuval", "3434");
+            service.init("Yuval", "3434");
             service.initUser("tmpuser");
 
         }

@@ -41,7 +41,7 @@ namespace UnitTests
             basket_user = user.Basket;
             manager = new User(2, "manager", "1234", false, true);
 
-            store = new Store(-1, "store", 0, null, null);
+            store = new Store(-1, "store", null, null);
 
             Owner storeOwner = new Owner(store, admin);
             Manager storeManager = new Manager(store, manager, new List<int>());
@@ -87,7 +87,7 @@ namespace UnitTests
         public void Store_RemoveManager_succ()
         {
             setUp();
-            Assert.AreEqual(true, store.removeManager(manager.Id,admin.Roles[store.Id]));
+            Assert.AreEqual(true, store.removeManager(manager.Id, admin.Roles[store.Id]));
         }
 
         [TestMethod]
@@ -118,7 +118,7 @@ namespace UnitTests
         public void User_searchRoleByStoreID_fail()
         {
             setUp();
-            Assert.AreEqual(null, manager.searchRoleByStoreID(0,user.Id));
+            Assert.AreEqual(null, manager.searchRoleByStoreID(0, user.Id));
         }
 
         [TestMethod]

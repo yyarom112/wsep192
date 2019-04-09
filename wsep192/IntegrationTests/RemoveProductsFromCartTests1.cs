@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
 
-namespace UnitTests
+namespace IntegrationTests
 {
     [TestClass]
-    
-        class RemoveProductsFromCartTests
-        {
-            TradingSystem system;
+    public class RemoveProductsFromCartTests1
+    {
+        
+
+           TradingSystem system;
             User user;
             Store store;
             Product product;
@@ -20,7 +21,7 @@ namespace UnitTests
             {
                 system = new TradingSystem(null, null);
                 user = new User(1, "user", "1234", false, false);
-                store = new Store(1, "store", 0, null, null);
+                store = new Store(1, "store", null, null);
                 product = new Product(1, "product", null, null, -1);
             }
 
@@ -102,7 +103,5 @@ namespace UnitTests
             }
 
 
-        }
-    
-
+    }
 }

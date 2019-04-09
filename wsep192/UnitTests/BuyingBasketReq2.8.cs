@@ -37,7 +37,7 @@ namespace UnitTests
             user = new User(1, null, null, false, false);
             basket_user = user.Basket;
 
-            store = new Store(-1, "store", 0, null, null);
+            store = new Store(-1, "store", null, null);
 
             p1 = new Product(0, "first", "","", 5000);
             p2 = new Product(1, "second", "", "", 5000);
@@ -330,7 +330,7 @@ namespace UnitTests
         private int discount;
 
 
-        public StubStore(int id, string name, int storeRate, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy, bool policy, int discount) : base(id, name, storeRate, purchasePolicy, discountPolicy)
+        public StubStore(int id, string name, int storeRate, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy, bool policy, int discount) : base(id, name, purchasePolicy, discountPolicy)
         {
             this.policy = policy;
             this.discount = discount;
