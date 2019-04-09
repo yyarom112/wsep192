@@ -14,6 +14,7 @@ namespace src.Domain
         private Dictionary<int, ProductInStore> products;
         private int storeRate;
         private TreeNode<Role> roles;
+        private Dictionary<int, Role> rolesDictionary;
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
@@ -24,6 +25,7 @@ namespace src.Domain
             this.products = new Dictionary<int, ProductInStore>();
             this.storeRate = storeRate;
             this.roles = new TreeNode<Role>(null);
+            this.rolesDictionary = new Dictionary<int, Role>();
             this.purchasePolicy = purchasePolicy;
             this.discountPolicy = discountPolicy;
         }
@@ -54,13 +56,13 @@ namespace src.Domain
             TreeNode < Role > currOwner = roles.FindInChildren(owner);
             if(currOwner != null)
             {
-                TreeNode<Role> tmp = currOwner.FindInChildren(newManager);
-                if (currOwner.FindInChildren(newManager) == null)
+                if (!rolesDictionary.ContainsKey(newManager.User.Id))
                 {
                     currOwner.AddChild(newManager);
+                    rolesDictionary.Add(newManager.User.Id, newManager);
+                    newManager.User.Roles.Add(newManager.User.Id, newManager);
                     return true;
                 }
-               
             }
             return false;
         }

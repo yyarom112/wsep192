@@ -115,28 +115,5 @@ namespace UnitTests
             store.Roles.AddChild(ownerRole);
             Assert.AreEqual(false, system.assignManager(ownerUser.Id, ownerUser.Id, store.Id, permmision));
         }
-
-        /*[TestMethod]
-        public void TestMethod1_fail_manager_already_exist_scenario()
-        {
-            setUp();
-            String userName = ownerUser.UserName;
-            String password = ownerUser.Password;
-            int userId = ownerUser.Id;
-            system.register(userName, password, userId.ToString());
-            system.signIn(userName, password, userId.ToString());
-            String userName1 = managerUser.UserName;
-            String password1 = managerUser.Password;
-            int userId1 = managerUser.Id;
-            system.register(userName1, password1, userId1.ToString());
-            system.signIn(userName1, password1, userId1.ToString());
-            ownerUser.Roles.Add(ownerUser.Id, ownerRole);
-            store.Roles.AddChild(ownerRole);
-            managerUser.Roles.Add(managerUser.Id, managerRole);
-            TreeNode<Role> currOwner = store.Roles.FindInChildren(ownerRole);
-            currOwner.AddChild(managerRole);
-            Boolean tmp = system.assignManager(ownerUser.Id, managerUser.Id, store.Id, permmision);
-            Assert.AreEqual(false, system.assignManager(ownerUser.Id, managerUser.Id, store.Id, permmision));
-        }*/
     }
 }
