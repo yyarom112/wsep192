@@ -90,17 +90,19 @@ namespace src.ServiceLayer
             return system.register(username, password, user);
         }
         //req2.5
-        //public String searchProduct(String details)
-        //{
-        //    return system.searchProduct(details);
-        //}
+        public String searchProduct(String details)
+        {
+            //return system.searchProduct(details);
+            return null;
+        }
         //req2.6
         public bool addProductsToCart(List<KeyValuePair<String, int>> products, String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist(products, stores[store])) {
                 return false;
-            }   
-            return system.addProductsToCart(getProductsInts(products,stores[store]), stores[store], users[user]);
+            }
+            // return system.addProductsToCart(getProductsInts(products,stores[store]), stores[store], users[user]);
+            return false;
          }
 
         private bool productsExist(List<KeyValuePair<String, int>> products,int store)
@@ -131,7 +133,7 @@ namespace src.ServiceLayer
             {
                 return "Error: Invalid user or store";
             }
-            return system.showCart(store, user);
+            return system.showCart(stores[store], users[user]);
         }
         public bool editProductQuantityInCart(String product, int quantity, String store, String user)
         {
@@ -165,11 +167,11 @@ namespace src.ServiceLayer
         }
 
         //req3.1
-        public bool signout(String user)
+        public bool signOut(String user)
         {
             if (!users.ContainsKey(user))
                 return false;
-            return system.signout(users[user]);
+            return system.signOut(users[user]);
         }
 
         //req3.1

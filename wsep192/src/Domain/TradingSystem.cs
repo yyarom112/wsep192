@@ -34,12 +34,12 @@ namespace src.Domain
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
         }
-        public List<ProductInStore> searchProduct(String details)
+        public String searchProduct(String details)
         {
             List<ProductInStore> products  = new List<ProductInStore>();
             String[] detailsForFilter = details.Split(' ');
             if (detailsForFilter.Length != 7)
-                return products;
+                return "";
             KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
                 Int32.Parse(detailsForFilter[4]));
             Filter filter = new Filter(detailsForFilter[0],
@@ -49,9 +49,20 @@ namespace src.Domain
             {
                 s.searchProduct(filter,products);
             }
-            return products;
+            return productsToString(products);
         }
-
+        private String productsToString(List<ProductInStore> products)
+        {
+            String res = "";
+            foreach(ProductInStore p in products)
+            {
+                res += res + "Name: " + p.Product.ProductName + "\n"
+                     + "Store Name: " + p.Store.Name +"\n"
+                    + "Quantity: " + p.Quantity
+                    ;
+            }
+            return res;
+        }
         internal bool initUserGuest(string user,int userCounter)
         {
             User guest = new User(userCounter, user , null,false,false);
@@ -128,6 +139,34 @@ namespace src.Domain
             return false;
         }
 
+       
+
+        internal bool removeManager(int id1, int id2, int id3)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal string showCart(int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return "Error : Invalid user or store";
+            return Users[user].showCart(store);
+        }
+
+        internal bool editProductQuantityInCart(int product, int quantity, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !this.Stores.ContainsKey(store))
+                return false;
+            return Users[user].editProductQuantityInCart(product, quantity, store);
+        }
+
+        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return false;
+            return Users[user].removeProductsFromCart(productsToRemove, store);
+        }
+
         public Boolean signIn(String userName, String password, String userId)
         {
             int currUserId = Convert.ToInt32(userId);
@@ -151,30 +190,36 @@ namespace src.Domain
             return false;
         }
 
-        public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
+        internal int basketCheckout(string address, int v)
         {
-            if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products == null)
-            {
-                LogManager.Instance.WriteToLog("TradingSystem- addProductsToCart fail- The pre-condtion does not exist\n");
-                return false;
+            throw new NotImplementedException();
+        }
 
-            }
+        internal string payForBasket(long cardNum, DateTime date, int v)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public bool addProductsToCart(LinkedList<KeyValuePair<int, int>> products,int storeId,int userId)
+        {
+            if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products==null)
+                return false;
             LinkedList<KeyValuePair<Product, int>> toInsert = createProductsList(products, storeId);
             if (toInsert == null)
-            {
-                LogManager.Instance.WriteToLog("TradingSystem- addProductsToCart fail-One or more products do not exist\n");
                 return false;
-
-            }
             ShoppingCart newCartCheck= this.users[userId].addProductsToCart(toInsert, storeId);
             if (newCartCheck != null)
                 newCartCheck.Store = this.stores[storeId];
-            LogManager.Instance.WriteToLog("TradingSystem- addProductsToCart success\n");
-
             return true;
         }
 
-        public LinkedList<KeyValuePair<Product, int>> createProductsList(List<KeyValuePair<int, int>> products, int storeId)
+        internal bool openStore(string storeName, int v, int storeCounter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public LinkedList<KeyValuePair<Product, int>> createProductsList(LinkedList<KeyValuePair<int, int>> products, int storeId)
         {
             bool check = true;
             LinkedList<KeyValuePair<Product, int>> output = new LinkedList<KeyValuePair<Product, int>>();
@@ -194,9 +239,44 @@ namespace src.Domain
             return output;
         }
 
+        internal bool createNewProductInStore(string productName, string category, string details, int price, int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool addProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
+
         internal int getProduct(string product, int store)
         {
             return Stores[store].getProduct(product);
+        }
+
+        internal bool removeProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool removeUser(int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool assignManager(int v1, int v2, int v3, List<int> list)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool assignOwner(int v1, int v2, int v3)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool editProductInStore(int v1, string productName, string category, string details, int price, int v2, int v3)
+        {
+            throw new NotImplementedException();
         }
     }
 }
