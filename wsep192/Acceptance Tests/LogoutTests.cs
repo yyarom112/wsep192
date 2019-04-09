@@ -22,7 +22,7 @@ namespace Acceptance_Tests
         {
             setUp();
             service.register("user","password","tmpuser");
-            service.signIn("user", "password","tmpuser");
+            service.signIn("user", "password");
             Assert.AreEqual(true, service.signOut("user"));
         }
     }

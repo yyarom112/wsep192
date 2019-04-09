@@ -58,7 +58,6 @@
     <Compile Include="Req2.5UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LogManager.cs" />
-    <Compile Include="RemoveProductsFromCartTests.cs" />
     <Compile Include="UserLogoutTest.cs" />
     <Compile Include="loginUserTest.cs" />
     <Compile Include="ManagerPermissionTest.cs" />

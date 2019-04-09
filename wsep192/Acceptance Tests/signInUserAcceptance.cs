@@ -16,6 +16,7 @@ namespace Acceptance_Tests
         public void setUp()
         {
             service = new ServiceLayer();
+            service.init("Admin","2323");
             service.initUser("tmpuser");
         }
 
@@ -26,7 +27,7 @@ namespace Acceptance_Tests
             String userName = "Seifan";
             String password = "2345";
             service.register(userName, password, "tmpuser");
-            Assert.AreEqual(true, service.signIn(userName, password, "tmpuser"));
+            Assert.AreEqual(true, service.signIn(userName, password));
         }
 
         [TestMethod]
@@ -36,7 +37,7 @@ namespace Acceptance_Tests
             String userName = "Seifan";
             String password = " ";
             service.register(userName, password, "tmpuser");
-            Assert.AreEqual(false, service.signIn(userName, password, "tmpuser"));
+            Assert.AreEqual(false, service.signIn(userName, password));
         }
 
         [TestMethod]
@@ -46,7 +47,7 @@ namespace Acceptance_Tests
             String userName = "bla bla";
             String password = "2345";
             service.register(userName, password, "tmpuser");
-            Assert.AreEqual(false, service.signIn(userName, password, "tmpuser"));
+            Assert.AreEqual(false, service.signIn(userName, password));
         }
 
         [TestMethod]
@@ -56,7 +57,7 @@ namespace Acceptance_Tests
             String userName = "bla bla";
             String password = " ";
             service.register(userName, password, "tmpuser");
-            Assert.AreEqual(false, service.signIn(userName, password, "tmpuser"));
+            Assert.AreEqual(false, service.signIn(userName, password));
         }
 
         [TestMethod]
@@ -65,7 +66,7 @@ namespace Acceptance_Tests
             setUp();
             String userName = "Seifan";
             String password = "2345";
-            Assert.AreEqual(false, service.signIn(userName, password, "tmpuser"));
+            Assert.AreEqual(false, service.signIn(userName, password));
         }
     }
 }
