@@ -18,6 +18,10 @@ namespace src.Domain
             this.Details = details;
             this.Products = products;
         }
+        public bool confirmPolicy()
+        {
+            return true;
+        }
 
         public int Id
         {

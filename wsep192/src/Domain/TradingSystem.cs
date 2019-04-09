@@ -30,6 +30,54 @@ namespace src.Domain
             this.discountPolicyCounter =  0;
             this.encryption = new EncryptionImpl();
         }
+
+        public int basketCheckout(String address, int userID)
+        {
+            if (!this.users.ContainsKey(userID))
+                return -1;
+            else
+                return this.users[userID].basketCheckout(address);
+        }
+        public ShoppingBasket payForBasket(long cardNumber, DateTime date, int userID)
+        {
+            ShoppingBasket basket = users[userID].Basket;
+            foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
+            {
+                cart.Store.updateCart(cart, "-");
+            }
+
+            if (!this.financialSystem.payment(cardNumber, date, basket.basketCheckout()))
+            {
+                foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
+                {
+                    cart.Store.updateCart(cart, "+");
+                }
+                return null;
+            }
+
+
+            if (!this.supplySystem.deliverToCustomer(this.Users[userID].Address, "Some package Details"))
+            {
+                return null;
+            }
+
+            return basket;
+        }
+
+
+        public bool init(string adminUserName, string adminPassword)
+        {
+            User admin = new User(userCounter, adminUserName, adminPassword, true, true);
+            users.Add(userCounter, admin);
+            userCounter++;
+            if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
+                return false;
+
+            return true;
+        }
+       
+
+
         public bool removeOwner(int userID,int userIDToRemove,int storeID)
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
@@ -120,9 +168,9 @@ namespace src.Domain
             return users[id].signOut();
 
         }
-        public Boolean register(String userName, String password, String userId)
+        public Boolean register(String userName, String password, int userId)
         {
-            int currUserId = Convert.ToInt32(userId);
+            int currUserId = userId;
             if (this.users.ContainsKey(currUserId))
             {
                 if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
@@ -137,13 +185,6 @@ namespace src.Domain
                 return false;
             }
             return false;
-        }
-
-       
-
-        internal bool removeManager(int id1, int id2, int id3)
-        {
-            throw new NotImplementedException();
         }
 
         internal string showCart(int store, int user)
@@ -167,9 +208,9 @@ namespace src.Domain
             return Users[user].removeProductsFromCart(productsToRemove, store);
         }
 
-        public Boolean signIn(String userName, String password, String userId)
+        public Boolean signIn(String userName, String password, int userId)
         {
-            int currUserId = Convert.ToInt32(userId);
+            int currUserId = userId;
             if (this.users.ContainsKey(currUserId))
             {
                 User currUser = this.users[currUserId];
@@ -190,36 +231,29 @@ namespace src.Domain
             return false;
         }
 
-        internal int basketCheckout(string address, int v)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal string payForBasket(long cardNum, DateTime date, int v)
-        {
-            throw new NotImplementedException();
-        }
 
 
-        public bool addProductsToCart(LinkedList<KeyValuePair<int, int>> products,int storeId,int userId)
-        {
-            if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products==null)
-                return false;
-            LinkedList<KeyValuePair<Product, int>> toInsert = createProductsList(products, storeId);
-            if (toInsert == null)
-                return false;
-            ShoppingCart newCartCheck= this.users[userId].addProductsToCart(toInsert, storeId);
-            if (newCartCheck != null)
-                newCartCheck.Store = this.stores[storeId];
-            return true;
-        }
 
         internal bool openStore(string storeName, int v, int storeCounter)
         {
             throw new NotImplementedException();
         }
 
-        public LinkedList<KeyValuePair<Product, int>> createProductsList(LinkedList<KeyValuePair<int, int>> products, int storeId)
+        public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
+        {
+            if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products == null)
+                return false;
+            LinkedList<KeyValuePair<Product, int>> toInsert = createProductsList(products, storeId);
+            if (toInsert == null)
+                return false;
+            ShoppingCart newCartCheck = this.users[userId].addProductsToCart(toInsert, storeId);
+            if (newCartCheck != null)
+                newCartCheck.Store = this.stores[storeId];
+            return true;
+        }
+
+
+        public LinkedList<KeyValuePair<Product, int>> createProductsList(List<KeyValuePair<int, int>> products, int storeId)
         {
             bool check = true;
             LinkedList<KeyValuePair<Product, int>> output = new LinkedList<KeyValuePair<Product, int>>();

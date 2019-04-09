@@ -17,6 +17,22 @@ namespace src.Domain
 
         internal Dictionary<int, ShoppingCart> ShoppingCarts { get => shoppingCarts; set => shoppingCarts = value; }
 
+
+        public virtual int basketCheckout()
+        {
+            int sum = 0;
+            int tmp = 0;
+            foreach (ShoppingCart c in shoppingCarts.Values)
+            {
+                tmp = c.cartCheckout();
+                if (tmp == -1)
+                    return -1;
+                sum += tmp;
+            }
+            return sum;
+
+        }
+
         internal string showCart(int storeId)
         {
             if (!shoppingCarts.ContainsKey(storeId)) 
