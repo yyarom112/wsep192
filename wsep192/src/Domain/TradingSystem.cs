@@ -32,6 +32,7 @@ namespace src.Domain
             this.discountPolicyCounter =  0;
             this.encryption = new EncryptionImpl();
         }
+
         public bool removeOwner(int userID,int userIDToRemove,int storeID)
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
@@ -93,6 +94,7 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+
         public bool init(string adminUserName, string adminPassword)
         {
             User admin = new User(userCounter, adminUserName, adminPassword, true, true);
@@ -117,11 +119,16 @@ namespace src.Domain
             {
                 if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
                     || userName.Equals("") || password.Equals("") || userName.Contains(" "))
+                {
+                    //LogManager.Instance.WriteToLog("TradingSystem - register fail - wrong userName or password");
                     return false;
+                }
+                    
                 User currUser = this.users[currUserId];
                 if (currUser != null && userName == currUser.UserName && password == currUser.Password)
                 {
                     password = encryption.encrypt(userName + password);
+                    //LogManager.Instance.WriteToLog("TradingSystem - register - success register user");
                     return currUser.register(userName, password);
                 }
                 return false;
@@ -138,11 +145,13 @@ namespace src.Domain
                 {
                     if (!currUser.IsRegistered)
                     {
+                        //LogManager.Instance.WriteToLog("TradingSystem - signIn - fail because user not register");
                         return false;
                     }
                     password = encryption.encrypt(userName + password);
                     if (currUser.Password == password)
                     {
+                        //LogManager.Instance.WriteToLog("TradingSystem - signIn - succsess signIn user");
                         return currUser.signIn(userName, password);
                     }
                 }

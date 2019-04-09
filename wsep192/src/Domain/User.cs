@@ -47,7 +47,7 @@ namespace src.Domain
         {
             return basket.showCart(storeId);
         }
-        public Boolean signIn(string userName, string password)
+        public virtual Boolean signIn(string userName, string password)
         {
             if (userName != null && password != null)
             {
@@ -106,7 +106,6 @@ namespace src.Domain
 
         }
 
-
         public Role searchRoleByStoreID(int storeID)
         {
             foreach (Role role in roles.Values)
@@ -114,7 +113,6 @@ namespace src.Domain
                     return role;
             return null;
         }
-
 
         internal bool signOut()
         {
@@ -124,7 +122,8 @@ namespace src.Domain
             return true;
 
         }
-        public Boolean register(string userName, string password)
+
+        public virtual Boolean register(string userName, string password)
         {
             if (userName == null || password == null)
             {
@@ -135,6 +134,5 @@ namespace src.Domain
             this.IsRegistered = true;
             return true;
         }
-
     }
-    }
+}

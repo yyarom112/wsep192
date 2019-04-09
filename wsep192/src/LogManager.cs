@@ -12,7 +12,7 @@ namespace src
     {
         private static LogManager instance;
 
-        private static String path = @"C:\Logs\MarketLog.txt";
+        private static String path = @"\MarketLog.txt";
 
         private LogManager()
         {
