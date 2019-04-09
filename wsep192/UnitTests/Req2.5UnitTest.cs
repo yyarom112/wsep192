@@ -61,34 +61,19 @@ namespace UnitTests
         public void testSearchProductNotFound()
         {
             setUp();
-            List<ProductInStore> expected = new List<ProductInStore>();
+            String expected = "";
             string details1 = "bla bla bla 10 100 40 30";
-            //List<ProductInStore> result = sys.searchProduct(details1);
-            //Assert.AreEqual(expected.Count,result.Count);
+            expected = sys.searchProduct(details1);
+            Assert.AreEqual("",expected);
         }
         [TestMethod]
         public void testSearchProductFound()
         {
             setUp();
-            List<ProductInStore> expected = new List<ProductInStore>();
-            expected.Add(pis1);
-            string details1 = "first cat key 10 100 0 0";
-            /*List<ProductInStore> result = sys.searchProduct(details1);
-            if (result.Count != expected.Count)
-                Assert.Fail();
-            bool flag = false;
-            foreach(ProductInStore p in expected)
-            {
-                flag = false;
-                foreach(ProductInStore p1 in result)
-                {
-                    if (p.compareProduct(p1))
-                        flag = true;
-                }
-                if (!flag)
-                    Assert.Fail();
-            }
-            Assert.AreEqual(true, true);*/
+            String expected = "Name: first\nStore Name: blabla\nQuantity: 10000000";
+            String details1 = "first cat key 10 100 0 0";
+            String result = sys.searchProduct(details1);
+            Assert.AreEqual(expected,result );
         }
     }
 }
