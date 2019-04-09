@@ -9,6 +9,6 @@ namespace src.Domain
     interface ProductSupplySystem
     {
         bool connect();
-        bool deliverToCustomer();
+        bool deliverToCustomer(String address, String packageDetails);
     }
 }
