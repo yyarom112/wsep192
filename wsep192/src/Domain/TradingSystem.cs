@@ -63,6 +63,73 @@ namespace src.Domain
 
             return basket;
         }
+
+
+
+
+        internal bool removeUser(int userID, int storeID)
+
+        {
+
+            if (Stores.ContainsKey(storeID))
+
+            {
+
+                stores[storeID].Roles.RemoveChild(stores[storeID].RolesDictionary[userID]);
+
+                stores[storeID].RolesDictionary.Remove(userID);
+
+                if (Users.ContainsKey(userID))
+
+                {
+
+                    Users.Remove(userID);
+
+                    return true;
+
+                }
+
+            }
+
+            return false;
+
+        }
+
+        internal bool openStore(string storeName, int userID, int storeCounter)
+
+        {
+
+            List<PurchasePolicy> purchasePolicy = new List<PurchasePolicy>();
+
+            List<DiscountPolicy> discountPolicy = new List<DiscountPolicy>();
+
+            if (!stores.ContainsKey(storeCounter))
+
+            {
+
+                Store store = new Store(storeCounter, storeName, purchasePolicy, discountPolicy);
+
+                if (Users.ContainsKey(userID) && Users[userID].IsRegistered)
+
+                {
+
+                    Stores.Add(storeCounter, store);
+
+                    User user = searchUser(userID);
+
+                    store.initOwner(user);
+
+                    user.addRole(new Owner(store, user));
+
+                    return true;
+
+                }
+
+            }
+
+            return false;
+
+        }
         public String showCart(int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
@@ -249,13 +316,6 @@ namespace src.Domain
         }
 
 
-
-
-        internal bool openStore(string storeName, int v, int storeCounter)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
         {
             if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products == null)
@@ -310,10 +370,6 @@ namespace src.Domain
             throw new NotImplementedException();
         }
 
-        internal bool removeUser(int v1, int v2)
-        {
-            throw new NotImplementedException();
-        }
 
         internal bool assignManager(int v1, int v2, int v3, List<int> list)
         {

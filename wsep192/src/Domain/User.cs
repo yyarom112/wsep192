@@ -68,7 +68,13 @@ namespace src.Domain
             return true;
         }
 
+        public void addRole(Role role)
 
+        {
+
+            Roles.Add(Id, role);
+
+        }
         public Role searchRoleByStoreID(int storeID,int userID)
         {
             foreach (Role role in roles.Values)
