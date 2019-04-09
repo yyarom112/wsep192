@@ -14,6 +14,7 @@ namespace Acceptance_Tests
         public void setUp()
         {
             service = new ServiceLayer();
+            //service.init("Yuval", "3434");
             service.initUser("tmpuser");
             
         }
@@ -31,21 +32,27 @@ namespace Acceptance_Tests
         public void TestMethod1_fail_password_scenario()
         {
             setUp();
-            Assert.AreEqual(false, service.register("Seifan", " ", "1414"));
+            String userName = "Seifan";
+            String password = " ";
+            Assert.AreEqual(false, service.register(userName, password, "tmpuser"));
         }
 
         [TestMethod]
         public void TestMethod1_fail_userName_scenario()
         {
             setUp();
-            Assert.AreEqual(false, service.register("blabla", "2356", "1414"));
+            String userName = "bla bla";
+            String password = "2345";
+            Assert.AreEqual(false, service.register(userName, password, "tmpuser"));
         }
 
         [TestMethod]
         public void TestMethod1_fail_userName_password_scenario()
         {
             setUp();
-            Assert.AreEqual(false, service.register("blabla", "6868", "1414"));
+            String userName = "blabla";
+            String password = " ";
+            Assert.AreEqual(false, service.register(userName, password, "tmpuser"));
         }
     }
 }

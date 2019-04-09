@@ -214,7 +214,7 @@ namespace src.Domain
                     || userName.Equals("") || password.Equals("") || userName.Contains(" "))
                     return false;
                 User currUser = this.users[currUserId];
-                if (currUser != null && userName == currUser.UserName && password == currUser.Password)
+                if (currUser != null)
                 {
                     password = encryption.encrypt(userName + password);
                     return currUser.register(userName, password);
