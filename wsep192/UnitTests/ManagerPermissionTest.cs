@@ -16,7 +16,7 @@ namespace UnitTests
         public void setUp()
         {
             system = new TradingSystem(null, null);
-            user = new User(1,"user","1234",null,state.signedIn,false,true);
+            user = new User(1,"user","1234",false,true);
             store = new Store(1, "store", 0, new List<PurchasePolicy>(), new List<DiscountPolicy>());
             manager = new Manager(store,user,new List<int>());
             

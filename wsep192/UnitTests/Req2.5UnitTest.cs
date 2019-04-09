@@ -13,7 +13,6 @@ namespace UnitTests
         private TradingSystem sys;
         private Encryption encrypt;
         private User admin;
-        private ShoppingBasket basket_admin;
         private User user;
         private ShoppingBasket basket_user;
         private Product p1;
@@ -38,10 +37,10 @@ namespace UnitTests
             basket_user = user.Basket;
             admin = new User(0, "admin", "1234", true, false);
             basket_user = user.Basket;
-            p1 = new Product(0, "first", "cat", "key", 80, 0);
-            p2 = new Product(1, "second", null, "", 3000, 0);
-            p3 = new Product(2, "third", null, "", 2000, 0);
-            p4 = new Product(3, "fourth", null, "", 5000, 0);
+            p1 = new Product(0, "first", "cat", "key", 80);
+            p2 = new Product(1, "second", null, "", 3000);
+            p3 = new Product(2, "third", null, "", 2000);
+            p4 = new Product(3, "fourth", null, "", 5000);
             pis1 = new ProductInStore(10000000, store, p1);
             pis2 = new ProductInStore(10000000, store, p2);
             pis3 = new ProductInStore(10000000, store, p3);

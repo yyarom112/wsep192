@@ -12,5 +12,10 @@ namespace src
         {
             return true;
         }
+
+        public bool deliverToCustomer()
+        {
+            return true;
+        }
     }
 }

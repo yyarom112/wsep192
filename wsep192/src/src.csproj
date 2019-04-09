@@ -78,10 +78,10 @@
     <Compile Include="Domain\TreeNodeImpl.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="FinancialSystemImpl.cs" />
+    <Compile Include="LogManager.cs" />
     <Compile Include="ProductSupplySystemImpl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tree.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
