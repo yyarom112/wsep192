@@ -47,10 +47,10 @@ namespace UnitTests
             Manager storeManager = new Manager(store, manager, new List<int>());
 
 
-            admin.Roles.Add(store.Id,storeOwner);
+            admin.Roles.Add(store.Id, storeOwner);
             manager.Roles.Add(store.Id, storeManager);
-
-
+        }
+            /*
             store.Roles = new TreeNode<Role>(storeOwner);
             store.RolesDictionary.Add(admin.Id, storeOwner);
             store.Roles.AddChild(storeManager);
@@ -93,12 +93,12 @@ namespace UnitTests
             setUp();
             Assert.AreEqual(false, store.removeManager(user.Id));
         }
-
+        */
         [TestMethod]
         public void User_searchRoleByStoreID_succ()
         {
             setUp();
-            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id).Store);
+            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id,manager.Id).Store);
         }
 
 
@@ -107,7 +107,7 @@ namespace UnitTests
         public void User_searchRoleByStoreID_fail()
         {
             setUp();
-            Assert.AreEqual(null, manager.searchRoleByStoreID(0));
+            Assert.AreEqual(null, manager.searchRoleByStoreID(0,manager.Id));
         }
 
         [TestMethod]
