@@ -58,6 +58,7 @@
     <Compile Include="InitTests.cs" />
     <Compile Include="registerUserAcceptance.cs" />
     <Compile Include="signInUserAcceptance.cs" />
+    <Compile Include="LogoutTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">
