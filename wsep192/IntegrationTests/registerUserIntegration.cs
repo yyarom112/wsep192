@@ -16,7 +16,7 @@ namespace IntegrationTests
         public void setUp()
         {
             system = new TradingSystem(null, null);
-            user1 = new User(1234, "Seifan", "2457", false, false);
+            user1 = new User(1234, "Seifan", null, false, false);
             system.Users.Add(user1.Id, user1);
         }
 
@@ -25,7 +25,7 @@ namespace IntegrationTests
         {
             setUp();
             String userName = user1.UserName;
-            String password = user1.Password;
+            String password = "9898";
             int userId = user1.Id;
             Assert.AreEqual(true, system.register(userName, password, userId));
         }
@@ -44,8 +44,8 @@ namespace IntegrationTests
         public void TestMethod1_fail_userName_scenario()
         {
             setUp();
-            String userName = "blabla";
-            String password = user1.Password;
+            String userName = "bla bla";
+            String password = "9898";
             int userId = user1.Id;
             Assert.AreEqual(false, system.register(userName, password, userId));
         }
@@ -54,8 +54,8 @@ namespace IntegrationTests
         public void TestMethod1_fail_userName_password_scenario()
         {
             setUp();
-            String userName = "blabla";
-            String password = "9999";
+            String userName = "bla bla";
+            String password = "99 99";
             int userId = user1.Id;
             Assert.AreEqual(false, system.register(userName, password, userId));
         }

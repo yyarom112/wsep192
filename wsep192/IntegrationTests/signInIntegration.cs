@@ -16,7 +16,7 @@ namespace IntegrationTests
         public void setUp()
         {
             system = new TradingSystem(null, null);
-            user1 = new User(4567, "Yuval", "3399", false, false);
+            user1 = new User(4567, "Yuval", null, false, false);
             system.Users.Add(user1.Id, user1);
         }
 
@@ -26,7 +26,7 @@ namespace IntegrationTests
         {
             setUp();
             String userName = user1.UserName;
-            String password = user1.Password;
+            String password = "9898";
             int userId = user1.Id;
             system.register(userName, password, userId);
             Assert.AreEqual(true, system.signIn(userName, password, userId));
@@ -37,7 +37,7 @@ namespace IntegrationTests
         {
             setUp();
             String userName = user1.UserName;
-            String password = "2222";
+            String password = " ";
             int userId = user1.Id;
             system.register(userName, password, userId);
             Assert.AreEqual(false, system.signIn(userName, password, userId));
@@ -47,8 +47,8 @@ namespace IntegrationTests
         public void TestMethod1_fail_userName_scenario()
         {
             setUp();
-            String userName = "blabla";
-            String password = user1.Password;
+            String userName = "bla bla";
+            String password = "9898";
             int userId = user1.Id;
             system.register(userName, password, userId);
             Assert.AreEqual(false, system.signIn(userName, password, userId));
@@ -58,8 +58,8 @@ namespace IntegrationTests
         public void TestMethod1_fail_userName_password_scenario()
         {
             setUp();
-            String userName = "blabla";
-            String password = "1233";
+            String userName = "bla bla";
+            String password = "12 33";
             int userId = user1.Id;
             system.register(userName, password, userId);
             Assert.AreEqual(false, system.signIn(userName, password, userId));
