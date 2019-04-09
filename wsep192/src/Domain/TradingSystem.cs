@@ -8,8 +8,8 @@ namespace src.Domain
 {
     class TradingSystem
     {
-        private Dictionary<int, User> users;
-        private Dictionary<int, Store> stores;
+        private Dictionary<int,User> users;
+        private Dictionary<int,Store> stores;
         private ProductSupplySystem supplySystem;
         private FinancialSystem financialSystem;
         private int productCounter;
@@ -27,14 +27,68 @@ namespace src.Domain
             this.financialSystem = financialSystem;
             this.productCounter = 0;
             this.purchasePolicyCounter = 0;
-            this.discountPolicyCounter = 0;
+            this.discountPolicyCounter =  0;
             this.encryption = new EncryptionImpl();
         }
 
-        public bool removeOwner(int userID, int userIDToRemove, int storeID)
+        public int basketCheckout(String address, int userID)
         {
-            return users[userID].removeOwner(userIDToRemove, storeID);
+            if (!this.users.ContainsKey(userID))
+                return -1;
+            else
+                return this.users[userID].basketCheckout(address);
         }
+        public ShoppingBasket payForBasket(long cardNumber, DateTime date, int userID)
+        {
+            ShoppingBasket basket = users[userID].Basket;
+            foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
+            {
+                cart.Store.updateCart(cart, "-");
+            }
+
+            if (!this.financialSystem.payment(cardNumber, date, basket.basketCheckout()))
+            {
+                foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
+                {
+                    cart.Store.updateCart(cart, "+");
+                }
+                return null;
+            }
+
+
+            if (!this.supplySystem.deliverToCustomer(this.Users[userID].Address, "Some package Details"))
+            {
+                return null;
+            }
+
+            return basket;
+        }
+        public String showCart(int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return "";
+            return Users[user].showCart(store);
+
+        }
+        public bool editProductQuantityInCart(int product, int quantity, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return false;
+            return Users[user].editProductQuantityInCart(product, quantity, store);
+        }
+        public bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return false;
+            return Users[user].removeProductsFromCart(productsToRemove, store);
+        }
+
+
+        internal bool productExist(string product, int store)
+        {
+            return Stores[store].productExist(product);
+        }
+
 
         public bool removeManager(int userID, int userIDToRemove, int storeID)
         {
@@ -51,12 +105,30 @@ namespace src.Domain
             return false;
         }
 
-        public List<ProductInStore> searchProduct(String details)
+
+        public bool init(string adminUserName, string adminPassword)
         {
-            List<ProductInStore> products = new List<ProductInStore>();
+            User admin = new User(userCounter, adminUserName, adminPassword, true, true);
+            users.Add(userCounter, admin);
+            userCounter++;
+            if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
+                return false;
+
+            return true;
+        }
+       
+
+
+        public bool removeOwner(int userID,int userIDToRemove,int storeID)
+        {
+            return users[userID].removeOwner(userIDToRemove, storeID);
+        }
+        public String searchProduct(String details)
+        {
+            List<ProductInStore> products  = new List<ProductInStore>();
             String[] detailsForFilter = details.Split(' ');
             if (detailsForFilter.Length != 7)
-                return products;
+                return "";
             KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
                 Int32.Parse(detailsForFilter[4]));
             Filter filter = new Filter(detailsForFilter[0],
@@ -64,15 +136,27 @@ namespace src.Domain
                 Int32.Parse(detailsForFilter[5]), Int32.Parse(detailsForFilter[6]));
             foreach (Store s in stores.Values)
             {
-                s.searchProduct(filter, products);
+                s.searchProduct(filter,products);
             }
-            return products;
+            return productsToString(products);
         }
-
-        internal bool initUserGuest(string user, int userCounter)
+        private String productsToString(List<ProductInStore> products)
         {
-            User guest = new User(userCounter, user, null, false, false);
+            String res = "";
+            foreach(ProductInStore p in products)
+            {
+                res += res + "Name: " + p.Product.ProductName + "\n"
+                     + "Store Name: " + p.Store.Name +"\n"
+                    + "Quantity: " + p.Quantity
+                    ;
+            }
+            return res;
+        }
+        internal bool initUserGuest(string user,int userCounter)
+        {
+            User guest = new User(userCounter, user , null,false,false);
             users.Add(userCounter, guest);
+
             return true;
         }
 
@@ -96,12 +180,16 @@ namespace src.Domain
         public int UserCounter { get => userCounter; set => userCounter = value; }
         public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
         public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
+
+
         internal Dictionary<int, User> Users { get => users; set => users = value; }
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
 
-        public bool init(string adminUserName, string adminPassword, int userCounter)
+
+
+        public bool init(string adminUserName, string adminPassword,int userCounter)
         {
             User admin = new User(userCounter, adminUserName, adminPassword, true, true);
             users.Add(userCounter, admin);
@@ -111,13 +199,7 @@ namespace src.Domain
             return true;
         }
 
-        internal bool productExist(string product, int store)
-        {
-            return Stores[store].productExist(product);
-        }
-
-        public bool signOut(int id)
-        {
+        public bool signOut(int id) {
             if (!users.ContainsKey(id))
                 return false;
             return users[id].signOut();
@@ -125,42 +207,39 @@ namespace src.Domain
         }
         public Boolean register(String userName, String password, int userId)
         {
-            if (this.users.ContainsKey(userId))
+            int currUserId = userId;
+            if (this.users.ContainsKey(currUserId))
             {
                 if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
                     || userName.Equals("") || password.Equals("") || userName.Contains(" "))
-                {
-                    //LogManager.Instance.WriteToLog("TradingSystem - register fail - wrong userName or password");
                     return false;
-                }
-
-                User currUser = this.users[userId];
+                User currUser = this.users[currUserId];
                 if (currUser != null && userName == currUser.UserName && password == currUser.Password)
                 {
                     password = encryption.encrypt(userName + password);
-                    //LogManager.Instance.WriteToLog("TradingSystem - register - success register user");
                     return currUser.register(userName, password);
                 }
                 return false;
             }
             return false;
         }
+
+
         public Boolean signIn(String userName, String password, int userId)
         {
-            if (this.users.ContainsKey(userId))
+            int currUserId = userId;
+            if (this.users.ContainsKey(currUserId))
             {
-                User currUser = this.users[userId];
+                User currUser = this.users[currUserId];
                 if (currUser != null)
                 {
                     if (!currUser.IsRegistered)
                     {
-                        //LogManager.Instance.WriteToLog("TradingSystem - signIn - fail because user not register");
                         return false;
                     }
                     password = encryption.encrypt(userName + password);
                     if (currUser.Password == password)
                     {
-                        //LogManager.Instance.WriteToLog("TradingSystem - signIn - succsess signIn user");
                         return currUser.signIn(userName, password);
                     }
                 }
@@ -169,7 +248,15 @@ namespace src.Domain
             return false;
         }
 
-        public bool addProductsToCart(LinkedList<KeyValuePair<int, int>> products, int storeId, int userId)
+
+
+
+        internal bool openStore(string storeName, int v, int storeCounter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
         {
             if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products == null)
                 return false;
@@ -182,7 +269,8 @@ namespace src.Domain
             return true;
         }
 
-        public LinkedList<KeyValuePair<Product, int>> createProductsList(LinkedList<KeyValuePair<int, int>> products, int storeId)
+
+        public LinkedList<KeyValuePair<Product, int>> createProductsList(List<KeyValuePair<int, int>> products, int storeId)
         {
             bool check = true;
             LinkedList<KeyValuePair<Product, int>> output = new LinkedList<KeyValuePair<Product, int>>();
@@ -202,34 +290,44 @@ namespace src.Domain
             return output;
         }
 
+        internal bool createNewProductInStore(string productName, string category, string details, int price, int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool addProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
+
         internal int getProduct(string product, int store)
         {
             return Stores[store].getProduct(product);
         }
 
-        public String showCart(int store, int user)
+        internal bool removeProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
         {
-            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return "";
-            return Users[user].showCart(store);
-
-        }
-        public bool editProductQuantityInCart(int product, int quantity, int store, int user)
-        {
-            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return false;
-            return Users[user].editProductQuantityInCart(product, quantity, store);
-        }
-        public bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
-        {
-            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return false;
-            return Users[user].removeProductsFromCart(productsToRemove, store);
+            throw new NotImplementedException();
         }
 
+        internal bool removeUser(int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
 
+        internal bool assignManager(int v1, int v2, int v3, List<int> list)
+        {
+            throw new NotImplementedException();
+        }
 
+        internal bool assignOwner(int v1, int v2, int v3)
+        {
+            throw new NotImplementedException();
+        }
 
-
+        internal bool editProductInStore(int v1, string productName, string category, string details, int price, int v2, int v3)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

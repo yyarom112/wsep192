@@ -18,6 +18,8 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
+        private state signedIn;
+        private state visitor;
 
         public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
         {
@@ -32,7 +34,48 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
 
         }
+        public bool removeOwner(int userID,int storeID)
+        {
+            if (this.state != state.signedIn)
+                return false;
+            Role role = searchRoleByStoreID(storeID,this.Id);
+            if (role != null && role.GetType() == typeof(Owner))
+            {
+                Owner owner = (Owner)role;
+                return owner.removeOwner(userID);
+                
+            }
+            return false;
+            
+        }
 
+
+        internal string showCart(int storeId)
+        {
+            return basket.showCart(storeId);
+        }
+
+
+        public virtual Boolean register(string userName, string password)
+        {
+            if (userName == null || password == null)
+            {
+                return false;
+            }
+            this.userName = userName;
+            this.password = password;
+            this.IsRegistered = true;
+            return true;
+        }
+
+
+        public Role searchRoleByStoreID(int storeID,int userID)
+        {
+            foreach (Role role in roles.Values)
+                if (role.Store.Id == storeID&&role.User.Id == userID)
+                    return role;
+            return null;
+        }
         public int Id { get => id; set => id = value; }
         public string UserName { get => userName; set => userName = value; }
         public string Password { get => password; set => password = value; }
@@ -43,9 +86,24 @@ namespace src.Domain
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
-        internal string showCart(int storeId)
+
+        public virtual int basketCheckout(String address)
         {
-            return basket.showCart(storeId);
+            this.address = address;
+            return basket.basketCheckout() + calcAddressFee(address);
+        }
+        internal bool signOut()
+        {
+            if (state != state.signedIn)
+                return false;
+            state = state.visitor;
+            return true;
+
+        }
+
+        public virtual ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
+        {
+            return this.basket.addProductsToCart(productsToInsert, storeId);
         }
         public virtual Boolean signIn(string userName, string password)
         {
@@ -58,81 +116,50 @@ namespace src.Domain
             }
             return false;
         }
-        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
+        private int calcAddressFee(string address)
         {
-            return this.basket.addProductsToCart(productsToInsert, storeId);
+            switch (address)
+            {
+                case "telaviv":
+                    return 50;
+                case "beersheva":
+                    return 10;
+                case "haifa":
+                    return 60;
+                default:
+                    return 40;
+            }
         }
+
 
         internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
         {
-            return basket.removeProductsFromCart(productsToRemove,storeId);
+            return basket.removeProductsFromCart(productsToRemove, storeId);
         }
-
         internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
         {
-            return basket.editProductQuantityInCart(productId, quantity,storeId);
+            return basket.editProductQuantityInCart(productId, quantity, storeId);
         }
-        public bool removeOwner(int userID, int storeID)
-        {
-            Role role = searchRoleByStoreID(storeID);
-            if (role != null && role.GetType() == typeof(Owner))
-            {
-                Owner owner = (Owner)role;
-                return owner.removeOwner(userID);
-
-            }
-            return false;
-        }
-
 
         public virtual bool removeManager(int userID, int storeID)
         {
-            if (this.state!=state.signedIn)
+            if (this.state != state.signedIn)
             {
                 LogManager.Instance.WriteToLog("User-Remove manager fail- User is not logged in\n");
                 return false;
             }
-            Role role = searchRoleByStoreID(storeID);
+            Role role = searchRoleByStoreID(storeID,userID);
             try
             {
                 Owner owner = (Owner)role;
                 return owner.removeManager(userID);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
                 return false;
             }
 
-        }
-
-        public Role searchRoleByStoreID(int storeID)
-        {
-            foreach (Role role in roles.Values)
-                if (role.Store.Id == storeID)
-                    return role;
-            return null;
-        }
-
-        internal bool signOut()
-        {
-            if (state != state.signedIn)
-                return false;
-            state = state.visitor;
-            return true;
-
-        }
-
-        public virtual Boolean register(string userName, string password)
-        {
-            if (userName == null || password == null)
-            {
-                return false;
-            }
-            this.userName = userName;
-            this.password = password;
-            this.IsRegistered = true;
-            return true;
         }
     }
 }

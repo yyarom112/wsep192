@@ -52,6 +52,96 @@ namespace src.Domain
             }
             return result;
         }
+       
+        public Boolean assignManager(Role newManager, Owner owner)
+        {
+            TreeNode<Role> currOwner = roles.FindInChildren(owner);
+            if (currOwner != null)
+            {
+                TreeNode<Role> tmp = currOwner.FindInChildren(newManager);
+                if (currOwner.FindInChildren(newManager) == null)
+                {
+                    currOwner.AddChild(newManager);
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+        public virtual void updateCart(ShoppingCart cart, String opt)
+        {
+            foreach (ProductInCart p in cart.Products.Values)
+            {
+                if (opt.Equals("-"))
+                {
+                    if (p.Quantity <= this.products[p.Product.Id].Quantity)
+                        if (opt.Equals("-"))
+                            this.products[p.Product.Id].Quantity -= p.Quantity;
+
+                        else
+                        {
+                            p.Quantity = this.products[p.Product.Id].Quantity;
+                            this.products[p.Product.Id].Quantity = 0;
+                        }
+                }
+                else
+                {
+                    this.products[p.Product.Id].Quantity += p.Quantity;
+                }
+
+            }
+        }
+        public virtual bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products)
+        {
+            if (this.PurchasePolicy == null)
+                return true;
+            List<ProductInStore> productsInStore = new List<ProductInStore>();
+            foreach (ProductInCart p in products.Values)
+            {
+                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
+                productsInStore.Add(productInStore);
+            }
+            foreach (PurchasePolicy pp in purchasePolicy)
+            {
+                if (!pp.confirmPolicy())
+                    return false;
+            }
+            return true;
+
+        }
+        public void updateCart(ShoppingCart cart)
+        {
+            foreach (ProductInCart p in cart.Products.Values)
+            {
+                if (p.Quantity <= this.products[p.Product.Id].Quantity)
+                    this.products[p.Product.Id].Quantity -= p.Quantity;
+                else
+                {
+                    p.Quantity = this.products[p.Product.Id].Quantity;
+                    this.products[p.Product.Id].Quantity = 0;
+                }
+            }
+        }
+
+        public virtual int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
+        {
+            if (this.DiscountPolicy == null)
+                return 0;
+            int sum = 0;
+            List<ProductInStore> productsInStore = new List<ProductInStore>();
+            foreach (ProductInCart p in products.Values)
+            {
+                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
+                productsInStore.Add(productInStore);
+            }
+            foreach (DiscountPolicy dp in discountPolicy)
+            {
+                sum += dp.calculate(productsInStore);
+            }
+            return sum;
+        }
+
         public bool removeOwner(int userID,Role owner)
         {
             TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
@@ -99,20 +189,6 @@ namespace src.Domain
             return false;
         }
 
-        public Boolean assignManager(Role newManager, Owner owner)
-        {
-            TreeNode<Role> currOwner = roles.FindInChildren(owner);
-            if (currOwner != null)
-            {
-                TreeNode<Role> tmp = currOwner.FindInChildren(newManager);
-                if (currOwner.FindInChildren(newManager) == null)
-                {
-                    currOwner.AddChild(newManager);
-                    return true;
-                }
-            }
-            return false;
-        }
 
         internal bool productExist(string product)
         {
