@@ -54,15 +54,26 @@ namespace src.Domain
         }
         public bool removeOwner(int userID)
         {
+
             Role role = null;
             if (RolesDictionary.ContainsKey(userID))
                 role = RolesDictionary[userID];
             if (role != null)
             {
-                if (roles.RemoveChild(roles.FindInChildren(role))
-                     && RolesDictionary.Remove(userID)
-                    && role.User.Roles.Remove(this.Id))
-                    return true;
+                if (role.GetType() == typeof(Owner))
+                    foreach (TreeNode<Role> t in roles.FindInChildren(role).getChildren()) //NEED TO FIX FIND IN CHILDREN
+                    {
+                        role.Store.removeOwner(t.Data.User.Id);
+                        if (roles.RemoveChild(roles.FindInChildren(role))
+                               && RolesDictionary.Remove(userID)
+                                && role.User.Roles.Remove(this.Id))
+                            return true;
+                    }
+                else
+                {
+                    return removeManager(role.User.Id);
+                }
+
             }
             return false;
 

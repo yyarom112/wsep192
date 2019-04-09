@@ -93,9 +93,6 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
-
-
-
         public bool init(string adminUserName, string adminPassword)
         {
             User admin = new User(userCounter, adminUserName, adminPassword, true, true);
@@ -131,7 +128,6 @@ namespace src.Domain
             }
             return false;
         }
-
         public Boolean signIn(String userName, String password, String userId)
         {
             int currUserId = Convert.ToInt32(userId);
@@ -187,6 +183,32 @@ namespace src.Domain
                 return null;
             return output;
         }
+
+
+
+
+        public String showCart(int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return "";
+            return Users[user].showCart(store);
+
+        }
+        public bool editProductQuantityInCart(int product, int quantity, int store, int user)
+        {
+            if(!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return false;
+            return Users[user].editProductQuantityInCart(product,quantity,store);
+        }
+        public bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
+        {
+            if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
+                return false;
+            return Users[user].removeProductsFromCart(productsToRemove,store);
+        }
+
+
+
 
 
     }
