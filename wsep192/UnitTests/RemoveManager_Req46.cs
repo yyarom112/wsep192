@@ -39,7 +39,7 @@ namespace UnitTests
             basket_admin = admin.Basket;
             user = new User(1, null, null, false, false);
             basket_user = user.Basket;
-            manager = new User(2, "a", "1234", false, true);
+            manager = new User(2, "manager", "1234", false, true);
 
             store = new Store(-1, "store", 0, null, null);
 
@@ -52,9 +52,12 @@ namespace UnitTests
 
 
             store.Roles = new TreeNode<Role>(storeOwner);
-            store.RolesDictionary.Add(admin.Id, new TreeNode<Role>(storeOwner));
+            TreeNode<Role> ownerNode = new TreeNode<Role>(storeOwner);
+            TreeNode<Role> managerNode = ownerNode.AddChild(storeManager);
+            store.RolesDictionary.Add(admin.Id, ownerNode);
             store.Roles.AddChild(storeManager);
-            store.RolesDictionary.Add(manager.Id, new TreeNode<Role>(storeOwner));
+            store.RolesDictionary.Add(manager.Id, managerNode);
+
 
             p1 = new Product(0, "first", null, "", 5000);
             p2 = new Product(1, "second", null, "", 5000);
@@ -84,7 +87,7 @@ namespace UnitTests
         public void Store_RemoveManager_succ()
         {
             setUp();
-            Assert.AreEqual(true, store.removeManager(admin.Id,manager.Roles[store.Id]));
+            Assert.AreEqual(true, store.removeManager(manager.Id,admin.Roles[store.Id]));
         }
 
         [TestMethod]
@@ -93,7 +96,7 @@ namespace UnitTests
             setUp();
             try
             {
-                store.removeManager(admin.Id, manager.Roles[user.Id]);
+                store.removeManager(user.Id, admin.Roles[store.Id]);
             }
             catch (Exception e)
             {
@@ -106,7 +109,7 @@ namespace UnitTests
         public void User_searchRoleByStoreID_succ()
         {
             setUp();
-            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id,admin.Id).Store);
+            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id, manager.Id).Store);
         }
 
 
@@ -124,7 +127,7 @@ namespace UnitTests
             setUp();
             admin.Roles.Remove(store.Id);
             admin.Roles.Add(store.Id, new StubOwner(store, admin, true));
-            Assert.AreEqual(true, admin.removeManager(manager.Id, store.Id));
+            Assert.AreEqual(true, admin.removeManager(admin.Id, store.Id));
         }
 
         [TestMethod]
