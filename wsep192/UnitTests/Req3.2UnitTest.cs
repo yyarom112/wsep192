@@ -40,7 +40,7 @@ namespace UnitTests
             Store store = new Store(storeID, storeName, -1, purchasePolicies, discountPolicies);
             User user = new User(userID, userName, userPassword, false, false);
             Role role = store.initOwner(user);
-            Assert.AreEqual(store.RolesDictionary[userID],role);
+            Assert.AreEqual(role,store.RolesDictionary[userID].Data);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace UnitTests
     [TestClass]
     public class BuyingBasketReq2
     {
+        /*
         private TradingSystem sys;
         private Encryption encrypt;
 
@@ -39,10 +40,10 @@ namespace UnitTests
 
             store = new Store(-1, "store", 0, null, null);
 
-            p1 = new Product(0, "first", null, "", 5000, 0);
-            p2 = new Product(1, "second", null, "", 5000, 0);
-            p3 = new Product(2, "third", null, "", 5000, 0);
-            p4 = new Product(3, "fourth", null, "", 5000, 0);
+            p1 = new Product(0, "first", null, "", 5000);
+            p2 = new Product(1, "second", null, "", 5000);
+            p3 = new Product(2, "third", null, "", 5000);
+            p4 = new Product(3, "fourth", null, "", 5000);
             pis1 = new ProductInStore(10000000, store, p1);
             pis2 = new ProductInStore(10000000, store, p2);
             pis3 = new ProductInStore(10000000, store, p3);
@@ -192,7 +193,7 @@ namespace UnitTests
             user.Basket = basket_user;
             Assert.AreEqual(retval+50, user.basketCheckout("telaviv"));
         }
-
+        
         [TestMethod]
         public void TestMethod1_TradingSystem_basketCheckout_succ()
         {
@@ -204,7 +205,7 @@ namespace UnitTests
 
 
         }
-
+        
         [TestMethod]
         public void TestMethod1_TradingSystem_basketCheckout_fail()
         {
@@ -245,7 +246,7 @@ namespace UnitTests
         }
 
 
-
+        
         [TestMethod]
         public void TestMethod1_payForBasket_succ()
         {
@@ -267,7 +268,7 @@ namespace UnitTests
             Assert.AreEqual(check, sys.payForBasket(0,new DateTime(1990,1,1),user.Id));
 
         }
-
+        
 
         [TestMethod]
         public void TestMethod1_payForBasket_without_FinancialSystem()
@@ -290,7 +291,7 @@ namespace UnitTests
             Assert.AreEqual(null, sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id));
 
         }
-
+        
 
         [TestMethod]
         public void TestMethod1_payForBasket_without_SupplySystem()
@@ -311,13 +312,13 @@ namespace UnitTests
             ShoppingBasket check = user.Basket;
 
             Assert.AreEqual(null, sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id));
-
-        }
-
-
+            
+        
 
 
-    }
+
+
+    
 
 
 
@@ -386,7 +387,7 @@ namespace UnitTests
             return retVal;
         }
     }
-
+    
     class StubUser : User
     {
         private int retVal;
@@ -421,7 +422,7 @@ namespace UnitTests
             return retVal;
         }
     }
-
+    /*
     class StubFinancialSystem : FinancialSystem
     {
         private bool retVal;
@@ -440,9 +441,11 @@ namespace UnitTests
         {
             return retVal;
         }
+    
+ */
     }
-
-
-
-
 }
+
+
+
+

@@ -241,7 +241,7 @@ namespace src.Domain
             List<DiscountPolicy> discountPolicy = new List<DiscountPolicy>();
             if (!stores.ContainsKey(storeCounter))
             {
-                Store store = new Store(storeCounter, StoreName, noRate, purchasePolicy, discountPolicy);
+                Store store = new Store(storeCounter, storeName, noRate, purchasePolicy, discountPolicy);
                 if (Users.ContainsKey(userID) && Users[userID].IsRegistered)
                 {
                     Stores.Add(storeCounter,store);
@@ -310,14 +310,16 @@ namespace src.Domain
 
         internal bool removeUser(int userID, int storeID)
         {
-              if(stores.ContainsKey(storeID)){
+            if (Stores.ContainsKey(storeID))
+            { 
+                stores[storeID].Roles.RemoveChild(stores[storeID].RolesDictionary[userID]);
                 stores[storeID].RolesDictionary.Remove(userID);
-                stores[storeID].Roles.RemoveChild(roles.FindInChildren(role));
-                if(users.ContainsKey(userID)){
-                   users.Remove(userID);
-                   return true;
+                if (Users.ContainsKey(userID))
+                {
+                     Users.Remove(userID);
+                     return true;
                 }
-              }
+             }
             return false;
         }
 

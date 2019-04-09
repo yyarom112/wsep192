@@ -63,6 +63,9 @@
     <Compile Include="registerUserTest.cs" />
     <Compile Include="EditProductInCartTests.cs" />
     <Compile Include="RemoveProductsFromCartTests.cs" />
+    <Compile Include="Req3.2UnitTest.cs" />
+    <Compile Include="Req6.2UnitTest.cs" />
+
     <Compile Include="ShowCartTest.cs" />
     <Compile Include="BuyingBasketReq2.8.cs" />
   </ItemGroup>

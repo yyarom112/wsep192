@@ -5,6 +5,7 @@ using src.Domain;
 
 namespace UnitTests
 {
+    /*
     [TestClass]
     public class RemoveManager_Req46
     {
@@ -93,7 +94,7 @@ namespace UnitTests
             setUp();
             Assert.AreEqual(false, store.removeManager(user.Id));
         }
-        */
+        
         [TestMethod]
         public void User_searchRoleByStoreID_succ()
         {
@@ -133,7 +134,7 @@ namespace UnitTests
             admin.Roles.Remove(store.Id);
             Assert.AreEqual(false, admin.removeManager(manager.Id, store.Id));
         }
-
+        /*
         [TestMethod]
         public void TradingSystem_removeManager_succ()
         {
@@ -157,7 +158,7 @@ namespace UnitTests
             Assert.AreEqual(false, sys.removeManager(3, admin.Id, store.Id));
         }
     }
-
+    
     //----------------------------@@stub class@@----------------------------
 
 
@@ -192,5 +193,6 @@ namespace UnitTests
         }
     }
 
-
+*/
 }
+
