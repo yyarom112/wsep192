@@ -189,7 +189,8 @@ namespace UnitTests
         }
     }
 
-    class StubUser : User
+
+class StubUser : User
     {
         bool retVal;
         public StubUser(int id, string userName, string password, bool isAdmin, bool isRegistered, bool ret) : base(id, userName, password, isAdmin, isRegistered)
@@ -201,6 +202,16 @@ namespace UnitTests
         {
             return retVal;
         }
+
+        public override int basketCheckout(String address)
+        {
+            if (retVal)
+                return 1;
+            else
+                return -1;
+        }
+
+
     }
 
 
