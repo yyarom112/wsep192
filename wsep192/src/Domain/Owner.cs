@@ -16,6 +16,12 @@ namespace src.Domain
         {
             return Store.removeOwner(userID,this);
         }
+        public virtual Boolean assignManager(User managerUser, List<int> permissionToManager)
+        {
+            Manager newManager = new Manager(null, managerUser, permissionToManager);
+            return Store.assignManager(newManager, this);
+
+        }
 
         public virtual bool removeManager(int userID) => Store.removeManager(userID,this);
     }

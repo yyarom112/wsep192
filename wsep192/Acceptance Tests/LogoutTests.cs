@@ -8,22 +8,21 @@ namespace Acceptance_Tests
     public class LogoutTests
     {
         ServiceLayer service;
-        [TestMethod]
+
         public void setUp()
         {
             service = new ServiceLayer();
+            service.init("admin", "1234");
             service.initUser("tmpuser");
-
-            service.register("user", "password", "tmpuser");
-            service.signIn("user", "password", "tmpuser");
         }
 
 
-   
-       // [TestMethod]
+        [TestMethod]
         public void TestMethod1_success()
         {
             setUp();
+            service.register("user", "password", "tmpuser");
+            service.signIn("user", "password");
             Assert.AreEqual(true, service.signOut("user"));
         }
     }
