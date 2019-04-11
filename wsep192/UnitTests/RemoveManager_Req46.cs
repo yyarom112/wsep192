@@ -39,9 +39,9 @@ namespace UnitTests
             basket_admin = admin.Basket;
             user = new User(1, null, null, false, false);
             basket_user = user.Basket;
-            manager = new User(2, "a", "1234", false, true);
+            manager = new User(2, "manager", "1234", false, true);
 
-            store = new Store(-1, "store", 0, null, null);
+            store = new Store(-1, "store", null, null);
 
             Owner storeOwner = new Owner(store, admin);
             Manager storeManager = new Manager(store, manager, new List<int>());
@@ -49,12 +49,15 @@ namespace UnitTests
 
             admin.Roles.Add(store.Id, storeOwner);
             manager.Roles.Add(store.Id, storeManager);
-        }
-            /*
+
+
             store.Roles = new TreeNode<Role>(storeOwner);
-            store.RolesDictionary.Add(admin.Id, storeOwner);
+            TreeNode<Role> ownerNode = new TreeNode<Role>(storeOwner);
+            TreeNode<Role> managerNode = ownerNode.AddChild(storeManager);
+            store.RolesDictionary.Add(admin.Id, ownerNode);
             store.Roles.AddChild(storeManager);
-            store.RolesDictionary.Add(manager.Id, storeManager);
+            store.RolesDictionary.Add(manager.Id, managerNode);
+
 
             p1 = new Product(0, "first", null, "", 5000);
             p2 = new Product(1, "second", null, "", 5000);
@@ -84,21 +87,29 @@ namespace UnitTests
         public void Store_RemoveManager_succ()
         {
             setUp();
-            Assert.AreEqual(true, store.removeManager(manager.Id));
+            Assert.AreEqual(true, store.removeManager(manager.Id, admin.Roles[store.Id]));
         }
 
         [TestMethod]
         public void Store_RemoveManager_fail_theUserIsNotManager()
         {
             setUp();
-            Assert.AreEqual(false, store.removeManager(user.Id));
+            try
+            {
+                store.removeManager(user.Id, admin.Roles[store.Id]);
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual(true, true);
+
+            }
         }
-        */
+
         [TestMethod]
         public void User_searchRoleByStoreID_succ()
         {
             setUp();
-            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id,manager.Id).Store);
+            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id, manager.Id).Store);
         }
 
 
@@ -107,7 +118,7 @@ namespace UnitTests
         public void User_searchRoleByStoreID_fail()
         {
             setUp();
-            Assert.AreEqual(null, manager.searchRoleByStoreID(0,manager.Id));
+            Assert.AreEqual(null, manager.searchRoleByStoreID(0, user.Id));
         }
 
         [TestMethod]
@@ -116,7 +127,7 @@ namespace UnitTests
             setUp();
             admin.Roles.Remove(store.Id);
             admin.Roles.Add(store.Id, new StubOwner(store, admin, true));
-            Assert.AreEqual(true, admin.removeManager(manager.Id,store.Id));
+            Assert.AreEqual(true, admin.removeManager(admin.Id, store.Id));
         }
 
         [TestMethod]
@@ -139,7 +150,7 @@ namespace UnitTests
         {
             setUp();
             sys.Users.Add(3, new StubUser(3, null, null, false, false, true));
-            Assert.AreEqual(true, sys.removeManager(3,admin.Id,store.Id));
+            Assert.AreEqual(true, sys.removeManager(3, admin.Id, store.Id));
         }
 
         [TestMethod]
@@ -166,19 +177,20 @@ namespace UnitTests
         private bool retVal;
 
 
-        public StubOwner(Store store, User user,bool ret) : base(store, user)
+        public StubOwner(Store store, User user, bool ret) : base(store, user)
         {
             this.retVal = ret;
         }
 
 
         public override bool removeManager(int userID)
-        { 
+        {
             return retVal;
         }
     }
 
-    class StubUser : User
+
+class StubUser : User
     {
         bool retVal;
         public StubUser(int id, string userName, string password, bool isAdmin, bool isRegistered, bool ret) : base(id, userName, password, isAdmin, isRegistered)
@@ -190,13 +202,16 @@ namespace UnitTests
         {
             return retVal;
         }
+
         public override int basketCheckout(String address)
         {
             if (retVal)
                 return 1;
-            return -1;
-                
+            else
+                return -1;
         }
+
+
     }
 
 

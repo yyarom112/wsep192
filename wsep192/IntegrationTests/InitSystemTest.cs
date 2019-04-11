@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
 
-namespace UnitTests
+namespace IntegrationTests
 {
     [TestClass]
     public class InitSystemTest

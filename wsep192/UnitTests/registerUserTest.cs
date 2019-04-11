@@ -74,7 +74,7 @@ namespace UnitTests
         public void TestMethod1_fail_userName_scenario()
         {
             setUp();
-            StubUser tmpUser = new StubUser(123, "yuval", "4567", false, false, true);
+            StubUser tmpUser = new StubUser(123, "yuval", "4567", false, false, false);
             String userName = "blabla";
             String password = tmpUser.Password;
             int userId = tmpUser.Id;
@@ -86,7 +86,7 @@ namespace UnitTests
         public void TestMethod1_fail_userName_password_scenario()
         {
             setUp();
-            StubUser tmpUser = new StubUser(123, "yuval", "4567", false, false, true);
+            StubUser tmpUser = new StubUser(123, "yuval", "4567", false, false, false);
             String userName = "blabla";
             String password = "8888";
             int userId = tmpUser.Id;

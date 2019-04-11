@@ -23,14 +23,13 @@ namespace IntegrationTests
             system = new TradingSystem(null, null);
             ownerUser = new User(1234, "Seifan", "2457", false, false);
             ownerUser.State = state.signedIn;
-            store = new Store(1111, "adidas", 0, null, null);
+            store = new Store(1111, "adidas", null, null);
             ownerRole = new Owner(store, ownerUser);
             ownerUser.Roles.Add(ownerUser.Id, ownerRole);
 
 
             managerUser = new User(7878, "baba", "3434", false, false);
             managerUser.State = state.signedIn;
-            permmision = new List<int>() { 2, 5, 6 };
             permmision = new List<int>() { 2, 5, 6 };
 
             user1 = new User(2456, "luli", "5656", false, false);

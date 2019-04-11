@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
 
 namespace UnitTests
-{   
+{
     [TestClass]
     public class assignManagerTest
     {
@@ -22,10 +22,10 @@ namespace UnitTests
             system = new TradingSystem(null, null);
             ownerUser = new User(1234, "Seifan", "2457", false, false);
             ownerUser.State = state.signedIn;
-            store = new Store(1111, "adidas", 0, null, null);
+            store = new Store(1111, "adidas", null, null);
             ownerRole = new Owner(store, ownerUser);
             ownerUser.Roles.Add(ownerUser.Id, ownerRole);
-            
+
 
             managerUser = new User(7878, "baba", "3434", false, false);
             managerUser.State = state.signedIn;
@@ -37,7 +37,7 @@ namespace UnitTests
 
             store.Roles = new TreeNode<Role>(ownerRole);
             store.RolesDictionary.Add(ownerUser.Id, new TreeNode<Role>(ownerRole));
-            
+
             system.Users.Add(ownerUser.Id, ownerUser);
             system.Users.Add(managerUser.Id, managerUser);
             system.Users.Add(user1.Id, user1);
@@ -52,7 +52,7 @@ namespace UnitTests
             Assert.AreEqual(true, store.assignManager(managerRole, (Owner)ownerRole));
         }
 
-        
+
         [TestMethod]
         public void TestMethod1_success_userClass_scenario()
         {

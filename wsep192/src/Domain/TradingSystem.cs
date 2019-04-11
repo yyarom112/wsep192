@@ -31,17 +31,6 @@ namespace src.Domain
             this.encryption = new EncryptionImpl();
         }
 
-        public Boolean assignManager(int ownerId, int managerId, int storeId, List<int> permissionToManager)
-        {
-            if (this.users.ContainsKey(ownerId) && this.users.ContainsKey(managerId) && ownerId != managerId)
-            {
-                User ownerUser = this.users[ownerId];
-                User managerUser = this.users[managerId];
-                return ownerUser.assignManager(managerUser, storeId, permissionToManager);
-            }
-            return false;
-        }
-
         public int basketCheckout(String address, int userID)
         {
             if (!this.users.ContainsKey(userID))
@@ -74,10 +63,77 @@ namespace src.Domain
 
             return basket;
         }
+
+
+
+
+        internal bool removeUser(int userID, int storeID)
+
+        {
+
+            if (Stores.ContainsKey(storeID))
+
+            {
+
+                stores[storeID].Roles.RemoveChild(stores[storeID].RolesDictionary[userID]);
+
+                stores[storeID].RolesDictionary.Remove(userID);
+
+                if (Users.ContainsKey(userID))
+
+                {
+
+                    Users.Remove(userID);
+
+                    return true;
+
+                }
+
+            }
+
+            return false;
+
+        }
+
+        internal bool openStore(string storeName, int userID, int storeCounter)
+
+        {
+
+            List<PurchasePolicy> purchasePolicy = new List<PurchasePolicy>();
+
+            List<DiscountPolicy> discountPolicy = new List<DiscountPolicy>();
+
+            if (!stores.ContainsKey(storeCounter))
+
+            {
+
+                Store store = new Store(storeCounter, storeName, purchasePolicy, discountPolicy);
+
+                if (Users.ContainsKey(userID) && Users[userID].IsRegistered)
+
+                {
+
+                    Stores.Add(storeCounter, store);
+
+                    User user = searchUser(userID);
+
+                    store.initOwner(user);
+
+                    user.addRole(new Owner(store, user));
+
+                    return true;
+
+                }
+
+            }
+
+            return false;
+
+        }
         public String showCart(int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return "";
+                return "Error : Invalid user or store";
             return Users[user].showCart(store);
 
         }
@@ -225,7 +281,7 @@ namespace src.Domain
                     || userName.Equals("") || password.Equals("") || userName.Contains(" "))
                     return false;
                 User currUser = this.users[currUserId];
-                if (currUser != null && userName == currUser.UserName && password == currUser.Password)
+                if (currUser != null)
                 {
                     password = encryption.encrypt(userName + password);
                     return currUser.register(userName, password);
@@ -259,13 +315,6 @@ namespace src.Domain
             return false;
         }
 
-
-
-
-        internal bool openStore(string storeName, int v, int storeCounter)
-        {
-            throw new NotImplementedException();
-        }
 
         public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
         {
@@ -321,12 +370,17 @@ namespace src.Domain
             throw new NotImplementedException();
         }
 
-        internal bool removeUser(int v1, int v2)
+        public Boolean assignManager(int ownerId, int managerId, int storeId, List<int> permissionToManager)
         {
-            throw new NotImplementedException();
+            if (this.users.ContainsKey(ownerId) && this.users.ContainsKey(managerId) && ownerId != managerId)
+            {
+                User ownerUser = this.users[ownerId];
+                User managerUser = this.users[managerId];
+                return ownerUser.assignManager(managerUser, storeId, permissionToManager);
+            }
+            return false;
         }
 
-       
         internal bool assignOwner(int v1, int v2, int v3)
         {
             throw new NotImplementedException();
