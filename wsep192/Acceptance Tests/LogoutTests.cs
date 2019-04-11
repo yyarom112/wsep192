@@ -8,12 +8,13 @@ namespace Acceptance_Tests
     public class LogoutTests
     {
         ServiceLayer service;
+        string id;
 
         public void setUp()
         {
             service = new ServiceLayer();
             service.init("admin", "1234");
-            service.initUser("tmpuser");
+            id = service.initUser();
         }
 
 
@@ -21,7 +22,7 @@ namespace Acceptance_Tests
         public void TestMethod1_success()
         {
             setUp();
-            service.register("user", "password", "tmpuser");
+            service.register("user", "password", id);
             service.signIn("user", "password");
             Assert.AreEqual(true, service.signOut("user"));
         }

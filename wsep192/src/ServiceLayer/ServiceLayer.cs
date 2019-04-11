@@ -54,15 +54,18 @@ namespace src.ServiceLayer
 
         }
 
-        public bool initUser(String user)
+        public string initUser()
         {
-            bool result = system.initUserGuest(user, userCounter);
-            if (result)
+            string user;
+            do
             {
-                users.Add(user, userCounter);
-                userCounter++;
+                user = getId(users.Count);
             }
-            return result;
+            while (users.ContainsKey(user));
+            system.initUserGuest(user, userCounter);
+            users.Add(user, userCounter);
+            userCounter++;
+            return user;
         }
 
         //req1.1
@@ -88,15 +91,15 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(user))
                 return false;
-            
-            bool result= system.register(username, password, users[user]);
+
+            bool result = system.register(username, password, users[user]);
             if (result)
             {
                 int key = users[user];
                 users.Remove(user);
                 users.Add(username, key);
             }
-                
+
             return result;
         }
         //req2.5
@@ -293,6 +296,23 @@ namespace src.ServiceLayer
                 users.Remove(userToRemove);
             return result;
         }
+
+
+
+
+        public static string getId(int length)
+        {
+            char[] id = "0123456789".ToCharArray();
+            Random _random = new Random();
+            var sb = new StringBuilder(length);
+
+            for (int i = 0; i < length; i++)
+                sb.Append(id[_random.Next(10)]);
+
+            return sb.ToString();
+        }
+
+
 
 
     }
