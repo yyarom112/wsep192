@@ -56,14 +56,14 @@ namespace Acceptance_Tests
         public void TestMethod1_fail_assignByUser_scenario()
         {
             setUp();
-            Assert.AreEqual(false, service.assignManager(guestUser, managerUser, "store", permision));
+            Assert.AreEqual(false, service.assignManager(guestUser, managerUser, "adidas", permision));
         }
 
         [TestMethod]
         public void TestMethod1_fail_assignOwnerByOwner_scenario()
         {
             setUp();
-            Assert.AreEqual(false, service.assignManager(ownerUser, ownerUser, "store", permision));
+            Assert.AreEqual(false, service.assignManager(ownerUser, ownerUser, "adidas", permision));
         }
 
         [TestMethod]
@@ -71,14 +71,14 @@ namespace Acceptance_Tests
         {
             setUp();
             service.assignManager(ownerUser, managerUser, "store", permision);
-            Assert.AreEqual(false, service.assignManager(ownerUser, managerUser, "store", permision));
+            Assert.AreEqual(false, service.assignManager(ownerUser, managerUser, "adidas", permision));
         }
 
         [TestMethod]
         public void TestMethod1_fail_assignNotRegisterUser_scenario()
         {
             setUp();
-            Assert.AreEqual(false, service.assignManager(ownerUser, guestUser, "store", permision));
+            Assert.AreEqual(false, service.assignManager(ownerUser, guestUser, "adidas", permision));
         }
     }
 }
