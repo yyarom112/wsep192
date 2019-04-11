@@ -42,7 +42,6 @@ namespace Acceptance_Tests
             guestUser = "bla";
             password = "1212";
             service.register(guestUser, password,"tmpuser3");
-
         }
 
         [TestMethod]
@@ -70,12 +69,12 @@ namespace Acceptance_Tests
         public void TestMethod1_fail_assignExistManager_scenario()
         {
             setUp();
-            service.assignManager(ownerUser, managerUser, "store", permision);
+            service.assignManager(ownerUser, managerUser, "adidas", permision);
             Assert.AreEqual(false, service.assignManager(ownerUser, managerUser, "adidas", permision));
         }
 
         [TestMethod]
-        public void TestMethod1_fail_assignNotRegisterUser_scenario()
+        public void TestMethod1_fail_assignNotSignedInUser_scenario()
         {
             setUp();
             Assert.AreEqual(false, service.assignManager(ownerUser, guestUser, "adidas", permision));

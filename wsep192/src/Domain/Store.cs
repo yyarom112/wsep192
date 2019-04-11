@@ -76,9 +76,12 @@ namespace src.Domain
                     TreeNode<Role> managerRole = currOwner.AddChild(newManager);
                     RolesDictionary.Add(newManager.User.Id, managerRole);
                     newManager.User.Roles.Add(newManager.User.Id, newManager);
+                    LogManager.Instance.WriteToLog("Store - assign manger succeed");
                     return true;
                 }
+                LogManager.Instance.WriteToLog("Store - assign manger fail - new manager already exist in the store");
             }
+            LogManager.Instance.WriteToLog("Store - assign manger fail - owner not exist in the tree");
             return false;
         }
 
