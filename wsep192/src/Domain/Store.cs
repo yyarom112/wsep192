@@ -67,7 +67,7 @@ namespace src.Domain
 
         }
 
-        public Boolean assignManager(Role newManager, Owner owner)
+        public virtual Boolean assignManager(Role newManager, Owner owner)
         {
 
             TreeNode<Role> currOwner = RolesDictionary[owner.User.Id];
