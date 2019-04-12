@@ -23,6 +23,20 @@ namespace src.Domain
         internal Store Store { get => store; set => store = value; }
         internal Dictionary<int, ProductInCart> Products { get => products; set => products = value; }
 
+
+        public virtual int cartCheckout()
+        {
+            if (!store.confirmPurchasePolicy(products))
+                return -1;
+            int sum = 0;
+            foreach (ProductInCart p in products.Values)
+                sum += p.Product.Price * p.Quantity;
+            int discount = store.calculateDiscountPolicy(products);
+            return sum - discount;
+
+        }
+
+
         internal string showCart()
         {
             return createOutputTable();
