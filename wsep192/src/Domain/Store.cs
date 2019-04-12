@@ -18,12 +18,12 @@ namespace src.Domain
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
-        public Store(int id, string name, int storeRate, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy)
+        public Store(int id, string name, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy)
         {
             this.id = id;
             this.name = name;
             this.products = new Dictionary<int, ProductInStore>();
-            this.storeRate = storeRate;
+            this.storeRate = 0;
             this.roles = new TreeNode<Role>(null);
             this.rolesDictionary = new Dictionary<int, TreeNode<Role>>();
             this.purchasePolicy = purchasePolicy;
@@ -52,19 +52,35 @@ namespace src.Domain
             }
             return result;
         }
-       
+
+        public Role initOwner(User user)
+
+        {
+
+            Owner owner = new Owner(this, user);
+
+            RolesDictionary.Add(user.Id, Roles.AddChild(owner));
+
+            user.addRole(owner);
+
+            return owner;
+
+        }
+
         public Boolean assignManager(Role newManager, Owner owner)
         {
-            TreeNode<Role> currOwner = roles.FindInChildren(owner);
+
+            TreeNode<Role> currOwner = RolesDictionary[owner.User.Id];
             if (currOwner != null)
             {
-                TreeNode<Role> tmp = currOwner.FindInChildren(newManager);
-                if (currOwner.FindInChildren(newManager) == null)
+                if (!RolesDictionary.ContainsKey(newManager.User.Id))
                 {
-                    currOwner.AddChild(newManager);
+
+                    TreeNode<Role> managerRole = currOwner.AddChild(newManager);
+                    RolesDictionary.Add(newManager.User.Id, managerRole);
+                    newManager.User.Roles.Add(newManager.User.Id, newManager);
                     return true;
                 }
-
             }
             return false;
         }

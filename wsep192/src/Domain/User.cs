@@ -48,6 +48,50 @@ namespace src.Domain
             return false;
             
         }
+        public virtual Boolean assignManager(User managerUser, int storeId, List<int> permissionToManager)
+        {
+            if (this.state != state.signedIn || managerUser.state != state.signedIn)
+            {
+                return false;
+            }
+            if (this.Roles.ContainsKey(this.id))
+            {
+                Role role = Roles[this.id];
+                if (role != null && role.GetType() == typeof(Owner))
+                {
+                    Owner owner = (Owner)role;
+                    return owner.assignManager(managerUser, permissionToManager);
+
+                }
+            }
+            return false;
+        }
+
+        internal string showCart(int storeId)
+        {
+            return basket.showCart(storeId);
+        }
+
+
+        public virtual Boolean register(string userName, string password)
+        {
+            if (userName == null || password == null)
+            {
+                return false;
+            }
+            this.userName = userName;
+            this.password = password;
+            this.IsRegistered = true;
+            return true;
+        }
+
+        public void addRole(Role role)
+
+        {
+
+            Roles.Add(Id, role);
+
+        }
         public Role searchRoleByStoreID(int storeID,int userID)
         {
             foreach (Role role in roles.Values)
@@ -66,7 +110,7 @@ namespace src.Domain
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
 
-        public int basketCheckout(String address)
+        public virtual int basketCheckout(String address)
         {
             this.address = address;
             return basket.basketCheckout() + calcAddressFee(address);
@@ -80,11 +124,11 @@ namespace src.Domain
 
         }
 
-        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
+        public virtual ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
         {
             return this.basket.addProductsToCart(productsToInsert, storeId);
         }
-        public Boolean signIn(string userName, string password)
+        public virtual Boolean signIn(string userName, string password)
         {
             if (userName != null && password != null)
             {
@@ -110,22 +154,6 @@ namespace src.Domain
             }
         }
 
-        public Boolean register(string userName, string password)
-        {
-            if (userName == null || password == null)
-            {
-                return false;
-            }
-            this.userName = userName;
-            this.password = password;
-            this.IsRegistered = true;
-            return true;
-        }
-
-        internal string showCart(int storeId)
-        {
-            return basket.showCart(storeId);
-        }
 
         internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
         {
