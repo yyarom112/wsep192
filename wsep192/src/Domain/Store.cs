@@ -54,20 +54,17 @@ namespace src.Domain
         }
 
         public Role initOwner(User user)
-
         {
-
             Owner owner = new Owner(this, user);
 
             RolesDictionary.Add(user.Id, Roles.AddChild(owner));
-
+            Roles.AddChild(owner);
             user.addRole(owner);
 
             return owner;
-
         }
 
-        public Boolean assignManager(Role newManager, Owner owner)
+        public virtual Boolean assignManager(Role newManager, Owner owner)
         {
 
             TreeNode<Role> currOwner = RolesDictionary[owner.User.Id];
@@ -79,9 +76,12 @@ namespace src.Domain
                     TreeNode<Role> managerRole = currOwner.AddChild(newManager);
                     RolesDictionary.Add(newManager.User.Id, managerRole);
                     newManager.User.Roles.Add(newManager.User.Id, newManager);
+                    LogManager.Instance.WriteToLog("Store - assign manger succeed");
                     return true;
                 }
+                LogManager.Instance.WriteToLog("Store - assign manger fail - new manager already exist in the store");
             }
+            LogManager.Instance.WriteToLog("Store - assign manger fail - owner not exist in the tree");
             return false;
         }
 
