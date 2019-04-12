@@ -10,11 +10,14 @@ namespace Acceptance_Tests
     public class assignManagerAcceptance
     {
         ServiceLayer service;
+        String idOwner;
         String ownerUser;
         String passwordUser;
+        String idManager;
         String managerUser;
         String managerPassword;
         List<String> permision;
+        String idGuest;
         String guestUser;
         String password;
 
@@ -22,26 +25,26 @@ namespace Acceptance_Tests
         {
             service = new ServiceLayer();
             service.init("Admin", "2323");
-            service.initUser("tmpuser1");
-            service.initUser("tmpuser2");
-            service.initUser("tmpuser3");
+            idOwner = service.initUser();
             ownerUser = "Seifan";
             passwordUser = "2345";
-            service.register(ownerUser, passwordUser, "tmpuser1");
+            service.register(ownerUser, passwordUser, idOwner);
             service.signIn(ownerUser, passwordUser);
 
+            idManager = service.initUser();
             managerUser = "Yuval";
             managerPassword = "2323";
-            service.register(managerUser, managerPassword, "tmpuser2");
+            service.register(managerUser, managerPassword, idManager);
             service.signIn(managerUser, managerPassword);
             permision = new List<String>() {"AddDiscountPolicy"};
 
 
             service.openStore("adidas", ownerUser);
 
+            idGuest = service.initUser();
             guestUser = "bla";
             password = "1212";
-            service.register(guestUser, password,"tmpuser3");
+            service.register(guestUser, password, idGuest);
         }
 
         [TestMethod]

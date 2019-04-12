@@ -12,14 +12,14 @@ namespace Acceptance_Tests
         public void setUp()
         {
             service = new ServiceLayer();
-            service.initUser("tmpuser");
+            service.initUser();
         }
 
         [TestMethod]
         public void TestMethod1_success()
         {
             setUp();
-            Assert.AreEqual(true, service.init("Admin","SecretPassword1D4F6Yt7"));
+            Assert.AreEqual(true, service.init("Admin", "SecretPassword1D4F6Yt7"));
         }
     }
 }
