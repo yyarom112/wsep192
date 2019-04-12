@@ -31,7 +31,6 @@ namespace IntegrationTests
             managerUser = new User(7878, "baba", "3434", false, false);
             managerUser.State = state.signedIn;
             permmision = new List<int>() { 2, 5, 6 };
-            permmision = new List<int>() { 2, 5, 6 };
 
             user1 = new User(2456, "luli", "5656", false, false);
 

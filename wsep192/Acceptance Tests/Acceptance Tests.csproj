@@ -51,7 +51,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="addProductToCart.cs" />
+    <Compile Include="assignManagerAcceptance.cs" />
+    <Compile Include="EditProductInCartTests.cs" />
     <Compile Include="RemoveManager_Req46.cs" />
+    <Compile Include="RemoveProductsFromCartTests.cs" />
     <Compile Include="ShowCartTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
