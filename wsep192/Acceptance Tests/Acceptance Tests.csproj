@@ -53,6 +53,7 @@
     <Compile Include="addProductToCart.cs" />
     <Compile Include="assignManagerAcceptance.cs" />
     <Compile Include="EditProductInCartTests.cs" />
+    <Compile Include="ManagerPremissionTests.cs" />
     <Compile Include="RemoveManager_Req46.cs" />
     <Compile Include="RemoveProductsFromCartTests.cs" />
     <Compile Include="ShowCartTests.cs" />
