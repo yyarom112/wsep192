@@ -96,35 +96,19 @@ namespace src.Domain
         }
 
         internal bool openStore(string storeName, int userID, int storeCounter)
-
         {
-
             List<PurchasePolicy> purchasePolicy = new List<PurchasePolicy>();
-
             List<DiscountPolicy> discountPolicy = new List<DiscountPolicy>();
-
             if (!stores.ContainsKey(storeCounter))
-
             {
-
                 Store store = new Store(storeCounter, storeName, purchasePolicy, discountPolicy);
-
                 if (Users.ContainsKey(userID) && Users[userID].IsRegistered)
-
                 {
-
                     Stores.Add(storeCounter, store);
-
                     User user = searchUser(userID);
-
                     store.initOwner(user);
-
-                    user.addRole(new Owner(store, user));
-
                     return true;
-
                 }
-
             }
 
             return false;
