@@ -39,6 +39,7 @@ namespace src.Domain
 
         internal string showCart()
         {
+            LogManager.Instance.WriteToLog("ShoppingCart:showCart success\n");
             return createOutputTable();
         }
 
@@ -78,8 +79,12 @@ namespace src.Domain
         internal bool editProductQuantityInCart(int productId, int quantity)
         {
             if (!products.ContainsKey(productId))
+            {
+                LogManager.Instance.WriteToLog("ShoppingCart:editProductQuantityInCart failed - shopping cart does not contain the product\n");
                 return false;
+            }
             products[productId].Quantity = quantity;
+            LogManager.Instance.WriteToLog("ShoppingCart:editProductQuantityInCart success\n");
             return true;
         }
 
@@ -88,12 +93,15 @@ namespace src.Domain
             foreach (KeyValuePair<int, int> pair in productsToRemove)
             {
                 if (!products.ContainsKey(pair.Key) || products[pair.Key].Quantity < pair.Value)
-                    return false;
+                    LogManager.Instance.WriteToLog("ShoppingCart:removeProductQuantityFromCart failed - shopping cart does not contain the product " +
+                        "or invalid quantity\n");
+                return false;
             }
             foreach (KeyValuePair<int, int> pair in productsToRemove)
             {
                 products[pair.Key].Quantity -= pair.Value;
             }
+            LogManager.Instance.WriteToLog("ShoppingCart:removeProductsFromCart success\n");
             return true;
         }
     }

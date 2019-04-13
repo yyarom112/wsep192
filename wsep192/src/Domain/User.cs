@@ -118,8 +118,12 @@ namespace src.Domain
         internal bool signOut()
         {
             if (state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User:signOut failed - user "+UserName+" didn't sign in\n");
                 return false;
+            }
             state = state.visitor;
+            LogManager.Instance.WriteToLog("User:signOut success - "+userName+"\n");
             return true;
 
         }
