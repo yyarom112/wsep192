@@ -8,7 +8,6 @@ namespace src.Domain
     {
         public bool connect()
         {
-            //throw new NotImplementedException();
             return true;
         }
 
