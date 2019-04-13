@@ -21,7 +21,9 @@ namespace Acceptance_Tests
             user = service.initUser();
             service.register("owner", "123", owner);
             service.register("user", "123", user);
-            service.openStore("store", owner);
+            service.signIn("owner", "123");
+            service.signIn("user", "123");
+            service.openStore("store", "owner");
             
         }
 
@@ -31,6 +33,7 @@ namespace Acceptance_Tests
             service.assignManager("user", "owner", "store", permissions);
             string tmp_user = service.initUser();
             service.register("tmp", "123", tmp_user);
+            service.signIn("tmp", "123");
         }
 
         public void success_setUp()
