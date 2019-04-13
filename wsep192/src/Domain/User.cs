@@ -34,6 +34,17 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
 
         }
+
+        public int Id { get => id; set => id = value; }
+        public string UserName { get => userName; set => userName = value; }
+        public string Password { get => password; set => password = value; }
+        public string Address { get => address; set => address = value; }
+        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
+        public bool IsRegistered { get => isRegistered; set => isRegistered = value; }
+        internal state State { get => state; set => state = value; }
+        internal ShoppingBasket Basket { get => basket; set => basket = value; }
+        internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+
         public bool removeOwner(int userID,int storeID)
         {
             if (this.state != state.signedIn)
@@ -99,16 +110,7 @@ namespace src.Domain
                     return role;
             return null;
         }
-        public int Id { get => id; set => id = value; }
-        public string UserName { get => userName; set => userName = value; }
-        public string Password { get => password; set => password = value; }
-        public string Address { get => address; set => address = value; }
-        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
-        public bool IsRegistered { get => isRegistered; set => isRegistered = value; }
-        internal state State { get => state; set => state = value; }
-        internal ShoppingBasket Basket { get => basket; set => basket = value; }
-        internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
-
+        
 
         public virtual int basketCheckout(String address)
         {
