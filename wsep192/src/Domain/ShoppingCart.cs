@@ -37,7 +37,7 @@ namespace src.Domain
         }
 
 
-        internal string showCart()
+        internal virtual string showCart()
         {
             return createOutputTable();
         }
@@ -75,7 +75,7 @@ namespace src.Domain
 
         }
 
-        internal bool editProductQuantityInCart(int productId, int quantity)
+        internal virtual bool editProductQuantityInCart(int productId, int quantity)
         {
             if (!products.ContainsKey(productId))
                 return false;
@@ -83,7 +83,7 @@ namespace src.Domain
             return true;
         }
 
-        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove)
+        internal virtual bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove)
         {
             foreach (KeyValuePair<int, int> pair in productsToRemove)
             {
