@@ -20,7 +20,7 @@ namespace Acceptance_Tests
             service.initUser();
             service.register("aviv", "1234", "tmpuser");
             service.signIn("aviv", "1234");
-            //TODO: continue this test when you have req 4.1
+            
         }
         
     }
