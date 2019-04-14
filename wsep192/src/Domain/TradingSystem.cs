@@ -119,8 +119,6 @@ namespace src.Domain
 
                     store.initOwner(user);
 
-                    user.addRole(new Owner(store, user));
-
                     return true;
 
                 }
