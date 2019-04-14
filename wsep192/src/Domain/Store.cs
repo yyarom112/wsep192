@@ -89,24 +89,35 @@ namespace src.Domain
         {
             foreach (ProductInCart p in cart.Products.Values)
             {
-                if (opt.Equals("-"))
+                if (!this.products.ContainsKey(p.Product.Id))
                 {
-                    if (p.Quantity <= this.products[p.Product.Id].Quantity)
-                        if (opt.Equals("-"))
-                            this.products[p.Product.Id].Quantity -= p.Quantity;
+                    cart.Products[p.Product.Id].Quantity = 0;
+                    LogManager.Instance.WriteToLog("The attempt to purchase product "+p.Product.Id+" failed because it does not belong to the store.\n");
 
-                        else
-                        {
-                            p.Quantity = this.products[p.Product.Id].Quantity;
-                            this.products[p.Product.Id].Quantity = 0;
-                        }
                 }
                 else
                 {
-                    this.products[p.Product.Id].Quantity += p.Quantity;
-                }
+                    if (opt.Equals("-"))
+                    {
 
+                        if (p.Quantity <= this.products[p.Product.Id].Quantity)
+                            if (opt.Equals("-"))
+                                this.products[p.Product.Id].Quantity -= p.Quantity;
+
+                            else
+                            {
+                                p.Quantity = this.products[p.Product.Id].Quantity;
+                                this.products[p.Product.Id].Quantity = 0;
+                            }
+                    }
+                    else
+                    {
+                        this.products[p.Product.Id].Quantity += p.Quantity;
+                    }
+                }
             }
+            LogManager.Instance.WriteToLog("Products have declined / returned to store stock successfully.\n");
+
         }
 
         public virtual void checkQuntity(ShoppingCart cart)
@@ -124,7 +135,14 @@ namespace src.Domain
             List<ProductInStore> productsInStore = new List<ProductInStore>();
             foreach (ProductInCart p in products.Values)
             {
-                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
+                ProductInStore productInStore = new ProductInStore(-1, this, p.Product);
+                if (!this.products.ContainsKey(p.Product.Id))
+                    return false; 
+                if(p.Quantity> this.products[p.Product.Id].Quantity)
+                {
+                    p.Quantity = this.products[p.Product.Id].Quantity;
+                    p.ShoppingCart.Products[p.Product.Id].Quantity= this.products[p.Product.Id].Quantity;
+                }
                 productsInStore.Add(productInStore);
             }
             foreach (PurchasePolicy pp in purchasePolicy)
