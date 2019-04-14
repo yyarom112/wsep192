@@ -56,6 +56,7 @@
     <Compile Include="openStore.cs" />
     <Compile Include="RemoveManager_Req46.cs" />
     <Compile Include="RemoveProductsFromCartTests.cs" />
+    <Compile Include="removeOwner.cs" />
     <Compile Include="searchProduct.cs" />
     <Compile Include="ShowCartTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

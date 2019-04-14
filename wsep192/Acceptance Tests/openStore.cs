@@ -29,7 +29,7 @@ namespace Acceptance_Tests
         {
             service = new ServiceLayer();
             service.init("admin", "1234");
-            service.initUser("tmpuser");
+            service.initUser();
             discountPolicies = new List<DiscountPolicy>();
             purchasePolicies = new List<PurchasePolicy>();
             user = new User(202113609, "Yonit Levy", "23&As2", false, false);

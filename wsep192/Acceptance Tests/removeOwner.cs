@@ -8,7 +8,7 @@ namespace Acceptance_Tests
 {
 
     [TestClass]
-    public class searchProduct
+    public class removeOwner
     {
 
         ServiceLayer service;
