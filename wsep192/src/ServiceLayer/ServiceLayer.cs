@@ -179,7 +179,7 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(user))
                 return "Error: invalid user";
-            return system.payForBasket(cardNum, date, users[user]).ToString();//TODO: CHANGE TO STRING - YUVAL
+            return system.payForBasket(cardNum, date, users[user]).ToString();
         }
 
         //req3.1

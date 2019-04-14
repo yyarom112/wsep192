@@ -113,6 +113,8 @@ namespace src.Domain
         public virtual int basketCheckout(String address)
         {
             this.address = address;
+            if (Basket.ShoppingCarts.Count == 0)
+                return 0;
             return basket.basketCheckout() + calcAddressFee(address);
         }
         internal bool signOut()

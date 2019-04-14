@@ -37,6 +37,7 @@ namespace src.Domain
                 return -1;
             else
             {
+
                 int output= this.users[userID].basketCheckout(address);
                 if(output==-1)
                     LogManager.Instance.WriteToLog("Could not close basket.\n");
