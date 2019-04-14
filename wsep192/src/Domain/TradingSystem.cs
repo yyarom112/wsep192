@@ -36,7 +36,15 @@ namespace src.Domain
             if (!this.users.ContainsKey(userID))
                 return -1;
             else
+            {
+                ShoppingBasket basket = users[userID].Basket;
+                foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
+                {
+                    cart.Store.checkQuntity(cart);
+                }
+                users[userID].Basket = basket;
                 return this.users[userID].basketCheckout(address);
+            }
         }
 
 

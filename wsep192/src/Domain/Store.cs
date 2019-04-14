@@ -108,6 +108,15 @@ namespace src.Domain
 
             }
         }
+
+        public virtual void checkQuntity(ShoppingCart cart)
+        {
+            foreach (ProductInCart p in cart.Products.Values)
+            {
+                if (p.Quantity > this.products[p.Product.Id].Quantity)
+                    p.Quantity = this.products[p.Product.Id].Quantity;
+            }
+        }
         public virtual bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products)
         {
             if (this.PurchasePolicy == null)
@@ -146,12 +155,12 @@ namespace src.Domain
             return sum;
         }
 
-        public bool removeOwner(int userID,Role owner)
+        public bool removeOwner(int userID, Role owner)
         {
             TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
             TreeNode<Role> roleNode = null;
             bool flag = false;
-            
+
             if (RolesDictionary.ContainsKey(userID))
                 roleNode = RolesDictionary[userID];
             if (roleNode != null)
@@ -160,10 +169,10 @@ namespace src.Domain
                 {
                     if (roleNode.getChildren() == null || roleNode.getChildren().Count == 0)
                         flag = true;
-                    foreach(TreeNode<Role> child in roleNode.getChildren())
+                    foreach (TreeNode<Role> child in roleNode.getChildren())
                         flag = removeOwner(child.Data.User.Id, roleNode.Data);
                 }
-                if (flag&&ownerNode.RemoveChild(roleNode)
+                if (flag && ownerNode.RemoveChild(roleNode)
                      && RolesDictionary.Remove(userID)
                     && roleNode.Data.User.Roles.Remove(this.Id))
                     return true;
@@ -176,7 +185,7 @@ namespace src.Domain
 
         }
 
-        public bool removeManager(int userID,Role owner)
+        public bool removeManager(int userID, Role owner)
         {
             TreeNode<Role> roleNode = null;
             TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
@@ -206,9 +215,10 @@ namespace src.Domain
 
         internal int getProduct(string product)
         {
-            foreach (int p in Products.Keys) {
-                if((Products[p].Product.ProductName).Equals(product))
-                return p;
+            foreach (int p in Products.Keys)
+            {
+                if ((Products[p].Product.ProductName).Equals(product))
+                    return p;
             }
             return -1;
         }
