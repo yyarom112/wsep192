@@ -133,7 +133,7 @@ namespace UnitTests
             Assert.AreEqual(1, basket_user.ShoppingCarts.Count);
 
 
-            StubCart cart = new StubCart(-1, null);
+            StubCart cart = new StubCart(-1, null,10);
             cart.copy(basket_user.ShoppingCarts[store.Id]);
             basket_user.ShoppingCarts[store.Id] = cart;
 
@@ -197,10 +197,10 @@ namespace UnitTests
 
     internal class StubCart: ShoppingCart
     {
-
-        public StubCart(int storeId, Store store):base(storeId,store)
+        private int retval;
+        public StubCart(int storeId, Store store, int ret):base(storeId,store)
         {
-
+            retval = ret;
         }
 
         public void copy(ShoppingCart cart)
@@ -226,7 +226,10 @@ namespace UnitTests
             }
 
         }
-
+        public override int cartCheckout()
+        {
+            return  retval;
+        }
     }
 
 

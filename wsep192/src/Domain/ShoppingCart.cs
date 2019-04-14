@@ -27,7 +27,10 @@ namespace src.Domain
         public virtual int cartCheckout()
         {
             if (!store.confirmPurchasePolicy(products))
+            {
+                LogManager.Instance.WriteToLog("Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.\n");
                 return -1;
+            }
             int sum = 0;
             foreach (ProductInCart p in products.Values)
                 sum += p.Product.Price * p.Quantity;

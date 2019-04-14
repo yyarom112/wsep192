@@ -36,32 +36,97 @@ namespace src.Domain
             if (!this.users.ContainsKey(userID))
                 return -1;
             else
-                return this.users[userID].basketCheckout(address);
+            {
+
+                int output= this.users[userID].basketCheckout(address);
+                if(output==-1)
+                    LogManager.Instance.WriteToLog("Could not close basket.\n");
+                else
+                {
+                    LogManager.Instance.WriteToLog("Successfully closed the basket.\n");
+
+                }
+                return output;
+
+            }
         }
-        public ShoppingBasket payForBasket(long cardNumber, DateTime date, int userID)
+
+
+        public List<String[]> payForBasket(long cardNumber, DateTime date, int userID)
         {
             ShoppingBasket basket = users[userID].Basket;
+            Dictionary<int, int> storeToPay = new Dictionary<int, int>(); //<storeId,Sum>
             foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
             {
                 cart.Store.updateCart(cart, "-");
+                storeToPay.Add(cart.Store.Id, cart.cartCheckout());
             }
-
-            if (!this.financialSystem.payment(cardNumber, date, basket.basketCheckout()))
+            foreach(KeyValuePair<int,int> storeSum in storeToPay)
             {
+                if (!this.financialSystem.payment(cardNumber, date, storeSum.Value, storeSum.Key))
+                {
+                    foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
+                    {
+                        cart.Store.updateCart(cart, "+");
+                    }
+                    LogManager.Instance.WriteToLog("Purchase failed due to product billing failure.\n");
+
+                    return null;
+                }
+            }
+            if (!this.supplySystem.deliverToCustomer(this.Users[userID].Address, "Some package Details"))
+            {
+                foreach (KeyValuePair<int, int> storeSum in storeToPay)
+                {
+                    this.financialSystem.Chargeback(cardNumber, date, storeSum.Value);
+                }
                 foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
                 {
                     cart.Store.updateCart(cart, "+");
                 }
+                LogManager.Instance.WriteToLog("The purchase failed due to a failure in the delivery system.\n");
+
                 return null;
             }
-
-
-            if (!this.supplySystem.deliverToCustomer(this.Users[userID].Address, "Some package Details"))
+            List<String[]> output = new List<string[]>(); 
+            foreach(ShoppingCart cart in basket.ShoppingCarts.Values)
             {
-                return null;
+                foreach(String[] toInsert in cartToString(cart))
+                    output.Add(toInsert);
             }
+            LogManager.Instance.WriteToLog("Making the cart purchase succeeded\n");
+            this.users[userID].Basket = new ShoppingBasket();
+            return output;
+        }
+        public List<String[]> cartToString(ShoppingCart cart)
+        {
+            List<String[]> output = new List<string[]>();
+            foreach (ProductInCart p in cart.Products.Values)
+            {
+                String[] p_string = new String[5];
+                p_string[0] = p.Product.ProductName;
+                p_string[1] = p.ShoppingCart.Store.Name;
+                p_string[2] = p.Quantity.ToString();
+                p_string[3] = p.Product.Price.ToString();
+                p_string[4] = (p.Quantity*p.Product.Price).ToString();
+                output.Add(p_string);
+            }
+            return output;
+        }
+        
 
-            return basket;
+
+        private String productsToString(List<ProductInStore> products)
+        {
+            String res = "";
+            foreach (ProductInStore p in products)
+            {
+                res += res + "Name: " + p.Product.ProductName + "\n"
+                     + "Store Name: " + p.Store.Name + "\n"
+                    + "Quantity: " + p.Quantity
+                    ;
+            }
+            return res;
         }
 
 
@@ -191,18 +256,7 @@ namespace src.Domain
             }
             return productsToString(products);
         }
-        private String productsToString(List<ProductInStore> products)
-        {
-            String res = "";
-            foreach(ProductInStore p in products)
-            {
-                res += res + "Name: " + p.Product.ProductName + "\n"
-                     + "Store Name: " + p.Store.Name +"\n"
-                    + "Quantity: " + p.Quantity
-                    ;
-            }
-            return res;
-        }
+       
         internal bool initUserGuest(string user,int userCounter)
         {
             User guest = new User(userCounter, user , null,false,false);

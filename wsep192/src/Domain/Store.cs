@@ -89,23 +89,43 @@ namespace src.Domain
         {
             foreach (ProductInCart p in cart.Products.Values)
             {
-                if (opt.Equals("-"))
+                if (!this.products.ContainsKey(p.Product.Id))
                 {
-                    if (p.Quantity <= this.products[p.Product.Id].Quantity)
-                        if (opt.Equals("-"))
-                            this.products[p.Product.Id].Quantity -= p.Quantity;
+                    cart.Products[p.Product.Id].Quantity = 0;
+                    LogManager.Instance.WriteToLog("The attempt to purchase product "+p.Product.Id+" failed because it does not belong to the store.\n");
 
-                        else
-                        {
-                            p.Quantity = this.products[p.Product.Id].Quantity;
-                            this.products[p.Product.Id].Quantity = 0;
-                        }
                 }
                 else
                 {
-                    this.products[p.Product.Id].Quantity += p.Quantity;
-                }
+                    if (opt.Equals("-"))
+                    {
 
+                        if (p.Quantity <= this.products[p.Product.Id].Quantity)
+                            if (opt.Equals("-"))
+                                this.products[p.Product.Id].Quantity -= p.Quantity;
+
+                            else
+                            {
+                                p.Quantity = this.products[p.Product.Id].Quantity;
+                                this.products[p.Product.Id].Quantity = 0;
+                            }
+                    }
+                    else
+                    {
+                        this.products[p.Product.Id].Quantity += p.Quantity;
+                    }
+                }
+            }
+            LogManager.Instance.WriteToLog("Products have declined / returned to store stock successfully.\n");
+
+        }
+
+        public virtual void checkQuntity(ShoppingCart cart)
+        {
+            foreach (ProductInCart p in cart.Products.Values)
+            {
+                if (p.Quantity > this.products[p.Product.Id].Quantity)
+                    p.Quantity = this.products[p.Product.Id].Quantity;
             }
         }
         public virtual bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products)
@@ -115,7 +135,14 @@ namespace src.Domain
             List<ProductInStore> productsInStore = new List<ProductInStore>();
             foreach (ProductInCart p in products.Values)
             {
-                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
+                ProductInStore productInStore = new ProductInStore(-1, this, p.Product);
+                if (!this.products.ContainsKey(p.Product.Id))
+                    return false; 
+                if(p.Quantity> this.products[p.Product.Id].Quantity)
+                {
+                    p.Quantity = this.products[p.Product.Id].Quantity;
+                    p.ShoppingCart.Products[p.Product.Id].Quantity= this.products[p.Product.Id].Quantity;
+                }
                 productsInStore.Add(productInStore);
             }
             foreach (PurchasePolicy pp in purchasePolicy)
@@ -126,19 +153,7 @@ namespace src.Domain
             return true;
 
         }
-        public void updateCart(ShoppingCart cart)
-        {
-            foreach (ProductInCart p in cart.Products.Values)
-            {
-                if (p.Quantity <= this.products[p.Product.Id].Quantity)
-                    this.products[p.Product.Id].Quantity -= p.Quantity;
-                else
-                {
-                    p.Quantity = this.products[p.Product.Id].Quantity;
-                    this.products[p.Product.Id].Quantity = 0;
-                }
-            }
-        }
+
 
         public virtual int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
         {
@@ -158,12 +173,12 @@ namespace src.Domain
             return sum;
         }
 
-        public bool removeOwner(int userID,Role owner)
+        public bool removeOwner(int userID, Role owner)
         {
             TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
             TreeNode<Role> roleNode = null;
             bool flag = false;
-            
+
             if (RolesDictionary.ContainsKey(userID))
                 roleNode = RolesDictionary[userID];
             if (roleNode != null)
@@ -172,10 +187,10 @@ namespace src.Domain
                 {
                     if (roleNode.getChildren() == null || roleNode.getChildren().Count == 0)
                         flag = true;
-                    foreach(TreeNode<Role> child in roleNode.getChildren())
+                    foreach (TreeNode<Role> child in roleNode.getChildren())
                         flag = removeOwner(child.Data.User.Id, roleNode.Data);
                 }
-                if (flag&&ownerNode.RemoveChild(roleNode)
+                if (flag && ownerNode.RemoveChild(roleNode)
                      && RolesDictionary.Remove(userID)
                     && roleNode.Data.User.Roles.Remove(this.Id))
                     return true;
@@ -188,7 +203,7 @@ namespace src.Domain
 
         }
 
-        public bool removeManager(int userID,Role owner)
+        public bool removeManager(int userID, Role owner)
         {
             TreeNode<Role> roleNode = null;
             TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
@@ -218,9 +233,10 @@ namespace src.Domain
 
         internal int getProduct(string product)
         {
-            foreach (int p in Products.Keys) {
-                if((Products[p].Product.ProductName).Equals(product))
-                return p;
+            foreach (int p in Products.Keys)
+            {
+                if ((Products[p].Product.ProductName).Equals(product))
+                    return p;
             }
             return -1;
         }
