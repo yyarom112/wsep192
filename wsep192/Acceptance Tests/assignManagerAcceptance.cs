@@ -34,13 +34,13 @@ namespace Acceptance_Tests
             managerPassword = "2323";
             service.register(managerUser, managerPassword, "tmpuser2");
             service.signIn(managerUser, managerPassword);
-            permision = new List<String>() { "AddDiscountPolicy" };
+            permision = new List<String>() {"AddDiscountPolicy"};
 
             service.openStore("adidas", ownerUser);
-
+           
             user1 = "bla";
             password = "1212";
-            service.register(user1, password, "tmpuser3");
+            service.register(user1, password,"tmpuser3");
 
         }
 

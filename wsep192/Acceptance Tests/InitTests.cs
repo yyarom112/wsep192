@@ -12,7 +12,7 @@ namespace Acceptance_Tests
         public void setUp()
         {
             service = new ServiceLayer();
-            service.initUser("tmpuser");
+            service.initUser();
         }
 
         [TestMethod]

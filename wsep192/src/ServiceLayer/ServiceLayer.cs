@@ -38,8 +38,9 @@ namespace src.ServiceLayer
         private void addPermissions()
         {
 
-            permissions.Add("AddDiscountPolicy", 1);
-            permissions.Add("AddPurchasePolicy", 2);
+            permissions.Add("AddDiscountPolicy", 0);
+            permissions.Add("AddPurchasePolicy", 1);
+            permissions.Add("CreateNewProductInStore", 2);
             permissions.Add("EditProductQuantityInStore", 3);
             permissions.Add("AddProductToStore", 4);
             permissions.Add("RemoveProductFromStore", 5);
@@ -51,18 +52,22 @@ namespace src.ServiceLayer
             permissions.Add("AssignOwner", 11);
             permissions.Add("AssignManager", 12);
             permissions.Add("CloseStore", 13);
+            
 
         }
 
-        public bool initUser(String user)
+        public string initUser()
         {
-            bool result = system.initUserGuest(user, userCounter);
-            if (result)
+            string user;
+            do
             {
-                users.Add(user, userCounter);
-                userCounter++;
+                user = getId(users.Count);
             }
-            return result;
+            while (users.ContainsKey(user));
+            system.initUserGuest(user, userCounter);
+            users.Add(user, userCounter);
+            userCounter++;
+            return user;
         }
 
         //req1.1
@@ -88,15 +93,15 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(user))
                 return false;
-            
-            bool result= system.register(username, password, users[user]);
+
+            bool result = system.register(username, password, users[user]);
             if (result)
             {
                 int key = users[user];
                 users.Remove(user);
                 users.Add(username, key);
             }
-                
+
             return result;
         }
         //req2.5
@@ -293,6 +298,23 @@ namespace src.ServiceLayer
                 users.Remove(userToRemove);
             return result;
         }
+
+
+
+
+        public static string getId(int length)
+        {
+            char[] id = "0123456789".ToCharArray();
+            Random _random = new Random();
+            var sb = new StringBuilder(length);
+
+            for (int i = 0; i < length; i++)
+                sb.Append(id[_random.Next(10)]);
+
+            return sb.ToString();
+        }
+
+
 
 
     }
