@@ -54,20 +54,17 @@ namespace src.Domain
         }
 
         public Role initOwner(User user)
-
         {
-
             Owner owner = new Owner(this, user);
 
             RolesDictionary.Add(user.Id, Roles.AddChild(owner));
-
+            Roles.AddChild(owner);
             user.addRole(owner);
 
             return owner;
-
         }
 
-        public Boolean assignManager(Role newManager, Owner owner)
+        public virtual Boolean assignManager(Role newManager, Owner owner)
         {
 
             TreeNode<Role> currOwner = RolesDictionary[owner.User.Id];
