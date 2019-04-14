@@ -22,9 +22,9 @@ namespace Acceptance_Tests
         {
             service = new ServiceLayer();
             service.init("Admin", "2323");
-            service.initUser("tmpuser1");
-            service.initUser("tmpuser2");
-            service.initUser("tmpuser3");
+            service.initUser();
+            service.initUser();
+            service.initUser();
             ownerUser = "Seifan";
             passwordUser = "2345";
             service.register(ownerUser, passwordUser, "tmpuser1");
