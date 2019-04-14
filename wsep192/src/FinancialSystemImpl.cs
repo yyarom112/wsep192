@@ -15,7 +15,7 @@ namespace src
             return true;
         }
 
-        public bool payment(long cardNumber, DateTime date, int amount)
+        public bool payment(long cardNumber, DateTime date, int amount, int paymentTarget)
         {
             return true;
         }
@@ -24,6 +24,7 @@ namespace src
         {
             return true;
         }
+
 
     }
 }

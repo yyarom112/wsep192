@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using src;
 using src.Domain;
 
-namespace UnitTests
+namespace IntegrationTests
 {
     [TestClass]
     public class BuyingBasketReq2
@@ -39,7 +40,7 @@ namespace UnitTests
 
             store = new Store(-1, "store", null, null);
 
-            p1 = new Product(0, "first", "","", 5000);
+            p1 = new Product(0, "first", "", "", 5000);
             p2 = new Product(1, "second", "", "", 5000);
             p3 = new Product(2, "third", "", "", 5000);
             p4 = new Product(3, "fourth", "", "", 5000);
@@ -67,14 +68,14 @@ namespace UnitTests
         public void TestMethod1_cartCheckout_without_discount_in_policy()
         {
             setUp();
-            store=new StubStore(-1, "store", 0, null, null,true,0);
+            store = new Store(-1, "store", null, null);
             store.Products.Add(p1.Id, pis1);
             store.Products.Add(p2.Id, pis2);
             store.Products.Add(p3.Id, pis3);
             store.Products.Add(p4.Id, pis4);
             ShoppingCart cart = new ShoppingCart(store.Id, store);
 
-            cart.Products.Add(p1.Id, new ProductInCart(1,cart,p1));
+            cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
             cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
@@ -88,7 +89,7 @@ namespace UnitTests
         public void TestMethod1_cartCheckout_without_discount_no_in_policy()
         {
             setUp();
-            store = new StubStore(-1, "store", 0, null, null, false,0);
+            store = new Store(-1, "store", null, null);
             store.Products.Add(p1.Id, pis1);
             store.Products.Add(p2.Id, pis2);
             store.Products.Add(p3.Id, pis3);
@@ -101,31 +102,31 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(-1, cart.cartCheckout());
+            Assert.AreEqual(20000, cart.cartCheckout());
 
         }
 
+        //Not relevant to this version because there is no discount
+        //[TestMethod]
+        //public void TestMethod1_cartCheckout_with_discount_in_policy()
+        //{
+        //    setUp();
+        //    store = new Store(-1, "store", null, null);
+        //    store.Products.Add(p1.Id, pis1);
+        //    store.Products.Add(p2.Id, pis2);
+        //    store.Products.Add(p3.Id, pis3);
+        //    store.Products.Add(p4.Id, pis4);
+        //    ShoppingCart cart = new ShoppingCart(store.Id, store);
 
-        [TestMethod]
-        public void TestMethod1_cartCheckout_with_discount_in_policy()
-        {
-            setUp();
-            store = new StubStore(-1, "store", 0, null, null, true,p1.Price);
-            store.Products.Add(p1.Id, pis1);
-            store.Products.Add(p2.Id, pis2);
-            store.Products.Add(p3.Id, pis3);
-            store.Products.Add(p4.Id, pis4);
-            ShoppingCart cart = new ShoppingCart(store.Id, store);
-
-            cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
-            cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
-            cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
-            cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
+        //    cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
+        //    cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
+        //    cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
+        //    cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(p2.Price + p3.Price + p4.Price, cart.cartCheckout());
+        //    Assert.AreEqual(p2.Price + p3.Price + p4.Price, cart.cartCheckout());
 
-        }
+        //}
 
         [TestMethod]
         public void TestMethod1_confirmPurchasePolicy_PolicyDictionryEmpty()
@@ -180,7 +181,7 @@ namespace UnitTests
             cart_tocheck.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
             bool check = true;
-            foreach(ProductInCart p in cart.Products.Values)
+            foreach (ProductInCart p in cart.Products.Values)
             {
                 if (!cart_tocheck.Products.ContainsKey(p.Product.Id) || cart_tocheck.Products[p.Product.Id].Quantity != p.Quantity)
                     check = false;
@@ -224,42 +225,48 @@ namespace UnitTests
         public void TestMethod1_ShoppingBasket_basketCheckout_succ()
         {
             setUp();
-            int retval = 10;
-            ShoppingCart cart = new Stubcart(store.Id, store, new Dictionary<int, ProductInCart>(), retval);
-            basket_user.ShoppingCarts.Add(store.Id, cart);                               
-            Assert.AreEqual(retval, basket_user.basketCheckout());
-
-        }
-
-        [TestMethod]
-        public void TestMethod1_ShoppingBasket_basketCheckout_fail()
-        {
-            setUp();
-            int retval = -1;
-            ShoppingCart cart = new Stubcart(store.Id, store, new Dictionary<int, ProductInCart>(), retval);
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
             basket_user.ShoppingCarts.Add(store.Id, cart);
-            Assert.AreEqual(retval, basket_user.basketCheckout());
+            Assert.AreEqual(0, basket_user.basketCheckout());
 
         }
+        ////Not relevant to this version because there is no purchase policy
+        //[TestMethod]
+        //public void TestMethod1_ShoppingBasket_basketCheckout_fail()
+        //{
+        //    setUp();
+        //    ShoppingCart cart = new ShoppingCart(store.Id, store);
+        //    basket_user.ShoppingCarts.Add(store.Id, cart);
+        //    Assert.AreEqual(retval, basket_user.basketCheckout());
+
+        //}
 
         [TestMethod]
         public void TestMethod1_User_basketCheckout()
         {
             setUp();
-            int retval = 10;
-            basket_user = new StubBasket(retval);
-            user.Basket = basket_user;
-            Assert.AreEqual(retval+50, user.basketCheckout("telaviv"));
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
+
+            cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
+            cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
+            cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
+            cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
+            user.Basket.ShoppingCarts.Add(store.Id, cart);
+            Assert.AreEqual(20000 + 50, user.basketCheckout("telaviv"));
         }
 
         [TestMethod]
         public void TestMethod1_TradingSystem_basketCheckout_succ()
         {
             setUp();
-            bool retval = true;
-            StubUser user = new StubUser(2, null, null, false, false, retval);
-            sys.Users.Add(user.Id, user);
-            Assert.AreEqual(1, sys.basketCheckout("telaviv",2));
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
+
+            cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
+            cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
+            cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
+            cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
+            user.Basket.ShoppingCarts.Add(store.Id,cart);
+            Assert.AreEqual(20050, sys.basketCheckout("telaviv", user.Id));
 
 
         }
@@ -269,7 +276,7 @@ namespace UnitTests
         {
             setUp();
             bool retval = true;
-            StubUser user = new StubUser(2, null, null, false, false, retval);
+            User user = new User(2, null, null, false, false);
             Assert.AreEqual(-1, sys.basketCheckout("telaviv", 2));
         }
 
@@ -311,200 +318,99 @@ namespace UnitTests
         public void TestMethod1_payForBasket_succ()
         {
             setUp();
-            sys.FinancialSystem = new StubFinancialSystem(true);
-            sys.SupplySystem = new StubProductSupplySystem(true);
+            sys.FinancialSystem = new FinancialSystemImpl();
+            sys.SupplySystem = new ProductSupplySystemImpl();
 
-            ShoppingCart cart = new StubCart(store.Id, store,10);
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
             cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
-            cart.Store = new StubStore(1, "", 0, null, null, true, 0);
-            user.Basket = new StubBasket(13);
+            cart.Store = new Store(1, "", null, null);
             sys.Stores.Add(1, cart.Store);
-            user.Basket.ShoppingCarts.Add(1,cart);
+            user.Basket.ShoppingCarts.Add(1, cart);
             List<String[]> check = sys.cartToString(cart);
 
 
-            Assert.AreEqual(expected: check.Count, actual: sys.payForBasket(0,new DateTime(1990,1,1),user.Id).Count);
+            Assert.AreEqual(expected: check.Count, actual: sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id).Count);
 
         }
 
-
         [TestMethod]
-        public void TestMethod1_payForBasket_without_FinancialSystem()
+        public void TestMethod1_payForBasket_fail_negativeInventory()
         {
             setUp();
-            sys.FinancialSystem = new StubFinancialSystem(false);
-            sys.SupplySystem = new StubProductSupplySystem(true);
+            sys.FinancialSystem = new FinancialSystemImpl();
+            sys.SupplySystem = new ProductSupplySystemImpl();
 
             ShoppingCart cart = new ShoppingCart(store.Id, store);
 
-            cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
-            cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
-            cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
-            cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
+            cart.Products.Add(p1.Id, new ProductInCart(10000000, cart, p1));
 
-            user.Basket.ShoppingCarts.Add(cart.Store.Id, cart);
-
-            ShoppingBasket check = user.Basket;
-
-            Assert.AreEqual(null, sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id));
-
-        }
+            cart.Store = new Store(1, "", null, null);
+            sys.Stores.Add(1, cart.Store);
+            user.Basket.ShoppingCarts.Add(1, cart);
+            List<String[]> check = sys.cartToString(cart);
+            cart.Products.Remove(p1.Id);
+            cart.Products.Add(p1.Id, new ProductInCart(10000010, cart, p1));
 
 
-        [TestMethod]
-        public void TestMethod1_payForBasket_without_SupplySystem()
-        {
-            setUp();
-            sys.FinancialSystem = new StubFinancialSystem(true);
-            sys.SupplySystem = new StubProductSupplySystem(false);
 
-            ShoppingCart cart = new ShoppingCart(store.Id, store);
 
-            cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
-            cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
-            cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
-            cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
-
-            user.Basket.ShoppingCarts.Add(cart.Store.Id, cart);
-
-            ShoppingBasket check = user.Basket;
-
-            Assert.AreEqual(null, sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id));
+            Assert.AreEqual(expected: false, actual: sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id).Equals(check));
 
         }
+
+
+        //Not relevant to this version
+        //[TestMethod]
+        //public void TestMethod1_payForBasket_without_FinancialSystem()
+        //{
+        //    setUp();
+        //    sys.FinancialSystem = new FinancialSystemImpl();
+        //    sys.SupplySystem = new ProductSupplySystemImpl();
+
+        //    ShoppingCart cart = new ShoppingCart(store.Id, store);
+
+        //    cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
+        //    cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
+        //    cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
+        //    cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
+
+        //    user.Basket.ShoppingCarts.Add(cart.Store.Id, cart);
+
+        //    ShoppingBasket check = user.Basket;
+
+        //    Assert.AreEqual(null, sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id));
+
+        //}
+
+        //Not relevant to this version
+        //[TestMethod]
+        //public void TestMethod1_payForBasket_without_SupplySystem()
+        //{
+        //    setUp();
+        //    sys.FinancialSystem = new StubFinancialSystem(true);
+        //    sys.SupplySystem = new StubProductSupplySystem(false);
+
+        //    ShoppingCart cart = new ShoppingCart(store.Id, store);
+
+        //    cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
+        //    cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
+        //    cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
+        //    cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
+
+        //    user.Basket.ShoppingCarts.Add(cart.Store.Id, cart);
+
+        //    ShoppingBasket check = user.Basket;
+
+        //    Assert.AreEqual(null, sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id));
+
+        //}
 
 
 
 
     }
-
-
-
-    //----------------------------@@stub class@@----------------------------
-
-
-    class StubStore : Store
-    {
-        private bool policy;
-        private int discount;
-
-
-        public StubStore(int id, string name, int storeRate, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy, bool policy, int discount) : base(id, name, purchasePolicy, discountPolicy)
-        {
-            this.policy = policy;
-            this.discount = discount;
-        }
-
-
-        public override bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products)
-        {
-            return policy;
-        }
-
-        public override int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
-        {
-            return discount;
-        }
-
-        public override void updateCart(ShoppingCart cart, String opt)
-        {
-            if (!policy)
-                cart.Products[1].Quantity--;
-        }
-    }
-
-
-    class Stubcart : ShoppingCart
-    {
-        private int retVal;
-
-        public Stubcart(int storeId, Store store, Dictionary<int, ProductInCart> products, int retval) : base(storeId, store)
-        {
-            this.retVal = retval;
-            this.Products = products;
-        }
-
-        public override int cartCheckout()
-        {
-            return retVal;
-        }
-
-
-
-    }
-
-    class StubBasket: ShoppingBasket
-    {
-        private int retVal;
-        public StubBasket(int ret) : base()
-        {
-            this.retVal = ret;
-        }
-
-        public override int basketCheckout()
-        {
-            return retVal;
-        }
-    }
-
-
-
-
-    class StubProductSupplySystem : ProductSupplySystem
-    {
-        private bool retVal;
-
-        public StubProductSupplySystem(bool ret) 
-        {
-            this.retVal = ret;
-        }
-
-        public bool connect()
-        {
-            return retVal;
-        }
-
-        public bool deliverToCustomer(string address, string packageDetails)
-        {
-            return retVal;
-        }
-    }
-
-    class StubFinancialSystem : FinancialSystem
-    {
-        private bool retVal;
-
-        public StubFinancialSystem(bool ret)
-        {
-            this.retVal = ret;
-        }
-
-        public bool Chargeback(long cardNumber, DateTime date, int amount)
-        {
-            return true;
-        }
-
-        public bool connect()
-        {
-            return retVal;
-        }
-
-        public bool payment(long cardNumber, DateTime date, int sum)
-        {
-            return retVal;
-        }
-
-        public bool payment(long cardNumber, DateTime date, int amount, int paymentTarget)
-        {
-            return retVal;
-        }
-    }
-
-
-
-
 }

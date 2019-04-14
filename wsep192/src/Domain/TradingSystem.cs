@@ -84,11 +84,12 @@ namespace src.Domain
             List<String[]> output = new List<string[]>(); 
             foreach(ShoppingCart cart in basket.ShoppingCarts.Values)
             {
-                output.Concat(cartToString(cart));
+                foreach(String[] toInsert in cartToString(cart))
+                    output.Add(toInsert);
             }
             return output;
         }
-        private List<String[]> cartToString(ShoppingCart cart)
+        public List<String[]> cartToString(ShoppingCart cart)
         {
             List<String[]> output = new List<string[]>();
             foreach (ProductInCart p in cart.Products.Values)
