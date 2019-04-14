@@ -62,6 +62,8 @@
     <Compile Include="registerUserAcceptance.cs" />
     <Compile Include="signInUserAcceptance.cs" />
     <Compile Include="LogoutTests.cs" />
+    <Compile Include="searchProduct.cs" />
+    <Compile Include="removeOwner.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">

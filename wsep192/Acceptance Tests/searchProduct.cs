@@ -20,8 +20,24 @@ namespace Acceptance_Tests
             service.initUser();
             service.register("aviv", "1234", "tmpuser");
             service.signIn("aviv", "1234");
-            //TODO: continue this test when you have req 4.1
+            service.openStore("footlocker", "aviv");
+            if(!service.createNewProductInStore("airmax", "nike", "", 100, "footlocker", "aviv"))
+                Assert.Fail();
+            if (!service.createNewProductInStore("gazzelle", "adidas", "", 100, "footlocker", "aviv"))
+                Assert.Fail();
         }
-        
+        [TestMethod]
+        public void TestMethod1_searchProductAvailable()
+        {
+            setUp();
+            service.searchProduct("air max nike ");//TODO::fill this test
+            
+        }
+        public void TestMethod1_searchProductUnavailable()
+        {
+            setUp();
+
+        }
+
     }
 }
