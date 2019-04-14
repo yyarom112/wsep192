@@ -243,13 +243,13 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void TestMethod1_User_basketCheckout()
+        public void TestMethod1_User_basketCheckout_emptyBasket()
         {
             setUp();
             int retval = 10;
             basket_user = new StubBasket(retval);
             user.Basket = basket_user;
-            Assert.AreEqual(retval+50, user.basketCheckout("telaviv"));
+            Assert.AreEqual(0, user.basketCheckout("telaviv"));
         }
 
         [TestMethod]
