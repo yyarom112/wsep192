@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="addProductToCart.cs" />
+    <Compile Include="addToCartReq26.cs" />
     <Compile Include="assignManagerAcceptance.cs" />
     <Compile Include="EditProductInCartTests.cs" />
     <Compile Include="RemoveManager_Req46.cs" />
@@ -63,7 +64,6 @@
     <Compile Include="signInUserAcceptance.cs" />
     <Compile Include="LogoutTests.cs" />
     <Compile Include="BuyingBasketReq28.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">

@@ -27,6 +27,7 @@ namespace Acceptance_Tests
         [TestMethod]
         public void TestMethod_AnAttemptToPurchaseAnEmptyBasket()
         {
+            Setup();
             Assert.AreEqual(0,service.basketCheckout("telaviv", "user"));
             Assert.AreEqual("", service.payForBasket(1,new DateTime(1990,1,1),"user"));
         }
@@ -34,6 +35,7 @@ namespace Acceptance_Tests
         [TestMethod]
         public void TestMethod_PurchaseAProductThatIsNotInStock()
         {
+            Setup();
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 1000));
             service.addProductsToCart(toInsert,"store","user");
@@ -44,6 +46,7 @@ namespace Acceptance_Tests
         [TestMethod]
         public void TestMethod_PurchaseOfAProductIsNotInAccordanceWithThePurchasingPolicy()
         {
+            Setup();
             try
             {
                 List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
@@ -64,6 +67,7 @@ namespace Acceptance_Tests
         [TestMethod]
         public void TestMethod_PurchaseOfProduct_succ()
         {
+            Setup();
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 1));
             Assert.AreEqual(60, service.basketCheckout("telaviv", "user"));
@@ -82,6 +86,7 @@ namespace Acceptance_Tests
         [TestMethod]
         public void TestMethod_SuccessfulPurchaseWithProblematicAddress()
         {
+            Setup();
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 1));
             Assert.AreEqual(110, service.basketCheckout("ramat Gan", "user"));
@@ -91,6 +96,7 @@ namespace Acceptance_Tests
         [TestMethod]
         public void TestMethod_PurchaseOfProduct_PurchaseProductWithQuantityZero()
         {
+            Setup();
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 0));
             Assert.AreEqual(0, service.basketCheckout("telaviv", "user"));
