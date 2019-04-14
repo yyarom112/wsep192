@@ -215,7 +215,7 @@ namespace UnitTests
         }
 
         //only update
-        public override void addProducts(List<KeyValuePair<Product, int>> productsToInsert)
+        public override void addProducts(LinkedList<KeyValuePair<Product, int>> productsToInsert)
         {
             foreach (KeyValuePair<Product, int> toInsert in productsToInsert)
             {

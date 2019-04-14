@@ -81,7 +81,6 @@
     <Compile Include="LogManager.cs" />
     <Compile Include="ServiceLayer\ServiceLayer.cs" />
     <Compile Include="ProductSupplySystemImpl.cs" />
-    <Compile Include="LogManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
