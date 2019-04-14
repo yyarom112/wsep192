@@ -37,7 +37,7 @@ namespace UnitTests
             user = new User(1, null, null, false, false);
             basket_user = user.Basket;
 
-            store = new Store(-1, "store", 0, null, null);
+            store = new Store(-1, "store", null, null);
 
             p1 = new Product(0, "first", null, "", 5000);
             p2 = new Product(1, "second", null, "", 5000);
@@ -133,7 +133,7 @@ namespace UnitTests
             Assert.AreEqual(1, basket_user.ShoppingCarts.Count);
 
 
-            StubCart cart = new StubCart(-1, null);
+            StubCart cart = new StubCart(-1, null,10);
             cart.copy(basket_user.ShoppingCarts[store.Id]);
             basket_user.ShoppingCarts[store.Id] = cart;
 
@@ -156,17 +156,17 @@ namespace UnitTests
             sys.Users.Add(2, stubUser);
 
 
-            LinkedList<KeyValuePair<int, int>> toInsert = new LinkedList<KeyValuePair<int, int>>();
+            List<KeyValuePair<int, int>> toInsert = new List<KeyValuePair<int, int>>();
 
-            toInsert.AddLast(new KeyValuePair<int, int>(p1.Id,1));
-            toInsert.AddLast(new KeyValuePair<int, int>(p2.Id, 1));
-            toInsert.AddLast(new KeyValuePair<int, int>(p3.Id, 1));
+            toInsert.Add(new KeyValuePair<int, int>(p1.Id,1));
+            toInsert.Add(new KeyValuePair<int, int>(p2.Id, 1));
+            toInsert.Add(new KeyValuePair<int, int>(p3.Id, 1));
             Assert.AreEqual(false, ((stubUser)sys.Users[stubUser.Id]).Carts_entrys.ContainsKey(store.Id));
 
             Assert.AreEqual(true, sys.addProductsToCart(toInsert, store.Id, stubUser.Id));
 
-            toInsert = new LinkedList<KeyValuePair<int, int>>();
-            toInsert.AddLast(new KeyValuePair<int, int>(p4.Id, 1));
+            toInsert = new List<KeyValuePair<int, int>>();
+            toInsert.Add(new KeyValuePair<int, int>(p4.Id, 1));
 
             Assert.AreEqual(true, sys.addProductsToCart(toInsert, store.Id, stubUser.Id));
 
@@ -183,12 +183,12 @@ namespace UnitTests
             Assert.AreEqual(false, sys.addProductsToCart(null, store.Id, stubUser.Id));
 
 
-            LinkedList<KeyValuePair<int, int>> toInsert = new LinkedList<KeyValuePair<int, int>>();
+            List<KeyValuePair<int, int>> toInsert = new List<KeyValuePair<int, int>>();
 
 
             Assert.AreEqual(false, sys.addProductsToCart(toInsert, 10, stubUser.Id));
             Assert.AreEqual(false, sys.addProductsToCart(toInsert, store.Id, 10));
-            toInsert.AddLast(new KeyValuePair<int, int>(10, 10));
+            toInsert.Add(new KeyValuePair<int, int>(10, 10));
             Assert.AreEqual(false, sys.addProductsToCart(toInsert, store.Id, stubUser.Id));
 
 
@@ -197,10 +197,10 @@ namespace UnitTests
 
     internal class StubCart: ShoppingCart
     {
-
-        public StubCart(int storeId, Store store):base(storeId,store)
+        private int retval;
+        public StubCart(int storeId, Store store, int ret):base(storeId,store)
         {
-
+            retval = ret;
         }
 
         public void copy(ShoppingCart cart)
@@ -215,7 +215,7 @@ namespace UnitTests
         }
 
         //only update
-        public void addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert)
+        public override void addProducts(LinkedList<KeyValuePair<Product, int>> productsToInsert)
         {
             foreach (KeyValuePair<Product, int> toInsert in productsToInsert)
             {
@@ -226,7 +226,10 @@ namespace UnitTests
             }
 
         }
-
+        public override int cartCheckout()
+        {
+            return  retval;
+        }
     }
 
 

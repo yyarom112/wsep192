@@ -18,12 +18,12 @@ namespace src.Domain
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
-        public Store(int id, string name, int storeRate, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy)
+        public Store(int id, string name, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy)
         {
             this.id = id;
             this.name = name;
             this.products = new Dictionary<int, ProductInStore>();
-            this.storeRate = storeRate;
+            this.storeRate = 0;
             this.roles = new TreeNode<Role>(null);
             this.rolesDictionary = new Dictionary<int, TreeNode<Role>>();
             this.purchasePolicy = purchasePolicy;
@@ -52,12 +52,133 @@ namespace src.Domain
             }
             return result;
         }
-        public bool removeOwner(int userID,Role owner)
+
+        public Role initOwner(User user)
+        {
+            Owner owner = new Owner(this, user);
+
+            RolesDictionary.Add(user.Id, Roles.AddChild(owner));
+            Roles.AddChild(owner);
+            user.addRole(owner);
+
+            return owner;
+        }
+
+        public virtual Boolean assignManager(Role newManager, Owner owner)
+        {
+
+            TreeNode<Role> currOwner = RolesDictionary[owner.User.Id];
+            if (currOwner != null)
+            {
+                if (!RolesDictionary.ContainsKey(newManager.User.Id))
+                {
+
+                    TreeNode<Role> managerRole = currOwner.AddChild(newManager);
+                    RolesDictionary.Add(newManager.User.Id, managerRole);
+                    newManager.User.Roles.Add(newManager.User.Id, newManager);
+                    LogManager.Instance.WriteToLog("Store - assign manger succeed");
+                    return true;
+                }
+                LogManager.Instance.WriteToLog("Store - assign manger fail - new manager already exist in the store");
+            }
+            LogManager.Instance.WriteToLog("Store - assign manger fail - owner not exist in the tree");
+            return false;
+        }
+
+        public virtual void updateCart(ShoppingCart cart, String opt)
+        {
+            foreach (ProductInCart p in cart.Products.Values)
+            {
+                if (!this.products.ContainsKey(p.Product.Id))
+                {
+                    cart.Products[p.Product.Id].Quantity = 0;
+                    LogManager.Instance.WriteToLog("The attempt to purchase product "+p.Product.Id+" failed because it does not belong to the store.\n");
+
+                }
+                else
+                {
+                    if (opt.Equals("-"))
+                    {
+
+                        if (p.Quantity <= this.products[p.Product.Id].Quantity)
+                            if (opt.Equals("-"))
+                                this.products[p.Product.Id].Quantity -= p.Quantity;
+
+                            else
+                            {
+                                p.Quantity = this.products[p.Product.Id].Quantity;
+                                this.products[p.Product.Id].Quantity = 0;
+                            }
+                    }
+                    else
+                    {
+                        this.products[p.Product.Id].Quantity += p.Quantity;
+                    }
+                }
+            }
+            LogManager.Instance.WriteToLog("Products have declined / returned to store stock successfully.\n");
+
+        }
+
+        public virtual void checkQuntity(ShoppingCart cart)
+        {
+            foreach (ProductInCart p in cart.Products.Values)
+            {
+                if (p.Quantity > this.products[p.Product.Id].Quantity)
+                    p.Quantity = this.products[p.Product.Id].Quantity;
+            }
+        }
+        public virtual bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products)
+        {
+            if (this.PurchasePolicy == null)
+                return true;
+            List<ProductInStore> productsInStore = new List<ProductInStore>();
+            foreach (ProductInCart p in products.Values)
+            {
+                ProductInStore productInStore = new ProductInStore(-1, this, p.Product);
+                if (!this.products.ContainsKey(p.Product.Id))
+                    return false; 
+                if(p.Quantity> this.products[p.Product.Id].Quantity)
+                {
+                    p.Quantity = this.products[p.Product.Id].Quantity;
+                    p.ShoppingCart.Products[p.Product.Id].Quantity= this.products[p.Product.Id].Quantity;
+                }
+                productsInStore.Add(productInStore);
+            }
+            foreach (PurchasePolicy pp in purchasePolicy)
+            {
+                if (!pp.confirmPolicy())
+                    return false;
+            }
+            return true;
+
+        }
+
+
+        public virtual int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
+        {
+            if (this.DiscountPolicy == null)
+                return 0;
+            int sum = 0;
+            List<ProductInStore> productsInStore = new List<ProductInStore>();
+            foreach (ProductInCart p in products.Values)
+            {
+                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
+                productsInStore.Add(productInStore);
+            }
+            foreach (DiscountPolicy dp in discountPolicy)
+            {
+                sum += dp.calculate(productsInStore);
+            }
+            return sum;
+        }
+
+        public bool removeOwner(int userID, Role owner)
         {
             TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
             TreeNode<Role> roleNode = null;
             bool flag = false;
-            
+
             if (RolesDictionary.ContainsKey(userID))
                 roleNode = RolesDictionary[userID];
             if (roleNode != null)
@@ -66,10 +187,10 @@ namespace src.Domain
                 {
                     if (roleNode.getChildren() == null || roleNode.getChildren().Count == 0)
                         flag = true;
-                    foreach(TreeNode<Role> child in roleNode.getChildren())
+                    foreach (TreeNode<Role> child in roleNode.getChildren())
                         flag = removeOwner(child.Data.User.Id, roleNode.Data);
                 }
-                if (flag&&ownerNode.RemoveChild(roleNode)
+                if (flag && ownerNode.RemoveChild(roleNode)
                      && RolesDictionary.Remove(userID)
                     && roleNode.Data.User.Roles.Remove(this.Id))
                     return true;
@@ -82,7 +203,7 @@ namespace src.Domain
 
         }
 
-        public bool removeManager(int userID,Role owner)
+        public bool removeManager(int userID, Role owner)
         {
             TreeNode<Role> roleNode = null;
             TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
@@ -99,20 +220,6 @@ namespace src.Domain
             return false;
         }
 
-        public Boolean assignManager(Role newManager, Owner owner)
-        {
-            TreeNode<Role> currOwner = roles.FindInChildren(owner);
-            if (currOwner != null)
-            {
-                TreeNode<Role> tmp = currOwner.FindInChildren(newManager);
-                if (currOwner.FindInChildren(newManager) == null)
-                {
-                    currOwner.AddChild(newManager);
-                    return true;
-                }
-            }
-            return false;
-        }
 
         internal bool productExist(string product)
         {
@@ -126,9 +233,10 @@ namespace src.Domain
 
         internal int getProduct(string product)
         {
-            foreach (int p in Products.Keys) {
-                if((Products[p].Product.ProductName).Equals(product))
-                return p;
+            foreach (int p in Products.Keys)
+            {
+                if ((Products[p].Product.ProductName).Equals(product))
+                    return p;
             }
             return -1;
         }

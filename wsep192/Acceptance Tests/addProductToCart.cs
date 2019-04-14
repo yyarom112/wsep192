@@ -38,7 +38,7 @@ namespace Acceptance_Tests
             user = new User(1, null, null, false, false);
             basket_user = user.Basket;
 
-            store = new Store(-1, "store", 0, null, null);
+            store = new Store(-1, "store", null, null);
 
             p1 = new Product(0, "first", null, "", 5000);
             p2 = new Product(1, "second", null, "", 5000);
@@ -67,16 +67,16 @@ namespace Acceptance_Tests
         {
             setUp();
 
-            LinkedList<KeyValuePair<int, int>> toInsert = new LinkedList<KeyValuePair<int, int>>();
+            List<KeyValuePair<int, int>> toInsert = new List<KeyValuePair<int, int>>();
 
-            toInsert.AddLast(new KeyValuePair<int, int>(p1.Id, 1));
-            toInsert.AddLast(new KeyValuePair<int, int>(p2.Id, 1));
-            toInsert.AddLast(new KeyValuePair<int, int>(p3.Id, 1));
+            toInsert.Add(new KeyValuePair<int, int>(p1.Id, 1));
+            toInsert.Add(new KeyValuePair<int, int>(p2.Id, 1));
+            toInsert.Add(new KeyValuePair<int, int>(p3.Id, 1));
 
             Assert.AreEqual(true, sys.addProductsToCart(toInsert, store.Id, user.Id));
 
-            toInsert = new LinkedList<KeyValuePair<int, int>>();
-            toInsert.AddLast(new KeyValuePair<int, int>(p4.Id, 1));
+            toInsert = new List<KeyValuePair<int, int>>();
+            toInsert.Add(new KeyValuePair<int, int>(p4.Id, 1));
 
             Assert.AreEqual(true, sys.addProductsToCart(toInsert, store.Id, user.Id));
 

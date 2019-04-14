@@ -34,6 +34,17 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
 
         }
+
+        public int Id { get => id; set => id = value; }
+        public string UserName { get => userName; set => userName = value; }
+        public string Password { get => password; set => password = value; }
+        public string Address { get => address; set => address = value; }
+        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
+        public bool IsRegistered { get => isRegistered; set => isRegistered = value; }
+        internal state State { get => state; set => state = value; }
+        internal ShoppingBasket Basket { get => basket; set => basket = value; }
+        internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+
         public bool removeOwner(int userID,int storeID)
         {
             if (this.state != state.signedIn)
@@ -48,49 +59,33 @@ namespace src.Domain
             return false;
             
         }
-        public Role searchRoleByStoreID(int storeID,int userID)
+        public virtual Boolean assignManager(User managerUser, int storeId, List<int> permissionToManager)
         {
-            foreach (Role role in roles.Values)
-                if (role.Store.Id == storeID&&role.User.Id == userID)
-                    return role;
-            return null;
-        }
-        public int Id { get => id; set => id = value; }
-        public string UserName { get => userName; set => userName = value; }
-        public string Password { get => password; set => password = value; }
-        public string Address { get => address; set => address = value; }
-        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
-        public bool IsRegistered { get => isRegistered; set => isRegistered = value; }
-        internal state State { get => state; set => state = value; }
-        internal ShoppingBasket Basket { get => basket; set => basket = value; }
-        internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
-
-        internal bool signOut()
-        {
-            if (state != state.signedIn)
-                return false;
-            state = state.visitor;
-            return true;
-
-        }
-
-        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
-        {
-            return this.basket.addProductsToCart(productsToInsert, storeId);
-        }
-        public Boolean signIn(string userName, string password)
-        {
-            if (userName != null && password != null)
+            if (this.state != state.signedIn || managerUser.state != state.signedIn)
             {
-                this.userName = userName;
-                this.password = password;
-                this.state = state.signedIn;
-                return true;
+                LogManager.Instance.WriteToLog("User - assign manger fail - owner or manager not signedIn");
+                return false;
             }
+            if (this.Roles.ContainsKey(this.id))
+            {
+                Role role = Roles[this.id];
+                if (role != null && role.GetType() == typeof(Owner))
+                {
+                    Owner owner = (Owner)role;
+                    return owner.assignManager(managerUser, permissionToManager);
+                }
+            }
+            LogManager.Instance.WriteToLog("User - assign manger fail -owner not exist in roles");
             return false;
         }
 
-        public Boolean register(string userName, string password)
+        internal string showCart(int storeId)
+        {
+            return basket.showCart(storeId);
+        }
+
+
+        public virtual Boolean register(string userName, string password)
         {
             if (userName == null || password == null)
             {
@@ -102,10 +97,68 @@ namespace src.Domain
             return true;
         }
 
-        internal string showCart(int storeId)
+        public void addRole(Role role)
+
         {
-            return basket.showCart(storeId);
+
+            Roles.Add(Id, role);
+
         }
+        public Role searchRoleByStoreID(int storeID,int userID)
+        {
+            foreach (Role role in roles.Values)
+                if (role.Store.Id == storeID&&role.User.Id == userID)
+                    return role;
+            return null;
+        }
+        
+
+        public virtual int basketCheckout(String address)
+        {
+            this.address = address;
+            if (Basket.ShoppingCarts.Count == 0)
+                return 0;
+            return basket.basketCheckout() + calcAddressFee(address);
+        }
+        internal bool signOut()
+        {
+            if (state != state.signedIn)
+                return false;
+            state = state.visitor;
+            return true;
+
+        }
+
+        public virtual ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
+        {
+            return this.basket.addProductsToCart(productsToInsert, storeId);
+        }
+        public virtual Boolean signIn(string userName, string password)
+        {
+            if (userName != null && password != null)
+            {
+                this.userName = userName;
+                this.password = password;
+                this.state = state.signedIn;
+                return true;
+            }
+            return false;
+        }
+        private int calcAddressFee(string address)
+        {
+            switch (address)
+            {
+                case "telaviv":
+                    return 50;
+                case "beersheva":
+                    return 10;
+                case "haifa":
+                    return 60;
+                default:
+                    return 40;
+            }
+        }
+
 
         internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
         {
