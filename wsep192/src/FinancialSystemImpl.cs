@@ -8,6 +8,8 @@ namespace src
 {
     class FinancialSystemImpl : Domain.FinancialSystem
     {
+
+
         public bool connect()
         {
             return true;
@@ -17,5 +19,11 @@ namespace src
         {
             return true;
         }
+
+        public bool Chargeback(long cardNumber, DateTime date, int amount)
+        {
+            return true;
+        }
+
     }
 }

@@ -126,19 +126,7 @@ namespace src.Domain
             return true;
 
         }
-        public void updateCart(ShoppingCart cart)
-        {
-            foreach (ProductInCart p in cart.Products.Values)
-            {
-                if (p.Quantity <= this.products[p.Product.Id].Quantity)
-                    this.products[p.Product.Id].Quantity -= p.Quantity;
-                else
-                {
-                    p.Quantity = this.products[p.Product.Id].Quantity;
-                    this.products[p.Product.Id].Quantity = 0;
-                }
-            }
-        }
+
 
         public virtual int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
         {
