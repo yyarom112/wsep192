@@ -22,17 +22,17 @@ namespace Acceptance_Tests
         {
             service = new ServiceLayer();
             service.init("Admin", "2323");
-            service.initUser("tmpuser1");
-            service.initUser("tmpuser2");
-            service.initUser("tmpuser3");
+            string tmpuser1 = service.initUser();
+            string tmpuser2 = service.initUser();
+            string tmpuser3 = service.initUser();
             ownerUser = "Seifan";
             passwordUser = "2345";
-            service.register(ownerUser, passwordUser, "tmpuser1");
+            service.register(ownerUser, passwordUser, tmpuser1);
             service.signIn(ownerUser, passwordUser);
 
             managerUser = "Yuval";
             managerPassword = "2323";
-            service.register(managerUser, managerPassword, "tmpuser2");
+            service.register(managerUser, managerPassword, tmpuser2);
             service.signIn(managerUser, managerPassword);
             permision = new List<String>() {"AddDiscountPolicy"};
 
@@ -40,7 +40,7 @@ namespace Acceptance_Tests
            
             user1 = "bla";
             password = "1212";
-            service.register(user1, password,"tmpuser3");
+            service.register(user1, password, tmpuser3);
 
         }
 
