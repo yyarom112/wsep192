@@ -19,8 +19,11 @@ namespace src.Domain
 
 
         public bool validatePermission(int permission) {
-            if (this.Permissions.Contains(permission))
-                return true;
+            if (this.Permissions.Contains(permission)) { 
+            LogManager.Instance.WriteToLog("Manager:validatePermission success - user" + User.UserName + "\n");
+            return true;
+        }
+            LogManager.Instance.WriteToLog("Manager:validatePermission failed - user"+User.UserName+"\n");
             return false;
         }
     }
