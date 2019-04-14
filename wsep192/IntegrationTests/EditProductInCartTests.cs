@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
 using System.Collections.Generic;
 
-namespace UnitTests
+namespace IntegrationTests
 {
     [TestClass]
     public class EditProductInCartTests
