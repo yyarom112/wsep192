@@ -48,7 +48,10 @@ namespace src.Domain
         public bool removeOwner(int userID,int storeID)
         {
             if (this.state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User-removeOwner " + this.id + " isn't signed in");
                 return false;
+            }
             Role role = searchRoleByStoreID(storeID,this.Id);
             if (role != null && role.GetType() == typeof(Owner))
             {
@@ -56,6 +59,7 @@ namespace src.Domain
                 return owner.removeOwner(userID);
                 
             }
+            LogManager.Instance.WriteToLog("User-removeOwner " + role.User.Id + " isn't owner");
             return false;
             
         }
