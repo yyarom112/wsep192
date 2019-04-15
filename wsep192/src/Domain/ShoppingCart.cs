@@ -93,9 +93,11 @@ namespace src.Domain
             foreach (KeyValuePair<int, int> pair in productsToRemove)
             {
                 if (!products.ContainsKey(pair.Key) || products[pair.Key].Quantity < pair.Value)
+                {
                     LogManager.Instance.WriteToLog("ShoppingCart:removeProductQuantityFromCart failed - shopping cart does not contain the product " +
                         "or invalid quantity\n");
-                return false;
+                    return false;
+                }
             }
             foreach (KeyValuePair<int, int> pair in productsToRemove)
             {
