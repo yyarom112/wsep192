@@ -21,21 +21,26 @@ namespace Acceptance_Tests
             service.register("aviv", "1234", "tmpuser");
             service.signIn("aviv", "1234");
             service.openStore("footlocker", "aviv");
-            if(!service.createNewProductInStore("airmax", "nike", "", 100, "footlocker", "aviv"))
+            if(!service.createNewProductInStore("airmax", "nike", "shoe", 100, "footlocker", "aviv"))
                 Assert.Fail();
             if (!service.createNewProductInStore("gazzelle", "adidas", "", 100, "footlocker", "aviv"))
                 Assert.Fail();
         }
         [TestMethod]
-        public void TestMethod1_searchProductAvailable()
+        public void TestMethod1_searchProductAvailable() //NEED TO CHECK
         {
             setUp();
-            service.searchProduct("air max nike ");//TODO::fill this test
+            String output = service.searchProduct("airmax nike shoe 10 150 0 0");
+            if (output != "")
+                Assert.AreEqual(output, "TODO");
             
         }
-        public void TestMethod1_searchProductUnavailable()
+        public void TestMethod1_searchProductUnavailable()  //NEED TO CHECK
         {
             setUp();
+            String output = service.searchProduct("blabla adidas shoe 10 150 0 0");
+            if (output != "")
+                Assert.AreEqual(output, "TODO");
 
         }
 
