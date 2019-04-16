@@ -99,8 +99,7 @@ namespace src.ServiceLayer
         //req2.5
         public String searchProduct(String details)
         {
-            //return system.searchProduct(details);
-            return null;
+            return system.searchProduct(details);
         }
         //req2.6
         public bool addProductsToCart(List<KeyValuePair<String, int>> products, String store, String user)

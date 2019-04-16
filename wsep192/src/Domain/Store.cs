@@ -72,13 +72,15 @@ namespace src.Domain
             {
                 if (!RolesDictionary.ContainsKey(newManager.User.Id))
                 {
-
                     TreeNode<Role> managerRole = currOwner.AddChild(newManager);
                     RolesDictionary.Add(newManager.User.Id, managerRole);
                     newManager.User.Roles.Add(newManager.User.Id, newManager);
+                    LogManager.Instance.WriteToLog("Store - assign manger succeed");
                     return true;
                 }
+                LogManager.Instance.WriteToLog("Store - assign manger fail - new manager already exist in the store");
             }
+            LogManager.Instance.WriteToLog("Store - assign manger fail - owner not exist in the tree");
             return false;
         }
 
@@ -179,8 +181,7 @@ namespace src.Domain
 
 
             }
-            //LogManager.Instance.WriteToLog("Store-Remove owner Fail- The user " + userID);
-
+            LogManager.Instance.WriteToLog("Store-Remove owner Fail- The user " + userID);
             return false;
 
         }

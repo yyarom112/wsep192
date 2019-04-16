@@ -48,7 +48,10 @@ namespace src.Domain
         public bool removeOwner(int userID,int storeID)
         {
             if (this.state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User-removeOwner " + this.id + " isn't signed in");
                 return false;
+            }
             Role role = searchRoleByStoreID(storeID,this.Id);
             if (role != null && role.GetType() == typeof(Owner))
             {
@@ -56,6 +59,7 @@ namespace src.Domain
                 return owner.removeOwner(userID);
                 
             }
+            LogManager.Instance.WriteToLog("User-removeOwner " + role.User.Id + " isn't owner");
             return false;
             
         }
@@ -63,6 +67,7 @@ namespace src.Domain
         {
             if (this.state != state.signedIn || managerUser.state != state.signedIn)
             {
+                LogManager.Instance.WriteToLog("User - assign manger fail - owner or manager not signedIn");
                 return false;
             }
             if (this.Roles.ContainsKey(this.id))
@@ -72,9 +77,9 @@ namespace src.Domain
                 {
                     Owner owner = (Owner)role;
                     return owner.assignManager(managerUser, permissionToManager);
-
                 }
             }
+            LogManager.Instance.WriteToLog("User - assign manger fail -owner not exist in roles");
             return false;
         }
 
