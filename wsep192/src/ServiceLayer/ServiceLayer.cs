@@ -108,8 +108,8 @@ namespace src.ServiceLayer
             {
                 return false;
             }
-            // return system.addProductsToCart(getProductsInts(products,stores[store]), stores[store], users[user]);
-            return false;
+            return system.addProductsToCart(getProductsInts(products,stores[store]), stores[store], users[user]);
+            
         }
 
         private bool productsExist(List<KeyValuePair<String, int>> products, int store)
