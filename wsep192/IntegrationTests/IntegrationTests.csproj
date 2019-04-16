@@ -52,6 +52,10 @@
   <ItemGroup>
     <Compile Include="addProductToCart.cs" />
     <Compile Include="assignManagerIntegration.cs" />
+    <Compile Include="addProductInStoreIntegratoin.cs" />
+    <Compile Include="editproductInStoreIntegration.cs" />
+    <Compile Include="removeProductInStoreIntegration.cs" />
+    <Compile Include="createNewProductInStoreIntegration.cs" />
     <Compile Include="EditProductInCartTests.cs" />
     <Compile Include="InitSystemTest.cs" />
     <Compile Include="registerUserIntegration.cs" />
