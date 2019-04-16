@@ -10,7 +10,7 @@ namespace UnitTests
     {
         private TradingSystem system;
         private User user1;
-
+        /*
         public void setUp()
         {
             system = new TradingSystem(null, null);
@@ -121,5 +121,6 @@ namespace UnitTests
                 return retVal;
             }
         }
+        */
     }
 }

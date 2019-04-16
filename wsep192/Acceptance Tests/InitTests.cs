@@ -8,13 +8,13 @@ namespace Acceptance_Tests
     public class InitTests
     {
         ServiceLayer service;
-
+        /*
         public void setUp()
         {
             service = new ServiceLayer();
             service.initUser();
         }
-
+        */
         [TestMethod]
         public void TestMethod1_success()
         {
