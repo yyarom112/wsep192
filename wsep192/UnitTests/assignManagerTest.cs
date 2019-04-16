@@ -15,7 +15,7 @@ namespace UnitTests
         private Store store;
         private List<int> permmision;
         private Owner ownerRole;
-        private Role managerRole;
+        private Manager managerRole;
 
         public void setUp()
         {
@@ -29,8 +29,8 @@ namespace UnitTests
 
             managerUser = new User(7878, "baba", "3434", false, false);
             managerUser.State = state.signedIn;
-            permmision = new List<int>() { 2, 5, 6 };
-            permmision = new List<int>() { 2, 5, 6 };
+            permmision = new List<int>();
+            permmision.Add(1);
             managerRole = new Manager(store, managerUser, permmision);
 
             user1 = new User(2456, "luli", "5656", false, false);
@@ -50,6 +50,14 @@ namespace UnitTests
         {
             setUp();
             Assert.AreEqual(true, store.assignManager(managerRole, (Owner)ownerRole));
+            Assert.AreEqual(true, managerRole.validatePermission(1));
+        }
+
+        [TestMethod]
+        public void TestMethod1_success_managerClass_scenario()
+        {
+            setUp();
+            Assert.AreEqual(true, managerRole.validatePermission(1));
         }
 
         [TestMethod]
