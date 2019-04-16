@@ -11,7 +11,7 @@ namespace Acceptance_Tests
         ServiceLayer service;
         List<KeyValuePair<string, int>> list;
 
-        [TestMethod]
+        
         public void setUp()
         {
             service = new ServiceLayer();

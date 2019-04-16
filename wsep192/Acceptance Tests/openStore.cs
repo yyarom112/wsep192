@@ -3,12 +3,14 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
+using src.ServiceLayer;
 
 namespace Acceptance_Tests
 {
     [TestClass]
     public class openStore
     {
+        private ServiceLayer service;
         private TradingSystem sys;
         private User admin;
         private User user;
@@ -25,17 +27,20 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
+            service = new ServiceLayer();
+            service.init("admin", "1234");
+            service.initUser();
             discountPolicies = new List<DiscountPolicy>();
             purchasePolicies = new List<PurchasePolicy>();
             user = new User(202113609, "Yonit Levy", "23&As2", false, false);
-            store = new Store(3, "Bershka", -1, purchasePolicies, discountPolicies);
+            store = new Store(3, "Bershka", purchasePolicies, discountPolicies);
             Owner owner = new Owner(store, user);
             store.Roles.AddChild(owner);
             admin = new User(201655309, "Tzukit Levi", "2Rt6!)", true, false);
             basket_user = user.Basket;
-            p1 = new Product(0, "dotted skirt", "Trousers", "black dots", 80, 5);
-            p2 = new Product(1, "Mom jeans", "jeans", "black", 600, 5);
-            p3 = new Product(2, "top", "shirts", "light blue", 90, 4);
+            p1 = new Product(0, "dotted skirt", "Trousers", "black dots", 80);
+            p2 = new Product(1, "Mom jeans", "jeans", "black", 600);
+            p3 = new Product(2, "top", "shirts", "light blue", 90);
             pis1 = new ProductInStore(64, store, p1);
             pis2 = new ProductInStore(31, store, p2);
             pis3 = new ProductInStore(17, store, p3);
@@ -55,7 +60,7 @@ namespace Acceptance_Tests
         public void testOpenStore1()
         {
             setUp();
-            bool x=sys.openStore(202113609, 3, "Bershka");
+            bool x = service.openStore("Bershka", "Yonit Levy");
             Assert.IsFalse(x);
         }
 
@@ -64,11 +69,9 @@ namespace Acceptance_Tests
         public void testOpenStore2()
         {
             setUp();
-            user.register("Yonit Levy", "23&As2");
-            bool x = sys.openStore(202113609, 3, "Bershka");
+            service.register("Yonit Levy", "23&As2", "tmpuser");
+            bool x = service.openStore("Bershka", "Yonit Levy");
             Assert.IsTrue(x);
         }
-
-
     }
 }

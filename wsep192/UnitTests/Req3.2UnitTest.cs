@@ -11,17 +11,17 @@ namespace UnitTests
     {
         [TestMethod]
         //Add a role to a user in the system.
-        public void testAddRole ()
+        public void testAddRole()
         {
             int userID = 205111704;
             string userName = "Rotem Tetuani";
             string userPassword = "$)11ft";
             int storeID = 1;
             string storeName = "ZARA";
-            List<DiscountPolicy>  discountPolicies = new List<DiscountPolicy>();
+            List<DiscountPolicy> discountPolicies = new List<DiscountPolicy>();
             List<PurchasePolicy> purchasePolicies = new List<PurchasePolicy>();
-            Store store = new Store(storeID, storeName, -1 , purchasePolicies, discountPolicies);
-            User user = new User(userID, userName, userPassword, false,false);
+            Store store = new Store(storeID, storeName, purchasePolicies, discountPolicies);
+            User user = new User(userID, userName, userPassword, false, false);
             Owner owner = new Owner(store, user);
             user.addRole(owner);
             Assert.AreEqual(user.Roles[userID], owner);
@@ -37,10 +37,10 @@ namespace UnitTests
             string storeName = "Pull&Bear";
             List<DiscountPolicy> discountPolicies = new List<DiscountPolicy>();
             List<PurchasePolicy> purchasePolicies = new List<PurchasePolicy>();
-            Store store = new Store(storeID, storeName, -1, purchasePolicies, discountPolicies);
+            Store store = new Store(storeID, storeName, purchasePolicies, discountPolicies);
             User user = new User(userID, userName, userPassword, false, false);
             Role role = store.initOwner(user);
-            Assert.AreEqual(store.RolesDictionary[userID],role);
+            Assert.AreEqual(role, store.RolesDictionary[userID].Data);
         }
     }
 }

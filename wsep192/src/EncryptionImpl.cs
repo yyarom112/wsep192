@@ -1,16 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    class EncryptionImpl : Encryption
+    class EncryptionImpl : Domain.Encryption
     {
         public bool connect()
         {
-            //throw new NotImplementedException();
             return true;
         }
+
 
         public string encrypt(string password)
         {

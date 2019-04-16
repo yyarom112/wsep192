@@ -11,5 +11,7 @@ namespace src.Domain
         bool connect();
 
         String encrypt(String password);
+
+
     }
 }

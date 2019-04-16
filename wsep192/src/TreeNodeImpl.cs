@@ -15,6 +15,7 @@ public class TreeNode<T>
     {
         return _children;
     }
+
     public TreeNode(T data)
     {
         _data = data;

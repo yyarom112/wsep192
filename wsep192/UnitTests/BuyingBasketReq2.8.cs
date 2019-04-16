@@ -37,12 +37,12 @@ namespace UnitTests
             user = new User(1, null, null, false, false);
             basket_user = user.Basket;
 
-            store = new Store(-1, "store", 0, null, null);
+            store = new Store(-1, "store", null, null);
 
-            p1 = new Product(0, "first", null, "", 5000, 0);
-            p2 = new Product(1, "second", null, "", 5000, 0);
-            p3 = new Product(2, "third", null, "", 5000, 0);
-            p4 = new Product(3, "fourth", null, "", 5000, 0);
+            p1 = new Product(0, "first", "","", 5000);
+            p2 = new Product(1, "second", "", "", 5000);
+            p3 = new Product(2, "third", "", "", 5000);
+            p4 = new Product(3, "fourth", "", "", 5000);
             pis1 = new ProductInStore(10000000, store, p1);
             pis2 = new ProductInStore(10000000, store, p2);
             pis3 = new ProductInStore(10000000, store, p3);
@@ -197,10 +197,10 @@ namespace UnitTests
         public void TestMethod1_TradingSystem_basketCheckout_succ()
         {
             setUp();
-            int retval = 10;
+            bool retval = true;
             StubUser user = new StubUser(2, null, null, false, false, retval);
             sys.Users.Add(user.Id, user);
-            Assert.AreEqual(retval, sys.basketCheckout("telaviv",2));
+            Assert.AreEqual(1, sys.basketCheckout("telaviv",2));
 
 
         }
@@ -209,7 +209,7 @@ namespace UnitTests
         public void TestMethod1_TradingSystem_basketCheckout_fail()
         {
             setUp();
-            int retval = 10;
+            bool retval = true;
             StubUser user = new StubUser(2, null, null, false, false, retval);
             Assert.AreEqual(-1, sys.basketCheckout("telaviv", 2));
         }
@@ -330,7 +330,7 @@ namespace UnitTests
         private int discount;
 
 
-        public StubStore(int id, string name, int storeRate, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy, bool policy, int discount) : base(id, name, storeRate, purchasePolicy, discountPolicy)
+        public StubStore(int id, string name, int storeRate, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy, bool policy, int discount) : base(id, name, purchasePolicy, discountPolicy)
         {
             this.policy = policy;
             this.discount = discount;
@@ -387,19 +387,7 @@ namespace UnitTests
         }
     }
 
-    class StubUser : User
-    {
-        private int retVal;
-        public StubUser(int id, string userName, string password, bool isAdmin, bool isRegistered, int ret) : base(id, userName,password,isAdmin,isRegistered)
-        {
-            this.retVal = ret;
-        }
 
-        public int basketCheckout(String address)
-        {
-            return retVal;
-        }
-    }
 
 
     class StubProductSupplySystem : ProductSupplySystem
@@ -431,12 +419,12 @@ namespace UnitTests
             this.retVal = ret;
         }
 
-        public bool Connect()
+        public bool connect()
         {
             return retVal;
         }
 
-        public bool Payment(long cardNumber, DateTime date, int sum)
+        public bool payment(long cardNumber, DateTime date, int sum)
         {
             return retVal;
         }
