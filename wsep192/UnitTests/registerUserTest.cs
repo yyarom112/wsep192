@@ -9,7 +9,7 @@ namespace UnitTests
     {
         private TradingSystem system;
         private User user1;
-        /*
+
         public void setUp()
         {
             system = new TradingSystem(null,null);
@@ -56,6 +56,6 @@ namespace UnitTests
             int userId = user1.Id;
             Assert.AreEqual(false, system.register(userName, password, userId.ToString()));
         }
-*/
+
     }
 }

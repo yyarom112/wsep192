@@ -62,7 +62,6 @@ namespace Acceptance_Tests
 
 
         }
-        /*
         [TestMethod]
         public void TestMethod1_succAddProductsToCartWithSave()
         {
@@ -83,7 +82,7 @@ namespace Acceptance_Tests
 
 
         }
-        */
+
         [TestMethod]
         public void TestMethod1_succAddProductsToCartWitoutSave()
         {

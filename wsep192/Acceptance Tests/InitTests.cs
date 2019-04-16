@@ -8,14 +8,14 @@ namespace Acceptance_Tests
     public class InitTests
     {
         ServiceLayer service;
-        /*
+
         public void setUp()
         {
             service = new ServiceLayer();
             service.initUser("tmpuser");
             service.openStore();
         }
-        */
+
         [TestMethod]
         public void TestMethod1_success()
         {

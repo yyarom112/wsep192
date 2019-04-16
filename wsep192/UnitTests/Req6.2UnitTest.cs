@@ -6,7 +6,6 @@ using src.Domain;
 
 namespace UnitTests
 {
-    [TestClass]
     public class Req6_2
     {
         private TradingSystem sys;
@@ -22,20 +21,20 @@ namespace UnitTests
         private Store store;
         private List<DiscountPolicy> discountPolicies;
         private List<PurchasePolicy> purchasePolicies;
-        
+
         public void setUp()
         {
             discountPolicies = new List<DiscountPolicy>();
             purchasePolicies = new List<PurchasePolicy>();
             user = new User(202113609, "Yonit Levy", "23&As2", false, false);
-            store = new Store(1, "Bershka", -1, purchasePolicies, discountPolicies);
+            store = new Store(3, "Bershka", -1, purchasePolicies, discountPolicies);
             Owner owner = new Owner(store, user);
             store.Roles.AddChild(owner);
-            store.RolesDictionary.Add(user.Id, new TreeNode<Role>(owner));
             admin = new User(201655309, "Tzukit Levi", "2Rt6!)", true, false);
-            p1 = new Product(0, "dotted skirt", "Trousers", "black dots", 80);
-            p2 = new Product(1, "Mom jeans", "jeans", "black", 600);
-            p3 = new Product(2, "top", "shirts", "light blue", 90);
+            basket_user = user.Basket;
+            p1 = new Product(0, "dotted skirt", "Trousers", "black dots", 80, 5);
+            p2 = new Product(1, "Mom jeans", "jeans", "black", 600, 5);
+            p3 = new Product(2, "top", "shirts", "light blue", 90, 4);
             pis1 = new ProductInStore(64, store, p1);
             pis2 = new ProductInStore(31, store, p2);
             pis3 = new ProductInStore(17, store, p3);
@@ -48,16 +47,14 @@ namespace UnitTests
             sys.UserCounter = 2;
             sys.Users.Add(admin.Id, admin);
             sys.Users.Add(user.Id, user);
-            sys.Stores.Add(1, store);
         }
-        
+
         [TestMethod]
         //Add a role to a user in the system.
         public void testRemoveUser()
         {
-            setUp();
-            bool x = sys.removeUser(202113609,1);
-            Assert.AreEqual(true, x);
+            bool x = sys.removeUser(202113609, 3);
+            Assert.IsTrue(x);
         }
     }
 }

@@ -149,7 +149,7 @@ namespace src.ServiceLayer
             }
             return system.removeProductsFromCart(getProductsInts(productsToRemove,stores[store]), stores[store], users[user]);
         }
-        /*
+
         //req2.8
         public int basketCheckout(String address, String user)
         {
@@ -163,7 +163,7 @@ namespace src.ServiceLayer
                 return "Error: invalid user";
             return system.payForBasket(cardNum, date,users[user]);
         }
-        */
+
         //req3.1
         public bool signOut(String user)
         {
@@ -262,7 +262,7 @@ namespace src.ServiceLayer
             }
             return list;
         }
-       /*
+
         //req4.6
         public bool removeManager(String managerToRemove, String store, String user)
         {
@@ -270,7 +270,6 @@ namespace src.ServiceLayer
                 return false;
             return system.removeManager(users[managerToRemove], stores[store] , users[user]);
         }
-        */
         //req6.2
         public bool removeUser(String userToRemove, String user)
         {
