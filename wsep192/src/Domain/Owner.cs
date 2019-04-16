@@ -19,11 +19,8 @@ namespace src.Domain
             return Store.assignManager(newManager, this);  
         }
 
-        public bool removeOwner(int userID)
-        {
-            return Store.removeOwner(userID,this);
-        }
-
+        public virtual bool removeOwner(int userID) => Store.removeOwner(userID,this);
         public virtual bool removeManager(int userID) => Store.removeManager(userID,this);
+        public virtual bool assignOwner(int assignedID) => Store.assignOwner(assignedID, this);
     }
 }

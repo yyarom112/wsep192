@@ -67,7 +67,6 @@ namespace src.Domain
         {
             if (this.state != state.signedIn || managerUser.state != state.signedIn)
             {
-                LogManager.Instance.WriteToLog("User - assign manger fail - owner or manager not signedIn");
                 return false;
             }
             if (this.Roles.ContainsKey(this.id))
@@ -77,9 +76,9 @@ namespace src.Domain
                 {
                     Owner owner = (Owner)role;
                     return owner.assignManager(managerUser, permissionToManager);
+
                 }
             }
-            LogManager.Instance.WriteToLog("User - assign manger fail -owner not exist in roles");
             return false;
         }
 
@@ -194,6 +193,21 @@ namespace src.Domain
                 return false;
             }
 
+        }
+
+        public bool assignOwner(int storeID,int assignedID)
+        {
+            Role role = searchRoleByStoreID(storeID, assignedID);
+            try
+            {
+                Owner owner = (Owner)role;
+                return owner.assignOwner(assignedID);
+            }
+            catch (Exception)
+            {
+                LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                return false;
+            }
         }
     }
 }

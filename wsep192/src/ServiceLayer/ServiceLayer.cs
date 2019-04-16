@@ -197,7 +197,7 @@ namespace src.ServiceLayer
 
 
         //req4.1
-        public bool createNewProductInStore(String productName, String category, String details, int price, String store, String user)
+        public bool createNewProductInStore(String productName, String category, String details,int price, String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store))
             {
@@ -205,6 +205,8 @@ namespace src.ServiceLayer
             }
             return system.createNewProductInStore(productName, category, details, price, stores[store], users[user]);
         }
+
+        //pair of <produc,quantity>
         public bool addProductsInStore(List<KeyValuePair<String, int>> productsToAdd, String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist(productsToAdd, stores[store]))

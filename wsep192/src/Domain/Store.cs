@@ -72,15 +72,13 @@ namespace src.Domain
             {
                 if (!RolesDictionary.ContainsKey(newManager.User.Id))
                 {
+
                     TreeNode<Role> managerRole = currOwner.AddChild(newManager);
                     RolesDictionary.Add(newManager.User.Id, managerRole);
                     newManager.User.Roles.Add(newManager.User.Id, newManager);
-                    LogManager.Instance.WriteToLog("Store - assign manger succeed");
                     return true;
                 }
-                LogManager.Instance.WriteToLog("Store - assign manger fail - new manager already exist in the store");
             }
-            LogManager.Instance.WriteToLog("Store - assign manger fail - owner not exist in the tree");
             return false;
         }
 
@@ -221,6 +219,105 @@ namespace src.Domain
                 return p;
             }
             return -1;
+        }
+
+        public bool createNewProductInStore(string productName, string category, string details, int price, int productID,int userID)
+        {
+            TreeNode<Role> roleNode = null;
+            if (RolesDictionary.ContainsKey(userID))
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
+            {
+                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(2)))
+                {
+                    Product p = new Product(productID, productName, category, details, price);
+                    ProductInStore pis = new ProductInStore(0, this, p);
+                    if (!Products.ContainsKey(productID))
+                    {
+                        Products.Add(productID, pis);
+                        return true;
+                    }
+                }
+            }       
+
+            return false;
+        }
+
+        public bool addProductsInStore(List<KeyValuePair<int, int>> productsQuantityList, int userID)
+        {
+            TreeNode<Role> roleNode = null;
+            if (RolesDictionary.ContainsKey(userID))
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
+            {
+                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(4)))
+                {
+                    foreach (KeyValuePair<int, int> p in productsQuantityList)
+                        if (Products.ContainsKey(p.Key))
+                            Products[p.Key].Quantity += p.Value;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool removeProductsInStore(List<KeyValuePair<int, int>> productsQuantityList , int userID)
+        {
+            TreeNode<Role> roleNode = null;
+            if (RolesDictionary.ContainsKey(userID))
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
+            {
+                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(5)))
+                {
+                    foreach (KeyValuePair<int, int> p in productsQuantityList)
+                        if (Products.ContainsKey(p.Key))
+                            Products[p.Key].Quantity -= p.Value;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool editProductsInStore(int productID, string productName, string category, string details, int price, int userID)
+        {
+            TreeNode<Role> roleNode = null;
+            if (RolesDictionary.ContainsKey(userID))
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
+            {
+                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(6)))
+                {
+                    if(Products.ContainsKey(productID))
+                    {
+                        Products[productID].Product.ProductName = productName;
+                        Products[productID].Product.Category = category;
+                        Products[productID].Product.Details = details;
+                        Products[productID].Product.Price = price;
+                    }
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool assignOwner(int assignedID, Role owner)
+        {
+            TreeNode<Role> assignedNode = null;
+            TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
+            if (RolesDictionary.ContainsKey(assignedID))
+                assignedNode = RolesDictionary[assignedID];
+            if (assignedNode != null)
+            {
+                ownerNode.AddChild(assignedNode.Data);
+                RolesDictionary.Add(assignedID, assignedNode);
+                assignedNode.Data.User.Roles.Add(this.Id,assignedNode.Data);
+                return true;
+            }
+            return false;
         }
     }
 }
