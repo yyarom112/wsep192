@@ -15,8 +15,8 @@ namespace Acceptance_Tests
         {
             service = new ServiceLayer();
             service.init("admin", "1234");
-            service.initUser();
-            service.register("user", "password", "tmpuser");
+            string tmp = service.initUser();
+            service.register("user", "password", tmp);
             service.signIn("user", "password");
             service.openStore("store", "user");
             KeyValuePair<string, int> p1 = new KeyValuePair<string, int>("p1", 1);
