@@ -6,18 +6,17 @@ using src.ServiceLayer;
 namespace Acceptance_Tests
 {
     [TestClass]
-    public class ShowCartTests
+    public class EditProductInCartTests
     {
         ServiceLayer service;
         List<KeyValuePair<string, int>> list;
 
-        
         public void setUp()
         {
             service = new ServiceLayer();
             service.init("admin", "1234");
             string tmp = service.initUser();
-            service.register("user", "password",tmp);
+            service.register("user", "password", tmp);
             service.signIn("user", "password");
             service.openStore("store", "user");
             KeyValuePair<string, int> p1 = new KeyValuePair<string, int>("p1", 1);
@@ -31,21 +30,11 @@ namespace Acceptance_Tests
 
 
         [TestMethod]
-        public void TestMethod1_success_full()
+        public void TestMethod1_success()
         {
             setUp();
-            Assert.AreEqual("Store Name: store\nProduct Name\t\t\tQuantity\n" +
-                "1. p1\t\t\t1\n", service.showCart("store", "user"));
+            Assert.AreEqual(true, service.editProductQuantityInCart("p1", 2, "store", "user"));
+            Assert.AreEqual(true, service.editProductQuantityInCart("p1", 1, "store", "user"));
         }
-
-
-        [TestMethod]
-        public void TestMethod1_success_empty()
-        {
-            setUp();
-            service.removeProductsFromCart(list, "store", "user");
-            Assert.AreEqual("Store Name: store\nCart is empty\n", service.showCart("store", "user"));
-        }
-
     }
 }

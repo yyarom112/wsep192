@@ -37,8 +37,9 @@ namespace src.Domain
         }
 
 
-        internal string showCart()
+        internal virtual string showCart()
         {
+            LogManager.Instance.WriteToLog("ShoppingCart:showCart success\n");
             return createOutputTable();
         }
 
@@ -75,25 +76,36 @@ namespace src.Domain
 
         }
 
-        internal bool editProductQuantityInCart(int productId, int quantity)
+        internal virtual bool editProductQuantityInCart(int productId, int quantity)
         {
             if (!products.ContainsKey(productId))
+            {
+                LogManager.Instance.WriteToLog("ShoppingCart:editProductQuantityInCart failed - shopping cart does not contain the product\n");
                 return false;
+            }
             products[productId].Quantity = quantity;
+            LogManager.Instance.WriteToLog("ShoppingCart:editProductQuantityInCart success\n");
             return true;
         }
 
-        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove)
+        internal virtual bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove)
         {
             foreach (KeyValuePair<int, int> pair in productsToRemove)
             {
                 if (!products.ContainsKey(pair.Key) || products[pair.Key].Quantity < pair.Value)
+                {
+                    LogManager.Instance.WriteToLog("ShoppingCart:removeProductQuantityFromCart failed - shopping cart does not contain the product " +
+                        "or invalid quantity\n");
                     return false;
+                }
             }
             foreach (KeyValuePair<int, int> pair in productsToRemove)
             {
                 products[pair.Key].Quantity -= pair.Value;
+                if (products[pair.Key].Quantity == 0)
+                    products.Remove(pair.Key);
             }
+            LogManager.Instance.WriteToLog("ShoppingCart:removeProductsFromCart success\n");
             return true;
         }
     }

@@ -51,11 +51,19 @@
   </Choose>
   <ItemGroup>
     <Compile Include="addProductToCart.cs" />
+    <Compile Include="assignManagerAcceptance.cs" />
+    <Compile Include="EditProductInCartTests.cs" />
+    <Compile Include="ManagerPremissionTests.cs" />
     <Compile Include="RemoveManager_Req46.cs" />
+    <Compile Include="RemoveProductsFromCartTests.cs" />
     <Compile Include="ShowCartTests.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InitTests.cs" />
+    <Compile Include="registerUserAcceptance.cs" />
+    <Compile Include="signInUserAcceptance.cs" />
+    <Compile Include="LogoutTests.cs" />
+    <Compile Include="searchProduct.cs" />
+    <Compile Include="removeOwner.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">

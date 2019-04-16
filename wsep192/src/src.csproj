@@ -63,28 +63,26 @@
     <Compile Include="EncryptionImpl.cs" />
     <Compile Include="Domain\Filter.cs" />
     <Compile Include="Domain\FinancialSystem.cs" />
-    <Compile Include="Domain\FinancialSystemImpl.cs" />
     <Compile Include="Domain\Manager.cs" />
     <Compile Include="Domain\Owner.cs" />
     <Compile Include="Domain\Product.cs" />
     <Compile Include="Domain\ProductInCart.cs" />
     <Compile Include="Domain\ProductInStore.cs" />
     <Compile Include="Domain\ProductSupplySystem.cs" />
-    <Compile Include="Domain\ProductSupplySystemImpl.cs" />
     <Compile Include="Domain\PurchasePolicy.cs" />
     <Compile Include="Domain\Role.cs" />
     <Compile Include="Domain\ShoppingBasket.cs" />
     <Compile Include="Domain\ShoppingCart.cs" />
     <Compile Include="Domain\Store.cs" />
     <Compile Include="Domain\TradingSystem.cs" />
-    <Compile Include="Domain\TreeNodeImpl.cs" />
+    <Compile Include="TreeNodeImpl.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="FinancialSystemImpl.cs" />
+    <Compile Include="LogManager.cs" />
     <Compile Include="ServiceLayer\ServiceLayer.cs" />
     <Compile Include="ProductSupplySystemImpl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LogManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
