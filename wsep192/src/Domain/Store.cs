@@ -181,8 +181,7 @@ namespace src.Domain
 
 
             }
-            //LogManager.Instance.WriteToLog("Store-Remove owner Fail- The user " + userID);
-
+            LogManager.Instance.WriteToLog("Store-Remove owner Fail- The user " + userID);
             return false;
 
         }

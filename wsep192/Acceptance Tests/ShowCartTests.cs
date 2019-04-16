@@ -11,7 +11,7 @@ namespace Acceptance_Tests
         ServiceLayer service;
         List<KeyValuePair<string, int>> list;
 
-
+        [TestMethod]
         public void setUp()
         {
             service = new ServiceLayer();
@@ -23,6 +23,7 @@ namespace Acceptance_Tests
             KeyValuePair<string, int> p1 = new KeyValuePair<string, int>("p1", 1);
             list = new List<KeyValuePair<string, int>>();
             list.Add(p1);
+            service.createNewProductInStore("p1", "category", "details", 20, "store", "user");
             service.addProductsInStore(list, "store", "user");
             service.addProductsToCart(list, "store", "user");
         }

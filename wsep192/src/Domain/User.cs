@@ -48,7 +48,10 @@ namespace src.Domain
         public bool removeOwner(int userID,int storeID)
         {
             if (this.state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User-removeOwner " + this.id + " isn't signed in");
                 return false;
+            }
             Role role = searchRoleByStoreID(storeID,this.Id);
             if (role != null && role.GetType() == typeof(Owner))
             {
@@ -56,6 +59,7 @@ namespace src.Domain
                 return owner.removeOwner(userID);
                 
             }
+            LogManager.Instance.WriteToLog("User-removeOwner " + role.User.Id + " isn't owner");
             return false;
             
         }
@@ -79,7 +83,7 @@ namespace src.Domain
             return false;
         }
 
-        internal string showCart(int storeId)
+        internal virtual string showCart(int storeId)
         {
             return basket.showCart(storeId);
         }
@@ -121,8 +125,12 @@ namespace src.Domain
         internal bool signOut()
         {
             if (state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User:signOut failed - user "+UserName+" didn't sign in\n");
                 return false;
+            }
             state = state.visitor;
+            LogManager.Instance.WriteToLog("User:signOut success - "+userName+"\n");
             return true;
 
         }
@@ -158,11 +166,11 @@ namespace src.Domain
         }
 
 
-        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        internal virtual bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
         {
             return basket.removeProductsFromCart(productsToRemove, storeId);
         }
-        internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
+        internal virtual bool editProductQuantityInCart(int productId, int quantity, int storeId)
         {
             return basket.editProductQuantityInCart(productId, quantity, storeId);
         }

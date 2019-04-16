@@ -38,8 +38,9 @@ namespace src.ServiceLayer
         private void addPermissions()
         {
 
-            permissions.Add("AddDiscountPolicy", 1);
-            permissions.Add("AddPurchasePolicy", 2);
+            permissions.Add("AddDiscountPolicy", 0);
+            permissions.Add("AddPurchasePolicy", 1);
+            permissions.Add("CreateNewProductInStore", 2);
             permissions.Add("EditProductQuantityInStore", 3);
             permissions.Add("AddProductToStore", 4);
             permissions.Add("RemoveProductFromStore", 5);
@@ -51,6 +52,7 @@ namespace src.ServiceLayer
             permissions.Add("AssignOwner", 11);
             permissions.Add("AssignManager", 12);
             permissions.Add("CloseStore", 13);
+            
 
         }
 
@@ -105,8 +107,7 @@ namespace src.ServiceLayer
         //req2.5
         public String searchProduct(String details)
         {
-            //return system.searchProduct(details);
-            return null;
+            return system.searchProduct(details);
         }
         //req2.6
         public bool addProductsToCart(List<KeyValuePair<String, int>> products, String store, String user)
