@@ -21,7 +21,7 @@ namespace Acceptance_Tests
         public void testOpenStore1()
         {
             setUp();
-            bool x = service.openStore("Bershka", "Yonit Levy");
+            bool x = service.openStore("Bershka", "Yonit");
             Assert.IsFalse(x);
         }
 
@@ -30,8 +30,9 @@ namespace Acceptance_Tests
         public void testOpenStore2()
         {
             setUp();
-            service.register("Yonit Levy", "23&As2", user);
-            bool x = service.openStore("Bershka", "Yonit Levy");
+            bool x=service.register("Yonit", "23&As2", user);
+            service.signIn("Yonit", "23&As2");
+            service.openStore("Bershka", "Yonit");
             Assert.IsTrue(x);
         }
     }

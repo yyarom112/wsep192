@@ -226,7 +226,7 @@ namespace src.Domain
                 roleNode = RolesDictionary[userID];
             if (roleNode != null)
             {
-                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(2)))
+                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(3)))
                 {
                     Product p = new Product(productID, productName, category, details, price);
                     ProductInStore pis = new ProductInStore(0, this, p);
@@ -248,7 +248,7 @@ namespace src.Domain
                 roleNode = RolesDictionary[userID];
             if (roleNode != null)
             {
-                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(5)))
+                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(4)))
                 {
                     foreach (KeyValuePair<int, int> p in productsQuantityList)
                         if (Products.ContainsKey(p.Key))
