@@ -256,7 +256,7 @@ namespace src.Domain
                 roleNode = RolesDictionary[userID];
             if (roleNode != null)
             {
-                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(5)))
+                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(4)))
                 {
                     foreach (KeyValuePair<int, int> p in productsQuantityList)
                         if (Products.ContainsKey(p.Key))
