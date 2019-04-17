@@ -26,7 +26,7 @@ namespace IntegrationTests
             ownerUser.signIn(ownerUser.UserName, ownerUser.Password);
             store = new Store(1111, "adidas", null, null);
             ownerRole = new Owner(store, ownerUser);
-            ownerUser.Roles.Add(ownerUser.Id, ownerRole);
+            ownerUser.Roles.Add(store.Id, ownerRole);
 
 
             managerUser = new User(7878, "baba", "3434", false, false);
