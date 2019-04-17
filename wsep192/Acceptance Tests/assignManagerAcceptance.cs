@@ -16,7 +16,7 @@ namespace Acceptance_Tests
         String idManager;
         String managerUser;
         String managerPassword;
-        List<String> permision;
+        List<String> permissions;
         String idGuest;
         String guestUser;
         String password;
@@ -35,8 +35,7 @@ namespace Acceptance_Tests
             managerUser = "Yuval";
             managerPassword = "2323";
             service.register(managerUser, managerPassword, idManager);
-            service.signIn(managerUser, managerPassword);
-            permision = new List<String>() {"AddDiscountPolicy"};
+            permissions = new List<String>() {"AddDiscountPolicy"};
 
 
             service.openStore("adidas", ownerUser);
@@ -44,43 +43,42 @@ namespace Acceptance_Tests
             idGuest = service.initUser();
             guestUser = "bla";
             password = "1212";
-            service.register(guestUser, password, idGuest);
         }
 
         [TestMethod]
         public void TestMethod1_success_scenario()
         {
             setUp();
-            Assert.AreEqual(true, service.assignManager(ownerUser, managerUser, "adidas", permision));
+            Assert.AreEqual(true, service.assignManager(ownerUser, managerUser, "adidas", permissions));
         }
 
         [TestMethod]
         public void TestMethod1_fail_assignByUser_scenario()
         {
             setUp();
-            Assert.AreEqual(false, service.assignManager(guestUser, managerUser, "adidas", permision));
+            Assert.AreEqual(false, service.assignManager(guestUser, managerUser, "adidas", permissions));
         }
 
         [TestMethod]
         public void TestMethod1_fail_assignOwnerByOwner_scenario()
         {
             setUp();
-            Assert.AreEqual(false, service.assignManager(ownerUser, ownerUser, "adidas", permision));
+            Assert.AreEqual(false, service.assignManager(ownerUser, ownerUser, "adidas", permissions));
         }
 
         [TestMethod]
         public void TestMethod1_fail_assignExistManager_scenario()
         {
             setUp();
-            service.assignManager(ownerUser, managerUser, "adidas", permision);
-            Assert.AreEqual(false, service.assignManager(ownerUser, managerUser, "adidas", permision));
+            service.assignManager(ownerUser, managerUser, "adidas", permissions);
+            Assert.AreEqual(false, service.assignManager(ownerUser, managerUser, "adidas", permissions));
         }
 
         [TestMethod]
-        public void TestMethod1_fail_assignNotSignedInUser_scenario()
+        public void TestMethod1_fail_assignNotRegisterUser_scenario()
         {
             setUp();
-            Assert.AreEqual(false, service.assignManager(ownerUser, guestUser, "adidas", permision));
+            Assert.AreEqual(false, service.assignManager(ownerUser, guestUser, "adidas", permissions));
         }
     }
 }

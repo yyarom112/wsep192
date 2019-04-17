@@ -13,7 +13,7 @@ namespace UnitTests
         private User managerUser;
         private User user1;
         private Store store;
-        private List<int> permmision;
+        private List<int> permissions;
         private Owner ownerRole;
         private Manager managerRole;
 
@@ -21,17 +21,18 @@ namespace UnitTests
         {
             system = new TradingSystem(null, null);
             ownerUser = new User(1234, "Seifan", "2457", false, false);
-            ownerUser.State = state.signedIn;
+            ownerUser.register(ownerUser.UserName, ownerUser.Password);
+            ownerUser.signIn(ownerUser.UserName, ownerUser.Password);
             store = new Store(1111, "adidas", null, null);
             ownerRole = new Owner(store, ownerUser);
             ownerUser.Roles.Add(ownerUser.Id, ownerRole);
 
 
             managerUser = new User(7878, "baba", "3434", false, false);
-            managerUser.State = state.signedIn;
-            permmision = new List<int>();
-            permmision.Add(1);
-            managerRole = new Manager(store, managerUser, permmision);
+            managerUser.register(managerUser.UserName, managerUser.Password);
+            permissions = new List<int>();
+            permissions.Add(1);
+            managerRole = new Manager(store, managerUser, permissions);
 
             user1 = new User(2456, "luli", "5656", false, false);
 
@@ -50,7 +51,6 @@ namespace UnitTests
         {
             setUp();
             Assert.AreEqual(true, store.assignManager(managerRole, (Owner)ownerRole));
-            Assert.AreEqual(true, managerRole.validatePermission(1));
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace UnitTests
         public void TestMethod1_success_ownerClass_scenario()
         {
             setUp();
-            Assert.AreEqual(true, ownerRole.assignManager(managerUser, permmision));
+            Assert.AreEqual(true, ownerRole.assignManager(managerUser, permissions));
         }
 
         [TestMethod]
@@ -80,7 +80,7 @@ namespace UnitTests
         {
             setUp();
             StubStore sStore = new StubStore(3456, "nike", null, null, true);
-            Assert.AreEqual(true, ownerUser.assignManager(managerUser, sStore.Id, permmision));
+            Assert.AreEqual(true, ownerUser.assignManager(managerUser, sStore.Id, permissions));
         }
 
         [TestMethod]
@@ -88,7 +88,7 @@ namespace UnitTests
         {
             setUp();
             StubStore sStore = new StubStore(3456, "nike", null, null, true);
-            Assert.AreEqual(false, ownerUser.assignManager(user1, sStore.Id, permmision));
+            Assert.AreEqual(false, ownerUser.assignManager(user1, sStore.Id, permissions));
         }
 
         [TestMethod]
@@ -101,7 +101,7 @@ namespace UnitTests
             system.Users.Add(ownerUserStub.Id, ownerUserStub);
             system.Users.Add(managerUserStub.Id, managerUserStub);
             system.Stores.Add(sStore.Id, sStore);
-            Assert.AreEqual(true, system.assignManager(ownerUserStub.Id, managerUserStub.Id, sStore.Id, permmision));
+            Assert.AreEqual(true, system.assignManager(ownerUserStub.Id, managerUserStub.Id, sStore.Id, permissions));
         }
 
         [TestMethod]
@@ -113,7 +113,7 @@ namespace UnitTests
             StubUser managerUserStub = new StubUser(2323, "babi", "3434", false, true, false);
             system.Users.Add(ownerUserStub.Id, ownerUserStub);
             system.Stores.Add(sStore.Id, sStore);
-            Assert.AreEqual(false, system.assignManager(ownerUser.Id, user1.Id, store.Id, permmision));
+            Assert.AreEqual(false, system.assignManager(ownerUser.Id, user1.Id, store.Id, permissions));
         }
 
         class StubOwner : Owner

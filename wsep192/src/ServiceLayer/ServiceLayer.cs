@@ -251,7 +251,7 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(manager) || !users.ContainsKey(user) || !stores.ContainsKey(store) || !validatePermissions(permissions))
                 return false;
-            return system.assignManager(users[manager], users[user], stores[store], getPermissionsInts(permissions));
+            return system.assignManager(users[user], users[manager], stores[store], getPermissionsInts(permissions));
         }
 
         private bool validatePermissions(List<string> permissions)

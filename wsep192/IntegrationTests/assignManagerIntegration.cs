@@ -14,7 +14,7 @@ namespace IntegrationTests
         private User managerUser;
         private User user1;
         private Store store;
-        private List<int> permmision;
+        private List<int> permissions;
         private Role ownerRole;
         private Role managerRole;
 
@@ -22,16 +22,17 @@ namespace IntegrationTests
         {
             system = new TradingSystem(null, null);
             ownerUser = new User(1234, "Seifan", "2457", false, false);
-            ownerUser.State = state.signedIn;
+            ownerUser.register(ownerUser.UserName, ownerUser.Password);
+            ownerUser.signIn(ownerUser.UserName, ownerUser.Password);
             store = new Store(1111, "adidas", null, null);
             ownerRole = new Owner(store, ownerUser);
             ownerUser.Roles.Add(ownerUser.Id, ownerRole);
 
 
             managerUser = new User(7878, "baba", "3434", false, false);
-            managerUser.State = state.signedIn;
-            permmision = new List<int>();
-            permmision.Add(2);
+            managerUser.register(managerUser.UserName, managerUser.Password);
+            permissions = new List<int>();
+            permissions.Add(2);
             user1 = new User(2456, "luli", "5656", false, false);
 
             store.Roles = new TreeNode<Role>(ownerRole);
@@ -47,38 +48,38 @@ namespace IntegrationTests
         public void TestMethod1_success_system_scenario()
         {
             setUp();
-            Assert.AreEqual(true, system.assignManager(ownerUser.Id, managerUser.Id, store.Id, permmision));
+            Assert.AreEqual(true, system.assignManager(ownerUser.Id, managerUser.Id, store.Id, permissions));
         }
 
         [TestMethod]
         public void TestMethod1_fail_system_notManager_scenario()
         {
             setUp();
-            Assert.AreEqual(false, system.assignManager(ownerUser.Id, user1.Id, store.Id, permmision));
+            Assert.AreEqual(false, system.assignManager(ownerUser.Id, user1.Id, store.Id, permissions));
         }
 
         [TestMethod]
         public void TestMethod1_fail_system_notOwner_scenario()
         {
             setUp();
-            Assert.AreEqual(false, system.assignManager(user1.Id, managerUser.Id, store.Id, permmision));
+            Assert.AreEqual(false, system.assignManager(user1.Id, managerUser.Id, store.Id, permissions));
         }
 
         [TestMethod]
         public void TestMethod1_fail_system_ownerAssignOwner_scenario()
         {
             setUp();
-            Assert.AreEqual(false, system.assignManager(ownerUser.Id, ownerUser.Id, store.Id, permmision));
+            Assert.AreEqual(false, system.assignManager(ownerUser.Id, ownerUser.Id, store.Id, permissions));
         }
 
         [TestMethod]
         public void TestMethod1_fail_system_ownerAssignExistManager_scenario()
         {
             setUp();
-            managerRole = new Manager(store, managerUser, permmision);
+            managerRole = new Manager(store, managerUser, permissions);
             managerUser.Roles.Add(managerUser.Id, managerRole);
             store.RolesDictionary.Add(managerUser.Id, new TreeNode<Role>(managerRole));
-            Assert.AreEqual(false, system.assignManager(ownerUser.Id, managerUser.Id, store.Id, permmision));
+            Assert.AreEqual(false, system.assignManager(ownerUser.Id, managerUser.Id, store.Id, permissions));
         }
 
     }
