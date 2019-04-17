@@ -37,21 +37,14 @@ namespace src.ServiceLayer
 
         private void addPermissions()
         {
-
             permissions.Add("AddDiscountPolicy", 1);
             permissions.Add("AddPurchasePolicy", 2);
-            permissions.Add("EditProductQuantityInStore", 3);
-            permissions.Add("AddProductToStore", 4);
-            permissions.Add("RemoveProductFromStore", 5);
+            permissions.Add("CreateNewProductInStore", 3);
+            permissions.Add("AddProductsInStore", 4);
+            permissions.Add("RemoveProductsFromStore", 5);
             permissions.Add("EditProductInStore", 6);
-            permissions.Add("RemoveManager", 7);
-            permissions.Add("RemoveOwner", 8);
-            permissions.Add("CommunicationWithCustomers", 9);
-            permissions.Add("PurchasesHistory", 10);
-            permissions.Add("AssignOwner", 11);
-            permissions.Add("AssignManager", 12);
-            permissions.Add("CloseStore", 13);
-
+            permissions.Add("CommunicationWithCustomers", 7);
+            permissions.Add("PurchasesHistory", 8);
         }
 
         public string initUser()
