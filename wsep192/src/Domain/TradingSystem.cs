@@ -161,7 +161,7 @@ namespace src.Domain
 
             return true;
         }
-       
+        
 
 
         public bool removeOwner(int userID,int userIDToRemove,int storeID)
