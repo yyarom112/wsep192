@@ -380,11 +380,12 @@ namespace src.Domain
             return false;
         }
 
-        internal bool assignOwner(int storeID, int assignID, int assignedID)
+        internal bool assignOwner(int assignID, int assignedID, int storeID)
         {
-            if (Users.ContainsKey(assignID))
-                if (Users[assignID].assignOwner(storeID, assignedID))
-                    return true;
+            if (Users.ContainsKey(assignID)) {
+                User assignedUser = this.users[assignedID];
+                return Users[assignID].assignOwner(storeID, assignedUser); //CHANGED SIGNATURE
+                }
             return false;
         }
 

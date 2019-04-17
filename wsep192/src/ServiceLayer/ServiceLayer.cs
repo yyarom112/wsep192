@@ -244,10 +244,10 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(ownerToRemove) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
-            return system.removeOwner(users[ownerToRemove], stores[store], users[user]);
+            return system.removeOwner(users[user],users[ownerToRemove], stores[store] );
         }
         //req4.5
-        public bool assignManager(String manager, String user, String store, List<String> permissions)
+        public bool assignManager(String user, String manager, String store, List<String> permissions)
         {
             if (!users.ContainsKey(manager) || !users.ContainsKey(user) || !stores.ContainsKey(store) || !validatePermissions(permissions))
                 return false;

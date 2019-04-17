@@ -12,7 +12,6 @@ namespace Acceptance_Tests
     {
 
         ServiceLayer service;
-        [TestMethod]
         public void setUp()
         {
             service = new ServiceLayer();
@@ -31,19 +30,19 @@ namespace Acceptance_Tests
         public void TestOwnerRemovesOwner()
         {
             setUp();
-            Assert.Equals(true,service.removeOwner("zahi", "footlocker", "aviv"));
+            Assert.AreEqual(true,service.removeOwner("zahi", "footlocker", "aviv"));
         }
         [TestMethod]
         public void TestNotOwnerRemovesOwner()
         {
             setUp();
-            Assert.Equals(true, service.removeOwner("zahi", "footlocker", "yossi"));
+            Assert.AreEqual(false, service.removeOwner("zahi", "footlocker", "yossi"));
         }
         [TestMethod]
         public void TestOwnerRemovesNotOwner()
         {
             setUp();
-            Assert.Equals(true, service.removeOwner("yossi", "footlocker", "aviv"));
+            Assert.AreEqual(false, service.removeOwner("yossi", "footlocker", "aviv"));
         }
 
     }

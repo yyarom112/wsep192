@@ -65,7 +65,7 @@ namespace src.Domain
         }
         public virtual Boolean assignManager(User managerUser, int storeId, List<int> permissionToManager)
         {
-            if (this.state != state.signedIn || managerUser.state != state.signedIn)
+            if (this.state != state.signedIn)// managerUser.state != state.signedIn)
             {
                 return false;
             }
@@ -195,17 +195,17 @@ namespace src.Domain
 
         }
 
-        public bool assignOwner(int storeID,int assignedID)
+        public bool assignOwner(int storeID,User assignedUser)//CHANGED SIGNATURE
         {
-            Role role = searchRoleByStoreID(storeID, assignedID);
+            Role role = searchRoleByStoreID(storeID, this.Id);
             try
             {
                 Owner owner = (Owner)role;
-                return owner.assignOwner(assignedID);
+                return owner.assignOwner(assignedUser); 
             }
             catch (Exception)
             {
-                LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                //LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
                 return false;
             }
         }
