@@ -68,10 +68,10 @@ namespace src.Domain
         {
             foreach(Role r in Users[UserID].Roles.Values)
             {
-                if (r.Store.RolesDictionary[UserID].Parent == null)
-                    return false;
+                if (r.Store.RolesDictionary[UserID].Equals(r.Store.Roles))
+                    return true;
             }
-            return true;
+            return false;
         }
         internal bool removeUser(int removingID, int toRemoveID)
         {
@@ -111,7 +111,7 @@ namespace src.Domain
                 Store store = new Store(storeCounter, storeName, purchasePolicy, discountPolicy);
                 if (Users.ContainsKey(userID) && Users[userID].IsRegistered)
                 {
-                    Stores.Add(storeCounter++, store);
+                    Stores.Add(storeCounter, store);
                     User user = searchUser(userID);
                     store.initOwner(user);
                     LogManager.Instance.WriteToLog("TradingSystem-open store" +storeName+" succu\n");
