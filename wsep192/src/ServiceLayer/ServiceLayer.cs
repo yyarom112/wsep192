@@ -40,11 +40,12 @@ namespace src.ServiceLayer
             permissions.Add("AddDiscountPolicy", 1);
             permissions.Add("AddPurchasePolicy", 2);
             permissions.Add("CreateNewProductInStore", 3);
-            permissions.Add("AddProductsInStore", 4);
-            permissions.Add("RemoveProductsFromStore", 5);
-            permissions.Add("EditProductInStore", 6);
-            permissions.Add("CommunicationWithCustomers", 7);
-            permissions.Add("PurchasesHistory", 8);
+            permissions.Add("EditProductQuantityInStore", 4);
+            permissions.Add("AddProductToStore", 5);
+            permissions.Add("RemoveProductFromStore", 6);
+            permissions.Add("EditProductInStore", 7);
+            permissions.Add("CommunicationWithCustomers", 8);
+            permissions.Add("PurchasesHistory", 9);
         }
 
         public string initUser()
@@ -98,8 +99,7 @@ namespace src.ServiceLayer
         //req2.5
         public String searchProduct(String details)
         {
-            //return system.searchProduct(details);
-            return null;
+            return system.searchProduct(details);
         }
         //req2.6
         public bool addProductsToCart(List<KeyValuePair<String, int>> products, String store, String user)
@@ -108,8 +108,8 @@ namespace src.ServiceLayer
             {
                 return false;
             }
-            // return system.addProductsToCart(getProductsInts(products,stores[store]), stores[store], users[user]);
-            return false;
+            return system.addProductsToCart(getProductsInts(products,stores[store]), stores[store], users[user]);
+            
         }
 
         private bool productsExist(List<KeyValuePair<String, int>> products, int store)
@@ -197,7 +197,7 @@ namespace src.ServiceLayer
 
 
         //req4.1
-        public bool createNewProductInStore(String productName, String category, String details, int price, String store, String user)
+        public bool createNewProductInStore(String productName, String category, String details,int price, String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store))
             {
@@ -205,6 +205,8 @@ namespace src.ServiceLayer
             }
             return system.createNewProductInStore(productName, category, details, price, stores[store], users[user]);
         }
+
+        //pair of <produc,quantity>
         public bool addProductsInStore(List<KeyValuePair<String, int>> productsToAdd, String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist(productsToAdd, stores[store]))

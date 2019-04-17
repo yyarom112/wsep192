@@ -22,40 +22,32 @@ namespace UnitTests
             product = new Product(1, "product", null, null, -1);
         }
 
-
-        private void successSetUp()
-        {
-            system.Users.Add(user.Id, user);
-            system.Stores.Add(store.Id, store);
-            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
-            ProductInCart pc = new ProductInCart(2, user.Basket.ShoppingCarts[store.Id], product);
-            user.Basket.ShoppingCarts[store.Id].Products.Add(product.Id, pc);
-        }
-
-
         [TestMethod]
-        public void TestMethod_failure_edit()
+        public void TestMethod_failure_edit_system()
         {
             setUp();
-
-            //failure system edit
             Assert.AreEqual(false, system.editProductQuantityInCart(product.Id, 3, store.Id, user.Id));
-            system.Users.Add(user.Id, user);
+            system.Users.Add(user.Id, null);
             Assert.AreEqual(false, system.editProductQuantityInCart(product.Id, 3, store.Id, user.Id));
             system.Users.Remove(user.Id);
-            system.Stores.Add(store.Id, store);
+            system.Stores.Add(store.Id, null);
             Assert.AreEqual(false, system.editProductQuantityInCart(product.Id, 3, store.Id, user.Id));
 
-            //failure basket edit
-            Assert.AreEqual(false, user.Basket.editProductQuantityInCart(product.Id, 3, store.Id));
+        }
+        [TestMethod]
+        public void TestMethod_failure_edit_basket()
+        {
+            setUp();
+            ShoppingBasket basket = new ShoppingBasket();
+            Assert.AreEqual(false, basket.editProductQuantityInCart(product.Id, 3, store.Id));
+        }
 
-            //failure cart edit
-            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
-            ProductInCart pc = new ProductInCart(2, user.Basket.ShoppingCarts[store.Id], product);
-            user.Basket.ShoppingCarts[store.Id].Products.Add(product.Id, pc);
-
-            Assert.AreEqual(true, user.Basket.ShoppingCarts[store.Id].editProductQuantityInCart(product.Id, 3));
-
+        [TestMethod]
+        public void TestMethod_failure_edit_cart()
+        {
+            setUp();
+            ShoppingCart cart =  new ShoppingCart(store.Id, null);
+            Assert.AreEqual(false, cart.editProductQuantityInCart(product.Id, 3));
         }
 
 
@@ -65,27 +57,65 @@ namespace UnitTests
         public void TestMethod_cart_success_edit()
         {
             setUp();
-            successSetUp();
-            Assert.AreEqual(true, user.Basket.ShoppingCarts[store.Id].editProductQuantityInCart(product.Id, 3));
-            Assert.AreEqual(3, user.Basket.ShoppingCarts[store.Id].Products[product.Id].Quantity);
+            ShoppingCart cart = new ShoppingCart(store.Id, null);
+            ProductInCart pc = new ProductInCart(2, cart, null);
+            cart.Products.Add(product.Id, pc);
+            Assert.AreEqual(true, cart.editProductQuantityInCart(product.Id, 3));
+            Assert.AreEqual(3, cart.Products[product.Id].Quantity);
         }
 
         [TestMethod]
         public void TestMethod_basket_success_edit()
         {
             setUp();
-            successSetUp();
-            Assert.AreEqual(true, user.Basket.editProductQuantityInCart(product.Id, 3, store.Id));
-            Assert.AreEqual(3, user.Basket.ShoppingCarts[store.Id].Products[product.Id].Quantity);
-        }
+            ShoppingBasket basket = new ShoppingBasket();
+            ShoppingCart cart = new StubCart2(store.Id, null, true);
+            basket.ShoppingCarts.Add(store.Id, cart);
+            Assert.AreEqual(true, basket.editProductQuantityInCart(product.Id, 3, store.Id));
+            }
 
         [TestMethod]
         public void TestMethod_system_success_edit()
         {
             setUp();
-            successSetUp();
+            user = new stubUser2(1, null, null, false, false, true);
+            system.Users.Add(user.Id, user);
+            system.Stores.Add(store.Id, null);
             Assert.AreEqual(true, system.editProductQuantityInCart(product.Id, 3, store.Id, user.Id));
-            Assert.AreEqual(3, user.Basket.ShoppingCarts[store.Id].Products[product.Id].Quantity);
         }
     }
+
+    internal class stubUser2 : User
+    {
+        bool retVal;
+
+
+        public stubUser2(int id, string userName, string password, bool isAdmin, bool isRegistered, bool ret) : base(id, userName, password, isAdmin, isRegistered)
+        {
+            retVal = ret;
+        }
+
+        internal override bool editProductQuantityInCart(int product,int quantity, int storeId)
+        {
+            return retVal;
+        }
+
+    }
+
+    internal class StubCart2 : ShoppingCart
+    {
+        bool retVal;
+
+        public StubCart2(int storeId, Store store, bool ret) : base(storeId, store)
+        {
+            retVal = ret;
+        }
+
+        internal override bool editProductQuantityInCart(int product, int quantity)
+        {
+            return retVal;
+        }
+    }
+
+
 }

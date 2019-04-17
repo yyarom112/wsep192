@@ -96,35 +96,19 @@ namespace src.Domain
         }
 
         internal bool openStore(string storeName, int userID, int storeCounter)
-
         {
-
             List<PurchasePolicy> purchasePolicy = new List<PurchasePolicy>();
-
             List<DiscountPolicy> discountPolicy = new List<DiscountPolicy>();
-
             if (!stores.ContainsKey(storeCounter))
-
             {
-
                 Store store = new Store(storeCounter, storeName, purchasePolicy, discountPolicy);
-
                 if (Users.ContainsKey(userID) && Users[userID].IsRegistered)
-
                 {
-
                     Stores.Add(storeCounter, store);
-
                     User user = searchUser(userID);
-
                     store.initOwner(user);
-
-                    user.addRole(new Owner(store, user));
-
                     return true;
-
                 }
-
             }
 
             return false;
@@ -195,7 +179,11 @@ namespace src.Domain
             List<ProductInStore> products  = new List<ProductInStore>();
             String[] detailsForFilter = details.Split(' ');
             if (detailsForFilter.Length != 7)
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-search Product " + details + " bad input");
+
                 return "";
+            }
             KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
                 Int32.Parse(detailsForFilter[4]));
             Filter filter = new Filter(detailsForFilter[0],
@@ -350,14 +338,22 @@ namespace src.Domain
             return output;
         }
 
-        internal bool createNewProductInStore(string productName, string category, string details, int price, int v1, int v2)
+       internal bool createNewProductInStore(string productName, string category, string details, int price, int storeID,int userID)
         {
-            throw new NotImplementedException();
+            if (Stores.ContainsKey(storeID))
+            { 
+                if(Stores[storeID].createNewProductInStore(productName, category, details, price, ProductCounter++, userID))
+                return true;
+            }
+            return false;
         }
 
-        internal bool addProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
+      internal bool addProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID, int userID)
         {
-            throw new NotImplementedException();
+            if (Stores.ContainsKey(storeID))
+                if(Stores[storeID].addProductsInStore(productsInStore, userID))
+                return true;
+            return false;
         }
 
         internal int getProduct(string product, int store)
@@ -365,9 +361,12 @@ namespace src.Domain
             return Stores[store].getProduct(product);
         }
 
-        internal bool removeProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
+        internal bool removeProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID, int userID)
         {
-            throw new NotImplementedException();
+            if (Stores.ContainsKey(storeID))
+                if(Stores[storeID].removeProductsInStore(productsInStore, userID))
+                return true;
+            return false;
         }
 
         public Boolean assignManager(int ownerId, int managerId, int storeId, List<int> permissionToManager)
@@ -381,14 +380,20 @@ namespace src.Domain
             return false;
         }
 
-        internal bool assignOwner(int v1, int v2, int v3)
+        internal bool assignOwner(int storeID, int assignID, int assignedID)
         {
-            throw new NotImplementedException();
+            if (Users.ContainsKey(assignID))
+                if (Users[assignID].assignOwner(storeID, assignedID))
+                    return true;
+            return false;
         }
 
-        internal bool editProductInStore(int v1, string productName, string category, string details, int price, int v2, int v3)
+        internal bool editProductInStore(int productID, string productName, string category, string details, int price, int storeID, int userID)
         {
-            throw new NotImplementedException();
+            if (Stores.ContainsKey(storeID))
+                if (Stores[storeID].editProductsInStore(productID,productName,category,details,price,userID))
+                    return true;
+            return false;
         }
     }
 }

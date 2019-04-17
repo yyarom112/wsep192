@@ -16,7 +16,7 @@ namespace Acceptance_Tests
         {
             service = new ServiceLayer();
             service.init("Yuval", "3434");
-            id =service.initUser();
+            id = service.initUser();
 
         }
 

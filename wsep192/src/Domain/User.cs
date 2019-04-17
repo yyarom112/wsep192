@@ -34,10 +34,24 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
 
         }
+
+        public int Id { get => id; set => id = value; }
+        public string UserName { get => userName; set => userName = value; }
+        public string Password { get => password; set => password = value; }
+        public string Address { get => address; set => address = value; }
+        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
+        public bool IsRegistered { get => isRegistered; set => isRegistered = value; }
+        internal state State { get => state; set => state = value; }
+        internal ShoppingBasket Basket { get => basket; set => basket = value; }
+        internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
+
         public bool removeOwner(int userID,int storeID)
         {
             if (this.state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User-removeOwner " + this.id + " isn't signed in");
                 return false;
+            }
             Role role = searchRoleByStoreID(storeID,this.Id);
             if (role != null && role.GetType() == typeof(Owner))
             {
@@ -45,6 +59,7 @@ namespace src.Domain
                 return owner.removeOwner(userID);
                 
             }
+            LogManager.Instance.WriteToLog("User-removeOwner " + role.User.Id + " isn't owner");
             return false;
             
         }
@@ -67,7 +82,7 @@ namespace src.Domain
             return false;
         }
 
-        internal string showCart(int storeId)
+        internal virtual string showCart(int storeId)
         {
             return basket.showCart(storeId);
         }
@@ -99,16 +114,7 @@ namespace src.Domain
                     return role;
             return null;
         }
-        public int Id { get => id; set => id = value; }
-        public string UserName { get => userName; set => userName = value; }
-        public string Password { get => password; set => password = value; }
-        public string Address { get => address; set => address = value; }
-        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
-        public bool IsRegistered { get => isRegistered; set => isRegistered = value; }
-        internal state State { get => state; set => state = value; }
-        internal ShoppingBasket Basket { get => basket; set => basket = value; }
-        internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
-
+        
 
         public virtual int basketCheckout(String address)
         {
@@ -118,8 +124,12 @@ namespace src.Domain
         internal bool signOut()
         {
             if (state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User:signOut failed - user "+UserName+" didn't sign in\n");
                 return false;
+            }
             state = state.visitor;
+            LogManager.Instance.WriteToLog("User:signOut success - "+userName+"\n");
             return true;
 
         }
@@ -155,11 +165,11 @@ namespace src.Domain
         }
 
 
-        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        internal virtual bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
         {
             return basket.removeProductsFromCart(productsToRemove, storeId);
         }
-        internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
+        internal virtual bool editProductQuantityInCart(int productId, int quantity, int storeId)
         {
             return basket.editProductQuantityInCart(productId, quantity, storeId);
         }
@@ -183,6 +193,21 @@ namespace src.Domain
                 return false;
             }
 
+        }
+
+        public bool assignOwner(int storeID,int assignedID)
+        {
+            Role role = searchRoleByStoreID(storeID, assignedID);
+            try
+            {
+                Owner owner = (Owner)role;
+                return owner.assignOwner(assignedID);
+            }
+            catch (Exception)
+            {
+                LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                return false;
+            }
         }
     }
 }
