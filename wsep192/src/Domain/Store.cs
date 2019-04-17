@@ -73,10 +73,14 @@ namespace src.Domain
 
                     TreeNode<Role> managerRole = currOwner.AddChild(newManager);
                     RolesDictionary.Add(newManager.User.Id, managerRole);
-                    newManager.User.Roles.Add(newManager.User.Id, newManager);
+                    newManager.User.Roles.Add(this.Id, newManager);
+                    newManager.Store = this;
+                    LogManager.Instance.WriteToLog("Store - assign manger succeed");
                     return true;
                 }
+                LogManager.Instance.WriteToLog("Store - assign manger fail - new manager already exist in the store");
             }
+            LogManager.Instance.WriteToLog("Store - assign manger fail - owner not exist in the tree");
             return false;
         }
 
@@ -161,7 +165,7 @@ namespace src.Domain
             
             if (RolesDictionary.ContainsKey(userID))
                 roleNode = RolesDictionary[userID];
-            if (roleNode != null)
+            if (roleNode != null&&roleNode.Parent!=null)
             {
                 if (roleNode.Data.GetType() == typeof(Owner))
                 {
@@ -170,10 +174,15 @@ namespace src.Domain
                     foreach(TreeNode<Role> child in roleNode.getChildren())
                         flag = removeOwner(child.Data.User.Id, roleNode.Data);
                 }
-                if (flag&&ownerNode.RemoveChild(roleNode)
+                if (flag && ownerNode.RemoveChild(roleNode)
                      && RolesDictionary.Remove(userID)
                     && roleNode.Data.User.Roles.Remove(this.Id))
+                {
+
+                    LogManager.Instance.WriteToLog("Store-Remove owner Succeeded- The user " + userID);
+
                     return true;
+                }
 
 
             }
@@ -312,7 +321,7 @@ namespace src.Domain
             if (ownerNode != null)
             {
                 Owner assignedOwner = new Owner(this, assignedUser);
-                assignedNode = ownerNode.AddChild(owner);
+                assignedNode = ownerNode.AddChild(assignedOwner);
                 RolesDictionary.Add(assignedOwner.User.Id, assignedNode);
                 assignedNode.Data.User.Roles.Add(this.Id,assignedNode.Data);
                 return true;

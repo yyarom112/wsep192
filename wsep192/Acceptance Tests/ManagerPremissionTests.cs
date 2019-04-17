@@ -40,8 +40,8 @@ namespace Acceptance_Tests
         {
             service.createNewProductInStore("p1", "category", "details", 100, "store", "owner");
             permissions = new List<string>();
-            permissions.Add("AddProductToStore");
-            service.assignManager("user", "owner", "store", permissions);
+            permissions.Add("AddProductsInStore");
+            service.assignManager("owner","user", "store", permissions);
             KeyValuePair<string, int> p1 = new KeyValuePair<string, int>("p1", 1);
             list = new List<KeyValuePair<string, int>>();
             list.Add(p1);

@@ -176,7 +176,7 @@ namespace src.Domain
 
             return true;
         }
-       
+        
 
 
         public bool removeOwner(int userID,int userIDToRemove,int storeID)
@@ -350,13 +350,11 @@ namespace src.Domain
        internal bool createNewProductInStore(string productName, string category, string details, int price, int storeID,int userID)
         {
             if (Stores.ContainsKey(storeID))
-                if(Stores[storeID].createNewProductInStore(productName, category, details, price, ProductCounter++, userID))
+                if(users[userID].createNewProductInStore(productName, category, details, price, ProductCounter++,storeID))
                 {
                     LogManager.Instance.WriteToLog("TradingSystem-create new product in store"+storeID+" -success\n");
                     return true;
-
                 }
-                
             LogManager.Instance.WriteToLog("TradingSystem-create new product in store fail- the store does not exists\n");
             return false;
         }
@@ -364,7 +362,7 @@ namespace src.Domain
       internal bool addProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID, int userID)
         {
             if (Stores.ContainsKey(storeID))
-                if(Stores[storeID].addProductsInStore(productsInStore, userID))
+                if(users[userID].addProductsInStore(productsInStore, storeID))
                 {
                     LogManager.Instance.WriteToLog("TradingSystem-add product to store" +storeID+" -success");
                     return true;
@@ -381,7 +379,7 @@ namespace src.Domain
         internal bool removeProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID, int userID)
         {
             if (Stores.ContainsKey(storeID))
-                if(Stores[storeID].removeProductsInStore(productsInStore, userID))
+                if(users[userID].removeProductsInStore(productsInStore, storeID))
                 {
                     LogManager.Instance.WriteToLog("TradingSystem-remove product from store" + storeID + " -success");
                     return true;
@@ -416,7 +414,7 @@ namespace src.Domain
         internal bool editProductInStore(int productID, string productName, string category, string details, int price, int storeID, int userID)
         {
             if (Stores.ContainsKey(storeID))
-                if (Stores[storeID].editProductsInStore(productID,productName,category,details,price,userID))
+                if (users[userID].editProductsInStore(productID,productName,category,details,price,storeID))
                 {
                     LogManager.Instance.WriteToLog("TradingSystem-edit product to store" + storeID + " success");
                     return true;

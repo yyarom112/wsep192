@@ -21,6 +21,6 @@ namespace src.Domain
 
         public virtual bool removeOwner(int userID) => Store.removeOwner(userID,this);
         public virtual bool removeManager(int userID) => Store.removeManager(userID,this);
-        public virtual bool assignOwner(User assigned) => Store.assignOwner(assigned, this);
+        public virtual bool assignOwner(User assignedUser) => Store.assignOwner(assignedUser, this);//CHANGED SIGNATURE
     }
 }
