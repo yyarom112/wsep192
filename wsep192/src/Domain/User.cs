@@ -65,7 +65,7 @@ namespace src.Domain
         }
         public virtual Boolean assignManager(User managerUser, int storeId, List<int> permissionToManager)
         {
-            if (this.state != state.signedIn)// managerUser.state != state.signedIn)
+            if (this.state != state.signedIn || !managerUser.IsRegistered)
             {
                 return false;
             }
