@@ -65,6 +65,8 @@
     <Compile Include="LogoutTests.cs" />
     <Compile Include="searchProduct.cs" />
     <Compile Include="removeOwner.cs" />
+    <Compile Include="removeUser.cs" />
+    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">
