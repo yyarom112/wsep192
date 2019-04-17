@@ -102,6 +102,8 @@ namespace src.Domain
             foreach (KeyValuePair<int, int> pair in productsToRemove)
             {
                 products[pair.Key].Quantity -= pair.Value;
+                if (products[pair.Key].Quantity == 0)
+                    products.Remove(pair.Key);
             }
             LogManager.Instance.WriteToLog("ShoppingCart:removeProductsFromCart success\n");
             return true;

@@ -38,6 +38,7 @@ namespace Acceptance_Tests
 
         public void success_setUp()
         {
+            service.createNewProductInStore("p1", "category", "details", 100, "store", "owner");
             permissions = new List<string>();
             permissions.Add("AddProductToStore");
             service.assignManager("user", "owner", "store", permissions);
