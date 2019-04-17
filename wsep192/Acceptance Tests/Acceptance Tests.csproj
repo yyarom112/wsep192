@@ -65,7 +65,7 @@
     <Compile Include="searchProduct.cs" />
     <Compile Include="removeOwner.cs" />
     <Compile Include="removeUser.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="openStore.cs" />
     <Compile Include="createNewProductInStore.cs" />
     <Compile Include="AddProductsInStore.cs" />
     <Compile Include="RemoveProductinStore.cs" />
