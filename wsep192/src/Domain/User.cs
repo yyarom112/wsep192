@@ -137,10 +137,10 @@ namespace src.Domain
         }
 
         public void addRole(Role role)
-
         {
             Roles.Add(role.Store.Id, role);
         }
+
         public Role searchRoleByStoreID(int storeID,int userID)
         {
             foreach (Role role in roles.Values)
