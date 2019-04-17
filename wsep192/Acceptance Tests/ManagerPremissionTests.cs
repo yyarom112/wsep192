@@ -30,10 +30,8 @@ namespace Acceptance_Tests
 
         public void failure_setUp() {
             permissions = new List<string>();
-            service.assignManager("user", "owner", "store", permissions);
-            string tmp_user = service.initUser();
-            service.register("tmp", "123", tmp_user);
-            service.signIn("tmp", "123");
+            service.assignManager("user", "store", permissions, "owner");
+
         }
 
         public void success_setUp()
@@ -41,7 +39,7 @@ namespace Acceptance_Tests
             service.createNewProductInStore("p1", "category", "details", 100, "store", "owner");
             permissions = new List<string>();
             permissions.Add("AddProductsInStore");
-            service.assignManager("owner","user", "store", permissions);
+            service.assignManager("user", "store", permissions, "owner");
             KeyValuePair<string, int> p1 = new KeyValuePair<string, int>("p1", 1);
             list = new List<KeyValuePair<string, int>>();
             list.Add(p1);
@@ -52,7 +50,7 @@ namespace Acceptance_Tests
         {
             setUp();
             failure_setUp();
-            Assert.AreEqual(false,service.assignManager("tmp","user","store",permissions));
+            Assert.AreEqual(false, service.createNewProductInStore("p1", "category", "details", 100, "store", "user"));
         }
 
         [TestMethod]

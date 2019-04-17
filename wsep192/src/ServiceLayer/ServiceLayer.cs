@@ -246,7 +246,7 @@ namespace src.ServiceLayer
             return system.removeOwner(users[user],users[ownerToRemove], stores[store] );
         }
         //req4.5
-        public bool assignManager(String user, String manager, String store, List<String> permissions)
+        public bool assignManager( String manager, String store, List<String> permissions,String user)
         {
             if (!users.ContainsKey(manager) || !users.ContainsKey(user) || !stores.ContainsKey(store) || !validatePermissions(permissions))
                 return false;
