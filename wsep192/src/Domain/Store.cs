@@ -162,7 +162,7 @@ namespace src.Domain
             TreeNode<Role> roleNode = null;
             bool flag = false;
             
-            if (RolesDictionary.ContainsKey(this.id))
+            if (RolesDictionary.ContainsKey(userID))
                 roleNode = RolesDictionary[userID];
             if (roleNode != null&&roleNode.Parent!=null)
             {
@@ -319,7 +319,7 @@ namespace src.Domain
             if (ownerNode != null)
             {
                 Owner assignedOwner = new Owner(this, assignedUser);
-                assignedNode = ownerNode.AddChild(owner);
+                assignedNode = ownerNode.AddChild(assignedOwner);
                 RolesDictionary.Add(assignedOwner.User.Id, assignedNode);
                 assignedNode.Data.User.Roles.Add(this.Id,assignedNode.Data);
                 return true;
