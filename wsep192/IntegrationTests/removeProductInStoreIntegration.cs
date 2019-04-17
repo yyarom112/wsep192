@@ -64,7 +64,7 @@ namespace IntegrationTests
             setUp();
             List<KeyValuePair<int, int>> productsQuantityList = new List<KeyValuePair<int, int>>();
             productsQuantityList.Add(new KeyValuePair<int, int>(2, 7));
-            bool x = system.removeProductsInStore(productsQuantityList, 2, 203114469);
+            system.removeProductsInStore(productsQuantityList, 2, 203114469);
             Assert.AreEqual(pis.Quantity, 23);
         }
 
@@ -75,7 +75,7 @@ namespace IntegrationTests
             setUp();
             List<KeyValuePair<int, int>> productsQuantityList = new List<KeyValuePair<int, int>>();
             productsQuantityList.Add(new KeyValuePair<int, int>(2, 4));
-            bool x = system.removeProductsInStore(productsQuantityList, 2, 205600191);
+            system.removeProductsInStore(productsQuantityList, 2, 205600191);
             Assert.AreEqual(pis.Quantity, 26);
         }
 
@@ -99,6 +99,17 @@ namespace IntegrationTests
             productsQuantityList.Add(new KeyValuePair<int, int>(2, 11));
             bool x = system.removeProductsInStore(productsQuantityList, 2, 201119304);
             Assert.IsFalse(x);
+        }
+
+        //validation.
+        [TestMethod]
+        public void removeProductInStoreTest5()
+        {
+            setUp();
+            List<KeyValuePair<int, int>> productsQuantityList = new List<KeyValuePair<int, int>>();
+            productsQuantityList.Add(new KeyValuePair<int, int>(2, 7));
+            system.removeProductsInStore(productsQuantityList, 2, 203114469);
+            Assert.IsTrue(pis.Quantity >= 0);
         }
     }
 }

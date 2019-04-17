@@ -51,5 +51,15 @@ namespace IntegrationTests
             bool x = system.openStore("TopShop", ownerWannaBe.Id, 3);
             Assert.IsFalse(x);
         }
+
+        //validation test
+        [TestMethod]
+        public void openStoreTest4()
+        {
+            setUp();
+            system.openStore("UO", owner.Id, 1);
+            bool x = system.Stores[1].Roles != null;
+            Assert.IsTrue(x);
+        }
     }
 }

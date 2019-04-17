@@ -63,5 +63,7 @@ namespace Acceptance_Tests
             bool x = service.removeUser("admin", "Yonit");
             Assert.IsFalse(x);
         }
-        }
+
+
+    }
 }
