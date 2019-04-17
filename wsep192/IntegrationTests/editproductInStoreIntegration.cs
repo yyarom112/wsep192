@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
+using System.Collections.Generic;
 
 namespace IntegrationTests
 {
     [TestClass]
-    class editproductInStoreIntegration
+    public class editproductInStoreIntegration
     {
+
         private TradingSystem system;
         private Store store;
         private User owner;
@@ -62,7 +64,7 @@ namespace IntegrationTests
         public void editProductInStoreTest1()
         {
             setUp();
-            system.editProductInStore(2, "Skinny jeans", "Trouses", "Gray", 99,2, 203114469);
+            system.editProductInStore(2, "Skinny jeans", "Trouses", "Gray", 99, 2, 203114469);
             Assert.AreEqual(pis.Product.Price, 99);
         }
 
@@ -71,7 +73,7 @@ namespace IntegrationTests
         public void editProductInStoreTest2()
         {
             setUp();
-            system.editProductInStore(2, "Skinny jeans", "Trouses", "Gray", 99,2, 205600191);
+            system.editProductInStore(2, "Skinny jeans", "Trouses", "Gray", 99, 2, 205600191);
             Assert.AreEqual(pis.Product.Price, 99);
         }
 
@@ -80,7 +82,7 @@ namespace IntegrationTests
         public void editProductInStoreTest3()
         {
             setUp();
-            system.editProductInStore(2, "Skinny jeans", "Trouses", "Gray", 99,2, 201119304);
+            system.editProductInStore(2, "Skinny jeans", "Trouses", "Gray", 99, 2, 201119304);
             Assert.AreEqual(pis.Product.Price, 159);
         }
 
@@ -89,10 +91,9 @@ namespace IntegrationTests
         public void editProductInStoreTest4()
         {
             setUp();
-            system.editProductInStore(2, "Skinny jeans", "Trouses", "Gray", 99,2, 201119304);
+            system.editProductInStore(2, "Skinny jeans", "Trouses", "Gray", 99, 2, 201119304);
             Assert.AreEqual(pis.Product.Price, 159);
         }
-
 
     }
 }

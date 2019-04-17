@@ -3,19 +3,23 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
 using System.Collections.Generic;
 
-namespace UnitTests
+namespace IntegrationTests
 {
+
     [TestClass]
-    public class Req4_3
+    public class assignOwnerIntegration
     {
+        private TradingSystem system;
         private Store store;
         private User owner;
         private Role ownerRole;
         private User assigned;
         private User manager;
         private Role managerRole;
+
         public void setUp()
         {
+            system = new TradingSystem(null, null);
             store = new Store(2, "ZARA", new List<PurchasePolicy>(), new List<DiscountPolicy>());
             owner = new User(205600191, "Rotem", "r455!2@", false, false);
             owner.State = state.signedIn;
@@ -29,13 +33,18 @@ namespace UnitTests
             manager.Roles.Add(manager.Id, managerRole);
             store.Roles = new TreeNode<Role>(managerRole);
             store.RolesDictionary.Add(manager.Id, new TreeNode<Role>(managerRole));
+            system.Users.Add(owner.Id, owner);
+            system.Users.Add(manager.Id, manager);
+            system.Users.Add(assigned.Id, assigned);
+            system.Stores.Add(store.Id, store);
         }
+
         [TestMethod]
         //The owner assigns a diffrent user to be a owner-valid.
         public void AssignOwnerTest1()
         {
             setUp();
-            bool x=store.assignOwner(assigned, ownerRole);
+            bool x = system.assignOwner(store.Id,owner.Id, assigned.Id);
             Assert.IsTrue(x);
 
         }
@@ -45,18 +54,8 @@ namespace UnitTests
         public void AssignOwnerTest2()
         {
             setUp();
-            bool x = manager.assignOwner(store.Id, assigned);
+            bool x = system.assignOwner(store.Id, manager.Id,assigned.Id);
             Assert.IsFalse(x);
         }
-
-        [TestMethod]
-        //The owner assigns a diffrent user to be a owner -valid.
-        public void AssignOwnerTest3()
-        {
-            setUp();
-            bool x = owner.assignOwner(store.Id, assigned);
-            Assert.IsTrue(x);
-        }
-
     }
 }

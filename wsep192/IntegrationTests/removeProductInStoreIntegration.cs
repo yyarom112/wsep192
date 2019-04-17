@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
+using System.Collections.Generic;
 
 namespace IntegrationTests
 {
     [TestClass]
-    class removeProductInStoreIntegration
+    public class removeProductInStoreIntegration
     {
         private TradingSystem system;
         private Store store;
@@ -18,7 +19,7 @@ namespace IntegrationTests
         private Role notPremittedManagerRole;
         private Product p;
         private ProductInStore pis;
-
+        
         public void setUp()
         {
             system = new TradingSystem(null, null);
@@ -63,7 +64,7 @@ namespace IntegrationTests
             setUp();
             List<KeyValuePair<int, int>> productsQuantityList = new List<KeyValuePair<int, int>>();
             productsQuantityList.Add(new KeyValuePair<int, int>(2, 7));
-            bool x = system.removeProductsInStore(productsQuantityList,2, 203114469);
+            bool x = system.removeProductsInStore(productsQuantityList, 2, 203114469);
             Assert.AreEqual(pis.Quantity, 23);
         }
 
@@ -74,7 +75,7 @@ namespace IntegrationTests
             setUp();
             List<KeyValuePair<int, int>> productsQuantityList = new List<KeyValuePair<int, int>>();
             productsQuantityList.Add(new KeyValuePair<int, int>(2, 4));
-            bool x = system.removeProductsInStore(productsQuantityList,2, 205600191);
+            bool x = system.removeProductsInStore(productsQuantityList, 2, 205600191);
             Assert.AreEqual(pis.Quantity, 26);
         }
 
@@ -85,7 +86,7 @@ namespace IntegrationTests
             setUp();
             List<KeyValuePair<int, int>> productsQuantityList = new List<KeyValuePair<int, int>>();
             productsQuantityList.Add(new KeyValuePair<int, int>(2, 11));
-            bool x = system.removeProductsInStore(productsQuantityList,2, 201119304);
+            bool x = system.removeProductsInStore(productsQuantityList, 2, 201119304);
             Assert.IsFalse(x);
         }
 
@@ -96,9 +97,8 @@ namespace IntegrationTests
             setUp();
             List<KeyValuePair<int, int>> productsQuantityList = new List<KeyValuePair<int, int>>();
             productsQuantityList.Add(new KeyValuePair<int, int>(2, 11));
-            bool x = system.removeProductsInStore(productsQuantityList,2,201119304);
+            bool x = system.removeProductsInStore(productsQuantityList, 2, 201119304);
             Assert.IsFalse(x);
         }
-
     }
 }

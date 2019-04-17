@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
+using System.Collections.Generic;
 
 namespace IntegrationTests
 {
     [TestClass]
-    class addProductInStoreIntegratoin
+    public class addProductInStoreIntegratoin
     {
         private TradingSystem system;
         private Store store;
@@ -21,7 +22,7 @@ namespace IntegrationTests
 
         public void setUp()
         {
-            system = new TradingSystem(null,null);
+            system = new TradingSystem(null, null);
             store = new Store(2, "ZARA", new List<PurchasePolicy>(), new List<DiscountPolicy>());
             owner = new User(205600191, "Rotem", "r455!2@", false, false);
             owner.State = state.signedIn;
@@ -56,6 +57,7 @@ namespace IntegrationTests
             system.Users.Add(notPremittedManager.Id, notPremittedManager);
             system.Users.Add(user.Id, user);
         }
+
         //Store Manager with the right premission adds a product to the store - valid procedure.
         [TestMethod]
         public void addProductInStoreTest1()
@@ -63,7 +65,7 @@ namespace IntegrationTests
             setUp();
             List<KeyValuePair<int, int>> productsQuantityList = new List<KeyValuePair<int, int>>();
             productsQuantityList.Add(new KeyValuePair<int, int>(2, 7));
-            bool x = system.addProductsInStore(productsQuantityList,2, 203114469);
+            bool x = system.addProductsInStore(productsQuantityList, 2, 203114469);
             Assert.AreEqual(pis.Quantity, 37);
         }
 
@@ -74,7 +76,7 @@ namespace IntegrationTests
             setUp();
             List<KeyValuePair<int, int>> productsQuantityList = new List<KeyValuePair<int, int>>();
             productsQuantityList.Add(new KeyValuePair<int, int>(2, 4));
-            bool x = system.addProductsInStore(productsQuantityList,2, 205600191);
+            bool x = system.addProductsInStore(productsQuantityList, 2, 205600191);
             Assert.AreEqual(pis.Quantity, 34);
         }
 
@@ -85,7 +87,7 @@ namespace IntegrationTests
             setUp();
             List<KeyValuePair<int, int>> productsQuantityList = new List<KeyValuePair<int, int>>();
             productsQuantityList.Add(new KeyValuePair<int, int>(2, 11));
-            bool x = system.addProductsInStore(productsQuantityList,2, 201119304);
+            bool x = system.addProductsInStore(productsQuantityList, 2, 201119304);
             Assert.IsFalse(x);
         }
 
@@ -96,8 +98,9 @@ namespace IntegrationTests
             setUp();
             List<KeyValuePair<int, int>> productsQuantityList = new List<KeyValuePair<int, int>>();
             productsQuantityList.Add(new KeyValuePair<int, int>(2, 11));
-            bool x = system.addProductsInStore(productsQuantityList,2, 201119304);
+            bool x = system.addProductsInStore(productsQuantityList, 2, 201119304);
             Assert.IsFalse(x);
         }
+
     }
 }

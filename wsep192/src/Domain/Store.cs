@@ -60,7 +60,6 @@ namespace src.Domain
             RolesDictionary.Add(user.Id, Roles.AddChild(owner));
             Roles.AddChild(owner);
             user.addRole(owner);
-
             return owner;
         }
 

@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
+using System.Collections.Generic;
 
 namespace IntegrationTests
 {
     [TestClass]
-    class createNewProductInStoreIntegration
+    public class createNewProductInStoreIntegration
     {
         private TradingSystem system;
         private Store store;
@@ -57,6 +57,7 @@ namespace IntegrationTests
             system.Users.Add(notPremittedManager.Id, notPremittedManager);
             system.Users.Add(user.Id, user);
         }
+
         //The store owner creats a new product in store - valid procedure.
         [TestMethod]
         public void createNewProductInStoreTest1()
@@ -92,6 +93,5 @@ namespace IntegrationTests
             bool x = system.createNewProductInStore("Mini skirt", "Skirts", "Black", 129, 2, 201119304);
             Assert.IsFalse(x);
         }
-
     }
 }
