@@ -383,7 +383,7 @@ namespace src.Domain
         internal bool assignOwner(int storeID, int assignID, int assignedID)
         {
             if (Users.ContainsKey(assignID))
-                if (Users[assignID].assignOwner(storeID, assignedID))
+                if (Users[assignID].assignOwner(storeID, Users[assignedID]))
                     return true;
             return false;
         }

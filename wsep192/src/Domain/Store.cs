@@ -304,16 +304,15 @@ namespace src.Domain
             return false;
         }
 
-        public bool assignOwner(int assignedID, Role owner)
+        public bool assignOwner(User assigned, Role owner)
         {
-            TreeNode<Role> assignedNode = null;
             TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
-            if (RolesDictionary.ContainsKey(assignedID))
-                assignedNode = RolesDictionary[assignedID];
-            if (assignedNode != null)
-            {
-                ownerNode.AddChild(assignedNode.Data);
-                RolesDictionary.Add(assignedID, assignedNode);
+            Owner assignedOwner = new Owner(this, assigned);
+            TreeNode<Role> assignedNode = new TreeNode<Role>(assignedOwner);
+            if (ownerNode != null)
+            { 
+                ownerNode.AddChild(owner);
+                RolesDictionary.Add(assigned.Id, assignedNode);
                 assignedNode.Data.User.Roles.Add(this.Id,assignedNode.Data);
                 return true;
             }

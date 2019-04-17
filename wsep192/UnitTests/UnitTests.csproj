@@ -62,6 +62,7 @@
     <Compile Include="Req3.2UnitTest.cs" />
     <Compile Include="Req4.1UnitTests.cs" />
     <Compile Include="Req6.2UnitTest.cs" />
+    <Compile Include="Req4.3UnitTests.cs" />
     <Compile Include="UserLogoutTest.cs" />
     <Compile Include="loginUserTest.cs" />
     <Compile Include="ManagerPermissionTest.cs" />

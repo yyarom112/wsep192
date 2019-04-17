@@ -195,13 +195,26 @@ namespace src.Domain
 
         }
 
-        public bool assignOwner(int storeID,int assignedID)
+        public bool assignOwner(int storeID,User assigned)
         {
-            Role role = searchRoleByStoreID(storeID, assignedID);
+            Role roleOwner = searchRoleByStoreID(storeID, this.Id);
+            Role roleAssigned = searchRoleByStoreID(storeID, assigned.Id);
             try
             {
-                Owner owner = (Owner)role;
-                return owner.assignOwner(assignedID);
+                Owner owner = (Owner)roleOwner;
+                if (roleAssigned == null)
+                    return true;
+                try
+                {
+                   
+                    Role notOwner = (Owner)roleAssigned;
+                    return false;
+                }
+
+                catch (Exception)
+                {
+                    return owner.assignOwner(assigned);
+                }
             }
             catch (Exception)
             {
