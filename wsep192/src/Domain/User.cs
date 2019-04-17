@@ -67,6 +67,7 @@ namespace src.Domain
         {
             if (this.state != state.signedIn || !managerUser.IsRegistered)
             {
+                LogManager.Instance.WriteToLog("User - assign manger fail - owner not signed in or manager not registered");
                 return false;
             }
             if (this.Roles.ContainsKey(this.id))
@@ -79,6 +80,7 @@ namespace src.Domain
 
                 }
             }
+            LogManager.Instance.WriteToLog("User - assign manger fail -owner not exist in roles");
             return false;
         }
 
