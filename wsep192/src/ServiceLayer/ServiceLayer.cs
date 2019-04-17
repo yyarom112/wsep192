@@ -40,12 +40,11 @@ namespace src.ServiceLayer
             permissions.Add("AddDiscountPolicy", 1);
             permissions.Add("AddPurchasePolicy", 2);
             permissions.Add("CreateNewProductInStore", 3);
-            permissions.Add("EditProductQuantityInStore", 4);
-            permissions.Add("AddProductToStore", 5);
-            permissions.Add("RemoveProductFromStore", 6);
-            permissions.Add("EditProductInStore", 7);
-            permissions.Add("CommunicationWithCustomers", 8);
-            permissions.Add("PurchasesHistory", 9);
+            permissions.Add("AddProductsInStore", 4);
+            permissions.Add("RemoveProductsInStore", 5);
+            permissions.Add("EditProductInStore", 6);
+            permissions.Add("CommunicationWithCustomers", 7);
+            permissions.Add("PurchasesHistory", 8);
         }
 
         public string initUser()
@@ -237,7 +236,7 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(owner) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
-            return system.assignOwner(users[owner], users[user], stores[store]);
+            return system.assignOwner(stores[store],users[owner], users[user]);
         }
         //req4.4
         public bool removeOwner(String ownerToRemove, String store, String user)
@@ -286,7 +285,7 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(userToRemove) || !users.ContainsKey(user))
                 return false;
-            bool result = system.removeUser(users[userToRemove], users[user]);
+            bool result = system.removeUser(users[user],users[userToRemove]);
             if (result)
                 users.Remove(userToRemove);
             return result;

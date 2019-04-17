@@ -203,17 +203,11 @@ namespace src.Domain
             {
                 Owner owner = (Owner)roleOwner;
                 if (roleAssigned == null)
-                    return true;
-                try
-                {
-                   
-                    Role notOwner = (Owner)roleAssigned;
-                    return false;
-                }
-
-                catch (Exception)
-                {
                     return owner.assignOwner(assigned);
+                else
+                {
+                    LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " already has role in Store: " + storeID + " .\n");
+                    return false;
                 }
             }
             catch (Exception)
