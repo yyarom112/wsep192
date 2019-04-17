@@ -70,9 +70,9 @@ namespace src.Domain
                 LogManager.Instance.WriteToLog("User - assign manger fail - owner not signed in or manager not registered");
                 return false;
             }
-            if (this.Roles.ContainsKey(this.id))
+            if (this.Roles.ContainsKey(storeId))
             {
-                Role role = Roles[this.id];
+                Role role = Roles[storeId];
                 if (role != null && role.GetType() == typeof(Owner))
                 {
                     Owner owner = (Owner)role;

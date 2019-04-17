@@ -73,7 +73,7 @@ namespace src.Domain
 
                     TreeNode<Role> managerRole = currOwner.AddChild(newManager);
                     RolesDictionary.Add(newManager.User.Id, managerRole);
-                    newManager.User.Roles.Add(newManager.User.Id, newManager);
+                    newManager.User.Roles.Add(this.Id, newManager);
                     LogManager.Instance.WriteToLog("Store - assign manger succeed");
                     return true;
                 }
@@ -162,7 +162,7 @@ namespace src.Domain
             TreeNode<Role> roleNode = null;
             bool flag = false;
             
-            if (RolesDictionary.ContainsKey(userID))
+            if (RolesDictionary.ContainsKey(this.id))
                 roleNode = RolesDictionary[userID];
             if (roleNode != null&&roleNode.Parent!=null)
             {
