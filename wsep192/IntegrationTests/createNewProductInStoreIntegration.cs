@@ -32,7 +32,7 @@ namespace IntegrationTests
             store.RolesDictionary.Add(owner.Id, new TreeNode<Role>(ownerRole));
             manager = new User(203114469, "Noy", "!(ftR6", false, false);
             List<int> permissions = new List<int>();
-            permissions.Add(2);
+            permissions.Add(3);
             permissions.Add(4);
             permissions.Add(5);
             permissions.Add(6);
