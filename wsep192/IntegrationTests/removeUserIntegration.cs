@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
+using System.Collections.Generic;
 
-namespace UnitTests
+namespace IntegrationTests
 {
     [TestClass]
-    public class Req6_2
+    public class removeUserIntegration
     {
         private TradingSystem system;
         private User admin;
@@ -28,7 +27,7 @@ namespace UnitTests
         public void removeUserTest1()
         {
             setUp();
-            bool x = system.removeUser(admin.Id, toRemove.Id);
+            bool x= system.removeUser(admin.Id, toRemove.Id);
             Assert.IsTrue(x);
         }
 
