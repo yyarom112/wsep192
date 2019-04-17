@@ -74,6 +74,7 @@ namespace src.Domain
                     TreeNode<Role> managerRole = currOwner.AddChild(newManager);
                     RolesDictionary.Add(newManager.User.Id, managerRole);
                     newManager.User.Roles.Add(this.Id, newManager);
+                    newManager.Store = this;
                     LogManager.Instance.WriteToLog("Store - assign manger succeed");
                     return true;
                 }
