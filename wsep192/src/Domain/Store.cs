@@ -279,8 +279,9 @@ namespace src.Domain
                 if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(5)))
                 {
                     foreach (KeyValuePair<int, int> p in productsQuantityList)
-                        if (Products.ContainsKey(p.Key))
+                        if (Products.ContainsKey(p.Key) && Products[p.Key].Quantity >= p.Value)
                             Products[p.Key].Quantity -= p.Value;
+                        else return false;
                     return true;
                 }
             }
