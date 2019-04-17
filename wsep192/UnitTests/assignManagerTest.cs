@@ -25,7 +25,7 @@ namespace UnitTests
             ownerUser.signIn(ownerUser.UserName, ownerUser.Password);
             store = new Store(1111, "adidas", null, null);
             ownerRole = new Owner(store, ownerUser);
-            ownerUser.Roles.Add(ownerUser.Id, ownerRole);
+            ownerUser.Roles.Add(store.Id, ownerRole);
 
 
             managerUser = new User(7878, "baba", "3434", false, false);
@@ -80,6 +80,7 @@ namespace UnitTests
         {
             setUp();
             StubStore sStore = new StubStore(3456, "nike", null, null, true);
+            ownerUser.Roles.Add(sStore.Id, ownerRole);
             Assert.AreEqual(true, ownerUser.assignManager(managerUser, sStore.Id, permissions));
         }
 

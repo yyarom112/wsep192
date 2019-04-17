@@ -106,7 +106,7 @@ namespace src.Domain
 
         {
 
-            Roles.Add(Id, role);
+            Roles.Add(role.Store.Id, role);
 
         }
         public Role searchRoleByStoreID(int storeID,int userID)
