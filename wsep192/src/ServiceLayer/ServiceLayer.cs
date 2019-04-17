@@ -84,7 +84,6 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(user))
                 return false;
-
             bool result = system.register(username, password, users[user]);
             if (result)
             {
@@ -290,7 +289,6 @@ namespace src.ServiceLayer
                 users.Remove(userToRemove);
             return result;
         }
-
 
 
 

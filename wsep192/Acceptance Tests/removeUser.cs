@@ -17,10 +17,10 @@ namespace Acceptance_Tests
         public void setUp()
         {
             service = new ServiceLayer();
-            service.init("Admin", "2323");
+            service.init("Admin", "r34!Tz@");
             idOwner = service.initUser();
-            ownerUser = "Seifan";
-            passwordUser = "2345";
+            ownerUser = "Rotem";
+            passwordUser = "2eRt58!@";
             service.register(ownerUser, passwordUser, idOwner);
             service.signIn(ownerUser, passwordUser);
         }
@@ -30,7 +30,7 @@ namespace Acceptance_Tests
         public void removeUserTest1()
         {
             setUp();
-            bool x=service.removeUser("2323", "2345");
+            bool x=service.removeUser("Rotem","Admin");
             Assert.IsTrue(x);
         }
 
@@ -39,7 +39,7 @@ namespace Acceptance_Tests
         public void removeUserTest2()
         {
             setUp();
-            bool x = service.removeUser("2323", "2345");
+            bool x = service.removeUser("Admin", "Rotem");
             Assert.IsFalse(x);
         }
 
@@ -47,7 +47,7 @@ namespace Acceptance_Tests
         public void removeUserTest3()
         {
             setUp();
-            bool x = service.removeUser("2323", "2345");
+            bool x = service.removeUser("Lior", "Admin");
             Assert.IsFalse(x);
         }
     }
