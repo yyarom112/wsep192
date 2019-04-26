@@ -129,35 +129,42 @@ namespace src.Domain
             return res;
         }
 
-
-
-
-        internal bool removeUser(int userID, int storeID)
-
+        internal bool isMainOwner(int UserID)
         {
-
-            if (Stores.ContainsKey(storeID))
-
+            foreach(Role r in Users[UserID].Roles.Values)
             {
-
-                stores[storeID].Roles.RemoveChild(stores[storeID].RolesDictionary[userID]);
-
-                stores[storeID].RolesDictionary.Remove(userID);
-
-                if (Users.ContainsKey(userID))
-
-                {
-
-                    Users.Remove(userID);
-
+                if (r.Store.RolesDictionary[UserID].Equals(r.Store.Roles))
                     return true;
-
-                }
-
+            }
+            return false;
+        }
+        internal bool removeUser(int removingID, int toRemoveID)
+        {
+            
+            if (!(users.ContainsKey(toRemoveID) && users.ContainsKey(removingID)))
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-Remove user fail- one of the users does not exists\n");
+                return false;
             }
 
-            return false;
+            if (isMainOwner(toRemoveID))
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-Remove user fail- the user to remove is the main user");
+                return false;
+            }
 
+            if (!users[removingID].IsAdmin)
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-Remove user fail- the removing user is not an admin\n");
+                return false;
+            }
+
+            if (users.Remove(toRemoveID))
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-Remove user id" + toRemoveID +" success\n");
+                return true;
+            }
+            return false;
         }
 
         internal bool openStore(string storeName, int userID, int storeCounter)
@@ -172,10 +179,12 @@ namespace src.Domain
                     Stores.Add(storeCounter, store);
                     User user = searchUser(userID);
                     store.initOwner(user);
+                    LogManager.Instance.WriteToLog("TradingSystem-open store" +storeName+" succu\n");
                     return true;
                 }
+                LogManager.Instance.WriteToLog("TradingSystem-open store fail- the user does not exists or not registerd\n");
             }
-
+            LogManager.Instance.WriteToLog("TradingSystem-open store fail- the store does not exists\n");
             return false;
 
         }
@@ -232,7 +241,7 @@ namespace src.Domain
 
             return true;
         }
-       
+        
 
 
         public bool removeOwner(int userID,int userIDToRemove,int storeID)
@@ -244,7 +253,11 @@ namespace src.Domain
             List<ProductInStore> products  = new List<ProductInStore>();
             String[] detailsForFilter = details.Split(' ');
             if (detailsForFilter.Length != 7)
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-search Product " + details + " bad input");
+
                 return "";
+            }
             KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
                 Int32.Parse(detailsForFilter[4]));
             Filter filter = new Filter(detailsForFilter[0],
@@ -394,14 +407,28 @@ namespace src.Domain
             return output;
         }
 
-        internal bool createNewProductInStore(string productName, string category, string details, int price, int v1, int v2)
+       internal bool createNewProductInStore(string productName, string category, string details, int price, int storeID,int userID)
         {
-            throw new NotImplementedException();
+            if (Stores.ContainsKey(storeID))
+                if(users[userID].createNewProductInStore(productName, category, details, price, ProductCounter++,storeID))
+                {
+                    LogManager.Instance.WriteToLog("TradingSystem-create new product in store"+storeID+" -success\n");
+                    return true;
+                }
+            LogManager.Instance.WriteToLog("TradingSystem-create new product in store fail- the store does not exists\n");
+            return false;
         }
 
-        internal bool addProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
+      internal bool addProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID, int userID)
         {
-            throw new NotImplementedException();
+            if (Stores.ContainsKey(storeID))
+                if(users[userID].addProductsInStore(productsInStore, storeID))
+                {
+                    LogManager.Instance.WriteToLog("TradingSystem-add product to store" +storeID+" -success");
+                    return true;
+                }
+            LogManager.Instance.WriteToLog("TradingSystem-add product to store fail- the store does not exists\n");
+            return false;
         }
 
         internal int getProduct(string product, int store)
@@ -409,9 +436,16 @@ namespace src.Domain
             return Stores[store].getProduct(product);
         }
 
-        internal bool removeProductsInStore(List<KeyValuePair<int, int>> list, int v1, int v2)
+        internal bool removeProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID, int userID)
         {
-            throw new NotImplementedException();
+            if (Stores.ContainsKey(storeID))
+                if(users[userID].removeProductsInStore(productsInStore, storeID))
+                {
+                    LogManager.Instance.WriteToLog("TradingSystem-remove product from store" + storeID + " -success");
+                    return true;
+                }
+            LogManager.Instance.WriteToLog("TradingSystem-remove product from store fail- the store does not exists\n");
+            return false;
         }
 
         public Boolean assignManager(int ownerId, int managerId, int storeId, List<int> permissionToManager)
@@ -425,14 +459,28 @@ namespace src.Domain
             return false;
         }
 
-        internal bool assignOwner(int v1, int v2, int v3)
+        internal bool assignOwner(int storeID, int assignID, int assignedID)
         {
-            throw new NotImplementedException();
+            if (Users.ContainsKey(assignID))
+                if (Users[assignID].assignOwner(storeID, Users[assignedID]))
+                {
+                    LogManager.Instance.WriteToLog("TradingSystem-Assign owner " + assignedID + " -success");
+                    return true;
+                }
+            LogManager.Instance.WriteToLog("TradingSystem-Assign owner fail- the owner does not exists\n");
+            return false;
         }
 
-        internal bool editProductInStore(int v1, string productName, string category, string details, int price, int v2, int v3)
+        internal bool editProductInStore(int productID, string productName, string category, string details, int price, int storeID, int userID)
         {
-            throw new NotImplementedException();
+            if (Stores.ContainsKey(storeID))
+                if (users[userID].editProductsInStore(productID,productName,category,details,price,storeID))
+                {
+                    LogManager.Instance.WriteToLog("TradingSystem-edit product to store" + storeID + " success");
+                    return true;
+                }
+            LogManager.Instance.WriteToLog("TradingSystem-edit product from store fail- the store does not exists\n");
+            return false;
         }
     }
 }

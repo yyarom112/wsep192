@@ -45,10 +45,38 @@ namespace src.Domain
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
+
+        internal bool removeProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID)
+        {
+            Role role = searchRoleByStoreID(storeID, this.Id);
+            if (role != null && (role.GetType() == typeof(Owner) || (role.GetType() == typeof(Manager) && ((Manager)role).validatePermission(5))))
+                return role.Store.removeProductsInStore(productsInStore,this.id);
+            LogManager.Instance.WriteToLog("User-remove product in store fail- the role does not exists or doesn't have permissions\n");
+            return false;
+        }
+        internal bool addProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID)
+        {
+            Role role = searchRoleByStoreID(storeID, this.Id);
+            if (role != null && (role.GetType() == typeof(Owner) || (role.GetType() == typeof(Manager) && ((Manager)role).validatePermission(4))))
+                return role.Store.addProductsInStore(productsInStore, this.id);
+            LogManager.Instance.WriteToLog("User-add products in store fail- the role does not exists or doesn't have permissions\n");
+            return false;
+        }
+        internal bool editProductsInStore(int productID, string productName, string category, string details, int price, int storeID)
+        {
+            Role role = searchRoleByStoreID(storeID, this.Id);
+            if (role != null && (role.GetType() == typeof(Owner) || (role.GetType() == typeof(Manager) && ((Manager)role).validatePermission(6))))
+                return role.Store.editProductsInStore(productID, productName, category, details, price, this.id);
+            LogManager.Instance.WriteToLog("User-edit products in store fail- the role does not exists or doesn't have permissions\n");
+            return false;
+        }
         public bool removeOwner(int userID,int storeID)
         {
             if (this.state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User-removeOwner " + this.id + " isn't signed in");
                 return false;
+            }
             Role role = searchRoleByStoreID(storeID,this.Id);
             if (role != null && role.GetType() == typeof(Owner))
             {
@@ -56,30 +84,41 @@ namespace src.Domain
                 return owner.removeOwner(userID);
                 
             }
+            LogManager.Instance.WriteToLog("User-removeOwner " + role.User.Id + " isn't owner");
             return false;
             
         }
+        internal bool createNewProductInStore(string productName, string category, string details, int price,int productID, int storeID)
+        {
+            Role role = searchRoleByStoreID(storeID, this.Id);
+            if (role != null && (role.GetType() == typeof(Owner) || (role.GetType() == typeof(Manager) && ((Manager)role).validatePermission(3))))
+                return role.Store.createNewProductInStore(productName, category, details, price, productID, this.Id);
+            LogManager.Instance.WriteToLog("User-create new product in store fail- the role does not exists or doesn't have permissions\n");
+            return false;
+        }
+
         public virtual Boolean assignManager(User managerUser, int storeId, List<int> permissionToManager)
         {
-            if (this.state != state.signedIn || managerUser.state != state.signedIn)
+            if (this.state != state.signedIn || !managerUser.IsRegistered)
             {
-                LogManager.Instance.WriteToLog("User - assign manger fail - owner or manager not signedIn");
+                LogManager.Instance.WriteToLog("User - assign manger fail - owner not signed in or manager not registered");
                 return false;
             }
-            if (this.Roles.ContainsKey(this.id))
+            if (this.Roles.ContainsKey(storeId))
             {
-                Role role = Roles[this.id];
+                Role role = Roles[storeId];
                 if (role != null && role.GetType() == typeof(Owner))
                 {
                     Owner owner = (Owner)role;
                     return owner.assignManager(managerUser, permissionToManager);
+
                 }
             }
             LogManager.Instance.WriteToLog("User - assign manger fail -owner not exist in roles");
             return false;
         }
 
-        internal string showCart(int storeId)
+        internal virtual string showCart(int storeId)
         {
             return basket.showCart(storeId);
         }
@@ -100,9 +139,7 @@ namespace src.Domain
         public void addRole(Role role)
 
         {
-
-            Roles.Add(Id, role);
-
+            Roles.Add(role.Store.Id, role);
         }
         public Role searchRoleByStoreID(int storeID,int userID)
         {
@@ -118,13 +155,20 @@ namespace src.Domain
             this.address = address;
             if (Basket.ShoppingCarts.Count == 0)
                 return 0;
-            return basket.basketCheckout() + calcAddressFee(address);
+            int basketSum = basket.basketCheckout();
+            if (basketSum == 0)
+                return 0;
+            return basketSum  + calcAddressFee(address);
         }
         internal bool signOut()
         {
             if (state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User:signOut failed - user "+UserName+" didn't sign in\n");
                 return false;
+            }
             state = state.visitor;
+            LogManager.Instance.WriteToLog("User:signOut success - "+userName+"\n");
             return true;
 
         }
@@ -155,16 +199,16 @@ namespace src.Domain
                 case "haifa":
                     return 60;
                 default:
-                    return 40;
+                    return 100;
             }
         }
 
 
-        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        internal virtual bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
         {
             return basket.removeProductsFromCart(productsToRemove, storeId);
         }
-        internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
+        internal virtual bool editProductQuantityInCart(int productId, int quantity, int storeId)
         {
             return basket.editProductQuantityInCart(productId, quantity, storeId);
         }
@@ -188,6 +232,28 @@ namespace src.Domain
                 return false;
             }
 
+        }
+
+        public bool assignOwner(int storeID,User assigned)
+        {
+            Role roleOwner = searchRoleByStoreID(storeID, this.Id);
+            Role roleAssigned = searchRoleByStoreID(storeID, assigned.Id);
+            try
+            {
+                Owner owner = (Owner)roleOwner;
+                if (roleAssigned == null)
+                    return owner.assignOwner(assigned);
+                else
+                {
+                    LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " already has role in Store: " + storeID + " .\n");
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                return false;
+            }
         }
     }
 }

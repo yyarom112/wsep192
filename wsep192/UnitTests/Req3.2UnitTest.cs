@@ -24,7 +24,7 @@ namespace UnitTests
             User user = new User(userID, userName, userPassword, false, false);
             Owner owner = new Owner(store, user);
             user.addRole(owner);
-            Assert.AreEqual(user.Roles[userID], owner);
+            Assert.AreEqual(user.Roles[storeID], owner);
         }
 
         [TestMethod]

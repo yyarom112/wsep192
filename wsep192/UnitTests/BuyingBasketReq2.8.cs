@@ -331,7 +331,9 @@ namespace UnitTests
 
         }
 
+        //----------------------------@@ Validate test  @@----------------------------
 
+        // You can not finish a purchase if a payment is unsuccessful
         [TestMethod]
         public void TestMethod1_payForBasket_without_FinancialSystem()
         {
@@ -380,7 +382,9 @@ namespace UnitTests
 
 
 
+
     }
+
 
 
 

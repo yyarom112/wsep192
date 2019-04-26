@@ -56,11 +56,9 @@ namespace src.Domain
         public Role initOwner(User user)
         {
             Owner owner = new Owner(this, user);
-
-            RolesDictionary.Add(user.Id, Roles.AddChild(owner));
-            Roles.AddChild(owner);
+            roles.setData(owner);
+            RolesDictionary.Add(user.Id, roles);
             user.addRole(owner);
-
             return owner;
         }
 
@@ -75,7 +73,8 @@ namespace src.Domain
 
                     TreeNode<Role> managerRole = currOwner.AddChild(newManager);
                     RolesDictionary.Add(newManager.User.Id, managerRole);
-                    newManager.User.Roles.Add(newManager.User.Id, newManager);
+                    newManager.User.Roles.Add(this.Id, newManager);
+                    newManager.Store = this;
                     LogManager.Instance.WriteToLog("Store - assign manger succeed");
                     return true;
                 }
@@ -181,7 +180,7 @@ namespace src.Domain
 
             if (RolesDictionary.ContainsKey(userID))
                 roleNode = RolesDictionary[userID];
-            if (roleNode != null)
+            if (roleNode != null&&roleNode.Parent!=null)
             {
                 if (roleNode.Data.GetType() == typeof(Owner))
                 {
@@ -193,12 +192,16 @@ namespace src.Domain
                 if (flag && ownerNode.RemoveChild(roleNode)
                      && RolesDictionary.Remove(userID)
                     && roleNode.Data.User.Roles.Remove(this.Id))
+                {
+
+                    LogManager.Instance.WriteToLog("Store-Remove owner Succeeded- The user " + userID);
+
                     return true;
+                }
 
 
             }
-            //LogManager.Instance.WriteToLog("Store-Remove owner Fail- The user " + userID);
-
+            LogManager.Instance.WriteToLog("Store-Remove owner Fail- The user " + userID);
             return false;
 
         }
@@ -216,7 +219,7 @@ namespace src.Domain
                     && roleNode.Data.User.Roles.Remove(this.Id))
                     return true;
             }
-            //LogManager.Instance.WriteToLog("Store-Remove manager Fail- The user " + userID + " is not manger in the store " + this.id + ".\n");
+            LogManager.Instance.WriteToLog("Store-Remove manager Fail- The user " + userID + " is not manger in the store " + this.id + ".\n");
             return false;
         }
 
@@ -239,6 +242,107 @@ namespace src.Domain
                     return p;
             }
             return -1;
+        }
+
+        public bool createNewProductInStore(string productName, string category, string details, int price, int productID,int userID)
+        {
+            TreeNode<Role> roleNode = null;
+            if (RolesDictionary.ContainsKey(userID))
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
+            {
+                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(3)))
+                {
+                    Product p = new Product(productID, productName, category, details, price);
+                    ProductInStore pis = new ProductInStore(0, this, p);
+                    if (!Products.ContainsKey(productID))
+                    {
+                        Products.Add(productID, pis);
+                        return true;
+                    }
+                }
+            }       
+
+            return false;
+        }
+
+        public bool addProductsInStore(List<KeyValuePair<int, int>> productsQuantityList, int userID)
+        {
+            TreeNode<Role> roleNode = null;
+            if (RolesDictionary.ContainsKey(userID))
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
+            {
+                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(4)))
+                {
+                    foreach (KeyValuePair<int, int> p in productsQuantityList)
+                        if (Products.ContainsKey(p.Key))
+                            Products[p.Key].Quantity += p.Value;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool removeProductsInStore(List<KeyValuePair<int, int>> productsQuantityList , int userID)
+        {
+            TreeNode<Role> roleNode = null;
+            if (RolesDictionary.ContainsKey(userID))
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
+            {
+                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(5)))
+                {
+                    foreach (KeyValuePair<int, int> p in productsQuantityList)
+                        if (Products.ContainsKey(p.Key) && Products[p.Key].Quantity >= p.Value)
+                            Products[p.Key].Quantity -= p.Value;
+                        else return false;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool editProductsInStore(int productID, string productName, string category, string details, int price, int userID)
+        {
+            TreeNode<Role> roleNode = null;
+            if (RolesDictionary.ContainsKey(userID))
+                roleNode = RolesDictionary[userID];
+            if (roleNode != null)
+            {
+                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(6)))
+                {
+                    if(Products.ContainsKey(productID))
+                    {
+                        Products[productID].Product.ProductName = productName;
+                        Products[productID].Product.Category = category;
+                        Products[productID].Product.Details = details;
+                        Products[productID].Product.Price = price;
+                    }
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool assignOwner(User assignedUser, Role owner)//CHANGED SIGNATURE
+        {
+            TreeNode<Role> assignedNode = null;
+            TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
+            if (RolesDictionary.ContainsKey(assignedUser.Id))
+                return false;
+            if (ownerNode != null)
+            {
+                Owner assignedOwner = new Owner(this, assignedUser);
+                assignedNode = ownerNode.AddChild(assignedOwner);
+                RolesDictionary.Add(assignedOwner.User.Id, assignedNode);
+                assignedNode.Data.User.Roles.Add(this.Id,assignedNode.Data);
+                return true;
+            }
+            return false;
         }
     }
 }

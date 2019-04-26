@@ -13,14 +13,14 @@ namespace Acceptance_Tests
         public void Setup()
         {
             service = new ServiceLayer();
-            service.init("admin","1234");
+            service.init("admin", "1234");
             service.register("user", "1234", service.initUser());
             service.signIn("admin", "1234");
             service.openStore("store", "admin");
             service.createNewProductInStore("p1", "", "", 10, "store", "admin");
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 100));
-            service.addProductsInStore(toInsert,"store","admin");
+            service.addProductsInStore(toInsert, "store", "admin");
         }
 
 
@@ -28,8 +28,9 @@ namespace Acceptance_Tests
         public void TestMethod_AnAttemptToPurchaseAnEmptyBasket()
         {
             Setup();
-            Assert.AreEqual(0,service.basketCheckout("telaviv", "user"));
-            Assert.AreEqual("", service.payForBasket(1,new DateTime(1990,1,1),"user"));
+            Assert.AreEqual(0, service.basketCheckout("telaviv", "user"));
+            List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
+            Assert.AreEqual(true, compare_List(toInsert, service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
         }
 
         [TestMethod]
@@ -38,9 +39,11 @@ namespace Acceptance_Tests
             Setup();
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 1000));
-            service.addProductsToCart(toInsert,"store","user");
-            Assert.AreEqual(-1, service.basketCheckout("telaviv", "user"));
-            Assert.AreEqual("Error: invalid user", service.payForBasket(1, new DateTime(1990, 1, 1), "user"));
+            service.addProductsToCart(toInsert, "store", "user");
+            service.editProductQuantityInCart("p1", 10, "store", "user");
+            Assert.AreEqual(150, service.basketCheckout("telaviv", "user"));
+            toInsert[0] = new KeyValuePair<string, int>("p1", 10);
+            Assert.AreEqual(true, compare_List(toInsert, service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
         }
         //You need to add another test in this frame when there is a buying policy in the next version
         [TestMethod]
@@ -55,8 +58,15 @@ namespace Acceptance_Tests
                     Assert.AreEqual(false, true);
             }
             catch (Exception e) { }
-            Assert.AreEqual(-1, service.basketCheckout("telaviv", "user"));
-            Assert.AreEqual("Error: invalid user", service.payForBasket(1, new DateTime(1990, 1, 1), "user"));
+            if (service.showCart("store", "user").Contains("-1"))
+            {
+                List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
+                toInsert.Add(new KeyValuePair<string, int>("Error: invalid user", -1));
+                Assert.AreEqual(-1, service.basketCheckout("telaviv", "user"));
+                Assert.AreEqual(true, compare_List(toInsert, service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
+            }
+            Assert.AreEqual(true, true);
+
         }
         //Not relevant right now because there are no discounts
         //[TestMethod]
@@ -70,8 +80,10 @@ namespace Acceptance_Tests
             Setup();
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 1));
+            if (!service.addProductsToCart(toInsert, "store", "user") || !service.editProductQuantityInCart("p1", 1, "store", "user"))
+                Assert.AreEqual(false, true);
             Assert.AreEqual(60, service.basketCheckout("telaviv", "user"));
-            Assert.AreEqual("List", service.payForBasket(1, new DateTime(1990, 1, 1), "user"));
+            Assert.AreEqual(true, compare_List(toInsert, service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
         }
 
         ////Not relevant right now because there are no discounts
@@ -89,8 +101,10 @@ namespace Acceptance_Tests
             Setup();
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 1));
+            if (!service.addProductsToCart(toInsert, "store", "user") || !service.editProductQuantityInCart("p1", 1, "store", "user"))
+                Assert.AreEqual(false, true);
             Assert.AreEqual(110, service.basketCheckout("ramat Gan", "user"));
-            Assert.AreEqual("List", service.payForBasket(1, new DateTime(1990, 1, 1), "user"));
+            Assert.AreEqual(true, compare_List(toInsert, service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
         }
 
         [TestMethod]
@@ -100,7 +114,34 @@ namespace Acceptance_Tests
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 0));
             Assert.AreEqual(0, service.basketCheckout("telaviv", "user"));
-            Assert.AreEqual("List", service.payForBasket(1, new DateTime(1990, 1, 1), "user"));
+            Assert.AreEqual(true, compare_List(new List<KeyValuePair<string, int>>(), service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
+        }
+
+
+        public Boolean compare_List(List<KeyValuePair<string, int>> exepted, List<String[]> actuale)
+        {
+            if (actuale.Count == 1 && actuale[0][0].Equals("Error: invalid user") && exepted.Count == 1)
+                return true;
+            if (exepted.Count != actuale.Count)
+            {
+                Console.WriteLine("Exepted to get list with " + exepted.Capacity + " members but got " + actuale.Capacity + "\n");
+                return false;
+
+            }
+            int i = 0;
+            while (i < exepted.Count)
+            {
+                if (actuale[i].Length != 5)
+                {
+                    Console.WriteLine("Exepted to get memebers in list with " + exepted.Capacity + " members but got " + actuale.Capacity + "\n");
+                    return false;
+                }
+                Assert.AreEqual(actuale[i][0], exepted[i].Key);
+                Assert.AreEqual(int.Parse(actuale[i][2]), exepted[i].Value);
+
+                i++;
+            }
+            return true;
         }
 
 
