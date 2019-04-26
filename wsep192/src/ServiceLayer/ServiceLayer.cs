@@ -142,7 +142,7 @@ namespace src.ServiceLayer
         }
         public bool editProductQuantityInCart(String product, int quantity, String store, String user)
         {
-            if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !system.productExist(product, stores[store]))
+            if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !system.productExist(product, stores[store]) || quantity<0)
             {
                 return false;
             }
@@ -164,11 +164,16 @@ namespace src.ServiceLayer
                 return -1;
             return system.basketCheckout(address, users[user]);
         }
-        public String payForBasket(long cardNum, DateTime date, String user)
+        public List<String[]> payForBasket(long cardNum, DateTime date, String user)
         {
             if (!users.ContainsKey(user))
-                return "Error: invalid user";
-            return system.payForBasket(cardNum, date, users[user]).ToString();
+            {
+                List<String[]> output = new List<string[]>();
+                String[] soutput = { "Error: invalid user" };
+                output.Add(soutput);
+                return output;
+            }
+            return system.payForBasket(cardNum, date, users[user]);
         }
 
         //req3.1
