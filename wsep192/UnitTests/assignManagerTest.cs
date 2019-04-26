@@ -13,25 +13,26 @@ namespace UnitTests
         private User managerUser;
         private User user1;
         private Store store;
-        private List<int> permmision;
-        private Role ownerRole;
-        private Role managerRole;
+        private List<int> permissions;
+        private Owner ownerRole;
+        private Manager managerRole;
 
         public void setUp()
         {
             system = new TradingSystem(null, null);
             ownerUser = new User(1234, "Seifan", "2457", false, false);
-            ownerUser.State = state.signedIn;
+            ownerUser.register(ownerUser.UserName, ownerUser.Password);
+            ownerUser.signIn(ownerUser.UserName, ownerUser.Password);
             store = new Store(1111, "adidas", null, null);
             ownerRole = new Owner(store, ownerUser);
-            ownerUser.Roles.Add(ownerUser.Id, ownerRole);
+            ownerUser.Roles.Add(store.Id, ownerRole);
 
 
             managerUser = new User(7878, "baba", "3434", false, false);
-            managerUser.State = state.signedIn;
-            permmision = new List<int>() { 2, 5, 6 };
-            permmision = new List<int>() { 2, 5, 6 };
-            managerRole = new Manager(store, managerUser, permmision);
+            managerUser.register(managerUser.UserName, managerUser.Password);
+            permissions = new List<int>();
+            permissions.Add(1);
+            managerRole = new Manager(store, managerUser, permissions);
 
             user1 = new User(2456, "luli", "5656", false, false);
 
@@ -52,30 +53,69 @@ namespace UnitTests
             Assert.AreEqual(true, store.assignManager(managerRole, (Owner)ownerRole));
         }
 
+        [TestMethod]
+        public void TestMethod1_success_managerClass_scenario()
+        {
+            setUp();
+            Assert.AreEqual(true, managerRole.validatePermission(1));
+        }
+
+        [TestMethod]
+        public void TestMethod1_fail_storeClass_managerExist_scenario()
+        {
+            setUp();
+            store.RolesDictionary.Add(managerUser.Id, new TreeNode<Role>(managerRole));
+            Assert.AreEqual(false, store.assignManager(managerRole, (Owner)ownerRole));
+        }
+
+        [TestMethod]
+        public void TestMethod1_success_ownerClass_scenario()
+        {
+            setUp();
+            Assert.AreEqual(true, ownerRole.assignManager(managerUser, permissions));
+        }
 
         [TestMethod]
         public void TestMethod1_success_userClass_scenario()
         {
             setUp();
-            Assert.AreEqual(true, ownerUser.assignManager(managerUser, store.Id, permmision));
+            StubStore sStore = new StubStore(3456, "nike", null, null, true);
+            ownerUser.Roles.Add(sStore.Id, ownerRole);
+            Assert.AreEqual(true, ownerUser.assignManager(managerUser, sStore.Id, permissions));
+        }
+
+        [TestMethod]
+        public void TestMethod1_fail_userClass_scenario()
+        {
+            setUp();
+            StubStore sStore = new StubStore(3456, "nike", null, null, true);
+            Assert.AreEqual(false, ownerUser.assignManager(user1, sStore.Id, permissions));
         }
 
         [TestMethod]
         public void TestMethod1_success_system_scenario()
         {
             setUp();
-
-            Assert.AreEqual(true, system.assignManager(ownerUser.Id, managerUser.Id, store.Id, permmision));
+            StubStore sStore = new StubStore(3456, "nike", null, null, true);
+            StubUser ownerUserStub = new StubUser(2222, "owner", "7878", false, true, true);
+            StubUser managerUserStub = new StubUser(2323, "babi", "3434", false, true, true);
+            system.Users.Add(ownerUserStub.Id, ownerUserStub);
+            system.Users.Add(managerUserStub.Id, managerUserStub);
+            system.Stores.Add(sStore.Id, sStore);
+            Assert.AreEqual(true, system.assignManager(ownerUserStub.Id, managerUserStub.Id, sStore.Id, permissions));
         }
 
         [TestMethod]
         public void TestMethod1_fail_system_scenario()
         {
             setUp();
-            Assert.AreEqual(false, system.assignManager(ownerUser.Id, user1.Id, store.Id, permmision));
+            StubStore sStore = new StubStore(3456, "nike", null, null, false);
+            StubUser ownerUserStub = new StubUser(2222, "owner", "7878", false, true, false);
+            StubUser managerUserStub = new StubUser(2323, "babi", "3434", false, true, false);
+            system.Users.Add(ownerUserStub.Id, ownerUserStub);
+            system.Stores.Add(sStore.Id, sStore);
+            Assert.AreEqual(false, system.assignManager(ownerUser.Id, user1.Id, store.Id, permissions));
         }
-
-
 
         class StubOwner : Owner
         {
@@ -102,6 +142,20 @@ namespace UnitTests
             }
 
             public override bool assignManager(User managerUser, int storeId, List<int> permissionToManager)
+            {
+                return retVal;
+            }
+        }
+
+        class StubStore : Store
+        {
+            bool retVal;
+            public StubStore(int id, string name, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy, bool ret) : base(id, name, purchasePolicy, discountPolicy)
+            {
+                this.retVal = ret;
+            }
+
+            public override bool assignManager(Role newManager, Owner owner)
             {
                 return retVal;
             }

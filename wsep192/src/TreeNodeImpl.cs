@@ -7,19 +7,24 @@ public class TreeNode<T>
     public delegate bool TraversalDataDelegate(T data);
     public delegate bool TraversalNodeDelegate(TreeNode<T> node);
 
-    private readonly T _data;
-    private readonly TreeNode<T> _parent;
-    private readonly int _level;
-    private readonly List<TreeNode<T>> _children;
+    private  T _data;
+    private  TreeNode<T> _parent;
+    private  int _level;
+    private  List<TreeNode<T>> _children;
     public List<TreeNode<T>> getChildren()
     {
         return _children;
     }
+
     public TreeNode(T data)
     {
         _data = data;
         _children = new List<TreeNode<T>>();
         _level = 0;
+    }
+    public void setData(T data)
+    {
+        this._data = data;
     }
 
     public TreeNode(T data, TreeNode<T> parent) : this(data)

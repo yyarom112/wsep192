@@ -24,52 +24,112 @@ namespace UnitTests
         public void TestMethod_failure()
         {
             setUp();
-
-            //failure system showCart
             Assert.AreEqual("Error : Invalid user or store", system.showCart(user.Id, store.Id));
-            system.Users.Add(user.Id, user);
+            system.Users.Add(user.Id, null);
             Assert.AreEqual("Error : Invalid user or store", system.showCart(user.Id, store.Id));
             system.Users.Remove(user.Id);
-            system.Stores.Add(store.Id, store);
+            system.Stores.Add(store.Id, null);
             Assert.AreEqual("Error : Invalid user or store", system.showCart(user.Id, store.Id));
-
-            //failure basket showCart
-            Assert.AreEqual("Error : Shopping basket does not contain this store",
-                user.Basket.showCart(store.Id));
-
         }
 
         [TestMethod]
-        public void TestMethod_success()
+        public void TestMethod_failure_basket()
         {
             setUp();
-            successSetUp();
+            ShoppingBasket basket = new ShoppingBasket();
+            Assert.AreEqual("Error : Shopping basket does not contain this store",
+                basket.showCart(store.Id));
+
+        }
+
+        //[TestMethod]
+        public void TestMethod_success_system()
+        {
+            setUp();
+            user = new StubUser2(1,null,null,false,false, "Store Name: store\nCart is empty\n");
+            system.Users.Add(user.Id, user);
+            system.Stores.Add(store.Id, store);
             //empty cart
             Assert.AreEqual("Store Name: store\nCart is empty\n", system.showCart(user.Id, store.Id));
 
+            user = new StubUser2(1, null, null, false, false, "Store Name: store\nProduct Name\t\t\tQuantity\n" +
+                "1. p1\t\t\t3\n2. p2\t\t\t1\n");
             //non-empty cart
-            addProducts();
             Assert.AreEqual("Store Name: store\nProduct Name\t\t\tQuantity\n" +
                 "1. p1\t\t\t3\n2. p2\t\t\t1\n",
                 system.showCart(user.Id, store.Id));
 
         }
 
-        private void addProducts()
+        [TestMethod]
+        public void TestMethod_success_basket()
         {
-            Product p1 = new Product(1, "p1", null, null, -1);
-            Product p2 = new Product(2, "p2", null, null, -1);
-            ProductInCart pc1 = new ProductInCart(3, user.Basket.ShoppingCarts[store.Id], p1);
-            ProductInCart pc2 = new ProductInCart(1, user.Basket.ShoppingCarts[store.Id], p2);
-            user.Basket.ShoppingCarts[store.Id].Products.Add(1, pc1);
-            user.Basket.ShoppingCarts[store.Id].Products.Add(2, pc2);
+            setUp();
+            ShoppingBasket basket = new ShoppingBasket();
+            basket.ShoppingCarts.Add(store.Id, new StubCart3(store.Id, null, "Store Name: store\nCart is empty\n"));
+            
+ 
+            //empty cart
+            Assert.AreEqual("Store Name: store\nCart is empty\n", basket.showCart(store.Id));
+
+            basket.ShoppingCarts.Remove(store.Id);
+            basket.ShoppingCarts.Add(store.Id, new StubCart3(store.Id, null, "Store Name: store\nProduct Name\t\t\tQuantity\n" +
+                "1. p1\t\t\t3\n2. p2\t\t\t1\n"));
+            //non-empty cart
+            Assert.AreEqual("Store Name: store\nProduct Name\t\t\tQuantity\n" +
+                "1. p1\t\t\t3\n2. p2\t\t\t1\n",
+                basket.showCart(store.Id));
+
         }
 
-        private void successSetUp()
+        [TestMethod]
+        public void TestMethod_success_cart()
         {
-            system.Users.Add(user.Id, user);
-            system.Stores.Add(store.Id, store);
-            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
+            setUp();
+            ShoppingCart cart = new ShoppingCart(store.Id,store);
+            //empty cart
+            Assert.AreEqual("Store Name: store\nCart is empty\n", cart.showCart());
+
+            //non-empty cart
+            Product p = new Product(1, "p", null, null, -1);
+            ProductInCart pc = new ProductInCart(3, cart, p);
+            cart.Products.Add(p.Id,pc);
+            Assert.AreEqual("Store Name: store\nProduct Name\t\t\tQuantity\n" +
+                "1. p\t\t\t3\n",
+                cart.showCart());
+
+        }
+
+    }
+
+    internal class StubCart3 : ShoppingCart
+    {
+        string retVal;
+
+        public StubCart3(int storeId, Store store, string ret) : base(storeId, store)
+        {
+            retVal = ret;
+        }
+
+        internal override string showCart()
+        {
+            return retVal;
+        }
+    }
+
+    internal class StubUser2 : User
+    {
+        string retVal;
+
+
+        public StubUser2(int id, string userName, string password, bool isAdmin, bool isRegistered, string ret) : base(id, userName, password, isAdmin, isRegistered)
+        {
+            retVal = ret;
+        }
+
+        internal override string showCart(int storeId)
+        {
+            return retVal;
         }
     }
 }
