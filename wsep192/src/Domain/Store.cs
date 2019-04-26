@@ -209,9 +209,13 @@ namespace src.Domain
         public bool removeManager(int userID, Role owner)
         {
             TreeNode<Role> roleNode = null;
-            TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
-            if (RolesDictionary.ContainsKey(userID))
+            TreeNode<Role> ownerNode = null;
+            if (RolesDictionary.ContainsKey(userID) && RolesDictionary.ContainsKey(owner.User.Id))
+            {
+                ownerNode = RolesDictionary[owner.User.Id];
                 roleNode = RolesDictionary[userID];
+
+            }
             if (roleNode != null)
             {
                 if (ownerNode.RemoveChild(roleNode)

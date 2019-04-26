@@ -19,6 +19,9 @@ namespace IntegrationTests
 
         private User manager;
 
+        private Owner storeOwner;
+        private Manager storeManager;
+
 
         private Product p1;
         private Product p2;
@@ -31,7 +34,7 @@ namespace IntegrationTests
 
         private Store store;
 
-        
+
         public void setUp()
         {
             admin = new User(0, "admin", "123456", true, true);
@@ -41,10 +44,10 @@ namespace IntegrationTests
             basket_user = user.Basket;
             manager = new User(2, "a", "1234", false, true);
 
-            store = new Store(-1, "store",  null, null);
+            store = new Store(-1, "store", null, null);
 
-            Owner storeOwner = new Owner(store, admin);
-            Manager storeManager = new Manager(store, manager, new List<int>());
+            storeOwner = new Owner(store, admin);
+            storeManager = new Manager(store, manager, new List<int>());
 
 
             admin.Roles.Add(store.Id, storeOwner);
@@ -52,9 +55,11 @@ namespace IntegrationTests
 
 
             store.Roles = new TreeNode<Role>(storeOwner);
-            store.RolesDictionary.Add(admin.Id, storeOwner);
-            store.Roles.AddChild(storeManager);
-            store.RolesDictionary.Add(manager.Id, storeManager);
+            TreeNode<Role> manegerNode = store.Roles.AddChild(storeManager);
+
+            store.RolesDictionary.Add(admin.Id, store.Roles);
+            store.RolesDictionary.Add(manager.Id, manegerNode);
+
 
             p1 = new Product(0, "first", null, "", 5000);
             p2 = new Product(1, "second", null, "", 5000);
@@ -84,21 +89,21 @@ namespace IntegrationTests
         public void Store_RemoveManager_succ()
         {
             setUp();
-            Assert.AreEqual(true, store.removeManager(manager.Id));
+            Assert.AreEqual(true, store.removeManager(manager.Id, storeOwner));
         }
 
         [TestMethod]
         public void Store_RemoveManager_fail_theUserIsNotManager()
         {
             setUp();
-            Assert.AreEqual(false, store.removeManager(user.Id));
+            Assert.AreEqual(false, store.removeManager(user.Id, new Role(store, user)));
         }
 
         [TestMethod]
         public void User_searchRoleByStoreID_succ()
         {
             setUp();
-            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id,manager.Id).Store);
+            Assert.AreEqual(store, manager.searchRoleByStoreID(store.Id, manager.Id).Store);
         }
 
 
@@ -107,7 +112,7 @@ namespace IntegrationTests
         public void User_searchRoleByStoreID_fail()
         {
             setUp();
-            Assert.AreEqual(null, manager.searchRoleByStoreID(0,manager.Id));
+            Assert.AreEqual(null, manager.searchRoleByStoreID(0, manager.Id));
         }
 
         [TestMethod]
@@ -152,6 +157,6 @@ namespace IntegrationTests
             setUp();
             Assert.AreEqual(false, sys.removeManager(admin.Id, user.Id, store.Id));
         }
-        
+
     }
 }

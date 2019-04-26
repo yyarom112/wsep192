@@ -220,7 +220,7 @@ namespace src.Domain
                 LogManager.Instance.WriteToLog("User-Remove manager fail- User is not logged in\n");
                 return false;
             }
-            Role role = searchRoleByStoreID(storeID,userID);
+            Role role = searchRoleByStoreID(storeID,this.id);
             try
             {
                 Owner owner = (Owner)role;
