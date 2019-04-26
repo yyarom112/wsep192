@@ -70,6 +70,8 @@
     <Compile Include="AddProductsInStore.cs" />
     <Compile Include="RemoveProductinStore.cs" />
     <Compile Include="editproductInStore.cs" />
+    <Compile Include="BuyingBasketReq28.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">

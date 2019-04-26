@@ -337,30 +337,7 @@ namespace IntegrationTests
 
         }
 
-        [TestMethod]
-        public void TestMethod1_payForBasket_fail_negativeInventory()
-        {
-            setUp();
-            sys.FinancialSystem = new FinancialSystemImpl();
-            sys.SupplySystem = new ProductSupplySystemImpl();
 
-            ShoppingCart cart = new ShoppingCart(store.Id, store);
-
-            cart.Products.Add(p1.Id, new ProductInCart(10000000, cart, p1));
-
-            cart.Store = new Store(1, "", null, null);
-            sys.Stores.Add(1, cart.Store);
-            user.Basket.ShoppingCarts.Add(1, cart);
-            List<String[]> check = sys.cartToString(cart);
-            cart.Products.Remove(p1.Id);
-            cart.Products.Add(p1.Id, new ProductInCart(10000010, cart, p1));
-
-
-
-
-            Assert.AreEqual(expected: false, actual: sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id).Equals(check));
-
-        }
 
 
         //Not relevant to this version
@@ -412,5 +389,49 @@ namespace IntegrationTests
 
 
 
+        //----------------------------@@ spacial validate test @@----------------------------
+
+        //Collection of money from a customer on a transaction that was not carried out
+        //Not relevant to this version
+        //[TestMethod]
+        //public void TestMethod1_payForBasket_without_SupplySystem()
+        //{
+        //    setUp();
+        //    Assert.AreEqual(null, sys.FinancialSystem.payment(1,new DateTime(1990,1,1),100,1));
+        //}
+
+
+        //Seller receives payment not due to successful transaction
+        //Not relevant to this version
+        //[TestMethod]
+        //public void TestMethod1_payForBasket_without_SupplySystem()
+        //{
+        //}
+
+
+        [TestMethod]
+        public void TestMethod1_payForBasket_fail_negativeInventory()
+        {
+            setUp();
+            sys.FinancialSystem = new FinancialSystemImpl();
+            sys.SupplySystem = new ProductSupplySystemImpl();
+
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
+
+            cart.Products.Add(p1.Id, new ProductInCart(10000000, cart, p1));
+
+            cart.Store = new Store(1, "", null, null);
+            sys.Stores.Add(1, cart.Store);
+            user.Basket.ShoppingCarts.Add(1, cart);
+            List<String[]> check = sys.cartToString(cart);
+            cart.Products.Remove(p1.Id);
+            cart.Products.Add(p1.Id, new ProductInCart(10000010, cart, p1));
+
+
+
+
+            Assert.AreEqual(expected: false, actual: sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id).Equals(check));
+
+        }
     }
 }

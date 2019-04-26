@@ -155,7 +155,10 @@ namespace src.Domain
             this.address = address;
             if (Basket.ShoppingCarts.Count == 0)
                 return 0;
-            return basket.basketCheckout() + calcAddressFee(address);
+            int basketSum = basket.basketCheckout();
+            if (basketSum == 0)
+                return 0;
+            return basketSum  + calcAddressFee(address);
         }
         internal bool signOut()
         {
@@ -196,7 +199,7 @@ namespace src.Domain
                 case "haifa":
                     return 60;
                 default:
-                    return 40;
+                    return 100;
             }
         }
 
