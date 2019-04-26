@@ -8,99 +8,131 @@ namespace UnitTests
     [TestClass]
     public class RemoveProductsFromCartTests1
     {
-        
-
-           TradingSystem system;
-            User user;
-            Store store;
-            Product product;
-            List<KeyValuePair<int, int>> productsToRemove;
 
 
-            public void setup()
+        TradingSystem system;
+        User user;
+        Store store;
+        Product product;
+        List<KeyValuePair<int, int>> productsToRemove;
+
+
+        public void setup()
+        {
+            system = new TradingSystem(null, null);
+            user = new User(1, "user", "1234", false, false);
+            store = new Store(1, "store", null, null);
+            product = new Product(1, "product", null, null, -1);
+        }
+
+
+        [TestMethod]
+        public void TestMethod1_testmethod_failure_remove_cart()
+        {
+            setup();
+            productsToRemove = new List<KeyValuePair<int, int>>();
+            KeyValuePair<int, int> pair = new KeyValuePair<int, int>(product.Id, 5);
+            productsToRemove.Add(pair);
+            ShoppingCart cart = new ShoppingCart(store.Id, null);
+            Assert.AreEqual(false, cart.removeProductsFromCart(productsToRemove)); //empty list of products in cart
+            ProductInCart pc = new ProductInCart(2, cart, null);
+            cart.Products.Add(product.Id, pc);
+            Assert.AreEqual(false, cart.removeProductsFromCart(productsToRemove)); //too many to remove
+
+
+        }
+
+        [TestMethod]
+        public void TestMethod1_testmethod_failure_remove_basket()
+        {
+            setup();
+            ShoppingBasket basket = new ShoppingBasket();
+            Assert.AreEqual(false, basket.removeProductsFromCart(null, store.Id));
+
+        }
+
+
+
+        [TestMethod]
+        public void TestMethod1_testmethod_failure_remove_system()
+        {
+            setup();
+            Assert.AreEqual(false, system.removeProductsFromCart(null, store.Id, user.Id));
+            system.Users.Add(user.Id, null);
+            Assert.AreEqual(false, system.removeProductsFromCart(null, store.Id, user.Id));
+            system.Users.Remove(user.Id);
+            system.Stores.Add(store.Id, null);
+            Assert.AreEqual(false, system.removeProductsFromCart(null, store.Id, user.Id));
+        }
+
+
+        [TestMethod]
+        public void testmethod_cart_success_remove()
+        {
+            setup();
+            productsToRemove = new List<KeyValuePair<int, int>>();
+            KeyValuePair<int, int> pair = new KeyValuePair<int, int>(product.Id, 1);
+            productsToRemove.Add(pair);
+            ShoppingCart cart = new ShoppingCart(store.Id, null);
+            ProductInCart pc = new ProductInCart(2, cart, null);
+            cart.Products.Add(product.Id, pc);
+            Assert.AreEqual(true, cart.removeProductsFromCart(productsToRemove));
+            Assert.AreEqual(1, cart.Products[product.Id].Quantity);
+        }
+
+        [TestMethod]
+        public void testmethod_basket_success_remove()
+        {
+            setup();
+            productsToRemove = new List<KeyValuePair<int, int>>();
+            KeyValuePair<int, int> pair = new KeyValuePair<int, int>(product.Id, 1);
+            productsToRemove.Add(pair);
+            ShoppingBasket basket = new ShoppingBasket();
+            ShoppingCart cart = new StubCart(store.Id, null, true);
+            basket.ShoppingCarts.Add(store.Id, cart);
+            Assert.AreEqual(true, basket.removeProductsFromCart(productsToRemove, store.Id));
+        }
+
+        [TestMethod]
+        public void testmethod_system_success_remove()
+        {
+            setup();
+            user = new StubUser(1,null, null,false,false,true);
+            system.Users.Add(user.Id, user);
+            system.Stores.Add(store.Id, null);
+            Assert.AreEqual(true, system.removeProductsFromCart(productsToRemove, store.Id, user.Id));
+        }
+
+        internal class StubCart : ShoppingCart
+        {
+            bool retVal;
+
+            public StubCart(int storeId, Store store, bool ret) : base(storeId, store)
             {
-                system = new TradingSystem(null, null);
-                user = new User(1, "user", "1234", false, false);
-                store = new Store(1, "store", null, null);
-                product = new Product(1, "product", null, null, -1);
+                retVal = ret;
             }
 
-
-            private void successsetup()
+            internal override bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove)
             {
-                system.Users.Add(user.Id, user);
-                system.Stores.Add(store.Id, store);
-                user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
-                ProductInCart pc = new ProductInCart(2, user.Basket.ShoppingCarts[store.Id], product);
-                user.Basket.ShoppingCarts[store.Id].Products.Add(product.Id, pc);
-                productsToRemove = new List<KeyValuePair<int, int>>();
-                KeyValuePair<int, int> pair = new KeyValuePair<int, int>(product.Id, 1);
-                productsToRemove.Add(pair);
+                return retVal;
+            }
+        }
+
+        internal class StubUser : User
+        {
+            bool retVal;
 
 
+            public StubUser(int id, string userName, string password, bool isAdmin, bool isRegistered,bool ret) : base(id, userName, password, isAdmin, isRegistered)
+            {
+                retVal=ret;
             }
 
-
-
-
-            [TestMethod]
-            public void TestMethod1_testmethod_failure_remove()
+            internal override bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
             {
-                setup();
-
-                //failure system remove
-                Assert.AreEqual(false, system.removeProductsFromCart(null, store.Id, user.Id));
-                system.Users.Add(user.Id, user);
-                Assert.AreEqual(false, system.removeProductsFromCart(null, store.Id, user.Id));
-                system.Users.Remove(user.Id);
-                system.Stores.Add(store.Id, store);
-                Assert.AreEqual(false, system.removeProductsFromCart(null, store.Id, user.Id));
-
-                //failure basket remove
-                Assert.AreEqual(false, user.Basket.removeProductsFromCart(null, store.Id));
-
-                //failure cart remove
-                user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
-                productsToRemove = new List<KeyValuePair<int, int>>();
-                KeyValuePair<int, int> pair = new KeyValuePair<int, int>(product.Id, 5);
-                productsToRemove.Add(pair);
-                Assert.AreEqual(false, user.Basket.ShoppingCarts[store.Id].removeProductsFromCart(productsToRemove)); //empty list of products in cart
-                ProductInCart pc = new ProductInCart(2, user.Basket.ShoppingCarts[store.Id], product);
-                user.Basket.ShoppingCarts[store.Id].Products.Add(product.Id, pc);
-                Assert.AreEqual(false, user.Basket.ShoppingCarts[store.Id].removeProductsFromCart(productsToRemove)); //too many to remove
-
-
-
-
+                return retVal;
             }
-
-
-            [TestMethod]
-            public void testmethod_cart_success_remove()
-            {
-                setup();
-                successsetup();
-                Assert.AreEqual(true, user.Basket.ShoppingCarts[store.Id].removeProductsFromCart(productsToRemove));
-                Assert.AreEqual(1, user.Basket.ShoppingCarts[store.Id].Products[product.Id].Quantity);
-            }
-
-            [TestMethod]
-            public void testmethod_basket_success_remove()
-            {
-                setup();
-                successsetup();
-                Assert.AreEqual(true, user.Basket.removeProductsFromCart(productsToRemove, store.Id));
-                Assert.AreEqual(1, user.Basket.ShoppingCarts[store.Id].Products[product.Id].Quantity);
-            }
-
-            [TestMethod]
-            public void testmethod_system_success_remove()
-            {
-                setup();
-                successsetup();
-                Assert.AreEqual(true, system.removeProductsFromCart(productsToRemove, store.Id, user.Id));
-                Assert.AreEqual(1, user.Basket.ShoppingCarts[store.Id].Products[product.Id].Quantity);
-            }
+        }
 
 
     }

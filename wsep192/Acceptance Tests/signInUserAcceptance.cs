@@ -17,7 +17,7 @@ namespace Acceptance_Tests
         public void setUp()
         {
             service = new ServiceLayer();
-            service.init("Admin","2323");
+            service.init("Admin", "2323");
             id = service.initUser();
         }
 

@@ -53,17 +53,23 @@
     <Compile Include="addProductToCart.cs" />
     <Compile Include="assignManagerAcceptance.cs" />
     <Compile Include="EditProductInCartTests.cs" />
+    <Compile Include="ManagerPremissionTests.cs" />
     <Compile Include="RemoveManager_Req46.cs" />
     <Compile Include="RemoveProductsFromCartTests.cs" />
     <Compile Include="ShowCartTests.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InitTests.cs" />
     <Compile Include="registerUserAcceptance.cs" />
     <Compile Include="signInUserAcceptance.cs" />
     <Compile Include="LogoutTests.cs" />
-    <Compile Include="BuyingBasketReq28.cs" />
-
+    <Compile Include="searchProduct.cs" />
+    <Compile Include="removeOwner.cs" />
+    <Compile Include="removeUser.cs" />
+    <Compile Include="openStore.cs" />
+    <Compile Include="createNewProductInStore.cs" />
+    <Compile Include="AddProductsInStore.cs" />
+    <Compile Include="RemoveProductinStore.cs" />
+    <Compile Include="editproductInStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">
