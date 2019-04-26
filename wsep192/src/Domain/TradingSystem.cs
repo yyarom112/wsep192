@@ -309,7 +309,7 @@ namespace src.Domain
 
         public bool init(string adminUserName, string adminPassword,int userCounter)
         {
-            User admin = new User(userCounter, adminUserName, adminPassword, true, true);
+            User admin = new User(userCounter, adminUserName, encryption.encrypt(adminUserName + adminPassword), true, true);
             users.Add(userCounter, admin);
             if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
                 return false;

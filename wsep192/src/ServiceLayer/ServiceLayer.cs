@@ -281,8 +281,8 @@ namespace src.ServiceLayer
         public bool removeManager(String managerToRemove, String store, String user)
         {
             if (!users.ContainsKey(managerToRemove) || !users.ContainsKey(user) || !stores.ContainsKey(store))
-                return false;
-            return system.removeManager(users[managerToRemove], stores[store], users[user]);
+                return false; 
+            return system.removeManager(users[user], users[managerToRemove], stores[store]);
         }
         //req6.2
         public bool removeUser(String userToRemove, String user)

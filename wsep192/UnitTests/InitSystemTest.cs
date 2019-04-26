@@ -22,7 +22,7 @@ namespace UnitTests
             Assert.AreEqual(true, system.init("admin","1234",0));
             Assert.AreEqual(true, system.Users.ContainsKey(0));
             Assert.AreEqual(true, system.Users[0].IsAdmin);
-            Assert.AreEqual(true, system.Users[0].Password=="1234");
+            Assert.AreEqual(true, system.Users[0].Password== (new EncryptionImpl()).encrypt("admin" + "1234"));
             Assert.AreEqual(true, system.Users[0].UserName == "admin");
         }
     }
