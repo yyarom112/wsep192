@@ -357,13 +357,18 @@ namespace src.Domain
         public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
         {
             if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products == null)
+            {
+                LogManager.Instance.WriteToLog("Add to cart fail- one of the parameter Invalid. /n");
                 return false;
+
+            }
             LinkedList<KeyValuePair<Product, int>> toInsert = createProductsList(products, storeId);
             if (toInsert == null)
                 return false;
             ShoppingCart newCartCheck = this.users[userId].addProductsToCart(toInsert, storeId);
             if (newCartCheck != null)
                 newCartCheck.Store = this.stores[storeId];
+            LogManager.Instance.WriteToLog("Add to cart success. /n");
             return true;
         }
 
@@ -376,6 +381,7 @@ namespace src.Domain
             {
                 if (!this.Stores[storeId].Products.ContainsKey(productId.Key))
                 {
+                    LogManager.Instance.WriteToLog("Add to cart fail-Product "+ productId.Key + " does not exist. /n");
                     check = false;
                 }
                 else
