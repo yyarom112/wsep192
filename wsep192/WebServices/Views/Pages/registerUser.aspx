@@ -28,17 +28,15 @@
               <div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
 							</div>
+                            
+                             <small id="registerAlert" class="form-text text-muted text-Alert"></small>
+
 							<div class="col-md-12 form-group">
-								<div class="creat_account">
-									<input type="checkbox" id="f-option2" name="selector">
-									<label for="f-option2">Keep me logged in</label>
-								</div>
-							</div>
-							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" id="registerButton" class="button button-register w-100">Register</button>
+								<input type="button" value="Register" id="registerButton" class="button button-register w-100"></>
 							</div>
 
-                            <small id="registerAlert" class="form-text text-muted text-Alert"></small>
+                           
+
 
 						</form>
 					</div>
@@ -55,12 +53,12 @@
             pass = $("#password").val();
             pass2 = $("#confirmPassword").val();
             if (pass != pass2) {
-                $("#registerAlert").html('Failure - passwords does not match');
+                $("#registerAlert").html('Failure - passwords does not match\n');
             }
             else {
                 jQuery.ajax({
                     type: "GET",
-                    url: baseUrl+"/api/user/register?username=" + username + "&password=" + pass,
+                    url: baseUrl+"/api/user/RegisterUser?username=" + username + "&password=" + pass,
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {

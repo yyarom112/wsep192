@@ -9,7 +9,7 @@ namespace src.ServiceLayer
 {
     class ServiceLayer
     {
-
+        private static ServiceLayer instance = null;
         private TradingSystem system;
         private Dictionary<String, int> users;
         private Dictionary<String, int> stores;
@@ -21,7 +21,7 @@ namespace src.ServiceLayer
 
 
 
-        public ServiceLayer()
+        private ServiceLayer()
         {
             system = new TradingSystem(new ProductSupplySystemImpl(), new FinancialSystemImpl());
             users = new Dictionary<String, int>();
@@ -32,8 +32,15 @@ namespace src.ServiceLayer
             purchasePolicyCounter = 0;
             discountPolicyCounter = 0;
             addPermissions();
-        }
+            init("admin","admin");
 
+        }
+        public static ServiceLayer getInstance()
+        {
+            if (instance == null)
+                instance = new ServiceLayer();
+            return instance;
+        }
 
         private void addPermissions()
         {

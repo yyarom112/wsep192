@@ -41,7 +41,7 @@
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item active"><a class="nav-link" href="/Index">Home</a></li>
               <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Shop</a>
@@ -87,7 +87,7 @@
   <script src="vendors/jquery.ajaxchimp.min.js"></script>
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
-
+    
     <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
 
 </body>

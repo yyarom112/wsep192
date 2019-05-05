@@ -14,17 +14,14 @@ namespace WebService.Controllers
     
     public class UserController : ApiController
     {
-        ServiceLayer service = new ServiceLayer();
-        
-        [Route("api/user/register")]
+        ServiceLayer service = ServiceLayer.getInstance();
+        [Route("api/user/RegisterUser")]
         [HttpGet]
         public string register(String Username, String Password)
         {
-            service.init("admin","admin");
-            String user = service.initUser();
+            string user = service.initUser();
             bool ans = service.register(Username, Password, user);
-            //User session = hashServices.getUserByHash(System.Web.HttpContext.Current.Request.Cookies["HashCode"].Value);
-            //int ans = userServices.getInstance().register(session, Username, Password);
+
             switch (ans)
             {
                 case true:
