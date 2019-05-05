@@ -6,23 +6,9 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    class DiscountPolicy
+    interface DiscountPolicy
     {
-        private int id;
-        private String details;
-        private Dictionary<int, ProductInStore> products;
-        public DiscountPolicy(int id, String details, Dictionary<int, ProductInStore> products)
-        {
-            this.Id = id;
-            this.Details = details;
-            this.Products = products;
-        }
-        public int calculate(List<ProductInStore> products)
-        {
-            return 0;
-        }
-        public int Id { get => id; set => id = value; }
-        public string Details { get => details; set => details = value; }
-        internal Dictionary<int, ProductInStore> Products { get => products; set => products = value; }
+        bool checkCondition(List<KeyValuePair<ProductInStore, int>> productList);
+        int calculate(List<KeyValuePair<ProductInStore, int>> productList);
     }
 }

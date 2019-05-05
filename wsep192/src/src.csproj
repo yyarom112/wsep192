@@ -58,8 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\ConditionalDiscount.cs" />
     <Compile Include="Domain\DiscountPolicy.cs" />
     <Compile Include="Domain\Encryption.cs" />
+    <Compile Include="Domain\LeafCondition.cs" />
+    <Compile Include="Domain\LogicalCondition.cs" />
+    <Compile Include="Domain\RevealedDiscount.cs" />
     <Compile Include="EncryptionImpl.cs" />
     <Compile Include="Domain\Filter.cs" />
     <Compile Include="Domain\FinancialSystem.cs" />

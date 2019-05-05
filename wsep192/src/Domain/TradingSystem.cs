@@ -12,12 +12,12 @@ namespace src.Domain
         private Dictionary<int,Store> stores;
         private ProductSupplySystem supplySystem;
         private FinancialSystem financialSystem;
+        private Encryption encryption;
+        private int userCounter;
         private int productCounter;
         private int storeCounter;
-        private int userCounter;
         private int purchasePolicyCounter;
         private int discountPolicyCounter;
-        private Encryption encryption;
 
         public TradingSystem(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
         {
@@ -30,6 +30,157 @@ namespace src.Domain
             this.discountPolicyCounter =  0;
             this.encryption = new EncryptionImpl();
         }
+
+
+        public int ProductCounter { get => productCounter; set => productCounter = value; }
+        public int StoreCounter { get => storeCounter; set => storeCounter = value; }
+        public int UserCounter { get => userCounter; set => userCounter = value; }
+        public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
+        public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
+        internal Dictionary<int, User> Users { get => users; set => users = value; }
+        internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
+        internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
+        internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+
+
+        //-------------------------------------------------------------------------------
+        public Store searchStore(int storeID)
+        {
+            foreach (Store s in stores.Values)
+                if (s.Id == storeID)
+                    return s;
+            return null;
+        }
+
+        public User searchUser(int userID)
+        {
+            foreach (User u in users.Values)
+                if (u.Id == userID)
+                    return u;
+            return null;
+        }
+
+        public bool init(string adminUserName, string adminPassword)
+        {
+            User admin = new User(userCounter, adminUserName, adminPassword, true, true);
+            users.Add(userCounter, admin);
+            userCounter++;
+            if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
+                return false;
+
+            return true;
+        }
+
+        public bool init(string adminUserName, string adminPassword, int userCounter)
+        {
+            User admin = new User(userCounter, adminUserName, encryption.encrypt(adminUserName + adminPassword), true, true);
+            users.Add(userCounter, admin);
+            if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
+                return false;
+
+            return true;
+        }
+
+        internal bool initUserGuest(string user, int userCounter)
+        {
+            User guest = new User(userCounter, user, null, false, false);
+            users.Add(userCounter, guest);
+
+            return true;
+        }
+
+        public Boolean signIn(String userName, String password, int userId)
+        {
+            int currUserId = userId;
+            if (this.users.ContainsKey(currUserId))
+            {
+                User currUser = this.users[currUserId];
+                if (currUser != null)
+                {
+                    if (!currUser.IsRegistered)
+                    {
+                        return false;
+                    }
+                    password = encryption.encrypt(userName + password);
+                    if (currUser.Password == password)
+                    {
+                        return currUser.signIn(userName, password);
+                    }
+                }
+                return false;
+            }
+            return false;
+        }
+
+        public bool signOut(int id)
+        {
+            if (!users.ContainsKey(id))
+                return false;
+            return users[id].signOut();
+
+        }
+
+        public Boolean register(String userName, String password, int userId)
+        {
+            int currUserId = userId;
+            if (this.users.ContainsKey(currUserId))
+            {
+                if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
+                    || userName.Equals("") || password.Equals("") || userName.Contains(" "))
+                    return false;
+                User currUser = this.users[currUserId];
+                if (currUser != null)
+                {
+                    password = encryption.encrypt(userName + password);
+                    return currUser.register(userName, password);
+                }
+                return false;
+            }
+            return false;
+        }
+
+        public String searchProduct(String details)
+        {
+            List<ProductInStore> products = new List<ProductInStore>();
+            String[] detailsForFilter = details.Split(' ');
+            if (detailsForFilter.Length != 7)
+            {
+                LogManager.Instance.WriteToLog("TradingSystem-search Product " + details + " bad input");
+
+                return "";
+            }
+            KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
+                Int32.Parse(detailsForFilter[4]));
+            Filter filter = new Filter(detailsForFilter[0],
+                detailsForFilter[1], detailsForFilter[2], priceRange,
+                Int32.Parse(detailsForFilter[5]), Int32.Parse(detailsForFilter[6]));
+            foreach (Store s in stores.Values)
+            {
+                s.searchProduct(filter, products);
+            }
+            return productsToString(products);
+        }
+
+        public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
+        {
+            if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products == null)
+            {
+                LogManager.Instance.WriteToLog("Add to cart fail- one of the parameter Invalid. /n");
+                return false;
+
+            }
+            LinkedList<KeyValuePair<Product, int>> toInsert = createProductsList(products, storeId);
+            if (toInsert == null)
+                return false;
+            ShoppingCart newCartCheck = this.users[userId].addProductsToCart(toInsert, storeId);
+            if (newCartCheck != null)
+                newCartCheck.Store = this.stores[storeId];
+            LogManager.Instance.WriteToLog("Add to cart success. /n");
+            return true;
+        }
+
+        //-------------------------------------------------------------------------------
+
 
         public int basketCheckout(String address, int userID)
         {
@@ -50,7 +201,6 @@ namespace src.Domain
 
             }
         }
-
 
         public List<String[]> payForBasket(long cardNumber, DateTime date, int userID)
         {
@@ -98,6 +248,7 @@ namespace src.Domain
             this.users[userID].Basket = new ShoppingBasket();
             return output;
         }
+
         public List<String[]> cartToString(ShoppingCart cart)
         {
             List<String[]> output = new List<string[]>();
@@ -114,8 +265,6 @@ namespace src.Domain
             return output;
         }
         
-
-
         private String productsToString(List<ProductInStore> products)
         {
             String res = "";
@@ -138,6 +287,7 @@ namespace src.Domain
             }
             return false;
         }
+
         internal bool removeUser(int removingID, int toRemoveID)
         {
             
@@ -188,6 +338,7 @@ namespace src.Domain
             return false;
 
         }
+
         public String showCart(int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
@@ -195,12 +346,14 @@ namespace src.Domain
             return Users[user].showCart(store);
 
         }
+
         public bool editProductQuantityInCart(int product, int quantity, int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
                 return false;
             return Users[user].editProductQuantityInCart(product, quantity, store);
         }
+
         public bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
@@ -208,12 +361,10 @@ namespace src.Domain
             return Users[user].removeProductsFromCart(productsToRemove, store);
         }
 
-
         internal bool productExist(string product, int store)
         {
             return Stores[store].productExist(product);
         }
-
 
         public bool removeManager(int userID, int userIDToRemove, int storeID)
         {
@@ -230,160 +381,19 @@ namespace src.Domain
             return false;
         }
 
-
-        public bool init(string adminUserName, string adminPassword)
-        {
-            User admin = new User(userCounter, adminUserName, adminPassword, true, true);
-            users.Add(userCounter, admin);
-            userCounter++;
-            if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
-                return false;
-
-            return true;
-        }
         
-
-
         public bool removeOwner(int userID,int userIDToRemove,int storeID)
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
         }
-        public String searchProduct(String details)
-        {
-            List<ProductInStore> products  = new List<ProductInStore>();
-            String[] detailsForFilter = details.Split(' ');
-            if (detailsForFilter.Length != 7)
-            {
-                LogManager.Instance.WriteToLog("TradingSystem-search Product " + details + " bad input");
 
-                return "";
-            }
-            KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
-                Int32.Parse(detailsForFilter[4]));
-            Filter filter = new Filter(detailsForFilter[0],
-                detailsForFilter[1], detailsForFilter[2], priceRange,
-                Int32.Parse(detailsForFilter[5]), Int32.Parse(detailsForFilter[6]));
-            foreach (Store s in stores.Values)
-            {
-                s.searchProduct(filter,products);
-            }
-            return productsToString(products);
-        }
        
-        internal bool initUserGuest(string user,int userCounter)
-        {
-            User guest = new User(userCounter, user , null,false,false);
-            users.Add(userCounter, guest);
-
-            return true;
-        }
-
-        public User searchUser(int userID)
-        {
-            foreach (User u in users.Values)
-                if (u.Id == userID)
-                    return u;
-            return null;
-        }
-        public Store searchStore(int storeID)
-        {
-            foreach (Store s in stores.Values)
-                if (s.Id == storeID)
-                    return s;
-            return null;
-        }
-
-        public int ProductCounter { get => productCounter; set => productCounter = value; }
-        public int StoreCounter { get => storeCounter; set => storeCounter = value; }
-        public int UserCounter { get => userCounter; set => userCounter = value; }
-        public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
-        public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
-
-
-        internal Dictionary<int, User> Users { get => users; set => users = value; }
-        internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
-        internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
-        internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
 
 
 
-        public bool init(string adminUserName, string adminPassword,int userCounter)
-        {
-            User admin = new User(userCounter, adminUserName, encryption.encrypt(adminUserName + adminPassword), true, true);
-            users.Add(userCounter, admin);
-            if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
-                return false;
-
-            return true;
-        }
-
-        public bool signOut(int id) {
-            if (!users.ContainsKey(id))
-                return false;
-            return users[id].signOut();
-
-        }
-        public Boolean register(String userName, String password, int userId)
-        {
-            int currUserId = userId;
-            if (this.users.ContainsKey(currUserId))
-            {
-                if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
-                    || userName.Equals("") || password.Equals("") || userName.Contains(" "))
-                    return false;
-                User currUser = this.users[currUserId];
-                if (currUser != null)
-                {
-                    password = encryption.encrypt(userName + password);
-                    return currUser.register(userName, password);
-                }
-                return false;
-            }
-            return false;
-        }
 
 
-        public Boolean signIn(String userName, String password, int userId)
-        {
-            int currUserId = userId;
-            if (this.users.ContainsKey(currUserId))
-            {
-                User currUser = this.users[currUserId];
-                if (currUser != null)
-                {
-                    if (!currUser.IsRegistered)
-                    {
-                        return false;
-                    }
-                    password = encryption.encrypt(userName + password);
-                    if (currUser.Password == password)
-                    {
-                        return currUser.signIn(userName, password);
-                    }
-                }
-                return false;
-            }
-            return false;
-        }
 
-
-        public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
-        {
-            if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products == null)
-            {
-                LogManager.Instance.WriteToLog("Add to cart fail- one of the parameter Invalid. /n");
-                return false;
-
-            }
-            LinkedList<KeyValuePair<Product, int>> toInsert = createProductsList(products, storeId);
-            if (toInsert == null)
-                return false;
-            ShoppingCart newCartCheck = this.users[userId].addProductsToCart(toInsert, storeId);
-            if (newCartCheck != null)
-                newCartCheck.Store = this.stores[storeId];
-            LogManager.Instance.WriteToLog("Add to cart success. /n");
-            return true;
-        }
 
 
         public LinkedList<KeyValuePair<Product, int>> createProductsList(List<KeyValuePair<int, int>> products, int storeId)
