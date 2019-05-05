@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\BuyConditionPolicy.cs" />
+    <Compile Include="Domain\Dataclass\UserDetailes.cs" />
     <Compile Include="Domain\DiscountPolicy.cs" />
     <Compile Include="Domain\Encryption.cs" />
     <Compile Include="Domain\EnumsClass.cs" />

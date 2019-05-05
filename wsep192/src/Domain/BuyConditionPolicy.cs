@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using src.Domain.Dataclass;
 
 namespace src.Domain
 {
@@ -23,7 +24,8 @@ namespace src.Domain
             this.sumMax = sumMax;
         }
 
-        public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart)
+
+        public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)
         {
             int sum = 0;
             int totalProducts = 0;
@@ -34,7 +36,7 @@ namespace src.Domain
                 sum += product.Key.Product.Price * product.Value;
             }
 
-            if(min!=-1 && totalProducts<min)
+            if (min != -1 && totalProducts < min)
                 return false;
             if (max != -1 && totalProducts > max)
                 return false;

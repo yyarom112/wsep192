@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using src.Domain.Dataclass;
 
 namespace src.Domain
 {
@@ -23,13 +24,13 @@ namespace src.Domain
             this.act = act;
         }
 
-        public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart)
+        public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)
         {
-            foreach(KeyValuePair<ProductInStore, int> product in cart)
+            foreach (KeyValuePair<ProductInStore, int> product in cart)
             {
                 if (product.Key.Product.Id == this.productID)
                 {
-                    if(max != -1)
+                    if (max != -1)
                     {
                         if (product.Value > max)
                             return false;

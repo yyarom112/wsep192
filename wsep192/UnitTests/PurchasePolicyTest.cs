@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
+using src.Domain.Dataclass;
 
 namespace UnitTests
 {
@@ -18,6 +19,7 @@ namespace UnitTests
         private ProductConditionPolicy pcp;
         private inventoryConditionPolicy icp;
         private BuyConditionPolicy bcp;
+        private UserConditionPolicy ucp;
 
 
         public void setup()
@@ -34,6 +36,7 @@ namespace UnitTests
             pcp = new ProductConditionPolicy(0, 1, 0, 10, LogicalConnections.and);
             icp = new inventoryConditionPolicy(1, 1, 5, LogicalConnections.and);
             bcp = new BuyConditionPolicy(2, 2, 5, 10, 20);
+            ucp = new UserConditionPolicy("Tel Aviv", true);
         }
         [TestMethod]
         public void ProductConditionPolicy_CheckCondition()
@@ -41,16 +44,16 @@ namespace UnitTests
             setup();
             List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
-            Assert.AreEqual(true, pcp.CheckCondition(cart));
+            Assert.AreEqual(true, pcp.CheckCondition(cart,null));
             cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 1));
-            Assert.AreEqual(true, pcp.CheckCondition(cart));
+            Assert.AreEqual(true, pcp.CheckCondition(cart, null));
             cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
-            Assert.AreEqual(false, pcp.CheckCondition(cart));
+            Assert.AreEqual(false, pcp.CheckCondition(cart, null));
             cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 11));
-            Assert.AreEqual(false, pcp.CheckCondition(cart));
+            Assert.AreEqual(false, pcp.CheckCondition(cart, null));
         }
 
         [TestMethod]
@@ -59,13 +62,13 @@ namespace UnitTests
             setup();
             List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
-            Assert.AreEqual(true, pcp.CheckCondition(cart));
+            Assert.AreEqual(true, pcp.CheckCondition(cart, null));
             cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
-            Assert.AreEqual(true, icp.CheckCondition(cart));
+            Assert.AreEqual(true, icp.CheckCondition(cart, null));
             cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
-            Assert.AreEqual(false, icp.CheckCondition(cart));
+            Assert.AreEqual(false, icp.CheckCondition(cart, null));
 
         }
 
@@ -75,26 +78,45 @@ namespace UnitTests
             setup();
             List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 1));
-            Assert.AreEqual(false, bcp.CheckCondition(cart)); // Too few products
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // Too few products
 
             cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
-            Assert.AreEqual(false, bcp.CheckCondition(cart)); // Too much products
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // Too much products
 
             cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 2));
-            Assert.AreEqual(false, bcp.CheckCondition(cart)); // Too cheap
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // Too cheap
 
             cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 3));
-            Assert.AreEqual(false, bcp.CheckCondition(cart)); // too expensive
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // too expensive
 
             cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 2));
             cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
-            Assert.AreEqual(true, bcp.CheckCondition(cart)); // proper
+            Assert.AreEqual(true, bcp.CheckCondition(cart, null)); // proper
 
 
+
+        }
+
+        [TestMethod]
+        public void UserConditionPolicy_CheckCondition()
+        {
+            setup();
+            UserDetailes user = new UserDetailes("", false);
+            Assert.AreEqual(false, ucp.CheckCondition(null, user));
+
+            user.Isregister = true;
+            Assert.AreEqual(false, ucp.CheckCondition(null, user));
+
+            user.Isregister = false;
+            user.Adress = "Tel Aviv";
+            Assert.AreEqual(false, ucp.CheckCondition(null, user));
+
+            user.Isregister = true;
+            Assert.AreEqual(true, ucp.CheckCondition(null, user));
 
         }
 

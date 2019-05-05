@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using src.Domain.Dataclass;
 
 namespace src.Domain
 {
@@ -12,7 +13,7 @@ namespace src.Domain
         private PurchasePolicy ifCond;
         private PurchasePolicy thenCond;
 
-        public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart)
+        public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)
         {
             throw new NotImplementedException();
         }

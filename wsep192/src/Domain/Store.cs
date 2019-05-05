@@ -147,7 +147,7 @@ namespace src.Domain
             foreach (PurchasePolicy pp in purchasePolicy)
             {
                 //TODO- need to update
-                if (!pp.CheckCondition(null))
+                if (!pp.CheckCondition(null, null)) ;
                     return false;
             }
             return true;

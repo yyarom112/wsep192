@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using src.Domain.Dataclass;
 
 namespace src.Domain
 {
@@ -12,11 +13,6 @@ namespace src.Domain
         private LogicalConnections log;
         private List<PurchasePolicy> children;
 
-            
-        public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart)
-        {
-            throw new NotImplementedException();
-        }
         public bool addChild(PurchasePolicy p)
         {
             throw new NotImplementedException();
@@ -26,6 +22,11 @@ namespace src.Domain
             throw new NotImplementedException();
         }
         public bool getChild(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)
         {
             throw new NotImplementedException();
         }

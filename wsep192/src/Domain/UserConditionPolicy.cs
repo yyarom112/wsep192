@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using src.Domain.Dataclass;
 
 namespace src.Domain
 {
@@ -11,9 +12,20 @@ namespace src.Domain
         private String adress;
         private bool Isregister;
 
-        public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart)
+        public UserConditionPolicy(string adress, bool isregister)
         {
-            throw new NotImplementedException();
+            this.adress = adress;
+            Isregister = isregister;
+        }
+
+        public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)
+        {
+            if (adress != null)
+                if (user.Adress != adress)
+                    return false;
+            if (Isregister == true && user.Isregister != true)
+                return false;
+            return true;
         }
     }
 }
