@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    enum LogicalConnections { or , and , xor};
     abstract class ConditionalDiscount : DiscountPolicy
     {
 
