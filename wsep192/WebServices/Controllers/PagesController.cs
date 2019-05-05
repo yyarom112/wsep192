@@ -19,6 +19,10 @@ namespace WebServices.Controllers
         {
             return View();
         }
+        public ActionResult LoginUser()
+        {
+            return View();
+        }
 
     }
 }
