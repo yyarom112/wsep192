@@ -146,7 +146,8 @@ namespace src.Domain
             }
             foreach (PurchasePolicy pp in purchasePolicy)
             {
-                if (!pp.confirmPolicy())
+                //TODO- need to update
+                if (!pp.CheckCondition(null))
                     return false;
             }
             return true;
