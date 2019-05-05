@@ -8,15 +8,34 @@ namespace src.Domain
 {
     class inventoryConditionPolicy : PurchasePolicy
     {
-        protected int id;
-        protected int productID;
-        protected int min;
-        protected int max;
-        protected LogicalConnections act;
+        private int id;
+        private int productID;
+        private int min;
+        private LogicalConnections act;
+
+        public inventoryConditionPolicy(int id, int productID, int min, LogicalConnections act)
+        {
+            this.id = id;
+            this.productID = productID;
+            this.min = min;
+            this.act = act;
+        }
 
         public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart)
         {
-            throw new NotImplementedException();
+            foreach (KeyValuePair<ProductInStore, int> product in cart)
+            {
+                if (product.Key.Product.Id == this.productID)
+                {
+                    if (product.Key.Quantity - product.Value < min)
+                        return false;
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
