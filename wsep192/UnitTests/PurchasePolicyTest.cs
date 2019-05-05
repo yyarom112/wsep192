@@ -20,6 +20,7 @@ namespace UnitTests
         private inventoryConditionPolicy icp;
         private BuyConditionPolicy bcp;
         private UserConditionPolicy ucp;
+        private IfThenCondition itcp;
 
 
         public void setup()
@@ -36,8 +37,10 @@ namespace UnitTests
             pcp = new ProductConditionPolicy(0, 1, 0, 10, LogicalConnections.and);
             icp = new inventoryConditionPolicy(1, 1, 5, LogicalConnections.and);
             bcp = new BuyConditionPolicy(2, 2, 5, 10, 20);
-            ucp = new UserConditionPolicy("Tel Aviv", true);
+            ucp = new UserConditionPolicy(3,"Tel Aviv", true);
+            itcp = new IfThenCondition(4, pcp , icp);
         }
+
         [TestMethod]
         public void ProductConditionPolicy_CheckCondition()
         {
@@ -117,6 +120,13 @@ namespace UnitTests
 
             user.Isregister = true;
             Assert.AreEqual(true, ucp.CheckCondition(null, user));
+
+        }
+
+        [TestMethod]
+        public void IfThenCondition_CheckCondition()
+        {
+            
 
         }
 

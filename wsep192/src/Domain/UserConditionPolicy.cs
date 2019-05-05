@@ -9,11 +9,13 @@ namespace src.Domain
 {
     class UserConditionPolicy : PurchasePolicy
     {
+        private int id;
         private String adress;
         private bool Isregister;
 
-        public UserConditionPolicy(string adress, bool isregister)
+        public UserConditionPolicy(int id ,string adress, bool isregister)
         {
+            this.id = id;
             this.adress = adress;
             Isregister = isregister;
         }

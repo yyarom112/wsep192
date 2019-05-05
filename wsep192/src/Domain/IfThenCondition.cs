@@ -13,9 +13,18 @@ namespace src.Domain
         private PurchasePolicy ifCond;
         private PurchasePolicy thenCond;
 
+        public IfThenCondition(int id, PurchasePolicy ifCond, PurchasePolicy thenCond)
+        {
+            this.id = id;
+            this.ifCond = ifCond ?? throw new ArgumentNullException(nameof(ifCond));
+            this.thenCond = thenCond ?? throw new ArgumentNullException(nameof(thenCond));
+        }
+
         public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)
         {
-            throw new NotImplementedException();
+            if (ifCond.CheckCondition(cart, user))
+                return thenCond.CheckCondition(cart, user);
+            return true;
         }
     }
 }
