@@ -25,11 +25,41 @@ namespace WebService.Controllers
             switch (ans)
             {
                 case true:
-                    return "user successfuly added";
+                    return "User successfuly registered";
                 case false:
-                    return "error";
+                    return "Error in register";
             }
-            return "server error: not suppose to happend";
+            return "server error: RegisterUser";
+        }
+
+        [Route("api/user/LoginUser")]
+        [HttpGet]
+        public string login(String Username, String Password)
+        {
+            bool ans = service.signIn(Username, Password);
+            switch (ans)
+            {
+                case true:
+                    return "User successfuly logged in";
+                case false:
+                    return "Error in login";
+            }
+            return "Server error: LoginUser";
+        }
+
+        [Route("api/user/LogOutUser")]
+        [HttpGet]
+        public string logout(String Username)
+        {
+            bool ans = service.signOut(Username);
+            switch (ans)
+            {
+                case true:
+                    return "User successfuly logged out";
+                case false:
+                    return "Error in logging out";
+            }
+            return "Server error: logOutUser";
         }
 
     }

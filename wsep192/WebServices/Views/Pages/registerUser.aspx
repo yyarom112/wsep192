@@ -10,7 +10,7 @@
 						<div class="hover">
 							<h4>Already have an account?</h4>
 							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="button button-account" href="login.html">Login Now</a>
+							<a class="button button-account" href="/LoginUser">Login Now</a>
 						</div>
 					</div>
 				</div>
@@ -32,7 +32,7 @@
                              <small id="registerAlert" class="form-text text-muted text-Alert"></small>
 
 							<div class="col-md-12 form-group">
-								<input type="button" value="Register" id="registerButton" class="button button-register w-100"></>
+								<input type="button" class="button button-register w-100" id="registerButton" value="Register"></>
 							</div>
 
                            
@@ -62,8 +62,8 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        if (response == "user successfuly added") {
-                            alert("User successfuly added");
+                        if (response == "User successfuly registered") {
+                            alert(response);
                             window.location.href = baseUrl+"/";
                         }
                         else {
