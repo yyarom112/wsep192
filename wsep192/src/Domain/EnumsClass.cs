@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    interface PurchasePolicy
-    {
-        bool CheckCondition (List<KeyValuePair< ProductInStore, int>> cart);
-    }
+    enum DuplicatePolicy { WithMultiplication, WithoutMultiplication }
+    enum LogicalConnections { or, and, xor };
+
 }
