@@ -206,6 +206,13 @@
     <Compile Include="Views\Pages\addProductInStore.aspx.designer.cs">
       <DependentUpon>addProductInStore.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\createProductInStore.aspx.cs">
+      <DependentUpon>createProductInStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\createProductInStore.aspx.designer.cs">
+      <DependentUpon>createProductInStore.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\editProductInStore.aspx.cs">
       <DependentUpon>editProductInStore.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1070,6 +1077,7 @@
     <Content Include="vendor\slick\slick.min.js" />
     <Content Include="vendor\sweetalert\sweetalert.min.js" />
     <Content Include="Views\Pages\addProductInStore.aspx" />
+    <Content Include="Views\Pages\createProductInStore.aspx" />
     <Content Include="Views\Pages\editProductInStore.aspx" />
     <Content Include="Views\Pages\index.aspx" />
     <Content Include="Views\Pages\loginUser.aspx" />

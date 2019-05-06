@@ -29,7 +29,7 @@
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store Name'">
                             </div>
 
-                            <small id="registerAlert" class="form-text text-muted text-Alert"></small>
+                            <small id="addProductInStoreAlert" class="form-text text-muted text-Alert"></small>
 
                             <div class="col-md-12 form-group">
                                 <input type="button" class="button button-register w-100" id="addProductInStoreButton" value="Add Product"></>
@@ -47,30 +47,35 @@
         $(document).ready(function () {
             $("#addProductInStoreButton").click(function () {
 
-                productName = $("#productName").val();
-                productQuantity = $("#productQuantity").val();
-                storeName = $("#storeName").val();
+                var myCookie = getCookie("LoggedUser");
+                if (myCookie != null) {
+                    productName = $("#productName").val();
+                    productQuantity = $("#productQuantity").val();
+                    storeName = $("#storeName").val();
 
-                jQuery.ajax({
-                    type: "GET",
-                    url: baseUrl + "/api/store/AddProductInStore?productName=" + productName + "&productQuantity=" + productQuantity + 
-                    "storeName" + storeName,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        if (response == "Product successfully added to store") {
-                            alert(response);
-                            window.location.href = baseUrl + "/";
+                    jQuery.ajax({
+                        type: "GET",
+                        url: baseUrl + "/api/store/AddProductInStore?userName= + " + myCookie + "productName=" + productName + "&productQuantity=" + productQuantity +
+                            "storeName" + storeName,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            if (response == "Product successfully added to store") {
+                                alert(response);
+                                window.location.href = baseUrl + "/";
+                            }
+                            else {
+                                $("#addProductInStoreAlert").html('Failure - ' + response);
+                            }
+                        },
+                        error: function (response) {
+                            window.location.href = baseUrl + "/error";
                         }
-                        else {
-                            $("#registerAlert").html('Failure - ' + response);
-                        }
-                    },
-                    error: function (response) {
-                        window.location.href = baseUrl + "/error";
-                    }
-                });
-
+                    });
+                }
+                else {
+                    $("#loginAlert").html('Failure - ' + "user not logged in!");
+                }
             });
         });
 

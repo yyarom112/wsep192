@@ -31,6 +31,10 @@ namespace WebServices.Controllers
         {
             return View();
         }
+        public ActionResult CreateProductInStore()
+        {
+            return View();
+        }
 
 
     }
