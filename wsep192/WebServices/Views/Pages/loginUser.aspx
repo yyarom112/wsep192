@@ -43,8 +43,8 @@
 
         $(document).ready(function () {
             $("#loginButton").click(function () {
-                var myCookie = getCookie("LoggedUser");
-                if (myCookie == null) {
+                var user = getCookie("LoggedUser");
+                if (user == null) {
                     username = $("#username").val();
                     pass = $("#password").val();
 
