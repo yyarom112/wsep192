@@ -62,5 +62,27 @@ namespace WebService.Controllers
             return "Server error: logOutUser";
         }
 
+        [Route("api/user/generateUserID")]
+        [HttpGet]
+        public Object generateUserID()
+        {
+            return service.initUser();
+        }
+
+       
+        [Route("api/user/AssignOwner")]
+        [HttpGet]
+        public Object assignOwner(string ownerName,string userToAssign,string storeName)
+        {
+            bool ans= service.assignOwner(ownerName, userToAssign, storeName);
+            switch (ans)
+            {
+                case true:
+                    return "User successfuly was assigned";
+                case false:
+                    return "Assining user Error";
+            }
+            return "Server error: logOutUser";
+        }
     }
 }
