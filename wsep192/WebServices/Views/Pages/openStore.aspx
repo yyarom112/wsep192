@@ -41,7 +41,7 @@
             $(document).ready(function () {
                 $("#openStoreButton").click(function () {
 
-                    var username = getCookie("LoggedUser");
+                    username = getCookie("LoggedUser");
                     if (username != null) {
 		                    storename=$("#storeName").val();
 
@@ -60,7 +60,7 @@
                         }
                     },
                     error: function (response) {
-                        window.location.href = baseUrl+"/error";
+                        alert(response);
                     }
                 });
                     }

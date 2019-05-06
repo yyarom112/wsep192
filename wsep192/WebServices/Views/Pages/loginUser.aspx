@@ -55,22 +55,21 @@
                     dataType: "json",
                     success: function (response) {
                         if (response == "User successfuly logged in") {
-                            document.cookie = "LoggedUser=" + username 
-                            alert(response);
+                            document.cookie = "LoggedUser=" + username +';'
+                            alert(response+","+document.cookie);
                             window.location.href = baseUrl + "/";
                         }
                         else {
-                            $("#loginAlert").html('Failure - ' + response);
+                            alert(response);
                         }
                     },
                     error: function (response) {
-                        console.log(response);
-                        window.location.href = baseUrl + "/error";
+                        alert(response);
                     }
                 });
                 }
                 else
-                    $("#loginAlert").html('Failure - ' + " already logged in");
+                    alert("already logged in");
 
             });
         });
