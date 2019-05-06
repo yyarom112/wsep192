@@ -26,9 +26,6 @@
 								<input type="text" class="form-control" id="password" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 
-                             <small id="loginAlert" class="form-text text-muted text-Alert"></small>
-
-
 							<div class="col-md-12 form-group">
                                 <input type="button" class="button button-login w-100" id="loginButton" value="Login"></>
 							</div>
@@ -56,7 +53,7 @@
                     success: function (response) {
                         if (response == "User successfuly logged in") {
                             document.cookie = "LoggedUser=" + username +';'
-                            alert(response+","+document.cookie);
+                            alert(response);
                             window.location.href = baseUrl + "/";
                         }
                         else {

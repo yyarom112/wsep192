@@ -28,8 +28,6 @@
 								<input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'storeName'">
 							</div>
                             
-                             <small id="registerAlert" class="form-text text-muted text-Alert"></small>
-
 							<div class="col-md-12 form-group">
 								<input type="button" class="button button-register w-100" id="assignOwnerButton" value="Assign This Owner"></>
 							</div>
