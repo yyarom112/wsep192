@@ -69,20 +69,21 @@ namespace WebService.Controllers
             return service.initUser();
         }
 
-       
-        [Route("api/user/AssignOwner")]
+        [Route("api/user/OpenStore")]
         [HttpGet]
-        public Object assignOwner(string ownerName,string userToAssign,string storeName)
+        public string openStore(String Username,String StoreName)
         {
-            bool ans= service.assignOwner(ownerName, userToAssign, storeName);
+            bool ans = service.openStore(StoreName,Username);
             switch (ans)
             {
                 case true:
-                    return "User successfuly was assigned";
+                    return "Store created successfully";
                 case false:
-                    return "Assining user Error";
+                    return "Error in creating store";
             }
-            return "Server error: logOutUser";
+            return "Server error: openStore";
         }
+
+
     }
 }

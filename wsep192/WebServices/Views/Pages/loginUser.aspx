@@ -26,9 +26,6 @@
 								<input type="text" class="form-control" id="password" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 
-                             <small id="loginAlert" class="form-text text-muted text-Alert"></small>
-
-
 							<div class="col-md-12 form-group">
                                 <input type="button" class="button button-login w-100" id="loginButton" value="Login"></>
 							</div>
@@ -43,29 +40,34 @@
 
         $(document).ready(function () {
             $("#loginButton").click(function () {
-
-                username = $("#username").val();
-                pass = $("#password").val();
+                var user = getCookie("LoggedUser");
+                if (user == null) {
+                    username = $("#username").val();
+                    pass = $("#password").val();
 
                 jQuery.ajax({
                     type: "GET",
-                    url: baseUrl+"/api/user/LoginUser?username=" + username + "&password=" + pass,
+                    url: baseUrl + "/api/user/LoginUser?username=" + username + "&password=" + pass,
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
                         if (response == "User successfuly logged in") {
+                            document.cookie = "LoggedUser=" + username +';'
                             alert(response);
-                            window.location.href = baseUrl+"/";
+                            window.location.href = baseUrl + "/";
                         }
                         else {
-                            $("#loginAlert").html('Failure - ' + response);
+                            alert(response);
                         }
                     },
                     error: function (response) {
-                        console.log(response);
-                        window.location.href = baseUrl+"/error";
+                        alert(response);
                     }
                 });
+                }
+                else
+                    alert("already logged in");
+
             });
         });
 
