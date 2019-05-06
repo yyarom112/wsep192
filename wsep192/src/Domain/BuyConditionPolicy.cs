@@ -47,5 +47,10 @@ namespace src.Domain
 
             return true;
         }
+
+        public int getId()
+        {
+            return id;
+        }
     }
 }

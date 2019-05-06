@@ -29,5 +29,9 @@ namespace src.Domain
                 return false;
             return true;
         }
+        public int getId()
+        {
+            return id;
+        }
     }
 }

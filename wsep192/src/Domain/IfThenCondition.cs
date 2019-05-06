@@ -26,5 +26,9 @@ namespace src.Domain
                 return thenCond.CheckCondition(cart, user);
             return false;
         }
+        public int getId()
+        {
+            return id;
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace src.Domain
     interface PurchasePolicy
     {
         bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user );
+        int getId();
     }
 }
