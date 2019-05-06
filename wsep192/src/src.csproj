@@ -68,7 +68,7 @@
     <Compile Include="Domain\LogicalConditionPolicy.cs" />
     <Compile Include="Domain\ProductConditionPolicy.cs" />
     <Compile Include="Domain\PurchasePolicy.cs" />
-    <Compile Include="Domain\PurchesPolicyData.cs" />
+    <Compile Include="Domain\Dataclass\PurchesPolicyData.cs" />
     <Compile Include="Domain\UserConditionPolicy.cs" />
     <Compile Include="EncryptionImpl.cs" />
     <Compile Include="Domain\Filter.cs" />

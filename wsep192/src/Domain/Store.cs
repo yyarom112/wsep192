@@ -349,5 +349,40 @@ namespace src.Domain
             }
             return false;
         }
-    }
+
+        public PurchasePolicy addSimplePurchasePolicy (PurchesPolicyData purchesData){
+            if (purchesData == null)
+                return null;
+
+                switch (purchesData.Type)
+            {
+                case 0:
+                    ProductConditionPolicy toInsert0 = new ProductConditionPolicy(purchesData.Id, purchesData.ProductID, purchesData.Min, purchesData.Max, purchesData.Act);
+                    purchasePolicy.Add(toInsert0);
+                    LogManager.Instance.WriteToLog("Product Condition Policy add to store "+this.name+" successfully");
+                    return toInsert0;
+                case 1:
+                    inventoryConditionPolicy toInsert1 = new inventoryConditionPolicy(purchesData.Id, purchesData.ProductID, purchesData.Min, purchesData.Act);
+                    purchasePolicy.Add(toInsert1);
+                    LogManager.Instance.WriteToLog("inventory Condition Policy add to store " + this.name + " successfully");
+                    return toInsert1;
+                case 2:
+                    BuyConditionPolicy toinsert2 = new BuyConditionPolicy(purchesData.Id, purchesData.Min, purchesData.Max, purchesData.SumMin, purchesData.SumMax);
+                    purchasePolicy.Add(toinsert2);
+                    LogManager.Instance.WriteToLog("Buy Condition Policy add to store " + this.name + " successfully");
+                    return toinsert2;
+                case 3:
+                    UserConditionPolicy toinsert3= new UserConditionPolicy(purchesData.Id, purchesData.Adress, purchesData.Isregister);
+                    purchasePolicy.Add(toinsert3);
+                    LogManager.Instance.WriteToLog("User Condition Policy add to store " + this.name + " successfully");
+                    return toinsert3;
+                default:
+                    return null;
+
+            }
+        }
+
+        //public bool addComplexPurchasePolicy((String details , int purchesPolicyID){
+
+        //}
 }
