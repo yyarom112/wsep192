@@ -1,4 +1,5 @@
-﻿<%@ Page Title="Register Page" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="registerUser.aspx.cs" Inherits="WebServices.Views.Pages.Register" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="openStore.aspx.cs" Inherits="WebServices.Views.Pages.openStore" %>
+
 
  <asp:Content ID="content1" ContentPlaceHolderID="MainContent" runat="server"> 
   <!--================Login Box Area =================-->
@@ -19,18 +20,11 @@
 						<h3>Create an account</h3>
 						<form class="row login_form" action="#/" id="register_form" >
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+								<input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store name'">
 							</div>
-							
-              <div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
-              </div>
-              <div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
-							</div>
-                            
+
 							<div class="col-md-12 form-group">
-								<input type="button" class="button button-register w-100" id="registerButton" value="Register"></>
+								<input type="button" class="button button-register w-100" id="openStoreButton" value="Open store"></>
 							</div>
 
                            
@@ -45,22 +39,19 @@
 	<!--================End Login Box Area =================-->
      <script type="text/javascript">
             $(document).ready(function () {
-	    $("#registerButton").click(function(){
-		
-		    username=$("#name").val();
-            pass = $("#password").val();
-            pass2 = $("#confirmPassword").val();
-            if (pass != pass2) {
-                alert("Passwords does not match");
-            }
-            else {
-                jQuery.ajax({
+                $("#openStoreButton").click(function () {
+
+                    var username = getCookie("LoggedUser");
+                    if (username != null) {
+		                    storename=$("#storeName").val();
+
+                      jQuery.ajax({
                     type: "GET",
-                    url: baseUrl+"/api/user/RegisterUser?username=" + username + "&password=" + pass,
+                    url: baseUrl+"/api/user/OpenStore?username=" + username + "&storename=" + storename,
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        if (response == "User successfuly registered") {
+                        if (response == "Store created successfully") {
                             alert(response);
                             window.location.href = baseUrl+"/";
                         }
@@ -72,7 +63,9 @@
                         window.location.href = baseUrl+"/error";
                     }
                 });
-            }
+                    }
+                    else
+                        alert("User isn't logged in");
 	    });
     });
 

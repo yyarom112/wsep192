@@ -68,7 +68,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Store Actions</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="#">Open Store</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/OpenStore">Open Store</a></li>
                   <li class="nav-item"><a class="nav-link" href="#">Create New Product In Store</a></li>
                   <li class="nav-item"><a class="nav-link" href="#">Add Product In Store</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Edit Product In Store</a></li>
@@ -126,13 +126,10 @@
                     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
                 }
 
-            }
-           
+        }
         $(document).ready(function () {
-                
             var myCookie = getCookie("GuestUser");
             if (myCookie == null) {
-                    cleanCookies();
                     jQuery.ajax({
                         type: "GET",
                         url: baseUrl+"/api/user/generateUserID",
