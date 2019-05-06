@@ -28,6 +28,8 @@
 								<input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'storeName'">
 							</div>
                             
+                             <small id="registerAlert" class="form-text text-muted text-Alert"></small>
+
 							<div class="col-md-12 form-group">
 								<input type="button" class="button button-register w-100" id="assignOwnerButton" value="Assign This Owner"></>
 							</div>
@@ -37,5 +39,40 @@
 			</div>
 		</div>
 	</section>
-	<!--================End Login Box Area =================-->
+  	<!--================End Login Box Area =================-->
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $("#assignOwnerButton").click(function () {
+                 var ownerName = getCookie("LoggedUser");
+                 if (ownerName != null) {
+                     console.log("OK");
+                     userToAssign = $("#userToAssign").val();
+                     storeName = $("#storeName").val();
+                     jQuery.ajax({
+                         type: "GET",
+                         url: baseUrl + "/api/user/AssignOwner?ownerName=" + ownerName + "&userToAssign=" + userToAssign + "&storeName" + storeName,
+                         contentType: "application/json; charset=utf-8",
+                         dataType: "json",
+                         success: function (response) {
+                             if (response == "User successfuly was assigned") {
+                                 document.cookie = "LoggedUser=" + username
+                                 alert(response);
+                                 window.location.href = baseUrl + "/";
+                             }
+                             else {
+                                 alert(response);
+                             }
+                         },
+                         error: function (response) {
+                             alert(response);
+                         }
+                     });
+                 }
+                 else
+                     alert("already logged in");
+
+             });
+         });
+
+    </script>
 </asp:Content>
