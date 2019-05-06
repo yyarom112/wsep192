@@ -60,7 +60,7 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="/LoginUser">Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="/RegisterUser">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/Logout">Logout</a></li>
+                  <li class="nav-item"><a class="nav-link" onclick="cleanCookies()" href="#">Logout</a></li>
                 </ul>
               </li>
 
@@ -114,6 +114,63 @@
   <script src="js/main.js"></script>
     
     <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+
+    <script type="text/javascript">
+        var cleanCookies = function () {
+                var cookies = document.cookie.split(";");
+
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i];
+                    var eqPos = cookie.indexOf("=");
+                    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+                }
+
+            }
+           
+        $(document).ready(function () {
+                
+            var myCookie = getCookie("GuestUser");
+            if (myCookie == null) {
+                    cleanCookies();
+                    jQuery.ajax({
+                        type: "GET",
+                        url: baseUrl+"/api/user/generateUserID",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            document.cookie = "GuestUser=" + response
+                        },
+                        error: function (response) {
+                            console.log("Error in init GuestUser");
+                            window.location.href = baseUrl+"/error";
+                        }
+                    });
+                }
+
+
+            });
+
+            function getCookie(name) {
+                var dc = document.cookie;
+                var prefix = name + "=";
+                var begin = dc.indexOf("; " + prefix);
+                if (begin == -1) {
+                    begin = dc.indexOf(prefix);
+                    if (begin != 0) return null;
+                }
+                else {
+                    begin += 2;
+                    var end = document.cookie.indexOf(";", begin);
+                    if (end == -1) {
+                        end = dc.length;
+                    }
+                }
+                // because unescape has been deprecated, replaced with decodeURI
+                //return unescape(dc.substring(begin + prefix.length, end));
+                return decodeURI(dc.substring(begin + prefix.length, end));
+        }
+        </script>
 
 </body>
 </html>

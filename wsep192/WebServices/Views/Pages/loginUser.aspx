@@ -43,19 +43,21 @@
 
         $(document).ready(function () {
             $("#loginButton").click(function () {
-
-                username = $("#username").val();
-                pass = $("#password").val();
+                var myCookie = getCookie("LoggedUser");
+                if (myCookie == null) {
+                    username = $("#username").val();
+                    pass = $("#password").val();
 
                 jQuery.ajax({
                     type: "GET",
-                    url: baseUrl+"/api/user/LoginUser?username=" + username + "&password=" + pass,
+                    url: baseUrl + "/api/user/LoginUser?username=" + username + "&password=" + pass,
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
                         if (response == "User successfuly logged in") {
+                            document.cookie = "LoggedUser=" + username 
                             alert(response);
-                            window.location.href = baseUrl+"/";
+                            window.location.href = baseUrl + "/";
                         }
                         else {
                             $("#loginAlert").html('Failure - ' + response);
@@ -63,9 +65,13 @@
                     },
                     error: function (response) {
                         console.log(response);
-                        window.location.href = baseUrl+"/error";
+                        window.location.href = baseUrl + "/error";
                     }
                 });
+                }
+                else
+                    $("#loginAlert").html('Failure - ' + " already logged in");
+
             });
         });
 
