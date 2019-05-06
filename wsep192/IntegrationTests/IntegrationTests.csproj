@@ -69,7 +69,6 @@
     <Compile Include="openStoreIntegration.cs" />
     <Compile Include="removeUserIntegration.cs" />
     <Compile Include="UserLogoutTest.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\src.csproj">
