@@ -23,6 +23,15 @@ namespace WebServices.Controllers
         {
             return View();
         }
+        public ActionResult AddProductInStore()
+        {
+            return View();
+        }
+        public ActionResult EditProductInStore()
+        {
+            return View();
+        }
+
 
     }
 }

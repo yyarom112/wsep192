@@ -70,8 +70,8 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="#">Open Store</a></li>
                   <li class="nav-item"><a class="nav-link" href="#">Create New Product In Store</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Add Product In Store</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Edit Product In Store</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/AddProductInStore">Add Product In Store</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/EditProductInStore">Edit Product In Store</a></li>
                   <li class="nav-item"><a class="nav-link" href="#">Remove Product From Store</a></li>
                   
                 </ul>
