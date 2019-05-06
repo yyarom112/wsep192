@@ -16,7 +16,7 @@ namespace src
 
         private LogManager()
         {
-            System.IO.File.WriteAllText(path, "");
+            //System.IO.File.WriteAllText(path, "");
         }
 
         public static LogManager Instance
@@ -32,12 +32,12 @@ namespace src
 
         public void WriteToLog(String str)
         {
-            DateTime localDate = DateTime.Now;
-            System.IO.File.AppendAllText(path, localDate.ToString() + ": " + str + System.Environment.NewLine);
+            //DateTime localDate = DateTime.Now;
+            //System.IO.File.AppendAllText(path, localDate.ToString() + ": " + str + System.Environment.NewLine);
         }
         public void OpenAnewLogFile()
         {
-            System.IO.File.WriteAllText(path, "");
+            //System.IO.File.WriteAllText(path, "");
         }
 
     }

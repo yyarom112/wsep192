@@ -69,7 +69,7 @@
                         }
                     },
                     error: function (response) {
-                        window.location.href = baseUrl+"/error";
+                         alert(response);
                     }
                 });
             }
