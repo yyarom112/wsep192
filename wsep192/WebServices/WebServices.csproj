@@ -199,6 +199,20 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\assignManager.aspx.cs">
+      <DependentUpon>assignManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\assignManager.aspx.designer.cs">
+      <DependentUpon>assignManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\assignOwner.aspx.cs">
+      <DependentUpon>assignOwner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\assignOwner.aspx.designer.cs">
+      <DependentUpon>assignOwner.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -219,6 +233,20 @@
     </Compile>
     <Compile Include="Views\Pages\registerUser.aspx.designer.cs">
       <DependentUpon>registerUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\removeManager.aspx.cs">
+      <DependentUpon>removeManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\removeManager.aspx.designer.cs">
+      <DependentUpon>removeManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\removeOwner.aspx.cs">
+      <DependentUpon>removeOwner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\removeOwner.aspx.designer.cs">
+      <DependentUpon>removeOwner.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1055,9 +1083,13 @@
     <Content Include="vendor\slick\slick.js" />
     <Content Include="vendor\slick\slick.min.js" />
     <Content Include="vendor\sweetalert\sweetalert.min.js" />
+    <Content Include="Views\Pages\assignManager.aspx" />
+    <Content Include="Views\Pages\assignOwner.aspx" />
     <Content Include="Views\Pages\index.aspx" />
     <Content Include="Views\Pages\loginUser.aspx" />
     <Content Include="Views\Pages\registerUser.aspx" />
+    <Content Include="Views\Pages\removeManager.aspx" />
+    <Content Include="Views\Pages\removeOwner.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

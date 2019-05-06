@@ -81,10 +81,10 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">User Actions</a>
                 <ul class="dropdown-menu">
-                 <li class="nav-item"><a class="nav-link" href="#">Assign Manager</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Remove Manager</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Assign Owner</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Remove Manager</a></li>
+                 <li class="nav-item"><a class="nav-link" href="/AssignManager">Assign Manager</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/RemoveManager">Remove Manager</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/AssignOwner">Assign Owner</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/RemoveOwner">Remove owner</a></li>
                 </ul>
               </li>
 
