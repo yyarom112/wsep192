@@ -38,6 +38,7 @@ namespace UnitTests
             icp = new inventoryConditionPolicy(1, 1, 5, LogicalConnections.and);
             bcp = new BuyConditionPolicy(2, 2, 5, 10, 20);
             ucp = new UserConditionPolicy(3,"Tel Aviv", true);
+            //itcp= if(buy p1 min buy =0 &max buy =10) then (min inventory =5)
             itcp = new IfThenCondition(4, pcp , icp);
         }
 
@@ -109,24 +110,38 @@ namespace UnitTests
         {
             setup();
             UserDetailes user = new UserDetailes("", false);
-            Assert.AreEqual(false, ucp.CheckCondition(null, user));
+            Assert.AreEqual(false, ucp.CheckCondition(null, user), "Registeration and Adress check fail");
 
             user.Isregister = true;
-            Assert.AreEqual(false, ucp.CheckCondition(null, user));
+            Assert.AreEqual(false, ucp.CheckCondition(null, user),"The adress check fail");
 
             user.Isregister = false;
             user.Adress = "Tel Aviv";
-            Assert.AreEqual(false, ucp.CheckCondition(null, user));
+            Assert.AreEqual(false, ucp.CheckCondition(null, user), "The registeretion check fail");
 
             user.Isregister = true;
-            Assert.AreEqual(true, ucp.CheckCondition(null, user));
+            Assert.AreEqual(true, ucp.CheckCondition(null, user), "Registeration and Adress check fail");
 
         }
 
+
+        //itcp= if(buy p1 min buy =0 &max buy =10) then (min inventory =5)
         [TestMethod]
-        public void IfThenCondition_CheckCondition()
+        public void IfThenCondition_CheckCondition_SimpleOperands()
         {
-            
+            setup();
+            List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
+            Assert.AreEqual(true, itcp.CheckCondition(cart,null), "The empty case - the product is not related to the purchase policy");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
+            Assert.AreEqual(false, itcp.CheckCondition(cart, null), "Failure on condition is not satisfactory a");
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 11));
+            Assert.AreEqual(false, itcp.CheckCondition(cart, null), "Failure on condition is not satisfactory b");
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
+            Assert.AreEqual(false, itcp.CheckCondition(cart, null), "then failure - the then condition are not satisfied");
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
+            Assert.AreEqual(false, itcp.CheckCondition(cart, null), "All conditions are to be satisfied");
 
         }
 

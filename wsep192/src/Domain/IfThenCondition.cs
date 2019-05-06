@@ -24,7 +24,7 @@ namespace src.Domain
         {
             if (ifCond.CheckCondition(cart, user))
                 return thenCond.CheckCondition(cart, user);
-            return true;
+            return false;
         }
     }
 }
