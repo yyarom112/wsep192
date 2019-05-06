@@ -241,6 +241,13 @@
     <Compile Include="Views\Pages\removeManager.aspx.designer.cs">
       <DependentUpon>removeManager.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\shoppingCart.aspx.cs">
+      <DependentUpon>shoppingCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\shoppingCart.aspx.designer.cs">
+      <DependentUpon>shoppingCart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\removeOwner.aspx.cs">
       <DependentUpon>removeOwner.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1089,6 +1096,7 @@
     <Content Include="Views\Pages\loginUser.aspx" />
     <Content Include="Views\Pages\registerUser.aspx" />
     <Content Include="Views\Pages\removeManager.aspx" />
+    <Content Include="Views\Pages\shoppingCart.aspx" />
     <Content Include="Views\Pages\removeOwner.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

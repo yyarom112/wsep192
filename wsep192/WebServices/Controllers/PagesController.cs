@@ -40,6 +40,11 @@ namespace WebServices.Controllers
             return View();
         }
 
+        public ActionResult ShoppingCart()
+        {
+            return View();
+        }
+
     }
     /*
     public class CheckAdmin : ActionFilterAttribute

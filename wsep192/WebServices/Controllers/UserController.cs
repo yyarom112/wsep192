@@ -32,6 +32,32 @@ namespace WebService.Controllers
             return "server error: RegisterUser";
         }
 
+
+
+        [Route("api/user/ShoppingCart")]
+        [HttpGet]
+        public string showCart(String Store, String User)
+        {
+            //return service.showCart(Store, User);
+            return "test";
+
+        /*    switch (ans)
+            {
+                case true:
+                    return "";
+                case false:
+                    return "Error in register";
+            }
+            return "server error: ShowCart";*/
+        }
+
+
+
+
+
+
+
+
         [Route("api/user/LoginUser")]
         [HttpGet]
         public string login(String Username, String Password)
