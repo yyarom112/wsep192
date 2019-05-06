@@ -188,6 +188,7 @@
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WebsocketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1137,6 +1138,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Store\" />
+    <Folder Include="Views\Websockets\" />
     <Folder Include="Views\WebSocket\" />
   </ItemGroup>
   <ItemGroup>
