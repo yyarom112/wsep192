@@ -12,12 +12,15 @@ namespace src.Domain
         private int id;
         private String adress;
         private bool Isregister;
+        private LogicalConnections act;
 
-        public UserConditionPolicy(int id ,string adress, bool isregister)
+
+        public UserConditionPolicy(int id ,string adress, bool isregister , LogicalConnections act)
         {
             this.id = id;
             this.adress = adress;
             Isregister = isregister;
+            this.act = act;
         }
 
         public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)

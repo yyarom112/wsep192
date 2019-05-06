@@ -20,7 +20,7 @@ namespace UnitTests
             string storeName = "ZARA";
             List<DiscountPolicy> discountPolicies = new List<DiscountPolicy>();
             List<PurchasePolicy> purchasePolicies = new List<PurchasePolicy>();
-            Store store = new Store(storeID, storeName, purchasePolicies, discountPolicies);
+            Store store = new Store(storeID, storeName);
             User user = new User(userID, userName, userPassword, false, false);
             Owner owner = new Owner(store, user);
             user.addRole(owner);
@@ -37,7 +37,7 @@ namespace UnitTests
             string storeName = "Pull&Bear";
             List<DiscountPolicy> discountPolicies = new List<DiscountPolicy>();
             List<PurchasePolicy> purchasePolicies = new List<PurchasePolicy>();
-            Store store = new Store(storeID, storeName, purchasePolicies, discountPolicies);
+            Store store = new Store(storeID, storeName);
             User user = new User(userID, userName, userPassword, false, false);
             Role role = store.initOwner(user);
             Assert.AreEqual(role, store.RolesDictionary[userID].Data);

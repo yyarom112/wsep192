@@ -18,7 +18,7 @@ namespace src.Domain
         private List<PurchasePolicy> purchasePolicy;
         private List<DiscountPolicy> discountPolicy;
 
-        public Store(int id, string name, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy)
+        public Store(int id, string name)
         {
             this.id = id;
             this.name = name;
@@ -26,8 +26,8 @@ namespace src.Domain
             this.storeRate = 0;
             this.roles = new TreeNode<Role>(null);
             this.rolesDictionary = new Dictionary<int, TreeNode<Role>>();
-            this.purchasePolicy = purchasePolicy;
-            this.discountPolicy = discountPolicy;
+            this.purchasePolicy = new List<PurchasePolicy>();
+            this.discountPolicy = new List<DiscountPolicy>();
         }
 
         public int Id { get => id; set => id = value; }
@@ -91,7 +91,7 @@ namespace src.Domain
                 if (!this.products.ContainsKey(p.Product.Id))
                 {
                     cart.Products[p.Product.Id].Quantity = 0;
-                    LogManager.Instance.WriteToLog("The attempt to purchase product "+p.Product.Id+" failed because it does not belong to the store.\n");
+                    LogManager.Instance.WriteToLog("The attempt to purchase product " + p.Product.Id + " failed because it does not belong to the store.\n");
 
                 }
                 else
@@ -136,11 +136,11 @@ namespace src.Domain
             {
                 ProductInStore productInStore = new ProductInStore(-1, this, p.Product);
                 if (!this.products.ContainsKey(p.Product.Id))
-                    return false; 
-                if(p.Quantity> this.products[p.Product.Id].Quantity)
+                    return false;
+                if (p.Quantity > this.products[p.Product.Id].Quantity)
                 {
                     p.Quantity = this.products[p.Product.Id].Quantity;
-                    p.ShoppingCart.Products[p.Product.Id].Quantity= this.products[p.Product.Id].Quantity;
+                    p.ShoppingCart.Products[p.Product.Id].Quantity = this.products[p.Product.Id].Quantity;
                 }
                 productsInStore.Add(productInStore);
             }
@@ -148,7 +148,7 @@ namespace src.Domain
             {
                 //TODO- need to update
                 if (!pp.CheckCondition(null, null)) ;
-                    return false;
+                return false;
             }
             return true;
 
@@ -181,7 +181,7 @@ namespace src.Domain
 
             if (RolesDictionary.ContainsKey(userID))
                 roleNode = RolesDictionary[userID];
-            if (roleNode != null&&roleNode.Parent!=null)
+            if (roleNode != null && roleNode.Parent != null)
             {
                 if (roleNode.Data.GetType() == typeof(Owner))
                 {
@@ -249,14 +249,14 @@ namespace src.Domain
             return -1;
         }
 
-        public bool createNewProductInStore(string productName, string category, string details, int price, int productID,int userID)
+        public bool createNewProductInStore(string productName, string category, string details, int price, int productID, int userID)
         {
             TreeNode<Role> roleNode = null;
             if (RolesDictionary.ContainsKey(userID))
                 roleNode = RolesDictionary[userID];
             if (roleNode != null)
             {
-                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(3)))
+                if ((roleNode.Data.GetType() == typeof(Owner)) || (roleNode.Data.GetType() == typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(3)))
                 {
                     Product p = new Product(productID, productName, category, details, price);
                     ProductInStore pis = new ProductInStore(0, this, p);
@@ -266,7 +266,7 @@ namespace src.Domain
                         return true;
                     }
                 }
-            }       
+            }
 
             return false;
         }
@@ -278,7 +278,7 @@ namespace src.Domain
                 roleNode = RolesDictionary[userID];
             if (roleNode != null)
             {
-                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(4)))
+                if ((roleNode.Data.GetType() == typeof(Owner)) || (roleNode.Data.GetType() == typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(4)))
                 {
                     foreach (KeyValuePair<int, int> p in productsQuantityList)
                         if (Products.ContainsKey(p.Key))
@@ -290,14 +290,14 @@ namespace src.Domain
             return false;
         }
 
-        public bool removeProductsInStore(List<KeyValuePair<int, int>> productsQuantityList , int userID)
+        public bool removeProductsInStore(List<KeyValuePair<int, int>> productsQuantityList, int userID)
         {
             TreeNode<Role> roleNode = null;
             if (RolesDictionary.ContainsKey(userID))
                 roleNode = RolesDictionary[userID];
             if (roleNode != null)
             {
-                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(5)))
+                if ((roleNode.Data.GetType() == typeof(Owner)) || (roleNode.Data.GetType() == typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(5)))
                 {
                     foreach (KeyValuePair<int, int> p in productsQuantityList)
                         if (Products.ContainsKey(p.Key) && Products[p.Key].Quantity >= p.Value)
@@ -317,9 +317,9 @@ namespace src.Domain
                 roleNode = RolesDictionary[userID];
             if (roleNode != null)
             {
-                if ((roleNode.Data.GetType() == typeof(Owner))|| (roleNode.Data.GetType()==typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(6)))
+                if ((roleNode.Data.GetType() == typeof(Owner)) || (roleNode.Data.GetType() == typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(6)))
                 {
-                    if(Products.ContainsKey(productID))
+                    if (Products.ContainsKey(productID))
                     {
                         Products[productID].Product.ProductName = productName;
                         Products[productID].Product.Category = category;
@@ -344,22 +344,23 @@ namespace src.Domain
                 Owner assignedOwner = new Owner(this, assignedUser);
                 assignedNode = ownerNode.AddChild(assignedOwner);
                 RolesDictionary.Add(assignedOwner.User.Id, assignedNode);
-                assignedNode.Data.User.Roles.Add(this.Id,assignedNode.Data);
+                assignedNode.Data.User.Roles.Add(this.Id, assignedNode.Data);
                 return true;
             }
             return false;
         }
 
-        public PurchasePolicy addSimplePurchasePolicy (PurchesPolicyData purchesData){
+        public PurchasePolicy addSimplePurchasePolicy(PurchesPolicyData purchesData)
+        {
             if (purchesData == null)
                 return null;
 
-                switch (purchesData.Type)
+            switch (purchesData.Type)
             {
                 case 0:
                     ProductConditionPolicy toInsert0 = new ProductConditionPolicy(purchesData.Id, purchesData.ProductID, purchesData.Min, purchesData.Max, purchesData.Act);
                     purchasePolicy.Add(toInsert0);
-                    LogManager.Instance.WriteToLog("Product Condition Policy add to store "+this.name+" successfully");
+                    LogManager.Instance.WriteToLog("Product Condition Policy add to store " + this.name + " successfully");
                     return toInsert0;
                 case 1:
                     inventoryConditionPolicy toInsert1 = new inventoryConditionPolicy(purchesData.Id, purchesData.ProductID, purchesData.Min, purchesData.Act);
@@ -372,7 +373,7 @@ namespace src.Domain
                     LogManager.Instance.WriteToLog("Buy Condition Policy add to store " + this.name + " successfully");
                     return toinsert2;
                 case 3:
-                    UserConditionPolicy toinsert3= new UserConditionPolicy(purchesData.Id, purchesData.Adress, purchesData.Isregister);
+                    UserConditionPolicy toinsert3 = new UserConditionPolicy(purchesData.Id, purchesData.Adress, purchesData.Isregister);
                     purchasePolicy.Add(toinsert3);
                     LogManager.Instance.WriteToLog("User Condition Policy add to store " + this.name + " successfully");
                     return toinsert3;
@@ -382,7 +383,106 @@ namespace src.Domain
             }
         }
 
-        //public bool addComplexPurchasePolicy((String details , int purchesPolicyID){
+        public PurchasePolicy addComplexPurchasePolicyRec(List<Object> purchesData, int multiplcation)
+        {
+            if (purchesData == null)
+                return null;
+            switch ((int)purchesData.First())
+            {
+                case 0:
+                    LogicalConnections log1;
+                    if ((int)purchesData.ElementAt(5) == 0)
+                        log1 = LogicalConnections.and;
+                    else
+                        log1 = LogicalConnections.or;
+                    try
+                    {
+                        return new ProductConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), (int)purchesData.ElementAt(4), log1);
+                    } catch(Exception e)
+                    {
+                        return null;
+                    }
+                case 1:
+                    LogicalConnections log2;
+                    if ((int)purchesData.ElementAt(4) == 0)
+                        log2 = LogicalConnections.and;
+                    else
+                        log2 = LogicalConnections.or;
+                    try
+                    {
+                        return new inventoryConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), log2);
+                    }
+                    catch (Exception e)
+                    {
+                        return null;
+                    }
+                case 2:
+                    LogicalConnections log3;
+                    if ((int)purchesData.ElementAt(6) == 0)
+                        log3 = LogicalConnections.and;
+                    else
+                        log3 = LogicalConnections.or;
+                    try
+                    {
+                        return new BuyConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), (int)purchesData.ElementAt(4), (int)purchesData.ElementAt(5), log3);
+                    }
+                    catch (Exception e)
+                    {
+                        return null;
+                    }
+                case 3:
+                    LogicalConnections log4;
+                    if ((int)purchesData.ElementAt(4) == 0)
+                        log4 = LogicalConnections.and;
+                    else
+                        log4 = LogicalConnections.or;
+                    try
+                    {
+                        return new UserConditionPolicy((int)purchesData.ElementAt(1), (string)purchesData.ElementAt(2), (bool)purchesData.ElementAt(3), log4);
+                    }
+                    catch (Exception e)
+                    {
+                        return null;
+                    }
+                case 4:
+                    LogicalConnections log5;
+                    if ((int)purchesData.ElementAt(4) == 0)
+                        log5 = LogicalConnections.and;
+                    else
+                        log5 = LogicalConnections.or;
+                    try
+                    {
+                        List<Object> oprand1 = (List<Object>)purchesData.ElementAt(2);
+                        oprand1.Insert(1, (int)purchesData.ElementAt(1));
+                        List<Object> oprand2 = (List<Object>)purchesData.ElementAt(3);
+                        oprand1.Insert(1, (int)purchesData.ElementAt(1));
+                        return new IfThenCondition((int)purchesData.ElementAt(1), addComplexPurchasePolicyRec(oprand1,multiplcation), addComplexPurchasePolicyRec(oprand2, multiplcation), log5);
+                    }
+                    catch (Exception e)
+                    {
+                        return null;
+                    }
+                case 5:
+                    LogicalConnections login;
+                    if ((int)purchesData.ElementAt(4) == 0)
+                        log5 = LogicalConnections.and;
+                    else
+                        log5 = LogicalConnections.or;
+                    try
+                    {
+                        List<Object> oprand1 = (List<Object>)purchesData.ElementAt(2);
+                        oprand1.Insert(1, (int)purchesData.ElementAt(1));
+                        List<Object> oprand2 = (List<Object>)purchesData.ElementAt(3);
+                        oprand1.Insert(1, (int)purchesData.ElementAt(1));
+                        return new IfThenCondition((int)purchesData.ElementAt(1), addComplexPurchasePolicyRec(oprand1, multiplcation), addComplexPurchasePolicyRec(oprand2, multiplcation), log5);
+                    }
+                    catch (Exception e)
+                    {
+                        return null;
+                    }
 
-        //}
+            }
+        }
+
+    }
 }

@@ -28,7 +28,7 @@ namespace UnitTests
         {
             admin = new User(0, "admin", "1234", true, true);
             admin.State = state.signedIn;
-            store = new Store(0, "store", new List<PurchasePolicy>(), null);
+            store = new Store(0, "store");
             OwnerSotre = new Owner(store, admin);
             store.RolesDictionary.Add(admin.Id, store.Roles.AddChild(OwnerSotre));
             p1 = new Product(1, "p1", null, null, 1);

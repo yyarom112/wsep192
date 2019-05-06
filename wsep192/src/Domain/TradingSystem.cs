@@ -173,7 +173,7 @@ namespace src.Domain
             List<DiscountPolicy> discountPolicy = new List<DiscountPolicy>();
             if (!stores.ContainsKey(storeCounter))
             {
-                Store store = new Store(storeCounter, storeName, purchasePolicy, discountPolicy);
+                Store store = new Store(storeCounter, storeName);
                 if (Users.ContainsKey(userID) && Users[userID].IsRegistered)
                 {
                     Stores.Add(storeCounter, store);

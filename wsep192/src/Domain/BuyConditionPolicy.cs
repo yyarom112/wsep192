@@ -14,14 +14,17 @@ namespace src.Domain
         private int max;
         private int sumMin;
         private int sumMax;
+        private LogicalConnections act;
 
-        public BuyConditionPolicy(int id, int min, int max, int sumMin, int sumMax)
+
+        public BuyConditionPolicy(int id, int min, int max, int sumMin, int sumMax, LogicalConnections act)
         {
             this.id = id;
             this.min = min;
             this.max = max;
             this.sumMin = sumMin;
             this.sumMax = sumMax;
+            this.act = act;
         }
 
 

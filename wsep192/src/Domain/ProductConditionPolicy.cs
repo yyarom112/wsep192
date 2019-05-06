@@ -17,14 +17,12 @@ namespace src.Domain
 
         public ProductConditionPolicy( int id, int productID, int min, int max, LogicalConnections act)
         {
-            this.Id = id;
+            this.id = id;
             this.productID = productID;
             this.min = min;
             this.max = max;
             this.act = act;
         }
-
-        public int Id { get => id; set => id = value; }
 
         public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)
         {

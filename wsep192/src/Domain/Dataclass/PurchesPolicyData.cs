@@ -31,7 +31,7 @@ namespace src.Domain
             this.SumMin = sumMin;
             this.SumMax = sumMax;
             this.Act = act;
-            this.Adress = adress ?? throw new ArgumentNullException(nameof(adress));
+            this.Adress = adress ;
             Isregister = isregister;
         }
 
