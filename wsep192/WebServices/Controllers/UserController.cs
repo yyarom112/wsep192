@@ -62,5 +62,13 @@ namespace WebService.Controllers
             return "Server error: logOutUser";
         }
 
+        [Route("api/user/generateUserID")]
+        [HttpGet]
+        public Object generateUserID()
+        {
+            return service.initUser();
+        }
+
+
     }
 }

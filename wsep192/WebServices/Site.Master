@@ -60,7 +60,7 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="/LoginUser">Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="/RegisterUser">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/Logout">Logout</a></li>
+                  <li class="nav-item"><a class="nav-link" onclick="cleanCookies()" href="#">Logout</a></li>
                 </ul>
               </li>
 
@@ -116,7 +116,7 @@
     <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
 
     <script type="text/javascript">
-            var logout = function () {
+        var cleanCookies = function () {
                 var cookies = document.cookie.split(";");
 
                 for (var i = 0; i < cookies.length; i++) {
@@ -126,21 +126,23 @@
                     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
                 }
 
-                window.location.href = baseUrl+"/";
             }
-            $(document).ready(function () {
-                var myCookie = getCookie("HashCode");
-                if (myCookie == null) {
+           
+        $(document).ready(function () {
+                
+            var myCookie = getCookie("GuestUser");
+            if (myCookie == null) {
+                    cleanCookies();
                     jQuery.ajax({
                         type: "GET",
-                        url: baseUrl+"/api/user/generateHash",
+                        url: baseUrl+"/api/user/generateUserID",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            document.cookie = "HashCode=" + response; //saves the hash code as a cookie
+                            document.cookie = "GuestUser=" + response
                         },
                         error: function (response) {
-                            console.log(response);
+                            console.log("Error in init GuestUser");
                             window.location.href = baseUrl+"/error";
                         }
                     });
@@ -167,7 +169,7 @@
                 // because unescape has been deprecated, replaced with decodeURI
                 //return unescape(dc.substring(begin + prefix.length, end));
                 return decodeURI(dc.substring(begin + prefix.length, end));
-            }
+        }
         </script>
 
 </body>
