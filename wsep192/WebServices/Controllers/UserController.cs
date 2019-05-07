@@ -95,6 +95,21 @@ namespace WebService.Controllers
             return service.initUser();
         }
 
+        [Route("api/user/OpenStore")]
+        [HttpGet]
+        public string openStore(String Username,String StoreName)
+        {
+            bool ans = service.openStore(StoreName,Username);
+            switch (ans)
+            {
+                case true:
+                    return "Store created successfully";
+                case false:
+                    return "Error in creating store";
+            }
+            return "Server error: openStore";
+        }
+
 
     }
 }

@@ -39,5 +39,40 @@
 			</div>
 		</div>
 	</section>
-	<!--================End Login Box Area =================-->
+  	<!--================End Login Box Area =================-->
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $("#assignOwnerButton").click(function () {
+                 var ownerName = getCookie("LoggedUser");
+                 if (ownerName != null) {
+                     console.log("OK");
+                     userToAssign = $("#userToAssign").val();
+                     storeName = $("#storeName").val();
+                     jQuery.ajax({
+                         type: "GET",
+                         url: baseUrl + "/api/user/AssignOwner?ownerName=" + ownerName + "&userToAssign=" + userToAssign + "&storeName" + storeName,
+                         contentType: "application/json; charset=utf-8",
+                         dataType: "json",
+                         success: function (response) {
+                             if (response == "User successfuly was assigned") {
+                                 document.cookie = "LoggedUser=" + username
+                                 alert(response);
+                                 window.location.href = baseUrl + "/";
+                             }
+                             else {
+                                 alert(response);
+                             }
+                         },
+                         error: function (response) {
+                             alert(response);
+                         }
+                     });
+                 }
+                 else
+                     alert("already logged in");
+
+             });
+         });
+
+    </script>
 </asp:Content>

@@ -179,7 +179,7 @@ namespace src.Domain
                     Stores.Add(storeCounter, store);
                     User user = searchUser(userID);
                     store.initOwner(user);
-                    LogManager.Instance.WriteToLog("TradingSystem-open store" +storeName+" succu\n");
+                    LogManager.Instance.WriteToLog("TradingSystem-open store" +storeName+" success\n");
                     return true;
                 }
                 LogManager.Instance.WriteToLog("TradingSystem-open store fail- the user does not exists or not registerd\n");

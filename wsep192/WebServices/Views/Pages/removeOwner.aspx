@@ -28,8 +28,6 @@
 								<input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
 							</div>
                             
-                             <small id="registerAlert" class="form-text text-muted text-Alert"></small>
-
 							<div class="col-md-12 form-group">
 								<input type="button" class="button button-register w-100" id="registerButton" value="Register"></>
 							</div>
