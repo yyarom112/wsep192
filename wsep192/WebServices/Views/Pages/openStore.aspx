@@ -9,22 +9,21 @@
                 <div class="col-lg-6">
                     <div class="login_box_img">
                         <div class="hover">
-                            <h4>Already have an account?</h4>
-                            <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-                            <a class="button button-account" href="/LoginUser">Login Now</a>
+                            <h4>Whatever you're thinking,</h4>
+                            <h4> think bigger.</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="login_form_inner register_form_inner">
-                        <h3>Create an account</h3>
+                        <h3>Open store</h3>
                         <form class="row login_form" action="#/" id="register_form">
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store name'">
                             </div>
 
                             <div class="col-md-12 form-group">
-                                <input type="button" class="button button-register w-100" id="openStoreButton" value="Open store"></>
+                                <input type="button" class="button button-login w-100" id="openStoreButton" value="Open store"></>
                             </div>
 
 

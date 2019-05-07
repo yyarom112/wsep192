@@ -36,7 +36,7 @@
                             </div>
 
                             <div class="col-md-12 form-group">
-                                <input type="button" class="button button-register w-100" id="createProductInStoreButton" value="Create Product"></>
+                                <input type="button" class="button button-login w-100" id="createProductInStoreButton" value="Create Product"></>
                             </div>
 
                         </form>
