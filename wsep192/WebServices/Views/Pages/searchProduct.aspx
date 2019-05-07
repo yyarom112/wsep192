@@ -28,9 +28,47 @@
                 <input type="text" class="form-control" id="storeRate" name="storeRate" placeholder="Store Rate" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store Rate'">
             </div>
             <div class="col-md-12 form-group">
-                <input type="button" class="button button-register w-100" id="searchProductButton" value="Search Product"></>
+
+
+                <input type="button" id="searchButton" class="button button-login w-100" value="Search Product" />
+
             </div>
         </form>
     </div>
     <!--================End Login Box Area =================-->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#searchButton").click(function () {
+                details = $("#productName").val();
+                details += "," + $("#category").val();
+                details += "," + $("#keyword").val();
+                details += "," + $("#minPrice").val();
+                details += "," + $("#maxPrice").val();
+                details += "," + $("#productRate").val();
+                details += "," + $("#storeRate").val();
+
+                jQuery.ajax({
+                    type: "GET",
+                    url: baseUrl + "/api/user/SearchProduct?details=" + details,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response == "") {
+                            alert("Nothing");
+                            window.location.href = baseUrl + "/";
+                        }
+                        else {
+                            alert(response);
+                            window.location.href = baseUrl + "/";
+                        }
+                    },
+                    error: function (response) {
+                        alert(response);
+                    }
+                });
+            });
+        });
+
+    </script>
 </asp:Content>

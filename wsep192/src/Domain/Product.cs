@@ -40,7 +40,7 @@ namespace src.Domain
                 return false;
             if (filter.ProductRate != -1 && filter.ProductRate != ProductRate)
                 return false;
-            if (filter.PriceRange.Equals(null) && (filter.PriceRange.Key < this.price || filter.PriceRange.Value > this.price))
+            if ((filter.PriceRange.Key!=-1 && filter.PriceRange.Key < this.price) || (filter.PriceRange.Key != -1 && filter.PriceRange.Value > this.price))
                 return false;
             return true;
         }
