@@ -42,9 +42,6 @@ namespace WebService.Controllers
             return res;
         }
 
-    
-
-
 
 
 

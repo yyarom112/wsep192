@@ -213,6 +213,13 @@
     <Compile Include="Views\Pages\assignOwner.aspx.designer.cs">
       <DependentUpon>assignOwner.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\cart.aspx.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\cart.aspx.designer.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1099,6 +1106,7 @@
     <Content Include="vendor\sweetalert\sweetalert.min.js" />
     <Content Include="Views\Pages\assignManager.aspx" />
     <Content Include="Views\Pages\assignOwner.aspx" />
+    <Content Include="Views\Pages\cart.aspx" />
     <Content Include="Views\Pages\index.aspx" />
     <Content Include="Views\Pages\loginUser.aspx" />
     <Content Include="Views\Pages\openStore.aspx" />

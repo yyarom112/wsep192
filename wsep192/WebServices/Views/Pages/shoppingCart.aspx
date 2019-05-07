@@ -39,7 +39,7 @@
                     dataType: "json",
                     success: function (response) {
                         if (response != "null") {
-                            window.location.href = baseUrl + "/user/Cart";
+                            window.location.href = baseUrl + "/user/Cart?store="+store;
                         }
                         else {
                             alert('Failure - Store/Cart not available');
