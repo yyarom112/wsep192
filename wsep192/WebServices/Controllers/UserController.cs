@@ -64,7 +64,7 @@ namespace WebService.Controllers
 
         [Route("api/user/generateUserID")]
         [HttpGet]
-        public string generateUserID()
+        public Object generateUserID()
         {
             return service.initUser();
         }
@@ -83,6 +83,49 @@ namespace WebService.Controllers
             }
             return "Server error: openStore";
         }
+        [Route("api/user/assignOwner")]
+        [HttpGet]
+        public string assignOwner(String ownerName, String userToAssign,String storeName)
+        {
+            bool ans = service.assignOwner(ownerName, userToAssign,storeName);
+            switch (ans)
+            {
+                case true:
+                    return "User successfuly was assigned";
+                case false:
+                    return "Error in assigning owner";
+            }
+            return "Server error: assignOwner";
+        }
+        [Route("api/user/removeOwner")]
+        [HttpGet]
+        public string removeOwner(String ownerToRemove, String storeName,String ownerName)
+        {
+            bool ans = service.removeOwner(ownerToRemove, storeName,ownerName);
+            switch (ans)
+            {
+                case true:
+                    return "Owber successfuly was removed";
+                case false:
+                    return "Error in removing owner";
+            }
+            return "Server error: removeOwner";
+        }
+        [Route("api/user/assignManager")]
+        [HttpGet]
+        public string assignManager(String ownerName, String userToAssign, String storeName,String permissions)
+        {
+            List<String> perms= permissions.Split(' ').ToList();
+            bool ans = service.assignManager(userToAssign, storeName,perms, ownerName);
+            switch (ans)
+            {
+                case true:
+                    return "Manager successfuly was assigned";
+                case false:
+                    return "Error in assining manager";
+            }
+            return "Server error: assignManager";
+        }
 
         [Route("api/user/setUp")]
         [HttpGet]
@@ -98,24 +141,5 @@ namespace WebService.Controllers
             }
             return "Server error: setUp";
         }
-
-        [Route("api/user/RemoveUser")]
-        [HttpGet]
-        public string removeUser(String Username,String RemoveUser)
-        {
-            bool ans = service.removeUser(RemoveUser,Username);
-            switch (ans)
-            {
-                case true:
-                    return "User successfuly removed";
-                case false:
-                    return "Error in remove user";
-            }
-            return "Server error: removeUser";
-        }
-
-
-
-
     }
 }
