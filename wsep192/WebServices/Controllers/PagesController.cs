@@ -43,6 +43,10 @@ namespace WebServices.Controllers
         {
             return View();
         }
+        public ActionResult SetUp()
+        {
+            return View();
+        }
 
     }
     /*
