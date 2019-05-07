@@ -64,7 +64,7 @@ namespace WebService.Controllers
 
         [Route("api/user/generateUserID")]
         [HttpGet]
-        public Object generateUserID()
+        public string generateUserID()
         {
             return service.initUser();
         }
@@ -82,6 +82,21 @@ namespace WebService.Controllers
                     return "Error in creating store";
             }
             return "Server error: openStore";
+        }
+
+        [Route("api/user/setUp")]
+        [HttpGet]
+        public string setUp()
+        {
+            bool ans = service.setUp();
+            switch (ans)
+            {
+                case true:
+                    return "System setup completed";
+                case false:
+                    return "Error in setUp";
+            }
+            return "Server error: setUp";
         }
 
 

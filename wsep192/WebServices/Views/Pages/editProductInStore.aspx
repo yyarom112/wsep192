@@ -39,7 +39,7 @@
                             </div>
 
                             <div class="col-md-12 form-group">
-                                <input type="button" class="button button-register w-100" id="editProductInStoreButton" value="Edit Product"></>
+                                <input type="button" class="button button-login w-100" id="editProductInStoreButton" value="Edit Product"></>
                             </div>
 
                         </form>

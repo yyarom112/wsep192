@@ -10,6 +10,6 @@
 namespace WebServices.Views.Pages {
     
     
-    public partial class Register {
+    public partial class setUp {
     }
 }
