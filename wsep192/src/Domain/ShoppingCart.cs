@@ -40,29 +40,27 @@ namespace src.Domain
         }
 
 
-        internal virtual string showCart()
+        internal virtual List<KeyValuePair<string, int>> showCart()
         {
             LogManager.Instance.WriteToLog("ShoppingCart:showCart success\n");
             return createOutputTable();
         }
 
-        private string createOutputTable()
+        private List<KeyValuePair<string, int>> createOutputTable()
         {
-            string table = "Store Name: " + store.Name + "\n";
-            if (products.Count == 0)
-                return table + "Cart is empty\n";
+            List<KeyValuePair<string, int>> table = new List<KeyValuePair<string, int>>();
             int idx = 0;
-            table += "Product Name\t\t\tQuantity\n";
             foreach (int key in products.Keys)
             {
                 idx++;
                 ProductInCart p = products[key];
-                table += idx + ". " + p.Product.ProductName + "\t\t\t" + p.Quantity + "\n";
+                KeyValuePair<string, int> pair = new KeyValuePair<string, int>(p.Product.ProductName, p.Quantity);
+                table.Add(pair);
             }
-
 
             return table;
         }
+
         public virtual void addProducts(LinkedList<KeyValuePair<Product, int>> productsToInsert)
         {
             foreach (KeyValuePair<Product, int> toInsert in productsToInsert)

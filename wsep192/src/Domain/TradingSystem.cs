@@ -188,10 +188,10 @@ namespace src.Domain
             return false;
 
         }
-        public String showCart(int store, int user)
+        public List<KeyValuePair<string, int>> showCart(int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return "Error : Invalid user or store";
+                return null;
             return Users[user].showCart(store);
 
         }

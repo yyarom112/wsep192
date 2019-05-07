@@ -118,7 +118,7 @@ namespace src.Domain
             return false;
         }
 
-        internal virtual string showCart(int storeId)
+        internal virtual List<KeyValuePair<string, int>> showCart(int storeId)
         {
             return basket.showCart(storeId);
         }
