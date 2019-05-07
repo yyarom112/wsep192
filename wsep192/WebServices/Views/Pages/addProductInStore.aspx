@@ -23,7 +23,7 @@
                             </div>
 
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="productQuantity" name="productQuantity" placeholder="product Quantity" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Product Quantity'">
+                                <input type="text" class="form-control" id="productQuantity" name="productQuantity" placeholder="Product Quantity" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Product Quantity'">
                             </div>
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store Name'">
@@ -55,8 +55,8 @@
 
                     jQuery.ajax({
                         type: "GET",
-                        url: baseUrl + "/api/store/AddProductInStore?userName= + " + myCookie + "productName=" + productName + "&productQuantity=" + productQuantity +
-                            "storeName" + storeName,
+                        url: baseUrl + "/api/store/AddProductInStore?userName=" + myCookie + "&productName=" + productName + "&productQuantity=" + productQuantity +
+                            "&storeName=" + storeName,
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {

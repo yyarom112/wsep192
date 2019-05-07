@@ -35,6 +35,10 @@ namespace WebServices.Controllers
         {
             return View();
         }
+        public ActionResult RemoveProductInStore()
+        {
+            return View();
+        }
 
 
     }

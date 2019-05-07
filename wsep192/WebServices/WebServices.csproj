@@ -241,6 +241,13 @@
     <Compile Include="Views\Pages\registerUser.aspx.designer.cs">
       <DependentUpon>registerUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\removeProductInStore.aspx.cs">
+      <DependentUpon>removeProductInStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\removeProductInStore.aspx.designer.cs">
+      <DependentUpon>removeProductInStore.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -1082,6 +1089,7 @@
     <Content Include="Views\Pages\index.aspx" />
     <Content Include="Views\Pages\loginUser.aspx" />
     <Content Include="Views\Pages\registerUser.aspx" />
+    <Content Include="Views\Pages\removeProductInStore.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
