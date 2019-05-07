@@ -97,5 +97,19 @@ namespace WebService.Controllers
             }
             return "Server error: assignOwner";
         }
+        [Route("api/user/setUp")]
+        [HttpGet]
+        public string setUp()
+        {
+            bool ans = service.setUp();
+            switch (ans)
+            {
+                case true:
+                    return "System setup completed";
+                case false:
+                    return "Error in setUp";
+            }
+            return "Server error: setUp";
+        }
     }
 }
