@@ -18,16 +18,14 @@
 						<form class="row login_form" action="#/" id="register_form" >
 							
               <div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="ownerToRemove" name="ownerToRemove" placeholder="Owner To Remove" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ownerToRemove'">
+								<input type="text" class="form-control" id="ownerToRemove" name="ownerToRemove" placeholder="Owner To Remove Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ownerToRemove'">
               </div>
               <div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'storeName'">
 							</div>
-                            
-                             <small id="registerAlert" class="form-text text-muted text-Alert"></small>
 
 							<div class="col-md-12 form-group">
-								<input type="button" class="button button-register w-100" id="removeOwnerButton" value="Remove This Owner"></>
+								<input type="button" class="button button-login w-100" id="removeOwnerButton" value="Remove This Owner"></>
 							</div>
 						</form>
 					</div>

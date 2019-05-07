@@ -8,7 +8,7 @@
 						<form class="row login_form" action="#/" id="register_form" >
 							
               <div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="userToAssign" name="userToAssign" placeholder="User To Assign" onfocus="this.placeholder = ''" onblur="this.placeholder = 'userToAssign'">
+								<input type="text" class="form-control" id="userToAssign" name="userToAssign" placeholder="User To Assign Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'userToAssign'">
               </div>
               <div class="col-md-12 form-group">
 				<div><input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'storeName'"></div>

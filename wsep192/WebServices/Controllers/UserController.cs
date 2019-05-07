@@ -157,6 +157,20 @@ namespace WebService.Controllers
             }
             return "Server error: removeUser";
         }
+        [Route("api/user/RemoveManager")]
+        [HttpGet]
+        public string removeManager(String managerToRemove, String storeName,String ownerName)
+        {
+            bool ans = service.removeManager(managerToRemove, storeName, ownerName);
+            switch (ans)
+            {
+                case true:
+                    return "Manager successfuly was removed";
+                case false:
+                    return "Error in remove user";
+            }
+            return "Server error: removeUser";
+        }
 
 
 
