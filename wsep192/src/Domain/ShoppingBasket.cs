@@ -60,7 +60,7 @@ namespace src.Domain
             return null;
         }
 
-        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        internal bool removeProductsFromCart(List<int> productsToRemove, int storeId)
         {
             if (!shoppingCarts.ContainsKey(storeId))
             {

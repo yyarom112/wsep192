@@ -89,22 +89,20 @@ namespace src.Domain
             return true;
         }
 
-        internal virtual bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove)
+        internal virtual bool removeProductsFromCart(List<int> productsToRemove)
         {
-            foreach (KeyValuePair<int, int> pair in productsToRemove)
+            foreach (int p in productsToRemove)
             {
-                if (!products.ContainsKey(pair.Key) || products[pair.Key].Quantity < pair.Value)
+                if (!products.ContainsKey(p))
                 {
                     LogManager.Instance.WriteToLog("ShoppingCart:removeProductQuantityFromCart failed - shopping cart does not contain the product " +
                         "or invalid quantity\n");
                     return false;
                 }
             }
-            foreach (KeyValuePair<int, int> pair in productsToRemove)
+            foreach ( int p in productsToRemove)
             {
-                products[pair.Key].Quantity -= pair.Value;
-                if (products[pair.Key].Quantity == 0)
-                    products.Remove(pair.Key);
+                    products.Remove(p);
             }
             LogManager.Instance.WriteToLog("ShoppingCart:removeProductsFromCart success\n");
             return true;

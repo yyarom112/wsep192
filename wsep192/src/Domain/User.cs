@@ -204,7 +204,7 @@ namespace src.Domain
         }
 
 
-        internal virtual bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        internal virtual bool removeProductsFromCart(List<int> productsToRemove, int storeId)
         {
             return basket.removeProductsFromCart(productsToRemove, storeId);
         }

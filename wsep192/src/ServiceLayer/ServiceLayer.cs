@@ -117,23 +117,23 @@ namespace src.ServiceLayer
             
         }
 
-        private bool productsExist(List<KeyValuePair<String, int>> products, int store)
+        private bool productsExist(List<String> products, int store)
         {
-            foreach (KeyValuePair<String, int> pair in products)
+            foreach (String p in products)
             {
-                if (!system.productExist(pair.Key, store))
+                if (!system.productExist(p, store))
                     return false;
             }
             return true;
         }
 
 
-        private List<KeyValuePair<int, int>> getProductsInts(List<KeyValuePair<String, int>> products, int store)
+        private List<int> getProductsInts(List<String> products, int store)
         {
-            List<KeyValuePair<int, int>> list = new List<KeyValuePair<int, int>>();
-            foreach (KeyValuePair<String, int> pair in products)
+            List<int> list = new List<int>();
+            foreach (String p in products)
             {
-                list.Add(new KeyValuePair<int, int>(system.getProduct(pair.Key, store), pair.Value));
+                list.Add(system.getProduct(p, store));
             }
             return list;
         }
@@ -168,7 +168,7 @@ namespace src.ServiceLayer
             }
             return system.editProductQuantityInCart(system.getProduct(product, stores[store]), quantity, stores[store], users[user]);
         }
-        public bool removeProductsFromCart(List<KeyValuePair<String, int>> productsToRemove, String store, String user)
+        public bool removeProductsFromCart(List<String> productsToRemove, String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist(productsToRemove, stores[store]))
             {
