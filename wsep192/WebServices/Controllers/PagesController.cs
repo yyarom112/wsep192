@@ -59,6 +59,10 @@ namespace WebServices.Controllers
         {
             return View();
         }
+        public ActionResult SearchProduct()
+        {
+            return View();
+        }
 
 
     }
