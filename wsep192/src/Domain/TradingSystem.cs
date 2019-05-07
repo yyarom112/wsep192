@@ -121,9 +121,9 @@ namespace src.Domain
             String res = "";
             foreach (ProductInStore p in products)
             {
-                res += res + "Name: " + p.Product.ProductName + "\n"
-                     + "Store Name: " + p.Store.Name + "\n"
-                    + "Quantity: " + p.Quantity
+                res += res + "name=" + p.Product.ProductName + "&"
+                     + "store=" + p.Store.Name + "&"
+                    + "quantity=" + p.Quantity +","
                     ;
             }
             return res;

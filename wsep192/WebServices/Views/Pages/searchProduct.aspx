@@ -28,10 +28,7 @@
                 <input type="text" class="form-control" id="storeRate" name="storeRate" placeholder="Store Rate" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store Rate'">
             </div>
             <div class="col-md-12 form-group">
-
-
                 <input type="button" id="searchButton" class="button button-login w-100" value="Search Product" />
-
             </div>
         </form>
     </div>
@@ -60,7 +57,7 @@
                         }
                         else {
                             alert(response);
-                            window.location.href = baseUrl + "/";
+                            window.location.href = baseUrl + "/ShowProduct?" + response;
                         }
                     },
                     error: function (response) {
