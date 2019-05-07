@@ -31,7 +31,7 @@
                              <small id="registerAlert" class="form-text text-muted text-Alert"></small>
 
 							<div class="col-md-12 form-group">
-								<input type="button" class="button button-register w-100" id="assignOwnerButton" value="Assign This Owner"></>
+								<input type="button" class="button button-login w-100" id="assignOwnerButton" value="Assign This Owner"></>
 							</div>
 						</form>
 					</div>

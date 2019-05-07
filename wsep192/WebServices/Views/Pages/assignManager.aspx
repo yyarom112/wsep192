@@ -30,7 +30,7 @@
                             
 
 							<div class="col-md-12 form-group">
-								<input type="button" class="button button-register w-100" id="registerButton" value="Register"></>
+								<input type="button" class="button button-login w-100" id="registerButton" value="Register"></>
 							</div>
 
                            
