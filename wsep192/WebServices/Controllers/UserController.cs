@@ -141,5 +141,24 @@ namespace WebService.Controllers
             }
             return "Server error: setUp";
         }
+
+
+        [Route("api/user/RemoveUser")]
+        [HttpGet]
+        public string removeUser(String Username, String RemoveUser)
+        {
+            bool ans = service.removeUser(RemoveUser, Username);
+            switch (ans)
+            {
+                case true:
+                    return "User successfuly removed";
+                case false:
+                    return "Error in remove user";
+            }
+            return "Server error: removeUser";
+        }
+
+
+
     }
 }
