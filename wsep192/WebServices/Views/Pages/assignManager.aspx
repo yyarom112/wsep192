@@ -52,6 +52,8 @@
                                   if (response == "Manager successfuly was assigned") {
                                       document.cookie = "LoggedUser=" + ownerName
                                       alert(response);
+                                      window.location.href = baseUrl + "/";
+
                                   }
                                   else {
                                       alert("Error" + response);
