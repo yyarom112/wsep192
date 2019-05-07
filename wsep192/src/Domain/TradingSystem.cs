@@ -195,6 +195,7 @@ namespace src.Domain
             return Users[user].showCart(store);
 
         }
+
         public bool editProductQuantityInCart(int product, int quantity, int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))

@@ -143,10 +143,23 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store))
             {
-                return "Error: Invalid user or store";
+                return null;
             }
-            return system.showCart(stores[store], users[user]);
+            var result = system.showCart(stores[store], users[user]);
+            if (result==null)
+                return listToString(system.showCart(stores[store], users[user]));
+                return null;
         }
+
+        private String listToString(List<KeyValuePair<string, int>> list)
+        {
+            String str = "";
+            for (int i = 0; i < list.Count; i++) {
+                str += list[i].Key + "," + list[i].Value.ToString() + ",";
+            }
+            return str;
+        }
+
         public bool editProductQuantityInCart(String product, int quantity, String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !system.productExist(product, stores[store]) || quantity<0)
