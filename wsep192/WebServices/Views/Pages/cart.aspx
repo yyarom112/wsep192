@@ -14,6 +14,7 @@
 						      <tr class="text-center">
                                   
                                  <th>Remove</th>
+                                  <th>&nbsp;</th>
 						        <th>Product</th>
 						        <th>Quantity</th>
                                   
