@@ -60,7 +60,7 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="/LoginUser">Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="/RegisterUser">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" onclick="cleanCookies()" href="#">Logout</a></li>
+                  <li class="nav-item"><a class="nav-link" onclick="cleanCookies()" href="/Index">Logout</a></li>
                 </ul>
               </li>
 
@@ -68,11 +68,11 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Store Actions</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="#">Open Store</a></li>
-                  <li class="nav-item"><a class="nav-link" href="CreateProductInStore">Create New Product In Store</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/AddProductInStore">Add Product In Store</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/EditProductInStore">Edit Product In Store</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/RemoveProductInStore">Remove Product From Store</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/OpenStore">Open Store</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Create New Product In Store</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Add Product In Store</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Edit Product In Store</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Remove Product From Store</a></li>
                   
                 </ul>
               </li>
@@ -81,10 +81,10 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">User Actions</a>
                 <ul class="dropdown-menu">
-                 <li class="nav-item"><a class="nav-link" href="#">Assign Manager</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Remove Manager</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Assign Owner</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Remove Manager</a></li>
+                 <li class="nav-item"><a class="nav-link" href="/AssignManager">Assign Manager</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/RemoveManager">Remove Manager</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/AssignOwner">Assign Owner</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/RemoveOwner">Remove owner</a></li>
                 </ul>
               </li>
 
@@ -126,20 +126,19 @@
                     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
                 }
 
-            }
-           
+        }
         $(document).ready(function () {
-                
-            var myCookie = getCookie("GuestUser");
-            if (myCookie == null) {
-                    cleanCookies();
+            var guest = getCookie("GuestUser");
+            var user = getCookie("LoggedUser");
+            if (guest == null || user == null) {
+                cleanCookies();
                     jQuery.ajax({
                         type: "GET",
                         url: baseUrl+"/api/user/generateUserID",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            document.cookie = "GuestUser=" + response
+                            document.cookie = "GuestUser=" + response +';'
                         },
                         error: function (response) {
                             console.log("Error in init GuestUser");
