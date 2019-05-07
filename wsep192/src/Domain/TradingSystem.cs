@@ -179,12 +179,12 @@ namespace src.Domain
                     Stores.Add(storeCounter, store);
                     User user = searchUser(userID);
                     store.initOwner(user);
-                    LogManager.Instance.WriteToLog("TradingSystem-open store" +storeName+" success\n");
+                    //LogManager.Instance.WriteToLog("TradingSystem-open store" +storeName+" success\n");
                     return true;
                 }
-                LogManager.Instance.WriteToLog("TradingSystem-open store fail- the user does not exists or not registerd\n");
+                //LogManager.Instance.WriteToLog("TradingSystem-open store fail- the user does not exists or not registerd\n");
             }
-            LogManager.Instance.WriteToLog("TradingSystem-open store fail- the store does not exists\n");
+            //LogManager.Instance.WriteToLog("TradingSystem-open store fail- the store does not exists\n");
             return false;
 
         }
@@ -464,10 +464,10 @@ namespace src.Domain
             if (Users.ContainsKey(assignID))
                 if (Users[assignID].assignOwner(storeID, Users[assignedID]))
                 {
-                    LogManager.Instance.WriteToLog("TradingSystem-Assign owner " + assignedID + " -success");
+                    //LogManager.Instance.WriteToLog("TradingSystem-Assign owner " + assignedID + " -success");
                     return true;
                 }
-            LogManager.Instance.WriteToLog("TradingSystem-Assign owner fail- the owner does not exists\n");
+            //LogManager.Instance.WriteToLog("TradingSystem-Assign owner fail- the owner does not exists\n");
             return false;
         }
 
