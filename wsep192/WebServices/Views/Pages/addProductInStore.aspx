@@ -10,7 +10,7 @@
                         <div class="hover">
                             <h4>Doesn't have a store yet?</h4>
                             <p>You can open a store in our website in a few minutes, and start manage your own store!</p>
-                            <a class="button button-account" href="/LoginUser">Open store now</a>
+                            <a class="button button-account" href="/OpenStore">Open store now</a>
                         </div>
                     </div>
                 </div>
@@ -29,8 +29,6 @@
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store Name'">
                             </div>
 
-                            <small id="addProductInStoreAlert" class="form-text text-muted text-Alert"></small>
-
                             <div class="col-md-12 form-group">
                                 <input type="button" class="button button-register w-100" id="addProductInStoreButton" value="Add Product"></>
                             </div>
@@ -47,15 +45,16 @@
         $(document).ready(function () {
             $("#addProductInStoreButton").click(function () {
 
-                var myCookie = getCookie("LoggedUser");
-                if (myCookie != null) {
+                var userName = getCookie("LoggedUser");
+                if (userName != null) {
                     productName = $("#productName").val();
                     productQuantity = $("#productQuantity").val();
                     storeName = $("#storeName").val();
 
                     jQuery.ajax({
                         type: "GET",
-                        url: baseUrl + "/api/store/AddProductInStore?userName=" + myCookie + "&productName=" + productName + "&productQuantity=" + productQuantity +
+                        url: baseUrl + "/api/store/AddProductInStore?userName=" + userName + "&productName=" + productName
+                            + "&productQuantity=" + productQuantity +
                             "&storeName=" + storeName,
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
@@ -65,16 +64,16 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else {
-                                $("#addProductInStoreAlert").html('Failure - ' + response);
+                                alert(response);
                             }
                         },
                         error: function (response) {
-                            window.location.href = baseUrl + "/error";
+                            alert(response);
                         }
                     });
                 }
                 else {
-                    $("#loginAlert").html('Failure - ' + "user not logged in!");
+                    alert('User not logged in');
                 }
             });
         });

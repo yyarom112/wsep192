@@ -248,6 +248,41 @@
     <Compile Include="Views\Pages\removeProductInStore.aspx.designer.cs">
       <DependentUpon>removeProductInStore.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\assignManager.aspx.cs">
+      <DependentUpon>assignManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\assignManager.aspx.designer.cs">
+      <DependentUpon>assignManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\assignOwner.aspx.cs">
+      <DependentUpon>assignOwner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\assignOwner.aspx.designer.cs">
+      <DependentUpon>assignOwner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\openStore.aspx.cs">
+      <DependentUpon>openStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\openStore.aspx.designer.cs">
+      <DependentUpon>openStore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\removeManager.aspx.cs">
+      <DependentUpon>removeManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\removeManager.aspx.designer.cs">
+      <DependentUpon>removeManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\removeOwner.aspx.cs">
+      <DependentUpon>removeOwner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\removeOwner.aspx.designer.cs">
+      <DependentUpon>removeOwner.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -1090,6 +1125,11 @@
     <Content Include="Views\Pages\loginUser.aspx" />
     <Content Include="Views\Pages\registerUser.aspx" />
     <Content Include="Views\Pages\removeProductInStore.aspx" />
+    <Content Include="Views\Pages\assignManager.aspx" />
+    <Content Include="Views\Pages\assignOwner.aspx" />
+    <Content Include="Views\Pages\openStore.aspx" />
+    <Content Include="Views\Pages\removeManager.aspx" />
+    <Content Include="Views\Pages\removeOwner.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

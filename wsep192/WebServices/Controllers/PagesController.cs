@@ -23,6 +23,26 @@ namespace WebServices.Controllers
         {
             return View();
         }
+        public ActionResult AssignOwner()
+        {
+            return View();
+        }
+        public ActionResult AssignManager()
+        {
+            return View();
+        }
+        public ActionResult RemoveManager()
+        {
+            return View();
+        }
+        public ActionResult RemoveOwner()
+        {
+            return View();
+        }
+        public ActionResult OpenStore()
+        {
+            return View();
+        }
         public ActionResult AddProductInStore()
         {
             return View();

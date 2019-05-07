@@ -8,9 +8,9 @@
                 <div class="col-lg-6">
                     <div class="login_box_img">
                         <div class="hover">
-                            <h4>Doesn't have a store yet?</h4>
-                            <p>You can open a store in our website in a few minutes, and start manage your own store!</p>
-                            <a class="button button-account" href="/LoginUser">Open store now</a>
+                            <h4>Forgot to add the product to your store?</h4>
+                            <p>Jump to add the product to your store!</p>
+                            <a class="button button-account" href="/AddProductInStoreButton">Add product to store</a>
                         </div>
                     </div>
                 </div>
@@ -46,17 +46,17 @@
         $(document).ready(function () {
             $("#removeProductInStoreButton").click(function () {
 
-                var myCookie = getCookie("LoggedUser");
-                if (myCookie != null) {
+                var userName = getCookie("LoggedUser");
+                if (userName != null) {
                     productName = $("#productName").val();
                     productQuantity = $("#productQuantity").val();
                     storeName = $("#storeName").val();
 
                     jQuery.ajax({
                         type: "GET",
-                        url: baseUrl + "/api/store/RemoveProductInStore?userName=" + myCookie
-                            + "productName=" + productName + "&productQuantity=" + productQuantity +
-                            "storeName=" + storeName,
+                        url: baseUrl + "/api/store/RemoveProductInStore?userName=" + userName
+                            + "&productName=" + productName + "&productQuantity=" + productQuantity +
+                            "&storeName=" + storeName,
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
@@ -65,11 +65,11 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else {
-                                $("#removeProductInStoreAlert").html('Failure - ' + response);
+                                alert(response);
                             }
                         },
                         error: function (response) {
-                            window.location.href = baseUrl + "/error";
+                            alert(response);
                         }
                     });
                 }

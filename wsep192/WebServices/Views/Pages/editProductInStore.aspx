@@ -8,9 +8,9 @@
                 <div class="col-lg-6">
                     <div class="login_box_img">
                         <div class="hover">
-                            <h4>Doesn't have a store yet?</h4>
-                            <p>You can open a store in our website in a few minutes, and start manage your own store!</p>
-                            <a class="button button-account" href="/LoginUser">Open store now</a>
+                            <h4>Forgot to add the product to your store?</h4>
+                            <p>Jump to add the product to your store!</p>
+                            <a class="button button-account" href="/AddProductInStoreButton">Add product to store</a>
                         </div>
                     </div>
                 </div>
@@ -38,8 +38,6 @@
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store Name'">
                             </div>
 
-                            <small id="registerAlert" class="form-text text-muted text-Alert"></small>
-
                             <div class="col-md-12 form-group">
                                 <input type="button" class="button button-register w-100" id="editProductInStoreButton" value="Edit Product"></>
                             </div>
@@ -51,5 +49,47 @@
         </div>
     </section>
     <!--================End Login Box Area =================-->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#editProductInStoreButton").click(function () {
+
+                var userName = getCookie("LoggedUser");
+                if (userName != null) {
+                    productName = $("#currProductName").val();
+                    newProductName = $("#newProductName").val();
+                    category = $("#categoryProductName").val();
+                    details = $("#detailOnProduct").val();
+                    price = $("#productPrice").val();
+                    storeName = $("#storeName").val();
+
+                    jQuery.ajax({
+                        type: "GET",
+                        url: baseUrl + "/api/store/EditProductInStore?userName=" + userName + "&productName=" + productName
+                            + "&newProductName=" + newProductName + "&category=" + category +
+                            "&detail=" + details + "&productPrice=" + price + "&storeName=" + storeName,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            if (response == "Product successfully edited in store") {
+                                alert(response);
+                                window.location.href = baseUrl + "/";
+                            }
+                            else {
+                                alert(response);
+                            }
+                        },
+                        error: function (response) {
+                            alert(response);
+                        }
+                    });
+                }
+                else {
+                    alert('User not logged in');
+                }
+            });
+        });
+
+    </script>
 
 </asp:Content>
