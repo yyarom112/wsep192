@@ -83,7 +83,19 @@ namespace WebService.Controllers
             }
             return "Server error: openStore";
         }
-
-
+        [Route("api/user/assignOwner")]
+        [HttpGet]
+        public string assignOwner(String ownerName, String userToAssign,String storeName)
+        {
+            bool ans = service.assignOwner(ownerName, userToAssign,storeName);
+            switch (ans)
+            {
+                case true:
+                    return "User successfuly was assigned";
+                case false:
+                    return "Error in assigning owner";
+            }
+            return "Server error: assignOwner";
+        }
     }
 }
