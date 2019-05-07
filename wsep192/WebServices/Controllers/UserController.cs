@@ -111,5 +111,20 @@ namespace WebService.Controllers
             }
             return "Server error: removeOwner";
         }
+        [Route("api/user/assignManager")]
+        [HttpGet]
+        public string assignManager(String managerName, String storeName, String userToAssign,String premissions)
+        {
+            List<String> perms= premissions.Split(' ').ToList();
+            bool ans = service.assignManager(managerName, storeName,perms, userToAssign);
+            switch (ans)
+            {
+                case true:
+                    return "Owber successfuly was removed";
+                case false:
+                    return "Error in removing owner";
+            }
+            return "Server error: removeOwner";
+        }
     }
 }
