@@ -7,9 +7,8 @@
 				<div class="col-lg-6">
 					<div class="login_box_img">
 						<div class="hover">
-							<h4>LIKE TO LOGOUT?</h4>
-							<p>click here to perform this action</p>
-							<a class="button button-account" href="/Logout">LOGOUT NOW</a>
+							<h4>Don't forget</h4>
+							<p>Only owner can remove other owners.</p>
 						</div>
 					</div>
 				</div>
@@ -65,7 +64,7 @@
                      });
                  }
                  else
-                     alert("already logged in");
+                     alert("User isn't logged in");
              });
          });
     </script>

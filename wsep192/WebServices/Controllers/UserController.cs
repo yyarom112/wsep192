@@ -105,7 +105,7 @@ namespace WebService.Controllers
             switch (ans)
             {
                 case true:
-                    return "Owber successfuly was removed";
+                    return "Owner successfuly was removed";
                 case false:
                     return "Error in removing owner";
             }

@@ -7,15 +7,14 @@
 				<div class="col-lg-6">
 					<div class="login_box_img">
 						<div class="hover">
-							<h4>Already have an account?</h4>
-							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="button button-account" href="/LoginUser">Login Now</a>
+							<h4>Don't forget</h4>
+							<p>Only owner can assign new owners.</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="login_form_inner register_form_inner">
-						<h3>ASSIGN NEW OWNER</h3>
+						<h3>Assign New Owner</h3>
 						<form class="row login_form" action="#/" id="register_form" >
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="ownerName" name="ownerName" placeholder="Owner Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ownerName'">
@@ -68,7 +67,7 @@
                      });
                  }
                  else
-                     alert("already logged in");
+                     alert("User isn't logged in");
              });
          });
     </script>

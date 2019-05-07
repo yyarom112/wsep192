@@ -4,7 +4,7 @@
 	<section class="login_box_area section-margin">
 				
 					<div class="login_form_inner register_form_inner">
-						<h3>ASSIGN NEW MANAGER</h3>
+						<h3>Assign New Manager</h3>
 						<form class="row login_form" action="#/" id="register_form" >
 							
               <div class="col-md-12 form-group">
@@ -63,7 +63,7 @@
                           });
                       }
                       else
-                          alert("already logged in");
+                          alert("User isn't logged in");
                   });
               });
 
