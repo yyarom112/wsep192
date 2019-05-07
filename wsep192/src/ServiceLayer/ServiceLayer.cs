@@ -143,12 +143,12 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store))
             {
-                return null;
+                return "null";
             }
             var result = system.showCart(stores[store], users[user]);
-            if (result==null)
+            if (result!=null)
                 return listToString(system.showCart(stores[store], users[user]));
-                return null;
+            return "null";
         }
 
         private String listToString(List<KeyValuePair<string, int>> list)

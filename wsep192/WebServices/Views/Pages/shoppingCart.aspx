@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="shoppingCart.aspx.cs" Inherits="WebServices.Views.Pages.shoppingCart" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShoppingCart.aspx.cs" Inherits="WebServices.Views.Pages.shoppingCart" %>
 
 <asp:Content ID="content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -25,9 +25,38 @@
     <!--================End Cart Area =================-->
     <script type="text/javascript">
 
-       
+        $(document).ready(function () {
+            $("#showCartButton").click(function () {
+                var user = getCookie("LoggedUser");
+                var guest = getCookie("GuestUser");
+                if (user == null)
+                    user = guest;
+                var store = $("#storeName").val();
+                jQuery.ajax({
+                    type: "GET",
+                    url: baseUrl + "/api/user/ShoppingCart?store=" + store + "&user=" + user,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response != "null") {
+                            window.location.href = baseUrl + "/user/Cart";
+                        }
+                        else {
+                            alert('Failure - Store/Cart not available');
+                        }
+                    },
+                    error: function (response) {
+                        console.log(response);
+                        window.location.href = baseUrl + "/error";
+                    }
+                });
 
-        
+
+            });
+        });
+
+
+
 
 
     </script>

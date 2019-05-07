@@ -38,18 +38,11 @@ namespace WebService.Controllers
         [HttpGet]
         public string showCart(String Store, String User)
         {
-            //return service.showCart(Store, User);
-            return "test";
-
-        /*    switch (ans)
-            {
-                case true:
-                    return "";
-                case false:
-                    return "Error in register";
-            }
-            return "server error: ShowCart";*/
+            string res = service.showCart(Store, User);
+            return res;
         }
+
+    
 
 
 
