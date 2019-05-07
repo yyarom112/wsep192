@@ -73,9 +73,16 @@
 
         $("#ApplyButton").click(function () {
             {
+
+                for (i = 0; i < products.length - 1; i++) {
+
+                }
+
+
+
                 jQuery.ajax({
                     type: "GET",
-                    url: baseUrl + "/api/user/Cart?store=" + store + "&user=" + user,
+                    url: baseUrl + "/api/user/Cart?list="+list+"&store=" + store + "&user=" + user,
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
