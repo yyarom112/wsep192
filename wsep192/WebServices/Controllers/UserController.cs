@@ -97,5 +97,19 @@ namespace WebService.Controllers
             }
             return "Server error: assignOwner";
         }
+        [Route("api/user/removeOwner")]
+        [HttpGet]
+        public string removeOwner(String ownerToRemove, String storeName,String ownerName)
+        {
+            bool ans = service.removeOwner(ownerToRemove, storeName,ownerName);
+            switch (ans)
+            {
+                case true:
+                    return "Owber successfuly was removed";
+                case false:
+                    return "Error in removing owner";
+            }
+            return "Server error: removeOwner";
+        }
     }
 }
