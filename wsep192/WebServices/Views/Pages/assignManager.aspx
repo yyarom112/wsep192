@@ -24,7 +24,7 @@
                     </div>         
                   </div>
 							<div class="col-md-12 form-group">
-								<input type="button" class="button button-register w-100" id="assignManagerButton" value="Assign This Manager"></>
+								<input type="button" class="button button-login w-100" id="assignManagerButton" value="Assign This Manager"></>
 							</div>
 						</form>
 					</div>
@@ -38,24 +38,23 @@
                       $(".per").each(function (e) {
                           if ($(this).is(':checked'))
                               permissions = permissions + $(this).attr('value') + " ";
-                          alert(permissions);
-                      var managerName = getCookie("LoggedUser");
-                          if (managerName != null) {
+                      },)
+                      var ownerName = getCookie("LoggedUser");
+                      if (ownerName != null) {
                           userToAssign = $("#userToAssign").val();
                           storeName = $("#storeName").val();
                           jQuery.ajax({
                               type: "GET",
-                              url: baseUrl + "/api/user/assignManager?managerName=" + managerName + "&userToAssign=" + userToAssign + "&storeName=" + storeName + "&permissions=" + permissions,
+                              url: baseUrl + "/api/user/assignManager?ownerName=" + ownerName + "&userToAssign=" + userToAssign + "&storeName=" + storeName + "&permissions=" + permissions,
                               contentType: "application/json; charset=utf-8",
                               dataType: "json",
                               success: function (response) {
-                                  if (response == "User successfuly was assigned") {
-                                      document.cookie = "LoggedUser=" + managerName
+                                  if (response == "Manager successfuly was assigned") {
+                                      document.cookie = "LoggedUser=" + ownerName
                                       alert(response);
-                                      window.location.href = baseUrl + "/";
                                   }
                                   else {
-                                      alert(response);
+                                      alert("Error" + response);
                                   }
                               },
                               error: function (response) {

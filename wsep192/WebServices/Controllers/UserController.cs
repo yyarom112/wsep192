@@ -113,18 +113,18 @@ namespace WebService.Controllers
         }
         [Route("api/user/assignManager")]
         [HttpGet]
-        public string assignManager(String managerName, String storeName, String userToAssign,String premissions)
+        public string assignManager(String ownerName, String userToAssign, String storeName,String permissions)
         {
-            List<String> perms= premissions.Split(' ').ToList();
-            bool ans = service.assignManager(managerName, storeName,perms, userToAssign);
+            List<String> perms= permissions.Split(' ').ToList();
+            bool ans = service.assignManager(userToAssign, storeName,perms, ownerName);
             switch (ans)
             {
                 case true:
-                    return "Owber successfuly was removed";
+                    return "Manager successfuly was assigned";
                 case false:
-                    return "Error in removing owner";
+                    return "Error in assining manager";
             }
-            return "Server error: removeOwner";
+            return "Server error: assignManager";
         }
     }
 }
