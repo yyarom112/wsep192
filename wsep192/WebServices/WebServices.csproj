@@ -283,6 +283,13 @@
     <Compile Include="Views\Pages\removeOwner.aspx.designer.cs">
       <DependentUpon>removeOwner.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\removeUser.aspx.cs">
+      <DependentUpon>removeUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\removeUser.aspx.designer.cs">
+      <DependentUpon>removeUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\setUp.aspx.cs">
       <DependentUpon>setUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1137,6 +1144,7 @@
     <Content Include="Views\Pages\openStore.aspx" />
     <Content Include="Views\Pages\removeManager.aspx" />
     <Content Include="Views\Pages\removeOwner.aspx" />
+    <Content Include="Views\Pages\removeUser.aspx" />
     <Content Include="Views\Pages\setUp.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

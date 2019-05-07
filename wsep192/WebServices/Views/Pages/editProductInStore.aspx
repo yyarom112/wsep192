@@ -10,7 +10,7 @@
                         <div class="hover">
                             <h4>Forgot to add the product to your store?</h4>
                             <p>Jump to add the product to your store!</p>
-                            <a class="button button-account" href="/AddProductInStoreButton">Add product to store</a>
+                            <a class="button button-account" href="/AddProductInStore">Add product to store</a>
                         </div>
                     </div>
                 </div>
@@ -26,10 +26,10 @@
                                 <input type="text" class="form-control" id="newProductName" name="newProductName" placeholder="New product name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'New product name'">
                             </div>
                              <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="categoryProductName" name="categoryProductName" placeholder="Category produc name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Category produc name'">
+                                <input type="text" class="form-control" id="categoryProductName" name="categoryProductName" placeholder="Category product name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Category product name'">
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="detailOnProduct" name="detailOnProduct" placeholder="Detail on product" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Detail on product'">
+                                <input type="text" class="form-control" id="detailOnProduct" name="detailOnProduct" placeholder="Details on product" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Details on product'">
                             </div>
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="productPrice" name="productPrice" placeholder="Product price" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Product price'">
