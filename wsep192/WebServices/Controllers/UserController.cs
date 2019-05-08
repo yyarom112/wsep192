@@ -45,17 +45,10 @@ namespace WebService.Controllers
 
         [Route("api/user/RemoveFromCart")]
         [HttpGet]
-        public string RemoveFromCart(String list, String store, String user)
+        public string removeFromCart(String list, String store, String user)
         {
-            bool res = service.removeProductsFromCart(list,store, user);
-            switch (res)
-            {
-                case true:
-                    return "true";
-                case false:
-                    return "false";
-            }
-            return "Server error: RemoveFromCart";
+            string res = service.removeProductsFromCart(list,store, user);
+            return res;
         }
 
 
@@ -124,6 +117,95 @@ namespace WebService.Controllers
             }
             return "Server error: openStore";
         }
+        [Route("api/user/assignOwner")]
+        [HttpGet]
+        public string assignOwner(String ownerName, String userToAssign,String storeName)
+        {
+            bool ans = service.assignOwner(ownerName, userToAssign,storeName);
+            switch (ans)
+            {
+                case true:
+                    return "User successfuly was assigned";
+                case false:
+                    return "Error in assigning owner";
+            }
+            return "Server error: assignOwner";
+        }
+        [Route("api/user/removeOwner")]
+        [HttpGet]
+        public string removeOwner(String ownerToRemove, String storeName,String ownerName)
+        {
+            bool ans = service.removeOwner(ownerToRemove, storeName,ownerName);
+            switch (ans)
+            {
+                case true:
+                    return "Owner successfuly was removed";
+                case false:
+                    return "Error in removing owner";
+            }
+            return "Server error: removeOwner";
+        }
+        [Route("api/user/assignManager")]
+        [HttpGet]
+        public string assignManager(String ownerName, String userToAssign, String storeName,String permissions)
+        {
+            List<String> perms= permissions.Split(' ').ToList();
+            bool ans = service.assignManager(userToAssign, storeName,perms, ownerName);
+            switch (ans)
+            {
+                case true:
+                    return "Manager successfuly was assigned";
+                case false:
+                    return "Error in assining manager";
+            }
+            return "Server error: assignManager";
+        }
+
+        [Route("api/user/setUp")]
+        [HttpGet]
+        public string setUp()
+        {
+            bool ans = service.setUp();
+            switch (ans)
+            {
+                case true:
+                    return "System setup completed";
+                case false:
+                    return "Error in setUp";
+            }
+            return "Server error: setUp";
+        }
+
+
+        [Route("api/user/RemoveUser")]
+        [HttpGet]
+        public string removeUser(String Username, String RemoveUser)
+        {
+            bool ans = service.removeUser(RemoveUser, Username);
+            switch (ans)
+            {
+                case true:
+                    return "User successfuly removed";
+                case false:
+                    return "Error in remove user";
+            }
+            return "Server error: removeUser";
+        }
+        [Route("api/user/RemoveManager")]
+        [HttpGet]
+        public string removeManager(String managerToRemove, String storeName,String ownerName)
+        {
+            bool ans = service.removeManager(managerToRemove, storeName, ownerName);
+            switch (ans)
+            {
+                case true:
+                    return "Manager successfuly was removed";
+                case false:
+                    return "Error in remove user";
+            }
+            return "Server error: removeUser";
+        }
+
 
 
     }
