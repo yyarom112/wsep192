@@ -4,76 +4,59 @@
 
 
     <!--================Cart Area =================-->
-    		 <section class="cart_area">
-			<div class="container" >
-				<div class="row" id="head">
-    			<div class="col-md-12 ftco-animate">
-    				<div class="cart-list">
-	    				<table class="table">
-						    <thead class="thead-primary">
-						      <tr class="text-center">
-                                  
-                                 <th>Product Name</th>
-						        <th>Store</th>
-						        <th>Quantity</th>
-                                  
-						  
-						        
-						      </tr>
-						    </thead>
-						    <tbody id="table">
+    <section class="cart_area">
+        <div class="container">
+            <div class="row" id="head">
+                <div class="col-md-12 ftco-animate">
+                    <div class="cart-list">
+                        <table class="table">
+                            <thead class="thead-primary">
+                                <tr class="text-center">
+                                    <th>Product Name</th>
+                                    <th>Store</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table">
                             </tbody>
-						  </table>
-                        <input type="button" style="max-width: 250px; float:right;" class="button button-login w-100" id="ApplyButton" value="Apply"></>
-					  </div>
-                        
+                        </table>
+                        <a href="/SearchProduct">
+                            <input style="max-width: 180px" class="button button-login w-100" id="SearchAgainButton" value="Search Again" />
+                        </a>
                     </div>
-    			</div>
-    		</div>
-                 
-		 </section>
+                </div>
+            </div>
+        </div>
 
-   
+    </section>
+
+
 
     <!--================End Cart Area =================-->
     <script type="text/javascript">
         $(document).ready(function () {
+            $('#table').append("");
             var user = getCookie("LoggedUser");
             var guest = getCookie("GuestUser");
-            let store = null,productName = null,quantity = null;
+            let store = null, productName = null, quantity = null;
             if (user == null)
                 user = guest;
             let searchParams = new URLSearchParams(window.location.search);
-            if (searchParams.has('store') && searchParams.has('name')&& searchParams.has('quantity')) {
-                store = searchParams.get('store');
-                productName = searchParams.get('name');
-                quantity = searchParams.get('quantity');
-                $('#head').before('<h3>Search Results</h3>');
-                
-                //console.log(products);
-                var i = 0;
-                var str = '';
-                for (i = 0; i < 1; i++) {
-                    //if (i % 3 == 0) {
-                        str += '<tr class="text-center"><td class="product-name"><p>' +
-                            productName + '</p></td>';
-                    //}
-                    //else if (i % 3 == 1) {
-                        str += '<td class="store-name"><p>'+ store + '</p></td >';
-                   // }
-                   // else {
-                        str += '<td class="quantity"><p>' + quantity + '</p></td ></tr >';
-                    //}
-                }
-
-
-
-                $('#table').append(str);
+            var i = 0;
+            var str = '';
+            $('#head').before('<h3>Search Results</h3>');
+            while (searchParams.has('store' + i) && searchParams.has('name' + i) && searchParams.has('quantity' + i)) {
+                store = searchParams.get('store' + i);
+                productName = searchParams.get('name' + i);
+                quantity = searchParams.get('quantity' + i);
+                str += '<tr class="text-center"><td class="product-name"><p>' +
+                    productName + '</p></td>';
+                str += '<td class="store-name"><p>' + store + '</p></td >';
+                str += '<td class="quantity"><p>' + quantity + '</p></td ></tr >';
+                i++;
             }
-            else {
-                alert('Failure');
-            }
-            
+            $('#table').append(str);
+
         });
     </script>
 </asp:Content>

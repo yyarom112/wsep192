@@ -119,13 +119,17 @@ namespace src.Domain
         private String productsToString(List<ProductInStore> products)
         {
             String res = "";
+            int i = 0;
             foreach (ProductInStore p in products)
             {
-                res += res + "name=" + p.Product.ProductName + "&"
-                     + "store=" + p.Store.Name + "&"
-                    + "quantity=" + p.Quantity +","
+                res +=  "name"+i+"=" + p.Product.ProductName + "&"
+                     + "store"+i+"=" + p.Store.Name + "&"
+                    + "quantity"+i+"=" + p.Quantity +"&"
                     ;
+                i++;
+               
             }
+            res = res.Substring(0, res.Length - 1);
             return res;
         }
 
@@ -259,7 +263,7 @@ namespace src.Domain
                 return "";
             }
 
-            int productRate, storeRate, minPrice, maxPrice;
+            int productRate = -1, storeRate = -1, minPrice = -1, maxPrice = -1;
 
             try
             {

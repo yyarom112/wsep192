@@ -56,7 +56,6 @@
                             window.location.href = baseUrl + "/";
                         }
                         else {
-                            alert(response);
                             window.location.href = baseUrl + "/ShowProduct?" + response;
                         }
                     },
