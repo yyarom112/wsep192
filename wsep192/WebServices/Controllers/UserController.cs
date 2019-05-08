@@ -58,7 +58,7 @@ namespace WebService.Controllers
 
         [Route("api/user/RemoveFromCart")]
         [HttpGet]
-        public string removeFromCart(String list, String store, String user)
+        public string RemoveFromCart(String list, String store, String user)
         {
             List<string> l = toList(list);
             bool res = service.removeProductsFromCart(l,store, user);
@@ -86,11 +86,17 @@ namespace WebService.Controllers
 
         [Route("api/user/EditCart")]
         [HttpGet]
-        public string editCart(String Store, String User)
+        public string EditCart(String product, string quantity, String store, String user)
         {
-            //string res = service.showCart(Store, User);
-            //return res;
-            return null;
+            bool res = service.editProductQuantityInCart(product,Int32.Parse(quantity),store,user);
+            switch (res)
+            {
+                case true:
+                    return "true";
+                case false:
+                    return "false";
+            }
+            return "Server error: editCart";
         }
 
 
