@@ -16,7 +16,7 @@ namespace src
 
         private LogManager()
         {
-            //System.IO.File.WriteAllText(path, "");
+           // System.IO.File.WriteAllText(path, "");
         }
 
         public static LogManager Instance
