@@ -13,15 +13,39 @@
               <div class="col-md-12 form-group">
 				<div><input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'storeName'"></div>
 							<div>
-                            <input class="per" type="checkbox" id="p1" value="AddDiscountPolicy">AddDiscountPolicy<br>
-                            <input class="per" type="checkbox" id="p2" value="AddPurchasePolicy">AddPurchasePolicy<br>
-                            <input class="per" type="checkbox" id="p3" value="CreateNewProductInStore">CreateNewProductInStore<br>
-                            <input class="per" type="checkbox" id="p4" value="AddProductsInStore">AddProductsInStore<br>
-                            <input class="per" type="checkbox" id="p5" value="RemoveProductsInStore">RemoveProductsInStore<br>
-                            <input class="per" type="checkbox" id="p6" value="EditProductInStore">EditProductInStore<br>
-                            <input class="per" type="checkbox" id="p7" value="CommunicationWithCustomers">CommunicationWithCustomers<br>
-                            <input class="per" type="checkbox" id="p8" value="PurchasesHistory">PurchasesHistory<br>
-                    </div>         
+    <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="per1" value="AddDiscountPolicy">
+    <label class="custom-control-label" for="per1">Add Discount Policy</label>
+    </div>
+    <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="per2" value="AddPurchasePolicy">
+    <label class="custom-control-label" for="per2">Add Purchase Policy</label>
+    </div>
+    <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="per3" value="CreateNewProductInStore">
+    <label class="custom-control-label" for="per3">Create New Product In Store</label>
+    </div>
+    <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="per4" value="AddProductsInStore">
+    <label class="custom-control-label" for="per4">Add Products In Store</label>
+    </div>
+    <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="per5" value="RemoveProductsInStore">
+    <label class="custom-control-label" for="per5">Remove Products In Store</label>
+    </div>
+    <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="per6" value="EditProductInStore">
+    <label class="custom-control-label" for="per6">Edit Product In Store</label>
+    </div>
+    <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="per7" value="CommunicationWithCustomers">
+    <label class="custom-control-label" for="per7">Communication With Customers</label>
+    </div>
+    <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="per8" value="PurchasesHistory">
+    <label class="custom-control-label" for="per8">Purchases History</label>
+    </div>             
+                    </div>                  
                   </div>
 							<div class="col-md-12 form-group">
 								<input type="button" class="button button-login w-100" id="assignManagerButton" value="Assign This Manager"></>
@@ -35,7 +59,7 @@
               $(document).ready(function () {
                   $("#assignManagerButton").bind("click", function (e) {
                       var permissions = "";
-                      $(".per").each(function (e) {
+                      $(".custom-control-input").each(function (e) {
                           if ($(this).is(':checked'))
                               permissions = permissions + $(this).attr('value') + " ";
                       },)
@@ -43,6 +67,8 @@
                       if (ownerName != null) {
                           userToAssign = $("#userToAssign").val();
                           storeName = $("#storeName").val();
+                          console.log(baseUrl + "/api/user/assignManager?ownerName=" + ownerName + "&userToAssign=" + userToAssign + "&storeName=" + storeName + "&permissions=" + permissions
+   );
                           jQuery.ajax({
                               type: "GET",
                               url: baseUrl + "/api/user/assignManager?ownerName=" + ownerName + "&userToAssign=" + userToAssign + "&storeName=" + storeName + "&permissions=" + permissions,
