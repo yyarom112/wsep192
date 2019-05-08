@@ -11,8 +11,7 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.initUser();
+            service = ServiceLayer.getInstance();
         }
 
         [TestMethod]
@@ -20,6 +19,7 @@ namespace Acceptance_Tests
         {
             setUp();
             Assert.AreEqual(true, service.init("Admin", "SecretPassword1D4F6Yt7"));
+            service.shutDown();
         }
     }
 }

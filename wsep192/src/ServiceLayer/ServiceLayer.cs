@@ -35,6 +35,10 @@ namespace src.ServiceLayer
             init("admin","admin");
 
         }
+        public void shutDown()
+        {
+            instance = null;
+        }
         public static ServiceLayer getInstance()
         {
             if (instance == null)
@@ -130,36 +134,23 @@ namespace src.ServiceLayer
             
         }
 
-        private bool productsExist(List<String> products, int store)
+        private bool productsExist(List<KeyValuePair<String, int>> products, int store)
         {
-            foreach (String p in products)
+            foreach (KeyValuePair<String, int> pair in products)
             {
-                if (!system.productExist(p, store))
+                if (!system.productExist(pair.Key, store))
                     return false;
             }
             return true;
         }
 
 
-        private bool productsExist(List<KeyValuePair<String, int>> products, int store)
-        {
-            
-            return true;
-        }
-
         private List<KeyValuePair<int, int>> getProductsInts(List<KeyValuePair<String, int>> products, int store)
         {
             List<KeyValuePair<int, int>> list = new List<KeyValuePair<int, int>>();
-            
-            return list;
-        }
-
-        private List<int> getProductsInts(List<String> products, int store)
-        {
-            List<int> list = new List<int>();
-            foreach (String p in products)
+            foreach (KeyValuePair<String, int> pair in products)
             {
-                list.Add(system.getProduct(p, store));
+                list.Add(new KeyValuePair<int, int>(system.getProduct(pair.Key, store), pair.Value));
             }
             return list;
         }
@@ -169,23 +160,19 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store))
             {
-                return "null";
+                return "Error: Invalid user or store";
             }
-            var result = system.showCart(stores[store], users[user]);
-            if (result!=null)
-                return listToString(system.showCart(stores[store], users[user]));
-            return "null";
+            return system.showCart(stores[store], users[user]);
         }
-
         private String listToString(List<KeyValuePair<string, int>> list)
         {
             String str = "";
-            for (int i = 0; i < list.Count; i++) {
+            for (int i = 0; i < list.Count; i++)
+            {
                 str += list[i].Key + "," + list[i].Value.ToString() + ",";
             }
             return str;
         }
-
         public bool editProductQuantityInCart(String product, int quantity, String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !system.productExist(product, stores[store]) || quantity<0)
@@ -194,17 +181,14 @@ namespace src.ServiceLayer
             }
             return system.editProductQuantityInCart(system.getProduct(product, stores[store]), quantity, stores[store], users[user]);
         }
-        public bool removeProductsFromCart(String productsToRemove, String store, String user)
+        public bool removeProductsFromCart(List<KeyValuePair<String, int>> productsToRemove, String store, String user)
         {
-            List<String> list = toList(productsToRemove);
-            if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist(list, stores[store]))
+            if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist(productsToRemove, stores[store]))
             {
                 return false;
             }
-            return system.removeProductsFromCart(getProductsInts(list, stores[store]), stores[store], users[user]);
+            return system.removeProductsFromCart(getProductsInts(productsToRemove, stores[store]), stores[store], users[user]);
         }
-
-
 
         //req2.8
         public int basketCheckout(String address, String user)
@@ -358,12 +342,6 @@ namespace src.ServiceLayer
             return sb.ToString();
         }
 
-        private List<String> toList(string products)
-        {
-            List<String> list = new List<String>(products.Split(','));
-            list.Remove("");
-            return list;
-        }
 
 
 

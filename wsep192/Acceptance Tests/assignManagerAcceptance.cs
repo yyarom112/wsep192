@@ -23,8 +23,7 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("Admin", "2323");
+            service = ServiceLayer.getInstance();
             idOwner = service.initUser();
             ownerUser = "Seifan";
             passwordUser = "2345";
@@ -50,6 +49,8 @@ namespace Acceptance_Tests
         {
             setUp();
             Assert.AreEqual(true, service.assignManager( managerUser, "adidas", permissions, ownerUser));
+            service.shutDown();
+
         }
 
         [TestMethod]
@@ -57,6 +58,7 @@ namespace Acceptance_Tests
         {
             setUp();
             Assert.AreEqual(false, service.assignManager( managerUser, "adidas", permissions, guestUser));
+            service.shutDown();
         }
 
         [TestMethod]
@@ -64,6 +66,7 @@ namespace Acceptance_Tests
         {
             setUp();
             Assert.AreEqual(false, service.assignManager( ownerUser, "adidas", permissions, ownerUser));
+            service.shutDown();
         }
 
         [TestMethod]
@@ -72,6 +75,7 @@ namespace Acceptance_Tests
             setUp();
             service.assignManager( managerUser, "adidas", permissions, ownerUser);
             Assert.AreEqual(false, service.assignManager( managerUser, "adidas", permissions, ownerUser));
+            service.shutDown();
         }
 
         [TestMethod]
@@ -79,6 +83,7 @@ namespace Acceptance_Tests
         {
             setUp();
             Assert.AreEqual(false, service.assignManager( guestUser, "adidas", permissions, ownerUser));
+            service.shutDown();
         }
     }
 }

@@ -3,19 +3,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Aroma Shop - Home</title>
-	<link rel="icon" href="img/Fevicon.png" type="image/png">
-  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
-  <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aroma Shop - Home</title>
+    <link rel="icon" href="img/Fevicon.png" type="image/png">
+    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
 
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <script src="vendor/JS/temp.js" type="text/javascript"></script>
     <script src="js/validators.js" type="text/javascript"></script>
@@ -27,104 +27,113 @@
     </script>
 </head>
 <body>
-  <!--================ Start Header Menu Area =================-->
-	<header class="header_area">
-    <div class="main_menu">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand logo_h" href="/Index"><img src="img/logo.png" alt=""></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="/Index">Home</a></li>
-              <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Shop</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/ShoppingCart">Shopping Cart</a></li>
-                </ul>
-							</li>
-              
-							<li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Account</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="/LoginUser">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/RegisterUser">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" onclick="cleanCookies()" href="/Index">Logout</a></li>
-                </ul>
-              </li>
+    <!--================ Start Header Menu Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <a class="navbar-brand logo_h" href="/Index">
+                        <img src="img/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                            <li class="nav-item active"><a class="nav-link" href="/Index">Home</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="/Setup">Setup</a></li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">Shop</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+                                </ul>
+                            </li>
 
-                <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Store Actions</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="/OpenStore">Open Store</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Create New Product In Store</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Add Product In Store</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Edit Product In Store</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Remove Product From Store</a></li>
-                  
-                </ul>
-              </li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">Account</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="/LoginUser">Login</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/RegisterUser">Register</a></li>
+                                    <li class="nav-item"><a class="nav-link" onclick="cleanCookies()" href="/Index">Logout</a></li>
+                                </ul>
+                            </li>
 
-                <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">User Actions</a>
-                <ul class="dropdown-menu">
-                 <li class="nav-item"><a class="nav-link" href="/AssignManager">Assign Manager</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/RemoveManager">Remove Manager</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/AssignOwner">Assign Owner</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/RemoveOwner">Remove owner</a></li>
-                </ul>
-              </li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">Store Actions</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="/OpenStore">Open Store</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/CreateProductInStore">Create New Product In Store</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/AddProductInStore">Add Product In Store</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/EditProductInStore">Edit Product In Store</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/RemoveProductInStore">Remove Product From Store</a></li>
 
-                
-            </ul>
+                                </ul>
+                            </li>
 
-            <ul class="nav-shop">
-              <li class="nav-item"><button><i class="ti-search"></i></button></li>
-              <li class="nav-item"><button><a href="ShoppingCart"><i class="ti-shopping-cart" ></i></button> </li>
-              <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
-            </ul>
-          </div>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">User Actions</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="/AssignManager">Assign Manager</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/RemoveManager">Remove Manager</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/AssignOwner">Assign Owner</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/RemoveOwner">Remove Owner</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/RemoveUser">Remove User</a></li>
+
+                                </ul>
+                            </li>
+
+
+                        </ul>
+
+                        <ul class="nav-shop">
+                            <li class="nav-item">
+                                <button><a href="/SearchProduct"><i class="ti-search"></i></a></button>
+                            </li>
+
+                            <li class="nav-item">
+                                <button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button>
+                            </li>
+                            <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
-      </nav>
-    </div>
-  </header>
-	<!--================ End Header Menu Area =================-->
+    </header>
+    <!--================ End Header Menu Area =================-->
 
 
-  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="vendors/skrollr.min.js"></script>
-  <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="vendors/mail-script.js"></script>
-  <script src="js/main.js"></script>
-    
+    <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="vendors/skrollr.min.js"></script>
+    <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
+    <script src="vendors/jquery.ajaxchimp.min.js"></script>
+    <script src="vendors/mail-script.js"></script>
+    <script src="js/main.js"></script>
+
     <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
 
     <script type="text/javascript">
         var cleanCookies = function () {
-                var cookies = document.cookie.split(";");
+            var cookies = document.cookie.split(";");
 
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = cookies[i];
-                    var eqPos = cookie.indexOf("=");
-                    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-                    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-                }
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i];
+                var eqPos = cookie.indexOf("=");
+                var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            }
 
         }
         $(document).ready(function () {
@@ -132,44 +141,44 @@
             var user = getCookie("LoggedUser");
             if (guest == null || user == null) {
                 cleanCookies();
-                    jQuery.ajax({
-                        type: "GET",
-                        url: baseUrl+"/api/user/generateUserID",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (response) {
-                            document.cookie = "GuestUser=" + response +';'
-                        },
-                        error: function (response) {
-                            console.log("Error in init GuestUser");
-                            window.location.href = baseUrl+"/error";
-                        }
-                    });
-                }
-
-
-            });
-
-            function getCookie(name) {
-                var dc = document.cookie;
-                var prefix = name + "=";
-                var begin = dc.indexOf("; " + prefix);
-                if (begin == -1) {
-                    begin = dc.indexOf(prefix);
-                    if (begin != 0) return null;
-                }
-                else {
-                    begin += 2;
-                    var end = document.cookie.indexOf(";", begin);
-                    if (end == -1) {
-                        end = dc.length;
+                jQuery.ajax({
+                    type: "GET",
+                    url: baseUrl + "/api/user/generateUserID",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        document.cookie = "GuestUser=" + response + ';'
+                    },
+                    error: function (response) {
+                        console.log("Error in init GuestUser");
+                        window.location.href = baseUrl + "/error";
                     }
+                });
+            }
+
+
+        });
+
+        function getCookie(name) {
+            var dc = document.cookie;
+            var prefix = name + "=";
+            var begin = dc.indexOf("; " + prefix);
+            if (begin == -1) {
+                begin = dc.indexOf(prefix);
+                if (begin != 0) return null;
+            }
+            else {
+                begin += 2;
+                var end = document.cookie.indexOf(";", begin);
+                if (end == -1) {
+                    end = dc.length;
                 }
-                // because unescape has been deprecated, replaced with decodeURI
-                //return unescape(dc.substring(begin + prefix.length, end));
-                return decodeURI(dc.substring(begin + prefix.length, end));
+            }
+            // because unescape has been deprecated, replaced with decodeURI
+            //return unescape(dc.substring(begin + prefix.length, end));
+            return decodeURI(dc.substring(begin + prefix.length, end));
         }
-        </script>
+    </script>
 
 </body>
 </html>
