@@ -8,12 +8,11 @@ namespace Acceptance_Tests
     [TestClass]
     public class createNewProductInStore
     {
-        private ServiceLayer service;
+        ServiceLayer service;
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("admin", "1234");
+            service = ServiceLayer.getInstance();
             string owner=service.initUser();
             service.register("Rotem", "23&As2", owner);
             service.signIn("Rotem", "23&As2");
@@ -29,6 +28,7 @@ namespace Acceptance_Tests
             setUp();
             bool x = service.createNewProductInStore("Top", "Tank tops", "Light blue", 89, "ZARA", "Rotem");
             Assert.IsTrue(x);
+            service.shutDown();
         }
 
         //Userr creats a new product in store and he does not has premmision to do so - invalid procedure.
@@ -38,6 +38,7 @@ namespace Acceptance_Tests
             setUp();
             bool x = service.createNewProductInStore("Top", "Tank tops", "Light blue", 89, "ZARA", "Noy");
             Assert.IsFalse(x);
+            service.shutDown();
         }
     }
 }

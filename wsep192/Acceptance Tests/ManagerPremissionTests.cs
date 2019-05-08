@@ -15,8 +15,7 @@ namespace Acceptance_Tests
         List<KeyValuePair<string, int>> list;
 
         public void setUp() {
-            service = new ServiceLayer();
-            service.init("admin","1212");
+            service = ServiceLayer.getInstance();
             owner = service.initUser();
             user = service.initUser();
             service.register("owner", "123", owner);
@@ -31,7 +30,7 @@ namespace Acceptance_Tests
         public void failure_setUp() {
             permissions = new List<string>();
             service.assignManager("user", "store", permissions, "owner");
-
+            service.shutDown();
         }
 
         public void success_setUp()
@@ -43,6 +42,7 @@ namespace Acceptance_Tests
             KeyValuePair<string, int> p1 = new KeyValuePair<string, int>("p1", 1);
             list = new List<KeyValuePair<string, int>>();
             list.Add(p1);
+            service.shutDown();
         }
 
         [TestMethod]
@@ -51,6 +51,7 @@ namespace Acceptance_Tests
             setUp();
             failure_setUp();
             Assert.AreEqual(false, service.createNewProductInStore("p1", "category", "details", 100, "store", "user"));
+            service.shutDown();
         }
 
         [TestMethod]
@@ -59,6 +60,7 @@ namespace Acceptance_Tests
             setUp();
             success_setUp();
             Assert.AreEqual(true, service.addProductsInStore(list, "store", "user"));
+            service.shutDown();
         }
 
     }

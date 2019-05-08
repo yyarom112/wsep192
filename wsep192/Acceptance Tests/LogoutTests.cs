@@ -12,9 +12,8 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("admin", "1234");
-            id=service.initUser();
+            service = ServiceLayer.getInstance();
+            id =service.initUser();
         }
 
 
@@ -25,6 +24,7 @@ namespace Acceptance_Tests
             service.register("user", "password", id);
             service.signIn("user", "password");
             Assert.AreEqual(true, service.signOut("user"));
+            service.shutDown();
         }
     }
 }

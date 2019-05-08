@@ -14,8 +14,7 @@ namespace Acceptance_Tests
         ServiceLayer service;
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("Admin", "2323");
+            service = ServiceLayer.getInstance();
             String tmpuser = service.initUser();
             service.register("aviv", "1234", tmpuser);
             tmpuser = service.initUser();
@@ -31,18 +30,21 @@ namespace Acceptance_Tests
         {
             setUp();
             Assert.AreEqual(true,service.removeOwner("zahi", "footlocker", "aviv"));
+            service.shutDown();
         }
         [TestMethod]
         public void TestNotOwnerRemovesOwner()
         {
             setUp();
             Assert.AreEqual(false, service.removeOwner("zahi", "footlocker", "yossi"));
+            service.shutDown();
         }
         [TestMethod]
         public void TestOwnerRemovesNotOwner()
         {
             setUp();
             Assert.AreEqual(false, service.removeOwner("yossi", "footlocker", "aviv"));
+            service.shutDown();
         }
 
     }

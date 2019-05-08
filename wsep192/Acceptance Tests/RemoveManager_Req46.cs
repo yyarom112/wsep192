@@ -8,14 +8,13 @@ namespace Acceptance_Tests
     [TestClass]
     public class RemoveManager_Req46
     {
-        private ServiceLayer service;
+        ServiceLayer service;
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("admin", "1234");
+            service = ServiceLayer.getInstance();
             service.register("user", "1234", service.initUser());
-            service.signIn("admin", "1234");
+            service.signIn("admin", "admin");
             service.openStore("store", "admin");
             service.createNewProductInStore("p1", "", "", 10, "store", "admin");
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
@@ -24,9 +23,6 @@ namespace Acceptance_Tests
 
             service.register("manager", "1234", service.initUser());
             service.assignManager("manager", "store", new List<string>(), "admin");
-
-            service.signIn("admin", "1234");
-
 
 
         }
@@ -37,6 +33,7 @@ namespace Acceptance_Tests
         {
             setUp();
             Assert.AreEqual(true, service.removeManager("manager","store","admin"));
+            service.shutDown();
         }
 
         //A store owner is trying to unsubscribe a subscription that is not a store manager
@@ -45,6 +42,7 @@ namespace Acceptance_Tests
         {
             setUp();
             Assert.AreEqual(false, service.removeManager("user", "store", "admin"));
+            service.shutDown();
         }
 
         //A non-store owner is trying to unsubscribe from another store manager subscription
@@ -53,6 +51,7 @@ namespace Acceptance_Tests
         {
             setUp();
             Assert.AreEqual(false, service.removeManager("manager", "store", "user"));
+            service.shutDown();
         }
     }
 }

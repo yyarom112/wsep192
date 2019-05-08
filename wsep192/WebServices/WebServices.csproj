@@ -315,6 +315,20 @@
     <Compile Include="Views\Pages\setUp.aspx.designer.cs">
       <DependentUpon>setUp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\searchProduct.aspx.cs">
+      <DependentUpon>searchProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\searchProduct.aspx.designer.cs">
+      <DependentUpon>searchProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\showProduct.aspx.cs">
+      <DependentUpon>showProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\showProduct.aspx.designer.cs">
+      <DependentUpon>showProduct.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -1166,6 +1180,8 @@
     <Content Include="Views\Pages\removeOwner.aspx" />
     <Content Include="Views\Pages\removeUser.aspx" />
     <Content Include="Views\Pages\setUp.aspx" />
+    <Content Include="Views\Pages\searchProduct.aspx" />
+    <Content Include="Views\Pages\showProduct.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

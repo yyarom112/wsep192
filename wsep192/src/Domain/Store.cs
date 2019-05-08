@@ -44,7 +44,8 @@ namespace src.Domain
             bool result = false;
             foreach (ProductInStore p in products.Values)
             {
-                if (p.Product.compareProduct(filter) && filter.StoreRate != -1 && filter.StoreRate == this.storeRate)
+                bool flag = p.Product.compareProduct(filter);
+                if ( (flag && filter.StoreRate == -1) || (flag && filter.StoreRate != -1 && filter.StoreRate == this.storeRate))
                 {
                     listToAdd.Add(p);
                     result = true;
