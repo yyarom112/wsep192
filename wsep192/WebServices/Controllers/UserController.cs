@@ -38,7 +38,12 @@ namespace WebService.Controllers
         [HttpGet]
         public string showCart(String Store, String User)
         {
-            string res = listToString(service.showCart(Store, User));
+            List<KeyValuePair<String, int>> cart = service.showCart(Store, User);
+            string res;
+            if (cart==null)
+                return "null";
+            else
+                res = listToString(cart);
             return res;
         }
         private String listToString(List<KeyValuePair<string, int>> list)
