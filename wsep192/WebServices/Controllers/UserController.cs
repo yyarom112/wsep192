@@ -45,10 +45,17 @@ namespace WebService.Controllers
 
         [Route("api/user/RemoveFromCart")]
         [HttpGet]
-        public string removeFromCart(String list, String store, String user)
+        public string RemoveFromCart(String list, String store, String user)
         {
-            string res = service.removeProductsFromCart(list,store, user);
-            return res;
+            bool res = service.removeProductsFromCart(list,store, user);
+            switch (res)
+            {
+                case true:
+                    return "true";
+                case false:
+                    return "false";
+            }
+            return "Server error: RemoveFromCart";
         }
 
 
