@@ -38,26 +38,54 @@ namespace WebService.Controllers
         [HttpGet]
         public string showCart(String Store, String User)
         {
-            string res = service.showCart(Store, User);
+            string res = listToString(service.showCart(Store, User));
             return res;
         }
-
+        private String listToString(List<KeyValuePair<string, int>> list)
+        {
+            String str = "";
+            for (int i = 0; i < list.Count; i++)
+            {
+                str += list[i].Key + "," + list[i].Value.ToString() + ",";
+            }
+            return str;
+        }
 
         [Route("api/user/RemoveFromCart")]
         [HttpGet]
         public string removeFromCart(String list, String store, String user)
         {
-            string res = service.removeProductsFromCart(list,store, user);
-            return res;
+            List<string> l = toList(list);
+            bool res = service.removeProductsFromCart(l,store, user);
+            switch (res)
+            {
+                case true:
+                    return "true";
+                case false:
+                    return "false";
+            }
+            return "Server error: removeFromCart";
+            
         }
 
+
+        private List<String> toList(string products)
+        {
+            List<String> list;
+            if (products != null)
+                list = new List<String>(products.Split(','));
+            else list = new List<String>();
+            list.Remove("");
+            return list;
+        }
 
         [Route("api/user/EditCart")]
         [HttpGet]
         public string editCart(String Store, String User)
         {
-            string res = service.showCart(Store, User);
-            return res;
+            //string res = service.showCart(Store, User);
+            //return res;
+            return null;
         }
 
 

@@ -75,12 +75,8 @@ namespace WebServices.Controllers
             return View();
         }
 
-        public ActionResult RemoveFromCart()
-        {
-            return View();
-        }
 
-        public ActionResult EditCart()
+        public ActionResult Cart()
         {
             return View();
         }

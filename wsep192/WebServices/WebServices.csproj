@@ -234,10 +234,28 @@
     <Compile Include="Views\Pages\loginUser.aspx.designer.cs">
       <DependentUpon>loginUser.aspx</DependentUpon>
     </Compile>
+
+    <Compile Include="Views\Pages\cart.aspx.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\cart.aspx.designer.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+    </Compile>
+
+    <Compile Include="Views\Pages\shoppingCart.aspx.cs">
+      <DependentUpon>shoppingCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\shoppingCart.aspx.designer.cs">
+      <DependentUpon>shoppingCart.aspx</DependentUpon>
+    </Compile>
+    
     <Compile Include="Views\Pages\registerUser.aspx.cs">
       <DependentUpon>registerUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    
     <Compile Include="Views\Pages\registerUser.aspx.designer.cs">
       <DependentUpon>registerUser.aspx</DependentUpon>
     </Compile>
@@ -1137,6 +1155,8 @@
     <Content Include="Views\Pages\editProductInStore.aspx" />
     <Content Include="Views\Pages\index.aspx" />
     <Content Include="Views\Pages\loginUser.aspx" />
+    <Content Include="Views\Pages\cart.aspx" />
+    <Content Include="Views\Pages\shoppingCart.aspx" />
     <Content Include="Views\Pages\registerUser.aspx" />
     <Content Include="Views\Pages\removeProductInStore.aspx" />
     <Content Include="Views\Pages\assignManager.aspx" />
