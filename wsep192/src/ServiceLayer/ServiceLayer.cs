@@ -128,19 +128,6 @@ namespace src.ServiceLayer
         }
 
 
-        private bool productsExist(List<KeyValuePair<String, int>> products, int store)
-        {
-            
-            return true;
-        }
-
-        private List<KeyValuePair<int, int>> getProductsInts(List<KeyValuePair<String, int>> products, int store)
-        {
-            List<KeyValuePair<int, int>> list = new List<KeyValuePair<int, int>>();
-            
-            return list;
-        }
-
         private List<int> getProductsInts(List<String> products, int store)
         {
             List<int> list = new List<int>();
@@ -181,12 +168,12 @@ namespace src.ServiceLayer
             }
             return system.editProductQuantityInCart(system.getProduct(product, stores[store]), quantity, stores[store], users[user]);
         }
-        public bool removeProductsFromCart(String productsToRemove, String store, String user)
+        public String removeProductsFromCart(String productsToRemove, String store, String user)
         {
             List<String> list = toList(productsToRemove);
             if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist(list, stores[store]))
             {
-                return false;
+                return "false";
             }
             return system.removeProductsFromCart(getProductsInts(list, stores[store]), stores[store], users[user]);
         }
