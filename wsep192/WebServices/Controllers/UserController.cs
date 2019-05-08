@@ -142,6 +142,14 @@ namespace WebService.Controllers
             return "Server error: setUp";
         }
 
+        [Route("api/user/SearchProduct")]
+        [HttpGet]
+        public string searchProduct(String details)
+        {
+            string ans = service.searchProduct(details);
+            return ans;
+        }
+
 
         [Route("api/user/RemoveUser")]
         [HttpGet]

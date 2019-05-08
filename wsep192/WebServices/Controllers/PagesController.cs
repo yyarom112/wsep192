@@ -59,15 +59,20 @@ namespace WebServices.Controllers
         {
             return View();
         }
+        public ActionResult SearchProduct()
+        {
+            return View();
+        }
 
         public ActionResult SetUp()
         {
             return View();
         }
-        public ActionResult RemoveUser()
+        public ActionResult ShowProduct()
         {
             return View();
         }
+
 
 
     }
