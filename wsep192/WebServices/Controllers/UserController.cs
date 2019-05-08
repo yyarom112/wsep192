@@ -11,7 +11,7 @@ using System.Web.Security;
 
 namespace WebService.Controllers
 {
-    
+
     public class UserController : ApiController
     {
         ServiceLayer service = ServiceLayer.getInstance();
@@ -71,9 +71,9 @@ namespace WebService.Controllers
 
         [Route("api/user/OpenStore")]
         [HttpGet]
-        public string openStore(String Username,String StoreName)
+        public string openStore(String Username, String StoreName)
         {
-            bool ans = service.openStore(StoreName,Username);
+            bool ans = service.openStore(StoreName, Username);
             switch (ans)
             {
                 case true:
@@ -85,9 +85,9 @@ namespace WebService.Controllers
         }
         [Route("api/user/assignOwner")]
         [HttpGet]
-        public string assignOwner(String ownerName, String userToAssign,String storeName)
+        public string assignOwner(String ownerName, String userToAssign, String storeName)
         {
-            bool ans = service.assignOwner(ownerName, userToAssign,storeName);
+            bool ans = service.assignOwner(ownerName, userToAssign, storeName);
             switch (ans)
             {
                 case true:
@@ -99,9 +99,9 @@ namespace WebService.Controllers
         }
         [Route("api/user/removeOwner")]
         [HttpGet]
-        public string removeOwner(String ownerToRemove, String storeName,String ownerName)
+        public string removeOwner(String ownerToRemove, String storeName, String ownerName)
         {
-            bool ans = service.removeOwner(ownerToRemove, storeName,ownerName);
+            bool ans = service.removeOwner(ownerToRemove, storeName, ownerName);
             switch (ans)
             {
                 case true:
@@ -113,10 +113,10 @@ namespace WebService.Controllers
         }
         [Route("api/user/assignManager")]
         [HttpGet]
-        public string assignManager(String ownerName, String userToAssign, String storeName,String permissions)
+        public string assignManager(String ownerName, String userToAssign, String storeName, String permissions)
         {
-            List<String> perms= permissions.Split(' ').ToList();
-            bool ans = service.assignManager(userToAssign, storeName,perms, ownerName);
+            List<String> perms = permissions.Split(' ').ToList();
+            bool ans = service.assignManager(userToAssign, storeName, perms, ownerName);
             switch (ans)
             {
                 case true:
@@ -150,7 +150,6 @@ namespace WebService.Controllers
             return ans;
         }
 
-
         [Route("api/user/RemoveUser")]
         [HttpGet]
         public string removeUser(String Username, String RemoveUser)
@@ -165,9 +164,10 @@ namespace WebService.Controllers
             }
             return "Server error: removeUser";
         }
+
         [Route("api/user/RemoveManager")]
         [HttpGet]
-        public string removeManager(String managerToRemove, String storeName,String ownerName)
+        public string removeManager(String managerToRemove, String storeName, String ownerName)
         {
             bool ans = service.removeManager(managerToRemove, storeName, ownerName);
             switch (ans)
@@ -178,6 +178,37 @@ namespace WebService.Controllers
                     return "Error in remove user";
             }
             return "Server error: removeUser";
+        }
+
+        [Route("api/user/CheckoutBasket")]
+        [HttpGet]
+        public string checkoutBasket(String address, String username)
+        {
+            int addressNum;
+            try {
+                addressNum = Int32.Parse(address);
+            }
+            catch(Exception e)
+            {
+                addressNum = -1;
+            }
+            switch (addressNum)
+            {
+                case 1:
+                    address = "telaviv";
+                    break;
+                case 2:
+                    address = "beersheva";
+                    break;
+                case 3:
+                    address = "haifa";
+                    break;
+                default:
+                    address = "";
+                    break;
+            }
+            int ans = service.basketCheckout(address, username);
+            return ans+"";
         }
 
 

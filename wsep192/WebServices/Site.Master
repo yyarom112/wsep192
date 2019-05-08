@@ -50,7 +50,7 @@
                                 <ul class="dropdown-menu">
                                     <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
                                     <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/CheckoutBasket">Checkout Basket</a></li>
                                     <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
                                     <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
                                 </ul>
@@ -103,7 +103,7 @@
                             <li class="nav-item">
                                 <button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button>
                             </li>
-                            <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
+                            <li class="nav-item"><a class="button button-header" href="/CheckoutBasket">Checkout basket</a></li>
                         </ul>
                     </div>
                 </div>
