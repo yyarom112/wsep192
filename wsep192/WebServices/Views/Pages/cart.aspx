@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="cart.aspx.cs" Inherits="WebServices.Views.Pages.cart" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="WebServices.Views.Pages.cart" %>
 
 <asp:Content ID="content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -81,7 +81,7 @@
                 console.log(list);
                 jQuery.ajax({
                     type: "GET",
-                    url: baseUrl + "/api/user/?list=" + list + "&store="+ store +"&user=" + user,
+                    url: baseUrl + "/api/user/removeFromCart?list=" + list + "&store="+ store +"&user=" + user,
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
