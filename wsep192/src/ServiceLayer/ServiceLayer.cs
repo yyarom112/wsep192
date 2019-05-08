@@ -32,7 +32,7 @@ namespace src.ServiceLayer
             purchasePolicyCounter = 0;
             discountPolicyCounter = 0;
             addPermissions();
-            init("admin","admin");
+            init("admin", "admin");
 
         }
         public static ServiceLayer getInstance()
@@ -40,6 +40,10 @@ namespace src.ServiceLayer
             if (instance == null)
                 instance = new ServiceLayer();
             return instance;
+        }
+        public void shutDown()
+        {
+            instance = null;
         }
         public bool setUp()
         {
@@ -50,7 +54,7 @@ namespace src.ServiceLayer
             flag = flag & instance.createNewProductInStore("product", "cat", "details", 10, "store", "user");
             List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
             products.Add(new KeyValuePair<string, int>("product", 10));
-            flag = flag & instance.addProductsInStore(products,"store","user");
+            flag = flag & instance.addProductsInStore(products, "store", "user");
             return flag;
 
         }
@@ -126,8 +130,8 @@ namespace src.ServiceLayer
             {
                 return false;
             }
-            return system.addProductsToCart(getProductsInts(products,stores[store]), stores[store], users[user]);
-            
+            return system.addProductsToCart(getProductsInts(products, stores[store]), stores[store], users[user]);
+
         }
 
         private bool productsExist(List<KeyValuePair<String, int>> products, int store)
@@ -152,38 +156,49 @@ namespace src.ServiceLayer
         }
 
         //req2.7
-        public String showCart(String store, String user)
+        public List<KeyValuePair<String, int>> showCart(String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store))
             {
-                return "Error: Invalid user or store";
+                return null;
             }
             return system.showCart(stores[store], users[user]);
         }
-        private String listToString(List<KeyValuePair<string, int>> list)
-        {
-            String str = "";
-            for (int i = 0; i < list.Count; i++)
-            {
-                str += list[i].Key + "," + list[i].Value.ToString() + ",";
-            }
-            return str;
-        }
         public bool editProductQuantityInCart(String product, int quantity, String store, String user)
         {
-            if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !system.productExist(product, stores[store]) || quantity<0)
+            if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !system.productExist(product, stores[store]) || quantity < 0)
             {
                 return false;
             }
             return system.editProductQuantityInCart(system.getProduct(product, stores[store]), quantity, stores[store], users[user]);
         }
-        public bool removeProductsFromCart(List<KeyValuePair<String, int>> productsToRemove, String store, String user)
+        public bool removeProductsFromCart(List<String> productsToRemove, String store, String user)
         {
-            if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist(productsToRemove, stores[store]))
+            if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist2(productsToRemove, stores[store]))
             {
                 return false;
             }
-            return system.removeProductsFromCart(getProductsInts(productsToRemove, stores[store]), stores[store], users[user]);
+            return system.removeProductsFromCart(getProductsInts2(productsToRemove, stores[store]), stores[store], users[user]);
+        }
+
+        private List<int> getProductsInts2(List<String> products, int store)
+        {
+            List<int> list = new List<int>();
+            foreach (String p in products)
+            {
+                list.Add(system.getProduct(p, store));
+            }
+            return list;
+        }
+
+        private bool productsExist2(List<String> products, int store)
+        {
+            foreach (String p in products)
+            {
+                if (!system.productExist(p, store))
+                    return false;
+            }
+            return true;
         }
 
         //req2.8
@@ -229,7 +244,7 @@ namespace src.ServiceLayer
 
 
         //req4.1
-        public bool createNewProductInStore(String productName, String category, String details,int price, String store, String user)
+        public bool createNewProductInStore(String productName, String category, String details, int price, String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store))
             {
@@ -269,17 +284,17 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(owner) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
-            return system.assignOwner(stores[store],users[owner], users[user]);
+            return system.assignOwner(stores[store], users[owner], users[user]);
         }
         //req4.4
         public bool removeOwner(String ownerToRemove, String store, String user)
         {
             if (!users.ContainsKey(ownerToRemove) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
-            return system.removeOwner(users[user],users[ownerToRemove], stores[store] );
+            return system.removeOwner(users[user], users[ownerToRemove], stores[store]);
         }
         //req4.5
-        public bool assignManager( String manager, String store, List<String> permissions,String user)
+        public bool assignManager(String manager, String store, List<String> permissions, String user)
         {
             if (!users.ContainsKey(manager) || !users.ContainsKey(user) || !stores.ContainsKey(store) || !validatePermissions(permissions))
                 return false;
@@ -310,7 +325,7 @@ namespace src.ServiceLayer
         public bool removeManager(String managerToRemove, String store, String user)
         {
             if (!users.ContainsKey(managerToRemove) || !users.ContainsKey(user) || !stores.ContainsKey(store))
-                return false; 
+                return false;
             return system.removeManager(users[user], users[managerToRemove], stores[store]);
         }
         //req6.2
@@ -318,7 +333,7 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(userToRemove) || !users.ContainsKey(user))
                 return false;
-            bool result = system.removeUser(users[user],users[userToRemove]);
+            bool result = system.removeUser(users[user], users[userToRemove]);
             if (result)
                 users.Remove(userToRemove);
             return result;

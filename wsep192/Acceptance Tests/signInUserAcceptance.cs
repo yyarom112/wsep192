@@ -16,8 +16,7 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("Admin", "2323");
+            service = ServiceLayer.getInstance();
             id = service.initUser();
         }
 
@@ -29,6 +28,7 @@ namespace Acceptance_Tests
             String password = "2345";
             service.register(userName, password, id);
             Assert.AreEqual(true, service.signIn(userName, password));
+            service.shutDown();
         }
 
         [TestMethod]
@@ -39,6 +39,7 @@ namespace Acceptance_Tests
             String password = " ";
             service.register(userName, password, id);
             Assert.AreEqual(false, service.signIn(userName, password));
+            service.shutDown();
         }
 
         [TestMethod]
@@ -49,6 +50,7 @@ namespace Acceptance_Tests
             String password = "2345";
             service.register(userName, password, id);
             Assert.AreEqual(false, service.signIn(userName, password));
+            service.shutDown();
         }
 
         [TestMethod]
@@ -59,6 +61,7 @@ namespace Acceptance_Tests
             String password = " ";
             service.register(userName, password, id);
             Assert.AreEqual(false, service.signIn(userName, password));
+            service.shutDown();
         }
 
         [TestMethod]
@@ -68,6 +71,7 @@ namespace Acceptance_Tests
             String userName = "Seifan";
             String password = "2345";
             Assert.AreEqual(false, service.signIn(userName, password));
+            service.shutDown();
         }
     }
 }

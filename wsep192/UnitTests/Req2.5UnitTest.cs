@@ -62,7 +62,7 @@ namespace UnitTests
         {
             setUp();
             String expected = "";
-            string details1 = "bla bla bla 10 100 40 30";
+            string details1 = "bla,bla,bla,10,100,40,30";
             expected = sys.searchProduct(details1);
             Assert.AreEqual("",expected);
         }
@@ -70,8 +70,8 @@ namespace UnitTests
         public void testSearchProductFound()
         {
             setUp();
-            String expected = "Name: first\nStore Name: blabla\nQuantity: 10000000";
-            String details1 = "first cat key 10 100 0 0";
+            String expected = "name0=first&store0=blabla&quantity0=10000000";
+            String details1 = "first,cat,key,10,100,0,0";
             String result = sys.searchProduct(details1);
             Assert.AreEqual(expected,result );
         }

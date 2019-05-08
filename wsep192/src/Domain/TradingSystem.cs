@@ -129,7 +129,8 @@ namespace src.Domain
                 i++;
                
             }
-            res = res.Substring(0, res.Length - 1);
+            if(res!="")
+                res = res.Substring(0, res.Length - 1);
             return res;
         }
 
@@ -192,20 +193,21 @@ namespace src.Domain
             return false;
 
         }
-        public String showCart(int store, int user)
+        public List<KeyValuePair<string, int>> showCart(int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return "Error : Invalid user or store";
+                return null;
             return Users[user].showCart(store);
 
         }
+
         public bool editProductQuantityInCart(int product, int quantity, int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
                 return false;
             return Users[user].editProductQuantityInCart(product, quantity, store);
         }
-        public bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
+        public bool removeProductsFromCart(List<int> productsToRemove, int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
                 return false;

@@ -9,12 +9,11 @@ namespace Acceptance_Tests
     public class AddProductsInStore
     {
 
-        private ServiceLayer service;
+        ServiceLayer service;
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("admin", "1234");
+            service = ServiceLayer.getInstance();
             string owner = service.initUser();
             service.register("Rotem", "23&As2", owner);
             service.signIn("Rotem", "23&As2");
@@ -34,6 +33,7 @@ namespace Acceptance_Tests
             products.Add(new KeyValuePair<string, int>("Top",7));
             bool x = service.addProductsInStore(products, "ZARA", "Rotem");
             Assert.IsTrue(x);
+            service.shutDown();
         }
     }
 }

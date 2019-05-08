@@ -7,14 +7,13 @@ namespace Acceptance_Tests
     [TestClass]
     public class openStore
     {
-        private ServiceLayer service;
+        ServiceLayer service;
         private string user;
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("admin", "1234");
-            user=service.initUser();
+            service = ServiceLayer.getInstance();
+            user =service.initUser();
         }
 
         [TestMethod]
@@ -24,6 +23,7 @@ namespace Acceptance_Tests
             setUp();
             bool x = service.openStore("Bershka", "Yonit");
             Assert.IsFalse(x);
+            service.shutDown();
         }
 
         [TestMethod]
@@ -35,6 +35,7 @@ namespace Acceptance_Tests
             service.signIn("Yonit", "23&As2");
             bool x= service.openStore("Bershka", "Yonit");
             Assert.IsTrue(x);
+            service.shutDown();
         }
 
         [TestMethod]
@@ -50,6 +51,7 @@ namespace Acceptance_Tests
             service.signIn("Shay", "Aw32!9");
             bool x=service.assignOwner("Yonit", "Shay", "Bershka");
             Assert.IsTrue(x);
+            service.shutDown();
         }
 
         [TestMethod]
@@ -62,6 +64,7 @@ namespace Acceptance_Tests
             service.openStore("Bershka", "Yonit");
             bool x = service.removeUser("admin", "Yonit");
             Assert.IsFalse(x);
+            service.shutDown();
         }
-        }
+    }
 }

@@ -32,6 +32,79 @@ namespace WebService.Controllers
             return "server error: RegisterUser";
         }
 
+
+
+        [Route("api/user/ShoppingCart")]
+        [HttpGet]
+        public string showCart(String Store, String User)
+        {
+            List<KeyValuePair<String, int>> cart = service.showCart(Store, User);
+            string res;
+            if (cart==null)
+                return "null";
+            else
+                res = listToString(cart);
+            return res;
+        }
+        private String listToString(List<KeyValuePair<string, int>> list)
+        {
+            String str = "";
+            for (int i = 0; i < list.Count; i++)
+            {
+                str += list[i].Key + "," + list[i].Value.ToString() + ",";
+            }
+            return str;
+        }
+
+        [Route("api/user/RemoveFromCart")]
+        [HttpGet]
+        public string RemoveFromCart(String list, String store, String user)
+        {
+            List<string> l = toList(list);
+            bool res = service.removeProductsFromCart(l,store, user);
+            switch (res)
+            {
+                case true:
+                    return "true";
+                case false:
+                    return "false";
+            }
+            return "Server error: removeFromCart";
+            
+        }
+
+
+        private List<String> toList(string products)
+        {
+            List<String> list;
+            if (products != null)
+                list = new List<String>(products.Split(','));
+            else list = new List<String>();
+            list.Remove("");
+            return list;
+        }
+
+        [Route("api/user/EditCart")]
+        [HttpGet]
+        public string EditCart(String product, string quantity, String store, String user)
+        {
+            bool res = service.editProductQuantityInCart(product,Int32.Parse(quantity),store,user);
+            switch (res)
+            {
+                case true:
+                    return "true";
+                case false:
+                    return "false";
+            }
+            return "Server error: editCart";
+        }
+
+
+
+
+
+
+
         [Route("api/user/LoginUser")]
         [HttpGet]
         public string login(String Username, String Password)

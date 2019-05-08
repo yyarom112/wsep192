@@ -33,12 +33,12 @@ namespace src.Domain
 
         }
 
-        internal string showCart(int storeId)
+        internal List<KeyValuePair<string, int>> showCart(int storeId)
         {
             if (!shoppingCarts.ContainsKey(storeId))
             {
                 LogManager.Instance.WriteToLog("ShoppingBasket:showCart failed - Shopping basket does not contain the store\n");
-                return "Error : Shopping basket does not contain this store";
+                return null;
             }
 
             return shoppingCarts[storeId].showCart();
@@ -60,7 +60,7 @@ namespace src.Domain
             return null;
         }
 
-        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        internal bool removeProductsFromCart(List<int> productsToRemove, int storeId)
         {
             if (!shoppingCarts.ContainsKey(storeId))
             {
