@@ -129,7 +129,8 @@ namespace src.Domain
                 i++;
                
             }
-            res = res.Substring(0, res.Length - 1);
+            if(res!="")
+                res = res.Substring(0, res.Length - 1);
             return res;
         }
 

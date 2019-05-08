@@ -13,8 +13,7 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("admin", "1234");
+            service = ServiceLayer.getInstance();
             string tmp = service.initUser();
             service.register("user", "password", tmp);
             service.signIn("user", "password");
@@ -35,6 +34,7 @@ namespace Acceptance_Tests
             setUp();
             Assert.AreEqual(true, service.editProductQuantityInCart("p1", 2, "store", "user"));
             Assert.AreEqual(true, service.editProductQuantityInCart("p1", 1, "store", "user"));
+            service.shutDown();
         }
     }
 }

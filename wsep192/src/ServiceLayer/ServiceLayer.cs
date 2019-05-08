@@ -35,6 +35,10 @@ namespace src.ServiceLayer
             init("admin","admin");
 
         }
+        public void shutDown()
+        {
+            instance = null;
+        }
         public static ServiceLayer getInstance()
         {
             if (instance == null)

@@ -9,12 +9,11 @@ namespace Acceptance_Tests
     public class editproductInStore
     {
 
-        private ServiceLayer service;
+        ServiceLayer service;
         private List<KeyValuePair<String, int>> products;
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("admin", "1234");
+            service = ServiceLayer.getInstance();
             string owner = service.initUser();
             service.register("Rotem", "23&As2", owner);
             service.signIn("Rotem", "23&As2");
@@ -35,6 +34,7 @@ namespace Acceptance_Tests
             setUp();
             bool x = service.editProductInStore("Top","Top", "Tank tops", "Light blue", 90, "ZARA", "Rotem");
             Assert.IsTrue(x);
+            service.shutDown();
         }
 
         //The owner will edit a product who does not exists in store - invalid procedure.
@@ -44,6 +44,7 @@ namespace Acceptance_Tests
             setUp();
             bool x = service.editProductInStore("Skinnt jeans","Skinnt jeans", "Jeans", "Light blue", 179, "ZARA", "Rotem");
             Assert.IsFalse(x);
+            service.shutDown();
         }
 
         //Not the owner will remove product who does exists on stote - invalid procedure.
@@ -53,6 +54,7 @@ namespace Acceptance_Tests
             setUp();
             bool x = service.editProductInStore("Top", "Top", "Tank tops", "Light blue", 90, "ZARA", "Noy");
             Assert.IsFalse(x);
+            service.shutDown();
         }
     }
 }
