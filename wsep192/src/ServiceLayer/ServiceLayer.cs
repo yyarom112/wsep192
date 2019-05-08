@@ -41,6 +41,10 @@ namespace src.ServiceLayer
                 instance = new ServiceLayer();
             return instance;
         }
+        public void shutDown()
+        {
+            instance = null;
+        }
         public bool setUp()
         {
             bool flag = true;
