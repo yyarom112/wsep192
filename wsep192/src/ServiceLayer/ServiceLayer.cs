@@ -168,14 +168,17 @@ namespace src.ServiceLayer
             }
             return system.editProductQuantityInCart(system.getProduct(product, stores[store]), quantity, stores[store], users[user]);
         }
-        public bool removeProductsFromCart(List<String> productsToRemove, String store, String user)
+        public String removeProductsFromCart(String productsToRemove, String store, String user)
         {
-            if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist(productsToRemove, stores[store]))
+            List<String> list = toList(productsToRemove);
+            if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist(list, stores[store]))
             {
-                return false;
+                return "false";
             }
-            return system.removeProductsFromCart(getProductsInts(productsToRemove, stores[store]), stores[store], users[user]);
+            return system.removeProductsFromCart(getProductsInts(list, stores[store]), stores[store], users[user]);
         }
+
+
 
         //req2.8
         public int basketCheckout(String address, String user)
@@ -329,6 +332,12 @@ namespace src.ServiceLayer
             return sb.ToString();
         }
 
+        private List<String> toList(string products)
+        {
+            List<String> list = new List<String>(products.Split(','));
+            list.Remove("");
+            return list;
+        }
 
 
 

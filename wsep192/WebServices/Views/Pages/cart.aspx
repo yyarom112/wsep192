@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="WebServices.Views.Pages.cart" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="cart.aspx.cs" Inherits="WebServices.Views.Pages.cart" %>
 
 <asp:Content ID="content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -51,13 +51,12 @@
                 cart = searchParams.get('cart');
                 $('#head').before('<h3>' + store + '</h3>');
                 let products = cart.split(",");
-                console.log(products);
                 var i = 0;
                 var str = '';
 
                 for (i = 0; i < products.length-1; i++) {
                     if (i % 2 == 0) {
-                        str += '<tr class="text-center"><td class="remove"><input class="check" type="checkbox" id="p1"><br></td><td class="product-name"><p>'+
+                        str += '<tr class="text-center"><td class="remove"><input class="check" type="checkbox" id="' + products[i]+'"><br></td><td class="product-name"><p>'+
                             products[i] + '</p></td><td class="quantity"><div class="input-group mb-3"><input style="width: 10px;" type="text" name="quantity" class="quantity form-control input-number" value="';
                     }
                     else {
@@ -74,21 +73,20 @@
 
         $("#ApplyButton").click(function () {
             {
-
-                for (i = 0; i < products.length - 1; i++) {
-
-                }
-
-
-
+                var list = '';
+                $(".check").each(function (e) {
+                    if ($(this).is(':checked'))
+                        list = list + $(this).attr('id') + ",";
+                })
+                console.log(list);
                 jQuery.ajax({
                     type: "GET",
-                    url: baseUrl + "/api/user/Cart?list="+list+"&store=" + store + "&user=" + user,
+                    url: baseUrl + "/api/user/?list=" + list + "&store="+ store +"&user=" + user,
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        if (response != "null") {
-                            window.location.href = baseUrl + "/user/Cart";
+                        if (response != "false") {
+                            window.location.href = baseUrl + "/Cart?store=" + store + "&cart" + response;
                         }
                         else {
                             alert('Failure - Store/Cart not available');
@@ -96,7 +94,7 @@
                     },
                     error: function (response) {
                         console.log(response);
-                        window.location.href = baseUrl + "/error";
+                        alert('Failure');
                     }
                 });
             }

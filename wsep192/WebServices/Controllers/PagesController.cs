@@ -49,7 +49,12 @@ namespace WebServices.Controllers
             return View();
         }
 
-        public ActionResult Cart()
+        public ActionResult RemoveFromCart()
+        {
+            return View();
+        }
+
+        public ActionResult EditCart()
         {
             return View();
         }

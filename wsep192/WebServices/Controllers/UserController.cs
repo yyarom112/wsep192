@@ -43,6 +43,24 @@ namespace WebService.Controllers
         }
 
 
+        [Route("api/user/RemoveFromCart")]
+        [HttpGet]
+        public string removeFromCart(String list, String store, String user)
+        {
+            string res = service.removeProductsFromCart(list,store, user);
+            return res;
+        }
+
+
+        [Route("api/user/EditCart")]
+        [HttpGet]
+        public string editCart(String Store, String User)
+        {
+            string res = service.showCart(Store, User);
+            return res;
+        }
+
+
 
 
 
