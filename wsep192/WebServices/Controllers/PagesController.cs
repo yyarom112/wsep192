@@ -72,7 +72,10 @@ namespace WebServices.Controllers
         {
             return View();
         }
-
+        public ActionResult RemoveUser()
+        {
+            return View();
+        }
 
 
     }
