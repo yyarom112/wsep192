@@ -92,7 +92,6 @@
                         }
                     },
                     error: function (response) {
-                        console.log(response);
                         alert('Failure');
                     }
                 });
