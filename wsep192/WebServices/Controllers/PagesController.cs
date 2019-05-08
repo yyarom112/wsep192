@@ -43,6 +43,32 @@ namespace WebServices.Controllers
         {
             return View();
         }
+        public ActionResult AddProductInStore()
+        {
+            return View();
+        }
+        public ActionResult EditProductInStore()
+        {
+            return View();
+        }
+        public ActionResult CreateProductInStore()
+        {
+            return View();
+        }
+        public ActionResult RemoveProductInStore()
+        {
+            return View();
+        }
+
+        public ActionResult SetUp()
+        {
+            return View();
+        }
+        public ActionResult RemoveUser()
+        {
+            return View();
+        }
+
 
         public ActionResult ShoppingCart()
         {

@@ -41,6 +41,19 @@ namespace src.ServiceLayer
                 instance = new ServiceLayer();
             return instance;
         }
+        public bool setUp()
+        {
+            bool flag = true;
+            string user = instance.initUser();
+            flag = flag & instance.register("user", "user", user);
+            flag = flag & instance.openStore("store", "user");
+            flag = flag & instance.createNewProductInStore("product", "cat", "details", 10, "store", "user");
+            List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
+            products.Add(new KeyValuePair<string, int>("product", 10));
+            flag = flag & instance.addProductsInStore(products,"store","user");
+            return flag;
+
+        }
 
         private void addPermissions()
         {

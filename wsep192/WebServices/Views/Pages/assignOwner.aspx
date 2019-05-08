@@ -7,22 +7,18 @@
 				<div class="col-lg-6">
 					<div class="login_box_img">
 						<div class="hover">
-							<h4>Already have an account?</h4>
-							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="button button-account" href="/LoginUser">Login Now</a>
+							<h4>Don't forget</h4>
+							<p>Only owner can assign new owners.</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="login_form_inner register_form_inner">
-						<h3>ASSIGN NEW OWNER</h3>
+						<h3>Assign New Owner</h3>
 						<form class="row login_form" action="#/" id="register_form" >
-							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="ownerName" name="ownerName" placeholder="Owner Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ownerName'">
-							</div>
 							
               <div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="userToAssign" name="userToAssign" placeholder="User To Assign" onfocus="this.placeholder = ''" onblur="this.placeholder = 'userToAssign'">
+								<input type="text" class="form-control" id="userToAssign" name="userToAssign" placeholder="User To Assign Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'userToAssign'">
               </div>
               <div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'storeName'">
@@ -31,7 +27,7 @@
                              <small id="registerAlert" class="form-text text-muted text-Alert"></small>
 
 							<div class="col-md-12 form-group">
-								<input type="button" class="button button-register w-100" id="assignOwnerButton" value="Assign This Owner"></>
+								<input type="button" class="button button-login w-100" id="assignOwnerButton" value="Assign This Owner"></>
 							</div>
 						</form>
 					</div>
@@ -45,17 +41,16 @@
              $("#assignOwnerButton").click(function () {
                  var ownerName = getCookie("LoggedUser");
                  if (ownerName != null) {
-                     console.log("OK");
                      userToAssign = $("#userToAssign").val();
                      storeName = $("#storeName").val();
                      jQuery.ajax({
                          type: "GET",
-                         url: baseUrl + "/api/user/AssignOwner?ownerName=" + ownerName + "&userToAssign=" + userToAssign + "&storeName" + storeName,
+                         url: baseUrl + "/api/user/assignOwner?ownerName=" + ownerName + "&userToAssign=" + userToAssign + "&storeName=" + storeName,
                          contentType: "application/json; charset=utf-8",
                          dataType: "json",
                          success: function (response) {
                              if (response == "User successfuly was assigned") {
-                                 document.cookie = "LoggedUser=" + username
+                                 document.cookie = "LoggedUser=" + ownerName
                                  alert(response);
                                  window.location.href = baseUrl + "/";
                              }
@@ -69,10 +64,8 @@
                      });
                  }
                  else
-                     alert("already logged in");
-
+                     alert("User isn't logged in");
              });
          });
-
     </script>
 </asp:Content>
