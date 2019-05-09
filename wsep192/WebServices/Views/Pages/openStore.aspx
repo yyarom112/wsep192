@@ -10,7 +10,7 @@
                     <div class="login_box_img">
                         <div class="hover">
                             <h4>Whatever you're thinking,</h4>
-                            <h4> think bigger.</h4>
+                            <h4>think bigger.</h4>
                         </div>
                     </div>
                 </div>
@@ -22,11 +22,7 @@
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store name'">
                             </div>
 
-                            <div class="col-md-12 form-group">
-                                <input type="button" class="button button-login w-100" id="openStoreButton" value="Open store"></>
-                            </div>
-
-
+                            <button id="openStoreButton" type="submit" value="submit" class="button button-login w-100">Open store</button>
 
 
                         </form>

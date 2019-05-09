@@ -93,55 +93,62 @@
 		}
 	}
 }
-.login_form{
-	.form-group{
-    margin-bottom: 22px;
-		input{
-			height: 40px;
-			border: none;
-			border-bottom: 1px solid #cccccc;
-			border-radius: 0px;
-			outline: none;
-      box-shadow: none;
-      font-size: 14px;
-      color: #999999;
-			@include placeholder{
-			  color: #999999;	
-			}
-		}
-		.creat_account{
-			margin-top: 10px;
-      // margin-bottom: 15px;
-      font-size: 14px;
-			text-align: left;
-			input{
-				height: auto;
-        margin-right: 10px;
-        position: relative;
-        top: 2px;
-			}
-		}
-		.primary-btn{
-			display: block;
-			border-radius: 0px;
-			line-height: 38px;
-			width: 100%;
-			text-transform: uppercase;
-			border: none;
-			&:hover{
-				&:before{
-					left: 370px;
-				}
-			}
-		}
-		a{
-			font-size: 14px;
-			color: $text-color;
-			// font-family: $primary-font;
-			margin-top: 20px;
-			display: block;
-		}
-	}
+.login_form {
+    .form-group {
+        margin-bottom: 22px;
+
+        input {
+            height: 40px;
+            border: none;
+            border-bottom: 1px solid #cccccc;
+            border-radius: 0px;
+            outline: none;
+            box-shadow: none;
+            font-size: 14px;
+            color: #f8f9fa;
+
+            @include placeholder {
+                color: #f8f9fa;
+            }
+        }
+
+        .creat_account {
+            margin-top: 10px;
+            // margin-bottom: 15px;
+            font-size: 14px;
+            text-align: left;
+
+            input {
+                height: auto;
+                margin-right: 10px;
+                position: relative;
+                top: 2px;
+            }
+        }
+
+        .primary-btn {
+            display: block;
+            border-radius: 0px;
+            line-height: 38px;
+            width: 100%;
+            text-transform: uppercase;
+            border: none;
+
+            &:hover {
+                &:before {
+                    left: 370px;
+                }
+            }
+        }
+
+        a {
+            font-size: 14px;
+            color: $text-color;
+            // font-family: $primary-font;
+            margin-top: 20px;
+            display: block;
+        }
+    }
 }
 /* End Login form Area css
 ============================================================================================ */

@@ -25,7 +25,7 @@
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="newProductName" name="newProductName" placeholder="New product name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'New product name'">
                             </div>
-                             <div class="col-md-12 form-group">
+                            <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="categoryProductName" name="categoryProductName" placeholder="Category product name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Category product name'">
                             </div>
                             <div class="col-md-12 form-group">
@@ -38,9 +38,7 @@
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store Name'">
                             </div>
 
-                            <div class="col-md-12 form-group">
-                                <input type="button" class="button button-login w-100" id="editProductInStoreButton" value="Edit Product"></>
-                            </div>
+                            <button id="editProductInStoreButton" type="submit" value="submit" class="button button-login w-100">Edit Product</button>
 
                         </form>
                     </div>

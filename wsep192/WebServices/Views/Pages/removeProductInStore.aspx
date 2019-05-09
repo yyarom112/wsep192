@@ -30,9 +30,7 @@
 
                             <small id="removeProductInStoreAlert" class="form-text text-muted text-Alert"></small>
 
-                            <div class="col-md-12 form-group">
-                                <input type="button" class="button button-login w-100" id="removeProductInStoreButton" value="Remove Product"></>
-                            </div>
+                            <button id="removeProductInStoreButton" type="submit" value="submit" class="button button-login w-100">Remove Product</button>
 
                         </form>
                     </div>

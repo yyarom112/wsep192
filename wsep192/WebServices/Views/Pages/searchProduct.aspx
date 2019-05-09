@@ -27,9 +27,9 @@
             <div class="col-md-12 form-group">
                 <input type="text" class="form-control" id="storeRate" name="storeRate" placeholder="Store Rate" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store Rate'">
             </div>
-            <div class="col-md-12 form-group">
-                <input type="button" id="searchButton" class="button button-login w-100" value="Search Product" />
-            </div>
+
+            <button id="searchButton" type="submit" value="submit" class="button button-login w-100">Search Product</button>
+
         </form>
     </div>
     <!--================End Login Box Area =================-->
