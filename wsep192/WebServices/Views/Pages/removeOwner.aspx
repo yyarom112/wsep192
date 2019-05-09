@@ -19,7 +19,7 @@
                         <form class="row login_form" action="#/" id="register_form">
 
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="ownerToRemove" name="ownerToRemove" placeholder="Owner To Remove Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ownerToRemove'">
+                                <input type="text" class="form-control" id="ownerToRemove" name="ownerToRemove" placeholder="Owner Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ownerToRemove'">
                             </div>
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'storeName'">

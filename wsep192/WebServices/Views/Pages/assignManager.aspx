@@ -2,14 +2,24 @@
 
 <asp:Content ID="content1" ContentPlaceHolderID="MainContent" runat="server">
     <!--================Login Box Area =================-->
-    <section class="login_box_area section-margin">
-
-        <div class="login_form_inner register_form_inner">
+     <section class="login_box_area section-margin">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="login_box_img">
+                        <div class="hover">
+                            <h4>Don't forget</h4>
+                            <p>Only owner can assign new managers.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="login_form_inner register_form_inner">
             <h3>Assign New Manager</h3>
             <form class="row login_form" action="#/" id="register_form">
 
                 <div class="col-md-12 form-group">
-                    <input type="text" class="form-control" id="userToAssign" name="userToAssign" placeholder="User To Assign Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'userToAssign'">
+                    <input type="text" class="form-control" id="userToAssign" name="userToAssign" placeholder="New Manager Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'userToAssign'">
                 </div>
                 <div class="col-md-12 form-group">
                     <div>
@@ -54,7 +64,8 @@
 
             </form>
         </div>
-
+            </div>
+        </div>
     </section>
     <!--================End Login Box Area =================-->
     <script type="text/javascript">
