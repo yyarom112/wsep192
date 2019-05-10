@@ -162,7 +162,7 @@ namespace src.ServiceLayer
             {
                 return null;
             }
-            return system.showCart(stores[store], users[user]);
+            return system.showCart(stores[store], users[user]); ;
         }
         public bool editProductQuantityInCart(String product, int quantity, String store, String user)
         {

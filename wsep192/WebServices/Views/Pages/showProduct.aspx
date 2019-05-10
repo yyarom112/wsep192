@@ -15,15 +15,19 @@
                                     <th>Product Name</th>
                                     <th>Store</th>
                                     <th>Quantity</th>
+                                    <th>Quantity To Add</th>
+                                    <th>Add To Cart</th>
                                 </tr>
                             </thead>
                             <tbody id="table">
                             </tbody>
                         </table>
-                        <a href="/SearchProduct">
-                            <input style="max-width: 180px" class="button button-login w-100" id="SearchAgainButton" value="Search Again" />
-                        </a>
-                    </div>
+                        <input type="button" style=" max-width: 180px; float: right;" class="button button-login w-100" id="ApplyButton" value="Add To Cart"></>
+                            <a style="max-width: 180px; float: right;" href="/SearchProduct">
+                            <input class="button button-login w-100" id="SearchAgainButton" value="Search Again" />
+                            </a>
+                        
+                        </div>
                 </div>
             </div>
         </div>
@@ -52,11 +56,45 @@
                 str += '<tr class="text-center"><td class="product-name"><p>' +
                     productName + '</p></td>';
                 str += '<td class="store-name"><p>' + store + '</p></td >';
-                str += '<td class="quantity"><p>' + quantity + '</p></td ></tr >';
+                str += '<td class="quantity"><p>' + quantity + '</p></td >';
+                str += '<td class="quantity"><div class="input-group mb-4"><input style="width: 10px;" id="quantity'
+                    + productName + '" type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100"></div ></td >';
+                str += '<td class="remove"><input class="check" type="checkbox" id="' + productName + '"><br></td></tr >';
                 i++;
             }
             $('#table').append(str);
 
+            $("#ApplyButton").click(function () {
+
+                var list = '';
+                $(".check").each(function (e) {
+                    if ($(this).is(':checked')) {
+                        
+                        quantity = document.getElementById('quantity' + $(this).attr('id')).value;
+                        list = list + $(this).attr('id') + "," + quantity + ",";
+                    }
+                })
+                console.log(list);
+
+                jQuery.ajax({
+                    type: "GET",
+                    url: baseUrl + "/api/user/AddtoCart?list=" + list + "&store=" + store + "&user=" + user,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response != "false") {
+                            alert('Products added to cart succesfully');
+                        }
+                        else {
+                            alert('Failure - Add To Cart Failed');
+                        }
+                    },
+                    error: function (response) {
+                        alert('Failure - Add To Cart Error');
+                    }
+                });
+
+            });
         });
     </script>
 </asp:Content>

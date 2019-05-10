@@ -39,7 +39,7 @@
                     dataType: "json",
                     success: function (response) {
                         if (response != "null") {
-                            window.location.href = baseUrl + "/Cart?store=" + store + "&cart" + response;
+                            window.location.href = baseUrl + "/Cart?store=" + store + "&cart=" + response;
                         }
                         else {
                             alert('Failure - Store/Cart not available');
@@ -47,7 +47,7 @@
                     },
                     error: function (response) {
                         console.log(response);
-                        alert('Failure');
+                        alert('Failure - Show Cart Error');
                     }
                 });
 
