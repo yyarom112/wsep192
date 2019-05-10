@@ -46,9 +46,9 @@ namespace WebService.Controllers
                 res = listToString(cart);
             return res;
         }
-        private String listToString(List<KeyValuePair<string, int>> list)
+        private string listToString(List<KeyValuePair<string, int>> list)
         {
-            String str = "";
+            string str = "";
             for (int i = 0; i < list.Count; i++)
             {
                 str += list[i].Key + "," + list[i].Value.ToString() + ",";
@@ -73,6 +73,46 @@ namespace WebService.Controllers
             
         }
 
+
+
+        [Route("api/user/AddtoCart")]
+        [HttpGet]
+        public string AddtoCart(String list, String store, String user)
+        {
+            List<KeyValuePair<string, int>> l=null;
+            if (list!=null)
+                l= toPairList(list);
+            bool res = service.addProductsToCart(l, store, user);
+            switch (res)
+            {
+                case true:
+                    return "true";
+                case false:
+                    return "false";
+            }
+            return "Server error: removeFromCart";
+
+        }
+
+        private List<KeyValuePair<string, int>> toPairList(string list)
+        {
+            var products = list.Split(',');
+            string key="";
+            List <KeyValuePair<string, int>> output = new List<KeyValuePair<string, int>>();
+            for (int i = 0; i < products.Length - 1 ; i++)
+            { 
+                if (i % 2 == 0)
+                {
+                    key = products[i]; 
+                }
+                else
+                {
+                    output.Add(new KeyValuePair<string, int>(key, Int32.Parse(products[i])));
+                }
+                
+            }
+            return output;
+        }
 
         private List<String> toList(string products)
         {

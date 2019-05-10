@@ -39,15 +39,15 @@
                     dataType: "json",
                     success: function (response) {
                         if (response != "null") {
-                            window.location.href = baseUrl + "/Cart?store=" + store + "&cart" + response;
+                            window.location.href = baseUrl + "/Cart?store=" + store + "&cart=" + response;
                         }
                         else {
-                            alert('Failure - Store/Cart not available');
+                            alert('Failure - store/cart not available');
                         }
                     },
                     error: function (response) {
                         console.log(response);
-                        alert('Failure');
+                        alert('Failure - show cart error');
                     }
                 });
 

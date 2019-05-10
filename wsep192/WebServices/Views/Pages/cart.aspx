@@ -55,8 +55,9 @@
 
                 for (i = 0; i < products.length - 1; i++) {
                     if (i % 2 == 0) {
-                        str += '<tr class="text-center"><td class="remove"><input class="check" type="checkbox" id="' + products[i] + '"><br></td><td class="product-name"><p>' +
-                            products[i] + '</p></td><td class="quantity"><div class="input-group mb-4"><input style="width: 10px;" id="' + products[i] + '" type="text" name="quantity" class="quantity form-control input-number" value="';
+                        str += '<tr class="text-center"><td class="remove"><input class="check" id="check' + products[i]+'" type="checkbox" name="' + products[i] + '"><br></td><td class="product-name"><p>' +
+                            products[i] + '</p></td><td class="quantity"><div class="input-group mb-4"><input  id="quantityBox" style="width: 10px;" name="'
+                            + products[i] + '" type="text" class="quantity form-control input-number" value="';
                     }
                     else {
                         str += products[i] + '" min="1" max="100"></div ></td ></tr >';
@@ -71,11 +72,11 @@
 
 
             $("#ApplyButton").click(function () {
-                {
+                
                     var list = '';
                     $(".check").each(function (e) {
                         if ($(this).is(':checked'))
-                            list = list + $(this).attr('id') + ",";
+                            list = list + $(this).attr('name') + ",";
                     })
                     jQuery.ajax({
                         type: "GET",
@@ -83,28 +84,29 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            if (response != "false") {
-
-
-                                $(".input-group mb-4").each(function (e) {
-                                    var quantity = $(this).val();
-                                    var product = $(this).val();
-                                        jQuery.ajax({
-                                            type: "GET",
-                                            url: baseUrl + "/api/user/EditCart?product=" + product + "&quantity=" + quantity + "&store=" + store + "&user=" + user,
-                                            contentType: "application/json; charset=utf-8",
-                                            dataType: "json",
-                                            success: function (response) {
-                                                if (response = "false") {
-                                                    alert('Failure - Edit Product ' + product + ' Failed');
+                            if (response != "false" ) {
+                                    $('#quantityBox').each(function (e) {
+                                        var quantity = $(this).val();
+                                        var product = $(this).attr('name');
+                                        let removed = $('#check' + product).is(':checked');
+                                        if (removed == false) {
+                                            jQuery.ajax({
+                                                type: "GET",
+                                                url: baseUrl + "/api/user/EditCart?product=" + product + "&quantity=" + quantity + "&store=" + store + "&user=" + user,
+                                                contentType: "application/json; charset=utf-8",
+                                                dataType: "json",
+                                                success: function (response) {
+                                                    if (response == "false") {
+                                                        alert('Failure - edit product ' + product + ' failed');
+                                                    }
+                                                },
+                                                error: function (response) {
+                                                    alert('Failure - edit product ' + product + ' error');
                                                 }
-                                            },
-                                            error: function (response) {
-                                                alert('Failure - Edit Product ' + product + ' Error');
-                                            }
-                                        });
-                                })
-
+                                            });
+                                        }
+                                    })
+                                
                                 jQuery.ajax({
                                     type: "GET",
                                     url: baseUrl + "/api/user/ShoppingCart?store=" + store + "&user=" + user,
@@ -112,27 +114,28 @@
                                     dataType: "json",
                                     success: function (response) {
                                         if (response != "false") {
-                                            window.location.href = baseUrl + "/Cart?store=" + store + "&cart" + response;
+                                            window.location.href = baseUrl + "/Cart?store=" + store + "&cart=" + response;
+                                            
                                         }
                                         else {
-                                            alert('Failure - Show Cart Failed');
+                                            alert('Failure - show cart failed');
                                         }
                                     },
                                     error: function (response) {
-                                        alert('Failure - Show Cart Error');
+                                        alert('Failure - show cart error');
                                     }
                                 });
 
                             }
                             else {
-                                alert('Remove Products Failed');
+                                alert('Remove products failed');
                             }
                         },
                         error: function (response) {
-                            alert('Failure - Remove Products Error');
+                            alert('Failure - remove products error');
                         }
                     });
-                }
+                
 
             });
         });
