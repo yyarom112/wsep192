@@ -42,12 +42,12 @@
                             window.location.href = baseUrl + "/Cart?store=" + store + "&cart=" + response;
                         }
                         else {
-                            alert('Failure - Store/Cart not available');
+                            alert('Failure - store/cart not available');
                         }
                     },
                     error: function (response) {
                         console.log(response);
-                        alert('Failure - Show Cart Error');
+                        alert('Failure - show cart error');
                     }
                 });
 

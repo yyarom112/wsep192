@@ -97,11 +97,11 @@
                                                 dataType: "json",
                                                 success: function (response) {
                                                     if (response == "false") {
-                                                        alert('Failure - Edit Product ' + product + ' Failed');
+                                                        alert('Failure - edit product ' + product + ' failed');
                                                     }
                                                 },
                                                 error: function (response) {
-                                                    alert('Failure - Edit Product ' + product + ' Error');
+                                                    alert('Failure - edit product ' + product + ' error');
                                                 }
                                             });
                                         }
@@ -118,21 +118,21 @@
                                             
                                         }
                                         else {
-                                            alert('Failure - Show Cart Failed');
+                                            alert('Failure - show cart failed');
                                         }
                                     },
                                     error: function (response) {
-                                        alert('Failure - Show Cart Error');
+                                        alert('Failure - show cart error');
                                     }
                                 });
 
                             }
                             else {
-                                alert('Remove Products Failed');
+                                alert('Remove products failed');
                             }
                         },
                         error: function (response) {
-                            alert('Failure - Remove Products Error');
+                            alert('Failure - remove products error');
                         }
                     });
                 

@@ -83,14 +83,14 @@
                     dataType: "json",
                     success: function (response) {
                         if (response != "false") {
-                            alert('Products added to cart succesfully');
+                            alert('Products added to cart successfully');
                         }
                         else {
-                            alert('Failure - Add To Cart Failed');
+                            alert('Failure - add to cart failed');
                         }
                     },
                     error: function (response) {
-                        alert('Failure - Add To Cart Error');
+                        alert('Failure - add to cart error');
                     }
                 });
 

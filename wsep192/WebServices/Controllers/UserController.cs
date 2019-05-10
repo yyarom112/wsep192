@@ -79,7 +79,9 @@ namespace WebService.Controllers
         [HttpGet]
         public string AddtoCart(String list, String store, String user)
         {
-            List<KeyValuePair<string,int>> l = toPairList(list);
+            List<KeyValuePair<string, int>> l=null;
+            if (list!=null)
+                l= toPairList(list);
             bool res = service.addProductsToCart(l, store, user);
             switch (res)
             {
