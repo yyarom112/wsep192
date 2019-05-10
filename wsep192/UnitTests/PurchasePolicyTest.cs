@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
 using src.Domain.Dataclass;
@@ -11,7 +12,9 @@ namespace UnitTests
     {
         private Store store;
         private User admin;
+        private User manager;
         private Role OwnerSotre;
+        private Role managerSotre;
         private Product p1;
         private Product p2;
         private ProductInStore ps1;
@@ -31,19 +34,31 @@ namespace UnitTests
             store = new Store(0, "store");
             OwnerSotre = new Owner(store, admin);
             store.RolesDictionary.Add(admin.Id, store.Roles.AddChild(OwnerSotre));
+            admin.Roles.Add(store.Id, OwnerSotre);
+            manager = new User(1, "manager", "1234", false, true);
+            manager.State = state.signedIn;
+            List<int> permmision = new List<int>();
+            permmision.Add(2);
+            managerSotre = new Manager(store, manager, permmision);
+            store.RolesDictionary.Add(manager.Id, store.Roles.AddChild(managerSotre));
+            manager.Roles.Add(store.Id, managerSotre);
+
             p1 = new Product(1, "p1", null, null, 1);
             ps1 = new ProductInStore(10, store, p1);
             p2 = new Product(2, "p2", null, null, 10);
             ps2 = new ProductInStore(10, store, p2);
             pcp = new ProductConditionPolicy(0, 1, 0, 10, LogicalConnections.and);
             icp = new inventoryConditionPolicy(1, 1, 5, LogicalConnections.and);
-            bcp = new BuyConditionPolicy(2, 2, 5, 10, 20);
-            ucp = new UserConditionPolicy(3, "Tel Aviv", true);
+            bcp = new BuyConditionPolicy(2, 2, 5, 10, 20, LogicalConnections.and);
+            ucp = new UserConditionPolicy(3, "Tel Aviv", true, LogicalConnections.and);
             //itcp= if(buy p1 min buy =0 &max buy =10) then (min inventory =5)
-            itcp = new IfThenCondition(4, pcp, icp);
+            itcp = new IfThenCondition(4, pcp, icp, LogicalConnections.and);
             lcp = new LogicalConditionPolicy(5, LogicalConnections.and, LogicalConnections.and);
         }
 
+
+
+        //------------------------------@@ test path of check function @@-------------------------------------
         [TestMethod]
         public void ProductConditionPolicy_CheckCondition()
         {
@@ -68,7 +83,7 @@ namespace UnitTests
             setup();
             List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
-            Assert.AreEqual(true, pcp.CheckCondition(cart, null));
+            Assert.AreEqual(true, icp.CheckCondition(cart, null));
             cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
             Assert.AreEqual(true, icp.CheckCondition(cart, null));
@@ -305,7 +320,7 @@ namespace UnitTests
             lcpP2.addChild(pcpP2);
             lcpP2.addChild(icpP2);
 
-            itcp = new IfThenCondition(7, lcpP1, lcpP2);
+            itcp = new IfThenCondition(7, lcpP1, lcpP2, LogicalConnections.and);
 
 
             ProductInStore ps3 = new ProductInStore(10, store, new Product(3, "", "", "", 1));
@@ -332,6 +347,265 @@ namespace UnitTests
             Assert.AreEqual(true, itcp.CheckCondition(cart, null), "Both are satisfied");
 
 
+        }
+        [TestMethod]
+        public void User_searchRoleByStoreIDWithValidatePermmision()
+        {
+            setup();
+            ManagerStub manger = new ManagerStub(store, manager,pcp, 2);
+            manager.Roles.Add(store.Id, manger);
+            RoleStub adminRole = new RoleStub(new Store(-1, ""), admin, pcp);
+            admin.Roles.Add(-1, adminRole);
+            Assert.AreEqual(adminRole, admin.searchRoleByStoreIDWithValidatePermmision(-1, admin.Id), "Owner validate check");
+            Assert.AreEqual(null, admin.searchRoleByStoreIDWithValidatePermmision(store.Id + 1, admin.Id), "A mistake in the identity number of the store");
+            Assert.AreEqual(null, this.manager.searchRoleByStoreIDWithValidatePermmision(-1, 0), "No permissions are allowed");
+            Assert.AreEqual(manger, this.manager.searchRoleByStoreIDWithValidatePermmision(store.Id, 2), "A good case");
+        }
+
+        [TestMethod]
+        public void User_addSimplePurchasePolicy()
+        {
+            setup();
+            ManagerStub manger = new ManagerStub(new Store(-1, ""), manager,pcp, 2);
+            manager.Roles.Add(-1, manger);
+            RoleStub adminRole = new RoleStub(new Store(-1, ""), admin, pcp);
+            admin.Roles.Add(-1, adminRole);
+            Assert.AreEqual(pcp, admin.addSimplePurchasePolicy(null,-1), "Owner validate check");
+            Assert.AreEqual(null, admin.addSimplePurchasePolicy(null, store.Id+1), "A mistake in the identity number of the store");
+            Assert.AreEqual(pcp, this.manager.addSimplePurchasePolicy(null, -1), "A good case");
+        }
+
+        [TestMethod]
+        public void User_addComplexPurchasePolicy()
+        {
+            setup();
+            ManagerStub manger = new ManagerStub(new Store(-1, ""), manager, pcp, 2);
+            manager.Roles.Add(-1, manger);
+            RoleStub adminRole = new RoleStub(new Store(-1, ""), admin, pcp);
+            admin.Roles.Add(-1, adminRole);
+            Assert.AreEqual(pcp, admin.addComplexPurchasePolicy(null, -1), "Owner validate check");
+            Assert.AreEqual(null, admin.addComplexPurchasePolicy(null, store.Id + 1), "A mistake in the identity number of the store");
+            Assert.AreEqual(pcp, this.manager.addComplexPurchasePolicy(null, -1), "A good case");
+        }
+
+
+        //------------------------------@@ test path of List<object>->Compelx Purches Policy @@-------------------------------------
+
+
+
+        [TestMethod]
+        public void Store_ConvertObjectToLogicalConnections()
+        {
+            setup();
+            Assert.AreEqual(LogicalConnections.and, store.ConvertObjectToLogicalConnections((Object)0));
+            Assert.AreEqual(LogicalConnections.or, store.ConvertObjectToLogicalConnections((Object)1));
+        }
+
+        [TestMethod]
+        public void Store_factoryProductConditionPolicy()
+        {
+            setup();
+            List<object> details = new List<object>();
+            details.Add(0);
+            details.Add(0);
+            details.Add(ps1.Product.Id);
+            details.Add(2);
+            details.Add(10);
+            details.Add(LogicalConnections.and);
+            PurchasePolicy pcp = store.factoryProductConditionPolicy(details, 0);
+            List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
+            Assert.AreEqual(true, pcp.CheckCondition(cart, null));
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
+            Assert.AreEqual(false, pcp.CheckCondition(cart, null));
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 11));
+            Assert.AreEqual(false, pcp.CheckCondition(cart, null));
+
+        }
+
+
+        [TestMethod]
+        public void Store_factoryinventoryConditionPolicy()
+        {
+            setup();
+            List<object> details = new List<object>();
+            details.Add(1);
+            details.Add(1);
+            details.Add(1);
+            details.Add(5);
+            details.Add(LogicalConnections.and);
+            PurchasePolicy icp = store.factoryinventoryConditionPolicy(details, 0);
+            List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
+            Assert.AreEqual(true, icp.CheckCondition(cart, null));
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
+            Assert.AreEqual(true, icp.CheckCondition(cart, null));
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
+            Assert.AreEqual(false, icp.CheckCondition(cart, null));
+
+        }
+
+
+        [TestMethod]
+        public void Store_factoryBuyConditionPolicy()
+        {
+            setup();
+            List<object> details = new List<object>();
+            details.Add(2);
+            details.Add(2);
+            details.Add(2);
+            details.Add(5);
+            details.Add(10);
+            details.Add(20);
+            details.Add(LogicalConnections.and);
+            PurchasePolicy bcp = store.factoryBuyConditionPolicy(details, 0);
+
+            List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 1));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // Too few products
+
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // Too much products
+
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 2));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // Too cheap
+
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 3));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // too expensive
+
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 2));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
+            Assert.AreEqual(true, bcp.CheckCondition(cart, null)); // proper
+        }
+
+
+        [TestMethod]
+        public void Store_factoryUserConditionPolicy()
+        {
+            setup();
+            List<object> details = new List<object>();
+            details.Add(3);
+            details.Add(3);
+            details.Add("Tel Aviv");
+            details.Add(true);
+            details.Add(LogicalConnections.and);
+            PurchasePolicy ucp = store.factoryUserConditionPolicy(details, 0);
+
+            UserDetailes user = new UserDetailes("", false);
+            Assert.AreEqual(false, ucp.CheckCondition(null, user), "Registeration and Adress check fail");
+
+            user.Isregister = true;
+            Assert.AreEqual(false, ucp.CheckCondition(null, user), "The adress check fail");
+
+            user.Isregister = false;
+            user.Adress = "Tel Aviv";
+            Assert.AreEqual(false, ucp.CheckCondition(null, user), "The registeretion check fail");
+
+            user.Isregister = true;
+            Assert.AreEqual(true, ucp.CheckCondition(null, user), "Registeration and Adress check fail");
+
+        }
+
+
+
+        //[TestMethod]
+        //public void Store_factoryIfThenCondition()
+        //{
+
+        //    setup();
+        //    List<object> Maindetails = new List<object>();
+        //    Maindetails.Add(4);
+        //    Maindetails.Add(4);
+
+        //    List<object>  details = new List<object>();
+        //    details.Add(0);
+        //    details.Add(0);
+        //    details.Add(ps1.Product.Id);
+        //    details.Add(2);
+        //    details.Add(10);
+        //    details.Add(LogicalConnections.and);
+
+        //    Maindetails.Add(details.Cast<object>().ToArray());
+
+
+        //    details = new List<object>();
+        //    details.Add(1);
+        //    details.Add(1);
+        //    details.Add(1);
+        //    details.Add(5);
+        //    details.Add(LogicalConnections.and);
+
+        //    Maindetails.Add(details.Cast<object>().ToArray());
+
+        //    Maindetails.Add(LogicalConnections.and);
+        //    PurchasePolicy itcp = store.factoryIfThenCondition(details, 0);
+
+        //    List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
+        //    cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
+        //    Assert.AreEqual(true, itcp.CheckCondition(cart, null), "The empty case - the product is not related to the purchase policy");
+        //    cart = new List<KeyValuePair<ProductInStore, int>>();
+        //    cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
+        //    Assert.AreEqual(false, itcp.CheckCondition(cart, null), "Failure on condition is not satisfactory a");
+        //    cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 11));
+        //    Assert.AreEqual(false, itcp.CheckCondition(cart, null), "Failure on condition is not satisfactory b");
+        //    cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
+        //    Assert.AreEqual(false, itcp.CheckCondition(cart, null), "then failure - the then condition are not satisfied");
+        //    cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
+        //    Assert.AreEqual(false, itcp.CheckCondition(cart, null), "All conditions are to be satisfied");
+
+
+
+        //}
+    }
+
+
+
+    //-----------------------@@ Stub Class-------------------------
+
+
+
+    class RoleStub : Role
+    {
+        private PurchasePolicy retPurchasePolicy;
+
+        public RoleStub(Store store, User user, PurchasePolicy retVal) : base(store, user)
+        {
+            this.retPurchasePolicy = retVal;
+        }
+
+        public override PurchasePolicy addSimplePurchasePolicy(PurchesPolicyData purchesData)
+        {
+            return retPurchasePolicy;
+        }
+
+        public override PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData)
+        {
+
+            return retPurchasePolicy;
+        }
+    }
+
+    class ManagerStub : RoleStub
+    {
+        private int permission;
+
+        public ManagerStub(Store store, User user, PurchasePolicy retPurchasePolicy, int permissions) : base(store, user, retPurchasePolicy)
+        {
+            permission = permissions;
+        }
+
+
+        public bool validatePermission(int permission)
+        {
+            return this.permission == permission;
         }
     }
 }

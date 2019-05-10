@@ -368,12 +368,12 @@ namespace src.Domain
                     LogManager.Instance.WriteToLog("inventory Condition Policy add to store " + this.name + " successfully");
                     return toInsert1;
                 case 2:
-                    BuyConditionPolicy toinsert2 = new BuyConditionPolicy(purchesData.Id, purchesData.Min, purchesData.Max, purchesData.SumMin, purchesData.SumMax);
+                    BuyConditionPolicy toinsert2 = new BuyConditionPolicy(purchesData.Id, purchesData.Min, purchesData.Max, purchesData.SumMin, purchesData.SumMax, purchesData.Act);
                     purchasePolicy.Add(toinsert2);
                     LogManager.Instance.WriteToLog("Buy Condition Policy add to store " + this.name + " successfully");
                     return toinsert2;
                 case 3:
-                    UserConditionPolicy toinsert3 = new UserConditionPolicy(purchesData.Id, purchesData.Adress, purchesData.Isregister);
+                    UserConditionPolicy toinsert3 = new UserConditionPolicy(purchesData.Id, purchesData.Adress, purchesData.Isregister, purchesData.Act);
                     purchasePolicy.Add(toinsert3);
                     LogManager.Instance.WriteToLog("User Condition Policy add to store " + this.name + " successfully");
                     return toinsert3;
@@ -383,105 +383,130 @@ namespace src.Domain
             }
         }
 
+        public PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData)
+        {
+            
+            return addComplexPurchasePolicyRec(purchesData,-1);
+        }
+
+
         public PurchasePolicy addComplexPurchasePolicyRec(List<Object> purchesData, int multiplcation)
         {
-            if (purchesData == null)
-                return null;
-            switch ((int)purchesData.First())
-            {
-                case 0:
-                    LogicalConnections log1;
-                    if ((int)purchesData.ElementAt(5) == 0)
-                        log1 = LogicalConnections.and;
-                    else
-                        log1 = LogicalConnections.or;
-                    try
-                    {
-                        return new ProductConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), (int)purchesData.ElementAt(4), log1);
-                    } catch(Exception e)
-                    {
-                        return null;
-                    }
-                case 1:
-                    LogicalConnections log2;
-                    if ((int)purchesData.ElementAt(4) == 0)
-                        log2 = LogicalConnections.and;
-                    else
-                        log2 = LogicalConnections.or;
-                    try
-                    {
-                        return new inventoryConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), log2);
-                    }
-                    catch (Exception e)
-                    {
-                        return null;
-                    }
-                case 2:
-                    LogicalConnections log3;
-                    if ((int)purchesData.ElementAt(6) == 0)
-                        log3 = LogicalConnections.and;
-                    else
-                        log3 = LogicalConnections.or;
-                    try
-                    {
-                        return new BuyConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), (int)purchesData.ElementAt(4), (int)purchesData.ElementAt(5), log3);
-                    }
-                    catch (Exception e)
-                    {
-                        return null;
-                    }
-                case 3:
-                    LogicalConnections log4;
-                    if ((int)purchesData.ElementAt(4) == 0)
-                        log4 = LogicalConnections.and;
-                    else
-                        log4 = LogicalConnections.or;
-                    try
-                    {
-                        return new UserConditionPolicy((int)purchesData.ElementAt(1), (string)purchesData.ElementAt(2), (bool)purchesData.ElementAt(3), log4);
-                    }
-                    catch (Exception e)
-                    {
-                        return null;
-                    }
-                case 4:
-                    LogicalConnections log5;
-                    if ((int)purchesData.ElementAt(4) == 0)
-                        log5 = LogicalConnections.and;
-                    else
-                        log5 = LogicalConnections.or;
-                    try
-                    {
-                        List<Object> oprand1 = (List<Object>)purchesData.ElementAt(2);
-                        oprand1.Insert(1, (int)purchesData.ElementAt(1));
-                        List<Object> oprand2 = (List<Object>)purchesData.ElementAt(3);
-                        oprand1.Insert(1, (int)purchesData.ElementAt(1));
-                        return new IfThenCondition((int)purchesData.ElementAt(1), addComplexPurchasePolicyRec(oprand1,multiplcation), addComplexPurchasePolicyRec(oprand2, multiplcation), log5);
-                    }
-                    catch (Exception e)
-                    {
-                        return null;
-                    }
-                case 5:
-                    LogicalConnections login;
-                    if ((int)purchesData.ElementAt(4) == 0)
-                        log5 = LogicalConnections.and;
-                    else
-                        log5 = LogicalConnections.or;
-                    try
-                    {
-                        List<Object> oprand1 = (List<Object>)purchesData.ElementAt(2);
-                        oprand1.Insert(1, (int)purchesData.ElementAt(1));
-                        List<Object> oprand2 = (List<Object>)purchesData.ElementAt(3);
-                        oprand1.Insert(1, (int)purchesData.ElementAt(1));
-                        return new IfThenCondition((int)purchesData.ElementAt(1), addComplexPurchasePolicyRec(oprand1, multiplcation), addComplexPurchasePolicyRec(oprand2, multiplcation), log5);
-                    }
-                    catch (Exception e)
-                    {
-                        return null;
-                    }
+            //    if (purchesData == null)
+            //        return null;
+            //    switch ((int)purchesData.First())
+            //    {
+            //        case 0:
 
+            //        case 1:
+
+            //        case 2:
+
+            //        case 3:
+
+            //        case 4:
+
+            //        case 5:
+            //            LogicalConnections inLog, outLog;
+            //            if ((int)purchesData.ElementAt(2) == 0)
+            //                inLog = LogicalConnections.and;
+            //            else
+            //                inLog = LogicalConnections.or;
+            //            if ((int)purchesData.ElementAt(3) == 0)
+            //                outLog = LogicalConnections.and;
+            //            else
+            //                outLog = LogicalConnections.or;
+            //            try
+            //            {
+            //                List<List<Object>> children = (List<List<Object>>)purchesData.ElementAt(4);
+            //                LogicalConditionPolicy lcp = new LogicalConditionPolicy((int)purchesData.ElementAt(1), inLog, outLog);
+            //                foreach (List<Object> child in children)
+            //                    lcp.addChild(addComplexPurchasePolicyRec(child, multiplcation));
+            //                return lcp;
+            //            }
+            //            catch (Exception e)
+            //            {
+            //                return null;
+            //            }
+
+            //    }
+            return null;
+        }
+
+        internal PurchasePolicy factoryProductConditionPolicy(List<Object> purchesData, int multiplcation)
+        {
+
+            try
+            {
+                return new ProductConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), (int)purchesData.ElementAt(4), ConvertObjectToLogicalConnections(5));
             }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        internal PurchasePolicy factoryinventoryConditionPolicy(List<Object> purchesData, int multiplcation)
+        {
+            try
+            {
+                return new inventoryConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), ConvertObjectToLogicalConnections(purchesData.ElementAt(4)));
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        internal PurchasePolicy factoryBuyConditionPolicy(List<Object> purchesData, int multiplcation)
+        {
+            try
+            {
+                return new BuyConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), (int)purchesData.ElementAt(4), (int)purchesData.ElementAt(5), ConvertObjectToLogicalConnections(purchesData.ElementAt(6)));
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        internal PurchasePolicy factoryUserConditionPolicy(List<Object> purchesData, int multiplcation)
+        {
+            try
+            {
+                return new UserConditionPolicy((int)purchesData.ElementAt(1), (string)purchesData.ElementAt(2), (bool)purchesData.ElementAt(3), ConvertObjectToLogicalConnections(purchesData.ElementAt(4)));
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        //internal PurchasePolicy factoryIfThenCondition(List<Object> purchesData, int multiplcation)
+        //{
+        //    if (multiplcation == -1)
+        //        multiplcation = (int)ConvertObjectToLogicalConnections(purchesData.ElementAt(4));
+        //    try
+        //    {
+        //        List<Object> oprand1 = (List<Object>)purchesData.ElementAt(2);
+        //        oprand1.Insert(1, (int)purchesData.ElementAt(1));
+        //        List<Object> oprand2 = (List<Object>)purchesData.ElementAt(3);
+        //        oprand1.Insert(1, (int)purchesData.ElementAt(1));
+        //        return new IfThenCondition((int)purchesData.ElementAt(1), addComplexPurchasePolicyRec(oprand1, multiplcation), addComplexPurchasePolicyRec(oprand2, multiplcation), ConvertObjectToLogicalConnections(purchesData.ElementAt(4)));
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return null;
+        //    }
+        //}
+
+        //log=0=>and otherwise=>or
+        internal LogicalConnections ConvertObjectToLogicalConnections(object log)
+        {
+            if ((int)log == 0)
+                return LogicalConnections.and;
+            else
+                return LogicalConnections.or;
         }
 
     }
