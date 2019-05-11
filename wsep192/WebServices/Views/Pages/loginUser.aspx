@@ -50,7 +50,7 @@
                         dataType: "json",
                         success: function (response) {
                             if (response == "User successfuly logged in") {
-                                document.cookie = "LoggedUser=" + username + ';'
+                                document.cookie = "LoggedUser=" + username;
                                 alert(response);
                                 window.location.href = baseUrl + "/";
                             }
