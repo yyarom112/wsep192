@@ -66,18 +66,14 @@ namespace UnitTests
             setUp();
             ShoppingBasket basket = new ShoppingBasket();
             basket.ShoppingCarts.Add(store.Id, new StubCart3(store.Id, null, new List<KeyValuePair<string, int>>()));
-            
- 
             //empty cart
             Assert.AreEqual(0, basket.showCart(store.Id).Count);
-
             basket.ShoppingCarts.Remove(store.Id);
             List<KeyValuePair<string, int>> list = new List<KeyValuePair<string, int>>();
-            //list.Add(new KeyValuePair<string, int>(p.ProductName, 3));
-           // Assert.AreEqual(null, cart.showCart());
+            list.Add(new KeyValuePair<string, int>("p", 3));
             basket.ShoppingCarts.Add(store.Id, new StubCart3(store.Id, null, list));
             //non-empty cart
-            //Assert.AreEqual(list[0].isEqual(basket.showCart(store.Id)[0]));
+            Assert.IsTrue(list[0].Equals(basket.showCart(store.Id)[0]));
 
         }
 
