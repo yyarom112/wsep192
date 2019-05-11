@@ -52,9 +52,10 @@ namespace UnitTests
             //empty cart
             Assert.AreEqual(0, system.showCart(user.Id, store.Id).Count);
             list = new List<KeyValuePair<string, int>>();
-            KeyValuePair<string, int> pair1 = new KeyValuePair<string, int>("p1", 3);
+            KeyValuePair<string, int> pair1 = new KeyValuePair<string, int>("p", 3);
             list.Add(pair1);
             user = new StubUser2(1, null, null, false, false, list);
+            system.Users[1] = user;
             //non-empty cart
             Assert.IsTrue(list[0].Equals(system.showCart(user.Id, store.Id)[0]));
 
