@@ -50,13 +50,20 @@ namespace src.ServiceLayer
             bool flag = true;
             string user = instance.initUser();
             flag = flag & instance.register("user", "user", user);
-            flag = flag & instance.openStore("store", "user");
-            flag = flag & instance.createNewProductInStore("product", "cat", "details", 10, "store", "user");
-            List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
-            products.Add(new KeyValuePair<string, int>("product", 10));
-            if (!flag)
-                return flag;
-            flag = flag & instance.addProductsInStore(products, "store", "user");
+            string[] stores = { "Zara", "Bershka" , "Pull&Bear" , "H&M" ,"Forever21", "Castro", "Renuar", "AmericanEagle" };
+            string[] details = { "New!", "On Sale!!", "Last chance", "Hot staff" };
+            string[] cats = {"Tops","Jeans","Shoes","Skirts"};
+            for (int i = 0; i < stores.Length && flag; i++) {
+                flag = flag & instance.openStore(stores[i], "user");
+                for (int j = 0; j < 3 && flag; j++) {
+                    string cat = cats[new Random().Next(0, 4)];
+                    string[] product = { cat + (j + 1).ToString(), cat, details[new Random().Next(0, 4)], stores[i] };
+                    flag = flag & instance.createNewProductInStore(product[0], product[1], product[2], new Random().Next(10, 100), product[3], "user");
+                    List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
+                    products.Add(new KeyValuePair<string, int>(product[0], new Random().Next(10, 100)));
+                    flag = flag & instance.addProductsInStore(products, stores[i], "user");
+                }
+            }
             return flag;
 
         }

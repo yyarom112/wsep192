@@ -184,3 +184,513 @@ ShoppingCart:editProductQuantityInCart success
 
 Successfully closed the basket.
 
+5/11/2019 19:11:48: test log
+5/11/2019 19:12:10: test log
+5/11/2019 19:12:13: TradingSystem-open storestore success
+
+5/11/2019 19:12:13: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:12:13: TradingSystem-add product to store0 -success
+5/11/2019 19:12:20: Add to cart success. /n
+5/11/2019 19:12:25: ShoppingCart:showCart success
+
+5/11/2019 19:12:29: ShoppingCart:removeProductsFromCart success
+
+5/11/2019 19:12:29: ShoppingCart:showCart success
+
+5/11/2019 19:12:37: Add to cart success. /n
+5/11/2019 19:13:05: Add to cart success. /n
+5/11/2019 19:13:11: ShoppingCart:showCart success
+
+5/11/2019 19:13:14: ShoppingCart:removeProductsFromCart success
+
+5/11/2019 19:13:14: ShoppingCart:editProductQuantityInCart success
+
+5/11/2019 19:13:14: ShoppingCart:showCart success
+
+5/11/2019 19:55:23: test log
+5/11/2019 19:55:50: test log
+5/11/2019 19:55:52: TradingSystem-open storeZara success
+
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store0 -success
+5/11/2019 19:55:52: TradingSystem-open storeBershka success
+
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store1 -success
+5/11/2019 19:55:52: TradingSystem-open storePull&Bear success
+
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store2 -success
+5/11/2019 19:55:52: TradingSystem-open storeH&M success
+
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store3 -success
+5/11/2019 19:55:52: TradingSystem-open storeForever21 success
+
+5/11/2019 19:55:52: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store4 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store4 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store4 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:52: TradingSystem-add product to store4 -success
+5/11/2019 19:55:52: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store4 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store4 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store4 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store4 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store4 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store4 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store4 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store4 -success
+5/11/2019 19:55:53: TradingSystem-open storeCastro success
+
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store5 -success
+5/11/2019 19:55:53: TradingSystem-open storeRenuar success
+
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store6 -success
+5/11/2019 19:55:53: TradingSystem-open storeAmericanEagle success
+
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:55:53: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:55:53: TradingSystem-add product to store7 -success
+5/11/2019 19:57:57: test log
+5/11/2019 19:58:09: test log
+5/11/2019 19:58:12: TradingSystem-open storeZara success
+
+5/11/2019 19:58:12: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store0 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store0 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store0 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store0 -success
+5/11/2019 19:58:12: TradingSystem-open storeBershka success
+
+5/11/2019 19:58:12: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store1 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store1 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store1 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store1 -success
+5/11/2019 19:58:12: TradingSystem-open storePull&Bear success
+
+5/11/2019 19:58:12: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store2 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store2 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store2 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store2 -success
+5/11/2019 19:58:12: TradingSystem-open storeH&M success
+
+5/11/2019 19:58:12: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store3 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store3 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store3 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store3 -success
+5/11/2019 19:58:12: TradingSystem-open storeForever21 success
+
+5/11/2019 19:58:12: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store4 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store4 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store4 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store4 -success
+5/11/2019 19:58:12: TradingSystem-open storeCastro success
+
+5/11/2019 19:58:12: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store5 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store5 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store5 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store5 -success
+5/11/2019 19:58:12: TradingSystem-open storeRenuar success
+
+5/11/2019 19:58:12: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store6 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store6 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store6 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store6 -success
+5/11/2019 19:58:12: TradingSystem-open storeAmericanEagle success
+
+5/11/2019 19:58:12: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store7 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store7 -success
+5/11/2019 19:58:12: TradingSystem-create new product in store7 -success
+
+5/11/2019 19:58:12: TradingSystem-add product to store7 -success
+5/11/2019 20:04:55: test log
+5/11/2019 20:16:47: test log
+5/11/2019 20:16:55: TradingSystem-open storeZara success
+
+5/11/2019 20:16:55: TradingSystem-create new product in store0 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store0 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store0 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store0 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store0 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store0 -success
+5/11/2019 20:16:55: TradingSystem-open storeBershka success
+
+5/11/2019 20:16:55: TradingSystem-create new product in store1 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store1 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store1 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store1 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store1 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store1 -success
+5/11/2019 20:16:55: TradingSystem-open storePull&Bear success
+
+5/11/2019 20:16:55: TradingSystem-create new product in store2 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store2 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store2 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store2 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store2 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store2 -success
+5/11/2019 20:16:55: TradingSystem-open storeH&M success
+
+5/11/2019 20:16:55: TradingSystem-create new product in store3 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store3 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store3 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store3 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store3 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store3 -success
+5/11/2019 20:16:55: TradingSystem-open storeForever21 success
+
+5/11/2019 20:16:55: TradingSystem-create new product in store4 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store4 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store4 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store4 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store4 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store4 -success
+5/11/2019 20:16:55: TradingSystem-open storeCastro success
+
+5/11/2019 20:16:55: TradingSystem-create new product in store5 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store5 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store5 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store5 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store5 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store5 -success
+5/11/2019 20:16:55: TradingSystem-open storeRenuar success
+
+5/11/2019 20:16:55: TradingSystem-create new product in store6 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store6 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store6 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store6 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store6 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store6 -success
+5/11/2019 20:16:55: TradingSystem-open storeAmericanEagle success
+
+5/11/2019 20:16:55: TradingSystem-create new product in store7 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store7 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store7 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store7 -success
+5/11/2019 20:16:55: TradingSystem-create new product in store7 -success
+
+5/11/2019 20:16:55: TradingSystem-add product to store7 -success
