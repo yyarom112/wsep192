@@ -37,7 +37,7 @@ namespace UnitTests
             user = new User(1, null, null, false, false);
             basket_user = user.Basket;
 
-            store = new Store(-1, "store", null, null);
+            store = new Store(-1, "store");
 
             p1 = new Product(0, "first", null, "", 5000);
             p2 = new Product(1, "second", null, "", 5000);
@@ -226,7 +226,7 @@ namespace UnitTests
             }
 
         }
-        public override int cartCheckout()
+        public override int cartCheckout(src.Domain.Dataclass.UserDetailes user)
         {
             return  retval;
         }

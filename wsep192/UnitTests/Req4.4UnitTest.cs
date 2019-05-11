@@ -24,7 +24,7 @@ namespace UnitTests
             discountPolicies = new List<DiscountPolicy>();
             purchasePolicies = new List<PurchasePolicy>();
             user = new User(1, "aviv", "123", false, false);
-            store = new Store(0, "blabla", purchasePolicies, discountPolicies);
+            store = new Store(0, "blabla");
             Owner owner = new Owner(store, user);
             user.Roles.Add(store.Id, owner);
             TreeNode<Role> ownerNode = store.Roles.AddChild(owner);

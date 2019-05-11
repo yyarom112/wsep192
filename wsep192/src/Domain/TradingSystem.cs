@@ -1,4 +1,6 @@
-﻿using System;
+﻿using src.Domain;
+using src.Domain.Dataclass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -209,7 +211,7 @@ namespace src.Domain
             foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
             {
                 cart.Store.updateCart(cart, "-");
-                storeToPay.Add(cart.Store.Id, cart.cartCheckout());
+                storeToPay.Add(cart.Store.Id, cart.cartCheckout(new UserDetailes(this.Users[userID].Address, this.Users[userID].IsRegistered)));
             }
             foreach(KeyValuePair<int,int> storeSum in storeToPay)
             {
@@ -323,7 +325,7 @@ namespace src.Domain
             List<DiscountPolicy> discountPolicy = new List<DiscountPolicy>();
             if (!stores.ContainsKey(storeCounter))
             {
-                Store store = new Store(storeCounter, storeName, purchasePolicy, discountPolicy);
+                Store store = new Store(storeCounter, storeName);
                 if (Users.ContainsKey(userID) && Users[userID].IsRegistered)
                 {
                     Stores.Add(storeCounter, store);
@@ -492,5 +494,57 @@ namespace src.Domain
             LogManager.Instance.WriteToLog("TradingSystem-edit product from store fail- the store does not exists\n");
             return false;
         }
+        public bool addSimplePurchasePolicy(int type, int first, int second, int third, int fourth, int act, string adress, bool isregister, int storeID, int userID)
+        {
+            PurchesPolicyData purchesData;
+            switch (type)
+            {
+                case 0:
+                    if (first < 0 || second < 0 || third < 0 || act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, third, -1, -1, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 1:
+                    if (first < 0 || second < 0 || act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, -1, -1, -1, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 2:
+                    if (first < 0 || second < 0 || third < 0 || fourth < 0 || act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, first, second, third, fourth, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 3:
+                    if (((adress ==null || adress.Equals("")) && isregister==false)|| act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++,-1,-1,-1,-1,-1,-1, ConvertIntToLogicalConnections(act), adress, isregister);
+                    break;
+                default:
+                    LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- type " + type + " is not recognized\n");
+                    return false;
+            }
+            if (this.Users.ContainsKey(userID))
+                return Users[userID].addSimplePurchasePolicy(purchesData, storeID) != null;
+            LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- User does not exist\n");
+            return false;
+        }
+
+        internal LogicalConnections ConvertIntToLogicalConnections(int log)
+        {
+            if (log == 0)
+                return LogicalConnections.and;
+            else
+                return LogicalConnections.or;
+        }
+        public bool addComplexPurchasePolicy(List<Object> purchesData, int storeID, int userID)
+        {
+            if (this.Users.ContainsKey(userID))
+                return Users[userID].addComplexPurchasePolicy(purchesData, storeID) != null;
+            LogManager.Instance.WriteToLog("Trading System- addComplexPurchasePolicy- User does not exist\n");
+            return false;
+        }
     }
+
 }
+
+

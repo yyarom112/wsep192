@@ -44,7 +44,7 @@ namespace IntegrationTests
             basket_user = user.Basket;
             manager = new User(2, "a", "1234", false, true);
 
-            store = new Store(-1, "store", null, null);
+            store = new Store(-1, "store");
 
             storeOwner = new Owner(store, admin);
             storeManager = new Manager(store, manager, new List<int>());

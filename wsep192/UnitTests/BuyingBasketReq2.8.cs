@@ -37,7 +37,7 @@ namespace UnitTests
             user = new User(1, null, null, false, false);
             basket_user = user.Basket;
 
-            store = new Store(-1, "store", null, null);
+            store = new Store(-1, "store");
 
             p1 = new Product(0, "first", "","", 5000);
             p2 = new Product(1, "second", "", "", 5000);
@@ -67,7 +67,7 @@ namespace UnitTests
         public void TestMethod1_cartCheckout_without_discount_in_policy()
         {
             setUp();
-            store=new StubStore(-1, "store", 0, null, null,true,0);
+            store=new StubStore(-1, "store", 0,true,0);
             store.Products.Add(p1.Id, pis1);
             store.Products.Add(p2.Id, pis2);
             store.Products.Add(p3.Id, pis3);
@@ -80,7 +80,7 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(p1.Price + p2.Price + p3.Price + p4.Price, cart.cartCheckout());
+            Assert.AreEqual(p1.Price + p2.Price + p3.Price + p4.Price, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -88,7 +88,7 @@ namespace UnitTests
         public void TestMethod1_cartCheckout_without_discount_no_in_policy()
         {
             setUp();
-            store = new StubStore(-1, "store", 0, null, null, false,0);
+            store = new StubStore(-1, "store", 0,  false,0);
             store.Products.Add(p1.Id, pis1);
             store.Products.Add(p2.Id, pis2);
             store.Products.Add(p3.Id, pis3);
@@ -101,7 +101,7 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(-1, cart.cartCheckout());
+            Assert.AreEqual(-1, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -110,7 +110,7 @@ namespace UnitTests
         public void TestMethod1_cartCheckout_with_discount_in_policy()
         {
             setUp();
-            store = new StubStore(-1, "store", 0, null, null, true,p1.Price);
+            store = new StubStore(-1, "store", 0, true,p1.Price);
             store.Products.Add(p1.Id, pis1);
             store.Products.Add(p2.Id, pis2);
             store.Products.Add(p3.Id, pis3);
@@ -123,7 +123,7 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(p2.Price + p3.Price + p4.Price, cart.cartCheckout());
+            Assert.AreEqual(p2.Price + p3.Price + p4.Price, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -139,7 +139,7 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(true, store.confirmPurchasePolicy(cart.Products));
+            Assert.AreEqual(true, store.confirmPurchasePolicy(cart.Products, new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -227,7 +227,7 @@ namespace UnitTests
             int retval = 10;
             ShoppingCart cart = new Stubcart(store.Id, store, new Dictionary<int, ProductInCart>(), retval);
             basket_user.ShoppingCarts.Add(store.Id, cart);                               
-            Assert.AreEqual(retval, basket_user.basketCheckout());
+            Assert.AreEqual(retval, basket_user.basketCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -238,7 +238,7 @@ namespace UnitTests
             int retval = -1;
             ShoppingCart cart = new Stubcart(store.Id, store, new Dictionary<int, ProductInCart>(), retval);
             basket_user.ShoppingCarts.Add(store.Id, cart);
-            Assert.AreEqual(retval, basket_user.basketCheckout());
+            Assert.AreEqual(retval, basket_user.basketCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -320,7 +320,7 @@ namespace UnitTests
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
             cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
-            cart.Store = new StubStore(1, "", 0, null, null, true, 0);
+            cart.Store = new StubStore(1, "", 0, true, 0);
             user.Basket = new StubBasket(13);
             sys.Stores.Add(1, cart.Store);
             user.Basket.ShoppingCarts.Add(1,cart);
@@ -397,14 +397,14 @@ namespace UnitTests
         private int discount;
 
 
-        public StubStore(int id, string name, int storeRate, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy, bool policy, int discount) : base(id, name, purchasePolicy, discountPolicy)
+        public StubStore(int id, string name, int storeRate, bool policy, int discount) : base(id, name)
         {
             this.policy = policy;
             this.discount = discount;
         }
 
 
-        public override bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products)
+        public override bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products, src.Domain.Dataclass.UserDetailes user)
         {
             return policy;
         }
@@ -432,7 +432,7 @@ namespace UnitTests
             this.Products = products;
         }
 
-        public override int cartCheckout()
+        public override int cartCheckout( src.Domain.Dataclass.UserDetailes user)
         {
             return retVal;
         }
@@ -449,7 +449,7 @@ namespace UnitTests
             this.retVal = ret;
         }
 
-        public override int basketCheckout()
+        public override int basketCheckout( src.Domain.Dataclass.UserDetailes user)
         {
             return retVal;
         }

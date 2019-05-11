@@ -58,12 +58,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\ConditionalDiscount.cs" />
+    <Compile Include="Domain\BuyConditionPolicy.cs" />
+    <Compile Include="Domain\Dataclass\UserDetailes.cs" />
     <Compile Include="Domain\DiscountPolicy.cs" />
     <Compile Include="Domain\Encryption.cs" />
-    <Compile Include="Domain\LeafCondition.cs" />
-    <Compile Include="Domain\LogicalCondition.cs" />
-    <Compile Include="Domain\RevealedDiscount.cs" />
+    <Compile Include="Domain\EnumsClass.cs" />
+    <Compile Include="Domain\IfThenCondition.cs" />
+    <Compile Include="Domain\inventoryConditionPolicy.cs" />
+    <Compile Include="Domain\LogicalConditionPolicy.cs" />
+    <Compile Include="Domain\ProductConditionPolicy.cs" />
+    <Compile Include="Domain\PurchasePolicy.cs" />
+    <Compile Include="Domain\Dataclass\PurchesPolicyData.cs" />
+    <Compile Include="Domain\UserConditionPolicy.cs" />
     <Compile Include="EncryptionImpl.cs" />
     <Compile Include="Domain\Filter.cs" />
     <Compile Include="Domain\FinancialSystem.cs" />
@@ -73,7 +79,6 @@
     <Compile Include="Domain\ProductInCart.cs" />
     <Compile Include="Domain\ProductInStore.cs" />
     <Compile Include="Domain\ProductSupplySystem.cs" />
-    <Compile Include="Domain\PurchasePolicy.cs" />
     <Compile Include="Domain\Role.cs" />
     <Compile Include="Domain\ShoppingBasket.cs" />
     <Compile Include="Domain\ShoppingCart.cs" />

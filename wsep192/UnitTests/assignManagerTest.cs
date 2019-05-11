@@ -23,7 +23,7 @@ namespace UnitTests
             ownerUser = new User(1234, "Seifan", "2457", false, false);
             ownerUser.register(ownerUser.UserName, ownerUser.Password);
             ownerUser.signIn(ownerUser.UserName, ownerUser.Password);
-            store = new Store(1111, "adidas", null, null);
+            store = new Store(1111, "adidas");
             ownerRole = new Owner(store, ownerUser);
             ownerUser.Roles.Add(store.Id, ownerRole);
 
@@ -150,7 +150,7 @@ namespace UnitTests
         class StubStore : Store
         {
             bool retVal;
-            public StubStore(int id, string name, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy, bool ret) : base(id, name, purchasePolicy, discountPolicy)
+            public StubStore(int id, string name, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy, bool ret) : base(id, name)
             {
                 this.retVal = ret;
             }

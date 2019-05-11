@@ -1,4 +1,5 @@
-﻿using System;
+﻿using src.Domain.Dataclass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -155,7 +156,7 @@ namespace src.Domain
             this.address = address;
             if (Basket.ShoppingCarts.Count == 0)
                 return 0;
-            int basketSum = basket.basketCheckout();
+            int basketSum = basket.basketCheckout(new UserDetailes(address,IsRegistered));
             if (basketSum == 0)
                 return 0;
             return basketSum  + calcAddressFee(address);
@@ -255,5 +256,52 @@ namespace src.Domain
                 return false;
             }
         }
+
+        public virtual PurchasePolicy addSimplePurchasePolicy(PurchesPolicyData purchesData ,int storeID)
+        {
+            Role role;
+            if ((role= searchRoleByStoreIDWithValidatePermmision(storeID,2))!=null)
+                return role.addSimplePurchasePolicy(purchesData);
+            return null;
+        }
+
+        public virtual PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData, int storeID)
+        {
+
+            Role role;
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 2)) != null)
+                return role.addComplexPurchasePolicy(purchesData);
+            return null;
+
+        }
+
+        internal Role searchRoleByStoreIDWithValidatePermmision( int storeID,int premmision)
+        {
+            Role role;
+            if (this.state != state.signedIn)
+            {
+                LogManager.Instance.WriteToLog("User-search Role By StoreID With Validate Permmision fail- User is not logged in\n");
+                return null;
+            }
+
+            if ((role = searchRoleByStoreID(storeID, this.id)) == null)
+            {
+                LogManager.Instance.WriteToLog("User-search Role By StoreID With Validate Permmision fail- The user " + this.id + " does not have a role in the " + storeID + " store\n");
+                return null;
+            }
+
+            if (role != null && role.GetType() == typeof(Manager))
+            {
+                Manager manager = (Manager)role;
+                if (!manager.validatePermission(2))
+                {
+                    LogManager.Instance.WriteToLog("User-search Role By StoreID With Validate Permmision fail- Manager does not have permissions\n");
+                    return null;
+                }
+            }
+            return role;
+        }
     }
+
+
 }

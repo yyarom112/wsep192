@@ -1,4 +1,5 @@
-﻿using System;
+﻿using src.Domain.Dataclass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,13 +19,13 @@ namespace src.Domain
         internal Dictionary<int, ShoppingCart> ShoppingCarts { get => shoppingCarts; set => shoppingCarts = value; }
 
 
-        public virtual int basketCheckout()
+        public virtual int basketCheckout(UserDetailes user)
         {
             int sum = 0;
             int tmp = 0;
             foreach (ShoppingCart c in shoppingCarts.Values)
             {
-                tmp = c.cartCheckout();
+                tmp = c.cartCheckout(user);
                 if (tmp == -1)
                     return -1;
                 sum += tmp;

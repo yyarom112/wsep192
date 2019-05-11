@@ -1,4 +1,5 @@
-﻿using System;
+﻿using src.Domain.Dataclass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,9 +25,9 @@ namespace src.Domain
         internal Dictionary<int, ProductInCart> Products { get => products; set => products = value; }
 
 
-        public virtual int cartCheckout()
+        public virtual int cartCheckout(UserDetailes user)
         {
-            if (!store.confirmPurchasePolicy(products))
+            if (!store.confirmPurchasePolicy(products, user))
             {
                 LogManager.Instance.WriteToLog("Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.\n");
                 return -1;

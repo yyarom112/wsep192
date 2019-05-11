@@ -19,5 +19,16 @@ namespace src.Domain
 
         internal Store Store { get { return store; } set { store = value; } }
         internal User User { get { return user; } set { user = value; } }
+
+        public virtual PurchasePolicy addSimplePurchasePolicy(PurchesPolicyData purchesData)
+        {
+            return store.addSimplePurchasePolicy(purchesData);
+        }
+
+        public virtual PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData)
+        {
+
+            return store.addComplexPurchasePolicy(purchesData);
+        }
     }
 }
