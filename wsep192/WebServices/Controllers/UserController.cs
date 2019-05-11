@@ -39,7 +39,6 @@ namespace WebService.Controllers
         public string showCart(String Store, String User)
         {
             List<KeyValuePair<String, int>> cart = service.showCart(Store, User);
-            string res;
             if (cart==null)
                 return "null";
             else
