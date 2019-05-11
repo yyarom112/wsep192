@@ -59,7 +59,11 @@ namespace Acceptance_Tests
                     Assert.AreEqual(false, true);
             }
             catch (Exception e) { }
-            if (service.showCart("store", "user").Contains("-1"))
+            List<KeyValuePair<string,int>> list = service.showCart("store", "user");
+            bool neg = containsNeg(list);
+
+
+           if (neg)
             {
                 List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
                 toInsert.Add(new KeyValuePair<string, int>("Error: invalid user", -1));
@@ -70,6 +74,17 @@ namespace Acceptance_Tests
             service.shutDown();
 
         }
+
+        private bool containsNeg(List<KeyValuePair<string, int>> list)
+        {
+            foreach (KeyValuePair<string,int> p in list) {
+                if (p.Value==-1) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         //Not relevant right now because there are no discounts
         //[TestMethod]
         //public void TestMethod_PurchasePproductWithDiscountInStockAndIsSuitableForPurchasePolicy()

@@ -43,8 +43,7 @@ namespace WebService.Controllers
             if (cart==null)
                 return "null";
             else
-                res = listToString(cart);
-            return res;
+                return listToString(cart);
         }
         private string listToString(List<KeyValuePair<string, int>> list)
         {

@@ -172,7 +172,7 @@ namespace src.ServiceLayer
             }
             return system.editProductQuantityInCart(system.getProduct(product, stores[store]), quantity, stores[store], users[user]);
         }
-        public bool removeProductsFromCart(List<String> productsToRemove, String store, String user)
+        public bool removeProductsFromCart(List<string> productsToRemove, String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist2(productsToRemove, stores[store]))
             {
