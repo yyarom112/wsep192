@@ -10,6 +10,7 @@ namespace UnitTests
     [TestClass]
     public class PurchasePolicyTest
     {
+        private TradingSystem sys;
         private Store store;
         private User admin;
         private User manager;
@@ -29,6 +30,7 @@ namespace UnitTests
 
         public void setup()
         {
+            sys = new TradingSystem(null, null);
             admin = new User(0, "admin", "1234", true, true);
             admin.State = state.signedIn;
             store = new Store(0, "store");
@@ -54,6 +56,12 @@ namespace UnitTests
             //itcp= if(buy p1 min buy =0 &max buy =10) then (min inventory =5)
             itcp = new IfThenCondition(4, pcp, icp, LogicalConnections.and);
             lcp = new LogicalConditionPolicy(5, LogicalConnections.and, LogicalConnections.and);
+
+            sys.Users.Add(admin.Id, admin);
+            sys.Users.Add(manager.Id, manager);
+            sys.Stores.Add(store.Id, store);
+
+
         }
 
 
@@ -352,6 +360,7 @@ namespace UnitTests
         public void User_searchRoleByStoreIDWithValidatePermmision()
         {
             setup();
+            this.manager.Roles = new Dictionary<int, Role>();
             ManagerStub manger = new ManagerStub(store, manager,pcp, 2);
             manager.Roles.Add(store.Id, manger);
             RoleStub adminRole = new RoleStub(new Store(-1, ""), admin, pcp);
@@ -386,6 +395,29 @@ namespace UnitTests
             Assert.AreEqual(pcp, admin.addComplexPurchasePolicy(null, -1), "Owner validate check");
             Assert.AreEqual(null, admin.addComplexPurchasePolicy(null, store.Id + 1), "A mistake in the identity number of the store");
             Assert.AreEqual(pcp, this.manager.addComplexPurchasePolicy(null, -1), "A good case");
+        }
+
+        [TestMethod]
+        public void TTradingSystem_addSimplePurchasePolicy()
+        {
+            setup();
+            StubUser raul = new StubUser(7, null, null, false, false, false);
+            raul.PcRet = bcp;
+            sys.Users.Add(raul.Id,raul); 
+            Assert.AreEqual(true, sys.addSimplePurchasePolicy(0,1,1,1,-1,-1,null,false,store.Id,raul.Id) , "ProductConditionPolicy check success");
+            Assert.AreEqual(false, sys.addSimplePurchasePolicy(0, -1, 1, 1, -1, -1, null, false, store.Id, raul.Id), "ProductConditionPolicy check fail");
+        }
+
+
+        [TestMethod]
+        public void TTradingSystem_addComplexPurchasePolicy()
+        {
+            setup();
+            StubUser raul = new StubUser(7, null, null, false, false, false);
+            raul.PcRet = bcp;
+            sys.Users.Add(raul.Id, raul);
+            Assert.AreEqual(true, sys.addComplexPurchasePolicy(new List<object>(), store.Id, raul.Id), "good check");
+            Assert.AreEqual(false, sys.addComplexPurchasePolicy(new List<object>(), store.Id, raul.Id+1), "ProductConditionPolicy check fail");
         }
 
 
@@ -513,6 +545,9 @@ namespace UnitTests
             Assert.AreEqual(true, ucp.CheckCondition(null, user), "Registeration and Adress check fail");
 
         }
+
+
+
 
 
 

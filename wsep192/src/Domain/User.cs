@@ -256,7 +256,7 @@ namespace src.Domain
             }
         }
 
-        public PurchasePolicy addSimplePurchasePolicy(PurchesPolicyData purchesData ,int storeID)
+        public virtual PurchasePolicy addSimplePurchasePolicy(PurchesPolicyData purchesData ,int storeID)
         {
             Role role;
             if ((role= searchRoleByStoreIDWithValidatePermmision(storeID,2))!=null)
@@ -264,7 +264,7 @@ namespace src.Domain
             return null;
         }
 
-        public PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData, int storeID)
+        public virtual PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData, int storeID)
         {
 
             Role role;

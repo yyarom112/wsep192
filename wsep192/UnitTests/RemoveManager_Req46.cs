@@ -193,10 +193,16 @@ namespace UnitTests
 class StubUser : User
     {
         bool retVal;
+        PurchasePolicy pcRet;
+
+
         public StubUser(int id, string userName, string password, bool isAdmin, bool isRegistered, bool ret) : base(id, userName, password, isAdmin, isRegistered)
         {
             this.retVal = ret;
         }
+
+        internal PurchasePolicy PcRet { get => pcRet; set => pcRet = value; }
+
 
         public override bool removeManager(int userID, int storeID)
         {
@@ -209,6 +215,36 @@ class StubUser : User
                 return 1;
             else
                 return -1;
+        }
+
+        public override PurchasePolicy addSimplePurchasePolicy(PurchesPolicyData purchesData, int storeID)
+        {
+            switch (purchesData.Type)
+            {
+                case 0:
+                    if (purchesData.Id != -1 && purchesData.ProductID != -1 && purchesData.Min != -1 && purchesData.Max != -1)
+                        return new ProductConditionPolicy(purchesData.Id, purchesData.ProductID, purchesData.Min, purchesData.Max, purchesData.Act);
+                    break;
+                case 1:
+                    if (purchesData.Id != -1 && purchesData.ProductID != -1 && purchesData.Min != -1 )
+                        return new inventoryConditionPolicy(purchesData.Id, purchesData.ProductID, purchesData.Min,  purchesData.Act);
+                    break;
+                case 2:
+                    if (purchesData.Id != -1  && purchesData.Min != -1 && purchesData.Max != -1 && purchesData.SumMin != -1 && purchesData.SumMax != -1)
+                        return new BuyConditionPolicy(purchesData.Id, purchesData.Min, purchesData.Max, purchesData.SumMin, purchesData.SumMax, purchesData.Act);
+                    break;
+                case 3:
+                    if (purchesData.Id != -1 && purchesData.Adress!=null)
+                        return new UserConditionPolicy(purchesData.Id, purchesData.Adress,purchesData.Isregister, purchesData.Act);
+                    break;
+            }
+            return null;
+        }
+
+        public override PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData, int storeID)
+        {
+
+            return pcRet;
         }
 
 

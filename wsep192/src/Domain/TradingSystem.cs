@@ -1,4 +1,5 @@
-﻿using System;
+﻿using src.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -482,5 +483,49 @@ namespace src.Domain
             LogManager.Instance.WriteToLog("TradingSystem-edit product from store fail- the store does not exists\n");
             return false;
         }
+        public bool addSimplePurchasePolicy(int type, int first, int second, int third, int fourth, int act, string adress, bool isregister, int storeID, int userID)
+        {
+            PurchesPolicyData purchesData;
+            switch (type)
+            {
+                case 0:
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, third, -1, -1, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 1:
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, first, -1, -1, -1, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 2:
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, first, second, third, fourth, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 3:
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++,-1,-1,-1,-1,-1,-1, ConvertIntToLogicalConnections(act), adress, isregister);
+                    break;
+                default:
+                    LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- type " + type + " is not recognized\n");
+                    return false;
+            }
+            if (this.Users.ContainsKey(userID))
+                return Users[userID].addSimplePurchasePolicy(purchesData, storeID) != null;
+            LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- User does not exist\n");
+            return false;
+        }
+
+        internal LogicalConnections ConvertIntToLogicalConnections(int log)
+        {
+            if (log == 0)
+                return LogicalConnections.and;
+            else
+                return LogicalConnections.or;
+        }
+        public bool addComplexPurchasePolicy(List<Object> purchesData, int storeID, int userID)
+        {
+            if (this.Users.ContainsKey(userID))
+                return Users[userID].addComplexPurchasePolicy(purchesData, storeID) != null;
+            LogManager.Instance.WriteToLog("Trading System- addComplexPurchasePolicy- User does not exist\n");
+            return false;
+        }
     }
+
 }
+
+
