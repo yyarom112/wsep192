@@ -24,7 +24,7 @@
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'storeName'">
                             </div>
-                            <button id="assignOwnerButton" type="submit" value="submit" class="button button-login w-100">Assign Owner</button>
+                            <input type="button" id="assignOwnerButton" value="Assign Owner" class="button button-login w-100"></>
 
                         </form>
                     </div>

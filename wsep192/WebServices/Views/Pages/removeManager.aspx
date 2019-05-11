@@ -25,7 +25,7 @@
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'storeName'">
                             </div>
 
-                            <button id="removeManagerButton" type="submit" value="submit" class="button button-login w-100">Remove Manager</button>
+                            <input type="button" id="removeManagerButton" value="Remove Manager" class="button button-login w-100"></>
 
                         </form>
                     </div>

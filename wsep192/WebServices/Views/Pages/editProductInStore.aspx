@@ -38,7 +38,7 @@
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store Name'">
                             </div>
 
-                            <button id="editProductInStoreButton" type="submit" value="submit" class="button button-login w-100">Edit Product</button>
+                            <input type="button" id="editProductInStoreButton" value="Edit Product" class="button button-login w-100"></>
 
                         </form>
                     </div>
