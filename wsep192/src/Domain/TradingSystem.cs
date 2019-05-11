@@ -29,6 +29,8 @@ namespace src.Domain
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter = 0;
             this.encryption = new EncryptionImpl();
+            LogManager.Instance.WriteToLog("test log");
+            ErrorManager.Instance.WriteToLog("test error");
         }
 
         public int basketCheckout(String address, int userID)
