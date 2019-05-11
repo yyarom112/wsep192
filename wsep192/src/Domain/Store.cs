@@ -260,11 +260,12 @@ namespace src.Domain
                 {
                     Product p = new Product(productID, productName, category, details, price);
                     ProductInStore pis = new ProductInStore(0, this, p);
-                    if (!Products.ContainsKey(productID))
-                    {
-                        Products.Add(productID, pis);
-                        return true;
-                    }
+                    //if (!Products.ContainsKey(productID))
+                    foreach(ProductInStore pp in Products.Values)   ///CHANGED
+                        if (pp.Product.ProductName == productName)  ///CHANGED
+                            return false;                           ///CHANGED
+                    Products.Add(productID, pis);
+                    return true;
                 }
             }       
 

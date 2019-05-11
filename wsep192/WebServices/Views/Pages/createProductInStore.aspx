@@ -34,7 +34,7 @@
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store Name'">
                             </div>
-                            <button id="createProductInStoreButton" type="submit" value="submit" class="button button-login w-100">Create Product</button>
+                            <input type="button" id="createProductInStoreButton" value="Create Product" class="button button-login w-100"></>
 
 
                         </form>

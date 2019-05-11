@@ -28,7 +28,7 @@
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
                             </div>
-                            <button id="registerButton" type="submit" value="submit" class="button button-login w-100">Register</button>
+                            <input type="button" id="registerButton"  value="Register" class="button button-login w-100"></>
                         </form>
                     </div>
                 </div>

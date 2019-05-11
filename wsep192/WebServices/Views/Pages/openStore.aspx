@@ -22,7 +22,7 @@
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store name'">
                             </div>
 
-                            <button id="openStoreButton" type="submit" value="submit" class="button button-login w-100">Open store</button>
+                            <input type="button" id="openStoreButton" value="Open store" class="button button-login w-100"></>
 
 
                         </form>

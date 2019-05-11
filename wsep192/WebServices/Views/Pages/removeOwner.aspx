@@ -25,7 +25,7 @@
                                 <input type="text" class="form-control" id="storeName" name="storeName" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'storeName'">
                             </div>
 
-                            <button id="removeOwnerButton" type="submit" value="submit" class="button button-login w-100">Remove Owner</button>
+                            <input type="button" id="removeOwnerButton" value="Remove Owner" class="button button-login w-100"></>
 
                         </form>
                     </div>
@@ -63,6 +63,7 @@
                 }
                 else
                     alert("User isn't logged in");
+                
             });
         });
     </script>

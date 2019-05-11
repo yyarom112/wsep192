@@ -30,7 +30,7 @@
 
                             <small id="removeProductInStoreAlert" class="form-text text-muted text-Alert"></small>
 
-                            <button id="removeProductInStoreButton" type="submit" value="submit" class="button button-login w-100">Remove Product</button>
+                            <input type="button" id="removeProductInStoreButton" value="Remove Product" class="button button-login w-100"></>
 
                         </form>
                     </div>
@@ -72,7 +72,7 @@
                     });
                 }
                 else {
-                    $("#loginAlert").html('Failure - ' + "user not logged in!");
+                    alert("User isn't logged in");
                 }
             });
         });
