@@ -226,7 +226,7 @@ namespace src.Domain
         {
             return Stores[store].productExist(product);
         }
-\
+
         public bool removeManager(int userID, int userIDToRemove, int storeID)
         {
             if (!this.users.ContainsKey(userID) || !this.users.ContainsKey(userIDToRemove) || !this.stores.ContainsKey(storeID))

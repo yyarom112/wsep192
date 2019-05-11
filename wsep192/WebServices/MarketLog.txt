@@ -198,3 +198,24 @@ Successfully closed the basket.
 11/05/2019 19:51:40: TradingSystem-create new product in store0 -success
 
 11/05/2019 19:51:40: TradingSystem-add product to store0 -success
+5/11/2019 20:37:45: test log
+5/11/2019 20:37:54: Register - userName or password null
+
+5/11/2019 20:37:54: TradingSystem-open storestore success
+
+5/11/2019 20:37:54: TradingSystem-create new product in store0 -success
+
+5/11/2019 20:37:54: TradingSystem-add product to store0 -success
+5/11/2019 20:38:04: Add to cart success. /n
+5/11/2019 20:38:09: ShoppingCart:showCart success
+
+5/11/2019 20:38:12: ShoppingCart:removeProductsFromCart success
+
+5/11/2019 20:38:12: ShoppingCart:editProductQuantityInCart success
+
+5/11/2019 20:38:12: ShoppingCart:showCart success
+
+5/11/2019 20:38:18: ShoppingCart:removeProductsFromCart success
+
+5/11/2019 20:38:18: ShoppingCart:showCart success
+
