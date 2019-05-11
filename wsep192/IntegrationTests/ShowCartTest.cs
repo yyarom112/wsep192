@@ -48,7 +48,11 @@ namespace IntegrationTests
             Assert.AreEqual(0, result.Count);
             //non-empty cart
             addProducts();
-            Assert.AreEqual(result[0],system.showCart(user.Id, store.Id)[0]);
+            List<KeyValuePair<string, int>> l = new List<KeyValuePair<string, int>>();
+            l.Add(new KeyValuePair<string, int>("p1", 3));
+            result = system.showCart(user.Id, store.Id);
+            Assert.IsTrue(l[0].Equals(result[0]));
+           
 
         }
 
