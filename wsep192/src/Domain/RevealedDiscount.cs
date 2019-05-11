@@ -25,9 +25,18 @@ namespace src.Domain
 
         public DateTime EndDateDiscount { get => endDateDiscount; set => endDateDiscount = value; }
 
-        public int calculate(List<KeyValuePair<ProductInStore, int>> productList)
+        //arg is list of product and quntity to buy
+        public double calculate(List<KeyValuePair<ProductInStore, int>> productList)
         {
-            throw new NotImplementedException();
+            double sum = 0;
+            if (endDateDiscount < DateTime.Now)
+                return -1;
+            foreach (KeyValuePair<ProductInStore, int> product in productList)
+            {
+                if (products.ContainsKey(product.Key.Product.Id) && product.Value >= this.products[product.Key.Product.Id].Value)
+                    sum += (product.Key.Product.Price * product.Value) * discountPrecentage;
+            }
+            return sum;
         }
 
 
@@ -35,6 +44,8 @@ namespace src.Domain
         //more than the minimum quantity then return the true. Otherwise, you will return a false.
         public bool checkCondition(List<KeyValuePair<ProductInStore, int>> productList)
         {
+            if (endDateDiscount < DateTime.Now)
+                return false;
             foreach(KeyValuePair<ProductInStore, int> product in productList)
             {
                 if (products.ContainsKey(product.Key.Product.Id) && product.Value >= this.products[product.Key.Product.Id].Value)

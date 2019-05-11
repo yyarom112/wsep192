@@ -9,6 +9,6 @@ namespace src.Domain
     interface DiscountPolicy
     {
         bool checkCondition(List<KeyValuePair<ProductInStore, int>> productList);
-        int calculate(List<KeyValuePair<ProductInStore, int>> productList);
+        double calculate(List<KeyValuePair<ProductInStore, int>> productList);
     }
 }

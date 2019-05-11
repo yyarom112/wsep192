@@ -31,17 +31,6 @@ namespace src.Domain
             this.discountPolicy = new List<DiscountPolicy>();
         }
 
-        public Store(int id, string name)
-        {
-            this.id = id;
-            this.name = name;
-            this.products = new Dictionary<int, ProductInStore>();
-            this.storeRate = 0;
-            this.roles = new TreeNode<Role>(null);
-            this.rolesDictionary = new Dictionary<int, TreeNode<Role>>();
-            this.purchasePolicy = new List<PurchasePolicy>();
-            this.discountPolicy = new List<DiscountPolicy>();
-        }
 
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
@@ -169,20 +158,21 @@ namespace src.Domain
 
         public virtual int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
         {
-            if (this.DiscountPolicy == null)
-                return 0;
-            int sum = 0;
-            List<ProductInStore> productsInStore = new List<ProductInStore>();
-            foreach (ProductInCart p in products.Values)
-            {
-                ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
-                productsInStore.Add(productInStore);
-            }
-            foreach (DiscountPolicy dp in discountPolicy)
-            {
-                sum += dp.calculate(productsInStore);
-            }
-            return sum;
+            //if (this.DiscountPolicy == null)
+            //    return 0;
+            //int sum = 0;
+            //List<ProductInStore> productsInStore = new List<ProductInStore>();
+            //foreach (ProductInCart p in products.Values)
+            //{
+            //    ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
+            //    productsInStore.Add(productInStore);
+            //}
+            //foreach (DiscountPolicy dp in discountPolicy)
+            //{
+            //    sum += dp.calculate(productsInStore);
+            //}
+            //return sum;
+            return 0;
         }
 
         public bool removeOwner(int userID, Role owner)

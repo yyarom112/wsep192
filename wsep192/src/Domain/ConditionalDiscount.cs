@@ -16,7 +16,7 @@ namespace src.Domain
         private DuplicatePolicy logic;
 
 
-        public int calculate(List<KeyValuePair<ProductInStore, int>> productList)
+        public double calculate(List<KeyValuePair<ProductInStore, int>> productList)
         {
             throw new NotImplementedException();
         }

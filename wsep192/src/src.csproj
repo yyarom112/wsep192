@@ -87,9 +87,15 @@
     <Compile Include="TreeNodeImpl.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="FinancialSystemImpl.cs" />
+    <Compile Include="ProductSupplySystemImpl.cs" />
+
     <Compile Include="LogManager.cs" />
     <Compile Include="ServiceLayer\ServiceLayer.cs" />
-    <Compile Include="ProductSupplySystemImpl.cs" />
+    <Compile Include="Domain\RevealedDiscount.cs" />
+    <Compile Include="Domain\ConditionalDiscount.cs" />
+    <Compile Include="Domain\LogicalCondition.cs" />
+    <Compile Include="Domain\LeafCondition.cs" />
+
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

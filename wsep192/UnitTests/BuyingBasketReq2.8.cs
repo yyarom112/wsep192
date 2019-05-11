@@ -8,6 +8,7 @@ namespace UnitTests
     [TestClass]
     public class BuyingBasketReq2
     {
+
         private TradingSystem sys;
         private Encryption encrypt;
 
