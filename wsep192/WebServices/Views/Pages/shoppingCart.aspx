@@ -14,7 +14,7 @@
                             <input type="text" class="form-control" id="storeName" name="name" placeholder="Store Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Store Name'">
                         </div>
                        
-                        <button id="showCartButton" type="submit" value="submit" class="button button-login w-100">Show</button>
+                        <input type="button" id="showCartButton" value="Show" class="button button-login w-100"></>
 
                     </form>
 

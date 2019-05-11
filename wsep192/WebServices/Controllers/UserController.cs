@@ -138,12 +138,6 @@ namespace WebService.Controllers
             return "Server error: editCart";
         }
 
-
-
-
-
-
-
         [Route("api/user/LoginUser")]
         [HttpGet]
         public string login(String Username, String Password)

@@ -1,0 +1,46 @@
+TradingSystem-open storestore success
+
+TradingSystem-create new product in store0 -success
+
+TradingSystem-add product to store0 -success
+TradingSystem-open storestore success
+
+TradingSystem-create new product in store0 -success
+
+TradingSystem-add product to store0 -success
+TradingSystem-create new product in store0 -success
+
+TradingSystem-add product to store0 -success
+Add to cart success. /n
+ShoppingCart:showCart success
+
+ShoppingCart:showCart success
+
+ShoppingCart:removeProductsFromCart success
+
+ShoppingCart:showCart success
+
+ShoppingCart:editProductQuantityInCart success
+
+ShoppingCart:removeProductsFromCart success
+
+ShoppingCart:showCart success
+
+ShoppingCart:editProductQuantityInCart success
+
+ShoppingCart:showCart success
+
+ShoppingCart:removeProductsFromCart success
+
+ShoppingCart:editProductQuantityInCart success
+
+ShoppingCart:removeProductsFromCart success
+
+ShoppingCart:editProductQuantityInCart success
+
+ShoppingCart:showCart success
+
+ShoppingCart:removeProductsFromCart success
+
+ShoppingCart:showCart success
+
