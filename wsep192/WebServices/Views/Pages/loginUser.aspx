@@ -26,7 +26,7 @@
                                 <input type="text" class="form-control" id="password" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
                             </div>
 
-                            <button id="loginButton" type="submit" value="submit" class="button button-login w-100">Login</button>
+                            <input type="button" id="loginButton" value="Login" class="button button-login w-100"></>
                         </form>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         dataType: "json",
                         success: function (response) {
                             if (response == "User successfuly logged in") {
-                                document.cookie = "LoggedUser=" + username + ';'
+                                document.cookie = "LoggedUser=" + username;
                                 alert(response);
                                 window.location.href = baseUrl + "/";
                             }

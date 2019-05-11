@@ -21,7 +21,7 @@
                                 <input type="text" class="form-control" id="removeuser" name="removeuser" placeholder="User name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User name'">
                             </div>
 
-                            <button id="removeUserButton" type="submit" value="submit" class="button button-login w-100">Remove User</button>
+                            <input type="button" id="removeUserButton" value="Remove User" class="button button-login w-100"></>
 
                         </form>
                     </div>

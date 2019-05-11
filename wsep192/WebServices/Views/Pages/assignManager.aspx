@@ -60,12 +60,13 @@
                         </div>
                     </div>
                 </div>
-                <button id="assignManagerButton" type="submit" value="submit" class="button button-login w-100">Assign Manager</button>
+                <input type="button" id="assignManagerButton" value="Assign Manager" class="button button-login w-100"></>
 
             </form>
         </div>
             </div>
         </div>
+            </div>
     </section>
     <!--================End Login Box Area =================-->
     <script type="text/javascript">

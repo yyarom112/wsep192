@@ -127,7 +127,7 @@
         $(document).ready(function () {
             var guest = getCookie("GuestUser");
             var user = getCookie("LoggedUser");
-            if (guest == null || user == null) {
+            if (guest == null && user == null) {
                 cleanCookies();
                 jQuery.ajax({
                     type: "GET",
@@ -135,11 +135,10 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        document.cookie = "GuestUser=" + response + ';'
+                        document.cookie = "GuestUser=" + response;
                     },
                     error: function (response) {
                         console.log("Error in init GuestUser");
-                        window.location.href = baseUrl + "/error";
                     }
                 });
             }

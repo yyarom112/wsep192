@@ -14,7 +14,7 @@ namespace UnitTests
         User user;
         Store store;
         Product product;
-        List<KeyValuePair<int, int>> productsToRemove;
+        List<int> productsToRemove;
 
 
         public void setup()
@@ -30,16 +30,10 @@ namespace UnitTests
         public void TestMethod1_testmethod_failure_remove_cart()
         {
             setup();
-            productsToRemove = new List<KeyValuePair<int, int>>();
-            KeyValuePair<int, int> pair = new KeyValuePair<int, int>(product.Id, 5);
-            productsToRemove.Add(pair);
+            productsToRemove = new List<int>();
+            productsToRemove.Add(product.Id);
             ShoppingCart cart = new ShoppingCart(store.Id, null);
             Assert.AreEqual(false, cart.removeProductsFromCart(productsToRemove)); //empty list of products in cart
-            ProductInCart pc = new ProductInCart(2, cart, null);
-            cart.Products.Add(product.Id, pc);
-            Assert.AreEqual(false, cart.removeProductsFromCart(productsToRemove)); //too many to remove
-
-
         }
 
         [TestMethod]
@@ -70,23 +64,20 @@ namespace UnitTests
         public void testmethod_cart_success_remove()
         {
             setup();
-            productsToRemove = new List<KeyValuePair<int, int>>();
-            KeyValuePair<int, int> pair = new KeyValuePair<int, int>(product.Id, 1);
-            productsToRemove.Add(pair);
+            productsToRemove = new List<int>();
+            productsToRemove.Add(product.Id);
             ShoppingCart cart = new ShoppingCart(store.Id, null);
             ProductInCart pc = new ProductInCart(2, cart, null);
             cart.Products.Add(product.Id, pc);
             Assert.AreEqual(true, cart.removeProductsFromCart(productsToRemove));
-            Assert.AreEqual(1, cart.Products[product.Id].Quantity);
         }
 
         [TestMethod]
         public void testmethod_basket_success_remove()
         {
             setup();
-            productsToRemove = new List<KeyValuePair<int, int>>();
-            KeyValuePair<int, int> pair = new KeyValuePair<int, int>(product.Id, 1);
-            productsToRemove.Add(pair);
+            productsToRemove = new List<int>();
+            productsToRemove.Add(product.Id);
             ShoppingBasket basket = new ShoppingBasket();
             ShoppingCart cart = new StubCart(store.Id, null, true);
             basket.ShoppingCarts.Add(store.Id, cart);
@@ -112,7 +103,7 @@ namespace UnitTests
                 retVal = ret;
             }
 
-            internal override bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove)
+            internal override bool removeProductsFromCart(List<int> productsToRemove)
             {
                 return retVal;
             }
@@ -128,7 +119,7 @@ namespace UnitTests
                 retVal=ret;
             }
 
-            internal override bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+            internal override bool removeProductsFromCart(List<int> productsToRemove, int storeId)
             {
                 return retVal;
             }

@@ -33,8 +33,8 @@ namespace Acceptance_Tests
         public void TestMethod1_success_full()
         {
             setUp();
-            Assert.AreEqual("Store Name: store\nProduct Name\t\t\tQuantity\n" +
-                "1. p1\t\t\t1\n", service.showCart("store", "user"));
+            var res = service.showCart("store", "user")[0];
+            Assert.IsTrue((list[0]).Equals(res));
             service.shutDown();
         }
 
@@ -43,8 +43,10 @@ namespace Acceptance_Tests
         public void TestMethod1_success_empty()
         {
             setUp();
-            service.removeProductsFromCart(list, "store", "user");
-            Assert.AreEqual("Store Name: store\nCart is empty\n", service.showCart("store", "user"));
+            List<string> toRemove = new List<string>();
+            toRemove.Add("p1");
+            service.removeProductsFromCart(toRemove, "store", "user");
+            Assert.AreEqual((new List<KeyValuePair<string, int>>()).Count, service.showCart("store", "user").Count);
             service.shutDown();
         }
 

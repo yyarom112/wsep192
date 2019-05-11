@@ -54,6 +54,8 @@ namespace src.ServiceLayer
             flag = flag & instance.createNewProductInStore("product", "cat", "details", 10, "store", "user");
             List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
             products.Add(new KeyValuePair<string, int>("product", 10));
+            if (!flag)
+                return flag;
             flag = flag & instance.addProductsInStore(products, "store", "user");
             return flag;
 
@@ -106,8 +108,9 @@ namespace src.ServiceLayer
         //req2.3
         public bool register(String username, String password, String user)
         {
-            if (!users.ContainsKey(user))
+            if (!users.ContainsKey(user)||users.ContainsKey(username))//CHANGED
                 return false;
+
             bool result = system.register(username, password, users[user]);
             if (result)
             {
@@ -172,7 +175,7 @@ namespace src.ServiceLayer
             }
             return system.editProductQuantityInCart(system.getProduct(product, stores[store]), quantity, stores[store], users[user]);
         }
-        public bool removeProductsFromCart(List<String> productsToRemove, String store, String user)
+        public bool removeProductsFromCart(List<string> productsToRemove, String store, String user)
         {
             if (!users.ContainsKey(user) || !stores.ContainsKey(store) || !productsExist2(productsToRemove, stores[store]))
             {
@@ -233,6 +236,9 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(user))
                 return false;
+            if (stores.ContainsKey(storeName)) //ADDED
+                return false;
+
             bool result = system.openStore(storeName, users[user], storeCounter);
             if (result)
             {
