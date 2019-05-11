@@ -89,7 +89,9 @@
                             </li>
 
                             <li class="nav-item">
-                                <li class="nav-item"><button><a href="ShoppingCart"><i class="ti-shopping-cart" ></i></button> </li>
+                                <li class="nav-item">
+                                    <button><a href="ShoppingCart"><i class="ti-shopping-cart"></i></button>
+                                </li>
                             </li>
                             <li class="nav-item"><a class="button button-header" href="/CheckoutBasket">Checkout basket</a></li>
                         </ul>
@@ -114,15 +116,8 @@
 
     <script type="text/javascript">
         var cleanCookies = function () {
-            var cookies = document.cookie.split(";");
-
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = cookies[i];
-                var eqPos = cookie.indexOf("=");
-                var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-            }
-
+            deleteCookie("GuestUser");
+            deleteCookie("LoggedUser");
         }
         $(document).ready(function () {
             var guest = getCookie("GuestUser");
@@ -135,7 +130,7 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        document.cookie = "GuestUser=" + response;
+                        setCookie("GuestUser", response);
                     },
                     error: function (response) {
                         console.log("Error in init GuestUser");
@@ -145,25 +140,31 @@
 
 
         });
+        function setCookie(cname, cvalue) {
+            var d = new Date();
+            d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
 
-        function getCookie(name) {
-            var dc = document.cookie;
-            var prefix = name + "=";
-            var begin = dc.indexOf("; " + prefix);
-            if (begin == -1) {
-                begin = dc.indexOf(prefix);
-                if (begin != 0) return null;
-            }
-            else {
-                begin += 2;
-                var end = document.cookie.indexOf(";", begin);
-                if (end == -1) {
-                    end = dc.length;
+        function deleteCookie(cname) {
+            document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
                 }
             }
-            // because unescape has been deprecated, replaced with decodeURI
-            //return unescape(dc.substring(begin + prefix.length, end));
-            return decodeURI(dc.substring(begin + prefix.length, end));
+            return null;
         }
     </script>
 
