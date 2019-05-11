@@ -31,6 +31,18 @@ namespace src.Domain
             this.discountPolicy = discountPolicy;
         }
 
+        public Store(int id, string name)
+        {
+            this.id = id;
+            this.name = name;
+            this.products = new Dictionary<int, ProductInStore>();
+            this.storeRate = 0;
+            this.roles = new TreeNode<Role>(null);
+            this.rolesDictionary = new Dictionary<int, TreeNode<Role>>();
+            this.purchasePolicy = new List<PurchasePolicy>();
+            this.discountPolicy = new List<DiscountPolicy>();
+        }
+
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }

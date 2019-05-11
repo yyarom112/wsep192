@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="addProductToCart.cs" />
     <Compile Include="assignManagerTest.cs" />
+    <Compile Include="DiscountPolicyStructureTest.cs" />
     <Compile Include="InitSystemTest.cs" />
     <Compile Include="RemoveManager_Req46.cs" />
     <Compile Include="RemoveProductsFromCartTests1.cs" />
