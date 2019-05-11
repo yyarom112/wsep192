@@ -128,11 +128,13 @@ namespace src.Domain
         {
             if (userName == null || password == null)
             {
+                ErrorManager.Instance.WriteToLog("Error - Register - userName or password null");
                 return false;
             }
             this.userName = userName;
             this.password = password;
             this.IsRegistered = true;
+            LogManager.Instance.WriteToLog("Register - userName or password null\n");            
             return true;
         }
 
@@ -229,6 +231,7 @@ namespace src.Domain
             catch (Exception)
             {
                 LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                ErrorManager.Instance.WriteToLog("Error - removeManager -" + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
                 return false;
             }
 
@@ -252,6 +255,7 @@ namespace src.Domain
             catch (Exception)
             {
                 LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                ErrorManager.Instance.WriteToLog("Error - assignOwner -" + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
                 return false;
             }
         }

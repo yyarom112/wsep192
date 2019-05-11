@@ -184,3 +184,17 @@ ShoppingCart:editProductQuantityInCart success
 
 Successfully closed the basket.
 
+11/05/2019 19:46:08: test log
+11/05/2019 19:46:14: TradingSystem-open storestore success
+
+11/05/2019 19:46:14: TradingSystem-create new product in store0 -success
+
+11/05/2019 19:46:14: TradingSystem-add product to store0 -success
+11/05/2019 19:46:57: TradingSystem-open storeyuval success
+
+11/05/2019 19:51:36: test log
+11/05/2019 19:51:40: TradingSystem-open storestore success
+
+11/05/2019 19:51:40: TradingSystem-create new product in store0 -success
+
+11/05/2019 19:51:40: TradingSystem-add product to store0 -success
