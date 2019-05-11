@@ -84,28 +84,29 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            if (response != "false" ) {
-                                    $('#quantityBox').each(function (e) {
-                                        var quantity = $(this).val();
-                                        var product = $(this).attr('name');
-                                        let removed = $('#check' + product).is(':checked');
-                                        if (removed == false) {
-                                            jQuery.ajax({
-                                                type: "GET",
-                                                url: baseUrl + "/api/user/EditCart?product=" + product + "&quantity=" + quantity + "&store=" + store + "&user=" + user,
-                                                contentType: "application/json; charset=utf-8",
-                                                dataType: "json",
-                                                success: function (response) {
-                                                    if (response == "false") {
-                                                        alert('Failure - edit product ' + product + ' failed');
-                                                    }
-                                                },
-                                                error: function (response) {
-                                                    alert('Failure - edit product ' + product + ' error');
+                            if (response != "false") {
+                                $('#quantityBox').each(function (e) {
+                                    var quantity = $(this).val();
+                                    var product = $(this).attr('name');
+                                    let removed = $('#check' + product).is(':checked');
+                                    if (removed == false) {
+                                        jQuery.ajax({
+                                            type: "GET",
+                                            async: false,
+                                            url: baseUrl + "/api/user/EditCart?product=" + product + "&quantity=" + quantity + "&store=" + store + "&user=" + user,
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json",
+                                            success: function (response) {
+                                                if (response == "false") {
+                                                    alert('Failure - edit product ' + product + ' failed');
                                                 }
-                                            });
-                                        }
-                                    })
+                                            },
+                                            error: function (response) {
+                                                alert('Failure - edit product ' + product + ' error');
+                                            }
+                                        });
+                                    }
+                                })
                                 
                                 jQuery.ajax({
                                     type: "GET",
