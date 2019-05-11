@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    enum DuplicatePolicy { WithMultiplication, WithoutMultiplication }
     class Store
     {
         private int id;
