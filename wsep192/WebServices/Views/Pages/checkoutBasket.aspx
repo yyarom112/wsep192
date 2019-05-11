@@ -48,6 +48,9 @@
                         <div id="paymentDiv" style="visibility: hidden">
                             <h3 style="padding-top: 30px;">Billing Details</h3>
                             <form class="row contact_form" action="#" id="paymentForm" method="post" novalidate="novalidate">
+                                <div class="col-md-12 form-group p_star"> Price:
+                                    <div id="price" class="col-md-6 form-group p_star"></div>
+                                </div>
                                 <div class="col-md-12 form-group p_star">
                                     <div class="col-md-6 form-group p_star">
                                         <input type="text" class="form-control" id="cardNumber" placeholder="Card number">
@@ -103,8 +106,33 @@
                             window.location.href = baseUrl + "/";
                         }
                         else {
-                            alert(response);
+                            $('#price').append(response);
                         }
+                    },
+                    error: function (response) {
+                        alert(response);
+                    }
+                });
+
+
+            });
+
+
+            $("#applyButton").click(function () {
+                var userName = getCookie("LoggedUser");
+                if (userName == null)
+                    userName = getCookie("GuestUser");
+                var price = document.getElementById('price').textContent;
+                var cardNum = $('#cardNumber').val();
+                var expiredDate = $('#expiredDate').val();
+
+                jQuery.ajax({
+                    type: "GET",
+                    url: baseUrl + "/api/user/payForBasket?cardNum=" + cardNum + "&expiredDate=" + expiredDate+ "&username=" + userName,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                            alert(response);
                     },
                     error: function (response) {
                         alert(response);

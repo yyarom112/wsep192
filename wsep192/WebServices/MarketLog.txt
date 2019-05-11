@@ -184,3 +184,84 @@ ShoppingCart:editProductQuantityInCart success
 
 Successfully closed the basket.
 
+11/05/2019 19:07:37: test log
+11/05/2019 19:07:37: test log
+11/05/2019 19:08:01: TradingSystem-open storestore success
+
+11/05/2019 19:08:01: TradingSystem-create new product in store0 -success
+
+11/05/2019 19:08:01: TradingSystem-add product to store0 -success
+11/05/2019 19:08:22: Add to cart success. /n
+11/05/2019 19:09:03: Successfully closed the basket.
+
+11/05/2019 19:11:39: Successfully closed the basket.
+
+11/05/2019 19:14:34: Successfully closed the basket.
+
+11/05/2019 19:19:59: Successfully closed the basket.
+
+11/05/2019 19:22:17: Successfully closed the basket.
+
+11/05/2019 19:22:33: ShoppingCart:showCart success
+
+11/05/2019 19:22:48: Successfully closed the basket.
+
+11/05/2019 19:38:49: test log
+11/05/2019 19:39:01: TradingSystem-open storestore success
+
+11/05/2019 19:39:01: TradingSystem-create new product in store0 -success
+
+11/05/2019 19:39:01: TradingSystem-add product to store0 -success
+11/05/2019 19:39:27: Add to cart success. /n
+11/05/2019 19:39:44: Successfully closed the basket.
+
+11/05/2019 19:45:26: test log
+11/05/2019 19:47:37: TradingSystem-open storestore success
+
+11/05/2019 19:47:37: TradingSystem-create new product in store0 -success
+
+11/05/2019 19:47:37: TradingSystem-add product to store0 -success
+11/05/2019 19:47:55: Add to cart success. /n
+11/05/2019 19:48:16: Successfully closed the basket.
+
+11/05/2019 19:50:40: Successfully closed the basket.
+
+11/05/2019 19:51:13: Successfully closed the basket.
+
+11/05/2019 19:58:38: test log
+11/05/2019 19:58:45: TradingSystem-open storestore success
+
+11/05/2019 19:58:45: TradingSystem-create new product in store0 -success
+
+11/05/2019 19:58:45: TradingSystem-add product to store0 -success
+11/05/2019 19:58:59: Add to cart success. /n
+11/05/2019 19:59:23: Successfully closed the basket.
+
+11/05/2019 20:02:57: Successfully closed the basket.
+
+11/05/2019 20:07:08: test log
+11/05/2019 20:07:27: TradingSystem-open storestore success
+
+11/05/2019 20:07:27: TradingSystem-create new product in store0 -success
+
+11/05/2019 20:07:27: TradingSystem-add product to store0 -success
+11/05/2019 20:07:53: Add to cart success. /n
+11/05/2019 20:08:00: Successfully closed the basket.
+
+11/05/2019 20:15:08: Successfully closed the basket.
+
+11/05/2019 20:18:58: Successfully closed the basket.
+
+11/05/2019 20:20:57: test log
+11/05/2019 20:21:03: TradingSystem-open storestore success
+
+11/05/2019 20:21:03: TradingSystem-create new product in store0 -success
+
+11/05/2019 20:21:03: TradingSystem-add product to store0 -success
+11/05/2019 20:21:14: Add to cart success. /n
+11/05/2019 20:21:21: Successfully closed the basket.
+
+11/05/2019 20:21:42: Products have declined / returned to store stock successfully.
+
+11/05/2019 20:21:55: Making the cart purchase succeeded
+

@@ -317,7 +317,35 @@ namespace WebService.Controllers
             return ans+"";
         }
 
+        [Route("api/user/payForBasket")]
+        [HttpGet]
+        public string payForBasket(String cardNum, String expiredDate,String username)
+        {
+            List<string[]> res;
+            int day, month, year;
+            long cardNumber;
+            String []date = expiredDate.Split('/');
+            try
+            {
+                day = Int32.Parse(date[0]);
+                month = Int32.Parse(date[1]);
+                year = Int32.Parse(date[2]);
+                cardNumber = Int32.Parse(cardNum);
+
+            }
+            catch(Exception ex)
+            {
+                return "Date or card number are wrong";
+            }
+            DateTime dateTime = new DateTime(year, month, day);
+            res = service.payForBasket(cardNumber, dateTime, username);
+            ///CONTINUE FROM HERE
+            return "";
+        }
+
 
 
     }
+    
+
 }
