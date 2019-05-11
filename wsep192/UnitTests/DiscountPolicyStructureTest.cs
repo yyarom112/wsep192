@@ -22,7 +22,7 @@ namespace UnitTests
             pis1 = new ProductInStore(20, store, p1);
             Dictionary<int, KeyValuePair<ProductInStore, int>> productList = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
             productList.Add(p1.Id, new KeyValuePair<ProductInStore, int>(pis1, 1));
-            rd =new RevealedDiscount(1,0.5,new Dictionary<int, KeyValuePair<ProductInStore, int>>)
+            rd =new RevealedDiscount(1,0.5, productList,new DateTime(2222,1,1),)
         }
 
         //----------------------@@ Revealed Discount @@--------------------------
