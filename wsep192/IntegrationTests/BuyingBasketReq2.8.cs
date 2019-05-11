@@ -81,7 +81,7 @@ namespace IntegrationTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(p1.Price + p2.Price + p3.Price + p4.Price, cart.cartCheckout());
+            Assert.AreEqual(p1.Price + p2.Price + p3.Price + p4.Price, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null,false)));
 
         }
 
@@ -102,7 +102,7 @@ namespace IntegrationTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(20000, cart.cartCheckout());
+            Assert.AreEqual(20000, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -140,7 +140,7 @@ namespace IntegrationTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(true, store.confirmPurchasePolicy(cart.Products));
+            Assert.AreEqual(true, store.confirmPurchasePolicy(cart.Products, new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -227,7 +227,7 @@ namespace IntegrationTests
             setUp();
             ShoppingCart cart = new ShoppingCart(store.Id, store);
             basket_user.ShoppingCarts.Add(store.Id, cart);
-            Assert.AreEqual(0, basket_user.basketCheckout());
+            Assert.AreEqual(0, basket_user.basketCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
         ////Not relevant to this version because there is no purchase policy

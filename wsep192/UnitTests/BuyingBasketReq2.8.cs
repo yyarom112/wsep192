@@ -80,7 +80,7 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(p1.Price + p2.Price + p3.Price + p4.Price, cart.cartCheckout());
+            Assert.AreEqual(p1.Price + p2.Price + p3.Price + p4.Price, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -101,7 +101,7 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(-1, cart.cartCheckout());
+            Assert.AreEqual(-1, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -123,7 +123,7 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(p2.Price + p3.Price + p4.Price, cart.cartCheckout());
+            Assert.AreEqual(p2.Price + p3.Price + p4.Price, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -139,7 +139,7 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(true, store.confirmPurchasePolicy(cart.Products));
+            Assert.AreEqual(true, store.confirmPurchasePolicy(cart.Products, new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -227,7 +227,7 @@ namespace UnitTests
             int retval = 10;
             ShoppingCart cart = new Stubcart(store.Id, store, new Dictionary<int, ProductInCart>(), retval);
             basket_user.ShoppingCarts.Add(store.Id, cart);                               
-            Assert.AreEqual(retval, basket_user.basketCheckout());
+            Assert.AreEqual(retval, basket_user.basketCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -238,7 +238,7 @@ namespace UnitTests
             int retval = -1;
             ShoppingCart cart = new Stubcart(store.Id, store, new Dictionary<int, ProductInCart>(), retval);
             basket_user.ShoppingCarts.Add(store.Id, cart);
-            Assert.AreEqual(retval, basket_user.basketCheckout());
+            Assert.AreEqual(retval, basket_user.basketCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -404,7 +404,7 @@ namespace UnitTests
         }
 
 
-        public override bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products)
+        public override bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products, src.Domain.Dataclass.UserDetailes user)
         {
             return policy;
         }
@@ -432,7 +432,7 @@ namespace UnitTests
             this.Products = products;
         }
 
-        public override int cartCheckout()
+        public override int cartCheckout( src.Domain.Dataclass.UserDetailes user)
         {
             return retVal;
         }
@@ -449,7 +449,7 @@ namespace UnitTests
             this.retVal = ret;
         }
 
-        public override int basketCheckout()
+        public override int basketCheckout( src.Domain.Dataclass.UserDetailes user)
         {
             return retVal;
         }

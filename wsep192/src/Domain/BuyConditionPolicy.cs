@@ -20,13 +20,17 @@ namespace src.Domain
         public BuyConditionPolicy(int id, int min, int max, int sumMin, int sumMax, LogicalConnections act)
         {
             this.id = id;
-            this.min = min;
-            this.max = max;
-            this.sumMin = sumMin;
-            this.sumMax = sumMax;
+            this.Min = min;
+            this.Max = max;
+            this.SumMin = sumMin;
+            this.SumMax = sumMax;
             this.act = act;
         }
 
+        public int Min { get => min; set => min = value; }
+        public int Max { get => max; set => max = value; }
+        public int SumMin { get => sumMin; set => sumMin = value; }
+        public int SumMax { get => sumMax; set => sumMax = value; }
 
         public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)
         {
@@ -39,13 +43,13 @@ namespace src.Domain
                 sum += product.Key.Product.Price * product.Value;
             }
 
-            if (min != -1 && totalProducts < min)
+            if (Min != -1 && totalProducts < Min)
                 return false;
-            if (max != -1 && totalProducts > max)
+            if (Max != -1 && totalProducts > Max)
                 return false;
-            if (sumMin != -1 && sum < sumMin)
+            if (SumMin != -1 && sum < SumMin)
                 return false;
-            if (sumMax != -1 && sum > sumMax)
+            if (SumMax != -1 && sum > SumMax)
                 return false;
 
             return true;

@@ -1,4 +1,5 @@
 ﻿using src.Domain;
+using src.Domain.Dataclass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +61,7 @@ namespace src.Domain
             foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
             {
                 cart.Store.updateCart(cart, "-");
-                storeToPay.Add(cart.Store.Id, cart.cartCheckout());
+                storeToPay.Add(cart.Store.Id, cart.cartCheckout(new UserDetailes(this.Users[userID].Address, this.Users[userID].IsRegistered)));
             }
             foreach(KeyValuePair<int,int> storeSum in storeToPay)
             {

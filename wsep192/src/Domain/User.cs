@@ -1,4 +1,5 @@
-﻿using System;
+﻿using src.Domain.Dataclass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -155,7 +156,7 @@ namespace src.Domain
             this.address = address;
             if (Basket.ShoppingCarts.Count == 0)
                 return 0;
-            int basketSum = basket.basketCheckout();
+            int basketSum = basket.basketCheckout(new UserDetailes(address,IsRegistered));
             if (basketSum == 0)
                 return 0;
             return basketSum  + calcAddressFee(address);

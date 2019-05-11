@@ -1,4 +1,5 @@
-﻿using System;
+﻿using src.Domain.Dataclass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -127,11 +128,11 @@ namespace src.Domain
                     p.Quantity = this.products[p.Product.Id].Quantity;
             }
         }
-        public virtual bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products)
+        public virtual bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products, UserDetailes user)
         {
             if (this.PurchasePolicy == null)
                 return true;
-            List<ProductInStore> productsInStore = new List<ProductInStore>();
+            List<KeyValuePair<ProductInStore,int>> productsInStore = new List<KeyValuePair<ProductInStore, int>>();
             foreach (ProductInCart p in products.Values)
             {
                 ProductInStore productInStore = new ProductInStore(-1, this, p.Product);
@@ -142,12 +143,11 @@ namespace src.Domain
                     p.Quantity = this.products[p.Product.Id].Quantity;
                     p.ShoppingCart.Products[p.Product.Id].Quantity = this.products[p.Product.Id].Quantity;
                 }
-                productsInStore.Add(productInStore);
+                productsInStore.Add(new KeyValuePair<ProductInStore, int>(productInStore,p.Quantity));
             }
             foreach (PurchasePolicy pp in purchasePolicy)
             {
-                //TODO- need to update
-                if (!pp.CheckCondition(null, null)) ;
+                if (!pp.CheckCondition(productsInStore, user))
                 return false;
             }
             return true;
@@ -354,20 +354,50 @@ namespace src.Domain
         {
             if (purchesData == null)
                 return null;
+            PurchasePolicy toRemove=null;
 
             switch (purchesData.Type)
             {
                 case 0:
                     ProductConditionPolicy toInsert0 = new ProductConditionPolicy(purchesData.Id, purchesData.ProductID, purchesData.Min, purchesData.Max, purchesData.Act);
+                    foreach(PurchasePolicy p in PurchasePolicy)
+                    {
+                        if (p.GetType() == typeof(ProductConditionPolicy) && ((ProductConditionPolicy)p).ProductID == purchesData.ProductID)
+                            toRemove = p;
+                    }
+                    this.PurchasePolicy.Remove(toRemove);
                     purchasePolicy.Add(toInsert0);
                     LogManager.Instance.WriteToLog("Product Condition Policy add to store " + this.name + " successfully");
                     return toInsert0;
                 case 1:
                     inventoryConditionPolicy toInsert1 = new inventoryConditionPolicy(purchesData.Id, purchesData.ProductID, purchesData.Min, purchesData.Act);
+                    foreach (PurchasePolicy p in this.PurchasePolicy)
+                    {
+                        if (p.GetType() == typeof(inventoryConditionPolicy) && ((inventoryConditionPolicy)p).ProductID == purchesData.ProductID)
+                            toRemove = p;
+                    }
+                    this.PurchasePolicy.Remove(toRemove);
                     purchasePolicy.Add(toInsert1);
                     LogManager.Instance.WriteToLog("inventory Condition Policy add to store " + this.name + " successfully");
                     return toInsert1;
                 case 2:
+                    foreach (PurchasePolicy p in this.PurchasePolicy)
+                    {
+                        if (p.GetType() == typeof(BuyConditionPolicy))
+                        {
+                            BuyConditionPolicy bcp = (BuyConditionPolicy)p;
+                            if (purchesData.Min != -1)
+                                bcp.Min = purchesData.Min;
+                            if (purchesData.Max != -1)
+                                bcp.Max = purchesData.Max;
+                            if (purchesData.SumMin != -1)
+                                bcp.SumMin = purchesData.SumMin;
+                            if (purchesData.SumMax != -1)
+                                bcp.Min = purchesData.SumMax;
+                            return bcp;
+                        }
+
+                    }
                     BuyConditionPolicy toinsert2 = new BuyConditionPolicy(purchesData.Id, purchesData.Min, purchesData.Max, purchesData.SumMin, purchesData.SumMax, purchesData.Act);
                     purchasePolicy.Add(toinsert2);
                     LogManager.Instance.WriteToLog("Buy Condition Policy add to store " + this.name + " successfully");

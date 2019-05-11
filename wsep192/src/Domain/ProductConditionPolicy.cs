@@ -18,17 +18,19 @@ namespace src.Domain
         public ProductConditionPolicy( int id, int productID, int min, int max, LogicalConnections act)
         {
             this.id = id;
-            this.productID = productID;
+            this.ProductID = productID;
             this.min = min;
             this.max = max;
             this.act = act;
         }
 
+        public int ProductID { get => productID; set => productID = value; }
+
         public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)
         {
             foreach (KeyValuePair<ProductInStore, int> product in cart)
             {
-                if (product.Key.Product.Id == this.productID)
+                if (product.Key.Product.Id == this.ProductID)
                 {
                     if (max != -1)
                     {
