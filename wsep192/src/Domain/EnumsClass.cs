@@ -8,5 +8,4 @@ namespace src.Domain
 {
     enum DuplicatePolicy { WithMultiplication, WithoutMultiplication }
     enum LogicalConnections { or, and, xor };
-
 }

@@ -24,7 +24,6 @@ namespace src.Domain
         internal Store Store { get => store; set => store = value; }
         internal Dictionary<int, ProductInCart> Products { get => products; set => products = value; }
 
-
         public virtual double cartCheckout(UserDetailes user)
         {
             if (!store.confirmPurchasePolicy(products, user))
@@ -39,7 +38,6 @@ namespace src.Domain
             return sum - discount;
 
         }
-
 
         internal virtual List<KeyValuePair<string, int>> showCart()
         {

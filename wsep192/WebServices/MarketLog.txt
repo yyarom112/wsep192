@@ -1,484 +1,58 @@
-TradingSystem-open storestore success
+12/05/2019 15:35:07: test log
+12/05/2019 15:35:14: Register - userName or password null
 
-TradingSystem-create new product in store0 -success
+12/05/2019 15:35:14: TradingSystem-open storeZara success
 
-TradingSystem-add product to store0 -success
-TradingSystem-open storestore success
+12/05/2019 15:35:14: TradingSystem-create new product in store0 -success
 
-TradingSystem-create new product in store0 -success
+12/05/2019 15:35:14: TradingSystem-add product to store0 -success
+12/05/2019 15:35:14: TradingSystem-create new product in store0 -success
 
-TradingSystem-add product to store0 -success
-TradingSystem-create new product in store0 -success
+12/05/2019 15:35:14: TradingSystem-add product to store0 -success
+12/05/2019 15:35:14: TradingSystem-create new product in store0 -success
 
-TradingSystem-add product to store0 -success
-Add to cart success. /n
-ShoppingCart:showCart success
+12/05/2019 15:35:14: TradingSystem-add product to store0 -success
+12/05/2019 15:40:21: test log
+12/05/2019 15:40:25: Register - userName or password null
 
-ShoppingCart:showCart success
+12/05/2019 15:40:25: TradingSystem-open storeZara success
 
-ShoppingCart:removeProductsFromCart success
+12/05/2019 15:40:25: TradingSystem-create new product in store0 -success
 
-ShoppingCart:showCart success
+12/05/2019 15:40:25: TradingSystem-add product to store0 -success
+12/05/2019 15:40:25: TradingSystem-create new product in store0 -success
 
-ShoppingCart:editProductQuantityInCart success
+12/05/2019 15:40:25: TradingSystem-add product to store0 -success
+12/05/2019 15:40:25: TradingSystem-create new product in store0 -success
 
-ShoppingCart:removeProductsFromCart success
+12/05/2019 15:40:25: TradingSystem-add product to store0 -success
+12/05/2019 15:41:55: TradingSystem-create new product in store0 -success
 
-ShoppingCart:showCart success
+12/05/2019 15:42:14: TradingSystem-add product to store0 -success
+12/05/2019 15:42:49: Register - userName or password null
 
-ShoppingCart:editProductQuantityInCart success
+12/05/2019 15:43:35: Store - assign manger succeed
+12/05/2019 15:44:36: Manager:validatePermission failed - usershahaf
 
-ShoppingCart:showCart success
+12/05/2019 15:44:36: User-edit products in store fail- the role does not exists or doesn't have permissions
 
-ShoppingCart:removeProductsFromCart success
+12/05/2019 15:44:36: TradingSystem-edit product from store fail- the store does not exists
 
-ShoppingCart:editProductQuantityInCart success
+12/05/2019 15:45:07: Manager:validatePermission failed - usershahaf
 
-ShoppingCart:removeProductsFromCart success
+12/05/2019 15:45:07: User-edit products in store fail- the role does not exists or doesn't have permissions
 
-ShoppingCart:editProductQuantityInCart success
+12/05/2019 15:45:07: TradingSystem-edit product from store fail- the store does not exists
 
-ShoppingCart:showCart success
+12/05/2019 15:45:41: Manager:validatePermission success - usershahaf
 
-ShoppingCart:removeProductsFromCart success
+12/05/2019 15:45:41: Manager:validatePermission success - usershahaf
 
-ShoppingCart:showCart success
+12/05/2019 15:45:41: TradingSystem-add product to store0 -success
+12/05/2019 15:46:37: Add to cart success. /n
+12/05/2019 15:46:46: Successfully closed the basket.
 
-TradingSystem-open storestore success
+12/05/2019 15:47:18: Products have declined / returned to store stock successfully.
 
-TradingSystem-create new product in store0 -success
-
-TradingSystem-add product to store0 -success
-Add to cart success. /n
-ShoppingCart:showCart success
-
-ShoppingCart:removeProductsFromCart success
-
-ShoppingCart:showCart success
-
-ShoppingCart:removeProductsFromCart success
-
-ShoppingCart:editProductQuantityInCart success
-
-ShoppingCart:showCart success
-
-ShoppingCart:removeProductsFromCart success
-
-ShoppingCart:showCart success
-
-Add to cart success. /n
-ShoppingCart:showCart success
-
-ShoppingCart:removeProductsFromCart success
-
-ShoppingCart:showCart success
-
-ShoppingCart:editProductQuantityInCart success
-
-TradingSystem-open storestore success
-
-TradingSystem-create new product in store0 -success
-
-TradingSystem-add product to store0 -success
-TradingSystem-open storestore success
-
-TradingSystem-create new product in store0 -success
-
-TradingSystem-add product to store0 -success
-ShoppingBasket:showCart failed - Shopping basket does not contain the store
-
-ShoppingBasket:showCart failed - Shopping basket does not contain the store
-
-ShoppingBasket:showCart failed - Shopping basket does not contain the store
-
-TradingSystem-open storestore success
-
-TradingSystem-create new product in store0 -success
-
-TradingSystem-add product to store0 -success
-ShoppingBasket:showCart failed - Shopping basket does not contain the store
-
-Add to cart success. /n
-ShoppingCart:showCart success
-
-ShoppingCart:removeProductsFromCart success
-
-ShoppingCart:showCart success
-
-ShoppingCart:editProductQuantityInCart success
-
-TradingSystem-open storestore success
-
-TradingSystem-create new product in store0 -success
-
-TradingSystem-add product to store0 -success
-Add to cart success. /n
-Successfully closed the basket.
-
-TradingSystem-open storestore success
-
-TradingSystem-create new product in store0 -success
-
-TradingSystem-add product to store0 -success
-TradingSystem-create new product in store fail- the store does not exists
-
-TradingSystem-open storestore success
-
-TradingSystem-create new product in store0 -success
-
-TradingSystem-add product to store0 -success
-TradingSystem-open storestore success
-
-TradingSystem-create new product in store0 -success
-
-TradingSystem-add product to store0 -success
-TradingSystem-open storestore success
-
-TradingSystem-create new product in store0 -success
-
-TradingSystem-add product to store0 -success
-Add to cart success. /n
-Add to cart success. /n
-ShoppingCart:showCart success
-
-ShoppingCart:removeProductsFromCart success
-
-ShoppingCart:editProductQuantityInCart success
-
-ShoppingCart:showCart success
-
-ShoppingCart:removeProductsFromCart success
-
-ShoppingCart:editProductQuantityInCart success
-
-ShoppingCart:showCart success
-
-ShoppingCart:showCart success
-
-Successfully closed the basket.
-
-TradingSystem-open storestore success
-
-TradingSystem-create new product in store0 -success
-
-TradingSystem-add product to store0 -success
-Add to cart success. /n
-ShoppingCart:showCart success
-
-ShoppingCart:removeProductsFromCart success
-
-ShoppingCart:editProductQuantityInCart success
-
-ShoppingCart:removeProductsFromCart success
-
-ShoppingCart:editProductQuantityInCart success
-
-ShoppingCart:showCart success
-
-Add to cart success. /n
-ShoppingCart:showCart success
-
-ShoppingCart:removeProductsFromCart success
-
-ShoppingCart:editProductQuantityInCart success
-
-Successfully closed the basket.
-
-11/05/2019 19:46:08: test log
-11/05/2019 19:46:14: TradingSystem-open storestore success
-
-11/05/2019 19:46:14: TradingSystem-create new product in store0 -success
-
-11/05/2019 19:46:14: TradingSystem-add product to store0 -success
-11/05/2019 19:46:57: TradingSystem-open storeyuval success
-
-11/05/2019 19:51:36: test log
-11/05/2019 19:51:40: TradingSystem-open storestore success
-
-11/05/2019 19:51:40: TradingSystem-create new product in store0 -success
-
-11/05/2019 19:51:40: TradingSystem-add product to store0 -success
-11/05/2019 20:14:46: test log
-11/05/2019 20:14:59: TradingSystem-open storestore success
-
-11/05/2019 20:14:59: TradingSystem-create new product in store0 -success
-
-11/05/2019 20:14:59: TradingSystem-add product to store0 -success
-11/05/2019 20:15:15: TradingSystem-open stores success
-
-11/05/2019 20:26:53: test log
-11/05/2019 20:26:55: TradingSystem-open storestore success
-
-11/05/2019 20:26:55: TradingSystem-create new product in store0 -success
-
-11/05/2019 20:26:55: TradingSystem-add product to store0 -success
-11/05/2019 20:29:46: test log
-11/05/2019 20:29:58: TradingSystem-open storestore success
-
-11/05/2019 20:29:58: TradingSystem-create new product in store0 -success
-
-11/05/2019 20:29:58: TradingSystem-add product to store0 -success
-11/05/2019 20:30:24: Add to cart success. /n
-11/05/2019 20:30:36: Add to cart success. /n
-11/05/2019 20:30:46: ShoppingCart:showCart success
-
-11/05/2019 20:30:53: ShoppingCart:removeProductsFromCart success
-
-11/05/2019 20:30:53: ShoppingCart:editProductQuantityInCart success
-
-11/05/2019 20:31:33: ShoppingCart:removeProductsFromCart success
-
-11/05/2019 20:31:33: ShoppingCart:showCart success
-
-11/05/2019 20:31:35: ShoppingCart:removeProductsFromCart success
-
-11/05/2019 20:31:35: ShoppingCart:showCart success
-
-11/05/2019 20:40:54: test log
-11/05/2019 20:41:03: TradingSystem-open storestore success
-
-11/05/2019 20:41:03: TradingSystem-create new product in store0 -success
-
-11/05/2019 20:41:03: TradingSystem-add product to store0 -success
-11/05/2019 20:41:13: Add to cart success. /n
-11/05/2019 20:41:21: ShoppingCart:showCart success
-
-11/05/2019 20:41:25: ShoppingCart:removeProductsFromCart success
-
-11/05/2019 20:41:25: ShoppingCart:editProductQuantityInCart success
-
-11/05/2019 20:41:25: ShoppingCart:showCart success
-
-11/05/2019 20:41:28: ShoppingCart:removeProductsFromCart success
-
-11/05/2019 20:41:28: ShoppingCart:editProductQuantityInCart success
-
-11/05/2019 20:41:28: ShoppingCart:showCart success
-
-12/05/2019 12:38:26: test log
-12/05/2019 12:38:32: Register - userName or password null
-
-12/05/2019 12:38:32: TradingSystem-open storeZara success
-
-12/05/2019 12:38:32: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:38:32: TradingSystem-add product to store0 -success
-12/05/2019 12:38:32: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:38:32: TradingSystem-add product to store0 -success
-12/05/2019 12:38:32: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:38:32: TradingSystem-add product to store0 -success
-12/05/2019 12:38:32: TradingSystem-open storeBershka success
-
-12/05/2019 12:38:32: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:38:32: TradingSystem-add product to store1 -success
-12/05/2019 12:38:32: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:38:32: TradingSystem-add product to store1 -success
-12/05/2019 12:38:32: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:38:32: TradingSystem-add product to store1 -success
-12/05/2019 12:38:32: TradingSystem-open storeForever21 success
-
-12/05/2019 12:38:32: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:38:32: TradingSystem-add product to store2 -success
-12/05/2019 12:38:32: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:38:32: TradingSystem-add product to store2 -success
-12/05/2019 12:38:32: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:38:32: TradingSystem-add product to store2 -success
-12/05/2019 12:44:29: test log
-12/05/2019 12:44:36: Register - userName or password null
-
-12/05/2019 12:44:36: TradingSystem-open storeZara success
-
-12/05/2019 12:44:36: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:44:36: TradingSystem-add product to store0 -success
-12/05/2019 12:44:36: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:44:36: TradingSystem-add product to store0 -success
-12/05/2019 12:44:36: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:44:36: TradingSystem-add product to store0 -success
-12/05/2019 12:44:36: TradingSystem-open storeBershka success
-
-12/05/2019 12:44:36: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:44:36: TradingSystem-add product to store1 -success
-12/05/2019 12:44:36: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:44:36: TradingSystem-add product to store1 -success
-12/05/2019 12:44:36: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:44:36: TradingSystem-add product to store1 -success
-12/05/2019 12:44:36: TradingSystem-open storeForever21 success
-
-12/05/2019 12:44:36: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:44:36: TradingSystem-add product to store2 -success
-12/05/2019 12:44:36: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:44:36: TradingSystem-add product to store2 -success
-12/05/2019 12:44:36: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:44:36: TradingSystem-add product to store2 -success
-12/05/2019 12:49:34: test log
-12/05/2019 12:50:58: Register - userName or password null
-
-12/05/2019 12:50:58: TradingSystem-open storeZara success
-
-12/05/2019 12:50:58: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:50:58: TradingSystem-add product to store0 -success
-12/05/2019 12:50:58: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:50:58: TradingSystem-add product to store0 -success
-12/05/2019 12:50:58: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:50:58: TradingSystem-add product to store0 -success
-12/05/2019 12:50:58: TradingSystem-open storeBershka success
-
-12/05/2019 12:50:58: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:50:58: TradingSystem-add product to store1 -success
-12/05/2019 12:50:58: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:50:58: TradingSystem-add product to store1 -success
-12/05/2019 12:50:58: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:50:58: TradingSystem-add product to store1 -success
-12/05/2019 12:50:58: TradingSystem-open storeForever21 success
-
-12/05/2019 12:50:58: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:50:59: TradingSystem-add product to store2 -success
-12/05/2019 12:50:59: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:50:59: TradingSystem-add product to store2 -success
-12/05/2019 12:50:59: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:50:59: TradingSystem-add product to store2 -success
-12/05/2019 12:57:57: test log
-12/05/2019 12:58:16: Register - userName or password null
-
-12/05/2019 12:58:16: TradingSystem-open storeZara success
-
-12/05/2019 12:58:16: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:58:16: TradingSystem-add product to store0 -success
-12/05/2019 12:58:16: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:58:16: TradingSystem-add product to store0 -success
-12/05/2019 12:58:16: TradingSystem-create new product in store0 -success
-
-12/05/2019 12:58:16: TradingSystem-add product to store0 -success
-12/05/2019 12:58:16: TradingSystem-open storeBershka success
-
-12/05/2019 12:58:16: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:58:16: TradingSystem-add product to store1 -success
-12/05/2019 12:58:16: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:58:16: TradingSystem-add product to store1 -success
-12/05/2019 12:58:16: TradingSystem-create new product in store1 -success
-
-12/05/2019 12:58:16: TradingSystem-add product to store1 -success
-12/05/2019 12:58:16: TradingSystem-open storeForever21 success
-
-12/05/2019 12:58:16: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:58:16: TradingSystem-add product to store2 -success
-12/05/2019 12:58:16: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:58:16: TradingSystem-add product to store2 -success
-12/05/2019 12:58:16: TradingSystem-create new product in store2 -success
-
-12/05/2019 12:58:16: TradingSystem-add product to store2 -success
-12/05/2019 13:07:25: test log
-12/05/2019 13:10:13: test log
-12/05/2019 13:12:27: Register - userName or password null
-
-12/05/2019 13:12:27: TradingSystem-open storeZara success
-
-12/05/2019 13:12:27: TradingSystem-create new product in store0 -success
-
-12/05/2019 13:12:27: TradingSystem-add product to store0 -success
-12/05/2019 13:12:27: TradingSystem-create new product in store0 -success
-
-12/05/2019 13:12:27: TradingSystem-add product to store0 -success
-12/05/2019 13:12:27: TradingSystem-create new product in store0 -success
-
-12/05/2019 13:12:27: TradingSystem-add product to store0 -success
-12/05/2019 13:12:27: TradingSystem-open storeBershka success
-
-12/05/2019 13:12:27: TradingSystem-create new product in store1 -success
-
-12/05/2019 13:12:27: TradingSystem-add product to store1 -success
-12/05/2019 13:12:27: TradingSystem-create new product in store1 -success
-
-12/05/2019 13:12:27: TradingSystem-add product to store1 -success
-12/05/2019 13:12:27: TradingSystem-create new product in store1 -success
-
-12/05/2019 13:12:27: TradingSystem-add product to store1 -success
-12/05/2019 13:12:27: TradingSystem-open storeForever21 success
-
-12/05/2019 13:12:27: TradingSystem-create new product in store2 -success
-
-12/05/2019 13:12:27: TradingSystem-add product to store2 -success
-12/05/2019 13:12:27: TradingSystem-create new product in store2 -success
-
-12/05/2019 13:12:27: TradingSystem-add product to store2 -success
-12/05/2019 13:12:27: TradingSystem-create new product in store2 -success
-
-12/05/2019 13:12:27: TradingSystem-add product to store2 -success
-12/05/2019 13:13:26: Add to cart success. /n
-12/05/2019 13:13:33: Successfully closed the basket.
-
-12/05/2019 13:13:39: Products have declined / returned to store stock successfully.
-
-12/05/2019 13:13:39: Making the cart purchase succeeded
-
-12/05/2019 13:18:58: test log
-12/05/2019 13:19:11: Register - userName or password null
-
-12/05/2019 13:19:11: TradingSystem-open storeZara success
-
-12/05/2019 13:19:11: TradingSystem-create new product in store0 -success
-
-12/05/2019 13:19:11: TradingSystem-add product to store0 -success
-12/05/2019 13:19:11: TradingSystem-open storeBershka success
-
-12/05/2019 13:19:11: TradingSystem-create new product in store1 -success
-
-12/05/2019 13:19:11: TradingSystem-add product to store1 -success
-12/05/2019 13:19:11: TradingSystem-open storeForever21 success
-
-12/05/2019 13:19:11: TradingSystem-create new product in store2 -success
-
-12/05/2019 13:19:11: TradingSystem-add product to store2 -success
-12/05/2019 13:21:07: test log
-12/05/2019 13:21:14: Register - userName or password null
-
-12/05/2019 13:21:14: TradingSystem-open storeZara success
-
-12/05/2019 13:21:15: TradingSystem-create new product in store0 -success
-
-12/05/2019 13:21:15: TradingSystem-add product to store0 -success
-12/05/2019 13:21:15: TradingSystem-create new product in store0 -success
-
-12/05/2019 13:21:15: TradingSystem-add product to store0 -success
-12/05/2019 13:21:15: TradingSystem-create new product in store0 -success
-
-12/05/2019 13:21:15: TradingSystem-add product to store0 -success
-12/05/2019 13:21:44: Add to cart success. /n
-12/05/2019 13:21:51: Successfully closed the basket.
-
-12/05/2019 13:22:01: Products have declined / returned to store stock successfully.
-
-12/05/2019 13:22:01: Making the cart purchase succeeded
+12/05/2019 15:47:18: Making the cart purchase succeeded
 

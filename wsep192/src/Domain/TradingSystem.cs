@@ -30,9 +30,18 @@ namespace src.Domain
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter = 0;
             this.encryption = new EncryptionImpl();
-            LogManager.Instance.WriteToLog("test log");
-            ErrorManager.Instance.WriteToLog("test error");
         }
+
+
+        public int ProductCounter { get => productCounter; set => productCounter = value; }
+        public int StoreCounter { get => storeCounter; set => storeCounter = value; }
+        public int UserCounter { get => userCounter; set => userCounter = value; }
+        public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
+        public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
+        internal Dictionary<int, User> Users { get => users; set => users = value; }
+        internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
+        internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
+        internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
 
         public double basketCheckout(String address, int userID)
         {
@@ -55,7 +64,6 @@ namespace src.Domain
             }
         }
 
-
         public List<String[]> payForBasket(long cardNumber, DateTime date, int userID)
         {
             ShoppingBasket basket = users[userID].Basket;
@@ -74,7 +82,7 @@ namespace src.Domain
                         cart.Store.updateCart(cart, "+");
                     }
                     LogManager.Instance.WriteToLog("payForBasket - Purchase failed due to product billing failure.\n");
-                    ErrorManager.Instance.WriteToLog("Error - payForBasket - Purchase failed due to product billing failure.\n");             
+                    ErrorManager.Instance.WriteToLog("Error - payForBasket - Purchase failed due to product billing failure.\n");
                     return null;
                 }
             }
@@ -103,6 +111,7 @@ namespace src.Domain
             this.users[userID].Basket = new ShoppingBasket();
             return output;
         }
+
         public List<String[]> cartToString(ShoppingCart cart)
         {
             List<String[]> output = new List<string[]>();
@@ -146,6 +155,7 @@ namespace src.Domain
             }
             return false;
         }
+
         internal bool removeUser(int removingID, int toRemoveID)
         {
 
@@ -199,6 +209,7 @@ namespace src.Domain
             return false;
 
         }
+
         public List<KeyValuePair<string, int>> showCart(int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
@@ -241,7 +252,6 @@ namespace src.Domain
             }
             return false;
         }
-
 
         public bool init(string adminUserName, string adminPassword)
         {
@@ -330,6 +340,7 @@ namespace src.Domain
                     return u;
             return null;
         }
+
         public Store searchStore(int storeID)
         {
             foreach (Store s in stores.Values)
@@ -337,19 +348,6 @@ namespace src.Domain
                     return s;
             return null;
         }
-
-        public int ProductCounter { get => productCounter; set => productCounter = value; }
-        public int StoreCounter { get => storeCounter; set => storeCounter = value; }
-        public int UserCounter { get => userCounter; set => userCounter = value; }
-        public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
-        public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
-
-
-        internal Dictionary<int, User> Users { get => users; set => users = value; }
-        internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
-        internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
-        internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
-
 
         public bool init(string adminUserName, string adminPassword, int userCounter)
         {
@@ -371,6 +369,7 @@ namespace src.Domain
             return users[id].signOut();
 
         }
+
         public Boolean register(String userName, String password, int userId)
         {
             int currUserId = userId;
@@ -395,7 +394,6 @@ namespace src.Domain
             }
             return false;
         }
-
 
         public Boolean signIn(String userName, String password, int userId)
         {
@@ -424,7 +422,6 @@ namespace src.Domain
             return false;
         }
 
-
         public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
         {
             if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products == null)
@@ -446,7 +443,6 @@ namespace src.Domain
             LogManager.Instance.WriteToLog("Add to cart success. /n");
             return true;
         }
-
 
         public LinkedList<KeyValuePair<Product, int>> createProductsList(List<KeyValuePair<int, int>> products, int storeId)
         {

@@ -14,7 +14,6 @@ namespace src.Domain
         private PurchasePolicy thenCond;
         private LogicalConnections act;
 
-
         public IfThenCondition(int id, PurchasePolicy ifCond, PurchasePolicy thenCond , LogicalConnections act)
         {
             this.id = id;
@@ -29,6 +28,7 @@ namespace src.Domain
                 return thenCond.CheckCondition(cart, user);
             return false;
         }
+
         public int getId()
         {
             return id;

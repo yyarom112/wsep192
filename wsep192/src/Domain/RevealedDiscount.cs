@@ -39,14 +39,13 @@ namespace src.Domain
             return sum;
         }
 
-
         //If there is one product in the list that fits the discount and the customer wants to buy
         //more than the minimum quantity then return the true. Otherwise, you will return a false.
         public bool checkCondition(List<KeyValuePair<ProductInStore, int>> productList)
         {
             if (endDateDiscount < DateTime.Now)
                 return false;
-            foreach(KeyValuePair<ProductInStore, int> product in productList)
+            foreach (KeyValuePair<ProductInStore, int> product in productList)
             {
                 if (products.ContainsKey(product.Key.Product.Id) && product.Value >= this.products[product.Key.Product.Id].Value)
                     return true;
@@ -56,7 +55,7 @@ namespace src.Domain
 
         public DiscountPolicy copy()
         {
-            return new RevealedDiscount(this.Id,this.discountPrecentage, new Dictionary<int, KeyValuePair<ProductInStore, int>>(this.products), this.endDateDiscount, this.logic);
+            return new RevealedDiscount(this.Id, this.discountPrecentage, new Dictionary<int, KeyValuePair<ProductInStore, int>>(this.products), this.endDateDiscount, this.logic);
         }
 
         public DuplicatePolicy GetDuplicatePolicy()

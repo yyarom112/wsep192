@@ -27,7 +27,6 @@ namespace src.Domain
 
         public virtual PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData)
         {
-
             return store.addComplexPurchasePolicy(purchesData);
         }
     }

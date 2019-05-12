@@ -16,7 +16,6 @@ namespace src.Domain
         private int sumMax;
         private LogicalConnections act;
 
-
         public BuyConditionPolicy(int id, int min, int max, int sumMin, int sumMax, LogicalConnections act)
         {
             this.id = id;
@@ -51,7 +50,6 @@ namespace src.Domain
                 return false;
             if (SumMax != -1 && sum > SumMax)
                 return false;
-
             return true;
         }
 

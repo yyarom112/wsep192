@@ -8,9 +8,10 @@ namespace src.Domain
         private String productName;
         private String category;
         private String keyword;
-        private KeyValuePair <int, int> priceRange;
+        private KeyValuePair<int, int> priceRange;
         private int productRate;
         private int storeRate;
+
         public Filter(String productName,
             String category, String keyword,
             KeyValuePair<int, int> priceRange,
