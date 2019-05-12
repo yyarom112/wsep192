@@ -71,7 +71,7 @@ namespace src.ServiceLayer
             string[] stores = { "Zara", "Bershka", "Forever21", "Castro", "Renuar", "AmericanEagle" };
             string[] details = { "New", "On Sale", "Last chance", "Hot staff" };
             string[] cats = { "Tops", "Jeans", "Shoes", "Skirts" };
-            for (int i = 0; i < 3 && flag; i++)
+            for (int i = 0; i < 1 && flag; i++)
             {
                 flag = flag & instance.openStore(stores[i], "user");
                 for (int j = 0; j < 3 && flag; j++)

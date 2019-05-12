@@ -40,17 +40,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                    <div class="nav-item active" id="heyUser"><a class="nav-link"  style="visibility:hidden" "></a></div>
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
                             <li class="nav-item active"><a class="nav-link" href="/Index">Home</a></li>
-                            <li class="nav-item active"><a class="nav-link" href="/Setup">Setup</a></li>
+                            <li class="nav-item active"><a class="nav-link" id="setup" href="/Setup">Setup</a></li>
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                     aria-expanded="false">Account</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="/LoginUser">Login</a></li>
+                                    <li class="nav-item"><a class="nav-link" id="login" href="/LoginUser">Login</a></li>
                                     <li class="nav-item"><a class="nav-link" href="/RegisterUser">Register</a></li>
-                                    <li class="nav-item"><a class="nav-link" onclick="cleanCookies()" href="/Index">Logout</a></li>
+                                    <li class="nav-item"><a class="nav-link" id="logout" onclick="cleanCookies()" href="/Index">Logout</a></li>
                                 </ul>
                             </li>
 
@@ -122,6 +123,19 @@
         $(document).ready(function () {
             var guest = getCookie("GuestUser");
             var user = getCookie("LoggedUser");
+            var setup = getCookie("Setup");
+           // if (setup == null)
+             //   document.getElementById('setup').style.visibility = "visible";
+            if (user != null) {
+                document.getElementById('heyUser').textContent = "Hey " + user;
+                document.getElementById('heyUser').style.visibility = "visible";
+                document.getElementById('heyUser').style.padding = "3px";
+                document.getElementById('login').remove();
+            }
+            else {
+                document.getElementById('logout').remove();
+            }
+
             if (guest == null && user == null) {
                 cleanCookies();
                 jQuery.ajax({

@@ -16,6 +16,7 @@
                     success: function (response) {
                         if (response == "System setup completed") {
                             alert(response);
+                            setCookie("Setup", "set");
                             window.location.href = baseUrl+"/";
                         }
                         else {
