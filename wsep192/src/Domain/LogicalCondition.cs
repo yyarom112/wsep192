@@ -70,5 +70,16 @@ namespace src.Domain
                 return Children[discountId];
             return null;
         }
+
+        public override DiscountPolicy copy()
+        {
+            LogicalCondition output = new LogicalCondition(this.Id1, this.DiscountPrecentage, new Dictionary<int, ProductInStore>(this.Products), this.EndDateDiscount, this.Logic, this.logical);
+            int i = 0;
+            foreach(ConditionalDiscount child in this.Children.Values)
+            {
+                output.addChild(i,(ConditionalDiscount)child.copy());
+            }
+            return output;
+        }
     }
 }

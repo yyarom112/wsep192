@@ -10,5 +10,10 @@ namespace src.Domain
     {
         bool checkCondition(List<KeyValuePair<ProductInStore, int>> productList);
         double calculate(List<KeyValuePair<ProductInStore, int>> productList);
+        void UpdateProductPrice(List<KeyValuePair<ProductInStore, int>> productList);
+        Dictionary<int, ProductInStore> GetRelevantProducts(); 
+        DuplicatePolicy GetDuplicatePolicy();
+        void removeProduct(ProductInStore product);
+        DiscountPolicy copy();
     }
 }

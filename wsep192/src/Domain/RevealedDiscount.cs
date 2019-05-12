@@ -53,5 +53,37 @@ namespace src.Domain
             }
             return false;
         }
+
+        public DiscountPolicy copy()
+        {
+            return new RevealedDiscount(this.Id,this.discountPrecentage, new Dictionary<int, KeyValuePair<ProductInStore, int>>(this.products), this.endDateDiscount, this.logic);
+        }
+
+        public DuplicatePolicy GetDuplicatePolicy()
+        {
+            return this.logic;
+        }
+
+        public Dictionary<int, ProductInStore> GetRelevantProducts()
+        {
+            Dictionary<int, ProductInStore> output = new Dictionary<int, ProductInStore>();
+            foreach (KeyValuePair<ProductInStore, int> product in products.Values)
+                output.Add(product.Key.Product.Id, product.Key);
+            return output;
+        }
+
+        public void removeProduct(ProductInStore product)
+        {
+            this.products.Remove(product.Product.Id);
+        }
+
+        public void UpdateProductPrice(List<KeyValuePair<ProductInStore, int>> productList)
+        {
+            List<KeyValuePair<ProductInStore, int>> output = new List<KeyValuePair<ProductInStore, int>>();
+            foreach (KeyValuePair<ProductInStore, int> product in productList)
+            {
+                product.Key.Product.Price -= (product.Key.Product.Price * discountPrecentage);
+            }
+        }
     }
 }

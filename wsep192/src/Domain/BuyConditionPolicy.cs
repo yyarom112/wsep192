@@ -34,7 +34,7 @@ namespace src.Domain
 
         public bool CheckCondition(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)
         {
-            int sum = 0;
+            double sum = 0;
             int totalProducts = 0;
 
             foreach (KeyValuePair<ProductInStore, int> product in cart)

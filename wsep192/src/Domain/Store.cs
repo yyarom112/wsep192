@@ -133,7 +133,7 @@ namespace src.Domain
         {
             if (this.PurchasePolicy == null)
                 return true;
-            List<KeyValuePair<ProductInStore,int>> productsInStore = new List<KeyValuePair<ProductInStore, int>>();
+            List<KeyValuePair<ProductInStore, int>> productsInStore = new List<KeyValuePair<ProductInStore, int>>();
             foreach (ProductInCart p in products.Values)
             {
                 ProductInStore productInStore = new ProductInStore(-1, this, p.Product);
@@ -144,35 +144,107 @@ namespace src.Domain
                     p.Quantity = this.products[p.Product.Id].Quantity;
                     p.ShoppingCart.Products[p.Product.Id].Quantity = this.products[p.Product.Id].Quantity;
                 }
-                productsInStore.Add(new KeyValuePair<ProductInStore, int>(productInStore,p.Quantity));
+                productsInStore.Add(new KeyValuePair<ProductInStore, int>(productInStore, p.Quantity));
             }
             foreach (PurchasePolicy pp in purchasePolicy)
             {
                 if (!pp.CheckCondition(productsInStore, user))
-                return false;
+                    return false;
             }
             return true;
 
         }
 
-
-        public virtual int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
+        //Initials list all products and all discounts
+        public virtual double calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
         {
-            //if (this.DiscountPolicy == null)
-            //    return 0;
-            //int sum = 0;
-            //List<ProductInStore> productsInStore = new List<ProductInStore>();
-            //foreach (ProductInCart p in products.Values)
-            //{
-            //    ProductInStore productInStore = new ProductInStore(p.Quantity, this, p.Product);
-            //    productsInStore.Add(productInStore);
-            //}
-            //foreach (DiscountPolicy dp in discountPolicy)
-            //{
-            //    sum += dp.calculate(productsInStore);
-            //}
-            //return sum;
-            return 0;
+            if (this.DiscountPolicy == null)
+                return 0;
+            int sum = 0;
+            List<KeyValuePair<ProductInStore, int>> productsInStore = new List<KeyValuePair<ProductInStore, int>>();
+            foreach (ProductInCart p in products.Values)
+            {
+                productsInStore.Add(new KeyValuePair<ProductInStore, int>(this.products[p.Product.Id], p.Quantity));
+            }
+            List<DiscountPolicy> discount = new List<DiscountPolicy>(this.discountPolicy);
+
+            return calculateDiscountPolicy(productsInStore, discount, 0);
+        }
+
+        public virtual double calculateDiscountPolicy(List<KeyValuePair<ProductInStore, int>> products, List<DiscountPolicy> discounts, double sum)
+        {
+            //As long as there are discounts on the list will continue to run
+            if (discounts.Count == 0)
+                return sum;
+            DiscountPolicy maxDiscount=null;
+            double maxDiscountSum=0;
+            //Find the best discount right now
+            foreach (DiscountPolicy discount in discounts)
+            {
+                double tmp = 0;
+                if (discount.checkCondition(products))
+                    tmp = discount.calculate(products);
+                if(maxDiscountSum<= tmp)
+                {
+                    maxDiscount = discount;
+                    maxDiscountSum = tmp;
+                }
+            }
+
+            discounts.Remove(maxDiscount);
+            List<KeyValuePair<ProductInStore, int>> productsWithout = CopyProductsList(products);
+            List<DiscountPolicy> discountsWithout = CopyDiscountsList(discounts);
+            double sumwithout = sum;
+            sum += maxDiscountSum;
+            maxDiscount.UpdateProductPrice(products);
+            switch (maxDiscount.GetDuplicatePolicy())
+            {
+                case DuplicatePolicy.WithMultiplication:
+                    for (int i = discounts.Count - 1; i >= 0; i--)
+                    {
+                        if (discounts[i].GetDuplicatePolicy() == DuplicatePolicy.WithoutMultiplication)
+                        {
+                            foreach (ProductInStore product in maxDiscount.GetRelevantProducts().Values)
+                                discounts[i].removeProduct(product);
+                        }
+                    }
+                    break;
+                case DuplicatePolicy.WithoutMultiplication:
+                    foreach (ProductInStore product in maxDiscount.GetRelevantProducts().Values)
+                    {
+                        bool find = false;
+                        for(int i=0;i< products.Count && !find; i++)
+                        {
+                            if (products[i].Key.Product.Id == product.Product.Id)
+                            {
+                                find = true;
+                                products.RemoveAt(i);
+                            }
+                        }
+                    }
+                    break;
+            }
+            return Math.Max(calculateDiscountPolicy(productsWithout, discountsWithout, sumwithout), calculateDiscountPolicy(products, discounts, sum));
+        }
+
+        private List<KeyValuePair<ProductInStore, int>> CopyProductsList(List<KeyValuePair<ProductInStore, int>> toCopy)
+        {
+            List<KeyValuePair<ProductInStore, int>> output = new List<KeyValuePair<ProductInStore, int>>();
+            foreach(KeyValuePair<ProductInStore, int> p in toCopy)
+            {
+                output.Add(new KeyValuePair<ProductInStore, int>(new ProductInStore(p.Key.Quantity, this, new Product(p.Key.Product.Id, p.Key.Product.ProductName, null, null, p.Key.Product.Price)), p.Value));
+            }
+            return output;
+        }
+
+        private List<DiscountPolicy> CopyDiscountsList(List<DiscountPolicy> toCopy)
+        {
+            List<DiscountPolicy> output = new List<DiscountPolicy>();
+            foreach (DiscountPolicy discount in toCopy)
+            {
+                output.Add(discount.copy());
+            }
+            return output;
         }
 
         public bool removeOwner(int userID, Role owner)
@@ -356,13 +428,13 @@ namespace src.Domain
         {
             if (purchesData == null)
                 return null;
-            PurchasePolicy toRemove=null;
+            PurchasePolicy toRemove = null;
 
             switch (purchesData.Type)
             {
                 case 0:
                     ProductConditionPolicy toInsert0 = new ProductConditionPolicy(purchesData.Id, purchesData.ProductID, purchesData.Min, purchesData.Max, purchesData.Act);
-                    foreach(PurchasePolicy p in PurchasePolicy)
+                    foreach (PurchasePolicy p in PurchasePolicy)
                     {
                         if (p.GetType() == typeof(ProductConditionPolicy) && ((ProductConditionPolicy)p).ProductID == purchesData.ProductID)
                             toRemove = p;
@@ -417,51 +489,56 @@ namespace src.Domain
 
         public PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData)
         {
-            
-            return addComplexPurchasePolicyRec(purchesData,-1);
+
+            return addComplexPurchasePolicyRec(purchesData, -1);
         }
 
 
         public PurchasePolicy addComplexPurchasePolicyRec(List<Object> purchesData, int multiplcation)
         {
-            //    if (purchesData == null)
-            //        return null;
-            //    switch ((int)purchesData.First())
-            //    {
-            //        case 0:
+            if (purchesData == null)
+                return null;
+            switch ((int)purchesData.First())
+            {
+                case 0:
+                    factoryProductConditionPolicy(purchesData, multiplcation);
+                    break;
+                case 1:
+                    factoryinventoryConditionPolicy(purchesData, multiplcation);
+                    break;
+                case 2:
+                    factoryBuyConditionPolicy(purchesData, multiplcation);
+                    break;
+                case 3:
+                    factoryUserConditionPolicy(purchesData, multiplcation);
+                    break;
+                case 4:
+                    factoryIfThenCondition(purchesData, multiplcation);
+                    break;
+                case 5:
+                    LogicalConnections inLog, outLog;
+                    if ((int)purchesData.ElementAt(2) == 0)
+                        inLog = LogicalConnections.and;
+                    else
+                        inLog = LogicalConnections.or;
+                    if ((int)purchesData.ElementAt(3) == 0)
+                        outLog = LogicalConnections.and;
+                    else
+                        outLog = LogicalConnections.or;
+                    try
+                    {
+                        List<List<Object>> children = (List<List<Object>>)purchesData.ElementAt(4);
+                        LogicalConditionPolicy lcp = new LogicalConditionPolicy((int)purchesData.ElementAt(1), inLog, outLog);
+                        foreach (List<Object> child in children)
+                            lcp.addChild(addComplexPurchasePolicyRec(child, multiplcation));
+                        return lcp;
+                    }
+                    catch (Exception e)
+                    {
+                        return null;
+                    }
 
-            //        case 1:
-
-            //        case 2:
-
-            //        case 3:
-
-            //        case 4:
-
-            //        case 5:
-            //            LogicalConnections inLog, outLog;
-            //            if ((int)purchesData.ElementAt(2) == 0)
-            //                inLog = LogicalConnections.and;
-            //            else
-            //                inLog = LogicalConnections.or;
-            //            if ((int)purchesData.ElementAt(3) == 0)
-            //                outLog = LogicalConnections.and;
-            //            else
-            //                outLog = LogicalConnections.or;
-            //            try
-            //            {
-            //                List<List<Object>> children = (List<List<Object>>)purchesData.ElementAt(4);
-            //                LogicalConditionPolicy lcp = new LogicalConditionPolicy((int)purchesData.ElementAt(1), inLog, outLog);
-            //                foreach (List<Object> child in children)
-            //                    lcp.addChild(addComplexPurchasePolicyRec(child, multiplcation));
-            //                return lcp;
-            //            }
-            //            catch (Exception e)
-            //            {
-            //                return null;
-            //            }
-
-            //    }
+            }
             return null;
         }
 
@@ -514,23 +591,23 @@ namespace src.Domain
             }
         }
 
-        //internal PurchasePolicy factoryIfThenCondition(List<Object> purchesData, int multiplcation)
-        //{
-        //    if (multiplcation == -1)
-        //        multiplcation = (int)ConvertObjectToLogicalConnections(purchesData.ElementAt(4));
-        //    try
-        //    {
-        //        List<Object> oprand1 = (List<Object>)purchesData.ElementAt(2);
-        //        oprand1.Insert(1, (int)purchesData.ElementAt(1));
-        //        List<Object> oprand2 = (List<Object>)purchesData.ElementAt(3);
-        //        oprand1.Insert(1, (int)purchesData.ElementAt(1));
-        //        return new IfThenCondition((int)purchesData.ElementAt(1), addComplexPurchasePolicyRec(oprand1, multiplcation), addComplexPurchasePolicyRec(oprand2, multiplcation), ConvertObjectToLogicalConnections(purchesData.ElementAt(4)));
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return null;
-        //    }
-        //}
+        internal PurchasePolicy factoryIfThenCondition(List<Object> purchesData, int multiplcation)
+        {
+            if (multiplcation == -1)
+                multiplcation = (int)ConvertObjectToLogicalConnections(purchesData.ElementAt(4));
+            try
+            {
+                List<Object> oprand1 = (List<Object>)purchesData.ElementAt(2);
+                oprand1.Insert(1, (int)purchesData.ElementAt(1));
+                List<Object> oprand2 = (List<Object>)purchesData.ElementAt(3);
+                oprand1.Insert(1, (int)purchesData.ElementAt(1));
+                return new IfThenCondition((int)purchesData.ElementAt(1), addComplexPurchasePolicyRec(oprand1, multiplcation), addComplexPurchasePolicyRec(oprand2, multiplcation), ConvertObjectToLogicalConnections(purchesData.ElementAt(4)));
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
 
         //log=0=>and otherwise=>or
         internal LogicalConnections ConvertObjectToLogicalConnections(object log)

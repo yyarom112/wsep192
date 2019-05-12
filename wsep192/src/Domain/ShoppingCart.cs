@@ -33,10 +33,11 @@ namespace src.Domain
                 return -1;
             }
             int sum = 0;
-            foreach (ProductInCart p in products.Values)
-                sum += p.Product.Price * p.Quantity;
-            int discount = store.calculateDiscountPolicy(products);
-            return sum - discount;
+            //foreach (ProductInCart p in products.Values)
+                //    sum += p.Product.Price * p.Quantity;
+                //double discount = store.calculateDiscountPolicy(products);
+                //return sum - discount;
+                return 0;
 
         }
 

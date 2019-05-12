@@ -101,6 +101,22 @@ namespace UnitTests
 
         }
 
+
+        [TestMethod]
+        public void RevealedDiscount_UpdateProductPrice()
+        {
+            sutup();
+            List<KeyValuePair<ProductInStore, int>> productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(new ProductInStore(5, store, new Product(-5, null, null, null, -15)), 2));
+            Assert.AreEqual(0, rd.calculate(productToBuy), "check not relevant product");
+
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 1));
+            rd.UpdateProductPrice(productToBuy);
+            Assert.AreEqual(10, pis1.Product.Price);
+
+        }
+
         //----------------------@@ Leaf Condition @@--------------------------
         [TestMethod]
         public void LeafCondition_checkCondition()

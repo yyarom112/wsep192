@@ -35,5 +35,10 @@ namespace src.Domain
                 return true;
             return false;
         }
+
+        public override DiscountPolicy copy()
+        {
+            return new LeafCondition(new Dictionary<int, KeyValuePair<ProductInStore, int>>(relatedProducts), this.Id1, this.DiscountPrecentage, new Dictionary<int, ProductInStore>(this.Products), this.EndDateDiscount, this.Logic);
+        }
     }
 }
