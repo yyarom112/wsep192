@@ -198,3 +198,60 @@ Successfully closed the basket.
 11/05/2019 19:51:40: TradingSystem-create new product in store0 -success
 
 11/05/2019 19:51:40: TradingSystem-add product to store0 -success
+11/05/2019 20:14:46: test log
+11/05/2019 20:14:59: TradingSystem-open storestore success
+
+11/05/2019 20:14:59: TradingSystem-create new product in store0 -success
+
+11/05/2019 20:14:59: TradingSystem-add product to store0 -success
+11/05/2019 20:15:15: TradingSystem-open stores success
+
+11/05/2019 20:26:53: test log
+11/05/2019 20:26:55: TradingSystem-open storestore success
+
+11/05/2019 20:26:55: TradingSystem-create new product in store0 -success
+
+11/05/2019 20:26:55: TradingSystem-add product to store0 -success
+11/05/2019 20:29:46: test log
+11/05/2019 20:29:58: TradingSystem-open storestore success
+
+11/05/2019 20:29:58: TradingSystem-create new product in store0 -success
+
+11/05/2019 20:29:58: TradingSystem-add product to store0 -success
+11/05/2019 20:30:24: Add to cart success. /n
+11/05/2019 20:30:36: Add to cart success. /n
+11/05/2019 20:30:46: ShoppingCart:showCart success
+
+11/05/2019 20:30:53: ShoppingCart:removeProductsFromCart success
+
+11/05/2019 20:30:53: ShoppingCart:editProductQuantityInCart success
+
+11/05/2019 20:31:33: ShoppingCart:removeProductsFromCart success
+
+11/05/2019 20:31:33: ShoppingCart:showCart success
+
+11/05/2019 20:31:35: ShoppingCart:removeProductsFromCart success
+
+11/05/2019 20:31:35: ShoppingCart:showCart success
+
+11/05/2019 20:40:54: test log
+11/05/2019 20:41:03: TradingSystem-open storestore success
+
+11/05/2019 20:41:03: TradingSystem-create new product in store0 -success
+
+11/05/2019 20:41:03: TradingSystem-add product to store0 -success
+11/05/2019 20:41:13: Add to cart success. /n
+11/05/2019 20:41:21: ShoppingCart:showCart success
+
+11/05/2019 20:41:25: ShoppingCart:removeProductsFromCart success
+
+11/05/2019 20:41:25: ShoppingCart:editProductQuantityInCart success
+
+11/05/2019 20:41:25: ShoppingCart:showCart success
+
+11/05/2019 20:41:28: ShoppingCart:removeProductsFromCart success
+
+11/05/2019 20:41:28: ShoppingCart:editProductQuantityInCart success
+
+11/05/2019 20:41:28: ShoppingCart:showCart success
+

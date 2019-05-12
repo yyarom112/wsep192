@@ -28,11 +28,10 @@ namespace src.Domain
             this.password = password;
             this.address = "";
             this.state = state.visitor;
-            this.isAdmin = isAdmin;
+            this.isAdmin = isAdmin;    
             this.isRegistered = isRegistered;
             this.basket = new ShoppingBasket();
             this.roles = new Dictionary<int, Role>();
-
         }
 
         public int Id { get => id; set => id = value; }
