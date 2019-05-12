@@ -25,19 +25,18 @@ namespace src.Domain
         internal Dictionary<int, ProductInCart> Products { get => products; set => products = value; }
 
 
-        public virtual int cartCheckout(UserDetailes user)
+        public virtual double cartCheckout(UserDetailes user)
         {
             if (!store.confirmPurchasePolicy(products, user))
             {
                 LogManager.Instance.WriteToLog("Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.\n");
                 return -1;
             }
-            int sum = 0;
-            //foreach (ProductInCart p in products.Values)
-                //    sum += p.Product.Price * p.Quantity;
-                //double discount = store.calculateDiscountPolicy(products);
-                //return sum - discount;
-                return 0;
+            double sum = 0;
+            foreach (ProductInCart p in products.Values)
+                sum += p.Product.Price * p.Quantity;
+            double discount = store.calculateDiscountPolicy(products);
+            return sum - discount;
 
         }
 

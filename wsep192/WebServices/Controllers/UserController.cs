@@ -313,7 +313,7 @@ namespace WebService.Controllers
                     address = "";
                     break;
             }
-            int ans = service.basketCheckout(address, username);
+            double ans = service.basketCheckout(address, username);
             return ans+"";
         }
 

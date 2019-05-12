@@ -142,7 +142,7 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(p2.Price + p3.Price + p4.Price, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
+            Assert.AreEqual(p1.Price+p2.Price + p3.Price + p4.Price, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -483,7 +483,7 @@ namespace UnitTests
             this.Products = products;
         }
 
-        public override int cartCheckout(src.Domain.Dataclass.UserDetailes user)
+        public override double cartCheckout(src.Domain.Dataclass.UserDetailes user)
         {
             return retVal;
         }
@@ -500,7 +500,7 @@ namespace UnitTests
             this.retVal = ret;
         }
 
-        public override int basketCheckout(src.Domain.Dataclass.UserDetailes user)
+        public override double basketCheckout(src.Domain.Dataclass.UserDetailes user)
         {
             return retVal;
         }
@@ -538,7 +538,7 @@ namespace UnitTests
             this.retVal = ret;
         }
 
-        public bool Chargeback(long cardNumber, DateTime date, int amount)
+        public bool Chargeback(long cardNumber, DateTime date, double amount)
         {
             return true;
         }
@@ -553,7 +553,7 @@ namespace UnitTests
             return retVal;
         }
 
-        public bool payment(long cardNumber, DateTime date, int amount, int paymentTarget)
+        public bool payment(long cardNumber, DateTime date, double amount, int paymentTarget)
         {
             return retVal;
         }

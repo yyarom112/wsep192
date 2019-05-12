@@ -151,12 +151,12 @@ namespace src.Domain
         }
         
 
-        public virtual int basketCheckout(String address)
+        public virtual double basketCheckout(String address)
         {
             this.address = address;
             if (Basket.ShoppingCarts.Count == 0)
                 return 0;
-            int basketSum = basket.basketCheckout(new UserDetailes(address,IsRegistered));
+            double basketSum = basket.basketCheckout(new UserDetailes(address,IsRegistered));
             if (basketSum == 0)
                 return 0;
             return basketSum  + calcAddressFee(address);

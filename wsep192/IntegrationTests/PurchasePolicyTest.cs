@@ -394,14 +394,14 @@ namespace IntegrationTests
             Assert.AreEqual(false, sys.addSimplePurchasePolicy(0, -1, -1, -1, -1, -1, null, false, store.Id, admin.Id), "ProductConditionPolicy check fail");
         }
 
-        //TODO-need to correct
-        [TestMethod]
-        public void TTradingSystem_addComplexPurchasePolicy()
-        {
-            setup();
-            Assert.AreEqual(false, sys.addComplexPurchasePolicy(new List<object>(), store.Id, admin.Id), "good check");
-            Assert.AreEqual(false, sys.addComplexPurchasePolicy(new List<object>(), store.Id, admin.Id+1), "ProductConditionPolicy check fail");
-        }
+        ////TODO-need to correct
+        //[TestMethod]
+        //public void TTradingSystem_addComplexPurchasePolicy()
+        //{
+        //    setup();
+        //    Assert.AreEqual(false, sys.addComplexPurchasePolicy(new List<object>(), store.Id, admin.Id), "good check");
+        //    Assert.AreEqual(false, sys.addComplexPurchasePolicy(new List<object>(), store.Id, admin.Id+1), "ProductConditionPolicy check fail");
+        //}
 
 
         //------------------------------@@ test path of List<object>->Compelx Purches Policy @@-------------------------------------

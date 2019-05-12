@@ -209,7 +209,7 @@ class StubUser : User
             return retVal;
         }
 
-        public override int basketCheckout(String address)
+        public override double basketCheckout(String address)
         {
             if (retVal)
                 return 1;

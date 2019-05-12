@@ -19,10 +19,10 @@ namespace src.Domain
         internal Dictionary<int, ShoppingCart> ShoppingCarts { get => shoppingCarts; set => shoppingCarts = value; }
 
 
-        public virtual int basketCheckout(UserDetailes user)
+        public virtual double basketCheckout(UserDetailes user)
         {
-            int sum = 0;
-            int tmp = 0;
+            double sum = 0;
+            double tmp = 0;
             foreach (ShoppingCart c in shoppingCarts.Values)
             {
                 tmp = c.cartCheckout(user);

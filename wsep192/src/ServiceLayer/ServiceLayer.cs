@@ -205,7 +205,7 @@ namespace src.ServiceLayer
         }
 
         //req2.8
-        public int basketCheckout(String address, String user)
+        public double basketCheckout(String address, String user)
         {
             if (!users.ContainsKey(user))
                 return -1;

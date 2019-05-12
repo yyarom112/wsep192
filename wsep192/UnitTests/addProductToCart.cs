@@ -226,7 +226,7 @@ namespace UnitTests
             }
 
         }
-        public override int cartCheckout(src.Domain.Dataclass.UserDetailes user)
+        public override double cartCheckout(src.Domain.Dataclass.UserDetailes user)
         {
             return  retval;
         }
