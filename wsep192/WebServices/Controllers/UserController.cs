@@ -324,6 +324,7 @@ namespace WebService.Controllers
             List<string[]> res;
             int day, month, year;
             long cardNumber;
+            DateTime dateTime;
             String []date = expiredDate.Split('/');
             try
             {
@@ -331,16 +332,36 @@ namespace WebService.Controllers
                 month = Int32.Parse(date[1]);
                 year = Int32.Parse(date[2]);
                 cardNumber = Int32.Parse(cardNum);
-
+                dateTime = new DateTime(year, month, day);
             }
             catch(Exception ex)
             {
                 return "Date or card number are wrong";
             }
-            DateTime dateTime = new DateTime(year, month, day);
+            
             res = service.payForBasket(cardNumber, dateTime, username);
-            ///CONTINUE FROM HERE
-            return "";
+            return productsToString(res);
+        }
+
+        private String productsToString(List<String[]> products)
+        {
+            String res = "";
+            int i = 0;
+            int sum = 0;
+            foreach (String[] s in products)
+            {
+                res += "name" + i + "=" + s[0] + "&"
+                     + "store" + i + "=" + s[1] + "&"
+                    + "quantity" + i + "=" + s[2] + "&"
+                    + "price" + i + "=" + s[3] + "&"
+                    + "total" + i + "=" + s[4] + "&"
+                    ;
+                sum += Int32.Parse(s[4]);
+                i++;
+
+            }
+            res += "sum=" + sum;
+            return res;
         }
 
 
