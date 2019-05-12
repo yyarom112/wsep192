@@ -1,4 +1,5 @@
-﻿using System;
+﻿using src.Domain.Dataclass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,7 @@ namespace src.Domain
             ErrorManager.Instance.WriteToLog("test error");
         }
 
-        public int basketCheckout(String address, int userID)
+        public double basketCheckout(String address, int userID)
         {
             if (!this.users.ContainsKey(userID))
             {
@@ -42,7 +43,7 @@ namespace src.Domain
             }
             else
             {
-                int output = this.users[userID].basketCheckout(address);
+                double output = this.users[userID].basketCheckout(address);
                 if (output == -1)
                 {
                     LogManager.Instance.WriteToLog("basketCheckout - Could not close basket.\n");
@@ -58,13 +59,13 @@ namespace src.Domain
         public List<String[]> payForBasket(long cardNumber, DateTime date, int userID)
         {
             ShoppingBasket basket = users[userID].Basket;
-            Dictionary<int, int> storeToPay = new Dictionary<int, int>(); //<storeId,Sum>
+            Dictionary<int, double> storeToPay = new Dictionary<int, double>(); //<storeId,Sum>
             foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
             {
                 cart.Store.updateCart(cart, "-");
-                storeToPay.Add(cart.Store.Id, cart.cartCheckout());
+                storeToPay.Add(cart.Store.Id, cart.cartCheckout(new UserDetailes(this.Users[userID].Address, this.Users[userID].IsRegistered)));
             }
-            foreach (KeyValuePair<int, int> storeSum in storeToPay)
+            foreach (KeyValuePair<int, double> storeSum in storeToPay)
             {
                 if (!this.financialSystem.payment(cardNumber, date, storeSum.Value, storeSum.Key))
                 {
@@ -79,7 +80,7 @@ namespace src.Domain
             }
             if (!this.supplySystem.deliverToCustomer(this.Users[userID].Address, "Some package Details"))
             {
-                foreach (KeyValuePair<int, int> storeSum in storeToPay)
+                foreach (KeyValuePair<int, double> storeSum in storeToPay)
                 {
                     this.financialSystem.Chargeback(cardNumber, date, storeSum.Value);
                 }
@@ -179,11 +180,9 @@ namespace src.Domain
 
         internal bool openStore(string storeName, int userID, int storeCounter)
         {
-            List<PurchasePolicy> purchasePolicy = new List<PurchasePolicy>();
-            List<DiscountPolicy> discountPolicy = new List<DiscountPolicy>();
             if (!stores.ContainsKey(storeCounter))
             {
-                Store store = new Store(storeCounter, storeName, purchasePolicy, discountPolicy);
+                Store store = new Store(storeCounter, storeName);
                 if (Users.ContainsKey(userID) && Users[userID].IsRegistered)
                 {
                     Stores.Add(storeCounter, store);
@@ -554,5 +553,56 @@ namespace src.Domain
             ErrorManager.Instance.WriteToLog("Error - editProductInStore - the store does not exists.\n");
             return false;
         }
+
+        public bool addSimplePurchasePolicy(int type, int first, int second, int third, int fourth, int act, string adress, bool isregister, int storeID, int userID)
+        {
+            PurchesPolicyData purchesData;
+            switch (type)
+            {
+                case 0:
+                    if (first < 0 || second < 0 || third < 0 || act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, third, -1, -1, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 1:
+                    if (first < 0 || second < 0 || act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, -1, -1, -1, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 2:
+                    if (first < 0 || second < 0 || third < 0 || fourth < 0 || act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, first, second, third, fourth, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 3:
+                    if (((adress == null || adress.Equals("")) && isregister == false) || act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, -1, -1, -1, -1, ConvertIntToLogicalConnections(act), adress, isregister);
+                    break;
+                default:
+                    LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- type " + type + " is not recognized\n");
+                    return false;
+            }
+            if (this.Users.ContainsKey(userID))
+                return Users[userID].addSimplePurchasePolicy(purchesData, storeID) != null;
+            LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- User does not exist\n");
+            return false;
+        }
+
+        internal LogicalConnections ConvertIntToLogicalConnections(int log)
+        {
+            if (log == 0)
+                return LogicalConnections.and;
+            else
+                return LogicalConnections.or;
+        }
+        public bool addComplexPurchasePolicy(List<Object> purchesData, int storeID, int userID)
+        {
+            if (this.Users.ContainsKey(userID))
+                return Users[userID].addComplexPurchasePolicy(purchesData, storeID) != null;
+            LogManager.Instance.WriteToLog("Trading System- addComplexPurchasePolicy- User does not exist\n");
+            return false;
+        }
     }
 }
+
