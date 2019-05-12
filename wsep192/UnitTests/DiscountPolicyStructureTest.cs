@@ -19,6 +19,15 @@ namespace UnitTests
         private Store store;
         private LeafCondition lc;
 
+        private LeafCondition lc1;
+        private LeafCondition lc2;
+        LogicalCondition logcAnd;
+        LogicalCondition logcOr;
+        LogicalCondition logcXor;
+
+
+
+
         public void sutup()
         {
             p1 = new Product(0, "p1", null, null, 20);
@@ -37,7 +46,30 @@ namespace UnitTests
             Dictionary<int, KeyValuePair<ProductInStore, int>> relatedProducts = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
             relatedProducts.Add(p1.Id, new KeyValuePair<ProductInStore, int>(pis1, 1));
             relatedProducts.Add(p2.Id, new KeyValuePair<ProductInStore, int>(pis2, 2));
-            lc = new LeafCondition(relatedProducts);
+            Dictionary<int, ProductInStore> discountproducts = new Dictionary<int, ProductInStore>();
+            discountproducts.Add(p1.Id, pis1);
+            discountproducts.Add(p2.Id, pis2);
+            lc = new LeafCondition(relatedProducts,10,0.5, discountproducts, new DateTime(2222,1,1),DuplicatePolicy.WithMultiplication);
+            relatedProducts = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
+            relatedProducts.Add(p1.Id, new KeyValuePair<ProductInStore, int>(pis1, 1));
+            lc1 = new LeafCondition(relatedProducts, 10, 0.5, discountproducts, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication);
+
+            relatedProducts = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
+            relatedProducts.Add(p2.Id, new KeyValuePair<ProductInStore, int>(pis2, 2));
+            lc2 = new LeafCondition(relatedProducts, 10, 0.5, discountproducts, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication);
+
+            logcAnd = new LogicalCondition(10, 0.5, discountproducts, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication, LogicalConnections.and);
+            logcAnd.addChild(0, lc1);
+            logcAnd.addChild(1, lc2);
+
+            logcOr = new LogicalCondition(10, 0.5, discountproducts, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication, LogicalConnections.or);
+            logcOr.addChild(0, lc1);
+            logcOr.addChild(1, lc2);
+
+            logcXor = new LogicalCondition(10, 0.5, discountproducts, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication, LogicalConnections.xor);
+            logcXor.addChild(0, lc1);
+            logcXor.addChild(1, lc2);
+
         }
 
         //----------------------@@ Revealed Discount @@--------------------------
@@ -86,6 +118,81 @@ namespace UnitTests
             productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 2));
             Assert.AreEqual(true, lc.checkCondition(productToBuy), "The success scenario");
 
+        }
+        //----------------------@@ Logical Condition @@--------------------------
+
+        [TestMethod]
+        public void LogicalCondition_checkCondition_and()
+        {
+            sutup();
+            List<KeyValuePair<ProductInStore, int>> productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            Assert.AreEqual(false,logcAnd.checkCondition(productToBuy), "No one is satisfied");
+
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 1));
+            Assert.AreEqual(false, logcAnd.checkCondition(productToBuy), "first satisfied");
+
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 2));
+            Assert.AreEqual(false, logcAnd.checkCondition(productToBuy), "second satisfied");
+
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 1));
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 2));
+            Assert.AreEqual(true, logcAnd.checkCondition(productToBuy), "second satisfied");
+        }
+
+        [TestMethod]
+        public void LogicalCondition_checkCondition_or()
+        {
+            sutup();
+            List<KeyValuePair<ProductInStore, int>> productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            Assert.AreEqual(false, logcOr.checkCondition(productToBuy), "No one is satisfied");
+
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 1));
+            Assert.AreEqual(true, logcOr.checkCondition(productToBuy), "first satisfied");
+
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 2));
+            Assert.AreEqual(true, logcOr.checkCondition(productToBuy), "second satisfied");
+
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 1));
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 2));
+            Assert.AreEqual(true, logcOr.checkCondition(productToBuy), "second satisfied");
+        }
+
+        [TestMethod]
+        public void LogicalCondition_checkCondition_xor()
+        {
+            sutup();
+            List<KeyValuePair<ProductInStore, int>> productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            Assert.AreEqual(false, logcXor.checkCondition(productToBuy), "No one is satisfied");
+
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 1));
+            Assert.AreEqual(true, logcXor.checkCondition(productToBuy), "first satisfied");
+
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 2));
+            Assert.AreEqual(true, logcXor.checkCondition(productToBuy), "second satisfied");
+
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 1));
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 2));
+            Assert.AreEqual(false, logcXor.checkCondition(productToBuy), "second satisfied");
+        }
+
+
+        //----------------------@@ Conditional Discount @@--------------------------
+
+        [TestMethod]
+        public void ConditionalDiscount_calculate()
+        {
+            sutup();
+            List<KeyValuePair<ProductInStore, int>> productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            Assert.AreEqual(0, logcAnd.calculate(productToBuy), "empty list");
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 1));
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 2));
+            Assert.AreEqual(30, logcAnd.calculate(productToBuy), "get discount");
 
         }
 

@@ -10,7 +10,7 @@ namespace src.Domain
     {
         private Dictionary<int, KeyValuePair<ProductInStore, int>> relatedProducts; //<productID , <Product, minimum quntitiy to buy>>
 
-        public LeafCondition(Dictionary<int, KeyValuePair<ProductInStore, int>> relatedProducts)
+        public LeafCondition(Dictionary<int, KeyValuePair<ProductInStore, int>> relatedProducts,int id, double discountPrecentage, Dictionary<int, ProductInStore> products, DateTime endDateDiscount, DuplicatePolicy dup):base(id, discountPrecentage, products, endDateDiscount, dup)
         {
             this.relatedProducts = relatedProducts ?? throw new ArgumentNullException(nameof(relatedProducts));
         }

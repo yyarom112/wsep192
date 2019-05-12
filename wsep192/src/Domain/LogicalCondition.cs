@@ -9,23 +9,66 @@ namespace src.Domain
     class LogicalCondition : ConditionalDiscount
     {
         private LogicalConnections logical;
-        private List<ConditionalDiscount> Children;
+        private Dictionary<int, ConditionalDiscount> Children;
+
+        public LogicalCondition(int id, double discountPrecentage, Dictionary<int, ProductInStore> products, DateTime endDateDiscount, DuplicatePolicy dup,LogicalConnections logical):base(id,discountPrecentage,products,endDateDiscount,dup)
+        {
+            this.logical = logical;
+            Children = new Dictionary<int, ConditionalDiscount>();
+        }
 
         public override bool checkCondition(List<KeyValuePair<ProductInStore, int>> productList)
         {
-            throw new NotImplementedException();
+            if(this.EndDateDiscount < DateTime.Now)
+                return false;
+            bool output=false;
+            int sum = 0;
+            switch (logical)
+            {
+                case LogicalConnections.and:
+                    output = true;
+                    break;
+                case LogicalConnections.or:
+                    output = false;
+                    break;
+ 
+
+            }
+            foreach(ConditionalDiscount child in Children.Values)
+            {
+                bool tmp = child.checkCondition(productList);
+                switch (logical)
+                {
+                    case LogicalConnections.and:
+                        output &= tmp;
+                        break;
+                    case LogicalConnections.or:
+                        output |= tmp;
+                        break;
+                    case LogicalConnections.xor:
+                        if (tmp)
+                            sum++;
+                        break;
+                }
+            }
+            if (logical == LogicalConnections.xor)
+                return sum % 2 == 1;
+            return output;
+
         }
-        public bool addChild(ConditionalDiscount discount)
+        public void addChild(int id, ConditionalDiscount discount)
         {
-            throw new NotImplementedException();
+            Children.Add(id,discount);
         }
-        public bool removeChild(ConditionalDiscount discount)
+        public void removeChild(int discountID)
         {
-            throw new NotImplementedException();
+            Children.Remove(discountID);
         }
-        public bool getChild(ConditionalDiscount discount)
+        public ConditionalDiscount getChild(int discountId)
         {
-            throw new NotImplementedException();
+            if (Children.ContainsKey(discountId))
+                return Children[discountId];
+            return null;
         }
     }
 }
