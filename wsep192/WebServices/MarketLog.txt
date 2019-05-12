@@ -310,3 +310,98 @@ Successfully closed the basket.
 12/05/2019 12:05:41: TradingSystem-create new product in store2 -success
 
 12/05/2019 12:05:41: TradingSystem-add product to store2 -success
+12/05/2019 12:21:39: test log
+12/05/2019 12:21:45: Register - userName or password null
+
+12/05/2019 12:21:45: TradingSystem-open storeZara success
+
+12/05/2019 12:21:45: TradingSystem-create new product in store0 -success
+
+12/05/2019 12:21:45: TradingSystem-add product to store0 -success
+12/05/2019 12:21:45: TradingSystem-create new product in store0 -success
+
+12/05/2019 12:21:45: TradingSystem-add product to store0 -success
+12/05/2019 12:21:45: TradingSystem-create new product in store0 -success
+
+12/05/2019 12:21:45: TradingSystem-add product to store0 -success
+12/05/2019 12:21:45: TradingSystem-open storeBershka success
+
+12/05/2019 12:21:45: TradingSystem-create new product in store1 -success
+
+12/05/2019 12:21:45: TradingSystem-add product to store1 -success
+12/05/2019 12:21:45: TradingSystem-create new product in store1 -success
+
+12/05/2019 12:21:45: TradingSystem-add product to store1 -success
+12/05/2019 12:21:45: TradingSystem-create new product in store1 -success
+
+12/05/2019 12:21:45: TradingSystem-add product to store1 -success
+12/05/2019 12:21:46: TradingSystem-open storeForever21 success
+
+12/05/2019 12:21:46: TradingSystem-create new product in store2 -success
+
+12/05/2019 12:21:46: TradingSystem-add product to store2 -success
+12/05/2019 12:21:46: TradingSystem-create new product in store2 -success
+
+12/05/2019 12:21:46: TradingSystem-add product to store2 -success
+12/05/2019 12:21:46: TradingSystem-create new product in store2 -success
+
+12/05/2019 12:21:46: TradingSystem-add product to store2 -success
+12/05/2019 12:21:56: Successfully closed the basket.
+
+12/05/2019 12:22:13: Add to cart success. /n
+12/05/2019 12:22:23: Successfully closed the basket.
+
+12/05/2019 12:22:31: Products have declined / returned to store stock successfully.
+
+12/05/2019 12:22:31: Making the cart purchase succeeded
+
+12/05/2019 12:25:36: test log
+12/05/2019 12:25:46: Register - userName or password null
+
+12/05/2019 12:25:46: TradingSystem-open storeZara success
+
+12/05/2019 12:25:46: TradingSystem-create new product in store0 -success
+
+12/05/2019 12:25:46: TradingSystem-add product to store0 -success
+12/05/2019 12:25:46: TradingSystem-create new product in store0 -success
+
+12/05/2019 12:25:46: TradingSystem-add product to store0 -success
+12/05/2019 12:25:46: TradingSystem-create new product in store0 -success
+
+12/05/2019 12:25:46: TradingSystem-add product to store0 -success
+12/05/2019 12:25:46: TradingSystem-open storeBershka success
+
+12/05/2019 12:25:46: TradingSystem-create new product in store1 -success
+
+12/05/2019 12:25:46: TradingSystem-add product to store1 -success
+12/05/2019 12:25:46: TradingSystem-create new product in store1 -success
+
+12/05/2019 12:25:46: TradingSystem-add product to store1 -success
+12/05/2019 12:25:46: TradingSystem-create new product in store1 -success
+
+12/05/2019 12:25:46: TradingSystem-add product to store1 -success
+12/05/2019 12:25:47: TradingSystem-open storeForever21 success
+
+12/05/2019 12:25:47: TradingSystem-create new product in store2 -success
+
+12/05/2019 12:25:47: TradingSystem-add product to store2 -success
+12/05/2019 12:25:47: TradingSystem-create new product in store2 -success
+
+12/05/2019 12:25:47: TradingSystem-add product to store2 -success
+12/05/2019 12:25:47: TradingSystem-create new product in store2 -success
+
+12/05/2019 12:25:47: TradingSystem-add product to store2 -success
+12/05/2019 12:26:03: Add to cart success. /n
+12/05/2019 12:26:24: Successfully closed the basket.
+
+12/05/2019 12:26:51: Products have declined / returned to store stock successfully.
+
+12/05/2019 12:26:51: Making the cart purchase succeeded
+
+12/05/2019 12:28:18: Add to cart success. /n
+12/05/2019 12:28:25: Successfully closed the basket.
+
+12/05/2019 12:28:33: Products have declined / returned to store stock successfully.
+
+12/05/2019 12:28:33: Making the cart purchase succeeded
+

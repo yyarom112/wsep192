@@ -56,7 +56,7 @@
             <div class="billing_details" id="orderTable" style="visibility: hidden">
                 <div class="row">
                     <div class="col-lg-8">
-                        <h2>Your Order</h2>
+                        <h2>Your Order Confirmation</h2>
                         <table class="table">
                             <thead class="thead-primary">
                                 <tr class="text-center">
@@ -133,7 +133,7 @@
                     dataType: "json",
                     success: function (response) {
                         if (response != "Date or card number are wrong") {
-                            var totalPrice = parseInt(document.getElementById('price').textContent,10);
+                            var totalPrice = parseInt(document.getElementById('price').textContent, 10);
                             document.getElementById('ship_and_pay_div').remove();
                             $('#tableOfOrder').append("");
                             var user = getCookie("LoggedUser");
@@ -163,6 +163,8 @@
                             var sum = parseInt(searchParams.get('sum'), 10);
                             str += '<tr class="text-center"><td class="product-name"><p>Shipping</p></td><td class="store-name"><p></p></td ><td class="quantity"><p></p></td ><td class="price"><p></p></td ><td class="total"><p>' + (totalPrice - sum) + '</p></td ></tr >';
                             str += '<tr class="text-center"><td class="product-name"><p>Total amount</p></td><td class="store-name"><p></p></td ><td class="quantity"><p></p></td ><td class="price"><p></p></td ><td class="total"><p>' + totalPrice + '</p></td ></tr >';
+                            str += '<tr class="text-center"><td class="product-name"><p>Thank you for shopping in aroma.</p></td><td class="store-name"><p></p></td ><td class="quantity"><p></p></td ><td class="price"><p></p></td ><td class="total"><p> </p></td ></tr >';
+
                             $('#tableOfOrder').append(str);
                             document.getElementById('orderTable').style.visibility = "visible";
                         }
