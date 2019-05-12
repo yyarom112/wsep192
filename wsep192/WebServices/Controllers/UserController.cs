@@ -71,8 +71,6 @@ namespace WebService.Controllers
             
         }
 
-
-
         [Route("api/user/AddtoCart")]
         [HttpGet]
         public string AddtoCart(String list, String store, String user)
