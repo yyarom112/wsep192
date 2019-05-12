@@ -39,7 +39,6 @@ namespace WebService.Controllers
         public string showCart(String Store, String User)
         {
             List<KeyValuePair<String, int>> cart = service.showCart(Store, User);
-            string res;
             if (cart==null)
                 return "null";
             else
@@ -71,8 +70,6 @@ namespace WebService.Controllers
             return "Server error: removeFromCart";
             
         }
-
-
 
         [Route("api/user/AddtoCart")]
         [HttpGet]
@@ -317,7 +314,56 @@ namespace WebService.Controllers
             return ans+"";
         }
 
+        [Route("api/user/payForBasket")]
+        [HttpGet]
+        public string payForBasket(String cardNum, String expiredDate,String username)
+        {
+            List<string[]> res;
+            int day, month, year;
+            long cardNumber;
+            DateTime dateTime;
+            String []date = expiredDate.Split('/');
+            try
+            {
+                day = Int32.Parse(date[0]);
+                month = Int32.Parse(date[1]);
+                year = Int32.Parse(date[2]);
+                cardNumber = Int32.Parse(cardNum);
+                dateTime = new DateTime(year, month, day);
+            }
+            catch(Exception ex)
+            {
+                return "Date or card number are wrong";
+            }
+            
+            res = service.payForBasket(cardNumber, dateTime, username);
+            return productsToString(res);
+        }
+
+        private String productsToString(List<String[]> products)
+        {
+            String res = "";
+            int i = 0;
+            int sum = 0;
+            foreach (String[] s in products)
+            {
+                res += "name" + i + "=" + s[0] + "&"
+                     + "store" + i + "=" + s[1] + "&"
+                    + "quantity" + i + "=" + s[2] + "&"
+                    + "price" + i + "=" + s[3] + "&"
+                    + "total" + i + "=" + s[4] + "&"
+                    ;
+                sum += Int32.Parse(s[4]);
+                i++;
+
+            }
+            res += "sum=" + sum;
+            return res;
+        }
+
 
 
     }
+    
+
 }
