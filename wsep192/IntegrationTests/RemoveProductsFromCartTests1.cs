@@ -14,7 +14,7 @@ namespace IntegrationTests
             User user;
             Store store;
             Product product;
-            List<KeyValuePair<int, int>> productsToRemove;
+            List<int> productsToRemove;
 
 
             public void setup()
@@ -33,9 +33,8 @@ namespace IntegrationTests
                 user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
                 ProductInCart pc = new ProductInCart(2, user.Basket.ShoppingCarts[store.Id], product);
                 user.Basket.ShoppingCarts[store.Id].Products.Add(product.Id, pc);
-                productsToRemove = new List<KeyValuePair<int, int>>();
-                KeyValuePair<int, int> pair = new KeyValuePair<int, int>(product.Id, 1);
-                productsToRemove.Add(pair);
+                productsToRemove = new List<int>(product.Id);
+                productsToRemove.Add(product.Id);
 
 
             }
@@ -61,15 +60,9 @@ namespace IntegrationTests
 
                 //failure cart remove
                 user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
-                productsToRemove = new List<KeyValuePair<int, int>>();
-                KeyValuePair<int, int> pair = new KeyValuePair<int, int>(product.Id, 5);
-                productsToRemove.Add(pair);
+                productsToRemove = new List<int>();
+                productsToRemove.Add(product.Id);
                 Assert.AreEqual(false, user.Basket.ShoppingCarts[store.Id].removeProductsFromCart(productsToRemove)); //empty list of products in cart
-                ProductInCart pc = new ProductInCart(2, user.Basket.ShoppingCarts[store.Id], product);
-                user.Basket.ShoppingCarts[store.Id].Products.Add(product.Id, pc);
-                Assert.AreEqual(false, user.Basket.ShoppingCarts[store.Id].removeProductsFromCart(productsToRemove)); //too many to remove
-
-
 
 
             }
@@ -81,7 +74,6 @@ namespace IntegrationTests
                 setup();
                 successsetup();
                 Assert.AreEqual(true, user.Basket.ShoppingCarts[store.Id].removeProductsFromCart(productsToRemove));
-                Assert.AreEqual(1, user.Basket.ShoppingCarts[store.Id].Products[product.Id].Quantity);
             }
 
             [TestMethod]
@@ -90,7 +82,7 @@ namespace IntegrationTests
                 setup();
                 successsetup();
                 Assert.AreEqual(true, user.Basket.removeProductsFromCart(productsToRemove, store.Id));
-                Assert.AreEqual(1, user.Basket.ShoppingCarts[store.Id].Products[product.Id].Quantity);
+               
             }
 
             [TestMethod]
@@ -99,7 +91,7 @@ namespace IntegrationTests
                 setup();
                 successsetup();
                 Assert.AreEqual(true, system.removeProductsFromCart(productsToRemove, store.Id, user.Id));
-                Assert.AreEqual(1, user.Basket.ShoppingCarts[store.Id].Products[product.Id].Quantity);
+                
             }
 
 

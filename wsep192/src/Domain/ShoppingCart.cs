@@ -42,29 +42,27 @@ namespace src.Domain
         }
 
 
-        internal virtual string showCart()
+        internal virtual List<KeyValuePair<string, int>> showCart()
         {
             LogManager.Instance.WriteToLog("ShoppingCart:showCart success\n");
             return createOutputTable();
         }
 
-        private string createOutputTable()
+        private List<KeyValuePair<string, int>> createOutputTable()
         {
-            string table = "Store Name: " + store.Name + "\n";
-            if (products.Count == 0)
-                return table + "Cart is empty\n";
+            List<KeyValuePair<string, int>> table = new List<KeyValuePair<string, int>>();
             int idx = 0;
-            table += "Product Name\t\t\tQuantity\n";
             foreach (int key in products.Keys)
             {
                 idx++;
                 ProductInCart p = products[key];
-                table += idx + ". " + p.Product.ProductName + "\t\t\t" + p.Quantity + "\n";
+                KeyValuePair<string, int> pair = new KeyValuePair<string, int>(p.Product.ProductName, p.Quantity);
+                table.Add(pair);
             }
-
 
             return table;
         }
+
         public virtual void addProducts(LinkedList<KeyValuePair<Product, int>> productsToInsert)
         {
             foreach (KeyValuePair<Product, int> toInsert in productsToInsert)
@@ -93,22 +91,20 @@ namespace src.Domain
             return true;
         }
 
-        internal virtual bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove)
+        internal virtual bool removeProductsFromCart(List<int> productsToRemove)
         {
-            foreach (KeyValuePair<int, int> pair in productsToRemove)
+            foreach (int p in productsToRemove)
             {
-                if (!products.ContainsKey(pair.Key) || products[pair.Key].Quantity < pair.Value)
+                if (!products.ContainsKey(p))
                 {
                     LogManager.Instance.WriteToLog("ShoppingCart:removeProductQuantityFromCart failed - shopping cart does not contain the product " +
                         "or invalid quantity\n");
                     return false;
                 }
             }
-            foreach (KeyValuePair<int, int> pair in productsToRemove)
+            foreach ( int p in productsToRemove)
             {
-                products[pair.Key].Quantity -= pair.Value;
-                if (products[pair.Key].Quantity == 0)
-                    products.Remove(pair.Key);
+                    products.Remove(p);
             }
             LogManager.Instance.WriteToLog("ShoppingCart:removeProductsFromCart success\n");
             return true;

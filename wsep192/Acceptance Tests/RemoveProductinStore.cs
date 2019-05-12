@@ -9,14 +9,13 @@ namespace Acceptance_Tests
     public class RemoveProductinStore
     {
 
-        private ServiceLayer service;
+        ServiceLayer service;
         private List<KeyValuePair<String, int>> products;
         private List<KeyValuePair<String, int>> toManyProducts;
         private List<KeyValuePair<String, int>> notExistProduct;
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("admin", "1234");
+            service = ServiceLayer.getInstance();
             string owner = service.initUser();
             service.register("Rotem", "23&As2", owner);
             service.signIn("Rotem", "23&As2");
@@ -37,6 +36,7 @@ namespace Acceptance_Tests
             setUp();
             bool x=service.removeProductsInStore(products, "ZARA", "Rotem");
             Assert.IsTrue(x);
+            service.shutDown();
         }
 
         //The owner will remove product quanitity if he does not has enough of it - invalid procedure.
@@ -48,6 +48,7 @@ namespace Acceptance_Tests
             toManyProducts.Add(new KeyValuePair<string, int>("Top", 30));
             bool x = service.removeProductsInStore(toManyProducts,"ZARA","Rotem");
             Assert.IsFalse(x);
+            service.shutDown();
         }
 
         //The owner will remove product who does not exists on stote - invalid procedure.
@@ -59,6 +60,7 @@ namespace Acceptance_Tests
             notExistProduct.Add(new KeyValuePair<string, int>("Jeans", 30));
             bool x = service.removeProductsInStore(notExistProduct, "ZARA", "Rotem");
             Assert.IsFalse(x);
+            service.shutDown();
         }
     }
 }

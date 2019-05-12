@@ -34,13 +34,13 @@ namespace src.Domain
 
         public bool compareProduct(Filter filter)
         {
-            if (!filter.ProductName.Equals(ProductName))
+            if (!filter.ProductName.Equals("")&&!filter.ProductName.Equals(ProductName))
                 return false;
             if (filter.Category != "" && !filter.Category.Equals(Category))
                 return false;
             if (filter.ProductRate != -1 && filter.ProductRate != ProductRate)
                 return false;
-            if (filter.PriceRange.Equals(null) && (filter.PriceRange.Key < this.price || filter.PriceRange.Value > this.price))
+            if ((filter.PriceRange.Key!=-1 && filter.PriceRange.Key > this.price )|| (filter.PriceRange.Value!=-1 && filter.PriceRange.Value < this.price))
                 return false;
             return true;
         }

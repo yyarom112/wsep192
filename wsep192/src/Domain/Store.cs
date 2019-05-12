@@ -46,7 +46,8 @@ namespace src.Domain
             bool result = false;
             foreach (ProductInStore p in products.Values)
             {
-                if (p.Product.compareProduct(filter) && filter.StoreRate != -1 && filter.StoreRate == this.storeRate)
+                bool flag = p.Product.compareProduct(filter);
+                if ( (flag && filter.StoreRate == -1) || (flag && filter.StoreRate != -1 && filter.StoreRate == this.storeRate))
                 {
                     listToAdd.Add(p);
                     result = true;
@@ -334,11 +335,12 @@ namespace src.Domain
                 {
                     Product p = new Product(productID, productName, category, details, price);
                     ProductInStore pis = new ProductInStore(0, this, p);
-                    if (!Products.ContainsKey(productID))
-                    {
-                        Products.Add(productID, pis);
-                        return true;
-                    }
+                    //if (!Products.ContainsKey(productID))
+                    foreach(ProductInStore pp in Products.Values)   ///CHANGED
+                        if (pp.Product.ProductName == productName)  ///CHANGED
+                            return false;                           ///CHANGED
+                    Products.Add(productID, pis);
+                    return true;
                 }
             }
 

@@ -119,7 +119,7 @@ namespace src.Domain
             return false;
         }
 
-        internal virtual string showCart(int storeId)
+        internal virtual List<KeyValuePair<string, int>> showCart(int storeId)
         {
             return basket.showCart(storeId);
         }
@@ -205,7 +205,7 @@ namespace src.Domain
         }
 
 
-        internal virtual bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        internal virtual bool removeProductsFromCart(List<int> productsToRemove, int storeId)
         {
             return basket.removeProductsFromCart(productsToRemove, storeId);
         }

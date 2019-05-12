@@ -39,4 +39,7 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("UnitTests")]
 [assembly: InternalsVisibleTo("IntegrationTests")]
 [assembly: InternalsVisibleTo("Acceptance Tests")]
+[assembly: InternalsVisibleTo("WebServices")]
+[assembly: InternalsVisibleTo("WebApp2")]
+
 
