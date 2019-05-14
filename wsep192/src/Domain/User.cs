@@ -303,7 +303,7 @@ namespace src.Domain
             if (role != null && role.GetType() == typeof(Manager))
             {
                 Manager manager = (Manager)role;
-                if (!manager.validatePermission(2))
+                if (!manager.validatePermission(premmision))
                 {
                     LogManager.Instance.WriteToLog("User-search Role By StoreID With Validate Permmision fail- Manager does not have permissions\n");
                     return null;
