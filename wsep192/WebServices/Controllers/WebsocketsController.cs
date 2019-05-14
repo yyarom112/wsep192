@@ -13,8 +13,8 @@ namespace WebServices.Controllers
         private Dictionary<int, WebSocket> webSockets = new Dictionary<int, WebSocket>(); 
 
 
-        // GET: Websockets
-        public string Test()
+        
+        public string Notify()
         {
             return "Hello!";
         }
