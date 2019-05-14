@@ -89,14 +89,12 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="FinancialSystemImpl.cs" />
     <Compile Include="ProductSupplySystemImpl.cs" />
-
     <Compile Include="LogManager.cs" />
     <Compile Include="ServiceLayer\ServiceLayer.cs" />
     <Compile Include="Domain\RevealedDiscount.cs" />
     <Compile Include="Domain\ConditionalDiscount.cs" />
     <Compile Include="Domain\LogicalCondition.cs" />
     <Compile Include="Domain\LeafCondition.cs" />
-
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -115,9 +113,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PresentationLayer\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

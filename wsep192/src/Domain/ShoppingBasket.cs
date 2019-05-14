@@ -18,7 +18,6 @@ namespace src.Domain
 
         internal Dictionary<int, ShoppingCart> ShoppingCarts { get => shoppingCarts; set => shoppingCarts = value; }
 
-
         public virtual double basketCheckout(UserDetailes user)
         {
             double sum = 0;

@@ -15,7 +15,7 @@ namespace src.Domain
         private int max;
         private LogicalConnections act;
 
-        public ProductConditionPolicy( int id, int productID, int min, int max, LogicalConnections act)
+        public ProductConditionPolicy(int id, int productID, int min, int max, LogicalConnections act)
         {
             this.id = id;
             this.ProductID = productID;

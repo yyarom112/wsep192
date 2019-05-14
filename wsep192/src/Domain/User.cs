@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    enum state { visitor,signedIn }
+    enum state { visitor, signedIn }
     class User
     {
         private int id;
@@ -29,7 +29,7 @@ namespace src.Domain
             this.password = password;
             this.address = "";
             this.state = state.visitor;
-            this.isAdmin = isAdmin;    
+            this.isAdmin = isAdmin;
             this.isRegistered = isRegistered;
             this.basket = new ShoppingBasket();
             this.roles = new Dictionary<int, Role>();
@@ -45,15 +45,15 @@ namespace src.Domain
         internal ShoppingBasket Basket { get => basket; set => basket = value; }
         internal Dictionary<int, Role> Roles { get => roles; set => roles = value; }
 
-
         internal bool removeProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID)
         {
             Role role = searchRoleByStoreID(storeID, this.Id);
             if (role != null && (role.GetType() == typeof(Owner) || (role.GetType() == typeof(Manager) && ((Manager)role).validatePermission(5))))
-                return role.Store.removeProductsInStore(productsInStore,this.id);
+                return role.Store.removeProductsInStore(productsInStore, this.id);
             LogManager.Instance.WriteToLog("User-remove product in store fail- the role does not exists or doesn't have permissions\n");
             return false;
         }
+
         internal bool addProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID)
         {
             Role role = searchRoleByStoreID(storeID, this.Id);
@@ -62,6 +62,7 @@ namespace src.Domain
             LogManager.Instance.WriteToLog("User-add products in store fail- the role does not exists or doesn't have permissions\n");
             return false;
         }
+
         internal bool editProductsInStore(int productID, string productName, string category, string details, int price, int storeID)
         {
             Role role = searchRoleByStoreID(storeID, this.Id);
@@ -70,25 +71,27 @@ namespace src.Domain
             LogManager.Instance.WriteToLog("User-edit products in store fail- the role does not exists or doesn't have permissions\n");
             return false;
         }
-        public bool removeOwner(int userID,int storeID)
+
+        public bool removeOwner(int userID, int storeID)
         {
             if (this.state != state.signedIn)
             {
                 LogManager.Instance.WriteToLog("User-removeOwner " + this.id + " isn't signed in");
                 return false;
             }
-            Role role = searchRoleByStoreID(storeID,this.Id);
+            Role role = searchRoleByStoreID(storeID, this.Id);
             if (role != null && role.GetType() == typeof(Owner))
             {
                 Owner owner = (Owner)role;
                 return owner.removeOwner(userID);
-                
+
             }
             LogManager.Instance.WriteToLog("User-removeOwner " + role.User.Id + " isn't owner");
             return false;
-            
+
         }
-        internal bool createNewProductInStore(string productName, string category, string details, int price,int productID, int storeID)
+
+        internal bool createNewProductInStore(string productName, string category, string details, int price, int productID, int storeID)
         {
             Role role = searchRoleByStoreID(storeID, this.Id);
             if (role != null && (role.GetType() == typeof(Owner) || (role.GetType() == typeof(Manager) && ((Manager)role).validatePermission(3))))
@@ -134,7 +137,7 @@ namespace src.Domain
             this.userName = userName;
             this.password = password;
             this.IsRegistered = true;
-            LogManager.Instance.WriteToLog("Register - userName or password null\n");            
+            LogManager.Instance.WriteToLog("Register - userName or password null\n");
             return true;
         }
 
@@ -143,34 +146,36 @@ namespace src.Domain
         {
             Roles.Add(role.Store.Id, role);
         }
-        public Role searchRoleByStoreID(int storeID,int userID)
+
+        public Role searchRoleByStoreID(int storeID, int userID)
         {
             foreach (Role role in roles.Values)
-                if (role.Store.Id == storeID&&role.User.Id == userID)
+                if (role.Store.Id == storeID && role.User.Id == userID)
                     return role;
             return null;
         }
-        
+
 
         public virtual double basketCheckout(String address)
         {
             this.address = address;
             if (Basket.ShoppingCarts.Count == 0)
                 return 0;
-            double basketSum = basket.basketCheckout(new UserDetailes(address,IsRegistered));
+            double basketSum = basket.basketCheckout(new UserDetailes(address, IsRegistered));
             if (basketSum == 0)
                 return 0;
-            return basketSum  + calcAddressFee(address);
+            return basketSum + calcAddressFee(address);
         }
+
         internal bool signOut()
         {
             if (state != state.signedIn)
             {
-                LogManager.Instance.WriteToLog("User:signOut failed - user "+UserName+" didn't sign in\n");
+                LogManager.Instance.WriteToLog("User:signOut failed - user " + UserName + " didn't sign in\n");
                 return false;
             }
             state = state.visitor;
-            LogManager.Instance.WriteToLog("User:signOut success - "+userName+"\n");
+            LogManager.Instance.WriteToLog("User:signOut success - " + userName + "\n");
             return true;
 
         }
@@ -179,6 +184,7 @@ namespace src.Domain
         {
             return this.basket.addProductsToCart(productsToInsert, storeId);
         }
+
         public virtual Boolean signIn(string userName, string password)
         {
             if (userName != null && password != null)
@@ -190,6 +196,7 @@ namespace src.Domain
             }
             return false;
         }
+
         private int calcAddressFee(string address)
         {
             switch (address)
@@ -205,11 +212,11 @@ namespace src.Domain
             }
         }
 
-
         internal virtual bool removeProductsFromCart(List<int> productsToRemove, int storeId)
         {
             return basket.removeProductsFromCart(productsToRemove, storeId);
         }
+
         internal virtual bool editProductQuantityInCart(int productId, int quantity, int storeId)
         {
             return basket.editProductQuantityInCart(productId, quantity, storeId);
@@ -222,7 +229,7 @@ namespace src.Domain
                 LogManager.Instance.WriteToLog("User-Remove manager fail- User is not logged in\n");
                 return false;
             }
-            Role role = searchRoleByStoreID(storeID,this.id);
+            Role role = searchRoleByStoreID(storeID, this.id);
             try
             {
                 Owner owner = (Owner)role;
@@ -237,7 +244,7 @@ namespace src.Domain
 
         }
 
-        public bool assignOwner(int storeID,User assigned)
+        public bool assignOwner(int storeID, User assigned)
         {
             Role roleOwner = searchRoleByStoreID(storeID, this.Id);
             Role roleAssigned = searchRoleByStoreID(storeID, assigned.Id);
@@ -260,10 +267,10 @@ namespace src.Domain
             }
         }
 
-        public virtual PurchasePolicy addSimplePurchasePolicy(PurchesPolicyData purchesData ,int storeID)
+        public virtual PurchasePolicy addSimplePurchasePolicy(PurchesPolicyData purchesData, int storeID)
         {
             Role role;
-            if ((role= searchRoleByStoreIDWithValidatePermmision(storeID,2))!=null)
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 2)) != null)
                 return role.addSimplePurchasePolicy(purchesData);
             return null;
         }
@@ -278,7 +285,7 @@ namespace src.Domain
 
         }
 
-        internal Role searchRoleByStoreIDWithValidatePermmision( int storeID,int premmision)
+        internal Role searchRoleByStoreIDWithValidatePermmision(int storeID, int premmision)
         {
             Role role;
             if (this.state != state.signedIn)
@@ -305,6 +312,4 @@ namespace src.Domain
             return role;
         }
     }
-
-
 }

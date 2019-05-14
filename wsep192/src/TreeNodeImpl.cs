@@ -7,10 +7,10 @@ public class TreeNode<T>
     public delegate bool TraversalDataDelegate(T data);
     public delegate bool TraversalNodeDelegate(TreeNode<T> node);
 
-    private  T _data;
-    private  TreeNode<T> _parent;
-    private  int _level;
-    private  List<TreeNode<T>> _children;
+    private T _data;
+    private TreeNode<T> _parent;
+    private int _level;
+    private List<TreeNode<T>> _children;
     public List<TreeNode<T>> getChildren()
     {
         return _children;
