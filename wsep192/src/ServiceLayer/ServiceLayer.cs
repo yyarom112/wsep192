@@ -47,6 +47,7 @@ namespace src.ServiceLayer
             instance = null;
         }
 
+
         /*
         public bool setUp()
         {
@@ -377,9 +378,7 @@ namespace src.ServiceLayer
                 users.Remove(userToRemove);
             return result;
         }
-
-
-
+        
         public static string getId(int length)
         {
             char[] id = "0123456789".ToCharArray();

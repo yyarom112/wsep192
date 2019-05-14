@@ -361,12 +361,32 @@ namespace WebService.Controllers
             return res;
         }
 
+        
+
         [Route("api/user/getVisibility")]
         [HttpGet]
         public bool[] getVisibility(String userName)
         {
             return service.getVisibility(userName);
         }
+
+        [Route("api/user/removeGuestUser")]
+        [HttpGet]
+        public string removeGuestUser(String guestID)
+        {
+
+            bool ans = service.removeUser(guestID,"admin");
+            switch (ans)
+            {
+                case true:
+                    return "success";
+                case false:
+                    return "Error in removeGuestUser";
+            }
+            return "Error in removeGuestUser";
+        }
+
+
 
 
 
