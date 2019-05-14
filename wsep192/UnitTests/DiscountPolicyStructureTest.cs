@@ -212,5 +212,18 @@ namespace UnitTests
 
         }
 
+        [TestMethod]
+        public void ConditionalDiscount_calculate_fail()
+        {
+            sutup();
+            List<KeyValuePair<ProductInStore, int>> productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            Assert.AreEqual(0, logcAnd.calculate(productToBuy), "empty list");
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 1));
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 0));
+            Assert.AreEqual(20, logcAnd.calculate(productToBuy), "get discount");
+
+        }
+
+
     }
 }

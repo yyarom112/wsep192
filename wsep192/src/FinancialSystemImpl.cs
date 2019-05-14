@@ -8,8 +8,6 @@ namespace src
 {
     class FinancialSystemImpl : Domain.FinancialSystem
     {
-
-
         public bool connect()
         {
             return true;
@@ -24,7 +22,5 @@ namespace src
         {
             return true;
         }
-
-
     }
 }

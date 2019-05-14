@@ -14,7 +14,6 @@ namespace src.Domain
             return true;
         }
 
-
         public string encrypt(string password)
         {
             byte[] pwd;

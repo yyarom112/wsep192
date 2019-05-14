@@ -17,7 +17,6 @@ namespace src.Domain
 
         private List<int> Permissions { get => permissions; set => permissions = value; }
 
-
         public virtual bool validatePermission(int permission)
         {
             if (this.Permissions.Contains(permission))

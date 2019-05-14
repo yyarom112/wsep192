@@ -38,7 +38,7 @@ namespace src.Domain
 
         public PurchasePolicy getChild(int childId)
         {
-            foreach(PurchasePolicy policy in this.children)
+            foreach (PurchasePolicy policy in this.children)
             {
                 if (policy.getId() == childId)
                     return policy;
@@ -65,7 +65,7 @@ namespace src.Domain
 
         public bool CheckConditionAnd(List<KeyValuePair<ProductInStore, int>> cart, UserDetailes user)
         {
-            foreach(PurchasePolicy policy in children)
+            foreach (PurchasePolicy policy in children)
             {
                 if (!policy.CheckCondition(cart, user))
                     return false;
@@ -82,9 +82,5 @@ namespace src.Domain
             }
             return false;
         }
-
-
-
-
     }
 }

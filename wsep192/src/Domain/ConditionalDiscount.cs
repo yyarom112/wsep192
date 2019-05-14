@@ -8,7 +8,6 @@ namespace src.Domain
 {
     abstract class ConditionalDiscount : DiscountPolicy
     {
-
         private int Id;
         private double discountPrecentage;
         private Dictionary<int, ProductInStore> products;
@@ -37,7 +36,7 @@ namespace src.Domain
             double sum = 0;
             if (EndDateDiscount1 < DateTime.Now)
                 return sum;
-            foreach (KeyValuePair< ProductInStore, int> product in productList)
+            foreach (KeyValuePair<ProductInStore, int> product in productList)
             {
                 if (Products.ContainsKey(product.Key.Product.Id))
                     sum += (product.Key.Product.Price * product.Value) * DiscountPrecentage;
@@ -64,6 +63,7 @@ namespace src.Domain
         {
             return this.Products;
         }
+
         public void removeProduct(ProductInStore product)
         {
             this.Products1.Remove(product.Product.Id);

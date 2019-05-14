@@ -7,24 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-
-
-
-
-
 namespace src
 {
     class LogManager
     {
         private static LogManager instance;
 
-
         private String path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MarketLog.txt");
 
 
         private LogManager()
         {
- 
             // Delete the file if it exists.
             if (!File.Exists(path))
             {
@@ -36,11 +29,6 @@ namespace src
                     fs.Write(info, 0, info.Length);
                 }
             }
-
-
-
-
-
         }
 
         public static LogManager Instance
@@ -56,13 +44,14 @@ namespace src
 
         public void WriteToLog(String str)
         {
-            
+
             using (var streamWriter = new StreamWriter(path, true))
             {
                 DateTime localDate = DateTime.Now;
                 streamWriter.WriteLine(localDate.ToString() + ": " + str);
             }
         }
+
         public void OpenAnewLogFile()
         {
             // Delete the file if it exists.
@@ -79,21 +68,16 @@ namespace src
                 fs.Write(info, 0, info.Length);
             }
         }
-
     }
 
 
     class ErrorManager
     {
         private static ErrorManager instance;
-
-
         private String path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MarketError.txt");
-
 
         private ErrorManager()
         {
-
             // Delete the file if it exists.
             if (!File.Exists(path))
             {
@@ -105,11 +89,6 @@ namespace src
                     fs.Write(info, 0, info.Length);
                 }
             }
-
-
-
-
-
         }
 
         public static ErrorManager Instance
@@ -125,13 +104,13 @@ namespace src
 
         public void WriteToLog(String str)
         {
-          
             using (var streamWriter = new StreamWriter(path, true))
             {
                 DateTime localDate = DateTime.Now;
                 streamWriter.WriteLine(localDate.ToString() + ": " + str);
             }
         }
+
         public void OpenAnewLogFile()
         {
             // Delete the file if it exists.
@@ -148,6 +127,5 @@ namespace src
                 fs.Write(info, 0, info.Length);
             }
         }
-
     }
 }

@@ -31,7 +31,6 @@ namespace src.Domain
             this.discountPolicy = new List<DiscountPolicy>();
         }
 
-
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int StoreRate { get => storeRate; set => storeRate = value; }
@@ -47,7 +46,7 @@ namespace src.Domain
             foreach (ProductInStore p in products.Values)
             {
                 bool flag = p.Product.compareProduct(filter);
-                if ( (flag && filter.StoreRate == -1) || (flag && filter.StoreRate != -1 && filter.StoreRate == this.storeRate))
+                if ((flag && filter.StoreRate == -1) || (flag && filter.StoreRate != -1 && filter.StoreRate == this.storeRate))
                 {
                     listToAdd.Add(p);
                     result = true;
@@ -119,7 +118,6 @@ namespace src.Domain
                 }
             }
             LogManager.Instance.WriteToLog("Products have declined / returned to store stock successfully.\n");
-
         }
 
         public virtual void checkQuntity(ShoppingCart cart)
@@ -177,15 +175,15 @@ namespace src.Domain
             //As long as there are discounts on the list will continue to run
             if (discounts.Count == 0)
                 return sum;
-            DiscountPolicy maxDiscount=null;
-            double maxDiscountSum=0;
+            DiscountPolicy maxDiscount = null;
+            double maxDiscountSum = 0;
             //Find the best discount right now
             foreach (DiscountPolicy discount in discounts)
             {
                 double tmp = 0;
                 if (discount.checkCondition(products))
                     tmp = discount.calculate(products);
-                if(maxDiscountSum<= tmp)
+                if (maxDiscountSum <= tmp)
                 {
                     maxDiscount = discount;
                     maxDiscountSum = tmp;
@@ -214,7 +212,7 @@ namespace src.Domain
                     foreach (ProductInStore product in maxDiscount.GetRelevantProducts().Values)
                     {
                         bool find = false;
-                        for(int i=0;i< products.Count && !find; i++)
+                        for (int i = 0; i < products.Count && !find; i++)
                         {
                             if (products[i].Key.Product.Id == product.Product.Id)
                             {
@@ -231,7 +229,7 @@ namespace src.Domain
         private List<KeyValuePair<ProductInStore, int>> CopyProductsList(List<KeyValuePair<ProductInStore, int>> toCopy)
         {
             List<KeyValuePair<ProductInStore, int>> output = new List<KeyValuePair<ProductInStore, int>>();
-            foreach(KeyValuePair<ProductInStore, int> p in toCopy)
+            foreach (KeyValuePair<ProductInStore, int> p in toCopy)
             {
                 output.Add(new KeyValuePair<ProductInStore, int>(new ProductInStore(p.Key.Quantity, this, new Product(p.Key.Product.Id, p.Key.Product.ProductName, null, null, p.Key.Product.Price)), p.Value));
             }
@@ -274,12 +272,9 @@ namespace src.Domain
 
                     return true;
                 }
-
-
             }
             LogManager.Instance.WriteToLog("Store-Remove owner Fail- The user " + userID);
             return false;
-
         }
 
         public bool removeManager(int userID, Role owner)
@@ -335,10 +330,9 @@ namespace src.Domain
                 {
                     Product p = new Product(productID, productName, category, details, price);
                     ProductInStore pis = new ProductInStore(0, this, p);
-                    //if (!Products.ContainsKey(productID))
-                    foreach(ProductInStore pp in Products.Values)   ///CHANGED
-                        if (pp.Product.ProductName == productName)  ///CHANGED
-                            return false;                           ///CHANGED
+                    foreach (ProductInStore pp in Products.Values)
+                        if (pp.Product.ProductName == productName)
+                            return false;
                     Products.Add(productID, pis);
                     return true;
                 }
@@ -409,7 +403,7 @@ namespace src.Domain
             return false;
         }
 
-        public bool assignOwner(User assignedUser, Role owner)//CHANGED SIGNATURE
+        public bool assignOwner(User assignedUser, Role owner)
         {
             TreeNode<Role> assignedNode = null;
             TreeNode<Role> ownerNode = RolesDictionary[owner.User.Id];
@@ -491,10 +485,8 @@ namespace src.Domain
 
         public PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData)
         {
-
             return addComplexPurchasePolicyRec(purchesData, -1);
         }
-
 
         public PurchasePolicy addComplexPurchasePolicyRec(List<Object> purchesData, int multiplcation)
         {
@@ -539,14 +531,12 @@ namespace src.Domain
                     {
                         return null;
                     }
-
             }
             return null;
         }
 
         internal PurchasePolicy factoryProductConditionPolicy(List<Object> purchesData, int multiplcation)
         {
-
             try
             {
                 return new ProductConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), (int)purchesData.ElementAt(4), ConvertObjectToLogicalConnections(5));
@@ -619,6 +609,5 @@ namespace src.Domain
             else
                 return LogicalConnections.or;
         }
-
     }
 }

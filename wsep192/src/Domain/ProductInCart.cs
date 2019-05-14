@@ -21,7 +21,11 @@ namespace src.Domain
 
         public int Quantity { get { return quantity; } set { quantity = value; } }
         internal ShoppingCart ShoppingCart { get { return shoppingCart; } set { shoppingCart = value; } }
-        internal Product Product { get {return product; } set { product = value; }
+        internal Product Product
+        {
+            get { return product; }
+            set { product = value; }
+
         }
     }
 }
