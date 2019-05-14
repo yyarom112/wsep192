@@ -71,5 +71,9 @@ namespace src.Domain
 
         public abstract DiscountPolicy copy();
 
+        public int getID()
+        {
+            return this.Id;
+        }
     }
 }

@@ -34,5 +34,11 @@ namespace src.Domain
         {
             return store.addRevealedDiscountPolicy(products, discountPrecentage, expiredDate, discountId, logic);
         }
+
+        public virtual int removeDiscountPolicy(int discountId)
+        {
+            return store.removeDiscountPolicy(discountId);
+        }
+
     }
 }

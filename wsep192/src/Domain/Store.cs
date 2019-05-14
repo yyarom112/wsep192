@@ -610,6 +610,18 @@ namespace src.Domain
             return discountId;
         }
 
-
+        public virtual int removeDiscountPolicy(int discountId)
+        {
+            foreach(DiscountPolicy discount in discountPolicy)
+            {
+                if(discount.getID() ==  discountId)
+                {
+                    discountPolicy.Remove(discount);
+                    LogManager.Instance.WriteToLog("Store - removeRevealedDiscountPolicy - discount policy removed\n");
+                    return 0;
+                }
+            }
+            return -1;
+        }
     }
 }

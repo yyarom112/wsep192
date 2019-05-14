@@ -585,7 +585,7 @@ namespace src.Domain
             return false;
         }
 
-        
+
         public bool addComplexPurchasePolicy(List<Object> purchesData, int storeID, int userID)
         {
             if (this.Users.ContainsKey(userID))
@@ -602,6 +602,15 @@ namespace src.Domain
                 return Users[userID].addRevealedDiscountPolicy(products, discountPrecentage, storeID, expiredDiscountDate, discountPolicyCounter++, logic);
             }
             LogManager.Instance.WriteToLog("Trading System- addRevealedDiscountPolicy - User does not exist\n");
+            return -1;
+        }
+
+        public int removeDiscountPolicy(int discountId, int storeId, int userId)
+        {
+            if (this.Users.ContainsKey(userId))
+            {
+                return Users[userId].removeDiscountPolicy(discountId, storeId);
+            }
             return -1;
         }
     }

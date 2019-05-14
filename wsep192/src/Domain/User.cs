@@ -317,9 +317,19 @@ namespace src.Domain
             Role role;
             DateTime currentTime = DateTime.Now;
             DateTime expiredDate = currentTime.AddDays(expiredDiscountDate);
-            if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 2)) != null)
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 1)) != null)
             {
                 return role.addRevealedDiscountPolicy(products, discountPrecentage, expiredDate, discountId, logic);
+            }
+            return -1;
+        }
+
+        public virtual int removeDiscountPolicy(int discountId, int storeId)
+        {
+            Role role;
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeId, 1)) != null)
+            {
+                return role.removeDiscountPolicy(discountId);
             }
             return -1;
         }
