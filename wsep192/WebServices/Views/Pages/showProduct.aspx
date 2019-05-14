@@ -22,12 +22,12 @@
                             <tbody id="table">
                             </tbody>
                         </table>
-                        <input type="button" style=" max-width: 180px; float: right;" class="button button-login w-100" id="ApplyButton" value="Add To Cart"></>
+                        <input type="button" style="max-width: 180px; float: right;" class="button button-login w-100" id="ApplyButton" value="Add To Cart"></>
                             <a style="max-width: 180px; float: right;" href="/SearchProduct">
-                            <input class="button button-login w-100" id="SearchAgainButton" value="Search Again" />
+                                <input class="button button-login w-100" id="SearchAgainButton" value="Search Again" />
                             </a>
-                        
-                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,40 +59,52 @@
                 str += '<td class="quantity"><p>' + quantity + '</p></td >';
                 str += '<td class="quantity"><div class="input-group mb-4"><input style="width: 10px;" id="quantity'
                     + productName + '" type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100"></div ></td >';
-                str += '<td class="remove"><input class="check" type="checkbox" id="' + productName + '"><br></td></tr >';
+                str += '<td class="remove"><input class="check" name="' + store + '" type="checkbox" id="' + productName + '"><br></td></tr >';
                 i++;
             }
             $('#table').append(str);
 
             $("#ApplyButton").click(function () {
-
-                var list = '';
+                var storesLists = [];
                 $(".check").each(function (e) {
                     if ($(this).is(':checked')) {
-                        
+                        store = $(this).attr('name');
                         quantity = document.getElementById('quantity' + $(this).attr('id')).value;
-                        list = list + $(this).attr('id') + "," + quantity + ",";
-                    }
-                })
-                console.log(list);
-
-                jQuery.ajax({
-                    type: "GET",
-                    url: baseUrl + "/api/user/AddtoCart?list=" + list + "&store=" + store + "&user=" + user,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        if (response != "false") {
-                            alert('Products added to cart successfully');
+                        storeList = storesLists.find((element)=>(element['store']==store));
+                        if (storeList != undefined) {
+                            storeList['list'] += $(this).attr('id') + "," + quantity + ",";
                         }
                         else {
-                            alert('Failure - add to cart failed');
+                            storesLists.push({ store: store, list: $(this).attr('id') + "," + quantity + "," });
+                        }
+
+                    }
+                })
+                var counter = 0;
+                for (i = 0; i < storesLists.length ; i++)
+                {
+                jQuery.ajax({
+                    type: "GET",
+                    url: baseUrl + "/api/user/AddtoCart?list=" + storesLists[i]['list'] + "&store=" + storesLists[i]['store'] + "&user=" + user,
+                    contentType: "application/json; charset=utf-8",
+                    async: "false",
+                    dataType: "json",
+                    success: function (response) {
+                        
+                        if (response == "false") {
+                            alert('Failure - add to ' + storesLists[i]['store'] + ' cart failed');
+                            counter++;
                         }
                     },
                     error: function (response) {
-                        alert('Failure - add to cart error');
+                        alert('Failure - add to ' + storesLists[i]['store'] + ' cart error');
+                        counter++;
                     }
                 });
+                    
+                }
+                if (counter == 0)
+                    alert('Products added successfully');
 
             });
         });

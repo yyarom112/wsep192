@@ -45,11 +45,11 @@ namespace src
         public void WriteToLog(String str)
         {
 
-            using (var streamWriter = new StreamWriter(path, true))
+            /*using (var streamWriter = new StreamWriter(path, true))
             {
                 DateTime localDate = DateTime.Now;
                 streamWriter.WriteLine(localDate.ToString() + ": " + str);
-            }
+            }*/
         }
 
         public void OpenAnewLogFile()

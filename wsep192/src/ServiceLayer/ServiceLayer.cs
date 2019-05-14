@@ -71,19 +71,20 @@ namespace src.ServiceLayer
             string[] stores = { "Zara", "Bershka", "Forever21", "Castro", "Renuar", "AmericanEagle" };
             string[] details = { "New", "On Sale", "Last chance", "Hot staff" };
             string[] cats = { "Tops", "Jeans", "Shoes", "Skirts" };
-            for (int i = 0; i < 1 && flag; i++)
+            for (int i = 0; i < stores.Length && flag; i++)
             {
+                List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
                 flag = flag & instance.openStore(stores[i], "user");
                 for (int j = 0; j < 3 && flag; j++)
                 {
                     string cat = cats[new Random().Next(0, 4)];
                     string[] product = { cat + (j + 1).ToString(), cat, details[new Random().Next(0, 4)], stores[i] };
                     flag = flag & instance.createNewProductInStore(product[0], product[1], product[2], new Random().Next(10, 100), product[3], "user");
-                    List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
-                    products.Add(new KeyValuePair<string, int>(product[0], new Random().Next(10, 100)));
-                    if(flag)
-                        flag = flag & instance.addProductsInStore(products, stores[i], "user");
+                    var rand = new Random().Next(10, 100);
+                    products.Add(new KeyValuePair<string, int>(product[0], rand));
                 }
+                if (flag)
+                    flag = flag & instance.addProductsInStore(products, stores[i], "user");
             }
             return flag;
 

@@ -44,7 +44,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            if (response == "User successfuly removed") {
+                            if (response == "User successfully removed") {
                                 alert(response);
                                 window.location.href = baseUrl + "/";
                             }

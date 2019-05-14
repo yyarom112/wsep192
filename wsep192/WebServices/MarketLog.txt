@@ -56,3 +56,532 @@
 
 12/05/2019 15:47:18: Making the cart purchase succeeded
 
+5/13/2019 17:41:07: Register - userName or password null
+
+5/13/2019 17:41:07: TradingSystem-open storeZara success
+
+5/13/2019 17:41:07: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:41:07: TradingSystem-add product to store0 -success
+5/13/2019 17:41:07: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:41:07: TradingSystem-add product to store0 -success
+5/13/2019 17:41:07: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:41:07: TradingSystem-add product to store0 -success
+5/13/2019 17:43:51: Register - userName or password null
+
+5/13/2019 17:43:51: TradingSystem-open storeZara success
+
+5/13/2019 17:43:51: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:43:51: TradingSystem-add product to store0 -success
+5/13/2019 17:43:51: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:43:51: TradingSystem-add product to store0 -success
+5/13/2019 17:43:51: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:43:51: TradingSystem-add product to store0 -success
+5/13/2019 17:43:51: TradingSystem-open storeBershka success
+
+5/13/2019 17:43:51: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:43:51: TradingSystem-add product to store1 -success
+5/13/2019 17:43:51: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:43:51: TradingSystem-add product to store1 -success
+5/13/2019 17:43:51: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:43:51: TradingSystem-add product to store1 -success
+5/13/2019 17:43:52: TradingSystem-open storeForever21 success
+
+5/13/2019 17:43:52: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:43:52: TradingSystem-add product to store2 -success
+5/13/2019 17:43:52: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:43:52: TradingSystem-add product to store2 -success
+5/13/2019 17:43:52: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:43:52: TradingSystem-add product to store2 -success
+5/13/2019 17:49:42: Register - userName or password null
+
+5/13/2019 17:49:42: TradingSystem-open storeZara success
+
+5/13/2019 17:49:42: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store0 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store0 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store0 -success
+5/13/2019 17:49:42: TradingSystem-open storeBershka success
+
+5/13/2019 17:49:42: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store1 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store1 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store1 -success
+5/13/2019 17:49:42: TradingSystem-open storeForever21 success
+
+5/13/2019 17:49:42: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store2 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store2 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store2 -success
+5/13/2019 17:49:42: TradingSystem-open storeCastro success
+
+5/13/2019 17:49:42: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store3 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store3 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store3 -success
+5/13/2019 17:49:42: TradingSystem-open storeRenuar success
+
+5/13/2019 17:49:42: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store4 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store4 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store4 -success
+5/13/2019 17:49:42: TradingSystem-open storeAmericanEagle success
+
+5/13/2019 17:49:42: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store5 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store5 -success
+5/13/2019 17:49:42: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:49:42: TradingSystem-add product to store5 -success
+5/13/2019 17:51:50: Register - userName or password null
+
+5/13/2019 17:51:50: TradingSystem-open storeZara success
+
+5/13/2019 17:51:50: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store0 -success
+5/13/2019 17:51:50: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store0 -success
+5/13/2019 17:51:50: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store0 -success
+5/13/2019 17:51:50: TradingSystem-open storeBershka success
+
+5/13/2019 17:51:50: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store1 -success
+5/13/2019 17:51:50: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store1 -success
+5/13/2019 17:51:50: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store1 -success
+5/13/2019 17:51:50: TradingSystem-open storeForever21 success
+
+5/13/2019 17:51:50: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store2 -success
+5/13/2019 17:51:50: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store2 -success
+5/13/2019 17:51:50: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store2 -success
+5/13/2019 17:51:50: TradingSystem-open storeCastro success
+
+5/13/2019 17:51:50: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store3 -success
+5/13/2019 17:51:50: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store3 -success
+5/13/2019 17:51:50: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store3 -success
+5/13/2019 17:51:50: TradingSystem-open storeRenuar success
+
+5/13/2019 17:51:50: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store4 -success
+5/13/2019 17:51:50: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store4 -success
+5/13/2019 17:51:50: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store4 -success
+5/13/2019 17:51:50: TradingSystem-open storeAmericanEagle success
+
+5/13/2019 17:51:50: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store5 -success
+5/13/2019 17:51:50: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:51:50: TradingSystem-add product to store5 -success
+5/13/2019 17:51:51: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:51:51: TradingSystem-add product to store5 -success
+5/13/2019 17:55:07: Register - userName or password null
+
+5/13/2019 17:55:07: TradingSystem-open storeZara success
+
+5/13/2019 17:55:07: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store0 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store0 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store0 -success
+5/13/2019 17:55:07: TradingSystem-open storeBershka success
+
+5/13/2019 17:55:07: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store1 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store1 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store1 -success
+5/13/2019 17:55:07: TradingSystem-open storeForever21 success
+
+5/13/2019 17:55:07: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store2 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store2 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store2 -success
+5/13/2019 17:55:07: TradingSystem-open storeCastro success
+
+5/13/2019 17:55:07: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store3 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store3 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store3 -success
+5/13/2019 17:55:07: TradingSystem-open storeRenuar success
+
+5/13/2019 17:55:07: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store4 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store4 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store4 -success
+5/13/2019 17:55:07: TradingSystem-open storeAmericanEagle success
+
+5/13/2019 17:55:07: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store5 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store5 -success
+5/13/2019 17:55:07: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:55:07: TradingSystem-add product to store5 -success
+5/13/2019 17:56:31: Register - userName or password null
+
+5/13/2019 17:56:31: TradingSystem-open storeZara success
+
+5/13/2019 17:56:31: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store0 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store0 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store0 -success
+5/13/2019 17:56:31: TradingSystem-open storeBershka success
+
+5/13/2019 17:56:31: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store1 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store1 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store1 -success
+5/13/2019 17:56:31: TradingSystem-open storeForever21 success
+
+5/13/2019 17:56:31: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store2 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store2 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store2 -success
+5/13/2019 17:56:31: TradingSystem-open storeCastro success
+
+5/13/2019 17:56:31: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store3 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store3 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store3 -success
+5/13/2019 17:56:31: TradingSystem-open storeRenuar success
+
+5/13/2019 17:56:31: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store4 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store4 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store4 -success
+5/13/2019 17:56:31: TradingSystem-open storeAmericanEagle success
+
+5/13/2019 17:56:31: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store5 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store5 -success
+5/13/2019 17:56:31: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:56:31: TradingSystem-add product to store5 -success
+5/13/2019 17:58:50: Register - userName or password null
+
+5/13/2019 17:58:50: TradingSystem-open storeZara success
+
+5/13/2019 17:58:50: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:58:50: TradingSystem-add product to store0 -success
+5/13/2019 17:58:50: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:58:50: TradingSystem-add product to store0 -success
+5/13/2019 17:58:50: TradingSystem-create new product in store0 -success
+
+5/13/2019 17:58:50: TradingSystem-add product to store0 -success
+5/13/2019 17:58:50: TradingSystem-open storeBershka success
+
+5/13/2019 17:58:50: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:58:50: TradingSystem-add product to store1 -success
+5/13/2019 17:58:50: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store1 -success
+5/13/2019 17:58:51: TradingSystem-create new product in store1 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store1 -success
+5/13/2019 17:58:51: TradingSystem-open storeForever21 success
+
+5/13/2019 17:58:51: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store2 -success
+5/13/2019 17:58:51: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store2 -success
+5/13/2019 17:58:51: TradingSystem-create new product in store2 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store2 -success
+5/13/2019 17:58:51: TradingSystem-open storeCastro success
+
+5/13/2019 17:58:51: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store3 -success
+5/13/2019 17:58:51: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store3 -success
+5/13/2019 17:58:51: TradingSystem-create new product in store3 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store3 -success
+5/13/2019 17:58:51: TradingSystem-open storeRenuar success
+
+5/13/2019 17:58:51: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store4 -success
+5/13/2019 17:58:51: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store4 -success
+5/13/2019 17:58:51: TradingSystem-create new product in store4 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store4 -success
+5/13/2019 17:58:51: TradingSystem-open storeAmericanEagle success
+
+5/13/2019 17:58:51: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store5 -success
+5/13/2019 17:58:51: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store5 -success
+5/13/2019 17:58:51: TradingSystem-create new product in store5 -success
+
+5/13/2019 17:58:51: TradingSystem-add product to store5 -success
+5/13/2019 18:02:06: Register - userName or password null
+
+5/13/2019 18:02:06: TradingSystem-open storeZara success
+
+5/13/2019 18:02:06: TradingSystem-create new product in store0 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store0 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store0 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store0 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store0 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store0 -success
+5/13/2019 18:02:06: TradingSystem-open storeBershka success
+
+5/13/2019 18:02:06: TradingSystem-create new product in store1 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store1 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store1 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store1 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store1 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store1 -success
+5/13/2019 18:02:06: TradingSystem-open storeForever21 success
+
+5/13/2019 18:02:06: TradingSystem-create new product in store2 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store2 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store2 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store2 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store2 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store2 -success
+5/13/2019 18:02:06: TradingSystem-open storeCastro success
+
+5/13/2019 18:02:06: TradingSystem-create new product in store3 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store3 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store3 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store3 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store3 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store3 -success
+5/13/2019 18:02:06: TradingSystem-open storeRenuar success
+
+5/13/2019 18:02:06: TradingSystem-create new product in store4 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store4 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store4 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store4 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store4 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store4 -success
+5/13/2019 18:02:06: TradingSystem-open storeAmericanEagle success
+
+5/13/2019 18:02:06: TradingSystem-create new product in store5 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store5 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store5 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store5 -success
+5/13/2019 18:02:06: TradingSystem-create new product in store5 -success
+
+5/13/2019 18:02:06: TradingSystem-add product to store5 -success
+5/13/2019 18:06:46: Add to cart success. /n
+5/13/2019 18:06:57: Add to cart success. /n
+5/13/2019 18:08:24: Add to cart success. /n
+5/13/2019 18:09:06: Add to cart success. /n
+5/13/2019 18:10:47: Register - userName or password null
+
+5/13/2019 18:10:47: TradingSystem-open storeZara success
+
+5/13/2019 18:10:47: TradingSystem-create new product in store0 -success
+
+5/13/2019 18:10:47: TradingSystem-add product to store0 -success
+5/13/2019 18:10:47: TradingSystem-create new product in store0 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store0 -success
+5/13/2019 18:10:48: TradingSystem-create new product in store0 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store0 -success
+5/13/2019 18:10:48: TradingSystem-open storeBershka success
+
+5/13/2019 18:10:48: TradingSystem-create new product in store1 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store1 -success
+5/13/2019 18:10:48: TradingSystem-create new product in store1 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store1 -success
+5/13/2019 18:10:48: TradingSystem-create new product in store1 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store1 -success
+5/13/2019 18:10:48: TradingSystem-open storeForever21 success
+
+5/13/2019 18:10:48: TradingSystem-create new product in store2 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store2 -success
+5/13/2019 18:10:48: TradingSystem-create new product in store2 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store2 -success
+5/13/2019 18:10:48: TradingSystem-create new product in store2 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store2 -success
+5/13/2019 18:10:48: TradingSystem-open storeCastro success
+
+5/13/2019 18:10:48: TradingSystem-create new product in store3 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store3 -success
+5/13/2019 18:10:48: TradingSystem-create new product in store3 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store3 -success
+5/13/2019 18:10:48: TradingSystem-create new product in store3 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store3 -success
+5/13/2019 18:10:48: TradingSystem-open storeRenuar success
+
+5/13/2019 18:10:48: TradingSystem-create new product in store4 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store4 -success
+5/13/2019 18:10:48: TradingSystem-create new product in store4 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store4 -success
+5/13/2019 18:10:48: TradingSystem-create new product in store4 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store4 -success
+5/13/2019 18:10:48: TradingSystem-open storeAmericanEagle success
+
+5/13/2019 18:10:48: TradingSystem-create new product in store5 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store5 -success
+5/13/2019 18:10:48: TradingSystem-create new product in store5 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store5 -success
+5/13/2019 18:10:48: TradingSystem-create new product in store5 -success
+
+5/13/2019 18:10:48: TradingSystem-add product to store5 -success
+5/13/2019 18:10:58: Add to cart success. /n
