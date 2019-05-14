@@ -55,6 +55,7 @@
     <Compile Include="BuyingBasketReq2.8.cs" />
     <Compile Include="EditProductInCartTests.cs" />
     <Compile Include="InitSystemTest.cs" />
+    <Compile Include="PurchasePolicyTest.cs" />
     <Compile Include="registerUserIntegration.cs" />
     <Compile Include="RemoveManager_Req46.cs" />
     <Compile Include="RemoveProductsFromCartTests1.cs" />

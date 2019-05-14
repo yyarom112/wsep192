@@ -1,4 +1,5 @@
-﻿using System;
+﻿using src.Domain.Dataclass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +18,13 @@ namespace src.Domain
 
         internal Dictionary<int, ShoppingCart> ShoppingCarts { get => shoppingCarts; set => shoppingCarts = value; }
 
-
-        public virtual int basketCheckout()
+        public virtual double basketCheckout(UserDetailes user)
         {
-            int sum = 0;
-            int tmp = 0;
+            double sum = 0;
+            double tmp = 0;
             foreach (ShoppingCart c in shoppingCarts.Values)
             {
-                tmp = c.cartCheckout();
+                tmp = c.cartCheckout(user);
                 if (tmp == -1)
                     return -1;
                 sum += tmp;
@@ -33,12 +33,12 @@ namespace src.Domain
 
         }
 
-        internal string showCart(int storeId)
+        internal List<KeyValuePair<string, int>> showCart(int storeId)
         {
             if (!shoppingCarts.ContainsKey(storeId))
             {
                 LogManager.Instance.WriteToLog("ShoppingBasket:showCart failed - Shopping basket does not contain the store\n");
-                return "Error : Shopping basket does not contain this store";
+                return null;
             }
 
             return shoppingCarts[storeId].showCart();
@@ -60,7 +60,7 @@ namespace src.Domain
             return null;
         }
 
-        internal bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int storeId)
+        internal bool removeProductsFromCart(List<int> productsToRemove, int storeId)
         {
             if (!shoppingCarts.ContainsKey(storeId))
             {

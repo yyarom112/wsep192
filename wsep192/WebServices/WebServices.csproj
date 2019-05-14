@@ -200,6 +200,34 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\addProductInStore.aspx.cs">
+      <DependentUpon>addProductInStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\addProductInStore.aspx.designer.cs">
+      <DependentUpon>addProductInStore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\checkoutBasket.aspx.cs">
+      <DependentUpon>checkoutBasket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\checkoutBasket.aspx.designer.cs">
+      <DependentUpon>checkoutBasket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\createProductInStore.aspx.cs">
+      <DependentUpon>createProductInStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\createProductInStore.aspx.designer.cs">
+      <DependentUpon>createProductInStore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\editProductInStore.aspx.cs">
+      <DependentUpon>editProductInStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\editProductInStore.aspx.designer.cs">
+      <DependentUpon>editProductInStore.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,12 +242,96 @@
     <Compile Include="Views\Pages\loginUser.aspx.designer.cs">
       <DependentUpon>loginUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\cart.aspx.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\cart.aspx.designer.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\shoppingCart.aspx.cs">
+      <DependentUpon>shoppingCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\shoppingCart.aspx.designer.cs">
+      <DependentUpon>shoppingCart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\registerUser.aspx.cs">
       <DependentUpon>registerUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Pages\registerUser.aspx.designer.cs">
       <DependentUpon>registerUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\removeProductInStore.aspx.cs">
+      <DependentUpon>removeProductInStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\removeProductInStore.aspx.designer.cs">
+      <DependentUpon>removeProductInStore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\assignManager.aspx.cs">
+      <DependentUpon>assignManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\assignManager.aspx.designer.cs">
+      <DependentUpon>assignManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\assignOwner.aspx.cs">
+      <DependentUpon>assignOwner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\assignOwner.aspx.designer.cs">
+      <DependentUpon>assignOwner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\openStore.aspx.cs">
+      <DependentUpon>openStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\openStore.aspx.designer.cs">
+      <DependentUpon>openStore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\removeManager.aspx.cs">
+      <DependentUpon>removeManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\removeManager.aspx.designer.cs">
+      <DependentUpon>removeManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\removeOwner.aspx.cs">
+      <DependentUpon>removeOwner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\removeOwner.aspx.designer.cs">
+      <DependentUpon>removeOwner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\removeUser.aspx.cs">
+      <DependentUpon>removeUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\removeUser.aspx.designer.cs">
+      <DependentUpon>removeUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\setUp.aspx.cs">
+      <DependentUpon>setUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\setUp.aspx.designer.cs">
+      <DependentUpon>setUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\searchProduct.aspx.cs">
+      <DependentUpon>searchProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\searchProduct.aspx.designer.cs">
+      <DependentUpon>searchProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\showProduct.aspx.cs">
+      <DependentUpon>showProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\showProduct.aspx.designer.cs">
+      <DependentUpon>showProduct.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1056,9 +1168,25 @@
     <Content Include="vendor\slick\slick.js" />
     <Content Include="vendor\slick\slick.min.js" />
     <Content Include="vendor\sweetalert\sweetalert.min.js" />
+    <Content Include="Views\Pages\addProductInStore.aspx" />
+    <Content Include="Views\Pages\checkoutBasket.aspx" />
+    <Content Include="Views\Pages\createProductInStore.aspx" />
+    <Content Include="Views\Pages\editProductInStore.aspx" />
     <Content Include="Views\Pages\index.aspx" />
     <Content Include="Views\Pages\loginUser.aspx" />
+    <Content Include="Views\Pages\cart.aspx" />
+    <Content Include="Views\Pages\shoppingCart.aspx" />
     <Content Include="Views\Pages\registerUser.aspx" />
+    <Content Include="Views\Pages\removeProductInStore.aspx" />
+    <Content Include="Views\Pages\assignManager.aspx" />
+    <Content Include="Views\Pages\assignOwner.aspx" />
+    <Content Include="Views\Pages\openStore.aspx" />
+    <Content Include="Views\Pages\removeManager.aspx" />
+    <Content Include="Views\Pages\removeOwner.aspx" />
+    <Content Include="Views\Pages\removeUser.aspx" />
+    <Content Include="Views\Pages\setUp.aspx" />
+    <Content Include="Views\Pages\searchProduct.aspx" />
+    <Content Include="Views\Pages\showProduct.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

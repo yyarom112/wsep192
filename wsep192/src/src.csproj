@@ -40,12 +40,13 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -58,8 +59,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\BuyConditionPolicy.cs" />
+    <Compile Include="Domain\Dataclass\UserDetailes.cs" />
     <Compile Include="Domain\DiscountPolicy.cs" />
     <Compile Include="Domain\Encryption.cs" />
+    <Compile Include="Domain\EnumsClass.cs" />
+    <Compile Include="Domain\IfThenCondition.cs" />
+    <Compile Include="Domain\inventoryConditionPolicy.cs" />
+    <Compile Include="Domain\LogicalConditionPolicy.cs" />
+    <Compile Include="Domain\ProductConditionPolicy.cs" />
+    <Compile Include="Domain\PurchasePolicy.cs" />
+    <Compile Include="Domain\Dataclass\PurchesPolicyData.cs" />
+    <Compile Include="Domain\UserConditionPolicy.cs" />
     <Compile Include="EncryptionImpl.cs" />
     <Compile Include="Domain\Filter.cs" />
     <Compile Include="Domain\FinancialSystem.cs" />
@@ -69,7 +80,6 @@
     <Compile Include="Domain\ProductInCart.cs" />
     <Compile Include="Domain\ProductInStore.cs" />
     <Compile Include="Domain\ProductSupplySystem.cs" />
-    <Compile Include="Domain\PurchasePolicy.cs" />
     <Compile Include="Domain\Role.cs" />
     <Compile Include="Domain\ShoppingBasket.cs" />
     <Compile Include="Domain\ShoppingCart.cs" />
@@ -78,9 +88,13 @@
     <Compile Include="TreeNodeImpl.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="FinancialSystemImpl.cs" />
+    <Compile Include="ProductSupplySystemImpl.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="ServiceLayer\ServiceLayer.cs" />
-    <Compile Include="ProductSupplySystemImpl.cs" />
+    <Compile Include="Domain\RevealedDiscount.cs" />
+    <Compile Include="Domain\ConditionalDiscount.cs" />
+    <Compile Include="Domain\LogicalCondition.cs" />
+    <Compile Include="Domain\LeafCondition.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -99,9 +113,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PresentationLayer\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

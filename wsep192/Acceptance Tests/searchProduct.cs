@@ -15,8 +15,7 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("Admin", "2323");
+            service = ServiceLayer.getInstance();
             string tmpuser = service.initUser();
             service.register("aviv", "1234", tmpuser);
             service.signIn("aviv", "1234");
@@ -30,16 +29,18 @@ namespace Acceptance_Tests
         public void TestMethod1_searchProductAvailable() //NEED TO CHECK
         {
             setUp();
-            String output = service.searchProduct("airmax nike shoe 10 150 0 0");
-            Assert.AreEqual(output, "Name: airmax\nStore Name: footlocker\nQuantity: 0");
+            String output = service.searchProduct("airmax,nike,shoe,10,150,0,0");
+            Assert.AreEqual(output, "name0=airmax&store0=footlocker&quantity0=0");
+            service.shutDown();
             
         }
         [TestMethod]
         public void TestMethod1_searchProductUnavailable()  //NEED TO CHECK
         {
             setUp();
-            String output = service.searchProduct("blabla adidas shoe 10 150 0 0");
+            String output = service.searchProduct("blabla,adidas,shoe10,150,0,0");
             Assert.AreEqual(output, "");
+            service.shutDown();
 
         }
 

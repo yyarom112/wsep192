@@ -1,0 +1,6 @@
+12/05/2019 15:35:07: test error
+12/05/2019 15:40:21: test error
+12/05/2019 15:44:36: Error - editProductInStore - the store does not exists.
+
+12/05/2019 15:45:07: Error - editProductInStore - the store does not exists.
+

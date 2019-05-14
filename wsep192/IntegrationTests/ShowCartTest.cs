@@ -16,7 +16,7 @@ namespace IntegrationTests
         {
             system = new TradingSystem(null, null);
             user = new User(1, "user", "1234", false, false);
-            store = new Store(1, "store", null, null);
+            store = new Store(1, "store");
 
         }
 
@@ -26,16 +26,15 @@ namespace IntegrationTests
             setUp();
 
             //failure system showCart
-            Assert.AreEqual("Error : Invalid user or store", system.showCart(user.Id, store.Id));
+            Assert.AreEqual(null, system.showCart(user.Id, store.Id));
             system.Users.Add(user.Id, user);
-            Assert.AreEqual("Error : Invalid user or store", system.showCart(user.Id, store.Id));
+            Assert.AreEqual(null, system.showCart(user.Id, store.Id));
             system.Users.Remove(user.Id);
             system.Stores.Add(store.Id, store);
-            Assert.AreEqual("Error : Invalid user or store", system.showCart(user.Id, store.Id));
+            Assert.AreEqual(null, system.showCart(user.Id, store.Id));
 
             //failure basket showCart
-            Assert.AreEqual("Error : Shopping basket does not contain this store",
-                user.Basket.showCart(store.Id));
+            Assert.AreEqual(null, user.Basket.showCart(store.Id));
 
         }
 
@@ -45,24 +44,23 @@ namespace IntegrationTests
             setUp();
             successSetUp();
             //empty cart
-            Assert.AreEqual("Store Name: store\nCart is empty\n", system.showCart(user.Id, store.Id));
-
+           List<KeyValuePair<string,int>> result = system.showCart(user.Id, store.Id);
+            Assert.AreEqual(0, result.Count);
             //non-empty cart
             addProducts();
-            Assert.AreEqual("Store Name: store\nProduct Name\t\t\tQuantity\n" +
-                "1. p1\t\t\t3\n2. p2\t\t\t1\n",
-                system.showCart(user.Id, store.Id));
+            List<KeyValuePair<string, int>> l = new List<KeyValuePair<string, int>>();
+            l.Add(new KeyValuePair<string, int>("p1", 3));
+            result = system.showCart(user.Id, store.Id);
+            Assert.IsTrue(l[0].Equals(result[0]));
+           
 
         }
 
         private void addProducts()
         {
             Product p1 = new Product(1, "p1", null, null, -1);
-            Product p2 = new Product(2, "p2", null, null, -1);
             ProductInCart pc1 = new ProductInCart(3, user.Basket.ShoppingCarts[store.Id], p1);
-            ProductInCart pc2 = new ProductInCart(1, user.Basket.ShoppingCarts[store.Id], p2);
             user.Basket.ShoppingCarts[store.Id].Products.Add(1, pc1);
-            user.Basket.ShoppingCarts[store.Id].Products.Add(2, pc2);
         }
 
         private void successSetUp()

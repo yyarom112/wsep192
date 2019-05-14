@@ -10,18 +10,20 @@ namespace Acceptance_Tests
     {
         ServiceLayer service;
         List<KeyValuePair<string, int>> list;
+        List<string> toRemove;
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("admin", "1234");
+            service = ServiceLayer.getInstance();
             string tmp = service.initUser();
             service.register("user", "password", tmp);
             service.signIn("user", "password");
             service.openStore("store", "user");
             KeyValuePair<string, int> p1 = new KeyValuePair<string, int>("p1", 1);
             list = new List<KeyValuePair<string, int>>();
+            toRemove = new List<string>();
             list.Add(p1);
+            toRemove.Add("p1");
             service.createNewProductInStore("p1", "category", "details", 20, "store", "user");
             service.addProductsInStore(list, "store", "user");
             service.addProductsToCart(list, "store", "user");
@@ -29,10 +31,11 @@ namespace Acceptance_Tests
         }
 
         [TestMethod]
-        public void TestMethod1_empty_failure()
+        public void TestMethod1_empty_success()
         {
             setUp();
-            Assert.AreEqual(false, service.removeProductsFromCart(list, "store", "user"));
+            Assert.AreEqual(true, service.removeProductsFromCart(toRemove, "store", "user"));
+            service.shutDown();
         }
 
         [TestMethod]
@@ -40,11 +43,8 @@ namespace Acceptance_Tests
         {
             setUp();
             service.editProductQuantityInCart("p1", 5, "store", "user");
-            Assert.AreEqual(true, service.removeProductsFromCart(list, "store", "user"));
+            Assert.AreEqual(true, service.removeProductsFromCart(toRemove, "store", "user"));
+            service.shutDown();
         }
-
-
-
-
     }
 }

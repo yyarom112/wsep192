@@ -16,8 +16,7 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = new ServiceLayer();
-            service.init("Admin", "r34!Tz@");
+            service = ServiceLayer.getInstance();
             idOwner = service.initUser();
             ownerUser = "Rotem";
             passwordUser = "2eRt58!@";
@@ -30,8 +29,9 @@ namespace Acceptance_Tests
         public void removeUserTest1()
         {
             setUp();
-            bool x=service.removeUser("Rotem","Admin");
+            bool x = service.removeUser("Rotem","admin");
             Assert.IsTrue(x);
+            service.shutDown();
         }
 
         [TestMethod]
@@ -41,6 +41,7 @@ namespace Acceptance_Tests
             setUp();
             bool x = service.removeUser("Admin", "Rotem");
             Assert.IsFalse(x);
+            service.shutDown();
         }
 
         //The admin removes a non existing user - invalid
@@ -49,6 +50,7 @@ namespace Acceptance_Tests
             setUp();
             bool x = service.removeUser("Lior", "Admin");
             Assert.IsFalse(x);
+            service.shutDown();
         }
     }
 }

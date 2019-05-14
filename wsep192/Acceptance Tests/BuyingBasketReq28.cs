@@ -8,12 +8,11 @@ namespace Acceptance_Tests
     [TestClass]
     public class BuyingBasketReq28
     {
-        private ServiceLayer service;
+        ServiceLayer service;
 
         public void Setup()
         {
-            service = new ServiceLayer();
-            service.init("admin", "1234");
+            service = ServiceLayer.getInstance();
             service.register("user", "1234", service.initUser());
             service.signIn("admin", "1234");
             service.openStore("store", "admin");
@@ -31,6 +30,7 @@ namespace Acceptance_Tests
             Assert.AreEqual(0, service.basketCheckout("telaviv", "user"));
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             Assert.AreEqual(true, compare_List(toInsert, service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
+            service.shutDown();
         }
 
         [TestMethod]
@@ -44,6 +44,7 @@ namespace Acceptance_Tests
             Assert.AreEqual(150, service.basketCheckout("telaviv", "user"));
             toInsert[0] = new KeyValuePair<string, int>("p1", 10);
             Assert.AreEqual(true, compare_List(toInsert, service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
+            service.shutDown();
         }
         //You need to add another test in this frame when there is a buying policy in the next version
         [TestMethod]
@@ -58,7 +59,11 @@ namespace Acceptance_Tests
                     Assert.AreEqual(false, true);
             }
             catch (Exception e) { }
-            if (service.showCart("store", "user").Contains("-1"))
+            List<KeyValuePair<string,int>> list = service.showCart("store", "user");
+            bool neg = containsNeg(list);
+
+
+           if (neg)
             {
                 List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
                 toInsert.Add(new KeyValuePair<string, int>("Error: invalid user", -1));
@@ -66,8 +71,20 @@ namespace Acceptance_Tests
                 Assert.AreEqual(true, compare_List(toInsert, service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
             }
             Assert.AreEqual(true, true);
+            service.shutDown();
 
         }
+
+        private bool containsNeg(List<KeyValuePair<string, int>> list)
+        {
+            foreach (KeyValuePair<string,int> p in list) {
+                if (p.Value==-1) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         //Not relevant right now because there are no discounts
         //[TestMethod]
         //public void TestMethod_PurchasePproductWithDiscountInStockAndIsSuitableForPurchasePolicy()
@@ -84,17 +101,10 @@ namespace Acceptance_Tests
                 Assert.AreEqual(false, true);
             Assert.AreEqual(60, service.basketCheckout("telaviv", "user"));
             Assert.AreEqual(true, compare_List(toInsert, service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
+            service.shutDown();
         }
 
-        ////Not relevant right now because there are no discounts
-        //[TestMethod]
-        //public void TestMethod_PurchaseWithoutProperPaymentMethod()
-        //{
-        //    List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
-        //    toInsert.Add(new KeyValuePair<string, int>("p1", 1));
-        //    Assert.AreEqual(60, service.basketCheckout("telaviv", "user"));
-        //    Assert.AreEqual("List", service.payForBasket(123214124124, new DateTime(1990, 1, 1), "user"));
-        //}
+
         [TestMethod]
         public void TestMethod_SuccessfulPurchaseWithProblematicAddress()
         {
@@ -105,6 +115,7 @@ namespace Acceptance_Tests
                 Assert.AreEqual(false, true);
             Assert.AreEqual(110, service.basketCheckout("ramat Gan", "user"));
             Assert.AreEqual(true, compare_List(toInsert, service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
+            service.shutDown();
         }
 
         [TestMethod]
@@ -115,8 +126,8 @@ namespace Acceptance_Tests
             toInsert.Add(new KeyValuePair<string, int>("p1", 0));
             Assert.AreEqual(0, service.basketCheckout("telaviv", "user"));
             Assert.AreEqual(true, compare_List(new List<KeyValuePair<string, int>>(), service.payForBasket(1, new DateTime(1990, 1, 1), "user")));
+            service.shutDown();
         }
-
 
         public Boolean compare_List(List<KeyValuePair<string, int>> exepted, List<String[]> actuale)
         {
@@ -141,10 +152,8 @@ namespace Acceptance_Tests
 
                 i++;
             }
+            service.shutDown();
             return true;
         }
-
-
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using src.Domain.Dataclass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace src.Domain
 {
     class TradingSystem
     {
-        private Dictionary<int,User> users;
-        private Dictionary<int,Store> stores;
+        private Dictionary<int, User> users;
+        private Dictionary<int, Store> stores;
         private ProductSupplySystem supplySystem;
         private FinancialSystem financialSystem;
         private int productCounter;
@@ -27,41 +28,52 @@ namespace src.Domain
             this.financialSystem = financialSystem;
             this.productCounter = 0;
             this.purchasePolicyCounter = 0;
-            this.discountPolicyCounter =  0;
+            this.discountPolicyCounter = 0;
             this.encryption = new EncryptionImpl();
         }
 
-        public int basketCheckout(String address, int userID)
+
+        public int ProductCounter { get => productCounter; set => productCounter = value; }
+        public int StoreCounter { get => storeCounter; set => storeCounter = value; }
+        public int UserCounter { get => userCounter; set => userCounter = value; }
+        public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
+        public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
+        internal Dictionary<int, User> Users { get => users; set => users = value; }
+        internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
+        internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
+        internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+
+        public double basketCheckout(String address, int userID)
         {
             if (!this.users.ContainsKey(userID))
+            {
+                ErrorManager.Instance.WriteToLog("Error - basketCheckout - user not in the system.\n");
                 return -1;
+            }
             else
             {
-
-                int output= this.users[userID].basketCheckout(address);
-                if(output==-1)
-                    LogManager.Instance.WriteToLog("Could not close basket.\n");
-                else
+                double output = this.users[userID].basketCheckout(address);
+                if (output == -1)
                 {
-                    LogManager.Instance.WriteToLog("Successfully closed the basket.\n");
-
+                    LogManager.Instance.WriteToLog("basketCheckout - Could not close basket.\n");
+                    ErrorManager.Instance.WriteToLog("Error - basketCheckout - Could not close basket.\n");
                 }
+                else
+                    LogManager.Instance.WriteToLog("Successfully closed the basket.\n");
                 return output;
-
             }
         }
-
 
         public List<String[]> payForBasket(long cardNumber, DateTime date, int userID)
         {
             ShoppingBasket basket = users[userID].Basket;
-            Dictionary<int, int> storeToPay = new Dictionary<int, int>(); //<storeId,Sum>
+            Dictionary<int, double> storeToPay = new Dictionary<int, double>(); //<storeId,Sum>
             foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
             {
                 cart.Store.updateCart(cart, "-");
-                storeToPay.Add(cart.Store.Id, cart.cartCheckout());
+                storeToPay.Add(cart.Store.Id, cart.cartCheckout(new UserDetailes(this.Users[userID].Address, this.Users[userID].IsRegistered)));
             }
-            foreach(KeyValuePair<int,int> storeSum in storeToPay)
+            foreach (KeyValuePair<int, double> storeSum in storeToPay)
             {
                 if (!this.financialSystem.payment(cardNumber, date, storeSum.Value, storeSum.Key))
                 {
@@ -69,14 +81,14 @@ namespace src.Domain
                     {
                         cart.Store.updateCart(cart, "+");
                     }
-                    LogManager.Instance.WriteToLog("Purchase failed due to product billing failure.\n");
-
+                    LogManager.Instance.WriteToLog("payForBasket - Purchase failed due to product billing failure.\n");
+                    ErrorManager.Instance.WriteToLog("Error - payForBasket - Purchase failed due to product billing failure.\n");
                     return null;
                 }
             }
             if (!this.supplySystem.deliverToCustomer(this.Users[userID].Address, "Some package Details"))
             {
-                foreach (KeyValuePair<int, int> storeSum in storeToPay)
+                foreach (KeyValuePair<int, double> storeSum in storeToPay)
                 {
                     this.financialSystem.Chargeback(cardNumber, date, storeSum.Value);
                 }
@@ -84,20 +96,22 @@ namespace src.Domain
                 {
                     cart.Store.updateCart(cart, "+");
                 }
-                LogManager.Instance.WriteToLog("The purchase failed due to a failure in the delivery system.\n");
+                LogManager.Instance.WriteToLog("payForBasket - The purchase failed due to a failure in the delivery system.\n");
+                ErrorManager.Instance.WriteToLog("Error - payForBasket - The purchase failed due to a failure in the delivery system.\n");
 
                 return null;
             }
-            List<String[]> output = new List<string[]>(); 
-            foreach(ShoppingCart cart in basket.ShoppingCarts.Values)
+            List<String[]> output = new List<string[]>();
+            foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
             {
-                foreach(String[] toInsert in cartToString(cart))
+                foreach (String[] toInsert in cartToString(cart))
                     output.Add(toInsert);
             }
             LogManager.Instance.WriteToLog("Making the cart purchase succeeded\n");
             this.users[userID].Basket = new ShoppingBasket();
             return output;
         }
+
         public List<String[]> cartToString(ShoppingCart cart)
         {
             List<String[]> output = new List<string[]>();
@@ -108,60 +122,67 @@ namespace src.Domain
                 p_string[1] = p.ShoppingCart.Store.Name;
                 p_string[2] = p.Quantity.ToString();
                 p_string[3] = p.Product.Price.ToString();
-                p_string[4] = (p.Quantity*p.Product.Price).ToString();
+                p_string[4] = (p.Quantity * p.Product.Price).ToString();
                 output.Add(p_string);
             }
             return output;
         }
-        
-
 
         private String productsToString(List<ProductInStore> products)
         {
             String res = "";
+            int i = 0;
             foreach (ProductInStore p in products)
             {
-                res += res + "Name: " + p.Product.ProductName + "\n"
-                     + "Store Name: " + p.Store.Name + "\n"
-                    + "Quantity: " + p.Quantity
+                res += "name" + i + "=" + p.Product.ProductName + "&"
+                     + "store" + i + "=" + p.Store.Name + "&"
+                    + "quantity" + i + "=" + p.Quantity + "&"
                     ;
+                i++;
+
             }
+            if (res != "")
+                res = res.Substring(0, res.Length - 1);
             return res;
         }
 
         internal bool isMainOwner(int UserID)
         {
-            foreach(Role r in Users[UserID].Roles.Values)
+            foreach (Role r in Users[UserID].Roles.Values)
             {
                 if (r.Store.RolesDictionary[UserID].Equals(r.Store.Roles))
                     return true;
             }
             return false;
         }
+
         internal bool removeUser(int removingID, int toRemoveID)
         {
-            
+
             if (!(users.ContainsKey(toRemoveID) && users.ContainsKey(removingID)))
             {
-                LogManager.Instance.WriteToLog("TradingSystem-Remove user fail- one of the users does not exists\n");
+                LogManager.Instance.WriteToLog("TradingSystem - Remove user fail - one of the users does not exists.\n");
+                ErrorManager.Instance.WriteToLog("Error - Remove user - one of the users does not exists.\n");
                 return false;
             }
 
             if (isMainOwner(toRemoveID))
             {
-                LogManager.Instance.WriteToLog("TradingSystem-Remove user fail- the user to remove is the main user");
+                LogManager.Instance.WriteToLog("TradingSystem - Remove user fail - the user to remove is the main user.\n");
+                ErrorManager.Instance.WriteToLog("Error - Remove user - the user to remove is the main user.\n");
                 return false;
             }
 
             if (!users[removingID].IsAdmin)
             {
-                LogManager.Instance.WriteToLog("TradingSystem-Remove user fail- the removing user is not an admin\n");
+                LogManager.Instance.WriteToLog("TradingSystem - Remove user fail - the removing user is not an admin.\n");
+                ErrorManager.Instance.WriteToLog("Error - Remove user - the removing user is not an admin.\n");
                 return false;
             }
 
             if (users.Remove(toRemoveID))
             {
-                LogManager.Instance.WriteToLog("TradingSystem-Remove user id" + toRemoveID +" success\n");
+                LogManager.Instance.WriteToLog("TradingSystem - Remove user id" + toRemoveID + " success.\n");
                 return true;
             }
             return false;
@@ -169,67 +190,68 @@ namespace src.Domain
 
         internal bool openStore(string storeName, int userID, int storeCounter)
         {
-            List<PurchasePolicy> purchasePolicy = new List<PurchasePolicy>();
-            List<DiscountPolicy> discountPolicy = new List<DiscountPolicy>();
             if (!stores.ContainsKey(storeCounter))
             {
-                Store store = new Store(storeCounter, storeName, purchasePolicy, discountPolicy);
+                Store store = new Store(storeCounter, storeName);
                 if (Users.ContainsKey(userID) && Users[userID].IsRegistered)
                 {
                     Stores.Add(storeCounter, store);
                     User user = searchUser(userID);
                     store.initOwner(user);
-                    LogManager.Instance.WriteToLog("TradingSystem-open store" +storeName+" succu\n");
+                    LogManager.Instance.WriteToLog("TradingSystem-open store" + storeName + " success\n");
                     return true;
                 }
-                LogManager.Instance.WriteToLog("TradingSystem-open store fail- the user does not exists or not registerd\n");
+                LogManager.Instance.WriteToLog("TradingSystem - open store fail- the user does not exists or not registerd\n");
+                ErrorManager.Instance.WriteToLog("Error - open store - the user does not exists or not registerd.\n");
             }
-            LogManager.Instance.WriteToLog("TradingSystem-open store fail- the store does not exists\n");
+            LogManager.Instance.WriteToLog("TradingSystem - open store fail - the store id does not exists\n");
+            ErrorManager.Instance.WriteToLog("Error - open store - the store id does not exists.\n");
             return false;
 
         }
-        public String showCart(int store, int user)
+
+        public List<KeyValuePair<string, int>> showCart(int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
-                return "Error : Invalid user or store";
+                return null;
             return Users[user].showCart(store);
 
         }
+
         public bool editProductQuantityInCart(int product, int quantity, int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
                 return false;
             return Users[user].editProductQuantityInCart(product, quantity, store);
         }
-        public bool removeProductsFromCart(List<KeyValuePair<int, int>> productsToRemove, int store, int user)
+
+        public bool removeProductsFromCart(List<int> productsToRemove, int store, int user)
         {
             if (!Users.ContainsKey(user) || !Stores.ContainsKey(store))
                 return false;
             return Users[user].removeProductsFromCart(productsToRemove, store);
         }
 
-
         internal bool productExist(string product, int store)
         {
             return Stores[store].productExist(product);
         }
 
-
         public bool removeManager(int userID, int userIDToRemove, int storeID)
         {
             if (!this.users.ContainsKey(userID) || !this.users.ContainsKey(userIDToRemove) || !this.stores.ContainsKey(storeID))
             {
-                LogManager.Instance.WriteToLog("TradingSystem-Remove manager fail- The store or user is not exist\n");
+                LogManager.Instance.WriteToLog("TradingSystem - Remove manager fail - The store or user is not exist.\n");
+                ErrorManager.Instance.WriteToLog("Error - Remove manager - The store or user is not exist.\n");
                 return false;
             }
             if (users[userID].removeManager(userIDToRemove, storeID))
             {
-                LogManager.Instance.WriteToLog("TradingSystem-Remove manager id" + userIDToRemove + " from store " + storeID + " success\n");
+                LogManager.Instance.WriteToLog("TradingSystem - Remove manager id" + userIDToRemove + " from store " + storeID + " success\n");
                 return true;
             }
             return false;
         }
-
 
         public bool init(string adminUserName, string adminPassword)
         {
@@ -238,43 +260,76 @@ namespace src.Domain
             userCounter++;
             if (!financialSystem.connect() || !supplySystem.connect() || !encryption.connect())
                 return false;
-
             return true;
         }
-        
 
-
-        public bool removeOwner(int userID,int userIDToRemove,int storeID)
+        public bool removeOwner(int userID, int userIDToRemove, int storeID)
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
         }
+
         public String searchProduct(String details)
         {
-            List<ProductInStore> products  = new List<ProductInStore>();
-            String[] detailsForFilter = details.Split(' ');
+            List<ProductInStore> products = new List<ProductInStore>();
+            String[] detailsForFilter = details.Split(',');
             if (detailsForFilter.Length != 7)
             {
-                LogManager.Instance.WriteToLog("TradingSystem-search Product " + details + " bad input");
-
+                LogManager.Instance.WriteToLog("TradingSystem - search Product " + details + " bad input");
+                ErrorManager.Instance.WriteToLog("Error - search Product " + details + " bad input");
                 return "";
             }
-            KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(Int32.Parse(detailsForFilter[3]),
-                Int32.Parse(detailsForFilter[4]));
+
+            int productRate = -1, storeRate = -1, minPrice = -1, maxPrice = -1;
+
+            try
+            {
+                minPrice = Int32.Parse(detailsForFilter[3]);
+            }
+            catch (Exception e)
+            {
+                minPrice = -1;
+            }
+            try
+            {
+                maxPrice = Int32.Parse(detailsForFilter[4]);
+            }
+            catch (Exception e)
+            {
+                maxPrice = -1;
+            }
+
+            try
+            {
+                productRate = Int32.Parse(detailsForFilter[5]);
+            }
+            catch (Exception e)
+            {
+                productRate = -1;
+            }
+            try
+            {
+                storeRate = Int32.Parse(detailsForFilter[6]);
+            }
+            catch (Exception e)
+            {
+                storeRate = -1;
+            }
+            KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(minPrice, maxPrice);
+
             Filter filter = new Filter(detailsForFilter[0],
                 detailsForFilter[1], detailsForFilter[2], priceRange,
-                Int32.Parse(detailsForFilter[5]), Int32.Parse(detailsForFilter[6]));
+                productRate, storeRate);
             foreach (Store s in stores.Values)
             {
-                s.searchProduct(filter,products);
+                s.searchProduct(filter, products);
             }
             return productsToString(products);
         }
-       
-        internal bool initUserGuest(string user,int userCounter)
-        {
-            User guest = new User(userCounter, user , null,false,false);
-            users.Add(userCounter, guest);
 
+        internal bool initUserGuest(string user, int userCounter)
+        {
+            User guest = new User(userCounter, user, null, false, false);
+            users.Add(userCounter, guest);
             return true;
         }
 
@@ -285,6 +340,7 @@ namespace src.Domain
                     return u;
             return null;
         }
+
         public Store searchStore(int storeID)
         {
             foreach (Store s in stores.Values)
@@ -293,21 +349,7 @@ namespace src.Domain
             return null;
         }
 
-        public int ProductCounter { get => productCounter; set => productCounter = value; }
-        public int StoreCounter { get => storeCounter; set => storeCounter = value; }
-        public int UserCounter { get => userCounter; set => userCounter = value; }
-        public int PurchasePolicyCounter { get => purchasePolicyCounter; set => purchasePolicyCounter = value; }
-        public int DiscountPolicyCounter { get => discountPolicyCounter; set => discountPolicyCounter = value; }
-
-
-        internal Dictionary<int, User> Users { get => users; set => users = value; }
-        internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
-        internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
-        internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
-
-
-
-        public bool init(string adminUserName, string adminPassword,int userCounter)
+        public bool init(string adminUserName, string adminPassword, int userCounter)
         {
             User admin = new User(userCounter, adminUserName, encryption.encrypt(adminUserName + adminPassword), true, true);
             users.Add(userCounter, admin);
@@ -317,12 +359,17 @@ namespace src.Domain
             return true;
         }
 
-        public bool signOut(int id) {
+        public bool signOut(int id)
+        {
             if (!users.ContainsKey(id))
+            {
+                ErrorManager.Instance.WriteToLog("Error - signOut - user is not loged in");
                 return false;
+            }
             return users[id].signOut();
 
         }
+
         public Boolean register(String userName, String password, int userId)
         {
             int currUserId = userId;
@@ -330,18 +377,23 @@ namespace src.Domain
             {
                 if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password)
                     || userName.Equals("") || password.Equals("") || userName.Contains(" "))
+                {
+                    LogManager.Instance.WriteToLog("TradingSystem - Register - userName or password in wrong format");
+                    ErrorManager.Instance.WriteToLog("Error - Register - userName or password in wrong format");
                     return false;
+                }
                 User currUser = this.users[currUserId];
                 if (currUser != null)
                 {
                     password = encryption.encrypt(userName + password);
                     return currUser.register(userName, password);
                 }
+                LogManager.Instance.WriteToLog("TradingSystem - Register - user not exist as guest.\n");
+                ErrorManager.Instance.WriteToLog("Error - Register - user not exist as guest.\n");
                 return false;
             }
             return false;
         }
-
 
         public Boolean signIn(String userName, String password, int userId)
         {
@@ -353,6 +405,8 @@ namespace src.Domain
                 {
                     if (!currUser.IsRegistered)
                     {
+                        LogManager.Instance.WriteToLog("TradingSystem - signIn - user not register.\n");
+                        ErrorManager.Instance.WriteToLog("Error - signIn - user not register.\n");
                         return false;
                     }
                     password = encryption.encrypt(userName + password);
@@ -361,30 +415,34 @@ namespace src.Domain
                         return currUser.signIn(userName, password);
                     }
                 }
+                LogManager.Instance.WriteToLog("TradingSystem - signIn - user id not exist.\n");
+                ErrorManager.Instance.WriteToLog("Error - signIn - user id not exist.\n");
                 return false;
             }
             return false;
         }
-
 
         public bool addProductsToCart(List<KeyValuePair<int, int>> products, int storeId, int userId)
         {
             if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products == null)
             {
                 LogManager.Instance.WriteToLog("Add to cart fail- one of the parameter Invalid. /n");
+                ErrorManager.Instance.WriteToLog("Error - addProductToCart - one of the parameter Invalid.\n");
                 return false;
 
             }
             LinkedList<KeyValuePair<Product, int>> toInsert = createProductsList(products, storeId);
             if (toInsert == null)
+            {
+                ErrorManager.Instance.WriteToLog("Error - addProductToCart - fail create product.\n");
                 return false;
+            }
             ShoppingCart newCartCheck = this.users[userId].addProductsToCart(toInsert, storeId);
             if (newCartCheck != null)
                 newCartCheck.Store = this.stores[storeId];
             LogManager.Instance.WriteToLog("Add to cart success. /n");
             return true;
         }
-
 
         public LinkedList<KeyValuePair<Product, int>> createProductsList(List<KeyValuePair<int, int>> products, int storeId)
         {
@@ -394,7 +452,8 @@ namespace src.Domain
             {
                 if (!this.Stores[storeId].Products.ContainsKey(productId.Key))
                 {
-                    LogManager.Instance.WriteToLog("Add to cart fail-Product "+ productId.Key + " does not exist. /n");
+                    LogManager.Instance.WriteToLog("Add to cart fail-Product " + productId.Key + " does not exist. \n");
+                    ErrorManager.Instance.WriteToLog("Error - addProductToCart - " + productId.Key + " does not exist. \n");
                     check = false;
                 }
                 else
@@ -407,27 +466,30 @@ namespace src.Domain
             return output;
         }
 
-       internal bool createNewProductInStore(string productName, string category, string details, int price, int storeID,int userID)
+        internal bool createNewProductInStore(string productName, string category, string details, int price, int storeID, int userID)
         {
             if (Stores.ContainsKey(storeID))
-                if(users[userID].createNewProductInStore(productName, category, details, price, ProductCounter++,storeID))
+                if (users[userID].createNewProductInStore(productName, category, details, price, ProductCounter++, storeID))
                 {
-                    LogManager.Instance.WriteToLog("TradingSystem-create new product in store"+storeID+" -success\n");
+                    LogManager.Instance.WriteToLog("TradingSystem-create new product in store" + storeID + " -success\n");
                     return true;
                 }
             LogManager.Instance.WriteToLog("TradingSystem-create new product in store fail- the store does not exists\n");
+            ErrorManager.Instance.WriteToLog("Error - createNewProductInStore - the store does not exists.\n");
             return false;
         }
 
-      internal bool addProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID, int userID)
+        internal bool addProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID, int userID)
         {
             if (Stores.ContainsKey(storeID))
-                if(users[userID].addProductsInStore(productsInStore, storeID))
+                if (users[userID].addProductsInStore(productsInStore, storeID))
                 {
-                    LogManager.Instance.WriteToLog("TradingSystem-add product to store" +storeID+" -success");
+                    LogManager.Instance.WriteToLog("TradingSystem-add product to store" + storeID + " -success");
                     return true;
                 }
             LogManager.Instance.WriteToLog("TradingSystem-add product to store fail- the store does not exists\n");
+            ErrorManager.Instance.WriteToLog("Error - addProductsInStore - the store does not exists.\n");
+
             return false;
         }
 
@@ -439,12 +501,14 @@ namespace src.Domain
         internal bool removeProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID, int userID)
         {
             if (Stores.ContainsKey(storeID))
-                if(users[userID].removeProductsInStore(productsInStore, storeID))
+                if (users[userID].removeProductsInStore(productsInStore, storeID))
                 {
                     LogManager.Instance.WriteToLog("TradingSystem-remove product from store" + storeID + " -success");
                     return true;
                 }
             LogManager.Instance.WriteToLog("TradingSystem-remove product from store fail- the store does not exists\n");
+            ErrorManager.Instance.WriteToLog("Error - removeProductsInStore - the store does not exists.\n");
+
             return false;
         }
 
@@ -456,6 +520,7 @@ namespace src.Domain
                 User managerUser = this.users[managerId];
                 return ownerUser.assignManager(managerUser, storeId, permissionToManager);
             }
+            ErrorManager.Instance.WriteToLog("Error - assignManager - the new manager does not exist.\n");
             return false;
         }
 
@@ -468,19 +533,72 @@ namespace src.Domain
                     return true;
                 }
             LogManager.Instance.WriteToLog("TradingSystem-Assign owner fail- the owner does not exists\n");
+            ErrorManager.Instance.WriteToLog("Error - assignOwner - the owner does not exists.\n");
             return false;
         }
 
         internal bool editProductInStore(int productID, string productName, string category, string details, int price, int storeID, int userID)
         {
             if (Stores.ContainsKey(storeID))
-                if (users[userID].editProductsInStore(productID,productName,category,details,price,storeID))
+                if (users[userID].editProductsInStore(productID, productName, category, details, price, storeID))
                 {
                     LogManager.Instance.WriteToLog("TradingSystem-edit product to store" + storeID + " success");
                     return true;
                 }
             LogManager.Instance.WriteToLog("TradingSystem-edit product from store fail- the store does not exists\n");
+            ErrorManager.Instance.WriteToLog("Error - editProductInStore - the store does not exists.\n");
+            return false;
+        }
+
+        public bool addSimplePurchasePolicy(int type, int first, int second, int third, int fourth, int act, string adress, bool isregister, int storeID, int userID)
+        {
+            PurchesPolicyData purchesData;
+            switch (type)
+            {
+                case 0:
+                    if (first < 0 || second < 0 || third < 0 || act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, third, -1, -1, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 1:
+                    if (first < 0 || second < 0 || act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, -1, -1, -1, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 2:
+                    if (first < 0 || second < 0 || third < 0 || fourth < 0 || act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, first, second, third, fourth, ConvertIntToLogicalConnections(act), null, false);
+                    break;
+                case 3:
+                    if (((adress == null || adress.Equals("")) && isregister == false) || act < 0)
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, -1, -1, -1, -1, ConvertIntToLogicalConnections(act), adress, isregister);
+                    break;
+                default:
+                    LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- type " + type + " is not recognized\n");
+                    return false;
+            }
+            if (this.Users.ContainsKey(userID))
+                return Users[userID].addSimplePurchasePolicy(purchesData, storeID) != null;
+            LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- User does not exist\n");
+            return false;
+        }
+
+        internal LogicalConnections ConvertIntToLogicalConnections(int log)
+        {
+            if (log == 0)
+                return LogicalConnections.and;
+            else
+                return LogicalConnections.or;
+        }
+        public bool addComplexPurchasePolicy(List<Object> purchesData, int storeID, int userID)
+        {
+            if (this.Users.ContainsKey(userID))
+                return Users[userID].addComplexPurchasePolicy(purchesData, storeID) != null;
+            LogManager.Instance.WriteToLog("Trading System- addComplexPurchasePolicy- User does not exist\n");
             return false;
         }
     }
 }
+

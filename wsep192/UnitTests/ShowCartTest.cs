@@ -16,7 +16,7 @@ namespace UnitTests
         {
             system = new TradingSystem(null, null);
             user = new User(1, "user", "1234", false, false);
-            store = new Store(1, "store", null, null);
+            store = new Store(1, "store");
 
         }
 
@@ -24,12 +24,12 @@ namespace UnitTests
         public void TestMethod_failure()
         {
             setUp();
-            Assert.AreEqual("Error : Invalid user or store", system.showCart(user.Id, store.Id));
+            Assert.AreEqual(null, system.showCart(user.Id, store.Id));
             system.Users.Add(user.Id, null);
-            Assert.AreEqual("Error : Invalid user or store", system.showCart(user.Id, store.Id));
+            Assert.AreEqual(null, system.showCart(user.Id, store.Id));
             system.Users.Remove(user.Id);
             system.Stores.Add(store.Id, null);
-            Assert.AreEqual("Error : Invalid user or store", system.showCart(user.Id, store.Id));
+            Assert.AreEqual(null, system.showCart(user.Id, store.Id));
         }
 
         [TestMethod]
@@ -37,27 +37,27 @@ namespace UnitTests
         {
             setUp();
             ShoppingBasket basket = new ShoppingBasket();
-            Assert.AreEqual("Error : Shopping basket does not contain this store",
-                basket.showCart(store.Id));
+            Assert.AreEqual(null, basket.showCart(store.Id));
 
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void TestMethod_success_system()
         {
             setUp();
-            user = new StubUser2(1,null,null,false,false, "Store Name: store\nCart is empty\n");
+            List<KeyValuePair<string, int>> list = new List<KeyValuePair<string, int>>();
+            user = new StubUser2(1,null,null,false,false, list);
             system.Users.Add(user.Id, user);
             system.Stores.Add(store.Id, store);
             //empty cart
-            Assert.AreEqual("Store Name: store\nCart is empty\n", system.showCart(user.Id, store.Id));
-
-            user = new StubUser2(1, null, null, false, false, "Store Name: store\nProduct Name\t\t\tQuantity\n" +
-                "1. p1\t\t\t3\n2. p2\t\t\t1\n");
+            Assert.AreEqual(0, system.showCart(user.Id, store.Id).Count);
+            list = new List<KeyValuePair<string, int>>();
+            KeyValuePair<string, int> pair1 = new KeyValuePair<string, int>("p", 3);
+            list.Add(pair1);
+            user = new StubUser2(1, null, null, false, false, list);
+            system.Users[1] = user;
             //non-empty cart
-            Assert.AreEqual("Store Name: store\nProduct Name\t\t\tQuantity\n" +
-                "1. p1\t\t\t3\n2. p2\t\t\t1\n",
-                system.showCart(user.Id, store.Id));
+            Assert.IsTrue(list[0].Equals(system.showCart(user.Id, store.Id)[0]));
 
         }
 
@@ -66,19 +66,15 @@ namespace UnitTests
         {
             setUp();
             ShoppingBasket basket = new ShoppingBasket();
-            basket.ShoppingCarts.Add(store.Id, new StubCart3(store.Id, null, "Store Name: store\nCart is empty\n"));
-            
- 
+            basket.ShoppingCarts.Add(store.Id, new StubCart3(store.Id, null, new List<KeyValuePair<string, int>>()));
             //empty cart
-            Assert.AreEqual("Store Name: store\nCart is empty\n", basket.showCart(store.Id));
-
+            Assert.AreEqual(0, basket.showCart(store.Id).Count);
             basket.ShoppingCarts.Remove(store.Id);
-            basket.ShoppingCarts.Add(store.Id, new StubCart3(store.Id, null, "Store Name: store\nProduct Name\t\t\tQuantity\n" +
-                "1. p1\t\t\t3\n2. p2\t\t\t1\n"));
+            List<KeyValuePair<string, int>> list = new List<KeyValuePair<string, int>>();
+            list.Add(new KeyValuePair<string, int>("p", 3));
+            basket.ShoppingCarts.Add(store.Id, new StubCart3(store.Id, null, list));
             //non-empty cart
-            Assert.AreEqual("Store Name: store\nProduct Name\t\t\tQuantity\n" +
-                "1. p1\t\t\t3\n2. p2\t\t\t1\n",
-                basket.showCart(store.Id));
+            Assert.IsTrue(list[0].Equals(basket.showCart(store.Id)[0]));
 
         }
 
@@ -88,15 +84,15 @@ namespace UnitTests
             setUp();
             ShoppingCart cart = new ShoppingCart(store.Id,store);
             //empty cart
-            Assert.AreEqual("Store Name: store\nCart is empty\n", cart.showCart());
+            Assert.AreEqual(0, cart.showCart().Count);
 
             //non-empty cart
             Product p = new Product(1, "p", null, null, -1);
             ProductInCart pc = new ProductInCart(3, cart, p);
             cart.Products.Add(p.Id,pc);
-            Assert.AreEqual("Store Name: store\nProduct Name\t\t\tQuantity\n" +
-                "1. p\t\t\t3\n",
-                cart.showCart());
+            List<KeyValuePair<string, int>> list = new List<KeyValuePair<string, int>>();
+            list.Add(new KeyValuePair<string, int>(p.ProductName,3));
+            Assert.IsTrue(list[0].Equals(cart.showCart()[0]));
 
         }
 
@@ -104,14 +100,14 @@ namespace UnitTests
 
     internal class StubCart3 : ShoppingCart
     {
-        string retVal;
+        List<KeyValuePair<string, int>> retVal;
 
-        public StubCart3(int storeId, Store store, string ret) : base(storeId, store)
+        public StubCart3(int storeId, Store store, List<KeyValuePair<string, int>> ret) : base(storeId, store)
         {
             retVal = ret;
         }
 
-        internal override string showCart()
+        internal override List<KeyValuePair<string,int>> showCart()
         {
             return retVal;
         }
@@ -119,15 +115,15 @@ namespace UnitTests
 
     internal class StubUser2 : User
     {
-        string retVal;
+        List<KeyValuePair<string, int>> retVal;
 
 
-        public StubUser2(int id, string userName, string password, bool isAdmin, bool isRegistered, string ret) : base(id, userName, password, isAdmin, isRegistered)
+        public StubUser2(int id, string userName, string password, bool isAdmin, bool isRegistered, List<KeyValuePair<string, int>> ret) : base(id, userName, password, isAdmin, isRegistered)
         {
             retVal = ret;
         }
 
-        internal override string showCart(int storeId)
+        internal override List<KeyValuePair<string, int>> showCart(int storeId)
         {
             return retVal;
         }

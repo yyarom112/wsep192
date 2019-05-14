@@ -8,6 +8,7 @@ namespace UnitTests
     [TestClass]
     public class BuyingBasketReq2
     {
+
         private TradingSystem sys;
         private Encryption encrypt;
 
@@ -27,6 +28,15 @@ namespace UnitTests
         private ProductInStore pis3;
         private ProductInStore pis4;
 
+        private RevealedDiscount rd_min;
+        private RevealedDiscount rd_mid;
+        private RevealedDiscount rd_max;
+
+        private RevealedDiscount rd_max_without;
+        private RevealedDiscount rd_mid_without;
+
+
+
         private Store store;
 
 
@@ -37,9 +47,9 @@ namespace UnitTests
             user = new User(1, null, null, false, false);
             basket_user = user.Basket;
 
-            store = new Store(-1, "store", null, null);
+            store = new Store(-1, "store");
 
-            p1 = new Product(0, "first", "","", 5000);
+            p1 = new Product(0, "first", "", "", 5000);
             p2 = new Product(1, "second", "", "", 5000);
             p3 = new Product(2, "third", "", "", 5000);
             p4 = new Product(3, "fourth", "", "", 5000);
@@ -59,6 +69,15 @@ namespace UnitTests
             sys.Users.Add(admin.Id, admin);
             sys.Users.Add(user.Id, user);
 
+            Dictionary<int, KeyValuePair<ProductInStore, int>> discountProduct = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
+            discountProduct.Add(p1.Id, new KeyValuePair<ProductInStore, int>(pis1, 0));
+            rd_min = new RevealedDiscount(sys.DiscountPolicyCounter++, 0.2, discountProduct, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication);
+            rd_mid = new RevealedDiscount(sys.DiscountPolicyCounter++, 0.25, discountProduct, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication);
+            rd_max = new RevealedDiscount(sys.DiscountPolicyCounter++, 0.3, discountProduct, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication);
+
+
+            rd_mid_without = new RevealedDiscount(sys.DiscountPolicyCounter++, 0.35, discountProduct, new DateTime(2222, 1, 1), DuplicatePolicy.WithoutMultiplication);
+            rd_max_without = new RevealedDiscount(sys.DiscountPolicyCounter++, 1, discountProduct, new DateTime(2222, 1, 1), DuplicatePolicy.WithoutMultiplication);
 
         }
 
@@ -67,28 +86,7 @@ namespace UnitTests
         public void TestMethod1_cartCheckout_without_discount_in_policy()
         {
             setUp();
-            store=new StubStore(-1, "store", 0, null, null,true,0);
-            store.Products.Add(p1.Id, pis1);
-            store.Products.Add(p2.Id, pis2);
-            store.Products.Add(p3.Id, pis3);
-            store.Products.Add(p4.Id, pis4);
-            ShoppingCart cart = new ShoppingCart(store.Id, store);
-
-            cart.Products.Add(p1.Id, new ProductInCart(1,cart,p1));
-            cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
-            cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
-            cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
-
-
-            Assert.AreEqual(p1.Price + p2.Price + p3.Price + p4.Price, cart.cartCheckout());
-
-        }
-
-        [TestMethod]
-        public void TestMethod1_cartCheckout_without_discount_no_in_policy()
-        {
-            setUp();
-            store = new StubStore(-1, "store", 0, null, null, false,0);
+            store = new StubStore(-1, "store", 0, true, 0);
             store.Products.Add(p1.Id, pis1);
             store.Products.Add(p2.Id, pis2);
             store.Products.Add(p3.Id, pis3);
@@ -101,7 +99,28 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(-1, cart.cartCheckout());
+            Assert.AreEqual(p1.Price + p2.Price + p3.Price + p4.Price, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
+
+        }
+
+        [TestMethod]
+        public void TestMethod1_cartCheckout_without_discount_no_in_policy()
+        {
+            setUp();
+            store = new StubStore(-1, "store", 0, false, 0);
+            store.Products.Add(p1.Id, pis1);
+            store.Products.Add(p2.Id, pis2);
+            store.Products.Add(p3.Id, pis3);
+            store.Products.Add(p4.Id, pis4);
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
+
+            cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
+            cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
+            cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
+            cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
+
+
+            Assert.AreEqual(-1, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -110,7 +129,7 @@ namespace UnitTests
         public void TestMethod1_cartCheckout_with_discount_in_policy()
         {
             setUp();
-            store = new StubStore(-1, "store", 0, null, null, true,p1.Price);
+            store = new StubStore(-1, "store", 0, true, p1.Price);
             store.Products.Add(p1.Id, pis1);
             store.Products.Add(p2.Id, pis2);
             store.Products.Add(p3.Id, pis3);
@@ -123,7 +142,7 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(p2.Price + p3.Price + p4.Price, cart.cartCheckout());
+            Assert.AreEqual(p1.Price+p2.Price + p3.Price + p4.Price, cart.cartCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -139,7 +158,7 @@ namespace UnitTests
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
 
-            Assert.AreEqual(true, store.confirmPurchasePolicy(cart.Products));
+            Assert.AreEqual(true, store.confirmPurchasePolicy(cart.Products, new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -157,6 +176,38 @@ namespace UnitTests
 
 
             Assert.AreEqual(0, store.calculateDiscountPolicy(cart.Products));
+
+        }
+
+        [TestMethod]
+        public void TestMethod1_calculateDiscountPolicy_DiscountDictionrywithDiscounts()
+        {
+            setUp();
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
+            cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
+
+            store.DiscountPolicy.Add(rd_min);
+            store.DiscountPolicy.Add(rd_mid);
+            store.DiscountPolicy.Add(rd_max);
+
+            Assert.AreEqual(2900, store.calculateDiscountPolicy(cart.Products),"all and");
+
+            setUp();
+            cart = new ShoppingCart(store.Id, store);
+            cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
+
+            store.DiscountPolicy.Add(rd_min);
+            store.DiscountPolicy.Add(rd_mid_without);
+            store.DiscountPolicy.Add(rd_max);
+
+            Assert.AreEqual(2200, store.calculateDiscountPolicy(cart.Products), "one  bad without");
+
+            setUp();
+            store.DiscountPolicy.Add(rd_min);
+            store.DiscountPolicy.Add(rd_mid);
+            store.DiscountPolicy.Add(rd_max_without);
+
+            Assert.AreEqual(5000, store.calculateDiscountPolicy(cart.Products), "one  good without");
 
         }
 
@@ -180,7 +231,7 @@ namespace UnitTests
             cart_tocheck.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
 
             bool check = true;
-            foreach(ProductInCart p in cart.Products.Values)
+            foreach (ProductInCart p in cart.Products.Values)
             {
                 if (!cart_tocheck.Products.ContainsKey(p.Product.Id) || cart_tocheck.Products[p.Product.Id].Quantity != p.Quantity)
                     check = false;
@@ -226,8 +277,8 @@ namespace UnitTests
             setUp();
             int retval = 10;
             ShoppingCart cart = new Stubcart(store.Id, store, new Dictionary<int, ProductInCart>(), retval);
-            basket_user.ShoppingCarts.Add(store.Id, cart);                               
-            Assert.AreEqual(retval, basket_user.basketCheckout());
+            basket_user.ShoppingCarts.Add(store.Id, cart);
+            Assert.AreEqual(retval, basket_user.basketCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -238,7 +289,7 @@ namespace UnitTests
             int retval = -1;
             ShoppingCart cart = new Stubcart(store.Id, store, new Dictionary<int, ProductInCart>(), retval);
             basket_user.ShoppingCarts.Add(store.Id, cart);
-            Assert.AreEqual(retval, basket_user.basketCheckout());
+            Assert.AreEqual(retval, basket_user.basketCheckout(new src.Domain.Dataclass.UserDetailes(null, false)));
 
         }
 
@@ -259,7 +310,7 @@ namespace UnitTests
             bool retval = true;
             StubUser user = new StubUser(2, null, null, false, false, retval);
             sys.Users.Add(user.Id, user);
-            Assert.AreEqual(1, sys.basketCheckout("telaviv",2));
+            Assert.AreEqual(1, sys.basketCheckout("telaviv", 2));
 
 
         }
@@ -314,20 +365,20 @@ namespace UnitTests
             sys.FinancialSystem = new StubFinancialSystem(true);
             sys.SupplySystem = new StubProductSupplySystem(true);
 
-            ShoppingCart cart = new StubCart(store.Id, store,10);
+            ShoppingCart cart = new StubCart(store.Id, store, 10);
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
             cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
             cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
             cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
-            cart.Store = new StubStore(1, "", 0, null, null, true, 0);
+            cart.Store = new StubStore(1, "", 0, true, 0);
             user.Basket = new StubBasket(13);
             sys.Stores.Add(1, cart.Store);
-            user.Basket.ShoppingCarts.Add(1,cart);
+            user.Basket.ShoppingCarts.Add(1, cart);
             List<String[]> check = sys.cartToString(cart);
 
 
-            Assert.AreEqual(expected: check.Count, actual: sys.payForBasket(0,new DateTime(1990,1,1),user.Id).Count);
+            Assert.AreEqual(expected: check.Count, actual: sys.payForBasket(0, new DateTime(1990, 1, 1), user.Id).Count);
 
         }
 
@@ -394,22 +445,22 @@ namespace UnitTests
     class StubStore : Store
     {
         private bool policy;
-        private int discount;
+        private double discount;
 
 
-        public StubStore(int id, string name, int storeRate, List<PurchasePolicy> purchasePolicy, List<DiscountPolicy> discountPolicy, bool policy, int discount) : base(id, name, purchasePolicy, discountPolicy)
+        public StubStore(int id, string name, int storeRate, bool policy, double discount) : base(id, name)
         {
             this.policy = policy;
             this.discount = discount;
         }
 
 
-        public override bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products)
+        public override bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products, src.Domain.Dataclass.UserDetailes user)
         {
             return policy;
         }
 
-        public override int calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
+        public virtual double calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
         {
             return discount;
         }
@@ -432,7 +483,7 @@ namespace UnitTests
             this.Products = products;
         }
 
-        public override int cartCheckout()
+        public override double cartCheckout(src.Domain.Dataclass.UserDetailes user)
         {
             return retVal;
         }
@@ -441,7 +492,7 @@ namespace UnitTests
 
     }
 
-    class StubBasket: ShoppingBasket
+    class StubBasket : ShoppingBasket
     {
         private int retVal;
         public StubBasket(int ret) : base()
@@ -449,7 +500,7 @@ namespace UnitTests
             this.retVal = ret;
         }
 
-        public override int basketCheckout()
+        public override double basketCheckout(src.Domain.Dataclass.UserDetailes user)
         {
             return retVal;
         }
@@ -462,7 +513,7 @@ namespace UnitTests
     {
         private bool retVal;
 
-        public StubProductSupplySystem(bool ret) 
+        public StubProductSupplySystem(bool ret)
         {
             this.retVal = ret;
         }
@@ -487,7 +538,7 @@ namespace UnitTests
             this.retVal = ret;
         }
 
-        public bool Chargeback(long cardNumber, DateTime date, int amount)
+        public bool Chargeback(long cardNumber, DateTime date, double amount)
         {
             return true;
         }
@@ -502,7 +553,7 @@ namespace UnitTests
             return retVal;
         }
 
-        public bool payment(long cardNumber, DateTime date, int amount, int paymentTarget)
+        public bool payment(long cardNumber, DateTime date, double amount, int paymentTarget)
         {
             return retVal;
         }

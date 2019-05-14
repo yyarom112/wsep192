@@ -21,7 +21,7 @@ namespace UnitTests
 
         public void setUp()
         {
-            store = new Store(2, "ZARA", new List<PurchasePolicy>(), new List<DiscountPolicy>());
+            store = new Store(2, "ZARA");
             owner = new User(205600191, "Rotem", "r455!2@", false, false);
             owner.State = state.signedIn;
             ownerRole = new Owner(store, owner);
