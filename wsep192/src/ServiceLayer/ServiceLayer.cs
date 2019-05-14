@@ -33,6 +33,7 @@ namespace src.ServiceLayer
             discountPolicyCounter = 0;
             addPermissions();
             init("admin", "admin");
+            setUp();
 
         }
         public static ServiceLayer getInstance()
@@ -66,23 +67,23 @@ namespace src.ServiceLayer
         public bool setUp()
         {
             bool flag = true;
-            string user = instance.initUser();
-            flag = flag & instance.register("user", "user", user);
+            string user = initUser();
+            flag = flag & register("user", "user", user);
             string[] stores = { "Zara", "Bershka", "Forever21", "Castro", "Renuar", "AmericanEagle" };
             string[] details = { "New", "On Sale", "Last chance", "Hot staff" };
             string[] cats = { "Tops", "Jeans", "Shoes", "Skirts" };
             for (int i = 0; i < 1 && flag; i++)
             {
-                flag = flag & instance.openStore(stores[i], "user");
+                flag = flag & openStore(stores[i], "user");
                 for (int j = 0; j < 3 && flag; j++)
                 {
                     string cat = cats[new Random().Next(0, 4)];
                     string[] product = { cat + (j + 1).ToString(), cat, details[new Random().Next(0, 4)], stores[i] };
-                    flag = flag & instance.createNewProductInStore(product[0], product[1], product[2], new Random().Next(10, 100), product[3], "user");
+                    flag = flag & createNewProductInStore(product[0], product[1], product[2], new Random().Next(10, 100), product[3], "user");
                     List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
                     products.Add(new KeyValuePair<string, int>(product[0], new Random().Next(10, 100)));
                     if(flag)
-                        flag = flag & instance.addProductsInStore(products, stores[i], "user");
+                        flag = flag & addProductsInStore(products, stores[i], "user");
                 }
             }
             return flag;
@@ -175,6 +176,10 @@ namespace src.ServiceLayer
             return true;
         }
 
+        public bool[] getVisibility(String userName)
+        {
+            return system.getVisibility(users[userName],userName);
+        }
 
         private List<KeyValuePair<int, int>> getProductsInts(List<KeyValuePair<String, int>> products, int store)
         {

@@ -361,6 +361,13 @@ namespace WebService.Controllers
             return res;
         }
 
+        [Route("api/user/getVisibility")]
+        [HttpGet]
+        public bool[] getVisibility(String userName)
+        {
+            return service.getVisibility(userName);
+        }
+
 
 
     }

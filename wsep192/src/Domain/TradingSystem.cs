@@ -43,6 +43,47 @@ namespace src.Domain
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
 
+        public bool[] getVisibility(int userID,String userName)
+        {
+            /*
+              0 - admin
+              1 - owner
+              2 - manager
+              3 - AddDiscountPolicy
+              4 - AddPurchasePolicy
+              5 - CreateNewProductInStore
+              6 - AddProductsInStore
+              7 - RemoveProductsInStore
+              8 - EditProductInStore
+              9 - CommunicationWithCustomers
+              10 - PurchasesHistory
+             */
+            bool flag;
+            bool[] result = new bool[11];
+            for (int i = 0; i < result.Length; i++)
+                result[i] = false;
+            if (userName == "admin")
+                result[0] = true;
+            foreach (Role r in users[userID].Roles.Values)
+            {
+                if (r.GetType() == typeof(Owner)) { 
+                    result[1] = true;
+                    break;
+                }
+                if (r.GetType() == typeof(Manager))
+                {
+                    result[2] = true;
+                    Manager m = (Manager)r;
+                    for (int j = 1; j < 9; j++) {
+                        flag = m.validatePermission(j);
+                        if (flag)
+                            result[j + 2] = flag;
+                    }
+                }
+            }
+            return result;
+        }
+
         public double basketCheckout(String address, int userID)
         {
             if (!this.users.ContainsKey(userID))

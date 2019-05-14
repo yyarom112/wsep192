@@ -4,3 +4,5 @@
 
 12/05/2019 15:45:07: Error - editProductInStore - the store does not exists.
 
+14/05/2019 18:55:14: Error - assignOwner - the owner does not exists.
+
