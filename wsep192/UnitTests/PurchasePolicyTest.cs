@@ -504,72 +504,111 @@ namespace UnitTests
         }
 
 
-        //[TestMethod]
-        //public void Store_factoryBuyConditionPolicy()
-        //{
-        //    setup();
-        //    List<object> details = new List<object>();
-        //    details.Add(2);
-        //    details.Add(2);
-        //    details.Add(2);
-        //    details.Add(5);
-        //    details.Add(10);
-        //    details.Add(20);
-        //    details.Add(LogicalConnections.and);
-        //    PurchasePolicy bcp = store.factoryBuyConditionPolicy(details, 0);
+        [TestMethod]
+        public void Store_factoryBuyConditionPolicy()
+        {
+            setup();
 
-        //    List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
-        //    cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 1));
-        //    Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // Too few products
-
-        //    cart = new List<KeyValuePair<ProductInStore, int>>();
-        //    cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
-        //    Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // Too much products
-
-        //    cart = new List<KeyValuePair<ProductInStore, int>>();
-        //    cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 2));
-        //    Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // Too cheap
-
-        //    cart = new List<KeyValuePair<ProductInStore, int>>();
-        //    cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 3));
-        //    Assert.AreEqual(false, bcp.CheckCondition(cart, null)); // too expensive
-
-        //    cart = new List<KeyValuePair<ProductInStore, int>>();
-        //    cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 2));
-        //    cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
-        //    Assert.AreEqual(true, bcp.CheckCondition(cart, null)); // proper
-        //}
+            String details = " ( 2 , 2, 5 , 10 , 20 , 0 )";
+            PurchasePolicy bcp = store.factoryBuyConditionPolicy(1, details.Split(',').Length - 1, 0, details.Split(','), -1);
 
 
-        //[TestMethod]
-        //public void Store_factoryUserConditionPolicy()
-        //{
-        //    setup();
-        //    List<object> details = new List<object>();
-        //    details.Add(3);
-        //    details.Add(3);
-        //    details.Add("Tel Aviv");
-        //    details.Add(true);
-        //    details.Add(LogicalConnections.and);
-        //    PurchasePolicy ucp = store.factoryUserConditionPolicy(details, 0);
+            List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 1));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null), "Too few products"); 
 
-        //    UserDetailes user = new UserDetailes("", false);
-        //    Assert.AreEqual(false, ucp.CheckCondition(null, user), "Registeration and Adress check fail");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null), "Too much products"); 
 
-        //    user.Isregister = true;
-        //    Assert.AreEqual(false, ucp.CheckCondition(null, user), "The adress check fail");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 2));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null), "Too cheap"); 
 
-        //    user.Isregister = false;
-        //    user.Adress = "Tel Aviv";
-        //    Assert.AreEqual(false, ucp.CheckCondition(null, user), "The registeretion check fail");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 3));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null), "too expensive"); 
 
-        //    user.Isregister = true;
-        //    Assert.AreEqual(true, ucp.CheckCondition(null, user), "Registeration and Adress check fail");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 2));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
+            Assert.AreEqual(true, bcp.CheckCondition(cart, null), "proper"); 
+        }
 
-        //}
+        [TestMethod]
+        public void Store_addComplexPurchasePolicy_addComplexPurchasePolicy_inventoryConditionPolicy()
+        {
+            setup();
+            String details = " ( 2 , 2, 5 , 10 , 20 , 0 )";
+            PurchasePolicy bcp = store.addComplexPurchasePolicy(0, details);
+            List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 1));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null), "Too few products");
+
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null), "Too much products");
+
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 2));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null), "Too cheap");
+
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 3));
+            Assert.AreEqual(false, bcp.CheckCondition(cart, null), "too expensive");
+
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 2));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
+            Assert.AreEqual(true, bcp.CheckCondition(cart, null), "proper");
+        }
+
+        [TestMethod]
+        public void Store_factoryUserConditionPolicy()
+        {
+            setup();
+
+            String details = " ( 3 , Tel Aviv , 1, 0 )";
+            PurchasePolicy ucp = store.factoryUserConditionPolicy(1, details.Split(',').Length - 1, 0, details.Split(','), -1);
+
+            UserDetailes user = new UserDetailes("", false);
+            Assert.AreEqual(false, ucp.CheckCondition(null, user), "Registeration and Adress check fail");
+
+            user.Isregister = true;
+            Assert.AreEqual(false, ucp.CheckCondition(null, user), "The adress check fail");
+
+            user.Isregister = false;
+            user.Adress = "Tel Aviv";
+            Assert.AreEqual(false, ucp.CheckCondition(null, user), "The registeretion check fail");
+
+            user.Isregister = true;
+            Assert.AreEqual(true, ucp.CheckCondition(null, user), "Registeration and Adress check fail");
+
+        }
 
 
+        [TestMethod]
+        public void Store_addComplexPurchasePolicy_factoryUserConditionPolicy()
+        {
+            setup();
 
+            String details = " ( 3 , Tel Aviv , 1, 0 )";
+            PurchasePolicy ucp = store.addComplexPurchasePolicy(1, details);
+
+            UserDetailes user = new UserDetailes("", false);
+            Assert.AreEqual(false, ucp.CheckCondition(null, user), "Registeration and Adress check fail");
+
+            user.Isregister = true;
+            Assert.AreEqual(false, ucp.CheckCondition(null, user), "The adress check fail");
+
+            user.Isregister = false;
+            user.Adress = "Tel Aviv";
+            Assert.AreEqual(false, ucp.CheckCondition(null, user), "The registeretion check fail");
+
+            user.Isregister = true;
+            Assert.AreEqual(true, ucp.CheckCondition(null, user), "Registeration and Adress check fail");
+
+        }
 
 
 
@@ -587,18 +626,133 @@ namespace UnitTests
             cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
             Assert.AreEqual(false, itcp.CheckCondition(cart, null), "Failure on condition is not satisfactory a");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 11));
             Assert.AreEqual(false, itcp.CheckCondition(cart, null), "Failure on condition is not satisfactory b");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
             Assert.AreEqual(false, itcp.CheckCondition(cart, null), "then failure - the then condition are not satisfied");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
-            Assert.AreEqual(false, itcp.CheckCondition(cart, null), "All conditions are to be satisfied");
+            Assert.AreEqual(true, itcp.CheckCondition(cart, null), "All conditions are to be satisfied");
+
+
+
+        }
+
+
+        [TestMethod]
+        public void Store_addComplexPurchasePolicy_factoryIfThenCondition()
+        {
+
+            setup();
+            String details = "( 4 , ( 0 , " + p1.Id + " , 0 , 10 , 0 ) , ( 1 , 1, 5 , 0 ) , 0 )";
+            PurchasePolicy itcp = store.addComplexPurchasePolicy(0, details);
+
+            List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
+            Assert.AreEqual(true, itcp.CheckCondition(cart, null), "The empty case - the product is not related to the purchase policy");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
+            Assert.AreEqual(false, itcp.CheckCondition(cart, null), "Failure on condition is not satisfactory a");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 11));
+            Assert.AreEqual(false, itcp.CheckCondition(cart, null), "Failure on condition is not satisfactory b");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
+            Assert.AreEqual(false, itcp.CheckCondition(cart, null), "then failure - the then condition are not satisfied");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
+            Assert.AreEqual(true, itcp.CheckCondition(cart, null), "All conditions are to be satisfied");
+
+
+
+        }
+        [TestMethod]
+        public void Store_factoryLogicalCondition_simple()
+        {
+
+            setup();
+            // true if buy p1 between 0-10 and the min inventory 5
+            String details = "( 5 , ( 0 , " + p1.Id + " , 0 , 10 , 0 ) , ( 1 ," + p1.Id + ", 5 , 0 ) , 0 , 0)";
+            PurchasePolicy lcp = store.factoryLogicalCondition(1, details.Split(',').Length - 1, 0, details.Split(','), 0);
+
+            List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
+            Assert.AreEqual(true, lcp.CheckCondition(cart, null), "The empty case - the product is not related to the purchase policy");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
+            Assert.AreEqual(false, lcp.CheckCondition(cart, null), "Failure on condition is not satisfactory a");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 11));
+            Assert.AreEqual(false, lcp.CheckCondition(cart, null), "Failure on condition is not satisfactory b");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
+            Assert.AreEqual(false, lcp.CheckCondition(cart, null), "then failure - the then condition are not satisfied");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
+            Assert.AreEqual(true, lcp.CheckCondition(cart, null), "All conditions are to be satisfied");
+
+
+
+        }
+
+        [TestMethod]
+        public void Store_factoryLogicalCondition_complex()
+        {
+
+            setup();
+            // true if buy p1 between 0-10 and the min inventory 5 or buy p2 between 0-10 and the min inventory 5
+            String details = "(5 ,( 5 , ( 0 , " + p1.Id + " , 0 , 10 , 0 ) , ( 1 ," + p1.Id + ", 5 , 0 ) , 0 , 0), ( 5 , ( 0 , " + p2.Id + " , 0 , 10 , 0 ) , ( 1 ," + p2.Id + ", 5 , 0 ) , 0 , 0) , 1 , 0 )";
+            PurchasePolicy lcp = store.factoryLogicalCondition(1, details.Split(',').Length - 1, 0, details.Split(','), 0);
+
+            List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, -1));
+
+            Assert.AreEqual(false, lcp.CheckCondition(cart, null), "p1-Failure on condition is not satisfactory a");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 11));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, -1));
+            Assert.AreEqual(false, lcp.CheckCondition(cart, null), "p1-Failure on condition is not satisfactory b");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 6));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, -1));
+            Assert.AreEqual(false, lcp.CheckCondition(cart, null), "p1-then failure - the then condition are not satisfied");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, -1));
+
+            Assert.AreEqual(true, lcp.CheckCondition(cart, null), "p1-All conditions are to be satisfied");
+
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, -1));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
+            Assert.AreEqual(false, lcp.CheckCondition(cart, null), "p2-Failure on condition is not satisfactory a");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 11));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
+            Assert.AreEqual(false, lcp.CheckCondition(cart, null), "p2-Failure on condition is not satisfactory b");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 6));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
+            Assert.AreEqual(false, lcp.CheckCondition(cart, null), "p2-then failure - the then condition are not satisfied");
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 5));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, -1));
+            Assert.AreEqual(true, lcp.CheckCondition(cart, null), "p2-All conditions are to be satisfied");
+
+            cart = new List<KeyValuePair<ProductInStore, int>>();
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 5));
+            cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
+            Assert.AreEqual(true, lcp.CheckCondition(cart, null), "Both-All conditions are to be satisfied");
 
 
 
         }
     }
 
+    
 
 
 
