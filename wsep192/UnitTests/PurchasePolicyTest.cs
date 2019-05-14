@@ -425,13 +425,6 @@ namespace UnitTests
 
 
 
-        [TestMethod]
-        public void Store_ConvertObjectToLogicalConnections()
-        {
-            setup();
-            Assert.AreEqual(LogicalConnections.and, store.ConvertObjectToLogicalConnections((Object)0));
-            Assert.AreEqual(LogicalConnections.or, store.ConvertObjectToLogicalConnections((Object)1));
-        }
 
         [TestMethod]
         public void Store_factoryProductConditionPolicy()
