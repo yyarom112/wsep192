@@ -601,6 +601,14 @@ namespace src.Domain
             }
         }
 
-       
+        public int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+        {
+            logic = DuplicatePolicy.WithMultiplication;
+            RevealedDiscount newRevealedDiscount = new RevealedDiscount(discountId, discountPrecentage, products, expiredDate, logic);
+            discountPolicy.Add(newRevealedDiscount);
+            return discountId;
+        }
+
+
     }
 }

@@ -593,6 +593,17 @@ namespace src.Domain
             LogManager.Instance.WriteToLog("Trading System- addComplexPurchasePolicy- User does not exist\n");
             return false;
         }
+
+        public int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, int userID, int storeID, int expiredDiscountDate, DuplicatePolicy logic)
+        {
+
+            if (this.Users.ContainsKey(userID))
+            {
+                return Users[userID].addRevealedDiscountPolicy(products, discountPrecentage, storeID, expiredDiscountDate, discountPolicyCounter++, logic);
+            }
+            LogManager.Instance.WriteToLog("Trading System- addRevealedDiscountPolicy - User does not exist\n");
+            return -1;
+        }
     }
 }
 

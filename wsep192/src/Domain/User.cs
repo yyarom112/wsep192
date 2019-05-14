@@ -311,5 +311,17 @@ namespace src.Domain
             }
             return role;
         }
+
+        public int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, int storeID, int expiredDiscountDate, int discountId, DuplicatePolicy logic)
+        {
+            Role role;
+            DateTime currentTime = DateTime.Now;
+            DateTime expiredDate = currentTime.AddDays(expiredDiscountDate);
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 2)) != null)
+            {
+                return role.addRevealedDiscountPolicy(products, discountPrecentage, expiredDate, discountId, logic);
+            }
+            return -1;
+        }
     }
 }
