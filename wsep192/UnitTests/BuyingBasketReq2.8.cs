@@ -36,6 +36,11 @@ namespace UnitTests
         private RevealedDiscount rd_mid_without;
 
 
+        private LeafCondition lc1;
+        private LeafCondition lc2;
+        private LogicalCondition lc;
+
+
 
         private Store store;
 
@@ -79,6 +84,21 @@ namespace UnitTests
             rd_mid_without = new RevealedDiscount(sys.DiscountPolicyCounter++, 0.35, discountProduct, new DateTime(2222, 1, 1), DuplicatePolicy.WithoutMultiplication);
             rd_max_without = new RevealedDiscount(sys.DiscountPolicyCounter++, 1, discountProduct, new DateTime(2222, 1, 1), DuplicatePolicy.WithoutMultiplication);
 
+            Dictionary<int, KeyValuePair<ProductInStore, int>> relatedProduct = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
+            relatedProduct.Add(p1.Id, new KeyValuePair<ProductInStore, int>(pis1, 2));
+            lc1 = new LeafCondition(relatedProduct, 0, 0, null, new DateTime(), DuplicatePolicy.WithMultiplication);
+
+            relatedProduct = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
+            relatedProduct.Add(p1.Id, new KeyValuePair<ProductInStore, int>(pis2, 1));
+            lc2 = new LeafCondition(relatedProduct, 0, 0, null, new DateTime(), DuplicatePolicy.WithMultiplication);
+
+            Dictionary<int, ProductInStore> ProductPrecentage = new Dictionary<int, ProductInStore>();
+            ProductPrecentage.Add(pis1.Product.Id, pis1);
+            ProductPrecentage.Add(pis2.Product.Id, pis2);
+
+            lc = new LogicalCondition(0, 0.5, ProductPrecentage, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication, LogicalConnections.and);
+            lc.addChild(0, lc1);
+            lc.addChild(1, lc2);
         }
 
         //----------------------------@@ Checkout Path @@----------------------------
@@ -208,6 +228,34 @@ namespace UnitTests
             store.DiscountPolicy.Add(rd_max_without);
 
             Assert.AreEqual(5000, store.calculateDiscountPolicy(cart.Products), "one  good without");
+
+        }
+
+
+        [TestMethod]
+        public void TestMethod1_calculateDiscountPolicy_DiscountDictionrywithDiscounts_complex()
+        {
+            setUp();
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
+            cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
+            cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
+
+            store.DiscountPolicy.Add(lc);
+
+            Assert.AreEqual(0, store.calculateDiscountPolicy(cart.Products), "all and");
+
+
+            setUp();
+             cart = new ShoppingCart(store.Id, store);
+            cart.Products.Add(p1.Id, new ProductInCart(2, cart, p1));
+            cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
+
+
+            store.DiscountPolicy.Add(lc);
+
+            Assert.AreEqual(7500, store.calculateDiscountPolicy(cart.Products), "all and");
+
+
 
         }
 
