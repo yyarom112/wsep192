@@ -61,6 +61,7 @@
     <Compile Include="RemoveManager_Req46.cs" />
     <Compile Include="RemoveProductsFromCartTests1.cs" />
     <Compile Include="removeDiscountPolicy_UnitTest.cs" />
+    <Compile Include="removePurchasePolicy_UnitTest.cs" />
     <Compile Include="Req2.5UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LogManager.cs" />

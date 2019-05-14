@@ -613,6 +613,15 @@ namespace src.Domain
             }
             return -1;
         }
+
+        public int removePurchasePolicy(int purchaseId, int storeId, int userId)
+        {
+            if (this.Users.ContainsKey(userId))
+            {
+                return Users[userId].removePurchasePolicy(purchaseId, storeId);
+            }
+            return -1;
+        }
     }
 }
 

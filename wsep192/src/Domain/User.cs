@@ -333,5 +333,15 @@ namespace src.Domain
             }
             return -1;
         }
+
+        public virtual int removePurchasePolicy(int purchaseId, int storeId)
+        {
+            Role role;
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeId, 1)) != null)
+            {
+                return role.removePurchasePolicy(purchaseId);
+            }
+            return -1;
+        }
     }
 }

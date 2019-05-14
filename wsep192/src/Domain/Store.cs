@@ -617,7 +617,21 @@ namespace src.Domain
                 if(discount.getID() ==  discountId)
                 {
                     discountPolicy.Remove(discount);
-                    LogManager.Instance.WriteToLog("Store - removeRevealedDiscountPolicy - discount policy removed\n");
+                    LogManager.Instance.WriteToLog("Store - removeDiscountPolicy - discount policy removed\n");
+                    return 0;
+                }
+            }
+            return -1;
+        }
+
+        public virtual int removePurchasePolicy(int purchaseId)
+        {
+            foreach (PurchasePolicy purchase in purchasePolicy)
+            {
+                if (purchase.getId() == purchaseId)
+                {
+                    purchasePolicy.Remove(purchase);
+                    LogManager.Instance.WriteToLog("Store - removePurchasePolicy - purchase policy removed\n");
                     return 0;
                 }
             }

@@ -61,6 +61,7 @@
     <Compile Include="removeDiscountPolicy_integration.cs" />
     <Compile Include="RemoveManager_Req46.cs" />
     <Compile Include="RemoveProductsFromCartTests1.cs" />
+    <Compile Include="removePurchasePolicy_integration.cs" />
     <Compile Include="ShowCartTest.cs" />
     <Compile Include="signInIntegration.cs" />
     <Compile Include="createNewProductInStoreIntegration.cs" />

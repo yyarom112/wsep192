@@ -40,5 +40,10 @@ namespace src.Domain
             return store.removeDiscountPolicy(discountId);
         }
 
+        public virtual int removePurchasePolicy(int purchaseId)
+        {
+            return store.removePurchasePolicy(purchaseId);
+        }
+
     }
 }
