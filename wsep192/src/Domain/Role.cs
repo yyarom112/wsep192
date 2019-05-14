@@ -29,5 +29,21 @@ namespace src.Domain
         {
             return store.addComplexPurchasePolicy(ID, purchesData);
         }
+
+        public virtual int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+        {
+            return store.addRevealedDiscountPolicy(products, discountPrecentage, expiredDate, discountId, logic);
+        }
+
+        public virtual int removeDiscountPolicy(int discountId)
+        {
+            return store.removeDiscountPolicy(discountId);
+        }
+
+        public virtual int removePurchasePolicy(int purchaseId)
+        {
+            return store.removePurchasePolicy(purchaseId);
+        }
+
     }
 }

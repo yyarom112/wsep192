@@ -63,6 +63,11 @@ namespace src.Domain
             return this.logic;
         }
 
+        public int getID()
+        {
+            return this.Id;
+        }
+
         public Dictionary<int, ProductInStore> GetRelevantProducts()
         {
             Dictionary<int, ProductInStore> output = new Dictionary<int, ProductInStore>();

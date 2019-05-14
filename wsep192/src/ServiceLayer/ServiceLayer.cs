@@ -91,8 +91,8 @@ namespace src.ServiceLayer
 
         private void addPermissions()
         {
-            permissions.Add("AddDiscountPolicy", 1);
-            permissions.Add("AddPurchasePolicy", 2);
+            permissions.Add("Add/EditDiscountPolicy", 1);
+            permissions.Add("Add/EditPurchasePolicy", 2);
             permissions.Add("CreateNewProductInStore", 3);
             permissions.Add("AddProductsInStore", 4);
             permissions.Add("RemoveProductsInStore", 5);

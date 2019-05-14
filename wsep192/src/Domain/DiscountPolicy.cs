@@ -13,6 +13,7 @@ namespace src.Domain
         void UpdateProductPrice(List<KeyValuePair<ProductInStore, int>> productList);
         Dictionary<int, ProductInStore> GetRelevantProducts(); 
         DuplicatePolicy GetDuplicatePolicy();
+        int getID();
         void removeProduct(ProductInStore product);
         DiscountPolicy copy();
     }
