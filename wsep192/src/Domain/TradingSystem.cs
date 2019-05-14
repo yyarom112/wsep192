@@ -586,10 +586,10 @@ namespace src.Domain
         }
 
         
-        public bool addComplexPurchasePolicy(List<Object> purchesData, int storeID, int userID)
+        public bool addComplexPurchasePolicy(String purchesData, int storeID, int userID)
         {
             if (this.Users.ContainsKey(userID))
-                return Users[userID].addComplexPurchasePolicy(purchesData, storeID) != null;
+                return Users[userID].addComplexPurchasePolicy(this.PurchasePolicyCounter++,purchesData, storeID) != null;
             LogManager.Instance.WriteToLog("Trading System- addComplexPurchasePolicy- User does not exist\n");
             return false;
         }

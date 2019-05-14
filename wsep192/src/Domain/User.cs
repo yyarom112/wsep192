@@ -275,12 +275,12 @@ namespace src.Domain
             return null;
         }
 
-        public virtual PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData, int storeID)
+        public virtual PurchasePolicy addComplexPurchasePolicy(int ID,String purchesData, int storeID)
         {
 
             Role role;
             if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 2)) != null)
-                return role.addComplexPurchasePolicy(purchesData);
+                return role.addComplexPurchasePolicy( ID, purchesData);
             return null;
 
         }
