@@ -412,8 +412,8 @@ namespace IntegrationTests
         public void Store_ConvertObjectToLogicalConnections()
         {
             setup();
-            Assert.AreEqual(LogicalConnections.and, store.ConvertObjectToLogicalConnections((Object)0));
-            Assert.AreEqual(LogicalConnections.or, store.ConvertObjectToLogicalConnections((Object)1));
+            Assert.AreEqual(LogicalConnections.and,  EnumActivaties.ConvertIntToLogicalConnections(0));
+            Assert.AreEqual(LogicalConnections.or, EnumActivaties.ConvertIntToLogicalConnections(1));
         }
 
         [TestMethod]

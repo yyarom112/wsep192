@@ -539,7 +539,7 @@ namespace src.Domain
         {
             try
             {
-                return new ProductConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), (int)purchesData.ElementAt(4), ConvertObjectToLogicalConnections(5));
+                return new ProductConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), (int)purchesData.ElementAt(4), EnumActivaties.ConvertIntToLogicalConnections(purchesData.ElementAt(5)));
             }
             catch (Exception e)
             {
@@ -551,7 +551,7 @@ namespace src.Domain
         {
             try
             {
-                return new inventoryConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), ConvertObjectToLogicalConnections(purchesData.ElementAt(4)));
+                return new inventoryConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), EnumActivaties.ConvertIntToLogicalConnections(purchesData.ElementAt(4)));
             }
             catch (Exception e)
             {
@@ -563,7 +563,7 @@ namespace src.Domain
         {
             try
             {
-                return new BuyConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), (int)purchesData.ElementAt(4), (int)purchesData.ElementAt(5), ConvertObjectToLogicalConnections(purchesData.ElementAt(6)));
+                return new BuyConditionPolicy((int)purchesData.ElementAt(1), (int)purchesData.ElementAt(2), (int)purchesData.ElementAt(3), (int)purchesData.ElementAt(4), (int)purchesData.ElementAt(5), EnumActivaties.ConvertIntToLogicalConnections(purchesData.ElementAt(6)));
             }
             catch (Exception e)
             {
@@ -575,7 +575,7 @@ namespace src.Domain
         {
             try
             {
-                return new UserConditionPolicy((int)purchesData.ElementAt(1), (string)purchesData.ElementAt(2), (bool)purchesData.ElementAt(3), ConvertObjectToLogicalConnections(purchesData.ElementAt(4)));
+                return new UserConditionPolicy((int)purchesData.ElementAt(1), (string)purchesData.ElementAt(2), (bool)purchesData.ElementAt(3), EnumActivaties.ConvertIntToLogicalConnections(purchesData.ElementAt(4)));
             }
             catch (Exception e)
             {
@@ -586,14 +586,14 @@ namespace src.Domain
         internal PurchasePolicy factoryIfThenCondition(List<Object> purchesData, int multiplcation)
         {
             if (multiplcation == -1)
-                multiplcation = (int)ConvertObjectToLogicalConnections(purchesData.ElementAt(4));
+                multiplcation = (int) EnumActivaties.ConvertIntToLogicalConnections(purchesData.ElementAt(5));
             try
             {
                 List<Object> oprand1 = (List<Object>)purchesData.ElementAt(2);
                 oprand1.Insert(1, (int)purchesData.ElementAt(1));
                 List<Object> oprand2 = (List<Object>)purchesData.ElementAt(3);
                 oprand1.Insert(1, (int)purchesData.ElementAt(1));
-                return new IfThenCondition((int)purchesData.ElementAt(1), addComplexPurchasePolicyRec(oprand1, multiplcation), addComplexPurchasePolicyRec(oprand2, multiplcation), ConvertObjectToLogicalConnections(purchesData.ElementAt(4)));
+                return new IfThenCondition((int)purchesData.ElementAt(1), addComplexPurchasePolicyRec(oprand1, multiplcation), addComplexPurchasePolicyRec(oprand2, multiplcation), EnumActivaties.ConvertIntToLogicalConnections(purchesData.ElementAt(5)));
             }
             catch (Exception e)
             {
@@ -601,13 +601,6 @@ namespace src.Domain
             }
         }
 
-        //log=0=>and otherwise=>or
-        internal LogicalConnections ConvertObjectToLogicalConnections(object log)
-        {
-            if ((int)log == 0)
-                return LogicalConnections.and;
-            else
-                return LogicalConnections.or;
-        }
+       
     }
 }
