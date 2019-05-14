@@ -657,6 +657,41 @@ namespace src.Domain
             return i;
         }
 
+        public virtual int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+        {
+            logic = DuplicatePolicy.WithMultiplication;
+            RevealedDiscount newRevealedDiscount = new RevealedDiscount(discountId, discountPrecentage, products, expiredDate, logic);
+            discountPolicy.Add(newRevealedDiscount);
+            LogManager.Instance.WriteToLog("Store - addRevealedDiscountPolicy - new discount policy added\n");
+            return discountId;
+        }
 
+        public virtual int removeDiscountPolicy(int discountId)
+        {
+            foreach (DiscountPolicy discount in discountPolicy)
+            {
+                if (discount.getID() == discountId)
+                {
+                    discountPolicy.Remove(discount);
+                    LogManager.Instance.WriteToLog("Store - removeDiscountPolicy - discount policy removed\n");
+                    return 0;
+                }
+            }
+            return -1;
+        }
+
+        public virtual int removePurchasePolicy(int purchaseId)
+        {
+            foreach (PurchasePolicy purchase in purchasePolicy)
+            {
+                if (purchase.getId() == purchaseId)
+                {
+                    purchasePolicy.Remove(purchase);
+                    LogManager.Instance.WriteToLog("Store - removePurchasePolicy - purchase policy removed\n");
+                    return 0;
+                }
+            }
+            return -1;
+        }
     }
 }
