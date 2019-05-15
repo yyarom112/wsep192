@@ -27,7 +27,9 @@ namespace UnitTests
         private ProductInStore pis3;
         private ProductInStore pis4;
 
-        Dictionary<int, KeyValuePair<ProductInStore, int>> products;
+        List<KeyValuePair<String, int>> products;
+        DuplicatePolicy logic;
+        DateTime date1;
 
         public void setUp()
         {
@@ -55,17 +57,20 @@ namespace UnitTests
             store.Products.Add(p3.Id, pis3);
             store.Products.Add(p4.Id, pis4);
 
-            products = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
-            products.Add(p1.Id, new KeyValuePair<ProductInStore, int>(pis1, 2));
-            products.Add(p2.Id, new KeyValuePair<ProductInStore, int>(pis1, 10));
-            products.Add(p3.Id, new KeyValuePair<ProductInStore, int>(pis1, 5));
-            products.Add(p4.Id, new KeyValuePair<ProductInStore, int>(pis1, 4));
+            products = new List<KeyValuePair<String, int>>();
+            products.Add(new KeyValuePair<String, int>("first", 2));
+            products.Add(new KeyValuePair<String, int>("second", 10));
+            products.Add(new KeyValuePair<String, int>("third", 5));
+            products.Add(new KeyValuePair<String, int>("fourth", 4));
 
 
             system = new TradingSystem(null, null);
             system.Stores.Add(store.Id, store);
             system.Users.Add(admin.Id, admin);
             system.Users.Add(ownerUser.Id, ownerUser);
+
+            logic = DuplicatePolicy.WithMultiplication;
+            date1 = new DateTime(2019, 10, 1);
         }
 
 
@@ -73,8 +78,6 @@ namespace UnitTests
         public void addRevealedDiscountPolicy_store_succ()
         {
             setUp();
-            DateTime date1 = new DateTime(2019, 10, 1);
-            DuplicatePolicy logic = DuplicatePolicy.WithMultiplication;
             Assert.AreEqual(1, store.addRevealedDiscountPolicy(products, 20, date1, 1, logic));
         }
 
@@ -82,8 +85,6 @@ namespace UnitTests
         public void addRevealedDiscountPolicy_role_succ()
         {
             setUp();
-            DateTime date1 = new DateTime(2019, 10, 1);
-            DuplicatePolicy logic = DuplicatePolicy.WithMultiplication;
             int ans = ownerRole.addRevealedDiscountPolicy(products, 50, date1, 2, logic);
             Assert.AreEqual(2, ans);
         }
@@ -92,8 +93,6 @@ namespace UnitTests
         public void addRevealedDiscountPolicy_user_succ()
         {
             setUp();
-            DateTime date1 = new DateTime(2019, 10, 1);
-            DuplicatePolicy logic = DuplicatePolicy.WithMultiplication;
             StubStore sStore = new StubStore(3456, "nike", null, null, 1);
             StubRole sRole = new StubRole(sStore, ownerUser, 1);
             ownerUser.Roles.Add(sStore.Id,sRole);
@@ -105,8 +104,6 @@ namespace UnitTests
         public void addRevealedDiscountPolicy_user_fail()
         {
             setUp();
-            DateTime date1 = new DateTime(2019, 10, 1);
-            DuplicatePolicy logic = DuplicatePolicy.WithMultiplication;
             StubStore sStore = new StubStore(3456, "nike", null, null, 1);
             StubRole sRole = new StubRole(sStore, admin, 1);
             admin.Roles.Add(sStore.Id, sRole);
@@ -118,8 +115,6 @@ namespace UnitTests
         public void addRevealedDiscountPolicy_tradingSystem_succ()
         {
             setUp();
-            DateTime date1 = new DateTime(2019, 10, 1);
-            DuplicatePolicy logic = DuplicatePolicy.WithMultiplication;
             StubStore sStore = new StubStore(3456, "nike", null, null, 1);
             StubUser tmpUser = new StubUser(2222, "owner", "7878", false, true, 1);
             system.Users.Add(tmpUser.Id, tmpUser);
@@ -138,7 +133,7 @@ namespace UnitTests
                 this.retVal = ret;
             }
 
-            public override int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+            public override int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
             {
                 return 1;
             }
@@ -152,7 +147,7 @@ namespace UnitTests
                 this.retVal = ret;
             }
 
-            public override int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+            public override int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
             {
                 return 1;
             }
@@ -166,7 +161,7 @@ namespace UnitTests
                 this.retVal = ret;
             }
 
-            public override int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, int storeID, int expiredDiscountDate, int discountId, DuplicatePolicy logic)
+            public override int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, int storeID, int expiredDiscountDate, int discountId, DuplicatePolicy logic)
             {
                 return 1;
             }

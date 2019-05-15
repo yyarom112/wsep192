@@ -29,7 +29,7 @@ namespace IntegrationTests
         private ProductInStore pis3;
         private ProductInStore pis4;
 
-        Dictionary<int, KeyValuePair<ProductInStore, int>> products;
+        List<KeyValuePair<String, int>> products;
         DuplicatePolicy logic;
         DateTime date1;
 
@@ -59,11 +59,11 @@ namespace IntegrationTests
             store.Products.Add(p3.Id, pis3);
             store.Products.Add(p4.Id, pis4);
 
-            products = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
-            products.Add(p1.Id, new KeyValuePair<ProductInStore, int>(pis1, 2));
-            products.Add(p2.Id, new KeyValuePair<ProductInStore, int>(pis1, 10));
-            products.Add(p3.Id, new KeyValuePair<ProductInStore, int>(pis1, 5));
-            products.Add(p4.Id, new KeyValuePair<ProductInStore, int>(pis1, 4));
+            products = new List<KeyValuePair<string, int>>();
+            products.Add(new KeyValuePair<String, int>("first", 2));
+            products.Add(new KeyValuePair<String, int>("second", 10));
+            products.Add(new KeyValuePair<String, int>("third", 5));
+            products.Add(new KeyValuePair<String, int>("fourth", 4));
 
 
             system = new TradingSystem(null, null);
