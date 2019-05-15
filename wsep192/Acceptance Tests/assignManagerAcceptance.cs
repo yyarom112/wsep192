@@ -50,7 +50,6 @@ namespace Acceptance_Tests
             setUp();
             Assert.AreEqual(true, service.assignManager( managerUser, "adidas", permissions, ownerUser));
             service.shutDown();
-
         }
 
         [TestMethod]
