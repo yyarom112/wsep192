@@ -75,43 +75,43 @@ namespace IntegrationTests
         }
 
 
-        [TestMethod]
-        public void addRevealedDiscountPolicy_store_succ()
-        {
-            setUp();
-            Assert.AreEqual(1, store.addRevealedDiscountPolicy(products, 20, date1, 1, 0));
-        }
+        //[TestMethod]
+        //public void addRevealedDiscountPolicy_store_succ()
+        //{
+        //    setUp();
+        //    Assert.AreEqual(1, store.addRevealedDiscountPolicy(products, 20, date1, 1, 0));
+        //}
 
-        [TestMethod]
-        public void addRevealedDiscountPolicy_role_succ()
-        {
-            setUp();
-            int ans = ownerRole.addRevealedDiscountPolicy(products, 50, date1, 2, 0);
-            Assert.AreEqual(2, ans);
-        }
+        //[TestMethod]
+        //public void addRevealedDiscountPolicy_role_succ()
+        //{
+        //    setUp();
+        //    int ans = ownerRole.addRevealedDiscountPolicy(products, 50, date1, 2, 0);
+        //    Assert.AreEqual(2, ans);
+        //}
 
-        [TestMethod]
-        public void addRevealedDiscountPolicy_user_succ()
-        {
-            setUp();
-            int ans = ownerUser.addRevealedDiscountPolicy(products, 50, store.Id, 20, 1, 0);
-            Assert.AreEqual(1, ans);
-        }
+        //[TestMethod]
+        //public void addRevealedDiscountPolicy_user_succ()
+        //{
+        //    setUp();
+        //    int ans = ownerUser.addRevealedDiscountPolicy(products, 50, store.Id, 20, 1, 0);
+        //    Assert.AreEqual(1, ans);
+        //}
 
-        [TestMethod]
-        public void addRevealedDiscountPolicy_user_fail()
-        {
-            setUp();
-            int ans = admin.addRevealedDiscountPolicy(products, 50, store.Id, 20, 1, 0);
-            Assert.AreEqual(-1, ans);
-        }
+        //[TestMethod]
+        //public void addRevealedDiscountPolicy_user_fail()
+        //{
+        //    setUp();
+        //    int ans = admin.addRevealedDiscountPolicy(products, 50, store.Id, 20, 1, 0);
+        //    Assert.AreEqual(-1, ans);
+        //}
 
-        [TestMethod]
-        public void addRevealedDiscountPolicy_tradingSystem_succ()
-        {
-            setUp();
-            int ans = system.addRevealedDiscountPolicy(products, 20, ownerUser.Id, store.Id, 10, 0);
-            Assert.AreEqual(0, ans);
-        }
+        //[TestMethod]
+        //public void addRevealedDiscountPolicy_tradingSystem_succ()
+        //{
+        //    setUp();
+        //    int ans = system.addRevealedDiscountPolicy(products, 20, ownerUser.Id, store.Id, 10, 0);
+        //    Assert.AreEqual(0, ans);
+        //}
     }
 }
