@@ -655,7 +655,7 @@ namespace src.Domain
             return i;
         }
 
-        public virtual int addRevealedDiscountPolicy(List<KeyValuePair<String,int>>  products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+        public virtual int addRevealedDiscountPolicy(List<KeyValuePair<String,int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
         {
             logic = DuplicatePolicy.WithMultiplication;
             Dictionary<int, KeyValuePair<ProductInStore, int>> relatedProduct = new Dictionary<int, KeyValuePair<ProductInStore, int>>();

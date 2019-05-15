@@ -594,7 +594,7 @@ namespace src.Domain
             return false;
         }
 
-        public int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, int userID, int storeID, int expiredDiscountDate, int logic)
+        public int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, int userID, int storeID, int expiredDiscountDate, int logic)
         {
 
             if (this.Users.ContainsKey(userID))
