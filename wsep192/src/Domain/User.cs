@@ -311,5 +311,10 @@ namespace src.Domain
             }
             return role;
         }
+
+        internal bool isLoggedIn()
+        {
+            return this.state == state.signedIn;
+        }
     }
 }

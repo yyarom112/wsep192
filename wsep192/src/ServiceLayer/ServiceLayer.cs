@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace src.ServiceLayer
 {
     class ServiceLayer
@@ -14,11 +15,9 @@ namespace src.ServiceLayer
         private Dictionary<String, int> users;
         private Dictionary<String, int> stores;
         private Dictionary<String, int> permissions;
+        private Dictionary<string, List<string>> storesStackholders = new Dictionary<string, List<string>>();
         private int storeCounter;
         private int userCounter;
-        private int purchasePolicyCounter;
-        private int discountPolicyCounter;
-
 
 
         private ServiceLayer()
@@ -29,8 +28,7 @@ namespace src.ServiceLayer
             permissions = new Dictionary<String, int>();
             storeCounter = 0;
             userCounter = 0;
-            purchasePolicyCounter = 0;
-            discountPolicyCounter = 0;
+            NotificationsManager.initAsync();
             addPermissions();
             init("admin", "admin");
 
@@ -272,6 +270,9 @@ namespace src.ServiceLayer
             {
                 stores.Add(storeName, storeCounter);
                 storeCounter++;
+                List<string> users = new List<string>();
+                users.Add(user);
+                storesStackholders.Add(storeName, users);
             }
             return result;
         }
@@ -325,8 +326,14 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(ownerToRemove) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
-            return system.removeOwner(users[user], users[ownerToRemove], stores[store]);
+            var res = system.removeOwner(users[user], users[ownerToRemove], stores[store]);
+            /*if (res)
+               notify
+            else*/ return false;
         }
+
+
+
         //req4.5
         public bool assignManager(String manager, String store, List<String> permissions, String user)
         {
@@ -388,6 +395,36 @@ namespace src.ServiceLayer
         }
 
 
+        public bool subscribe()
+        {
+            return false;
+        }
+
+        public bool unsubscribe()
+        {
+            return false;
+        }
+
+        public bool addNotificationToUser()
+        {
+            return false;
+        }
+
+        public bool notify(string user)
+        {
+            if (system.isLoggedIn(users[user])) {
+
+            }
+            return false;
+        }
+
+        public void notifyAll(string store)
+        {
+           foreach(string user in storesStackholders[store])
+            {
+                notify(user);
+            }
+        }
 
 
     }

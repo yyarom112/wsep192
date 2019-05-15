@@ -268,6 +268,10 @@ namespace src.Domain
             return users[userID].removeOwner(userIDToRemove, storeID);
         }
 
+
+
+
+
         public String searchProduct(String details)
         {
             List<ProductInStore> products = new List<ProductInStore>();
@@ -599,6 +603,14 @@ namespace src.Domain
             LogManager.Instance.WriteToLog("Trading System- addComplexPurchasePolicy- User does not exist\n");
             return false;
         }
+
+        public bool isLoggedIn(int userId)
+        {
+            if (this.Users.ContainsKey(userId))
+                return Users[userId].isLoggedIn();
+            return false;
+        }
+
     }
 }
 
