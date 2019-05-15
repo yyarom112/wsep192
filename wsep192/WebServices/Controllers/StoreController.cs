@@ -116,6 +116,21 @@ namespace WebServices.Controllers
             return "server error: EditProductInStore";
         }
 
+        [Route("api/store/AddPurchasePolicy")]
+        [HttpGet]
+        public string addPurchasePolicy(String details,string store,string user)
+        {   //example  "(0,0,0,10,0)"
+            bool ans = service.addComplexPurchasePolicy(details, store,user);   ///AFTER CHANGE TO INT PRINT POLICY NUMBER
+            switch (ans)
+            {
+                case true:
+                    return "success";
+                case false:
+                    return "Error in addPurchasePolicy";
+            }
+            return "Error in addPurchasePolicy";
+        }
+
 
     }
 }
