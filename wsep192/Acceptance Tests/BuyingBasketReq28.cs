@@ -83,10 +83,9 @@ namespace Acceptance_Tests
 
             service.addComplexPurchasePolicy("(0,0,0,10,0)", "store", "admin");
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
-            List<KeyValuePair<string, int>> list = service.showCart("store", "user");
-            bool neg = containsNeg(list);
-
-
+            toInsert.Add(new KeyValuePair<string, int>("p1", 11));
+            service.addProductsToCart(toInsert, "store", "admin");
+            Assert.AreEqual(-1, service.basketCheckout("Tel Aviv", "admin"));
             service.shutDown();
 
         }
