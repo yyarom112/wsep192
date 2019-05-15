@@ -388,33 +388,33 @@ namespace src.ServiceLayer
         }
 
 
-        public bool addSimplePurchasePolicy(String type, String first, String second, String third, String fourth, String act, string adress, String isregister, String store, String user)
+        public int addSimplePurchasePolicy(String type, String first, String second, String third, String fourth, String act, string adress, String isregister, String store, String user)
         {
             try
             {
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
-                    return false;
+                    return -1;
                 return this.system.addSimplePurchasePolicy(Int32.Parse(type), Int32.Parse(first), Int32.Parse(second), Int32.Parse(third), Int32.Parse(fourth), Int32.Parse(act), adress, Int32.Parse(isregister) == 1, this.stores[store], this.users[user]);
             }
             catch (Exception e)
             {
-                return false;
+                return -1;
             }
 
         }
 
 
-        public bool addComplexPurchasePolicy(String purchesData, String store, String user)
+        public int addComplexPurchasePolicy(String purchesData, String store, String user)
         {
             try
             {
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
-                    return false;
+                    return -1;
                 return this.system.addComplexPurchasePolicy(purchesData, this.stores[store], this.users[user]);
             }
             catch (Exception e)
             {
-                return false;
+                return -1;
             }
         }
 
