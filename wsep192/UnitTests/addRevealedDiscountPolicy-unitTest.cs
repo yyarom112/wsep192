@@ -123,7 +123,7 @@ namespace UnitTests
             StubStore sStore = new StubStore(3456, "nike", null, null, 1);
             StubUser tmpUser = new StubUser(2222, "owner", "7878", false, true, 1);
             system.Users.Add(tmpUser.Id, tmpUser);
-            int ans = system.addRevealedDiscountPolicy(products, 20, tmpUser.Id, sStore.Id, 10, logic);
+            int ans = system.addRevealedDiscountPolicy(products, 20, tmpUser.Id, sStore.Id, 10, 0);
             Assert.AreEqual(1, ans);
         }
 

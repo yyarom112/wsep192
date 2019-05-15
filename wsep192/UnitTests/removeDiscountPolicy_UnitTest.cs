@@ -69,7 +69,7 @@ namespace UnitTests
             system.Users.Add(admin.Id, admin);
             system.Users.Add(ownerUser.Id, ownerUser);
 
-            discountId = system.addRevealedDiscountPolicy(products, 20, ownerUser.Id, store.Id, 60, logic);
+            discountId = system.addRevealedDiscountPolicy(products, 20, ownerUser.Id, store.Id, 60, 0);
         }
 
         [TestMethod]

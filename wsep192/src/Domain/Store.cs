@@ -101,10 +101,8 @@ namespace src.Domain
                     if (opt.Equals("-"))
                     {
 
-                        if (p.Quantity <= this.products[p.Product.Id].Quantity)
-                            if (opt.Equals("-"))
-                                this.products[p.Product.Id].Quantity -= p.Quantity;
-
+                        if (p.Quantity <= this.products[p.Product.Id].Quantity) //if quntity in store bigger then quntity to buy
+                                this.products[p.Product.Id].Quantity -= p.Quantity; //Save the quntity
                             else
                             {
                                 p.Quantity = this.products[p.Product.Id].Quantity;
@@ -657,10 +655,23 @@ namespace src.Domain
             return i;
         }
 
-        public virtual int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+        public virtual int addRevealedDiscountPolicy(List<KeyValuePair<String,int>>  products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
         {
             logic = DuplicatePolicy.WithMultiplication;
-            RevealedDiscount newRevealedDiscount = new RevealedDiscount(discountId, discountPrecentage, products, expiredDate, logic);
+            Dictionary<int, KeyValuePair<ProductInStore, int>> relatedProduct = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
+            foreach(KeyValuePair<String, int> product in products)
+            {
+                bool found = false;
+                for(int i=0; i < this.products.Count && !found; i++)
+                {
+                    if (this.products[i].Product.ProductName.Equals(product.Key))
+                    {
+                        relatedProduct.Add(this.products[i].Product.Id, new KeyValuePair<ProductInStore, int>(this.products[i], product.Value));
+                        found = true;
+                    }
+                }
+            }
+            RevealedDiscount newRevealedDiscount = new RevealedDiscount(discountId, discountPrecentage, relatedProduct, expiredDate, logic);
             discountPolicy.Add(newRevealedDiscount);
             LogManager.Instance.WriteToLog("Store - addRevealedDiscountPolicy - new discount policy added\n");
             return discountId;
