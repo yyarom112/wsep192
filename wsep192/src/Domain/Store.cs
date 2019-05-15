@@ -102,12 +102,12 @@ namespace src.Domain
                     {
 
                         if (p.Quantity <= this.products[p.Product.Id].Quantity) //if quntity in store bigger then quntity to buy
-                            this.products[p.Product.Id].Quantity -= p.Quantity; //Save the quntity
-                        else
-                        {
-                            p.Quantity = this.products[p.Product.Id].Quantity;
-                            this.products[p.Product.Id].Quantity = 0;
-                        }
+                                this.products[p.Product.Id].Quantity -= p.Quantity; //Save the quntity
+                            else
+                            {
+                                p.Quantity = this.products[p.Product.Id].Quantity;
+                                this.products[p.Product.Id].Quantity = 0;
+                            }
                     }
                     else
                     {
@@ -484,7 +484,7 @@ namespace src.Domain
         public PurchasePolicy addComplexPurchasePolicy(int ID, String purchesData)
         {
             String[] purchesDataArr = purchesData.Split(',');
-            PurchasePolicy output = addComplexPurchasePolicyRec(0, purchesDataArr.Length - 1, ID, purchesDataArr, -1);
+            PurchasePolicy output= addComplexPurchasePolicyRec(0, purchesDataArr.Length - 1, ID, purchesDataArr, -1);
             this.purchasePolicy.Add(output);
             return output;
         }
@@ -520,7 +520,7 @@ namespace src.Domain
 
             }
 
-
+            
         }
 
 
@@ -567,7 +567,7 @@ namespace src.Domain
                 int SumMin = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 int SumMax = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })));
-                return new BuyConditionPolicy(ID, min, max, SumMin, SumMax, act);
+                return new BuyConditionPolicy(ID,min,max, SumMin, SumMax, act);
             }
             catch (Exception e)
             {
@@ -581,9 +581,9 @@ namespace src.Domain
             try
             {
                 String adress = purchesData[begin++].Trim(new char[] { ' ', '(', ')' });
-                bool Isregister = (purchesData[begin++].Trim(new char[] { ' ', '(', ')' }) == "1");
+                bool Isregister = (purchesData[begin++].Trim(new char[] { ' ', '(', ')' })=="1");
                 LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })));
-                return new UserConditionPolicy(ID, adress, Isregister, act);
+                return new UserConditionPolicy(ID, adress, Isregister,  act);
             }
             catch (Exception e)
             {
@@ -593,10 +593,10 @@ namespace src.Domain
 
         internal PurchasePolicy factoryIfThenCondition(int begin, int end, int ID, String[] purchesData, int multiplcation)
         {
-            int beginIf = -1, endIf = -1, beginThen = -1, endThen = -1, dif = 0;
+            int beginIf = -1, endIf = -1, beginThen = -1, endThen=-1, dif=0;
             ExtractOperand(begin, ref beginIf, ref endIf, purchesData);
-            ExtractOperand(endIf + 1, ref beginThen, ref endThen, purchesData);
-            LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[endThen + 1].Trim(new char[] { ' ', '(', ')' })));
+            ExtractOperand(endIf+1, ref beginThen, ref endThen, purchesData);
+            LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[endThen+1].Trim(new char[] { ' ', '(', ')' })));
             return new IfThenCondition(ID, addComplexPurchasePolicyRec(beginIf, endIf, 0, purchesData, multiplcation), addComplexPurchasePolicyRec(beginThen, endThen, 0, purchesData, multiplcation), act);
 
         }
@@ -621,12 +621,11 @@ namespace src.Domain
 
                 }
                 return output;
-            }
-            catch (Exception e)
+            } catch(Exception e)
             {
                 return null;
             }
-
+            
         }
 
         private int ExtractOperand(int i, ref int begin, ref int end, String[] purchesData)
@@ -658,18 +657,18 @@ namespace src.Domain
             return i;
         }
 
-        public virtual int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+        public virtual int addRevealedDiscountPolicy(List<KeyValuePair<String,int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
         {
             logic = DuplicatePolicy.WithMultiplication;
             Dictionary<int, KeyValuePair<ProductInStore, int>> relatedProduct = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
-            foreach (KeyValuePair<String, int> product in products)
+            foreach(KeyValuePair<String, int> product in products)
             {
                 bool found = false;
-                for (int i = 0; i < this.products.Count && !found; i++)
+                for(int i=0; i < this.products.Count && !found; i++)
                 {
-                    if (this.products[i].Product.ProductName.Equals(product.Key))
+                    if (this.products.ElementAt(i).Value.Product.ProductName.Equals(product.Key))
                     {
-                        relatedProduct.Add(this.products[i].Product.Id, new KeyValuePair<ProductInStore, int>(this.products[i], product.Value));
+                        relatedProduct.Add(this.products.ElementAt(i).Value.Product.Id, new KeyValuePair<ProductInStore, int>(this.products.ElementAt(i).Value, product.Value));
                         found = true;
                     }
                 }
