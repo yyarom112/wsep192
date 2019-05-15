@@ -59,13 +59,12 @@ namespace IntegrationTests
             store.Products.Add(p3.Id, pis3);
             store.Products.Add(p4.Id, pis4);
 
-            products = new List<KeyValuePair<string, int>>();
+            products = new List<KeyValuePair<String, int>>();
             products.Add(new KeyValuePair<String, int>("first", 2));
             products.Add(new KeyValuePair<String, int>("second", 10));
             products.Add(new KeyValuePair<String, int>("third", 5));
             products.Add(new KeyValuePair<String, int>("fourth", 4));
-
-
+            
             system = new TradingSystem(null, null);
             system.Stores.Add(store.Id, store);
             system.Users.Add(admin.Id, admin);

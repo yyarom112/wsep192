@@ -17,7 +17,7 @@ namespace Acceptance_Tests
         String passwordUser;
 
         List<KeyValuePair<String, int>> products;
-        Dictionary<int, KeyValuePair<ProductInStore, int>> productsInCart;
+        List<KeyValuePair<String, int>> productsInCart;
 
         public void setUp()
         {
@@ -34,8 +34,19 @@ namespace Acceptance_Tests
             products.Add(new KeyValuePair<string, int>("milk", 7));
             service.addProductsInStore(products, "adidas", ownerUser);
 
-            productsInCart = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
-            //productsInCart.Add(0,new KeyValuePair<ProductInStore, int>())
+            productsInCart = new List<KeyValuePair<String, int>>();
+            productsInCart.Add(new KeyValuePair<string, int>("milk", 10));
+
+            
+        }
+
+        [TestMethod]
+        public void addRevealedDiscountPolicy_succ()
+        {
+            setUp();
+            int ans = service.addRevealedDiscountPolicy(products, "20", "60", "0", ownerUser, "adidas");
+            Console.WriteLine(ans);
+            service.shutDown();
         }
 
     }

@@ -81,7 +81,7 @@ namespace src.ServiceLayer
                     flag = flag & instance.createNewProductInStore(product[0], product[1], product[2], new Random().Next(10, 100), product[3], "user");
                     List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
                     products.Add(new KeyValuePair<string, int>(product[0], new Random().Next(10, 100)));
-                    if(flag)
+                    if (flag)
                         flag = flag & instance.addProductsInStore(products, stores[i], "user");
                 }
             }
@@ -136,7 +136,7 @@ namespace src.ServiceLayer
         //req2.3
         public bool register(String username, String password, String user)
         {
-            if (!users.ContainsKey(user)||users.ContainsKey(username))//CHANGED
+            if (!users.ContainsKey(user) || users.ContainsKey(username))//CHANGED
                 return false;
 
             bool result = system.register(username, password, users[user]);
@@ -395,11 +395,12 @@ namespace src.ServiceLayer
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
                     return false;
                 return this.system.addSimplePurchasePolicy(Int32.Parse(type), Int32.Parse(first), Int32.Parse(second), Int32.Parse(third), Int32.Parse(fourth), Int32.Parse(act), adress, Int32.Parse(isregister) == 1, this.stores[store], this.users[user]);
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return false;
             }
-            
+
         }
 
 
