@@ -20,8 +20,18 @@ namespace src.Domain
                 return LogicalConnections.or;
         }
 
+        //log=0=>and otherwise=>or
+        public static DuplicatePolicy ConvertIntToDuplicatePolicy(int log)
+        {
+            if ((int)log == 0)
+                return DuplicatePolicy.WithMultiplication;
+            else
+                return DuplicatePolicy.WithoutMultiplication;
+        }
+
+
 
     }
 
-   
+
 }
