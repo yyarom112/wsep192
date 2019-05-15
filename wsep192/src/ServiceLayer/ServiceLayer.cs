@@ -81,7 +81,7 @@ namespace src.ServiceLayer
                     flag = flag & createNewProductInStore(product[0], product[1], product[2], new Random().Next(10, 100), product[3], "user");
                     List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
                     products.Add(new KeyValuePair<string, int>(product[0], new Random().Next(10, 100)));
-                    if(flag)
+                    if (flag)
                         flag = flag & addProductsInStore(products, stores[i], "user");
                 }
             }
@@ -131,12 +131,21 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(username))
                 return false;
-            return system.signIn(username, password, users[username]);
+            bool flag = system.signIn(username, password, users[username]);
+            if (flag)
+            {
+                foreach (String message in system.getMessagesByUser(users[username]))
+                    notify(username, message);
+                system.deleteMessagesByUser(users[username]);
+            }
+            return flag;
         }
+
+
         //req2.3
         public bool register(String username, String password, String user)
         {
-            if (!users.ContainsKey(user)||users.ContainsKey(username))//CHANGED
+            if (!users.ContainsKey(user) || users.ContainsKey(username))//CHANGED
                 return false;
 
             bool result = system.register(username, password, users[user]);
@@ -177,7 +186,7 @@ namespace src.ServiceLayer
 
         public bool[] getVisibility(String userName)
         {
-            return system.getVisibility(users[userName],userName);
+            return system.getVisibility(users[userName], userName);
         }
 
         private List<KeyValuePair<int, int>> getProductsInts(List<KeyValuePair<String, int>> products, int store)
@@ -243,17 +252,30 @@ namespace src.ServiceLayer
                 return -1;
             return system.basketCheckout(address, users[user]);
         }
+
         public List<String[]> payForBasket(long cardNum, DateTime date, String user)
         {
+            List<String[]> output;
             if (!users.ContainsKey(user))
             {
-                List<String[]> output = new List<string[]>();
+                output = new List<string[]>();
                 String[] soutput = { "Error: invalid user" };
                 output.Add(soutput);
                 return output;
             }
-            return system.payForBasket(cardNum, date, users[user]);
+            output = system.payForBasket(cardNum, date, users[user]);
+            if (output != null)
+            {
+                List<String> stores = system.getOrderStoresByUser(users[user]);
+                foreach (String store in stores)
+                {
+                    notifyAll(store, user + " successfully ordered.");
+                }
+            }
+            return output;
+
         }
+
 
         //req3.1
         public bool signOut(String user)
@@ -321,25 +343,41 @@ namespace src.ServiceLayer
         }
 
         //req4.3
+
         public bool assignOwner(String owner, String user, String store)
         {
             if (!users.ContainsKey(owner) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
-            return system.assignOwner(stores[store], users[owner], users[user]);
+            bool flag = system.assignOwner(stores[store], users[owner], users[user]);
+            if (flag)
+            {
+                storesStackholders[store].Add(user);
+                String message = "You have succesfully assigned as an owner in " + store;
+                if (system.isLoggedIn(users[user]))
+                    notify(user, message);
+                else
+                    system.addMessageToUser(users[user], message);
+            }
+            return flag;
         }
+
         //req4.4
         public bool removeOwner(String ownerToRemove, String store, String user)
         {
             if (!users.ContainsKey(ownerToRemove) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
             var res = system.removeOwner(users[user], users[ownerToRemove], stores[store]);
-            /*if (res)
-               notify
-            else*/ return false;
+            if (res)
+            {
+                storesStackholders[store].Remove(ownerToRemove);
+                String message = "You have succesfully removed from being an owner in " + store;
+                if (system.isLoggedIn(users[user]))
+                    notify(user, message);
+                else
+                    system.addMessageToUser(users[user], message);
+            }
+            return res;
         }
-
-
-
         //req4.5
         public bool assignManager(String manager, String store, List<String> permissions, String user)
         {
@@ -385,7 +423,7 @@ namespace src.ServiceLayer
                 users.Remove(userToRemove);
             return result;
         }
-        
+
         public static string getId(int length)
         {
             char[] id = "0123456789".ToCharArray();
@@ -414,22 +452,25 @@ namespace src.ServiceLayer
             return false;
         }
 
-        public bool notify(string user)
+        public bool notify(string user, string message)
         {
-            if (system.isLoggedIn(users[user])) {
+            if (system.isLoggedIn(users[user]))
+            {
 
             }
             return false;
         }
 
-        public void notifyAll(string store)
+        public void notifyAll(string store, string message)
         {
-           foreach(string user in storesStackholders[store])
+            foreach (string user in storesStackholders[store])
             {
-                notify(user);
+                notify(user, message);
             }
+
+
+
         }
-
-
     }
+
 }
