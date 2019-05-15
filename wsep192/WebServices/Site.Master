@@ -42,9 +42,8 @@
                     </button>
                     <div class="nav-item active" id="heyUser"><a class="nav-link"  style="visibility:hidden" "></a></div>
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                        <ul class="nav navbar-nav menu_nav ml-auto mr-auto" id="navbar">
                             <li class="nav-item active"><a class="nav-link" href="/Index">Home</a></li>
-                            <li class="nav-item active"><a class="nav-link" id="setup" href="/Setup">Setup</a></li>
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                     aria-expanded="false">Account</a>
@@ -55,29 +54,27 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-item submenu dropdown">
+                            <li class="nav-item submenu dropdown" id="storeActions" style="visibility:hidden">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                     aria-expanded="false">Store Actions</a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item"><a class="nav-link" href="/OpenStore">Open Store</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/CreateProductInStore">Create New Product In Store</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/AddProductInStore">Add Product In Store</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/EditProductInStore">Edit Product In Store</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/RemoveProductInStore">Remove Product From Store</a></li>
+                                    <li class="nav-item"><a class="nav-link" id ="createInStore" href="/CreateProductInStore">Create New Product In Store</a></li>
+                                    <li class="nav-item"><a class="nav-link" id ="addInStore" href="/AddProductInStore">Add Product In Store</a></li>
+                                    <li class="nav-item"><a class="nav-link" id ="editInStore" href="/EditProductInStore">Edit Product In Store</a></li>
+                                    <li class="nav-item"><a class="nav-link" id ="removeInStore" href="/RemoveProductInStore">Remove Product From Store</a></li>
 
                                 </ul>
                             </li>
 
-                            <li class="nav-item submenu dropdown">
+                            <li class="nav-item submenu dropdown" id="userActions" style="visibility:hidden">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                     aria-expanded="false">User Actions</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="/AssignManager">Assign Manager</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/RemoveManager">Remove Manager</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/AssignOwner">Assign Owner</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/RemoveOwner">Remove Owner</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/RemoveUser">Remove User</a></li>
-
+                                <ul class="dropdown-menu" id="userActionMenu">
+                                    <li class="nav-item"><a class="nav-link" id="assignManager" href="/AssignManager">Assign Manager</a></li>
+                                    <li class="nav-item"><a class="nav-link" id="removeManager" href="/RemoveManager">Remove Manager</a></li>
+                                    <li class="nav-item"><a class="nav-link" id="assignOwner" href="/AssignOwner">Assign Owner</a></li>
+                                    <li class="nav-item"><a class="nav-link" id="removeOwner" href="/RemoveOwner">Remove Owner</a></li>
                                 </ul>
                             </li>
 
@@ -129,28 +126,33 @@
     
     <script type="text/javascript">
         var cleanCookies = function () {
+            var guest = getCookie("GuestUser");
+            if (guest != null) {
+                jQuery.ajax({
+                    async: 'false',
+                    type: "GET",
+                    url: baseUrl + "/api/user/removeGuestUser?guestID=" + guest,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response != "success")
+                            alert("Error in removeGuestUser");
+                    },
+                    error: function (response) {
+                        console.log("Error in removeGuestUser");
+                    }
+                });
+            }
             deleteCookie("GuestUser");
             deleteCookie("LoggedUser");
         }
         $(document).ready(function () {
             var guest = getCookie("GuestUser");
             var user = getCookie("LoggedUser");
-            var setup = getCookie("Setup");
-           // if (setup == null)
-             //   document.getElementById('setup').style.visibility = "visible";
-            if (user != null) {
-                document.getElementById('heyUser').textContent = "Hey " + user;
-                document.getElementById('heyUser').style.visibility = "visible";
-                document.getElementById('heyUser').style.padding = "3px";
-                document.getElementById('login').remove();
-            }
-            else {
-                document.getElementById('logout').remove();
-            }
 
             if (guest == null && user == null) {
-                cleanCookies();
                 jQuery.ajax({
+                    async: 'false',
                     type: "GET",
                     url: baseUrl + "/api/user/generateUserID",
                     contentType: "application/json; charset=utf-8",
@@ -163,6 +165,78 @@
                     }
                 });
             }
+
+            /*
+              0 - admin
+              1 - owner
+              2 - manager
+              3 - AddDiscountPolicy
+              4 - AddPurchasePolicy
+              5 - CreateNewProductInStore
+              6 - AddProductsInStore
+              7 - RemoveProductsInStore
+              8 - EditProductInStore
+              9 - CommunicationWithCustomers
+              10 - PurchasesHistory
+             */
+
+            if (user != null) {
+
+                document.getElementById('heyUser').textContent = "Hey " + user;
+                document.getElementById('heyUser').style.visibility = "visible";
+                document.getElementById('heyUser').style.padding = "3px";
+                document.getElementById('login').remove();
+
+                jQuery.ajax({
+                    async: "false",
+                    type: "GET",
+                    url: baseUrl + "/api/user/getVisibility?username=" + user,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response[0]) { //admin
+                            if (!response[1]) {
+                                document.getElementById('assignManager').remove();
+                                document.getElementById('removeManager').remove();
+                                document.getElementById('assignOwner').remove();
+                                document.getElementById('removeOwner').remove();
+                            }
+                            document.getElementById('userActions').style.visibility = "visible";
+                            $('#userActionMenu').append('<li class="nav-item"><a class="nav-link" href="/RemoveUser">Remove User</a></li>');
+                        }
+                        if (response[1]) { //Owner
+                            document.getElementById('userActions').style.visibility = "visible";
+                            document.getElementById('storeActions').style.visibility = "visible";
+                        }
+                        else if (response[2]) { //Manager
+                            document.getElementById('storeActions').style.visibility = "visible";
+                            if (!response[5]) //CreateProductInStore
+                                document.getElementById('createInStore').remove();
+                            if (!response[6]) //AddProductInStore
+                                document.getElementById('addInStore').remove();
+                            if (!response[7]) //RemoveProductInStore
+                                document.getElementById('removeInStore').remove();
+                            if (!response[8]) //EditProductInStore
+                                document.getElementById('editInStore').remove();
+                        }
+                        else { //user
+                            document.getElementById('storeActions').style.visibility = "visible";
+                            document.getElementById('createInStore').remove();
+                            document.getElementById('addInStore').remove();
+                            document.getElementById('editInStore').remove();
+                            document.getElementById('removeInStore').remove();
+                        }
+
+                    },
+                    error: function (response) {
+                        console.log("Error in getVisibility");
+                    }
+                });
+            }
+            else {
+                document.getElementById('logout').remove();
+            }
+
 
             //**WebSockets**//
             // Reference the auto-generated proxy for the hub.  
