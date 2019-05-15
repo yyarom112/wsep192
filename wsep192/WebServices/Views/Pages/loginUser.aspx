@@ -52,7 +52,7 @@
                             if (response == "User successfuly logged in") {
                                 setCookie("LoggedUser", username);
                                 alert(response);
-                                window.location.href = baseUrl + "/";
+                                Login(username);  
                             }
                             else {
                                 alert(response);

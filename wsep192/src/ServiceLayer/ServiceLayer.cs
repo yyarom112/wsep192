@@ -28,7 +28,7 @@ namespace src.ServiceLayer
             permissions = new Dictionary<String, int>();
             storeCounter = 0;
             userCounter = 0;
-            NotificationsManager.initAsync();
+            NotificationsManager.init();
             addPermissions();
             init("admin", "admin");
             setUp();

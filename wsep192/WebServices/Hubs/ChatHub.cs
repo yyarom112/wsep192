@@ -9,12 +9,12 @@ namespace WebServices
     public class ChatHub : Hub
     {
 
-        Dictionary<string,string> connections = new Dictionary<string, string>();
+       Dictionary<string,string> connections = new Dictionary<string, string>();
         
         public void Login(string username, string connID)
         {
             connections.Add(username,connID);
-                
+            Send(username, "Welcome " + username + "!!");
         }
 
         public void Logout(string username)

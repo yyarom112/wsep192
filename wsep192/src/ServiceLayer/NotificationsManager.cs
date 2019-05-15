@@ -8,17 +8,17 @@ namespace src.ServiceLayer
         private static IHubProxy hubProxy;
 
 
-        public static async void initAsync()
+        public static void init()
         {
             hubConnection = new HubConnection("http://localhost:53416/signalr");
             hubProxy = hubConnection.CreateHubProxy("ChatHub");
-            await hubConnection.Start();
+            hubConnection.Start().Wait();
         }
 
-        public static void notify(string userName)
+        public static void notify(string userName,string message)
         {
 
-            hubProxy.Invoke("Send",);
+            hubProxy.Invoke("Send",userName,message);
         }
     }
 }
