@@ -162,8 +162,8 @@ namespace src.Domain
             if (Basket.ShoppingCarts.Count == 0)
                 return 0;
             double basketSum = basket.basketCheckout(new UserDetailes(address, IsRegistered));
-            if (basketSum == 0)
-                return 0;
+            if (basketSum == -1)
+                return -1;
             return basketSum + calcAddressFee(address);
         }
 

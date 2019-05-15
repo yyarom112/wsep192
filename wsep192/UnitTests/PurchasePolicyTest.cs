@@ -404,7 +404,7 @@ namespace UnitTests
             StubUser raul = new StubUser(7, null, null, false, false, false);
             raul.PcRet = bcp;
             sys.Users.Add(raul.Id, raul);
-            Assert.AreEqual(true, sys.addSimplePurchasePolicy(0, 1, 1, 1, 1, 1, null, false, store.Id, raul.Id), "ProductConditionPolicy check success");
+            Assert.AreEqual(true, sys.addSimplePurchasePolicy(0, 1, 1, 1, -1, 1, null, false, store.Id, raul.Id), "ProductConditionPolicy check success");
             Assert.AreEqual(false, sys.addSimplePurchasePolicy(0, -1, 1, 1, -1, -1, null, false, store.Id, raul.Id), "ProductConditionPolicy check fail");
         }
 

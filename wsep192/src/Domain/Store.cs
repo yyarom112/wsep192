@@ -484,7 +484,9 @@ namespace src.Domain
         public PurchasePolicy addComplexPurchasePolicy(int ID, String purchesData)
         {
             String[] purchesDataArr = purchesData.Split(',');
-            return addComplexPurchasePolicyRec(0, purchesDataArr.Length - 1, ID, purchesDataArr, -1);
+            PurchasePolicy output= addComplexPurchasePolicyRec(0, purchesDataArr.Length - 1, ID, purchesDataArr, -1);
+            this.purchasePolicy.Add(output);
+            return output;
         }
 
         public PurchasePolicy addComplexPurchasePolicyRec(int begin, int end, int ID, String[] purchesData, int multiplcation)
@@ -664,9 +666,9 @@ namespace src.Domain
                 bool found = false;
                 for(int i=0; i < this.products.Count && !found; i++)
                 {
-                    if (this.products[i].Product.ProductName.Equals(product.Key))
+                    if (this.products.ElementAt(i).Value.Product.ProductName.Equals(product.Key))
                     {
-                        relatedProduct.Add(this.products[i].Product.Id, new KeyValuePair<ProductInStore, int>(this.products[i], product.Value));
+                        relatedProduct.Add(this.products.ElementAt(i).Value.Product.Id, new KeyValuePair<ProductInStore, int>(this.products.ElementAt(i).Value, product.Value));
                         found = true;
                     }
                 }
