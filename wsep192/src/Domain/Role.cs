@@ -35,6 +35,11 @@ namespace src.Domain
             return store.addRevealedDiscountPolicy(products, discountPrecentage, expiredDate, discountId, logic);
         }
 
+        public virtual int addConditionalDiscuntPolicy(List<String> products, String condition, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy duplicate, LogicalConnections logic)
+        {
+            return 0;
+        }
+
         public virtual int removeDiscountPolicy(int discountId)
         {
             return store.removeDiscountPolicy(discountId);

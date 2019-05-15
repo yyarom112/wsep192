@@ -275,12 +275,12 @@ namespace src.Domain
             return null;
         }
 
-        public virtual PurchasePolicy addComplexPurchasePolicy(int ID,String purchesData, int storeID)
+        public virtual PurchasePolicy addComplexPurchasePolicy(int ID, String purchesData, int storeID)
         {
 
             Role role;
             if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 2)) != null)
-                return role.addComplexPurchasePolicy( ID, purchesData);
+                return role.addComplexPurchasePolicy(ID, purchesData);
             return null;
 
         }
@@ -323,6 +323,19 @@ namespace src.Domain
             }
             return -1;
         }
+
+        public virtual int addConditionalDiscuntPolicy(List<String> products, String condition, double discountPrecentage, int expiredDiscountDate, DuplicatePolicy duplicate, LogicalConnections logic, int discountId, int storeId)
+        {
+            Role role;
+            DateTime currentTime = DateTime.Now;
+            DateTime expiredDate = currentTime.AddDays(expiredDiscountDate);
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeId, 1)) != null)
+            {
+                return role.addConditionalDiscuntPolicy(products, condition, discountPrecentage, expiredDate, discountId, duplicate, logic);
+            }
+            return -1;
+        }
+
 
         public virtual int removeDiscountPolicy(int discountId, int storeId)
         {

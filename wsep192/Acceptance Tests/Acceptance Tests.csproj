@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="addConditionalDiscountPolicy.cs" />
     <Compile Include="addProductToCart.cs" />
     <Compile Include="addRevealedDiscountPolicy.cs" />
     <Compile Include="assignManagerAcceptance.cs" />
