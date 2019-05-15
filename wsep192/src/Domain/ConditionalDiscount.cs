@@ -18,7 +18,7 @@ namespace src.Domain
         {
             Id1 = id;
             this.DiscountPrecentage = discountPrecentage;
-            this.Products = products ?? throw new ArgumentNullException(nameof(products));
+            this.Products = products ;
             this.EndDateDiscount = endDateDiscount;
             this.Logic = logic;
         }
@@ -71,5 +71,9 @@ namespace src.Domain
 
         public abstract DiscountPolicy copy();
 
+        public int getID()
+        {
+            return this.Id;
+        }
     }
 }

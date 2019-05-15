@@ -10,7 +10,7 @@ namespace src.Domain
     {
         private int Id;
         private double discountPrecentage;
-        private Dictionary<int, KeyValuePair<ProductInStore, int>> products; // Dictionary<ProductID, KeyValuePair<ProductInStore, minquntity to get the discount>>
+        private Dictionary<int, KeyValuePair<ProductInStore, int>> products; // Dictionary<ProductID, KeyValuePair<ProductInStore, min quntity to get the discount>>
         private DateTime endDateDiscount;
         private DuplicatePolicy logic;
 
@@ -61,6 +61,11 @@ namespace src.Domain
         public DuplicatePolicy GetDuplicatePolicy()
         {
             return this.logic;
+        }
+
+        public int getID()
+        {
+            return this.Id;
         }
 
         public Dictionary<int, ProductInStore> GetRelevantProducts()

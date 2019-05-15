@@ -599,22 +599,22 @@ namespace src.Domain
                 case 0:
                     if (first < 0 || second < 0 || third < 0 || act < 0)
                         return false;
-                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, third, -1, -1, ConvertIntToLogicalConnections(act), null, false);
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, third, -1, -1, EnumActivaties.ConvertIntToLogicalConnections(act), null, false);
                     break;
                 case 1:
                     if (first < 0 || second < 0 || act < 0)
                         return false;
-                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, -1, -1, -1, ConvertIntToLogicalConnections(act), null, false);
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, -1, -1, -1, EnumActivaties.ConvertIntToLogicalConnections(act), null, false);
                     break;
                 case 2:
                     if (first < 0 || second < 0 || third < 0 || fourth < 0 || act < 0)
                         return false;
-                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, first, second, third, fourth, ConvertIntToLogicalConnections(act), null, false);
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, first, second, third, fourth, EnumActivaties.ConvertIntToLogicalConnections(act), null, false);
                     break;
                 case 3:
                     if (((adress == null || adress.Equals("")) && isregister == false) || act < 0)
                         return false;
-                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, -1, -1, -1, -1, ConvertIntToLogicalConnections(act), adress, isregister);
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, -1, -1, -1, -1, EnumActivaties.ConvertIntToLogicalConnections(act), adress, isregister);
                     break;
                 default:
                     LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- type " + type + " is not recognized\n");
@@ -626,19 +626,42 @@ namespace src.Domain
             return false;
         }
 
-        internal LogicalConnections ConvertIntToLogicalConnections(int log)
-        {
-            if (log == 0)
-                return LogicalConnections.and;
-            else
-                return LogicalConnections.or;
-        }
-        public bool addComplexPurchasePolicy(List<Object> purchesData, int storeID, int userID)
+        
+        public bool addComplexPurchasePolicy(String purchesData, int storeID, int userID)
         {
             if (this.Users.ContainsKey(userID))
-                return Users[userID].addComplexPurchasePolicy(purchesData, storeID) != null;
+                return Users[userID].addComplexPurchasePolicy(this.PurchasePolicyCounter++,purchesData, storeID) != null;
             LogManager.Instance.WriteToLog("Trading System- addComplexPurchasePolicy- User does not exist\n");
             return false;
+        }
+
+        public int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, int userID, int storeID, int expiredDiscountDate, int logic)
+        {
+
+            if (this.Users.ContainsKey(userID))
+            {
+                return Users[userID].addRevealedDiscountPolicy(products, discountPrecentage, storeID, expiredDiscountDate, discountPolicyCounter++,EnumActivaties.ConvertIntToDuplicatePolicy(logic));
+            }
+            LogManager.Instance.WriteToLog("Trading System- addRevealedDiscountPolicy - User does not exist\n");
+            return -1;
+        }
+
+        public int removeDiscountPolicy(int discountId, int storeId, int userId)
+        {
+            if (this.Users.ContainsKey(userId))
+            {
+                return Users[userId].removeDiscountPolicy(discountId, storeId);
+            }
+            return -1;
+        }
+
+        public int removePurchasePolicy(int purchaseId, int storeId, int userId)
+        {
+            if (this.Users.ContainsKey(userId))
+            {
+                return Users[userId].removePurchasePolicy(purchaseId, storeId);
+            }
+            return -1;
         }
     }
 }
