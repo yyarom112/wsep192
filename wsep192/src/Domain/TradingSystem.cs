@@ -550,48 +550,56 @@ namespace src.Domain
             return false;
         }
 
-        public bool addSimplePurchasePolicy(int type, int first, int second, int third, int fourth, int act, string adress, bool isregister, int storeID, int userID)
+        public int addSimplePurchasePolicy(int type, int first, int second, int third, int fourth, int act, string adress, bool isregister, int storeID, int userID)
         {
             PurchesPolicyData purchesData;
             switch (type)
             {
                 case 0:
                     if (first < 0 || second < 0 || third < 0 || act < 0)
-                        return false;
+                        return -1;
                     purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, third, -1, -1, EnumActivaties.ConvertIntToLogicalConnections(act), null, false);
                     break;
                 case 1:
                     if (first < 0 || second < 0 || act < 0)
-                        return false;
+                        return -1;
                     purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, -1, -1, -1, EnumActivaties.ConvertIntToLogicalConnections(act), null, false);
                     break;
                 case 2:
                     if (first < 0 || second < 0 || third < 0 || fourth < 0 || act < 0)
-                        return false;
+                        return -1;
                     purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, first, second, third, fourth, EnumActivaties.ConvertIntToLogicalConnections(act), null, false);
                     break;
                 case 3:
                     if (((adress == null || adress.Equals("")) && isregister == false) || act < 0)
-                        return false;
+                        return -1;
                     purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, -1, -1, -1, -1, EnumActivaties.ConvertIntToLogicalConnections(act), adress, isregister);
                     break;
                 default:
                     LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- type " + type + " is not recognized\n");
-                    return false;
+                    return -1;
             }
             if (this.Users.ContainsKey(userID))
-                return Users[userID].addSimplePurchasePolicy(purchesData, storeID) != null;
+            {
+                PurchasePolicy p = Users[userID].addSimplePurchasePolicy(purchesData, storeID);
+                if (p != null)
+                    return p.getId();
+            }
             LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- User does not exist\n");
-            return false;
+            return -1;
         }
 
         
-        public bool addComplexPurchasePolicy(String purchesData, int storeID, int userID)
+        public int addComplexPurchasePolicy(String purchesData, int storeID, int userID)
         {
             if (this.Users.ContainsKey(userID))
-                return Users[userID].addComplexPurchasePolicy(this.PurchasePolicyCounter++,purchesData, storeID) != null;
+            {
+                PurchasePolicy p = Users[userID].addComplexPurchasePolicy(this.PurchasePolicyCounter++, purchesData, storeID);
+                if (p != null)
+                    return p.getId();
+            }
             LogManager.Instance.WriteToLog("Trading System- addComplexPurchasePolicy- User does not exist\n");
-            return false;
+            return -1;
         }
 
         public int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, int userID, int storeID, int expiredDiscountDate, int logic)

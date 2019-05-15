@@ -3,13 +3,11 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.ServiceLayer;
-using src.Domain;
 
 namespace Acceptance_Tests
 {
-    
     [TestClass]
-    public class addRevealedDiscountPolicy
+    public class removePurchasePolicy
     {
         ServiceLayer service;
         String idOwner;
@@ -19,7 +17,9 @@ namespace Acceptance_Tests
         String idUser;
         String tmpUser;
         String passUser;
-        
+
+        int purchaseId;
+
         List<KeyValuePair<String, int>> products;
         List<KeyValuePair<String, int>> productsInCart;
 
@@ -44,26 +44,36 @@ namespace Acceptance_Tests
             service.addProductsInStore(products, "adidas", ownerUser);
 
             productsInCart = new List<KeyValuePair<String, int>>();
-            productsInCart.Add(new KeyValuePair<string, int>("milk", 10));  
+            productsInCart.Add(new KeyValuePair<string, int>("milk", 10));
+
+            purchaseId = service.addComplexPurchasePolicy("(0,0,0,10,0)", "adidas", ownerUser);
         }
 
         [TestMethod]
-        public void addRevealedDiscountPolicy_succ()
+        public void removePurchasePolicy_succ()
         {
             setUp();
-            int ans = service.addRevealedDiscountPolicy(products, "20", "60", "0", ownerUser, "adidas");
-            Assert.AreEqual(0, ans);
+            int ans = service.removePurchasePolicy(purchaseId.ToString(), "adidas", ownerUser);
+            Assert.AreEqual(0, ans);          
             service.shutDown();
         }
 
         [TestMethod]
-        public void addRevealedDiscountPolicy_fail()
+        public void removePurchasePolicy_fail_store_not_exist()
         {
             setUp();
-            int ans = service.addRevealedDiscountPolicy(products, "20", "60", "0", tmpUser, "adidas");
+            int ans = service.removePurchasePolicy(purchaseId.ToString(), "nike", ownerUser);
             Assert.AreEqual(-1, ans);
             service.shutDown();
         }
 
+        [TestMethod]
+        public void removePurchasePolicy_fail_userNotOwner()
+        {
+            setUp();
+            int ans = service.removePurchasePolicy(purchaseId.ToString(), "adidas", tmpUser);
+            Assert.AreEqual(-1, ans);
+            service.shutDown();
+        }
     }
 }
