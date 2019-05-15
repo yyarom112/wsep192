@@ -73,7 +73,7 @@ namespace IntegrationTests
             system.Users.Add(ownerUser.Id, ownerUser);
             system.Users.Add(user.Id, user);
 
-            //discountId = system.addRevealedDiscountPolicy(products, 20, ownerUser.Id, store.Id, 60, 0);
+            discountId = system.addRevealedDiscountPolicy(products, 20, ownerUser.Id, store.Id, 60, 0);
         }
 
         [TestMethod]
