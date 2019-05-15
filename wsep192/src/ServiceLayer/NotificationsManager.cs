@@ -15,12 +15,10 @@ namespace src.ServiceLayer
             await hubConnection.Start();
         }
 
-        public static notify(string userName) {
+        public static void notify(string userName)
+        {
 
-
-
-
-            hubProxy.On("Send", stock => Console.WriteLine("Stock update for {0} new price {1}", stock.Symbol, stock.Price));
+            hubProxy.Invoke("Send",);
         }
     }
 }

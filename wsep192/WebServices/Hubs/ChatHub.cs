@@ -23,12 +23,9 @@ namespace WebServices
         }
 
 
-
-        public void Send(string name, string message)
+        public void Send(string userName, string message)
         {
-            
-
-            Clients.All.addNewMessageToPage(name, message);
+            Clients.Client(connections[userName]).addNewMessageToPage(userName, message);
         }
     }
 }
