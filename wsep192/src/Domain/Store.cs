@@ -706,5 +706,69 @@ namespace src.Domain
             }
             return -1;
         }
+        public virtual int addConditionalDiscuntPolicy(int discountId, List<String> productsList, String condition, double discountPrecentage, DateTime expiredDiscountDate, DuplicatePolicy dup, LogicalConnections logic)
+        {
+            Dictionary<int, ProductInStore> discountProduct = new Dictionary<int, ProductInStore>();
+            foreach(String product in productsList)
+            {
+                ProductInStore pis = ConvertProductNameToProductInStore(product);
+                discountProduct.Add(pis.Product.Id, pis);
+            }
+            LogicalCondition toAdd = new LogicalCondition(discountId, discountPrecentage, discountProduct, expiredDiscountDate, dup, logic);
+            conditionConvert(toAdd, 0, condition.Split(' ', ','), 0);
+            this.discountPolicy.Add(toAdd);
+            return toAdd.Id1;
+        }
+
+        public virtual void conditionConvert(LogicalCondition father,int i, String[] condition, int childID)
+        {
+            int diff = 0;
+            while (i < condition.Length)
+            {
+                if (condition[i].Contains("("))
+                    diff++;
+                if (condition[i].Contains(")"))
+                    diff--;
+                //"( + , - ==conditional discount ||(product id , quntitiy)==leaf"
+                if (condition[i].Contains("+"))
+                {
+                    i++;
+                    LogicalCondition toAdd = new LogicalCondition(childID++, 0, null, new DateTime(), DuplicatePolicy.WithMultiplication, LogicalConnections.and);
+                    conditionConvert(toAdd, i, condition, 0);
+                }else if (condition[i].Contains("-"))
+                {
+                    i++;
+                    LogicalCondition toAdd = new LogicalCondition(childID++, 0, null, new DateTime(), DuplicatePolicy.WithMultiplication, LogicalConnections.or);
+                    conditionConvert(toAdd, i, condition, 0);
+                }
+                else if (condition[i].Contains("#"))
+                {
+                    i++;
+                    LogicalCondition toAdd = new LogicalCondition(childID++, 0, null, new DateTime(), DuplicatePolicy.WithMultiplication, LogicalConnections.xor);
+                    conditionConvert(toAdd, i, condition, 0);
+                }
+                else
+                {
+                    i++;
+                    ProductInStore product =ConvertProductNameToProductInStore( condition[i++]);
+                    int quntity= Int32.Parse(condition[i++]);
+                    Dictionary<int, KeyValuePair<ProductInStore, int>> ConditionProducts = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
+                    ConditionProducts.Add(product.Product.Id, new KeyValuePair<ProductInStore, int>(product, quntity));
+                    father.addChild(childID++, new LeafCondition(ConditionProducts, childID++, 0, null, new DateTime(), DuplicatePolicy.WithMultiplication));
+                }
+            }
+        }
+
+        public ProductInStore ConvertProductNameToProductInStore(string name)
+        {
+            foreach (ProductInStore curProduct in this.products.Values)
+            {
+                if (curProduct.Product.ProductName.Equals(name))
+                {
+                    return curProduct;
+                }
+            }
+            return null;
+        }
     }
 }
