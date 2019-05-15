@@ -12,7 +12,7 @@ namespace src.Domain
     public static class EnumActivaties
     {
         //log=0=>and otherwise=>or
-        public static LogicalConnections ConvertIntToLogicalConnections(object log)
+        public static LogicalConnections ConvertIntToLogicalConnections(int log)
         {
             if ((int)log == 0)
                 return LogicalConnections.and;

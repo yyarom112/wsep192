@@ -589,7 +589,7 @@ namespace src.Domain
             return -1;
         }
 
-        
+
         public int addComplexPurchasePolicy(String purchesData, int storeID, int userID)
         {
             if (this.Users.ContainsKey(userID))
@@ -607,9 +607,19 @@ namespace src.Domain
 
             if (this.Users.ContainsKey(userID))
             {
-                return Users[userID].addRevealedDiscountPolicy(products, discountPrecentage, storeID, expiredDiscountDate, discountPolicyCounter++,EnumActivaties.ConvertIntToDuplicatePolicy(logic));
+                return Users[userID].addRevealedDiscountPolicy(products, discountPrecentage, storeID, expiredDiscountDate, discountPolicyCounter++, EnumActivaties.ConvertIntToDuplicatePolicy(logic));
             }
             LogManager.Instance.WriteToLog("Trading System- addRevealedDiscountPolicy - User does not exist\n");
+            return -1;
+        }
+
+        public int addConditionalDiscuntPolicy(List<String> products, String condition, double discountPrecentage, int expiredDiscountDate, int duplicate, int logic, int userId, int storeId)
+        {
+            if (this.Users.ContainsKey(userId))
+            {
+                return Users[userId].addConditionalDiscuntPolicy(products, condition, discountPrecentage, expiredDiscountDate, EnumActivaties.ConvertIntToDuplicatePolicy(duplicate), EnumActivaties.ConvertIntToLogicalConnections(logic), discountPolicyCounter++, storeId);
+            }
+            LogManager.Instance.WriteToLog("Trading System- addConditionalDiscuntPolicy - User does not exist\n");
             return -1;
         }
 
@@ -619,6 +629,7 @@ namespace src.Domain
             {
                 return Users[userId].removeDiscountPolicy(discountId, storeId);
             }
+            LogManager.Instance.WriteToLog("Trading System- removeDiscountPolicy - User does not exist\n");
             return -1;
         }
 
@@ -628,6 +639,7 @@ namespace src.Domain
             {
                 return Users[userId].removePurchasePolicy(purchaseId, storeId);
             }
+            LogManager.Instance.WriteToLog("Trading System- removePurchasePolicy - User does not exist\n");
             return -1;
         }
     }
