@@ -19,6 +19,8 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
+        private List<String> orderStores;
+        private List<String> messages;
         private state signedIn;
         private state visitor;
 
@@ -33,6 +35,8 @@ namespace src.Domain
             this.isRegistered = isRegistered;
             this.basket = new ShoppingBasket();
             this.roles = new Dictionary<int, Role>();
+            this.orderStores = new List<String>();
+            this.messages = new List<String>();
         }
 
         public int Id { get => id; set => id = value; }
@@ -61,6 +65,19 @@ namespace src.Domain
                 return role.Store.addProductsInStore(productsInStore, this.id);
             LogManager.Instance.WriteToLog("User-add products in store fail- the role does not exists or doesn't have permissions\n");
             return false;
+        }
+
+        public List<String> getOrderStores()
+        {
+            return this.orderStores;
+        }
+        public void setOrderStores()
+        {
+            this.orderStores = new List<String>();
+            foreach(ShoppingCart sc in basket.ShoppingCarts.Values)
+            {
+                orderStores.Add(sc.Store.Name);
+            }
         }
 
         internal bool editProductsInStore(int productID, string productName, string category, string details, int price, int storeID)
@@ -242,6 +259,14 @@ namespace src.Domain
                 return false;
             }
 
+        }
+        public List<String> getMessages()
+        {
+            return this.messages;
+        }
+        public void deleteMessages()
+        {
+            this.messages = new List<String>();
         }
 
         public bool assignOwner(int storeID, User assigned)
