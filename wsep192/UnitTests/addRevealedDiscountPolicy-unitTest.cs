@@ -138,7 +138,7 @@ namespace UnitTests
                 this.retVal = ret;
             }
 
-            public override int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+            public override int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products , double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
             {
                 return 1;
             }
@@ -152,7 +152,7 @@ namespace UnitTests
                 this.retVal = ret;
             }
 
-            public override int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+            public override int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
             {
                 return 1;
             }
@@ -166,7 +166,7 @@ namespace UnitTests
                 this.retVal = ret;
             }
 
-            public override int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, int storeID, int expiredDiscountDate, int discountId, DuplicatePolicy logic)
+            public override int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, int storeID, int expiredDiscountDate, int discountId, DuplicatePolicy logic)
             {
                 return 1;
             }

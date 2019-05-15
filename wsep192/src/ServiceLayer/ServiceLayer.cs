@@ -417,7 +417,7 @@ namespace src.ServiceLayer
             }
         }
 
-        public int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
+        public int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
         {
             try
             {
