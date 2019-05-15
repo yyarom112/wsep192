@@ -847,3 +847,31 @@
 5/15/2019 16:36:07: TradingSystem-create new product in store0 -success
 
 5/15/2019 16:36:07: TradingSystem-add product to store0 -success
+5/15/2019 16:43:02: Register - userName or password null
+
+5/15/2019 16:43:02: TradingSystem-open storeZara success
+
+5/15/2019 16:43:02: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:43:02: TradingSystem-add product to store0 -success
+5/15/2019 16:43:02: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:43:02: TradingSystem-add product to store0 -success
+5/15/2019 16:43:02: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:43:02: TradingSystem-add product to store0 -success
+5/15/2019 16:44:25: TradingSystem - Remove user id2 success.
+
+5/15/2019 16:45:01: Register - userName or password null
+
+5/15/2019 16:45:01: TradingSystem-open storeZara success
+
+5/15/2019 16:45:01: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:45:01: TradingSystem-add product to store0 -success
+5/15/2019 16:45:01: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:45:01: TradingSystem-add product to store0 -success
+5/15/2019 16:45:01: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:45:01: TradingSystem-add product to store0 -success

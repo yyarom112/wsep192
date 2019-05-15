@@ -139,7 +139,11 @@
 
         var Login = function (user) {
             connection.server.login(user, $.connection.hub.id);
-            window.location.href = baseUrl + "/";
+            setTimeout(function () {
+                window.location.href = baseUrl + "/";
+            }, 1500);
+
+            
         }
 
 
