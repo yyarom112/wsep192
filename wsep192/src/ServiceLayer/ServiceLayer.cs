@@ -16,7 +16,6 @@ namespace src.ServiceLayer
         private Dictionary<String, int> stores;
         private Dictionary<String, int> permissions;
         private Dictionary<string, List<string>> storesStackholders = new Dictionary<string, List<string>>();
-        Dictionary<string, string> storeToMessage;
         private int storeCounter;
         private int userCounter;
 
@@ -29,9 +28,10 @@ namespace src.ServiceLayer
             permissions = new Dictionary<String, int>();
             storeCounter = 0;
             userCounter = 0;
-            NotificationsManager.initAsync();
+            NotificationsManager.init();
             addPermissions();
             init("admin", "admin");
+            setUp();
 
         }
         public static ServiceLayer getInstance()
@@ -44,6 +44,7 @@ namespace src.ServiceLayer
         {
             instance = null;
         }
+
 
         /*
         public bool setUp()
@@ -65,26 +66,25 @@ namespace src.ServiceLayer
         public bool setUp()
         {
             bool flag = true;
-            string user = instance.initUser();
-            flag = flag & instance.register("user", "user", user);
+            string user = initUser();
+            flag = flag & register("user", "user", user);
             string[] stores = { "Zara", "Bershka", "Forever21", "Castro", "Renuar", "AmericanEagle" };
             string[] details = { "New", "On Sale", "Last chance", "Hot staff" };
             string[] cats = { "Tops", "Jeans", "Shoes", "Skirts" };
             for (int i = 0; i < 1 && flag; i++)
             {
-                flag = flag & instance.openStore(stores[i], "user");
+                flag = flag & openStore(stores[i], "user");
                 for (int j = 0; j < 3 && flag; j++)
                 {
                     string cat = cats[new Random().Next(0, 4)];
                     string[] product = { cat + (j + 1).ToString(), cat, details[new Random().Next(0, 4)], stores[i] };
-                    flag = flag & instance.createNewProductInStore(product[0], product[1], product[2], new Random().Next(10, 100), product[3], "user");
+                    flag = flag & createNewProductInStore(product[0], product[1], product[2], new Random().Next(10, 100), product[3], "user");
                     List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
                     products.Add(new KeyValuePair<string, int>(product[0], new Random().Next(10, 100)));
-                    if (flag)
-                        flag = flag & instance.addProductsInStore(products, stores[i], "user");
+                    if(flag)
+                        flag = flag & addProductsInStore(products, stores[i], "user");
                 }
             }
-
             return flag;
 
         }
@@ -131,20 +131,12 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(username))
                 return false;
-            bool flag = system.signIn(username, password, users[username]);
-            if (flag)
-            {
-                foreach (String message in system.getMessagesByUser(users[username]))
-                    notify(username, message);
-                system.deleteMessagesByUser(users[username]);
-            }
-            return flag;
-
+            return system.signIn(username, password, users[username]);
         }
         //req2.3
         public bool register(String username, String password, String user)
         {
-            if (!users.ContainsKey(user) || users.ContainsKey(username))//CHANGED
+            if (!users.ContainsKey(user)||users.ContainsKey(username))//CHANGED
                 return false;
 
             bool result = system.register(username, password, users[user]);
@@ -183,6 +175,10 @@ namespace src.ServiceLayer
             return true;
         }
 
+        public bool[] getVisibility(String userName)
+        {
+            return system.getVisibility(users[userName],userName);
+        }
 
         private List<KeyValuePair<int, int>> getProductsInts(List<KeyValuePair<String, int>> products, int store)
         {
@@ -249,25 +245,14 @@ namespace src.ServiceLayer
         }
         public List<String[]> payForBasket(long cardNum, DateTime date, String user)
         {
-            List<String[]> output;
             if (!users.ContainsKey(user))
             {
-                output = new List<string[]>();
+                List<String[]> output = new List<string[]>();
                 String[] soutput = { "Error: invalid user" };
                 output.Add(soutput);
                 return output;
             }
-            output = system.payForBasket(cardNum, date, users[user]);
-            if (output != null)
-            {
-                List<String> stores = system.getOrderStoresByUser(users[user]);
-                foreach (String store in stores)
-                {
-                    notifyAll(store, user + " successfully ordered.");
-                }
-            }
-            return output;
-
+            return system.payForBasket(cardNum, date, users[user]);
         }
 
         //req3.1
@@ -340,17 +325,7 @@ namespace src.ServiceLayer
         {
             if (!users.ContainsKey(owner) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
-            bool flag = system.assignOwner(stores[store], users[owner], users[user]);
-            if (flag)
-            {
-                storesStackholders[store].Add(user);
-                String message = "You have succesfully assigned as an owner in " + store;
-                if (system.isLoggedIn(users[user]))
-                    notify(user, message);
-                else
-                    system.addMessageToUser(users[user], message);
-            }
-            return flag;
+            return system.assignOwner(stores[store], users[owner], users[user]);
         }
         //req4.4
         public bool removeOwner(String ownerToRemove, String store, String user)
@@ -358,16 +333,9 @@ namespace src.ServiceLayer
             if (!users.ContainsKey(ownerToRemove) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
             var res = system.removeOwner(users[user], users[ownerToRemove], stores[store]);
-            if (res)
-            {
-                storesStackholders[store].Remove(ownerToRemove);
-                String message = "You have succesfully removed from being an owner in " + store;
-                if (system.isLoggedIn(users[user]))
-                    notify(user, message);
-                else
-                    system.addMessageToUser(users[user], message);
-            }
-            return res;
+            /*if (res)
+               notify
+            else*/ return false;
         }
 
 
@@ -378,7 +346,6 @@ namespace src.ServiceLayer
             if (!users.ContainsKey(manager) || !users.ContainsKey(user) || !stores.ContainsKey(store) || !validatePermissions(permissions))
                 return false;
             return system.assignManager(users[user], users[manager], stores[store], getPermissionsInts(permissions));
-
         }
 
         private bool validatePermissions(List<string> permissions)
@@ -418,9 +385,7 @@ namespace src.ServiceLayer
                 users.Remove(userToRemove);
             return result;
         }
-
-
-
+        
         public static string getId(int length)
         {
             char[] id = "0123456789".ToCharArray();
@@ -449,20 +414,19 @@ namespace src.ServiceLayer
             return false;
         }
 
-        public bool notify(string user, string message)
+        public bool notify(string user)
         {
-            if (system.isLoggedIn(users[user]))
-            {
+            if (system.isLoggedIn(users[user])) {
 
             }
             return false;
         }
 
-        public void notifyAll(string store, string message)
+        public void notifyAll(string store)
         {
-            foreach (string user in storesStackholders[store])
+           foreach(string user in storesStackholders[store])
             {
-                notify(user, message);
+                notify(user);
             }
         }
 

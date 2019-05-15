@@ -56,3 +56,794 @@
 
 12/05/2019 15:47:18: Making the cart purchase succeeded
 
+14/05/2019 17:18:38: Register - userName or password null
+
+14/05/2019 17:18:38: TradingSystem-open storeZara success
+
+14/05/2019 17:18:38: TradingSystem-create new product in store0 -success
+
+14/05/2019 17:18:38: TradingSystem-add product to store0 -success
+14/05/2019 17:18:39: TradingSystem-create new product in store0 -success
+
+14/05/2019 17:18:39: TradingSystem-add product to store0 -success
+14/05/2019 17:18:39: TradingSystem-create new product in store0 -success
+
+14/05/2019 17:18:39: TradingSystem-add product to store0 -success
+14/05/2019 17:19:50: Add to cart success. /n
+14/05/2019 17:19:58: Successfully closed the basket.
+
+14/05/2019 17:20:07: Products have declined / returned to store stock successfully.
+
+14/05/2019 17:20:07: Making the cart purchase succeeded
+
+14/05/2019 18:28:59: Register - userName or password null
+
+14/05/2019 18:28:59: TradingSystem-open storeZara success
+
+14/05/2019 18:28:59: TradingSystem-create new product in store0 -success
+
+14/05/2019 18:28:59: TradingSystem-add product to store0 -success
+14/05/2019 18:28:59: TradingSystem-create new product in store0 -success
+
+14/05/2019 18:28:59: TradingSystem-add product to store0 -success
+14/05/2019 18:28:59: TradingSystem-create new product in store0 -success
+
+14/05/2019 18:28:59: TradingSystem-add product to store0 -success
+14/05/2019 18:29:28: Register - userName or password null
+
+14/05/2019 18:30:06: TradingSystem-open storenike success
+
+14/05/2019 18:40:36: Register - userName or password null
+
+14/05/2019 18:40:36: TradingSystem-open storeZara success
+
+14/05/2019 18:40:36: TradingSystem-create new product in store0 -success
+
+14/05/2019 18:40:36: TradingSystem-add product to store0 -success
+14/05/2019 18:40:37: TradingSystem-create new product in store0 -success
+
+14/05/2019 18:40:37: TradingSystem-add product to store0 -success
+14/05/2019 18:40:37: TradingSystem-create new product in store0 -success
+
+14/05/2019 18:40:37: TradingSystem-add product to store0 -success
+14/05/2019 18:41:19: Register - userName or password null
+
+14/05/2019 18:45:25: Store - assign manger succeed
+14/05/2019 18:45:46: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:45:46: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:45:46: Manager:validatePermission success - useraviv
+
+14/05/2019 18:45:46: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:45:46: Manager:validatePermission success - useraviv
+
+14/05/2019 18:45:46: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:45:46: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:45:46: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:47:04: Register - userName or password null
+
+14/05/2019 18:47:05: TradingSystem-open storeZara success
+
+14/05/2019 18:47:05: TradingSystem-create new product in store0 -success
+
+14/05/2019 18:47:05: TradingSystem-add product to store0 -success
+14/05/2019 18:47:05: TradingSystem-create new product in store0 -success
+
+14/05/2019 18:47:05: TradingSystem-add product to store0 -success
+14/05/2019 18:47:05: TradingSystem-create new product in store0 -success
+
+14/05/2019 18:47:05: TradingSystem-add product to store0 -success
+14/05/2019 18:47:49: Register - userName or password null
+
+14/05/2019 18:48:22: Store - assign manger succeed
+14/05/2019 18:48:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:40: Manager:validatePermission success - useraviv
+
+14/05/2019 18:48:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:40: Manager:validatePermission success - useraviv
+
+14/05/2019 18:48:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:51: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:51: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:51: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:51: Manager:validatePermission success - useraviv
+
+14/05/2019 18:48:51: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:51: Manager:validatePermission success - useraviv
+
+14/05/2019 18:48:51: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:51: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:57: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:57: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:57: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:57: Manager:validatePermission success - useraviv
+
+14/05/2019 18:48:57: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:57: Manager:validatePermission success - useraviv
+
+14/05/2019 18:48:57: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:48:57: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:05: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:05: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:05: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:05: Manager:validatePermission success - useraviv
+
+14/05/2019 18:49:05: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:05: Manager:validatePermission success - useraviv
+
+14/05/2019 18:49:05: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:05: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:16: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:16: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:16: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:16: Manager:validatePermission success - useraviv
+
+14/05/2019 18:49:16: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:16: Manager:validatePermission success - useraviv
+
+14/05/2019 18:49:16: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:16: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:19: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:19: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:19: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:19: Manager:validatePermission success - useraviv
+
+14/05/2019 18:49:19: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:19: Manager:validatePermission success - useraviv
+
+14/05/2019 18:49:19: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:19: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:23: Manager:validatePermission success - useraviv
+
+14/05/2019 18:49:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:23: Manager:validatePermission success - useraviv
+
+14/05/2019 18:49:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:26: Add to cart success. /n
+14/05/2019 18:49:35: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:35: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:35: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:35: Manager:validatePermission success - useraviv
+
+14/05/2019 18:49:35: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:35: Manager:validatePermission success - useraviv
+
+14/05/2019 18:49:35: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:35: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:49:36: Successfully closed the basket.
+
+14/05/2019 18:49:47: Products have declined / returned to store stock successfully.
+
+14/05/2019 18:49:47: Making the cart purchase succeeded
+
+14/05/2019 18:50:09: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:09: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:09: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:09: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:09: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:09: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:09: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:09: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:14: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:14: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:14: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:14: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:14: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:14: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:14: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:14: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:20: Add to cart success. /n
+14/05/2019 18:50:25: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:25: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:25: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:25: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:25: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:25: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:25: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:25: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:28: Successfully closed the basket.
+
+14/05/2019 18:50:39: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:39: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:39: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:39: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:39: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:39: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:39: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:39: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:46: ShoppingCart:showCart success
+
+14/05/2019 18:50:48: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:48: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:48: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:48: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:48: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:48: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:48: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:48: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:58: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:58: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:58: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:58: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:58: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:58: Manager:validatePermission success - useraviv
+
+14/05/2019 18:50:58: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:50:58: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:01: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:01: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:01: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:01: Manager:validatePermission success - useraviv
+
+14/05/2019 18:51:01: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:01: Manager:validatePermission success - useraviv
+
+14/05/2019 18:51:01: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:01: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:23: Manager:validatePermission success - useraviv
+
+14/05/2019 18:51:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:23: Manager:validatePermission success - useraviv
+
+14/05/2019 18:51:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:23: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:24: Successfully closed the basket.
+
+14/05/2019 18:51:30: Products have declined / returned to store stock successfully.
+
+14/05/2019 18:51:30: Making the cart purchase succeeded
+
+14/05/2019 18:51:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:40: Manager:validatePermission success - useraviv
+
+14/05/2019 18:51:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:40: Manager:validatePermission success - useraviv
+
+14/05/2019 18:51:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:40: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:49: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:49: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:49: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:49: Manager:validatePermission success - useraviv
+
+14/05/2019 18:51:49: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:49: Manager:validatePermission success - useraviv
+
+14/05/2019 18:51:49: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:49: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:55: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:55: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:55: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:55: Manager:validatePermission success - useraviv
+
+14/05/2019 18:51:55: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:55: Manager:validatePermission success - useraviv
+
+14/05/2019 18:51:55: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:51:55: Manager:validatePermission failed - useraviv
+
+14/05/2019 18:55:14: TradingSystem-Assign owner fail- the owner does not exists
+
+14/05/2019 18:55:30: TradingSystem-Assign owner 0 -success
+14/05/2019 19:01:41: Register - userName or password null
+
+14/05/2019 19:01:41: TradingSystem-open storeZara success
+
+14/05/2019 19:01:41: TradingSystem-create new product in store0 -success
+
+14/05/2019 19:01:41: TradingSystem-add product to store0 -success
+14/05/2019 19:01:41: TradingSystem-create new product in store0 -success
+
+14/05/2019 19:01:41: TradingSystem-add product to store0 -success
+14/05/2019 19:01:41: TradingSystem-create new product in store0 -success
+
+14/05/2019 19:01:41: TradingSystem-add product to store0 -success
+14/05/2019 19:05:15: Register - userName or password null
+
+14/05/2019 19:05:16: TradingSystem-open storeZara success
+
+14/05/2019 19:05:16: TradingSystem-create new product in store0 -success
+
+14/05/2019 19:05:16: TradingSystem-add product to store0 -success
+14/05/2019 19:05:16: TradingSystem-create new product in store0 -success
+
+14/05/2019 19:05:16: TradingSystem-add product to store0 -success
+14/05/2019 19:05:16: TradingSystem-create new product in store0 -success
+
+14/05/2019 19:05:17: TradingSystem-add product to store0 -success
+14/05/2019 19:22:38: Register - userName or password null
+
+14/05/2019 19:23:00: TradingSystem-open storeZara success
+
+14/05/2019 19:23:00: TradingSystem-create new product in store0 -success
+
+14/05/2019 19:23:00: TradingSystem-add product to store0 -success
+14/05/2019 19:23:00: TradingSystem-create new product in store0 -success
+
+14/05/2019 19:23:00: TradingSystem-add product to store0 -success
+14/05/2019 19:23:00: TradingSystem-create new product in store0 -success
+
+14/05/2019 19:23:00: TradingSystem-add product to store0 -success
+14/05/2019 19:23:15: Register - userName or password null
+
+14/05/2019 19:27:23: TradingSystem - Remove user id3 success.
+
+14/05/2019 19:28:40: Add to cart success. /n
+14/05/2019 19:28:51: Successfully closed the basket.
+
+14/05/2019 19:28:57: Products have declined / returned to store stock successfully.
+
+14/05/2019 19:28:57: Making the cart purchase succeeded
+
+14/05/2019 19:29:27: TradingSystem - Remove user id4 success.
+
+14/05/2019 19:30:01: Add to cart success. /n
+14/05/2019 19:30:09: ShoppingCart:showCart success
+
+14/05/2019 19:30:15: ShoppingCart:removeProductsFromCart success
+
+14/05/2019 19:30:16: ShoppingCart:showCart success
+
+14/05/2019 19:30:21: Successfully closed the basket.
+
+14/05/2019 19:30:36: Register - userName or password null
+
+14/05/2019 19:31:23: Add to cart success. /n
+14/05/2019 19:31:29: Successfully closed the basket.
+
+14/05/2019 19:31:36: Products have declined / returned to store stock successfully.
+
+14/05/2019 19:31:36: Making the cart purchase succeeded
+
+14/05/2019 19:31:51: TradingSystem - Remove user id5 success.
+
+5/15/2019 15:45:25: Register - userName or password null
+
+5/15/2019 15:45:25: TradingSystem-open storeZara success
+
+5/15/2019 15:45:25: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:45:25: TradingSystem-add product to store0 -success
+5/15/2019 15:45:25: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:45:25: TradingSystem-add product to store0 -success
+5/15/2019 15:45:25: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:45:25: TradingSystem-add product to store0 -success
+5/15/2019 15:51:50: Register - userName or password null
+
+5/15/2019 15:51:50: TradingSystem-open storeZara success
+
+5/15/2019 15:51:50: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:51:50: TradingSystem-add product to store0 -success
+5/15/2019 15:51:50: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:51:50: TradingSystem-add product to store0 -success
+5/15/2019 15:51:50: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:51:50: TradingSystem-add product to store0 -success
+5/15/2019 15:54:01: Register - userName or password null
+
+5/15/2019 15:54:01: TradingSystem-open storeZara success
+
+5/15/2019 15:54:01: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:54:01: TradingSystem-add product to store0 -success
+5/15/2019 15:54:01: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:54:01: TradingSystem-add product to store0 -success
+5/15/2019 15:54:01: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:54:01: TradingSystem-add product to store0 -success
+5/15/2019 15:55:27: Register - userName or password null
+
+5/15/2019 15:55:27: TradingSystem-open storeZara success
+
+5/15/2019 15:55:27: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:55:27: TradingSystem-add product to store0 -success
+5/15/2019 15:55:27: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:55:27: TradingSystem-add product to store0 -success
+5/15/2019 15:55:27: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:55:27: TradingSystem-add product to store0 -success
+5/15/2019 15:59:18: Register - userName or password null
+
+5/15/2019 15:59:18: TradingSystem-open storeZara success
+
+5/15/2019 15:59:18: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:59:18: TradingSystem-add product to store0 -success
+5/15/2019 15:59:18: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:59:18: TradingSystem-add product to store0 -success
+5/15/2019 15:59:18: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:59:18: TradingSystem-add product to store0 -success
+5/15/2019 15:59:43: Register - userName or password null
+
+5/15/2019 15:59:43: TradingSystem-open storeZara success
+
+5/15/2019 15:59:43: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:59:43: TradingSystem-add product to store0 -success
+5/15/2019 15:59:43: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:59:43: TradingSystem-add product to store0 -success
+5/15/2019 15:59:43: TradingSystem-create new product in store0 -success
+
+5/15/2019 15:59:43: TradingSystem-add product to store0 -success
+5/15/2019 16:00:51: Register - userName or password null
+
+5/15/2019 16:00:51: TradingSystem-open storeZara success
+
+5/15/2019 16:00:51: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:00:51: TradingSystem-add product to store0 -success
+5/15/2019 16:00:51: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:00:51: TradingSystem-add product to store0 -success
+5/15/2019 16:00:51: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:00:51: TradingSystem-add product to store0 -success
+5/15/2019 16:02:39: TradingSystem - Remove user id2 success.
+
+5/15/2019 16:06:00: Register - userName or password null
+
+5/15/2019 16:06:00: TradingSystem-open storeZara success
+
+5/15/2019 16:06:00: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:06:00: TradingSystem-add product to store0 -success
+5/15/2019 16:06:00: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:06:00: TradingSystem-add product to store0 -success
+5/15/2019 16:06:00: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:06:00: TradingSystem-add product to store0 -success
+5/15/2019 16:07:12: Register - userName or password null
+
+5/15/2019 16:07:12: TradingSystem-open storeZara success
+
+5/15/2019 16:07:12: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:07:12: TradingSystem-add product to store0 -success
+5/15/2019 16:07:12: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:07:12: TradingSystem-add product to store0 -success
+5/15/2019 16:07:12: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:07:12: TradingSystem-add product to store0 -success
+5/15/2019 16:09:56: Register - userName or password null
+
+5/15/2019 16:09:56: TradingSystem-open storeZara success
+
+5/15/2019 16:09:56: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:09:56: TradingSystem-add product to store0 -success
+5/15/2019 16:09:56: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:09:56: TradingSystem-add product to store0 -success
+5/15/2019 16:09:56: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:09:56: TradingSystem-add product to store0 -success
+5/15/2019 16:10:13: TradingSystem - Remove user id2 success.
+
+5/15/2019 16:12:40: Register - userName or password null
+
+5/15/2019 16:12:40: TradingSystem-open storeZara success
+
+5/15/2019 16:12:40: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:12:40: TradingSystem-add product to store0 -success
+5/15/2019 16:12:40: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:12:40: TradingSystem-add product to store0 -success
+5/15/2019 16:12:40: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:12:40: TradingSystem-add product to store0 -success
+5/15/2019 16:14:49: Register - userName or password null
+
+5/15/2019 16:14:49: TradingSystem-open storeZara success
+
+5/15/2019 16:14:49: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:14:49: TradingSystem-add product to store0 -success
+5/15/2019 16:14:49: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:14:49: TradingSystem-add product to store0 -success
+5/15/2019 16:14:49: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:14:49: TradingSystem-add product to store0 -success
+5/15/2019 16:17:12: Register - userName or password null
+
+5/15/2019 16:17:12: TradingSystem-open storeZara success
+
+5/15/2019 16:17:12: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:17:12: TradingSystem-add product to store0 -success
+5/15/2019 16:17:12: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:17:12: TradingSystem-add product to store0 -success
+5/15/2019 16:17:12: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:17:12: TradingSystem-add product to store0 -success
+5/15/2019 16:17:29: Register - userName or password null
+
+5/15/2019 16:17:29: TradingSystem-open storeZara success
+
+5/15/2019 16:17:29: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:17:29: TradingSystem-add product to store0 -success
+5/15/2019 16:17:29: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:17:29: TradingSystem-add product to store0 -success
+5/15/2019 16:17:29: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:17:29: TradingSystem-add product to store0 -success
+5/15/2019 16:18:44: Register - userName or password null
+
+5/15/2019 16:18:44: TradingSystem-open storeZara success
+
+5/15/2019 16:18:44: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:18:44: TradingSystem-add product to store0 -success
+5/15/2019 16:18:44: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:18:44: TradingSystem-add product to store0 -success
+5/15/2019 16:18:44: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:18:44: TradingSystem-add product to store0 -success
+5/15/2019 16:19:04: Register - userName or password null
+
+5/15/2019 16:19:04: TradingSystem-open storeZara success
+
+5/15/2019 16:19:04: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:19:04: TradingSystem-add product to store0 -success
+5/15/2019 16:19:04: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:19:04: TradingSystem-add product to store0 -success
+5/15/2019 16:19:04: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:19:04: TradingSystem-add product to store0 -success
+5/15/2019 16:22:52: Register - userName or password null
+
+5/15/2019 16:22:52: TradingSystem-open storeZara success
+
+5/15/2019 16:22:52: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:22:52: TradingSystem-add product to store0 -success
+5/15/2019 16:22:52: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:22:52: TradingSystem-add product to store0 -success
+5/15/2019 16:22:52: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:22:52: TradingSystem-add product to store0 -success
+5/15/2019 16:23:34: Register - userName or password null
+
+5/15/2019 16:23:34: TradingSystem-open storeZara success
+
+5/15/2019 16:23:34: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:23:34: TradingSystem-add product to store0 -success
+5/15/2019 16:23:34: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:23:35: TradingSystem-add product to store0 -success
+5/15/2019 16:23:35: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:23:35: TradingSystem-add product to store0 -success
+5/15/2019 16:24:24: TradingSystem - Remove user id2 success.
+
+5/15/2019 16:25:03: TradingSystem - Remove user id3 success.
+
+5/15/2019 16:26:07: TradingSystem - Remove user id4 success.
+
+5/15/2019 16:28:02: Register - userName or password null
+
+5/15/2019 16:28:02: TradingSystem-open storeZara success
+
+5/15/2019 16:28:02: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:28:02: TradingSystem-add product to store0 -success
+5/15/2019 16:28:02: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:28:02: TradingSystem-add product to store0 -success
+5/15/2019 16:28:02: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:28:02: TradingSystem-add product to store0 -success
+5/15/2019 16:28:18: Register - userName or password null
+
+5/15/2019 16:28:18: TradingSystem-open storeZara success
+
+5/15/2019 16:28:18: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:28:18: TradingSystem-add product to store0 -success
+5/15/2019 16:28:18: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:28:18: TradingSystem-add product to store0 -success
+5/15/2019 16:28:18: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:28:18: TradingSystem-add product to store0 -success
+5/15/2019 16:32:39: Register - userName or password null
+
+5/15/2019 16:32:39: TradingSystem-open storeZara success
+
+5/15/2019 16:32:39: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:32:39: TradingSystem-add product to store0 -success
+5/15/2019 16:32:39: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:32:39: TradingSystem-add product to store0 -success
+5/15/2019 16:32:39: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:32:39: TradingSystem-add product to store0 -success
+5/15/2019 16:34:21: Register - userName or password null
+
+5/15/2019 16:34:21: TradingSystem-open storeZara success
+
+5/15/2019 16:34:21: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:34:21: TradingSystem-add product to store0 -success
+5/15/2019 16:34:21: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:34:21: TradingSystem-add product to store0 -success
+5/15/2019 16:34:21: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:34:21: TradingSystem-add product to store0 -success
+5/15/2019 16:36:07: Register - userName or password null
+
+5/15/2019 16:36:07: TradingSystem-open storeZara success
+
+5/15/2019 16:36:07: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:36:07: TradingSystem-add product to store0 -success
+5/15/2019 16:36:07: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:36:07: TradingSystem-add product to store0 -success
+5/15/2019 16:36:07: TradingSystem-create new product in store0 -success
+
+5/15/2019 16:36:07: TradingSystem-add product to store0 -success
