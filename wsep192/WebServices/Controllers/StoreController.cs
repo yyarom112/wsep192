@@ -131,6 +131,21 @@ namespace WebServices.Controllers
             return "Error in addPurchasePolicy";
         }
 
+        [Route("api/store/AddDiscountPolicy")]
+        [HttpGet]
+        public string addDiscountPolicy(String products,String discount,String expiredDate,String logic, String store, String user)
+        {
+            Dictionary<int, KeyValuePair<src.Domain.ProductInStore, int>> productsTmp = new Dictionary<int, KeyValuePair<src.Domain.ProductInStore, int>>();
+            int ans = service.addRevealedDiscountPolicy(productsTmp, discount, expiredDate, logic, user, store);
+            switch (ans)
+            {
+                case -1:
+                    return "Error in addDiscountPolicy";
+                default:
+                    return "success";
+            }
+        }
+
 
     }
 }

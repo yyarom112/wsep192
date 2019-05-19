@@ -199,6 +199,13 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\addDiscountPolicy.aspx.cs">
+      <DependentUpon>addDiscountPolicy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pages\addDiscountPolicy.aspx.designer.cs">
+      <DependentUpon>addDiscountPolicy.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\addProductInStore.aspx.cs">
       <DependentUpon>addProductInStore.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1174,6 +1181,7 @@
     <Content Include="vendor\slick\slick.js" />
     <Content Include="vendor\slick\slick.min.js" />
     <Content Include="vendor\sweetalert\sweetalert.min.js" />
+    <Content Include="Views\Pages\addDiscountPolicy.aspx" />
     <Content Include="Views\Pages\addProductInStore.aspx" />
     <Content Include="Views\Pages\checkoutBasket.aspx" />
     <Content Include="Views\Pages\createProductInStore.aspx" />

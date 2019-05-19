@@ -660,3 +660,99 @@
 15/05/2019 19:56:29: TradingSystem-create new product in store0 -success
 
 15/05/2019 19:56:29: TradingSystem-add product to store0 -success
+19/05/2019 12:01:09: Register - userName or password null
+
+19/05/2019 12:01:09: TradingSystem-open storeZara success
+
+19/05/2019 12:01:09: TradingSystem-create new product in store0 -success
+
+19/05/2019 12:01:09: TradingSystem-add product to store0 -success
+19/05/2019 12:01:09: TradingSystem-create new product in store0 -success
+
+19/05/2019 12:01:09: TradingSystem-add product to store0 -success
+19/05/2019 12:01:09: TradingSystem-create new product in store0 -success
+
+19/05/2019 12:01:10: TradingSystem-add product to store0 -success
+19/05/2019 12:10:53: Successfully closed the basket.
+
+19/05/2019 12:11:08: Add to cart success. /n
+19/05/2019 12:11:24: ShoppingCart:showCart success
+
+19/05/2019 12:12:14: Successfully closed the basket.
+
+19/05/2019 12:14:01: Products have declined / returned to store stock successfully.
+
+19/05/2019 12:15:40: Making the cart purchase succeeded
+
+19/05/2019 12:19:20: Register - userName or password null
+
+19/05/2019 12:19:20: TradingSystem-open storeZara success
+
+19/05/2019 12:19:21: TradingSystem-create new product in store0 -success
+
+19/05/2019 12:19:21: TradingSystem-add product to store0 -success
+19/05/2019 12:19:21: TradingSystem-create new product in store0 -success
+
+19/05/2019 12:19:21: TradingSystem-add product to store0 -success
+19/05/2019 12:19:21: TradingSystem-create new product in store0 -success
+
+19/05/2019 12:19:21: TradingSystem-add product to store0 -success
+19/05/2019 12:20:56: Add to cart success. /n
+19/05/2019 12:21:04: Successfully closed the basket.
+
+19/05/2019 12:21:18: Products have declined / returned to store stock successfully.
+
+19/05/2019 12:21:18: Making the cart purchase succeeded
+
+19/05/2019 12:22:17: Add to cart success. /n
+19/05/2019 12:22:26: Successfully closed the basket.
+
+19/05/2019 12:25:43: Products have declined / returned to store stock successfully.
+
+19/05/2019 12:25:43: Making the cart purchase succeeded
+
+19/05/2019 12:25:52: ShoppingBasket:showCart failed - Shopping basket does not contain the store
+
+19/05/2019 12:41:23: Register - userName or password null
+
+19/05/2019 12:41:23: TradingSystem-open storeZara success
+
+19/05/2019 12:41:23: TradingSystem-create new product in store0 -success
+
+19/05/2019 12:41:23: TradingSystem-add product to store0 -success
+19/05/2019 12:41:23: TradingSystem-create new product in store0 -success
+
+19/05/2019 12:41:23: TradingSystem-add product to store0 -success
+19/05/2019 12:41:23: TradingSystem-create new product in store0 -success
+
+19/05/2019 12:41:23: TradingSystem-add product to store0 -success
+19/05/2019 13:05:26: Register - userName or password null
+
+19/05/2019 13:05:26: TradingSystem-open storeZara success
+
+19/05/2019 13:05:26: TradingSystem-create new product in store0 -success
+
+19/05/2019 13:05:26: TradingSystem-add product to store0 -success
+19/05/2019 13:05:26: TradingSystem-create new product in store0 -success
+
+19/05/2019 13:05:26: TradingSystem-add product to store0 -success
+19/05/2019 13:05:26: TradingSystem-create new product in store0 -success
+
+19/05/2019 13:05:26: TradingSystem-add product to store0 -success
+19/05/2019 13:09:34: Register - userName or password null
+
+19/05/2019 13:09:35: TradingSystem-open storeZara success
+
+19/05/2019 13:09:35: TradingSystem-create new product in store0 -success
+
+19/05/2019 13:09:35: TradingSystem-add product to store0 -success
+19/05/2019 13:09:35: TradingSystem-create new product in store0 -success
+
+19/05/2019 13:09:35: TradingSystem-add product to store0 -success
+19/05/2019 13:09:35: TradingSystem-create new product in store0 -success
+
+19/05/2019 13:09:35: TradingSystem-add product to store0 -success
+19/05/2019 13:17:40: Store - addRevealedDiscountPolicy - new discount policy added
+
+19/05/2019 13:18:41: TradingSystem - Remove user id2 success.
+

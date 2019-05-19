@@ -104,12 +104,11 @@ namespace src.Domain
                         if (p.Quantity <= this.products[p.Product.Id].Quantity)
                             if (opt.Equals("-"))
                                 this.products[p.Product.Id].Quantity -= p.Quantity;
-
-                            else
-                            {
-                                p.Quantity = this.products[p.Product.Id].Quantity;
-                                this.products[p.Product.Id].Quantity = 0;
-                            }
+                        else
+                        {
+                            p.Quantity = this.products[p.Product.Id].Quantity;
+                            this.products[p.Product.Id].Quantity = 0;
+                        }
                     }
                     else
                     {
@@ -520,7 +519,7 @@ namespace src.Domain
 
             }
 
-            
+
         }
 
 
@@ -567,7 +566,7 @@ namespace src.Domain
                 int SumMin = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 int SumMax = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })));
-                return new BuyConditionPolicy(ID,min,max, SumMin, SumMax, act);
+                return new BuyConditionPolicy(ID, min, max, SumMin, SumMax, act);
             }
             catch (Exception e)
             {
@@ -581,9 +580,9 @@ namespace src.Domain
             try
             {
                 String adress = purchesData[begin++].Trim(new char[] { ' ', '(', ')' });
-                bool Isregister = (purchesData[begin++].Trim(new char[] { ' ', '(', ')' })=="1");
+                bool Isregister = (purchesData[begin++].Trim(new char[] { ' ', '(', ')' }) == "1");
                 LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })));
-                return new UserConditionPolicy(ID, adress, Isregister,  act);
+                return new UserConditionPolicy(ID, adress, Isregister, act);
             }
             catch (Exception e)
             {
@@ -593,10 +592,10 @@ namespace src.Domain
 
         internal PurchasePolicy factoryIfThenCondition(int begin, int end, int ID, String[] purchesData, int multiplcation)
         {
-            int beginIf = -1, endIf = -1, beginThen = -1, endThen=-1, dif=0;
+            int beginIf = -1, endIf = -1, beginThen = -1, endThen = -1, dif = 0;
             ExtractOperand(begin, ref beginIf, ref endIf, purchesData);
-            ExtractOperand(endIf+1, ref beginThen, ref endThen, purchesData);
-            LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[endThen+1].Trim(new char[] { ' ', '(', ')' })));
+            ExtractOperand(endIf + 1, ref beginThen, ref endThen, purchesData);
+            LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[endThen + 1].Trim(new char[] { ' ', '(', ')' })));
             return new IfThenCondition(ID, addComplexPurchasePolicyRec(beginIf, endIf, 0, purchesData, multiplcation), addComplexPurchasePolicyRec(beginThen, endThen, 0, purchesData, multiplcation), act);
 
         }
@@ -621,11 +620,12 @@ namespace src.Domain
 
                 }
                 return output;
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return null;
             }
-            
+
         }
 
         private int ExtractOperand(int i, ref int begin, ref int end, String[] purchesData)
