@@ -31,6 +31,8 @@ namespace UnitTests
         DuplicatePolicy duplicate;
         DateTime date1;
 
+        LogicalCondition lc;
+
         public void setUp()
         {
             store = new Store(1111, "adidas");
@@ -68,10 +70,11 @@ namespace UnitTests
             system.Stores.Add(store.Id, store);
             system.Users.Add(admin.Id, admin);
             system.Users.Add(ownerUser.Id, ownerUser);
-
             logic = LogicalConnections.and;
             duplicate = DuplicatePolicy.WithMultiplication;
             date1 = new DateTime(2019, 10, 1);
+
+            lc = new LogicalCondition(0, 0.5, null, new DateTime(2222,1,1), DuplicatePolicy.WithMultiplication, LogicalConnections.and);
 
         }
 
@@ -127,6 +130,91 @@ namespace UnitTests
         }
 
 
+        /*------------------------Condition Convert------------------------------------*/
+
+        [TestMethod]
+        public void store_ConvertProductNameToProductInStore()
+        {
+            setUp();
+            Assert.AreEqual(pis1, store.ConvertProductNameToProductInStore("first"));
+            Assert.AreEqual(null, store.ConvertProductNameToProductInStore("p1"));
+
+        }
+
+        [TestMethod]
+        public void store_conditionConvert_simple_only_leaf()
+        {
+            setUp();
+            String details = "( first , 10 )";
+            store.conditionConvert(lc, 0, details.Split(',').Length, details.Split(','), 0);
+            List<KeyValuePair<ProductInStore, int>> productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 9));
+            Assert.AreEqual(false, lc.getChild(0).checkCondition(productToBuy));
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 11));
+            Assert.AreEqual(true, lc.getChild(0).checkCondition(productToBuy));
+
+        }
+
+        [TestMethod]
+        public void store_conditionConvert_simple_only_and()
+        {
+            setUp();
+            String details = "(+,((first, 10 ),(second,10)))";
+            store.conditionConvert(lc, 0, details.Split(',').Length, details.Split(','), 0);
+            List<KeyValuePair<ProductInStore, int>> productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 9));
+            Assert.AreEqual(false, lc.checkCondition(productToBuy));
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 11));
+            Assert.AreEqual(false, lc.checkCondition(productToBuy));
+
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 11));
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 11));
+
+            Assert.AreEqual(true, lc.checkCondition(productToBuy));
+        }
+
+        [TestMethod]
+        public void store_conditionConvert_simple_or()
+        {
+            setUp();
+            String details = "(-,((first, 10 ),(second,10)))";
+            store.conditionConvert(lc, 0, details.Split(',').Length, details.Split(','), 0);
+            List<KeyValuePair<ProductInStore, int>> productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 9));
+            Assert.AreEqual(false, lc.getChild(1).checkCondition(productToBuy));
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 11));
+            Assert.AreEqual(true, lc.getChild(1).checkCondition(productToBuy));
+
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 11));
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 11));
+
+            Assert.AreEqual(true, lc.checkCondition(productToBuy));
+        }
+
+        [TestMethod]
+        public void store_conditionConvert_simple_xor()
+        {
+            setUp();
+            String details = "(#,((first, 10 ),(second,10)))";
+            store.conditionConvert(lc, 0, details.Split(',').Length, details.Split(','), 0);
+            List<KeyValuePair<ProductInStore, int>> productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 9));
+            Assert.AreEqual(false, lc.getChild(1).checkCondition(productToBuy));
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 11));
+            Assert.AreEqual(true, lc.getChild(1).checkCondition(productToBuy));
+
+            productToBuy = new List<KeyValuePair<ProductInStore, int>>();
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis1, 11));
+            productToBuy.Add(new KeyValuePair<ProductInStore, int>(pis2, 11));
+
+            Assert.AreEqual(false, lc.checkCondition(productToBuy));
+        }
 
         /*------------------------stub-classes------------------------------------*/
 
