@@ -538,39 +538,3 @@
 
 14/05/2019 19:31:51: TradingSystem - Remove user id5 success.
 
-15/05/2019 17:03:41: Register - userName or password null
-
-15/05/2019 17:03:41: TradingSystem-open storeZara success
-
-15/05/2019 17:03:41: TradingSystem-create new product in store0 -success
-
-15/05/2019 17:03:41: TradingSystem-add product to store0 -success
-15/05/2019 17:03:41: TradingSystem-create new product in store0 -success
-
-15/05/2019 17:03:41: TradingSystem-add product to store0 -success
-15/05/2019 17:03:41: TradingSystem-create new product in store0 -success
-
-15/05/2019 17:03:41: TradingSystem-add product to store0 -success
-15/05/2019 17:04:55: Register - userName or password null
-
-15/05/2019 17:06:47: Store - assign manger succeed
-15/05/2019 17:06:55: TradingSystem - Remove user id3 success.
-
-15/05/2019 17:07:11: Manager:validatePermission failed - userseifan
-
-15/05/2019 17:07:12: Manager:validatePermission failed - userseifan
-
-15/05/2019 17:07:12: Manager:validatePermission failed - userseifan
-
-15/05/2019 17:07:12: Manager:validatePermission success - userseifan
-
-15/05/2019 17:07:12: Manager:validatePermission failed - userseifan
-
-15/05/2019 17:07:12: Manager:validatePermission success - userseifan
-
-15/05/2019 17:07:12: Manager:validatePermission failed - userseifan
-
-15/05/2019 17:07:12: Manager:validatePermission failed - userseifan
-
-15/05/2019 17:07:36: TradingSystem - Remove user id4 success.
-
