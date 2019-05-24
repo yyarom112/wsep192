@@ -756,3 +756,27 @@
 
 19/05/2019 13:18:41: TradingSystem - Remove user id2 success.
 
+24/05/2019 22:45:00: Register - userName or password null
+
+24/05/2019 22:45:01: TradingSystem-open storeZara success
+
+24/05/2019 22:45:01: TradingSystem-create new product in store0 -success
+
+24/05/2019 22:45:01: TradingSystem-add product to store0 -success
+24/05/2019 22:45:01: TradingSystem-create new product in store0 -success
+
+24/05/2019 22:45:01: TradingSystem-add product to store0 -success
+24/05/2019 22:45:01: TradingSystem-create new product in store0 -success
+
+24/05/2019 22:45:01: TradingSystem-add product to store0 -success
+24/05/2019 22:45:38: Add to cart success. /n
+24/05/2019 22:45:44: Successfully closed the basket.
+
+24/05/2019 22:45:50: Products have declined / returned to store stock successfully.
+
+24/05/2019 22:45:50: Making the cart purchase succeeded
+
+24/05/2019 22:46:12: Successfully closed the basket.
+
+24/05/2019 22:46:20: ShoppingBasket:showCart failed - Shopping basket does not contain the store
+
