@@ -446,7 +446,62 @@ namespace src.ServiceLayer
             return sb.ToString();
         }
 
+        public bool addComplexPurchasePolicy(String purchesData, String store, String user)
+        {
+            try
+            {
+                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
+                    return false;
+                return this.system.addComplexPurchasePolicy(purchesData, this.stores[store], this.users[user]);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
 
+        public int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
+        {
+            try
+            {
+                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
+                    return -1;
+                return system.addRevealedDiscountPolicy(products, Double.Parse(discountPrecentage), this.users[user], this.stores[store], Int32.Parse(expiredDiscountDate), Int32.Parse(logic));
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+
+        }
+
+        public int removeDiscountPolicy(String discountId, String store, String user)
+        {
+            try
+            {
+                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
+                    return -1;
+                return system.removeDiscountPolicy(Int32.Parse(discountId), this.stores[store], this.users[user]);
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+
+        public int removePurchasePolicy(String purchaseId, String store, String user)
+        {
+            try
+            {
+                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
+                    return -1;
+                return system.removePurchasePolicy(Int32.Parse(purchaseId), this.stores[store], this.users[user]);
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
 
 
         public bool notify(string user, string message)

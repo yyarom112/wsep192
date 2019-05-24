@@ -300,7 +300,15 @@ namespace src.Domain
             return null;
         }
 
+        public virtual PurchasePolicy addComplexPurchasePolicy(int ID, String purchesData, int storeID)
+        {
 
+            Role role;
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 2)) != null)
+                return role.addComplexPurchasePolicy(ID, purchesData);
+            return null;
+
+        }
 
         internal Role searchRoleByStoreIDWithValidatePermmision(int storeID, int premmision)
         {
@@ -327,6 +335,37 @@ namespace src.Domain
                 }
             }
             return role;
+        }
+        public virtual int removeDiscountPolicy(int discountId, int storeId)
+        {
+            Role role;
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeId, 1)) != null)
+            {
+                return role.removeDiscountPolicy(discountId);
+            }
+            return -1;
+        }
+
+        public virtual int removePurchasePolicy(int purchaseId, int storeId)
+        {
+            Role role;
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeId, 1)) != null)
+            {
+                return role.removePurchasePolicy(purchaseId);
+            }
+            return -1;
+        }
+
+        public virtual int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, int storeID, int expiredDiscountDate, int discountId, DuplicatePolicy logic)
+        {
+            Role role;
+            DateTime currentTime = DateTime.Now;
+            DateTime expiredDate = currentTime.AddDays(expiredDiscountDate);
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 1)) != null)
+            {
+                return role.addRevealedDiscountPolicy(products, discountPrecentage, expiredDate, discountId, logic);
+            }
+            return -1;
         }
 
         internal bool isLoggedIn()
