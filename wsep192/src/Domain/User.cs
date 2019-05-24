@@ -19,6 +19,8 @@ namespace src.Domain
         private Boolean isRegistered;
         private ShoppingBasket basket;
         private Dictionary<int, Role> roles;
+        private List<String> orderStores;
+        private List<String> messages;
         private state signedIn;
         private state visitor;
 
@@ -33,6 +35,8 @@ namespace src.Domain
             this.isRegistered = isRegistered;
             this.basket = new ShoppingBasket();
             this.roles = new Dictionary<int, Role>();
+            this.orderStores = new List<String>();
+            this.messages = new List<String>();
         }
 
         public int Id { get => id; set => id = value; }
@@ -61,6 +65,19 @@ namespace src.Domain
                 return role.Store.addProductsInStore(productsInStore, this.id);
             LogManager.Instance.WriteToLog("User-add products in store fail- the role does not exists or doesn't have permissions\n");
             return false;
+        }
+
+        public List<String> getOrderStores()
+        {
+            return this.orderStores;
+        }
+        public void setOrderStores()
+        {
+            this.orderStores = new List<String>();
+            foreach(ShoppingCart sc in basket.ShoppingCarts.Values)
+            {
+                orderStores.Add(sc.Store.Name);
+            }
         }
 
         internal bool editProductsInStore(int productID, string productName, string category, string details, int price, int storeID)
@@ -243,6 +260,14 @@ namespace src.Domain
             }
 
         }
+        public List<String> getMessages()
+        {
+            return this.messages;
+        }
+        public void deleteMessages()
+        {
+            this.messages = new List<String>();
+        }
 
         public bool assignOwner(int storeID, User assigned)
         {
@@ -275,12 +300,12 @@ namespace src.Domain
             return null;
         }
 
-        public virtual PurchasePolicy addComplexPurchasePolicy(int ID,String purchesData, int storeID)
+        public virtual PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData, int storeID)
         {
 
             Role role;
             if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 2)) != null)
-                return role.addComplexPurchasePolicy( ID, purchesData);
+                return role.addComplexPurchasePolicy(purchesData);
             return null;
 
         }
@@ -303,7 +328,7 @@ namespace src.Domain
             if (role != null && role.GetType() == typeof(Manager))
             {
                 Manager manager = (Manager)role;
-                if (!manager.validatePermission(premmision))
+                if (!manager.validatePermission(2))
                 {
                     LogManager.Instance.WriteToLog("User-search Role By StoreID With Validate Permmision fail- Manager does not have permissions\n");
                     return null;
@@ -312,36 +337,14 @@ namespace src.Domain
             return role;
         }
 
-        public virtual int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, int storeID, int expiredDiscountDate, int discountId, DuplicatePolicy logic)
+        internal bool isLoggedIn()
         {
-            Role role;
-            DateTime currentTime = DateTime.Now;
-            DateTime expiredDate = currentTime.AddDays(expiredDiscountDate);
-            if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 1)) != null)
-            {
-                return role.addRevealedDiscountPolicy(products, discountPrecentage, expiredDate, discountId, logic);
-            }
-            return -1;
+            return this.state == state.signedIn;
         }
 
-        public virtual int removeDiscountPolicy(int discountId, int storeId)
+        internal void addMessage(string message)
         {
-            Role role;
-            if ((role = searchRoleByStoreIDWithValidatePermmision(storeId, 1)) != null)
-            {
-                return role.removeDiscountPolicy(discountId);
-            }
-            return -1;
-        }
-
-        public virtual int removePurchasePolicy(int purchaseId, int storeId)
-        {
-            Role role;
-            if ((role = searchRoleByStoreIDWithValidatePermmision(storeId, 1)) != null)
-            {
-                return role.removePurchasePolicy(purchaseId);
-            }
-            return -1;
+            this.messages.Add(message);
         }
     }
 }

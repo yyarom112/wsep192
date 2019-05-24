@@ -158,9 +158,9 @@ namespace WebService.Controllers
             switch (ans)
             {
                 case true:
-                    return "User successfuly logged out";
+                    return "true";
                 case false:
-                    return "Error in logging out";
+                    return "false";
             }
             return "Server error: logOutUser";
         }
