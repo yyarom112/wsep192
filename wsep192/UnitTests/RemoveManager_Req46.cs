@@ -241,7 +241,7 @@ class StubUser : User
             return null;
         }
 
-        public override PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData, int storeID)
+        public override PurchasePolicy addComplexPurchasePolicy(int ID,String purchesData, int storeID)
         {
 
             return pcRet;

@@ -20,14 +20,30 @@ namespace src.Domain
         internal Store Store { get { return store; } set { store = value; } }
         internal User User { get { return user; } set { user = value; } }
 
-        public virtual PurchasePolicy addSimplePurchasePolicy(PurchesPolicyData purchesData)
+        public virtual PurchasePolicy addSimplePurchasePolicy(PurchesPolicyData purchesData )
         {
             return store.addSimplePurchasePolicy(purchesData);
         }
 
-        public virtual PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData)
+        public virtual PurchasePolicy addComplexPurchasePolicy(int ID,String purchesData)
         {
-            return store.addComplexPurchasePolicy(purchesData);
+            return store.addComplexPurchasePolicy(ID, purchesData);
         }
+
+        public virtual int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+        {
+            return store.addRevealedDiscountPolicy(products, discountPrecentage, expiredDate, discountId, logic);
+        }
+
+        public virtual int removeDiscountPolicy(int discountId)
+        {
+            return store.removeDiscountPolicy(discountId);
+        }
+
+        public virtual int removePurchasePolicy(int purchaseId)
+        {
+            return store.removePurchasePolicy(purchaseId);
+        }
+
     }
 }
