@@ -756,3 +756,232 @@
 
 19/05/2019 13:18:41: TradingSystem - Remove user id2 success.
 
+5/24/2019 19:31:55: Register - userName or password null
+
+5/24/2019 19:31:55: TradingSystem-open storeZara success
+
+5/24/2019 19:31:55: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:31:55: TradingSystem-add product to store0 -success
+5/24/2019 19:31:55: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:31:55: TradingSystem-add product to store0 -success
+5/24/2019 19:31:55: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:31:55: TradingSystem-add product to store0 -success
+5/24/2019 19:31:55: Register - userName or password null
+
+5/24/2019 19:31:55: TradingSystem-Assign owner 2 -success
+5/24/2019 19:31:55: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:31:55: User:signOut success - user
+
+5/24/2019 19:32:33: Register - userName or password null
+
+5/24/2019 19:32:33: TradingSystem-open storeZara success
+
+5/24/2019 19:32:33: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:32:33: TradingSystem-add product to store0 -success
+5/24/2019 19:32:33: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:32:33: TradingSystem-add product to store0 -success
+5/24/2019 19:32:33: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:32:33: TradingSystem-add product to store0 -success
+5/24/2019 19:32:33: Register - userName or password null
+
+5/24/2019 19:32:33: TradingSystem-Assign owner 2 -success
+5/24/2019 19:32:33: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:32:33: User:signOut success - user
+
+5/24/2019 19:41:45: Register - userName or password null
+
+5/24/2019 19:41:45: TradingSystem-open storeZara success
+
+5/24/2019 19:41:45: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:41:45: TradingSystem-add product to store0 -success
+5/24/2019 19:41:45: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:41:45: TradingSystem-add product to store0 -success
+5/24/2019 19:41:45: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:41:45: TradingSystem-add product to store0 -success
+5/24/2019 19:41:45: Register - userName or password null
+
+5/24/2019 19:41:45: TradingSystem-Assign owner 2 -success
+5/24/2019 19:41:45: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:41:45: User:signOut success - user
+
+5/24/2019 19:42:52: Register - userName or password null
+
+5/24/2019 19:42:57: TradingSystem-open storeZara success
+
+5/24/2019 19:42:57: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:42:57: TradingSystem-add product to store0 -success
+5/24/2019 19:42:57: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:42:57: TradingSystem-add product to store0 -success
+5/24/2019 19:42:57: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:42:57: TradingSystem-add product to store0 -success
+5/24/2019 19:42:57: Register - userName or password null
+
+5/24/2019 19:42:57: TradingSystem-Assign owner 2 -success
+5/24/2019 19:42:57: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:42:57: User:signOut success - user
+
+5/24/2019 19:43:26: User:signOut success - user
+
+5/24/2019 19:43:27: TradingSystem - Remove user id3 success.
+
+5/24/2019 19:43:39: User:signOut success - maor
+
+5/24/2019 19:43:54: TradingSystem - Remove user id5 success.
+
+5/24/2019 19:43:54: User:signOut success - maor
+
+5/24/2019 19:44:39: Register - userName or password null
+
+5/24/2019 19:44:39: TradingSystem-open storeZara success
+
+5/24/2019 19:44:39: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:44:39: TradingSystem-add product to store0 -success
+5/24/2019 19:44:39: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:44:39: TradingSystem-add product to store0 -success
+5/24/2019 19:44:39: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:44:39: TradingSystem-add product to store0 -success
+5/24/2019 19:44:39: Register - userName or password null
+
+5/24/2019 19:44:39: TradingSystem-Assign owner 2 -success
+5/24/2019 19:44:39: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:44:39: User:signOut success - user
+
+5/24/2019 19:44:42: User:signOut failed - user maor didn't sign in
+
+5/24/2019 19:45:04: TradingSystem - Remove user id3 success.
+
+5/24/2019 19:45:21: Register - userName or password null
+
+5/24/2019 19:45:21: TradingSystem-open storeZara success
+
+5/24/2019 19:45:21: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:45:21: TradingSystem-add product to store0 -success
+5/24/2019 19:45:21: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:45:21: TradingSystem-add product to store0 -success
+5/24/2019 19:45:21: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:45:21: TradingSystem-add product to store0 -success
+5/24/2019 19:45:21: Register - userName or password null
+
+5/24/2019 19:45:21: TradingSystem-Assign owner 2 -success
+5/24/2019 19:45:21: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:45:21: User:signOut success - user
+
+5/24/2019 19:46:07: Register - userName or password null
+
+5/24/2019 19:46:07: TradingSystem-open storeZara success
+
+5/24/2019 19:46:07: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:46:07: TradingSystem-add product to store0 -success
+5/24/2019 19:46:07: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:46:07: TradingSystem-add product to store0 -success
+5/24/2019 19:46:07: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:46:07: TradingSystem-add product to store0 -success
+5/24/2019 19:46:07: Register - userName or password null
+
+5/24/2019 19:46:07: TradingSystem-Assign owner 2 -success
+5/24/2019 19:46:07: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:46:07: User:signOut success - user
+
+5/24/2019 19:46:53: Register - userName or password null
+
+5/24/2019 19:46:53: TradingSystem-open storeZara success
+
+5/24/2019 19:46:53: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:46:53: TradingSystem-add product to store0 -success
+5/24/2019 19:46:53: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:46:53: TradingSystem-add product to store0 -success
+5/24/2019 19:46:53: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:46:53: TradingSystem-add product to store0 -success
+5/24/2019 19:46:53: Register - userName or password null
+
+5/24/2019 19:46:53: TradingSystem-Assign owner 2 -success
+5/24/2019 19:46:53: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:46:53: User:signOut success - user
+
+5/24/2019 19:47:26: Register - userName or password null
+
+5/24/2019 19:47:26: TradingSystem-open storeZara success
+
+5/24/2019 19:47:26: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:47:26: TradingSystem-add product to store0 -success
+5/24/2019 19:47:26: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:47:26: TradingSystem-add product to store0 -success
+5/24/2019 19:47:26: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:47:26: TradingSystem-add product to store0 -success
+5/24/2019 19:47:26: Register - userName or password null
+
+5/24/2019 19:47:26: TradingSystem-Assign owner 2 -success
+5/24/2019 19:47:26: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:47:26: User:signOut success - user
+
+5/24/2019 19:47:28: User:signOut failed - user maor didn't sign in
+
+5/24/2019 19:48:44: Register - userName or password null
+
+5/24/2019 19:48:44: TradingSystem-open storeZara success
+
+5/24/2019 19:48:44: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:48:44: TradingSystem-add product to store0 -success
+5/24/2019 19:48:44: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:48:44: TradingSystem-add product to store0 -success
+5/24/2019 19:48:44: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:48:44: TradingSystem-add product to store0 -success
+5/24/2019 19:48:44: Register - userName or password null
+
+5/24/2019 19:48:44: TradingSystem-Assign owner 2 -success
+5/24/2019 19:48:44: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:48:44: User:signOut success - user
+
+5/24/2019 19:48:48: User:signOut failed - user maor didn't sign in
+
+5/24/2019 19:49:47: Register - userName or password null
+
+5/24/2019 19:49:47: TradingSystem-open storeZara success
+
+5/24/2019 19:49:47: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:49:47: TradingSystem-add product to store0 -success
+5/24/2019 19:49:47: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:49:47: TradingSystem-add product to store0 -success
+5/24/2019 19:49:47: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:49:47: TradingSystem-add product to store0 -success
+5/24/2019 19:49:47: Register - userName or password null
+
+5/24/2019 19:49:47: TradingSystem-Assign owner 2 -success
+5/24/2019 19:49:47: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:49:47: User:signOut success - user
+
+5/24/2019 19:49:50: User:signOut failed - user maor didn't sign in
+

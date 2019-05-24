@@ -142,13 +142,26 @@
 
         var Login = function (user) {
             connection.server.login(user, $.connection.hub.id);
-            window.location.href = baseUrl + "/";
         }
 
 
         var Logout = function () {
             var user = getCookie("LoggedUser");
             connection.server.logout(user);
+            jQuery.ajax({
+                async: 'false',
+                type: "GET",
+                url: baseUrl + "/api/user/LogOutUser?Username=" + user,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "false")
+                        alert("fail to logout");
+                },
+                error: function (response) {
+                    console.log("Error in LogOutUser");
+                }
+            });
             cleanCookies();
         }
 
@@ -162,11 +175,11 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        //if (response != "success")
+                       // if (response != "success")
                         //alert("Error in removeGuestUser");
                     },
                     error: function (response) {
-                        //console.log("Error in removeGuestUser");
+                       // console.log("Error in removeGuestUser");
                     }
                 });
             }
