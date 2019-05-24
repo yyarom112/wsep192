@@ -538,3 +538,69 @@
 
 14/05/2019 19:31:51: TradingSystem - Remove user id5 success.
 
+5/24/2019 17:58:03: Register - userName or password null
+
+5/24/2019 17:58:03: TradingSystem-open storeZara success
+
+5/24/2019 17:58:03: TradingSystem-create new product in store0 -success
+
+5/24/2019 17:58:03: TradingSystem-add product to store0 -success
+5/24/2019 17:58:03: TradingSystem-create new product in store0 -success
+
+5/24/2019 17:58:03: TradingSystem-add product to store0 -success
+5/24/2019 17:58:03: TradingSystem-create new product in store0 -success
+
+5/24/2019 17:58:03: TradingSystem-add product to store0 -success
+5/24/2019 17:58:03: Register - userName or password null
+
+5/24/2019 17:58:03: TradingSystem-Assign owner 2 -success
+5/24/2019 17:58:03: Store-Remove owner Succeeded- The user 2
+5/24/2019 17:58:03: User:signOut success - user
+
+5/24/2019 17:58:08: User:signOut failed - user maor didn't sign in
+
+5/24/2019 17:58:19: Add to cart success. /n
+5/24/2019 17:58:25: Successfully closed the basket.
+
+5/24/2019 17:58:33: Products have declined / returned to store stock successfully.
+
+5/24/2019 17:58:33: Making the cart purchase succeeded
+
+5/24/2019 17:59:02: User:signOut success - maor
+
+5/24/2019 17:59:02: TradingSystem - Remove user id3 success.
+
+5/24/2019 17:59:29: Add to cart success. /n
+5/24/2019 17:59:32: Successfully closed the basket.
+
+5/24/2019 17:59:39: Products have declined / returned to store stock successfully.
+
+5/24/2019 17:59:39: Making the cart purchase succeeded
+
+5/24/2019 17:59:52: TradingSystem - Remove user id4 success.
+
+5/24/2019 17:59:52: User:signOut success - user
+
+5/24/2019 18:00:07: User:signOut success - maor
+
+5/24/2019 18:00:07: TradingSystem - Remove user id5 success.
+
+5/24/2019 18:00:23: TradingSystem - Remove user id6 success.
+
+5/24/2019 18:00:23: User:signOut success - user
+
+5/24/2019 18:00:35: Add to cart success. /n
+5/24/2019 18:00:38: Successfully closed the basket.
+
+5/24/2019 18:00:47: Products have declined / returned to store stock successfully.
+
+5/24/2019 18:00:47: Making the cart purchase succeeded
+
+5/24/2019 18:00:50: User:signOut success - maor
+
+5/24/2019 18:00:50: TradingSystem - Remove user id7 success.
+
+5/24/2019 18:01:00: User:signOut success - user
+
+5/24/2019 18:01:00: TradingSystem - Remove user id8 success.
+

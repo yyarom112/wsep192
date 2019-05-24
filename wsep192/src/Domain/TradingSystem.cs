@@ -644,13 +644,6 @@ namespace src.Domain
             else
                 return LogicalConnections.or;
         }
-        public bool addComplexPurchasePolicy(List<Object> purchesData, int storeID, int userID)
-        {
-            if (this.Users.ContainsKey(userID))
-                return Users[userID].addComplexPurchasePolicy(purchesData, storeID) != null;
-            LogManager.Instance.WriteToLog("Trading System- addComplexPurchasePolicy- User does not exist\n");
-            return false;
-        }
 
         public bool isLoggedIn(int userId)
         {

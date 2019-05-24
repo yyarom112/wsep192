@@ -300,15 +300,7 @@ namespace src.Domain
             return null;
         }
 
-        public virtual PurchasePolicy addComplexPurchasePolicy(List<Object> purchesData, int storeID)
-        {
 
-            Role role;
-            if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 2)) != null)
-                return role.addComplexPurchasePolicy(purchesData);
-            return null;
-
-        }
 
         internal Role searchRoleByStoreIDWithValidatePermmision(int storeID, int premmision)
         {
