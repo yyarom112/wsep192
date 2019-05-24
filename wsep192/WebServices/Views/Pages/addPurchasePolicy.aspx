@@ -33,7 +33,7 @@
                             <form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate"></form>
 
                         </div>
-                        <div class="text-center"><a class="button button-paypal" id="addPurchaseButton">Add Purchase Policy</a></div>
+                        <div class="text-center"><a class="button button-paypal" style="visibility:hidden" id="addPurchaseButton">Add Purchase Policy</a></div>
 
 
                     </div>
@@ -96,6 +96,8 @@
 
                     $('#policyDiv').append(details);
                     document.getElementById("policyDiv").style.visibility = "visible";
+                    document.getElementById("addPurchaseButton").style.visibility = "visible";
+
                 }
                 else
                     alert("User isn't logged in");
@@ -149,9 +151,15 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            alert(response);
+                            if (response == 'success') {
+                                alert("Policy has created successfully");
+                                window.location.href = baseUrl + "/";
+                            }
+                            else
+                                alert(response);
                         },
                         error: function (response) {
+                            alert('Error in addPurchasePolicy');
                         }
                     });
                 }
