@@ -341,10 +341,5 @@ namespace src.Domain
         {
             return this.state == state.signedIn;
         }
-
-        internal void addMessage(string message)
-        {
-            this.messages.Add(message);
-        }
     }
 }
