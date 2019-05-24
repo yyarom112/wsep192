@@ -93,6 +93,11 @@ namespace WebServices.Controllers
             return View();
         }
 
+        public ActionResult AddPurchasePolicy()
+        {
+            return View();
+        }
+
     }
 
 }

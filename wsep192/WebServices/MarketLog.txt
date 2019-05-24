@@ -574,3 +574,89 @@
 
 15/05/2019 17:07:36: TradingSystem - Remove user id4 success.
 
+15/05/2019 17:40:58: Register - userName or password null
+
+15/05/2019 17:40:58: TradingSystem-open storeZara success
+
+15/05/2019 17:40:58: TradingSystem-create new product in store0 -success
+
+15/05/2019 17:40:58: TradingSystem-add product to store0 -success
+15/05/2019 17:40:58: TradingSystem-create new product in store0 -success
+
+15/05/2019 17:40:58: TradingSystem-add product to store0 -success
+15/05/2019 17:40:58: TradingSystem-create new product in store0 -success
+
+15/05/2019 17:40:58: TradingSystem-add product to store0 -success
+15/05/2019 18:08:07: Register - userName or password null
+
+15/05/2019 18:08:08: TradingSystem-open storeZara success
+
+15/05/2019 18:08:08: TradingSystem-create new product in store0 -success
+
+15/05/2019 18:08:08: TradingSystem-add product to store0 -success
+15/05/2019 18:08:08: TradingSystem-create new product in store0 -success
+
+15/05/2019 18:08:08: TradingSystem-add product to store0 -success
+15/05/2019 18:08:08: TradingSystem-create new product in store0 -success
+
+15/05/2019 18:08:08: TradingSystem-add product to store0 -success
+15/05/2019 18:44:38: Register - userName or password null
+
+15/05/2019 18:44:38: TradingSystem-open storeZara success
+
+15/05/2019 18:44:38: TradingSystem-create new product in store0 -success
+
+15/05/2019 18:44:38: TradingSystem-add product to store0 -success
+15/05/2019 18:44:38: TradingSystem-create new product in store0 -success
+
+15/05/2019 18:44:38: TradingSystem-add product to store0 -success
+15/05/2019 18:44:38: TradingSystem-create new product in store0 -success
+
+15/05/2019 18:44:38: TradingSystem-add product to store0 -success
+15/05/2019 19:24:51: Register - userName or password null
+
+15/05/2019 19:24:51: TradingSystem-open storeZara success
+
+15/05/2019 19:24:51: TradingSystem-create new product in store0 -success
+
+15/05/2019 19:24:51: TradingSystem-add product to store0 -success
+15/05/2019 19:24:52: TradingSystem-create new product in store0 -success
+
+15/05/2019 19:24:52: TradingSystem-add product to store0 -success
+15/05/2019 19:24:52: TradingSystem-create new product in store0 -success
+
+15/05/2019 19:24:52: TradingSystem-add product to store0 -success
+15/05/2019 19:48:32: Register - userName or password null
+
+15/05/2019 19:48:32: TradingSystem-open storeZara success
+
+15/05/2019 19:48:32: TradingSystem-create new product in store0 -success
+
+15/05/2019 19:48:32: TradingSystem-add product to store0 -success
+15/05/2019 19:48:32: TradingSystem-create new product in store0 -success
+
+15/05/2019 19:48:32: TradingSystem-add product to store0 -success
+15/05/2019 19:48:32: TradingSystem-create new product in store0 -success
+
+15/05/2019 19:48:32: TradingSystem-add product to store0 -success
+15/05/2019 19:50:30: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+15/05/2019 19:51:54: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+15/05/2019 19:53:05: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+15/05/2019 19:54:22: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+15/05/2019 19:56:28: Register - userName or password null
+
+15/05/2019 19:56:29: TradingSystem-open storeZara success
+
+15/05/2019 19:56:29: TradingSystem-create new product in store0 -success
+
+15/05/2019 19:56:29: TradingSystem-add product to store0 -success
+15/05/2019 19:56:29: TradingSystem-create new product in store0 -success
+
+15/05/2019 19:56:29: TradingSystem-add product to store0 -success
+15/05/2019 19:56:29: TradingSystem-create new product in store0 -success
+
+15/05/2019 19:56:29: TradingSystem-add product to store0 -success
