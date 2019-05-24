@@ -59,6 +59,8 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                     aria-expanded="false">Store Actions</a>
                                 <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" id ="addPurchasePolicy" href="/AddPurchasePolicy">Add Purchase Policy</a></li>
+                                    <li class="nav-item"><a class="nav-link" id ="addDiscountPolicy" href="/AddDiscountPolicy">Add Discount Policy</a></li>
                                     <li class="nav-item"><a class="nav-link" href="/OpenStore">Open Store</a></li>
                                     <li class="nav-item"><a class="nav-link" id ="createInStore" href="/CreateProductInStore">Create New Product In Store</a></li>
                                     <li class="nav-item"><a class="nav-link" id ="addInStore" href="/AddProductInStore">Add Product In Store</a></li>
@@ -176,11 +178,11 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        if (response != "success")
-                            alert("Error in removeGuestUser");
+                        // if (response != "success")
+                        //   alert("Error in removeGuestUser");
                     },
                     error: function (response) {
-                        console.log("Error in removeGuestUser");
+                        //console.log("Error in removeGuestUser");
                     }
                 });
             }
@@ -251,6 +253,10 @@
                         }
                         else if (response[2]) { //Manager
                             document.getElementById('storeActions').style.visibility = "visible";
+                            if (!response[3]) //AddDiscountPolicy
+                                document.getElementById('addDiscountPolicy').remove();
+                            if (!response[4]) //AddPurchasePolicy
+                                document.getElementById('addPurchasePolicy').remove();
                             if (!response[5]) //CreateProductInStore
                                 document.getElementById('createInStore').remove();
                             if (!response[6]) //AddProductInStore
