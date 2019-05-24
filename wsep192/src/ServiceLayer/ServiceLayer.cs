@@ -16,6 +16,7 @@ namespace src.ServiceLayer
         private Dictionary<String, int> stores;
         private Dictionary<String, int> permissions;
         private Dictionary<string, List<string>> storesStackholders = new Dictionary<string, List<string>>();
+        private NotificationsManager manager = new NotificationsManager();
         private int storeCounter;
         private int userCounter;
 
@@ -28,7 +29,7 @@ namespace src.ServiceLayer
             permissions = new Dictionary<String, int>();
             storeCounter = 0;
             userCounter = 0;
-            NotificationsManager.init();
+            manager.init();
             addPermissions();
             init("admin", "admin");
             setUp();
@@ -68,6 +69,7 @@ namespace src.ServiceLayer
             bool flag = true;
             string user = initUser();
             flag = flag & register("user", "user", user);
+            flag = flag & signIn("user", "user");
             string[] stores = { "Zara", "Bershka", "Forever21", "Castro", "Renuar", "AmericanEagle" };
             string[] details = { "New", "On Sale", "Last chance", "Hot staff" };
             string[] cats = { "Tops", "Jeans", "Shoes", "Skirts" };
@@ -85,6 +87,14 @@ namespace src.ServiceLayer
                         flag = flag & addProductsInStore(products, stores[i], "user");
                 }
             }
+
+            /**********/
+            string user2 = initUser();
+            flag = flag & register("maor", "1", user2);
+            flag = flag & assignOwner("user", "maor", "Zara");
+            // flag = flag & assignOwner("user", "maor", "Bershka");
+            flag = flag & removeOwner("maor", "Zara", "user");
+            flag = flag & signOut("user");
             return flag;
 
         }
@@ -269,7 +279,7 @@ namespace src.ServiceLayer
                 List<String> stores = system.getOrderStoresByUser(users[user]);
                 foreach (String store in stores)
                 {
-                    notifyAll(store, user + " successfully ordered.");
+                    notifyAll(store, user + " successfully orderd.");
                 }
             }
             return output;
@@ -371,10 +381,10 @@ namespace src.ServiceLayer
             {
                 storesStackholders[store].Remove(ownerToRemove);
                 String message = "You have succesfully removed from being an owner in " + store;
-                if (system.isLoggedIn(users[user]))
-                    notify(user, message);
+                if (system.isLoggedIn(users[ownerToRemove]))
+                    notify(ownerToRemove, message);
                 else
-                    system.addMessageToUser(users[user], message);
+                    system.addMessageToUser(users[ownerToRemove], message);
             }
             return res;
         }
@@ -437,26 +447,13 @@ namespace src.ServiceLayer
         }
 
 
-        public bool subscribe()
-        {
-            return false;
-        }
 
-        public bool unsubscribe()
-        {
-            return false;
-        }
-
-        public bool addNotificationToUser()
-        {
-            return false;
-        }
 
         public bool notify(string user, string message)
         {
             if (system.isLoggedIn(users[user]))
             {
-
+                manager.notify(user, message);
             }
             return false;
         }
@@ -465,7 +462,10 @@ namespace src.ServiceLayer
         {
             foreach (string user in storesStackholders[store])
             {
-                notify(user, message);
+                if (system.isLoggedIn(users[user]))
+                    notify(user, message);
+                else
+                    system.addMessageToUser(users[user], message);
             }
 
 

@@ -10,13 +10,11 @@ namespace WebServices.Controllers
 {
     public class WebsocketsController : ApiController
     {
-        private Dictionary<int, WebSocket> webSockets = new Dictionary<int, WebSocket>(); 
+        private static Dictionary<string, string> connections = new Dictionary<string, string>();
+
+        public static Dictionary<string, string> Connections { get => connections; }
 
 
-        
-        public string Notify()
-        {
-            return "Hello!";
-        }
+
     }
 }

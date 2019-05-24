@@ -41,8 +41,8 @@
                 var user = getCookie("LoggedUser");
                 if (user == null) {
                     username = $("#username").val();
+                    Login(username);
                     pass = $("#password").val();
-
                     jQuery.ajax({
                         type: "GET",
                         url: baseUrl + "/api/user/LoginUser?username=" + username + "&password=" + pass,
@@ -52,9 +52,12 @@
                             if (response == "User successfuly logged in") {
                                 setCookie("LoggedUser", username);
                                 alert(response);
-                                Login(username);  
+                                window.location.href = baseUrl + "/";
+
+                                
                             }
                             else {
+                                Logout(username);
                                 alert(response);
                             }
                         },

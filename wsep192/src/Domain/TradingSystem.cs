@@ -660,7 +660,7 @@ namespace src.Domain
         }
         public void addMessageToUser(int userID,String message)
         {
-            users[userID].getMessages().Add(message);
+            users[userID].addMessage(message);
         }
         public List<String> getMessagesByUser(int userID)
         {
