@@ -129,20 +129,20 @@
     
     <script type="text/javascript">
         // Reference the auto-generated proxy for the hub.
-        
-            
-            
-            var connection = $.connection.chatHub;
-            // Start the connection.
-            connection.client.addNewMessageToPage = function (name, message) {
-                // Add the message to the page.
-                alert(message);
-            };
+
+
+
+        var connection = $.connection.chatHub;
+        // Start the connection.
+        connection.client.addNewMessageToPage = function (name, message) {
+            // Add the message to the page.
+            alert(message);
+        };
         $.connection.hub.start();
-        
+
         var Login = function (user) {
             connection.server.login(user, $.connection.hub.id);
-            
+
         }
 
         var Logout = function () {
@@ -163,7 +163,7 @@
                 }
             });
 
-            cleanCookies();   
+            cleanCookies();
         }
 
 
@@ -315,7 +315,7 @@
         }
 
 
- 
+
     </script>
     
 </body>

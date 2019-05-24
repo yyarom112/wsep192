@@ -39,7 +39,7 @@ namespace WebService.Controllers
         public string showCart(String Store, String User)
         {
             List<KeyValuePair<String, int>> cart = service.showCart(Store, User);
-            if (cart==null)
+            if (cart == null)
                 return "null";
             else
                 return listToString(cart);
@@ -59,7 +59,7 @@ namespace WebService.Controllers
         public string RemoveFromCart(String list, String store, String user)
         {
             List<string> l = toList(list);
-            bool res = service.removeProductsFromCart(l,store, user);
+            bool res = service.removeProductsFromCart(l, store, user);
             switch (res)
             {
                 case true:
@@ -68,16 +68,16 @@ namespace WebService.Controllers
                     return "false";
             }
             return "Server error: removeFromCart";
-            
+
         }
 
         [Route("api/user/AddtoCart")]
         [HttpGet]
         public string AddtoCart(String list, String store, String user)
         {
-            List<KeyValuePair<string, int>> l=null;
-            if (list!=null)
-                l= toPairList(list);
+            List<KeyValuePair<string, int>> l = null;
+            if (list != null)
+                l = toPairList(list);
             bool res = service.addProductsToCart(l, store, user);
             switch (res)
             {
@@ -93,19 +93,19 @@ namespace WebService.Controllers
         private List<KeyValuePair<string, int>> toPairList(string list)
         {
             var products = list.Split(',');
-            string key="";
-            List <KeyValuePair<string, int>> output = new List<KeyValuePair<string, int>>();
-            for (int i = 0; i < products.Length - 1 ; i++)
-            { 
+            string key = "";
+            List<KeyValuePair<string, int>> output = new List<KeyValuePair<string, int>>();
+            for (int i = 0; i < products.Length - 1; i++)
+            {
                 if (i % 2 == 0)
                 {
-                    key = products[i]; 
+                    key = products[i];
                 }
                 else
                 {
                     output.Add(new KeyValuePair<string, int>(key, Int32.Parse(products[i])));
                 }
-                
+
             }
             return output;
         }
@@ -124,7 +124,7 @@ namespace WebService.Controllers
         [HttpGet]
         public string EditCart(String product, string quantity, String store, String user)
         {
-            bool res = service.editProductQuantityInCart(product,Int32.Parse(quantity),store,user);
+            bool res = service.editProductQuantityInCart(product, Int32.Parse(quantity), store, user);
             switch (res)
             {
                 case true:
@@ -288,10 +288,11 @@ namespace WebService.Controllers
         public string checkoutBasket(String address, String username)
         {
             int addressNum;
-            try {
+            try
+            {
                 addressNum = Int32.Parse(address);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 addressNum = -1;
             }
@@ -311,18 +312,18 @@ namespace WebService.Controllers
                     break;
             }
             double ans = service.basketCheckout(address, username);
-            return ans+"";
+            return ans + "";
         }
 
         [Route("api/user/payForBasket")]
         [HttpGet]
-        public string payForBasket(String cardNum, String expiredDate,String username)
+        public string payForBasket(String cardNum, String expiredDate, String username)
         {
             List<string[]> res;
             int day, month, year;
             long cardNumber;
             DateTime dateTime;
-            String []date = expiredDate.Split('/');
+            String[] date = expiredDate.Split('/');
             try
             {
                 day = Int32.Parse(date[0]);
@@ -331,11 +332,11 @@ namespace WebService.Controllers
                 cardNumber = Int32.Parse(cardNum);
                 dateTime = new DateTime(year, month, day);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return "Date or card number are wrong";
             }
-            
+
             res = service.payForBasket(cardNumber, dateTime, username);
             return productsToString(res);
         }
@@ -361,7 +362,7 @@ namespace WebService.Controllers
             return res;
         }
 
-        
+
 
         [Route("api/user/getVisibility")]
         [HttpGet]
@@ -375,7 +376,7 @@ namespace WebService.Controllers
         public string removeGuestUser(String guestID)
         {
 
-            bool ans = service.removeUser(guestID,"admin");
+            bool ans = service.removeUser(guestID, "admin");
             switch (ans)
             {
                 case true:
@@ -391,6 +392,6 @@ namespace WebService.Controllers
 
 
     }
-    
+
 
 }

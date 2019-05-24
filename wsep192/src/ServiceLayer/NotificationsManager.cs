@@ -16,10 +16,10 @@ namespace src.ServiceLayer
             started = true;
         }
 
-        public void notify(string userName,string message)
+        public void notify(string userName, string message)
         {
-            while (!started);
-            hubProxy.Invoke("Send", userName,message);
+            while (!started) ;
+            hubProxy.Invoke("Send", userName, message);
         }
 
     }
