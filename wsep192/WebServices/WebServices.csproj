@@ -275,13 +275,6 @@
     <Compile Include="Views\Pages\cart.aspx.designer.cs">
       <DependentUpon>cart.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\addPurchasePolicy.aspx.cs">
-      <DependentUpon>addPurchasePolicy.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Pages\addPurchasePolicy.aspx.designer.cs">
-      <DependentUpon>addPurchasePolicy.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Pages\shoppingCart.aspx.cs">
       <DependentUpon>shoppingCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1210,7 +1203,6 @@
     <Content Include="Views\Pages\index.aspx" />
     <Content Include="Views\Pages\loginUser.aspx" />
     <Content Include="Views\Pages\cart.aspx" />
-    <Content Include="Views\Pages\addPurchasePolicy.aspx" />
     <Content Include="Views\Pages\shoppingCart.aspx" />
     <Content Include="Views\Pages\registerUser.aspx" />
     <Content Include="Views\Pages\removeProductInStore.aspx" />
