@@ -985,3 +985,98 @@
 
 5/24/2019 19:49:50: User:signOut failed - user maor didn't sign in
 
+5/24/2019 19:53:36: Register - userName or password null
+
+5/24/2019 19:53:36: TradingSystem-open storeZara success
+
+5/24/2019 19:53:36: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:53:36: TradingSystem-add product to store0 -success
+5/24/2019 19:53:36: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:53:36: TradingSystem-add product to store0 -success
+5/24/2019 19:53:36: TradingSystem-create new product in store0 -success
+
+5/24/2019 19:53:36: TradingSystem-add product to store0 -success
+5/24/2019 19:53:36: Register - userName or password null
+
+5/24/2019 19:53:36: TradingSystem-Assign owner 2 -success
+5/24/2019 19:53:36: Store-Remove owner Succeeded- The user 2
+5/24/2019 19:53:36: User:signOut success - user
+
+5/24/2019 19:53:39: User:signOut failed - user maor didn't sign in
+
+5/24/2019 19:53:58: User:signOut success - maor
+
+5/24/2019 19:53:58: TradingSystem - Remove user id3 success.
+
+5/24/2019 19:54:07: TradingSystem - Remove user id4 success.
+
+5/24/2019 19:54:23: Add to cart success. /n
+5/24/2019 19:54:27: Successfully closed the basket.
+
+5/24/2019 19:54:35: Products have declined / returned to store stock successfully.
+
+5/24/2019 19:54:35: Making the cart purchase succeeded
+
+5/24/2019 19:54:45: User:signOut success - maor
+
+5/24/2019 19:54:45: TradingSystem - Remove user id5 success.
+
+5/24/2019 19:55:09: User:signOut success - user
+
+5/24/2019 19:55:09: TradingSystem - Remove user id6 success.
+
+5/25/2019 10:53:54: Register - userName or password null
+
+5/25/2019 10:53:59: Register - userName or password null
+
+5/25/2019 10:54:01: TradingSystem-open storeZara success
+
+5/25/2019 10:54:03: TradingSystem-create new product in store0 -success
+
+5/25/2019 10:54:05: TradingSystem-add product to store0 -success
+5/25/2019 10:54:06: Store - assign manger succeed
+5/25/2019 10:54:08: User:signOut success - Aviv
+
+5/25/2019 10:56:03: Register - userName or password null
+
+5/25/2019 10:56:03: Register - userName or password null
+
+5/25/2019 10:56:03: TradingSystem-open storeZara success
+
+5/25/2019 10:56:03: TradingSystem-create new product in store0 -success
+
+5/25/2019 10:56:03: TradingSystem-add product to store0 -success
+5/25/2019 10:56:03: Store - assign manger succeed
+5/25/2019 10:56:03: User:signOut success - Aviv
+
+5/25/2019 11:01:27: Register - userName or password null
+
+5/25/2019 11:01:27: TradingSystem-open storeZara success
+
+5/25/2019 11:01:27: TradingSystem-create new product in store0 -success
+
+5/25/2019 11:01:27: TradingSystem-add product to store0 -success
+5/25/2019 11:01:27: TradingSystem-create new product in store0 -success
+
+5/25/2019 11:01:27: TradingSystem-add product to store0 -success
+5/25/2019 11:01:27: TradingSystem-create new product in store0 -success
+
+5/25/2019 11:01:27: TradingSystem-add product to store0 -success
+5/25/2019 11:01:27: Register - userName or password null
+
+5/25/2019 11:01:27: TradingSystem-Assign owner 1 -success
+5/25/2019 11:01:27: Store-Remove owner Succeeded- The user 1
+5/25/2019 11:01:27: User:signOut success - user
+
+5/25/2019 11:01:27: Register - userName or password null
+
+5/25/2019 11:01:27: Register - userName or password null
+
+5/25/2019 11:01:27: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+5/25/2019 11:01:27: TradingSystem-create new product in store fail- the store does not exists
+
+5/25/2019 11:01:27: User:signOut success - Aviv
+

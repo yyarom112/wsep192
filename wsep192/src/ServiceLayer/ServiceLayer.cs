@@ -1,6 +1,8 @@
-﻿using src.Domain;
+﻿using Newtonsoft.Json;
+using src.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,14 +33,22 @@ namespace src.ServiceLayer
             userCounter = 0;
             manager.init();
             addPermissions();
-            init("admin", "admin");
-            setUp();
+            //setUp();
 
         }
+
+        public static bool fileSetUp()
+        {
+            return SystemState.fileSetUp();
+        }
+
+
         public static ServiceLayer getInstance()
         {
-            if (instance == null)
-                instance = new ServiceLayer();
+            if (instance == null) { 
+            instance = new ServiceLayer();
+            fileSetUp();
+            }
             return instance;
         }
         public void shutDown()
@@ -446,13 +456,13 @@ namespace src.ServiceLayer
             return sb.ToString();
         }
 
-        public bool addComplexPurchasePolicy(String purchesData, String store, String user)
+        public bool addComplexPurchasePolicy(String purchaesData, String store, String user)
         {
             try
             {
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
                     return false;
-                return this.system.addComplexPurchasePolicy(purchesData, this.stores[store], this.users[user]);
+                return this.system.addComplexPurchasePolicy(purchaesData, this.stores[store], this.users[user]);
             }
             catch (Exception e)
             {

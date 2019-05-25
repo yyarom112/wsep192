@@ -94,6 +94,7 @@
     <Compile Include="Domain\Store.cs" />
     <Compile Include="Domain\TradingSystem.cs" />
     <Compile Include="ServiceLayer\NotificationsManager.cs" />
+    <Compile Include="ServiceLayer\SystemState.cs" />
     <Compile Include="TreeNodeImpl.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="FinancialSystemImpl.cs" />
