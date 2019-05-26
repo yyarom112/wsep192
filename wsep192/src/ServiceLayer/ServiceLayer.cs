@@ -289,7 +289,7 @@ namespace src.ServiceLayer
                 List<String> stores = system.getOrderStoresByUser(users[user]);
                 foreach (String store in stores)
                 {
-                    notifyAll(store, user + " successfully orderd.");
+                    notifyAll(store, user + " successfully ordered.");
                 }
             }
             return output;
@@ -372,7 +372,7 @@ namespace src.ServiceLayer
             if (flag)
             {
                 storesStackholders[store].Add(user);
-                String message = "You have succesfully assigned as an owner in " + store;
+                String message = "You have successfully assigned as an owner in " + store;
                 if (system.isLoggedIn(users[user]))
                     notify(user, message);
                 else
@@ -390,7 +390,7 @@ namespace src.ServiceLayer
             if (res)
             {
                 storesStackholders[store].Remove(ownerToRemove);
-                String message = "You have succesfully removed from being an owner in " + store;
+                String message = "You have successfully removed from being an owner in " + store;
                 if (system.isLoggedIn(users[ownerToRemove]))
                     notify(ownerToRemove, message);
                 else
