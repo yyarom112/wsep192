@@ -77,7 +77,7 @@
                                     <li class="nav-item"><a class="nav-link" id="assignManager" href="/AssignManager">Assign Manager</a></li>
                                     <li class="nav-item"><a class="nav-link" id="removeManager" href="/RemoveManager">Remove Manager</a></li>
                                     <li class="nav-item"><a class="nav-link" id="assignOwner" href="/AssignOwner">Assign Owner</a></li>
-                                    <li class="nav-item"><a class="nav-link" id="removeOwner" href="/RemoveOwner">Remove Owner</a></li>
+                                    <!--<li class="nav-item"><a class="nav-link" id="removeOwner" href="/RemoveOwner">Remove Owner</a></li>-->
                                 </ul>
                             </li>
 
@@ -239,7 +239,7 @@
                                 document.getElementById('assignManager').remove();
                                 document.getElementById('removeManager').remove();
                                 document.getElementById('assignOwner').remove();
-                                document.getElementById('removeOwner').remove();
+                                //document.getElementById('removeOwner').remove();
                             }
                             document.getElementById('userActions').style.visibility = "visible";
                             $('#userActionMenu').append('<li class="nav-item"><a class="nav-link" href="/RemoveUser">Remove User</a></li>');
@@ -269,6 +269,8 @@
                             document.getElementById('addInStore').remove();
                             document.getElementById('editInStore').remove();
                             document.getElementById('removeInStore').remove();
+                            document.getElementById('addDiscountPolicy').remove();
+                            document.getElementById('addPurchasePolicy').remove();
                         }
 
                     },
