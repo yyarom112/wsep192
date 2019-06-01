@@ -50,7 +50,7 @@ namespace Acceptance_Tests
         {
             setUp();
             int ans = service.addConditionalDiscuntPolicy(productsInCart, "", "20", "40", "0", "0", ownerUser, "adidas");
-            //Assert.AreEqual(0, ans);
+            Assert.AreEqual(0, ans);
             service.shutDown();
         }
 
@@ -59,7 +59,7 @@ namespace Acceptance_Tests
         {
             setUp();
             int ans = service.addConditionalDiscuntPolicy(productsInCart, "", "20", "40", "0", "0", tmpUser, "adidas");
-            //Assert.AreEqual(-1, ans);
+            Assert.AreEqual(-1, ans);
             service.shutDown();
         }
     }

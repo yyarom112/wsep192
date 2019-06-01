@@ -37,7 +37,7 @@ namespace src.Domain
 
         public virtual int addConditionalDiscuntPolicy(List<String> products, String condition, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy duplicate, LogicalConnections logic)
         {
-            return 0;
+            return store.addConditionalDiscuntPolicy(discountId,products,condition,discountPrecentage,expiredDate,duplicate,logic);
         }
 
         public virtual int removeDiscountPolicy(int discountId)
