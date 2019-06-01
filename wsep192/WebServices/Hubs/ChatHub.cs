@@ -26,5 +26,15 @@ namespace WebServices
             Clients.Client(WebsocketsController.Connections[userName]).addNewMessageToPage(userName, message);
         }
 
+        public void Request(string userName, string message,string owner)
+        {
+            Clients.Client(WebsocketsController.Connections[userName]).addNewRequestToPage(userName, message,owner);
+        }
+
+        public void Result(string owner,string result)
+        {
+            Clients.Client(WebsocketsController.Connections[owner]).addNewRequestToPage(result);
+        }
+
     }
 }

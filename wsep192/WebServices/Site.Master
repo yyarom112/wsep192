@@ -138,6 +138,12 @@
             // Add the message to the page.
             alert(message);
         };
+        connection.client.addNewRequestToPage = function (name, message,owner) {
+            // Add the message to the page.
+            var res = alert(message);         //TODO::change it to yes/no
+            connection.server.result(owner, res);
+        };
+
         $.connection.hub.start();
 
         var Login = function (user) {

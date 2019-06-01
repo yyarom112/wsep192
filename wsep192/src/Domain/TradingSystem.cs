@@ -694,6 +694,11 @@ namespace src.Domain
         {
             users[userID].getMessages().Add(message);
         }
+        public void addRequestToUser(int userID, String message,int owner)
+        {
+            users[userID].getRequests().Add(message,owner);
+        }
+
         public List<String> getMessagesByUser(int userID)
         {
             return users[userID].getMessages();

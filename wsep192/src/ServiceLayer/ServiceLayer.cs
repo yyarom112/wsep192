@@ -17,6 +17,7 @@ namespace src.ServiceLayer
         private Dictionary<String, int> users;
         private Dictionary<String, int> stores;
         private Dictionary<String, int> permissions;
+        private Dictionary<string, List<bool>> requests;
         private Dictionary<string, List<string>> storesStackholders = new Dictionary<string, List<string>>();
         private NotificationsManager manager = new NotificationsManager();
         private int storeCounter;
@@ -33,6 +34,8 @@ namespace src.ServiceLayer
             userCounter = 0;
             manager.init();
             addPermissions();
+            requests = new Dictionary<string, List<bool>>();
+
             //setUp();
 
         }
@@ -45,9 +48,9 @@ namespace src.ServiceLayer
 
         public static ServiceLayer getInstance()
         {
-            if (instance == null) { 
-            instance = new ServiceLayer();
-            fileSetUp();
+            if (instance == null) {
+                instance = new ServiceLayer();
+                fileSetUp();
             }
             return instance;
         }
@@ -380,6 +383,23 @@ namespace src.ServiceLayer
             }
             return flag;
         }
+        //
+        public async bool assignOwnerRequest(String owner, String user, String store)
+        {
+            bool flag = true;
+            if (!users.ContainsKey(owner) || !users.ContainsKey(user) || !stores.ContainsKey(store))
+                return false;
+            String message = owner + "is requesting " + user + "to be assigned as owner in " + store;
+            requestAll(store, message, owner);
+            flag = await Result(message,store);
+            if (flag)
+                return assignOwner(owner, user, store);
+            return false;
+        }
+        private async bool Result(String message,String store){
+            return requests[message].Count == storesStackholders[store].Count;
+        }
+
 
         //req4.4
         public bool removeOwner(String ownerToRemove, String store, String user)
@@ -535,6 +555,29 @@ namespace src.ServiceLayer
 
 
 
+        }
+        public void requestAll(string store, string message,string owner)
+        {
+
+            foreach (string user in storesStackholders[store])
+            {
+                if (owner == user)
+                    continue;
+                if (system.isLoggedIn(users[user]))
+                    request(user, message,owner);
+                else
+                    system.addRequestToUser(users[user], message,users[owner]);
+            }
+
+        }
+
+        public bool request(string user, string message,string owner)
+        {
+            if (system.isLoggedIn(users[user]))
+            {
+                manager.request(user, message,owner);
+            }
+            return false;
         }
     }
 

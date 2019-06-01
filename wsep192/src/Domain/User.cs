@@ -21,6 +21,7 @@ namespace src.Domain
         private Dictionary<int, Role> roles;
         private List<String> orderStores;
         private List<String> messages;
+        private Dictionary<String,int> requests;
         private state signedIn;
         private state visitor;
 
@@ -37,6 +38,7 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
             this.orderStores = new List<String>();
             this.messages = new List<String>();
+            this.requests = new Dictionary<String, int>();
         }
 
         public int Id { get => id; set => id = value; }
@@ -268,6 +270,15 @@ namespace src.Domain
         {
             this.messages = new List<String>();
         }
+        public Dictionary<String,int> getRequests()
+        {
+            return this.requests;
+        }
+        public void deleteRequests()
+        {
+            this.requests = new Dictionary<String, int>();
+        }
+
 
         public bool assignOwner(int storeID, User assigned)
         {
