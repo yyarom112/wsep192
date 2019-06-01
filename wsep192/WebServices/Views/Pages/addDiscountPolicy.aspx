@@ -52,6 +52,7 @@
 
                     if (type == 0) {
                         details = '<form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate">'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="product" placeholder="Product name"><span class="placeholder" data-placeholder="Product name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="discount" placeholder="Discount percentage"><span class="placeholder" data-placeholder="Discount percentage"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="expiredDate" placeholder="Num of Days to be expired"><span class="placeholder" data-placeholder="Num of Days to be expired"></span> </div> </div>'
