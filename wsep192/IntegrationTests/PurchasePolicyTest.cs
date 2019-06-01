@@ -384,8 +384,8 @@ namespace IntegrationTests
         {
             setup();
 
-            Assert.AreEqual(true, sys.addSimplePurchasePolicy(0, 1, 1, 1, 1, 1, null, false, store.Id, admin.Id), "ProductConditionPolicy check success");
-            Assert.AreEqual(false, sys.addSimplePurchasePolicy(0, -1, 1, 1, -1, -1, null, false, store.Id, admin.Id), "ProductConditionPolicy check fail");
+            Assert.AreEqual(0, sys.addSimplePurchasePolicy(0, 1, 1, 1, 1, 1, null, false, store.Id, admin.Id), "ProductConditionPolicy check success");
+            Assert.AreEqual(-1, sys.addSimplePurchasePolicy(0, -1, 1, 1, -1, -1, null, false, store.Id, admin.Id), "ProductConditionPolicy check fail");
         }
 
 

@@ -30,7 +30,7 @@ namespace IntegrationTests
         DuplicatePolicy logic;
         int discountId;
 
-        Dictionary<int, KeyValuePair<ProductInStore, int>> products;
+        List<KeyValuePair<String, int>> products;
 
         public void setUp()
         {
@@ -60,11 +60,11 @@ namespace IntegrationTests
             store.Products.Add(p3.Id, pis3);
             store.Products.Add(p4.Id, pis4);
 
-            products = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
-            products.Add(p1.Id, new KeyValuePair<ProductInStore, int>(pis1, 2));
-            products.Add(p2.Id, new KeyValuePair<ProductInStore, int>(pis1, 10));
-            products.Add(p3.Id, new KeyValuePair<ProductInStore, int>(pis1, 5));
-            products.Add(p4.Id, new KeyValuePair<ProductInStore, int>(pis1, 4));
+            products = new List<KeyValuePair<String, int>>();
+            products.Add(new KeyValuePair<String, int>("first", 2));
+            products.Add(new KeyValuePair<String, int>("second", 10));
+            products.Add(new KeyValuePair<String, int>("third", 5));
+            products.Add(new KeyValuePair<String, int>("fourth", 4));
 
 
             system = new TradingSystem(null, null);
@@ -73,7 +73,7 @@ namespace IntegrationTests
             system.Users.Add(ownerUser.Id, ownerUser);
             system.Users.Add(user.Id, user);
 
-            discountId = system.addRevealedDiscountPolicy(products, 20, ownerUser.Id, store.Id, 60, logic);
+            discountId = system.addRevealedDiscountPolicy(products, 20, ownerUser.Id, store.Id, 60, 0);
         }
 
         [TestMethod]

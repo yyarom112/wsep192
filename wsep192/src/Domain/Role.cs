@@ -30,9 +30,14 @@ namespace src.Domain
             return store.addComplexPurchasePolicy(ID, purchesData);
         }
 
-        public virtual int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+        public virtual int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
         {
             return store.addRevealedDiscountPolicy(products, discountPrecentage, expiredDate, discountId, logic);
+        }
+
+        public virtual int addConditionalDiscuntPolicy(List<String> products, String condition, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy duplicate, LogicalConnections logic)
+        {
+            return store.addConditionalDiscuntPolicy(discountId,products,condition,discountPrecentage,expiredDate,duplicate,logic);
         }
 
         public virtual int removeDiscountPolicy(int discountId)
