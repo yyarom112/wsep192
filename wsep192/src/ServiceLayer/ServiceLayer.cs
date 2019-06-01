@@ -83,7 +83,7 @@ namespace src.ServiceLayer
                     flag = flag & createNewProductInStore(product[0], product[1], product[2], new Random().Next(10, 100), product[3], "user");
                     List<KeyValuePair<string, int>> products = new List<KeyValuePair<string, int>>();
                     products.Add(new KeyValuePair<string, int>(product[0], new Random().Next(10, 100)));
-                    if(flag)
+                    if (flag)
                         flag = flag & addProductsInStore(products, stores[i], "user");
                 }
             }
@@ -138,7 +138,7 @@ namespace src.ServiceLayer
         //req2.3
         public bool register(String username, String password, String user)
         {
-            if (!users.ContainsKey(user)||users.ContainsKey(username))//CHANGED
+            if (!users.ContainsKey(user) || users.ContainsKey(username))//CHANGED
                 return false;
 
             bool result = system.register(username, password, users[user]);
@@ -179,7 +179,7 @@ namespace src.ServiceLayer
 
         public bool[] getVisibility(String userName)
         {
-            return system.getVisibility(users[userName],userName);
+            return system.getVisibility(users[userName], userName);
         }
 
         private List<KeyValuePair<int, int>> getProductsInts(List<KeyValuePair<String, int>> products, int store)
@@ -378,7 +378,7 @@ namespace src.ServiceLayer
                 users.Remove(userToRemove);
             return result;
         }
-        
+
         public static string getId(int length)
         {
             char[] id = "0123456789".ToCharArray();
@@ -392,36 +392,37 @@ namespace src.ServiceLayer
         }
 
 
-        public bool addSimplePurchasePolicy(String type, String first, String second, String third, String fourth, String act, string adress, String isregister, String store, String user)
+        public int addSimplePurchasePolicy(String type, String first, String second, String third, String fourth, String act, string adress, String isregister, String store, String user)
         {
             try
             {
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
-                    return false;
+                    return -1;
                 return this.system.addSimplePurchasePolicy(Int32.Parse(type), Int32.Parse(first), Int32.Parse(second), Int32.Parse(third), Int32.Parse(fourth), Int32.Parse(act), adress, Int32.Parse(isregister) == 1, this.stores[store], this.users[user]);
-            } catch(Exception e)
-            {
-                return false;
             }
-            
+            catch (Exception e)
+            {
+                return -1;
+            }
+
         }
 
 
-        public bool addComplexPurchasePolicy(String purchesData, String store, String user)
+        public int addComplexPurchasePolicy(String purchesData, String store, String user)
         {
             try
             {
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
-                    return false;
+                    return -1;
                 return this.system.addComplexPurchasePolicy(purchesData, this.stores[store], this.users[user]);
             }
             catch (Exception e)
             {
-                return false;
+                return -1;
             }
         }
 
-        public int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
+        public int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
         {
             try
             {
@@ -433,7 +434,20 @@ namespace src.ServiceLayer
             {
                 return -1;
             }
+        }
 
+        public int addConditionalDiscuntPolicy(List<String> products, String condition, String discountPrecentage, String expiredDiscountDate, String duplicate, String logic, String user, String store)
+        {
+            try
+            {
+                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
+                    return -1;
+                return system.addConditionalDiscuntPolicy(products, condition, Double.Parse(discountPrecentage), Int32.Parse(expiredDiscountDate), Int32.Parse(duplicate), Int32.Parse(logic), this.users[user], this.stores[store]);
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
         }
 
         public int removeDiscountPolicy(String discountId, String store, String user)
@@ -463,9 +477,5 @@ namespace src.ServiceLayer
                 return -1;
             }
         }
-
-
-
-
     }
 }

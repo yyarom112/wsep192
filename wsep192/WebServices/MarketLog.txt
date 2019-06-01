@@ -845,3 +845,16 @@
 01/06/2019 16:36:30: TradingSystem-create new product in store0 -success
 
 01/06/2019 16:36:30: TradingSystem-add product to store0 -success
+01/06/2019 16:47:27: Register - userName or password null
+
+01/06/2019 16:47:27: TradingSystem-open storeZara success
+
+01/06/2019 16:47:27: TradingSystem-create new product in store0 -success
+
+01/06/2019 16:47:27: TradingSystem-add product to store0 -success
+01/06/2019 16:47:27: TradingSystem-create new product in store0 -success
+
+01/06/2019 16:47:27: TradingSystem-add product to store0 -success
+01/06/2019 16:47:27: TradingSystem-create new product in store0 -success
+
+01/06/2019 16:47:27: TradingSystem-add product to store0 -success
