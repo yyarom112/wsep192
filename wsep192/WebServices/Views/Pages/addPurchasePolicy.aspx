@@ -142,6 +142,9 @@
                         logicCon = $("#logicCon").val();
                         policyDetails = "(" + type + "," + address + "," + isRegister + "," + logicCon + ")";
                     }
+                    if (type == 4) {
+
+                    }
                     jQuery.ajax({
                         type: "GET",
                         url: baseUrl + "/api/store/AddPurchasePolicy?details=" + policyDetails + "&store=" + store + "&user=" + userName,
