@@ -139,7 +139,7 @@ namespace WebServices.Controllers
             3. "(-,((first, 10 ),(second,10)))"
             4. (#,((first, 10 ),(second,10)))*/
             List<KeyValuePair<String, int>> productsTmp = new List<KeyValuePair<String, int>>();
-            productsTmp.Add(new KeyValuePair<string, int>(products, Int32.Parse(quantity));
+            productsTmp.Add(new KeyValuePair<string, int>(products, Int32.Parse(quantity)));
             int ans = service.addRevealedDiscountPolicy(productsTmp, discount, expiredDate, logic, user, store);
             switch (ans)
             {
