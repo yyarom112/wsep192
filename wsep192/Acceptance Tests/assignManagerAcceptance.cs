@@ -34,7 +34,7 @@ namespace Acceptance_Tests
             managerUser = "Yuval";
             managerPassword = "2323";
             service.register(managerUser, managerPassword, idManager);
-            permissions = new List<String>() { "Add/EditDiscountPolicy" };
+            permissions = new List<String>() { "AddDiscountPolicy" };
 
 
             service.openStore("adidas", ownerUser);
