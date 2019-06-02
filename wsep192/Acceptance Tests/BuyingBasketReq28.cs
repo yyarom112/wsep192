@@ -89,7 +89,7 @@ namespace Acceptance_Tests
         {
             Setup();
             service.signIn("raul", "1234");
-            service.addComplexPurchasePolicy("(0,4,0,10,0)", "adidas", "raul");
+            service.addComplexPurchasePolicy("(0,2,0,10,0)", "adidas", "raul");
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 11));
             service.addProductsToCart(toInsert, "adidas", "raul");
@@ -159,6 +159,7 @@ namespace Acceptance_Tests
             Setup();
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 0));
+
             Assert.AreEqual(0, service.basketCheckout("telaviv", "raul"));
             Assert.AreEqual(true, compare_List(new List<KeyValuePair<string, int>>(), service.payForBasket(1, new DateTime(1990, 1, 1), "raul")));
             service.shutDown();

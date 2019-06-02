@@ -456,21 +456,61 @@ namespace src.ServiceLayer
             return sb.ToString();
         }
 
-        public bool addComplexPurchasePolicy(String purchaesData, String store, String user)
+
+        public bool notify(string user, string message)
+        {
+            if (system.isLoggedIn(users[user]))
+            {
+                manager.notify(user, message);
+            }
+            return false;
+        }
+
+        public void notifyAll(string store, string message)
+        {
+            foreach (string user in storesStackholders[store])
+            {
+                if (system.isLoggedIn(users[user]))
+                    notify(user, message);
+                else
+                    system.addMessageToUser(users[user], message);
+            }
+            
+        }
+
+
+        public int addSimplePurchasePolicy(String type, String first, String second, String third, String fourth, String act, string adress, String isregister, String store, String user)
         {
             try
             {
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
-                    return false;
-                return this.system.addComplexPurchasePolicy(purchaesData, this.stores[store], this.users[user]);
+                    return -1;
+                return this.system.addSimplePurchasePolicy(Int32.Parse(type), Int32.Parse(first), Int32.Parse(second), Int32.Parse(third), Int32.Parse(fourth), Int32.Parse(act), adress, Int32.Parse(isregister) == 1, this.stores[store], this.users[user]);
             }
             catch (Exception e)
             {
-                return false;
+                return -1;
+            }
+
+        }
+
+
+        public int addComplexPurchasePolicy(String purchesData, String store, String user)
+        {
+            try
+            {
+                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
+                    return -1;
+                return this.system.addComplexPurchasePolicy(purchesData, this.stores[store], this.users[user]);
+        
+            }
+            catch (Exception e)
+            {
+                return -1;
             }
         }
 
-        public int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
+        public int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
         {
             try
             {
@@ -482,7 +522,20 @@ namespace src.ServiceLayer
             {
                 return -1;
             }
+        }
 
+        public int addConditionalDiscuntPolicy(List<String> products, String condition, String discountPrecentage, String expiredDiscountDate, String duplicate, String logic, String user, String store)
+        {
+            try
+            {
+                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
+                    return -1;
+                return system.addConditionalDiscuntPolicy(products, condition, Double.Parse(discountPrecentage), Int32.Parse(expiredDiscountDate), Int32.Parse(duplicate), Int32.Parse(logic), this.users[user], this.stores[store]);
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
         }
 
         public int removeDiscountPolicy(String discountId, String store, String user)
@@ -511,30 +564,6 @@ namespace src.ServiceLayer
             {
                 return -1;
             }
-        }
-
-
-        public bool notify(string user, string message)
-        {
-            if (system.isLoggedIn(users[user]))
-            {
-                manager.notify(user, message);
-            }
-            return false;
-        }
-
-        public void notifyAll(string store, string message)
-        {
-            foreach (string user in storesStackholders[store])
-            {
-                if (system.isLoggedIn(users[user]))
-                    notify(user, message);
-                else
-                    system.addMessageToUser(users[user], message);
-            }
-
-
-
         }
     }
 
