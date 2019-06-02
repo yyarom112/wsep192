@@ -6,3 +6,5 @@
 
 14/05/2019 18:55:14: Error - assignOwner - the owner does not exists.
 
+5/25/2019 11:01:27: Error - createNewProductInStore - the store does not exists.
+

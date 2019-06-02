@@ -149,8 +149,14 @@ namespace src.Domain
                     output.Add(toInsert);
             }
             LogManager.Instance.WriteToLog("Making the cart purchase succeeded\n");
+            users[userID].setOrderStores();
             this.users[userID].Basket = new ShoppingBasket();
             return output;
+        }
+
+        public List<String> getOrderStoresByUser(int userID)
+        {
+            return users[userID].getOrderStores();
         }
 
         public List<String[]> cartToString(ShoppingCart cart)
@@ -168,6 +174,7 @@ namespace src.Domain
             }
             return output;
         }
+
 
         private String productsToString(List<ProductInStore> products)
         {
@@ -308,6 +315,10 @@ namespace src.Domain
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
         }
+
+
+
+
 
         public String searchProduct(String details)
         {
@@ -683,6 +694,26 @@ namespace src.Domain
             LogManager.Instance.WriteToLog("Trading System- removePurchasePolicy - User does not exist\n");
             return -1;
         }
+
+        public bool isLoggedIn(int userId)
+        {
+            if (this.Users.ContainsKey(userId))
+                return Users[userId].isLoggedIn();
+            return false;
+        }
+        public void addMessageToUser(int userID,String message)
+        {
+            users[userID].getMessages().Add(message);
+        }
+        public List<String> getMessagesByUser(int userID)
+        {
+            return users[userID].getMessages();
+        }
+        public void deleteMessagesByUser(int userID)
+        {
+            users[userID].deleteMessages();
+        }
+
     }
 }
 
