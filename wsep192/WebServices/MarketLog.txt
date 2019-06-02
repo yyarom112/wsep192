@@ -1055,16 +1055,3 @@
 02/06/2019 12:51:36: TradingSystem-create new product in store0 -success
 
 02/06/2019 12:51:36: TradingSystem-add product to store0 -success
-02/06/2019 16:12:41: Register - userName or password null
-
-02/06/2019 16:12:41: TradingSystem-open storeZara success
-
-02/06/2019 16:12:41: TradingSystem-create new product in store0 -success
-
-02/06/2019 16:12:41: TradingSystem-add product to store0 -success
-02/06/2019 16:12:41: TradingSystem-create new product in store0 -success
-
-02/06/2019 16:12:41: TradingSystem-add product to store0 -success
-02/06/2019 16:12:41: TradingSystem-create new product in store0 -success
-
-02/06/2019 16:12:41: TradingSystem-add product to store0 -success
