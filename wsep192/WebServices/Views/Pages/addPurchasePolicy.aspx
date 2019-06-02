@@ -88,16 +88,25 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>';
                     }
+                    if (type == 4) {
+                        details = '<form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate">'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '</form>';
+                    }
+                     if (type == 5) {
+                        details = '<form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate">'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '</form>';
+                    }
 
                     $('#policyDiv').append(details);
                     document.getElementById("policyDiv").style.visibility = "visible";
                     document.getElementById("addPurchaseButton").style.visibility = "visible";
-
                 }
                 else
                     alert("User isn't logged in");
-
-
             });
 
             $("#addPurchaseButton").click(function () {
@@ -112,33 +121,26 @@
                         maxNum = $("#maxNum").val();
                         logicCon = $("#logicCon").val();
                         policyDetails = "(" + type + "," + productID + "," + minNum + "," + maxNum + "," + logicCon + ")";
-
                     }
                     if (type == 1) {
-
                         minNum = $("#minNum").val();
                         productID = $("#productID").val();
                         logicCon = $("#logicCon").val();
                         policyDetails = "(" + type + "," + minNum + "," + productID + "," + logicCon + ")";
-
                     }
                     if (type == 2) {
-
                         minNum = $("#minNum").val();
                         maxNum = $("#maxNum").val();
                         minSum = $("#minSum").val();
                         maxSum = $("#maxSum").val();
                         logicCon = $("#logicCon").val();
                         policyDetails = "(" + type + "," + minNum + "," + maxNum + "," + minSum + "," + maxSum + "," + logicCon + ")";
-
                     }
                     if (type == 3) {
-
                         address = $("#address").val();
                         isRegister = $("#isRegister").val();
                         logicCon = $("#logicCon").val();
                         policyDetails = "(" + type + "," + address + "," + isRegister + "," + logicCon + ")";
-
                     }
                     jQuery.ajax({
                         type: "GET",
