@@ -149,8 +149,14 @@ namespace src.Domain
                     output.Add(toInsert);
             }
             LogManager.Instance.WriteToLog("Making the cart purchase succeeded\n");
+            users[userID].setOrderStores();
             this.users[userID].Basket = new ShoppingBasket();
             return output;
+        }
+
+        public List<String> getOrderStoresByUser(int userID)
+        {
+            return users[userID].getOrderStores();
         }
 
         public List<String[]> cartToString(ShoppingCart cart)
@@ -168,6 +174,7 @@ namespace src.Domain
             }
             return output;
         }
+
 
         private String productsToString(List<ProductInStore> products)
         {
@@ -308,6 +315,10 @@ namespace src.Domain
         {
             return users[userID].removeOwner(userIDToRemove, storeID);
         }
+
+
+
+
 
         public String searchProduct(String details)
         {
@@ -591,59 +602,60 @@ namespace src.Domain
             return false;
         }
 
-        public int addSimplePurchasePolicy(int type, int first, int second, int third, int fourth, int act, string adress, bool isregister, int storeID, int userID)
+        public bool addSimplePurchasePolicy(int type, int first, int second, int third, int fourth, int act, string adress, bool isregister, int storeID, int userID)
         {
             PurchesPolicyData purchesData;
             switch (type)
             {
                 case 0:
                     if (first < 0 || second < 0 || third < 0 || act < 0)
-                        return -1;
-                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, third, -1, -1, EnumActivaties.ConvertIntToLogicalConnections(act), null, false);
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, third, -1, -1, ConvertIntToLogicalConnections(act), null, false);
                     break;
                 case 1:
                     if (first < 0 || second < 0 || act < 0)
-                        return -1;
-                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, -1, -1, -1, EnumActivaties.ConvertIntToLogicalConnections(act), null, false);
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, first, -1, second, -1, -1, -1, ConvertIntToLogicalConnections(act), null, false);
                     break;
                 case 2:
                     if (first < 0 || second < 0 || third < 0 || fourth < 0 || act < 0)
-                        return -1;
-                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, first, second, third, fourth, EnumActivaties.ConvertIntToLogicalConnections(act), null, false);
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, first, second, third, fourth, ConvertIntToLogicalConnections(act), null, false);
                     break;
                 case 3:
                     if (((adress == null || adress.Equals("")) && isregister == false) || act < 0)
-                        return -1;
-                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, -1, -1, -1, -1, EnumActivaties.ConvertIntToLogicalConnections(act), adress, isregister);
+                        return false;
+                    purchesData = new PurchesPolicyData(type, this.PurchasePolicyCounter++, -1, -1, -1, -1, -1, -1, ConvertIntToLogicalConnections(act), adress, isregister);
                     break;
                 default:
                     LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- type " + type + " is not recognized\n");
-                    return -1;
+                    return false;
             }
             if (this.Users.ContainsKey(userID))
-            {
-                PurchasePolicy p = Users[userID].addSimplePurchasePolicy(purchesData, storeID);
-                if (p != null)
-                    return p.getId();
-            }
+                return Users[userID].addSimplePurchasePolicy(purchesData, storeID) != null;
             LogManager.Instance.WriteToLog("Trading System- addSimplePurchasePolicy- User does not exist\n");
-            return -1;
+            return false;
+        }
+
+        internal LogicalConnections ConvertIntToLogicalConnections(int log)
+        {
+            if (log == 0)
+                return LogicalConnections.and;
+            else
+                return LogicalConnections.or;
         }
 
 
-        public int addComplexPurchasePolicy(String purchesData, int storeID, int userID)
+
+        public bool addComplexPurchasePolicy(String purchesData, int storeID, int userID)
         {
             if (this.Users.ContainsKey(userID))
-            {
-                PurchasePolicy p = Users[userID].addComplexPurchasePolicy(this.PurchasePolicyCounter++, purchesData, storeID);
-                if (p != null)
-                    return p.getId();
-            }
+                return Users[userID].addComplexPurchasePolicy(this.PurchasePolicyCounter++, purchesData, storeID) != null;
             LogManager.Instance.WriteToLog("Trading System- addComplexPurchasePolicy- User does not exist\n");
-            return -1;
+            return false;
         }
 
-        public int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, int userID, int storeID, int expiredDiscountDate, int logic)
+        public int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, int userID, int storeID, int expiredDiscountDate, int logic)
         {
 
             if (this.Users.ContainsKey(userID))
@@ -654,23 +666,12 @@ namespace src.Domain
             return -1;
         }
 
-        public int addConditionalDiscuntPolicy(List<String> products, String condition, double discountPrecentage, int expiredDiscountDate, int duplicate, int logic, int userId, int storeId)
-        {
-            if (this.Users.ContainsKey(userId))
-            {
-                return Users[userId].addConditionalDiscuntPolicy(products, condition, discountPrecentage, expiredDiscountDate, EnumActivaties.ConvertIntToDuplicatePolicy(duplicate), EnumActivaties.ConvertIntToLogicalConnections(logic), discountPolicyCounter++, storeId);
-            }
-            LogManager.Instance.WriteToLog("Trading System- addConditionalDiscuntPolicy - User does not exist\n");
-            return -1;
-        }
-
         public int removeDiscountPolicy(int discountId, int storeId, int userId)
         {
             if (this.Users.ContainsKey(userId))
             {
                 return Users[userId].removeDiscountPolicy(discountId, storeId);
             }
-            LogManager.Instance.WriteToLog("Trading System- removeDiscountPolicy - User does not exist\n");
             return -1;
         }
 
@@ -680,9 +681,28 @@ namespace src.Domain
             {
                 return Users[userId].removePurchasePolicy(purchaseId, storeId);
             }
-            LogManager.Instance.WriteToLog("Trading System- removePurchasePolicy - User does not exist\n");
             return -1;
         }
+
+        public bool isLoggedIn(int userId)
+        {
+            if (this.Users.ContainsKey(userId))
+                return Users[userId].isLoggedIn();
+            return false;
+        }
+        public void addMessageToUser(int userID,String message)
+        {
+            users[userID].getMessages().Add(message);
+        }
+        public List<String> getMessagesByUser(int userID)
+        {
+            return users[userID].getMessages();
+        }
+        public void deleteMessagesByUser(int userID)
+        {
+            users[userID].deleteMessages();
+        }
+
     }
 }
 

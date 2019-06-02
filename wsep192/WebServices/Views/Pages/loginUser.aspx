@@ -23,7 +23,7 @@
                                 <input type="text" class="form-control" id="username" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="password" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                                <input type="password" class="form-control" id="password" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
                             </div>
 
                             <input type="button" id="loginButton" value="Login" class="button button-login w-100"></>
@@ -41,8 +41,8 @@
                 var user = getCookie("LoggedUser");
                 if (user == null) {
                     username = $("#username").val();
+                    Login(username);
                     pass = $("#password").val();
-
                     jQuery.ajax({
                         type: "GET",
                         url: baseUrl + "/api/user/LoginUser?username=" + username + "&password=" + pass,
@@ -53,8 +53,11 @@
                                 setCookie("LoggedUser", username);
                                 alert(response);
                                 window.location.href = baseUrl + "/";
+
+
                             }
                             else {
+                                Logout(username);
                                 alert(response);
                             }
                         },

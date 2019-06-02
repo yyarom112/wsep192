@@ -161,10 +161,7 @@ namespace UnitTests
                 this.retVal = ret;
             }
 
-            public override int removePurchasePolicy(int purchaseId, int storeId)
-            {
-                return 0;
-            }
+
         }
     }
 }
