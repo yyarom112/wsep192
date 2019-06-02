@@ -96,8 +96,8 @@
 
                         jQuery.ajax({
                             type: "GET",
-                        url: baseUrl + "/api/store/AddRevealedDiscountPolicy?products="
-                            + products + "&quantity=" + quantity + "&discount=" + discount + "&expiredDate=" + expiredDate
+                            url: baseUrl + "/api/store/AddRevealedDiscountPolicy?products="
+                                + products + "&quantity=" + quantity + "&discount=" + discount + "&expiredDate=" + expiredDate
                                 + "&logic=" + logic + "&store=" + store + "&user=" + userName,
 
                             contentType: "application/json; charset=utf-8",
@@ -122,7 +122,7 @@
                         expiredDate = $("#expiredDate").val();
                         condition = $("#condition").val();
                         logic = $("#logic").val();
-                        duplicate = $("#duplicate").val();   
+                        duplicate = $("#duplicate").val();
 
                         jQuery.ajax({
                             type: "GET",
@@ -145,15 +145,9 @@
                             }
                         });
                     }
-
-                    
-                    }
-                    else
-                        alert("User isn't logged in");
-
-
-
-
+                }
+                else
+                    alert("User isn't logged in");
             });
         });
 
