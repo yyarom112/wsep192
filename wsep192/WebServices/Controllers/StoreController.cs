@@ -153,11 +153,7 @@ namespace WebServices.Controllers
         [Route("api/store/AddConditionalDiscountPolicy")]
         [HttpGet]
         public int addConditionalDiscuntPolicy(String products, String quantity, String condition, String discount, String expiredDate, String logic, String duplicate, String store, String user)
-        {/*example condition: 
-            1. "(first, 10)"
-            2. "(+,((first, 10 ),(second,10)))"
-            3. "(-,((first, 10 ),(second,10)))"
-            4. (#,((first, 10 ),(second,10)))*/
+        {
             List<String> productTmp = new List<string>();
             String tmpPair;
             String fullString = "(";

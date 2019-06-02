@@ -1267,3 +1267,61 @@
 02/06/2019 17:44:02: TradingSystem-create new product in store0 -success
 
 02/06/2019 17:44:02: TradingSystem-add product to store0 -success
+02/06/2019 18:11:18: Register - userName or password null
+
+02/06/2019 18:11:18: Register - userName or password null
+
+02/06/2019 18:11:18: TradingSystem-open storeZara success
+
+02/06/2019 18:11:18: TradingSystem-create new product in store0 -success
+
+02/06/2019 18:11:18: TradingSystem-add product to store0 -success
+02/06/2019 18:11:18: Store - assign manger succeed
+02/06/2019 18:11:18: User:signOut success - Aviv
+
+02/06/2019 18:16:19: TradingSystem-open storerami success
+
+02/06/2019 18:16:36: TradingSystem-create new product in store1 -success
+
+02/06/2019 18:16:45: TradingSystem-add product to store1 -success
+02/06/2019 18:17:06: TradingSystem-create new product in store1 -success
+
+02/06/2019 18:17:19: TradingSystem-add product to store1 -success
+02/06/2019 18:26:30: Register - userName or password null
+
+02/06/2019 18:26:30: Register - userName or password null
+
+02/06/2019 18:26:30: TradingSystem-open storeZara success
+
+02/06/2019 18:26:30: TradingSystem-create new product in store0 -success
+
+02/06/2019 18:26:30: TradingSystem-add product to store0 -success
+02/06/2019 18:26:30: Store - assign manger succeed
+02/06/2019 18:26:30: User:signOut success - Aviv
+
+02/06/2019 18:28:26: Register - userName or password null
+
+02/06/2019 18:28:26: Register - userName or password null
+
+02/06/2019 18:28:26: TradingSystem-open storeZara success
+
+02/06/2019 18:28:26: TradingSystem-create new product in store0 -success
+
+02/06/2019 18:28:26: TradingSystem-add product to store0 -success
+02/06/2019 18:28:26: Store - assign manger succeed
+02/06/2019 18:28:26: User:signOut success - Aviv
+
+02/06/2019 18:28:34: TradingSystem-open storerami success
+
+02/06/2019 18:28:49: TradingSystem-create new product in store1 -success
+
+02/06/2019 18:29:03: TradingSystem-create new product in store1 -success
+
+02/06/2019 18:29:13: TradingSystem-add product to store1 -success
+02/06/2019 18:29:22: TradingSystem-add product to store1 -success
+02/06/2019 18:29:58: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+02/06/2019 18:30:14: User:signOut failed - user Aviv didn't sign in
+
+02/06/2019 18:32:02: TradingSystem - Remove user id3 success.
+
