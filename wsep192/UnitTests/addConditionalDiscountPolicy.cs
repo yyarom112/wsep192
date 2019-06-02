@@ -82,18 +82,19 @@ namespace UnitTests
         public void addRevealedDiscountPolicy_store_succ()
         {
             setUp();
-            //Assert.AreEqual(1, store.addRevealedDiscountPolicy(products, 20, date1, 1, logic));
+            Assert.AreEqual(1, store.addConditionalDiscuntPolicy(1, products, "", 20, date1, duplicate, logic));
         }
 
         [TestMethod]
         public void addRevealedDiscountPolicy_role_succ()
         {
             setUp();
-            StubStore sStore = new StubStore(1234, "nike", null, null, 0);
+            StubStore sStore = new StubStore(1234, "nike", null, null, 1);
             Role ownerStub = new Role(sStore, ownerUser);
             ownerUser.Roles.Add(sStore.Id, ownerRole);
             int ans = ownerStub.addConditionalDiscuntPolicy(products, "", 20, date1, 1, duplicate, logic);
-            //Assert.AreEqual(1, ans);
+            Console.WriteLine(ans);
+            Assert.AreEqual(1, ans);
         }
 
         [TestMethod]
@@ -104,7 +105,7 @@ namespace UnitTests
             StubRole sRole = new StubRole(sStore, ownerUser, 1);
             ownerUser.Roles.Add(sStore.Id, sRole);
             int ans = ownerUser.addConditionalDiscuntPolicy(products, "", 20, 40, duplicate, logic, 0, sStore.Id);
-            //Assert.AreEqual(1, ans);
+            Assert.AreEqual(1, ans);
         }
 
         [TestMethod]
@@ -115,7 +116,7 @@ namespace UnitTests
             StubRole sRole = new StubRole(sStore, admin, 1);
             admin.Roles.Add(sStore.Id, sRole);
             int ans = admin.addConditionalDiscuntPolicy(products, "", 20, 40, duplicate, logic, 0, sStore.Id);
-            //Assert.AreEqual(-1, ans);
+            Assert.AreEqual(-1, ans);
         }
 
         [TestMethod]
@@ -126,7 +127,7 @@ namespace UnitTests
             StubUser tmpUser = new StubUser(2222, "owner", "7878", false, true, 1);
             system.Users.Add(tmpUser.Id, tmpUser);
             int ans = system.addConditionalDiscuntPolicy(products, "", 20, 40, 0, 0, tmpUser.Id, sStore.Id);
-            //Assert.AreEqual(1, ans);
+            Assert.AreEqual(1, ans);
         }
 
 
@@ -226,7 +227,7 @@ namespace UnitTests
                 this.retVal = ret;
             }
 
-            public override int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+            public override int addConditionalDiscuntPolicy(int discountId, List<String> productsList, String condition, double discountPrecentage, DateTime expiredDiscountDate, DuplicatePolicy dup, LogicalConnections logic)
             {
                 return 1;
             }

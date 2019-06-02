@@ -79,7 +79,7 @@ namespace IntegrationTests
         public void addRevealedDiscountPolicy_store_succ()
         {
             setUp();
-            //Assert.AreEqual(1, store.addRevealedDiscountPolicy(products, 20, date1, 1, logic));
+            Assert.AreEqual(1, store.addConditionalDiscuntPolicy(1, products, "", 20, date1, duplicate, logic));
         }
 
         [TestMethod]
@@ -87,7 +87,7 @@ namespace IntegrationTests
         {
             setUp();
             int ans = ownerRole.addConditionalDiscuntPolicy(products, "", 20, date1, 1, duplicate, logic);
-            //Assert.AreEqual(1, ans);
+            Assert.AreEqual(1, ans);
         }
 
         [TestMethod]
@@ -95,7 +95,7 @@ namespace IntegrationTests
         {
             setUp();
             int ans = ownerUser.addConditionalDiscuntPolicy(products, "", 20, 40, duplicate, logic, 0, store.Id);
-            //Assert.AreEqual(1, ans);
+            Assert.AreEqual(0, ans);
         }
 
         [TestMethod]
@@ -103,7 +103,7 @@ namespace IntegrationTests
         {
             setUp();
             int ans = admin.addConditionalDiscuntPolicy(products, "", 20, 40, duplicate, logic, 0, store.Id);
-            //Assert.AreEqual(-1, ans);
+            Assert.AreEqual(-1, ans);
         }
 
         [TestMethod]
@@ -111,7 +111,7 @@ namespace IntegrationTests
         {
             setUp();
             int ans = system.addConditionalDiscuntPolicy(products, "", 20, 40, 0, 0, ownerUser.Id, store.Id);
-            //Assert.AreEqual(1, ans);
+            Assert.AreEqual(0, ans);
         }
     }
 }
