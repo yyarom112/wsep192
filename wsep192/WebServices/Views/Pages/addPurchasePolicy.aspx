@@ -39,11 +39,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
         </div>
     </section>
     <!--================End Checkout Area =================-->
@@ -156,7 +151,7 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else
-                                alert(response);
+                                alert("purchase id:" + response);
                         },
                         error: function (response) {
                             alert('Error in addPurchasePolicy');
@@ -165,8 +160,6 @@
                 }
                 else
                     alert("User isn't logged in");
-
-
             });
         });
 
