@@ -33,17 +33,12 @@
                             <form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate"></form>
 
                         </div>
-                        <div class="text-center"><a class="button button-paypal" style="visibility:hidden" id="addPurchaseButton">Add Purchase Policy</a></div>
+                        <div class="text-center"><a class="button button-paypal" style="visibility: hidden" id="addPurchaseButton">Add Purchase Policy</a></div>
 
 
                     </div>
                 </div>
             </div>
-
-
-
-
-
         </div>
     </section>
     <!--================End Checkout Area =================-->
@@ -156,7 +151,7 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else
-                                alert(response);
+                                alert("purchase id:" + response);
                         },
                         error: function (response) {
                             alert('Error in addPurchasePolicy');
@@ -165,8 +160,6 @@
                 }
                 else
                     alert("User isn't logged in");
-
-
             });
         });
 

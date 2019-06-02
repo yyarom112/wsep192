@@ -16,10 +16,17 @@ namespace Acceptance_Tests
             service.register("user", "1234", service.initUser());
             service.signIn("admin", "1234");
             service.openStore("store", "admin");
+            service.openStore("adidas", "user");
+
             service.createNewProductInStore("p1", "", "", 10, "store", "admin");
+            service.createNewProductInStore("p1", "", "", 10, "adidas", "user");
+
+            List<KeyValuePair<string, int>> p1 = new List<KeyValuePair<string, int>>();
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 100));
             service.addProductsInStore(toInsert, "store", "admin");
+            service.addProductsInStore(toInsert, "adidas", "user");
+
         }
 
 
@@ -48,7 +55,7 @@ namespace Acceptance_Tests
         }
         //You need to add another test in this frame when there is a buying policy in the next version
         [TestMethod]
-        public void TestMethod_PurchaseOfAProductIsNotInAccordanceWithThePurchasingPolicy()
+        public void TestMethod_PurchaseOfAProductIsNotInAccordanceWithThePurchasingPolicy_negativePurches()
         {
             Setup();
             try
@@ -59,11 +66,11 @@ namespace Acceptance_Tests
                     Assert.AreEqual(false, true);
             }
             catch (Exception e) { }
-            List<KeyValuePair<string,int>> list = service.showCart("store", "user");
+            List<KeyValuePair<string, int>> list = service.showCart("store", "user");
             bool neg = containsNeg(list);
 
 
-           if (neg)
+            if (neg)
             {
                 List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
                 toInsert.Add(new KeyValuePair<string, int>("Error: invalid user", -1));
@@ -75,10 +82,26 @@ namespace Acceptance_Tests
 
         }
 
+        [TestMethod]
+        public void TestMethod_PurchaseOfAProductIsNotInAccordanceWithThePurchasingPolicy()
+        {
+            Setup();
+            service.signIn("user", "1234");
+            service.addComplexPurchasePolicy("(0,1,0,10,0)", "adidas", "user");
+            List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
+            toInsert.Add(new KeyValuePair<string, int>("p1", 11));
+            service.addProductsToCart(toInsert, "adidas", "user");
+            Assert.AreEqual(-1, service.basketCheckout("Tel Aviv", "user"));
+            service.shutDown();
+
+        }
+
         private bool containsNeg(List<KeyValuePair<string, int>> list)
         {
-            foreach (KeyValuePair<string,int> p in list) {
-                if (p.Value==-1) {
+            foreach (KeyValuePair<string, int> p in list)
+            {
+                if (p.Value == -1)
+                {
                     return true;
                 }
             }
@@ -86,10 +109,20 @@ namespace Acceptance_Tests
         }
 
         //Not relevant right now because there are no discounts
-        //[TestMethod]
-        //public void TestMethod_PurchasePproductWithDiscountInStockAndIsSuitableForPurchasePolicy()
-        //{
-        //}
+        [TestMethod]
+        public void TestMethod_PurchasePproductWithDiscountInStockAndIsSuitableForPurchasePolicy()
+        {
+            Setup();
+            service.signIn("user", "1234");
+            List<KeyValuePair<string, int>> productsForDiscounts = new List<KeyValuePair<string, int>>();
+            productsForDiscounts.Add(new KeyValuePair<string, int>("p1", 0));
+            service.addRevealedDiscountPolicy(productsForDiscounts, "0.5", "30", "0", "user" ,"adidas");
+            List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
+            toInsert.Add(new KeyValuePair<string, int>("p1", 11));
+            service.addProductsToCart(toInsert, "adidas", "user");
+            Assert.AreEqual(155, service.basketCheckout("Tel Aviv", "user"));
+            service.shutDown();
+        }
 
         [TestMethod]
         public void TestMethod_PurchaseOfProduct_succ()

@@ -50,12 +50,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="addConditionalDiscountPolicy.cs" />
     <Compile Include="addProductToCart.cs" />
+    <Compile Include="addRevealedDiscountPolicy.cs" />
     <Compile Include="assignManagerAcceptance.cs" />
     <Compile Include="EditProductInCartTests.cs" />
     <Compile Include="ManagerPremissionTests.cs" />
+    <Compile Include="removeDiscountPolicy.cs" />
     <Compile Include="RemoveManager_Req46.cs" />
     <Compile Include="RemoveProductsFromCartTests.cs" />
+    <Compile Include="removePurchasePolicy.cs" />
     <Compile Include="ShowCartTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InitTests.cs" />
