@@ -506,6 +506,7 @@ namespace src.ServiceLayer
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("ServiceLayer-addComplexPurchasePolicy- Search for user or store that not exist ");
                 return -1;
             }
         }
@@ -520,6 +521,7 @@ namespace src.ServiceLayer
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("ServiceLayer-removeDiscountPolicy- Search for user or store that not exist or parsing failed ");
                 return -1;
             }
         }
@@ -534,6 +536,7 @@ namespace src.ServiceLayer
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("ServiceLayer-removeDiscountPolicy- Search for user or store that not exist or parsing failed ");
                 return -1;
             }
         }
@@ -548,6 +551,7 @@ namespace src.ServiceLayer
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("ServiceLayer-removeDiscountPolicy- Search for user or store that not exist or parsing failed ");
                 return -1;
             }
         }
@@ -562,6 +566,8 @@ namespace src.ServiceLayer
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("ServiceLayer-removeDiscountPolicy- Search for user or store that not exist or parsing failed ");
+
                 return -1;
             }
         }

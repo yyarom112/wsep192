@@ -88,7 +88,6 @@ namespace src.Domain
         {
             if (!this.users.ContainsKey(userID))
             {
-                ErrorManager.Instance.WriteToLog("Error - basketCheckout - user not in the system.\n");
                 return -1;
             }
             else
@@ -97,7 +96,6 @@ namespace src.Domain
                 if (output == -1)
                 {
                     LogManager.Instance.WriteToLog("basketCheckout - Could not close basket.\n");
-                    ErrorManager.Instance.WriteToLog("Error - basketCheckout - Could not close basket.\n");
                 }
                 else
                     LogManager.Instance.WriteToLog("Successfully closed the basket.\n");
@@ -123,7 +121,6 @@ namespace src.Domain
                         cart.Store.updateCart(cart, "+");
                     }
                     LogManager.Instance.WriteToLog("payForBasket - Purchase failed due to product billing failure.\n");
-                    ErrorManager.Instance.WriteToLog("Error - payForBasket - Purchase failed due to product billing failure.\n");
                     return null;
                 }
             }
@@ -138,7 +135,6 @@ namespace src.Domain
                     cart.Store.updateCart(cart, "+");
                 }
                 LogManager.Instance.WriteToLog("payForBasket - The purchase failed due to a failure in the delivery system.\n");
-                ErrorManager.Instance.WriteToLog("Error - payForBasket - The purchase failed due to a failure in the delivery system.\n");
 
                 return null;
             }
@@ -210,21 +206,18 @@ namespace src.Domain
             if (!(users.ContainsKey(toRemoveID) && users.ContainsKey(removingID)))
             {
                 LogManager.Instance.WriteToLog("TradingSystem - Remove user fail - one of the users does not exists.\n");
-                ErrorManager.Instance.WriteToLog("Error - Remove user - one of the users does not exists.\n");
                 return false;
             }
 
             if (isMainOwner(toRemoveID))
             {
                 LogManager.Instance.WriteToLog("TradingSystem - Remove user fail - the user to remove is the main user.\n");
-                ErrorManager.Instance.WriteToLog("Error - Remove user - the user to remove is the main user.\n");
                 return false;
             }
 
             if (!users[removingID].IsAdmin)
             {
                 LogManager.Instance.WriteToLog("TradingSystem - Remove user fail - the removing user is not an admin.\n");
-                ErrorManager.Instance.WriteToLog("Error - Remove user - the removing user is not an admin.\n");
                 return false;
             }
 
@@ -250,10 +243,8 @@ namespace src.Domain
                     return true;
                 }
                 LogManager.Instance.WriteToLog("TradingSystem - open store fail- the user does not exists or not registerd\n");
-                ErrorManager.Instance.WriteToLog("Error - open store - the user does not exists or not registerd.\n");
             }
             LogManager.Instance.WriteToLog("TradingSystem - open store fail - the store id does not exists\n");
-            ErrorManager.Instance.WriteToLog("Error - open store - the store id does not exists.\n");
             return false;
 
         }
@@ -290,7 +281,6 @@ namespace src.Domain
             if (!this.users.ContainsKey(userID) || !this.users.ContainsKey(userIDToRemove) || !this.stores.ContainsKey(storeID))
             {
                 LogManager.Instance.WriteToLog("TradingSystem - Remove manager fail - The store or user is not exist.\n");
-                ErrorManager.Instance.WriteToLog("Error - Remove manager - The store or user is not exist.\n");
                 return false;
             }
             if (users[userID].removeManager(userIDToRemove, storeID))
@@ -327,7 +317,6 @@ namespace src.Domain
             if (detailsForFilter.Length != 7)
             {
                 LogManager.Instance.WriteToLog("TradingSystem - search Product " + details + " bad input");
-                ErrorManager.Instance.WriteToLog("Error - search Product " + details + " bad input");
                 return "";
             }
 
@@ -339,6 +328,7 @@ namespace src.Domain
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("TradingSystem- searchProduct - Try parse int failed");
                 minPrice = -1;
             }
             try
@@ -347,6 +337,7 @@ namespace src.Domain
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("TradingSystem- searchProduct - Try parse int failed");
                 maxPrice = -1;
             }
 
@@ -356,6 +347,7 @@ namespace src.Domain
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("TradingSystem- searchProduct - Try parse int failed");
                 productRate = -1;
             }
             try
@@ -364,6 +356,7 @@ namespace src.Domain
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("TradingSystem- searchProduct - Try parse int failed");
                 storeRate = -1;
             }
             KeyValuePair<int, int> priceRange = new KeyValuePair<int, int>(minPrice, maxPrice);
@@ -415,7 +408,6 @@ namespace src.Domain
         {
             if (!users.ContainsKey(id))
             {
-                ErrorManager.Instance.WriteToLog("Error - signOut - user is not loged in");
                 return false;
             }
             return users[id].signOut();
@@ -431,7 +423,6 @@ namespace src.Domain
                     || userName.Equals("") || password.Equals("") || userName.Contains(" "))
                 {
                     LogManager.Instance.WriteToLog("TradingSystem - Register - userName or password in wrong format");
-                    ErrorManager.Instance.WriteToLog("Error - Register - userName or password in wrong format");
                     return false;
                 }
                 User currUser = this.users[currUserId];
@@ -441,7 +432,6 @@ namespace src.Domain
                     return currUser.register(userName, password);
                 }
                 LogManager.Instance.WriteToLog("TradingSystem - Register - user not exist as guest.\n");
-                ErrorManager.Instance.WriteToLog("Error - Register - user not exist as guest.\n");
                 return false;
             }
             return false;
@@ -458,7 +448,6 @@ namespace src.Domain
                     if (!currUser.IsRegistered)
                     {
                         LogManager.Instance.WriteToLog("TradingSystem - signIn - user not register.\n");
-                        ErrorManager.Instance.WriteToLog("Error - signIn - user not register.\n");
                         return false;
                     }
                     password = encryption.encrypt(userName + password);
@@ -468,7 +457,6 @@ namespace src.Domain
                     }
                 }
                 LogManager.Instance.WriteToLog("TradingSystem - signIn - user id not exist.\n");
-                ErrorManager.Instance.WriteToLog("Error - signIn - user id not exist.\n");
                 return false;
             }
             return false;
@@ -479,14 +467,12 @@ namespace src.Domain
             if (!this.Users.ContainsKey(userId) || !this.Stores.ContainsKey(storeId) || products == null)
             {
                 LogManager.Instance.WriteToLog("Add to cart fail- one of the parameter Invalid. /n");
-                ErrorManager.Instance.WriteToLog("Error - addProductToCart - one of the parameter Invalid.\n");
                 return false;
 
             }
             LinkedList<KeyValuePair<Product, int>> toInsert = createProductsList(products, storeId);
             if (toInsert == null)
             {
-                ErrorManager.Instance.WriteToLog("Error - addProductToCart - fail create product.\n");
                 return false;
             }
             ShoppingCart newCartCheck = this.users[userId].addProductsToCart(toInsert, storeId);
@@ -505,7 +491,6 @@ namespace src.Domain
                 if (!this.Stores[storeId].Products.ContainsKey(productId.Key))
                 {
                     LogManager.Instance.WriteToLog("Add to cart fail-Product " + productId.Key + " does not exist. \n");
-                    ErrorManager.Instance.WriteToLog("Error - addProductToCart - " + productId.Key + " does not exist. \n");
                     check = false;
                 }
                 else
@@ -527,7 +512,6 @@ namespace src.Domain
                     return true;
                 }
             LogManager.Instance.WriteToLog("TradingSystem-create new product in store fail- the store does not exists\n");
-            ErrorManager.Instance.WriteToLog("Error - createNewProductInStore - the store does not exists.\n");
             return false;
         }
 
@@ -540,7 +524,6 @@ namespace src.Domain
                     return true;
                 }
             LogManager.Instance.WriteToLog("TradingSystem-add product to store fail- the store does not exists\n");
-            ErrorManager.Instance.WriteToLog("Error - addProductsInStore - the store does not exists.\n");
 
             return false;
         }
@@ -559,7 +542,6 @@ namespace src.Domain
                     return true;
                 }
             LogManager.Instance.WriteToLog("TradingSystem-remove product from store fail- the store does not exists\n");
-            ErrorManager.Instance.WriteToLog("Error - removeProductsInStore - the store does not exists.\n");
 
             return false;
         }
@@ -572,7 +554,6 @@ namespace src.Domain
                 User managerUser = this.users[managerId];
                 return ownerUser.assignManager(managerUser, storeId, permissionToManager);
             }
-            ErrorManager.Instance.WriteToLog("Error - assignManager - the new manager does not exist.\n");
             return false;
         }
 
@@ -585,7 +566,6 @@ namespace src.Domain
                     return true;
                 }
             LogManager.Instance.WriteToLog("TradingSystem-Assign owner fail- the owner does not exists\n");
-            ErrorManager.Instance.WriteToLog("Error - assignOwner - the owner does not exists.\n");
             return false;
         }
 
@@ -598,7 +578,6 @@ namespace src.Domain
                     return true;
                 }
             LogManager.Instance.WriteToLog("TradingSystem-edit product from store fail- the store does not exists\n");
-            ErrorManager.Instance.WriteToLog("Error - editProductInStore - the store does not exists.\n");
             return false;
         }
 
