@@ -1554,3 +1554,74 @@
 
 04/06/2019 13:43:44: User:signOut failed - user Aviv didn't sign in
 
+04/06/2019 17:02:35: Register - userName or password null
+
+04/06/2019 17:02:35: Register - userName or password null
+
+04/06/2019 17:02:35: TradingSystem-open storeZara success
+
+04/06/2019 17:02:35: TradingSystem-create new product in store0 -success
+
+04/06/2019 17:02:35: TradingSystem-add product to store0 -success
+04/06/2019 17:02:35: Store - assign manger succeed
+04/06/2019 17:02:35: User:signOut success - Aviv
+
+04/06/2019 17:03:28: User:signOut failed - user Aviv didn't sign in
+
+04/06/2019 17:04:08: TradingSystem-create new product in store0 -success
+
+04/06/2019 17:04:17: TradingSystem-add product to store0 -success
+04/06/2019 17:14:56: Register - userName or password null
+
+04/06/2019 17:14:56: Register - userName or password null
+
+04/06/2019 17:14:57: TradingSystem-open storeZara success
+
+04/06/2019 17:14:57: TradingSystem-create new product in store0 -success
+
+04/06/2019 17:14:57: TradingSystem-add product to store0 -success
+04/06/2019 17:14:57: Store - assign manger succeed
+04/06/2019 17:14:57: User:signOut success - Aviv
+
+04/06/2019 17:14:59: User:signOut failed - user Aviv didn't sign in
+
+04/06/2019 17:48:11: Register - userName or password null
+
+04/06/2019 17:48:11: Register - userName or password null
+
+04/06/2019 17:48:11: TradingSystem-open storeZara success
+
+04/06/2019 17:48:11: TradingSystem-create new product in store0 -success
+
+04/06/2019 17:48:11: TradingSystem-add product to store0 -success
+04/06/2019 17:48:11: Store - assign manger succeed
+04/06/2019 17:48:11: User:signOut success - Aviv
+
+04/06/2019 17:48:33: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+04/06/2019 17:48:33: Trading System- addComplexPurchasePolicy- User does not exist
+
+04/06/2019 17:48:53: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+04/06/2019 17:48:53: Trading System- addComplexPurchasePolicy- User does not exist
+
+04/06/2019 17:51:01: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+04/06/2019 17:51:01: Trading System- addComplexPurchasePolicy- User does not exist
+
+04/06/2019 17:53:05: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+04/06/2019 17:53:05: Trading System- addComplexPurchasePolicy- User does not exist
+
+04/06/2019 17:54:09: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+04/06/2019 17:54:09: Trading System- addComplexPurchasePolicy- User does not exist
+
+04/06/2019 17:55:09: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+04/06/2019 17:55:09: Trading System- addComplexPurchasePolicy- User does not exist
+
+04/06/2019 17:55:25: User:signOut failed - user Aviv didn't sign in
+
+04/06/2019 17:59:05: User:signOut success - Aviv
+

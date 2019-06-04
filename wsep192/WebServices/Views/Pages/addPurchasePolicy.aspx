@@ -102,6 +102,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            debugger;
 
             $("#policyButton").click(function () {
                 var userName = getCookie("LoggedUser");
@@ -272,19 +273,19 @@
                         store = $("#store3").val();
                     }
 
-                    //document.getElementById("addPurchaseButton2").style.visibility = "visible";
+
                     jQuery.ajax({
                         type: "GET",
                         url: baseUrl + "/api/store/AddPurchasePolicy?details=" + policyDetails + "&store=" + store + "&user=" + userName,
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            if (response == 'success') {
-                                alert("Policy has created successfully");
+                            if (response != -1) {
+                                alert("Policy " + response + " has created successfully");
                                 window.location.href = baseUrl + "/";
                             }
                             else
-                                alert("purchase id:" + response);
+                                alert("Error in add new purchase policy, does not meet the conditions");
                         },
                         error: function (response) {
                             alert('Error in addPurchasePolicy');
@@ -366,6 +367,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum2" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum2" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon6" placeholder="Logical condition for both"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
                             + '</form>'
                     }
                     if (type == 1) {
@@ -374,6 +376,8 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum2" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID2" placeholder="Product ID"><span class="placeholder" data-placeholder="Product ID"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon6" placeholder="Logical condition for both"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
+
                             + '</form>'
                     }
                     if (type == 2) {
@@ -384,6 +388,8 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minSum2" placeholder="Min price"><span class="placeholder" data-placeholder="Min price"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxSum2" placeholder="Max price"><span class="placeholder" data-placeholder="Max price"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon6" placeholder="Logical condition for both"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
+
                             + '</form>'
                     }
                     if (type == 3) {
@@ -392,8 +398,13 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="address2" placeholder="Address"><span class="placeholder" data-placeholder="Address"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="isRegister2" placeholder="Is registered"><span class="placeholder" data-placeholder="Is registered"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon6" placeholder="Logical condition for both"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
                             + '</form>';
                     }
+
+                    logicConAll = $("#logicCon6").val();
+                    policyDetails += logicConAll + ")"
+                    psik = ',';
 
                     $('#classELSE').append(details);
                     document.getElementById("classELSE").style.visibility = "visible";
@@ -446,6 +457,8 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon3" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>';
                     }
+
+                    
 
                     $('#classLogic1').append(details);
                     document.getElementById("classLogic1").style.visibility = "visible";
@@ -553,7 +566,7 @@
                             minNum = $("#minNum3").val();
                             maxNum = $("#maxNum3").val();
                             logicCon = $("#logicCon3").val();
-                            policyDetails = "("+ type0 +",(" + type + ",(" + type1 + "," + productID + "," + minNum + "," + maxNum + "," + logicCon + "),";
+                            policyDetails = "(" + type0 + ",(" + type + ",(" + type1 + "," + productID + "," + minNum + "," + maxNum + "," + logicCon + "),";
                         }
                         if (type1 == 1) {
                             minNum = $("#minNum3").val();
@@ -603,10 +616,6 @@
                             logicCon = $("#logicCon4").val();
                             policyDetails += "(" + type2 + "," + address + "," + isRegister + "," + logicCon + "),";
                         }
-                        logicConAll = $("#logicConAll").val();
-                        policyDetails += logicConAll + ",0)),"
-                        psik = ',';
-
                     }
 
 
@@ -617,13 +626,13 @@
                         minNum = $("#minNum2").val();
                         maxNum = $("#maxNum2").val();
                         logicCon = $("#logicCon2").val();
-                        policyDetails += "(" + type + "," + productID + "," + minNum + "," + maxNum + "," + logicCon + "))";
+                        policyDetails += "(" + type + "," + productID + "," + minNum + "," + maxNum + "," + logicCon + ")";
                     }
                     if (type == 1) {
                         minNum = $("#minNum2").val();
                         productID = $("#productID2").val();
                         logicCon = $("#logicCon2").val();
-                        policyDetails += "(" + type + "," + minNum + "," + productID + "," + logicCon + "))";
+                        policyDetails += "(" + type + "," + minNum + "," + productID + "," + logicCon + ")";
                     }
                     if (type == 2) {
                         minNum = $("#minNum2").val();
@@ -631,15 +640,20 @@
                         minSum = $("#minSum2").val();
                         maxSum = $("#maxSum2").val();
                         logicCon = $("#logicCon2").val();
-                        policyDetails += "(" + type + "," + minNum + "," + maxNum + "," + minSum + "," + maxSum + "," + logicCon + "))";
+                        policyDetails += "(" + type + "," + minNum + "," + maxNum + "," + minSum + "," + maxSum + "," + logicCon + ")";
                     }
                     if (type == 3) {
                         address = $("#address2").val();
                         isRegister = $("#isRegister2").val();
                         logicCon = $("#logicCon2").val();
-                        policyDetails += "(" + type + "," + address + "," + isRegister + "," + logicCon + "))";
+                        policyDetails += "(" + type + "," + address + "," + isRegister + "," + logicCon + ")";
                     }
-                    policyDetails +=psik;
+                    policyDetails += psik;
+
+                    logicConAll = $("#logicCon6").val();
+                    policyDetails += "," + logicConAll + ")"
+                    psik = ',';
+
 
                     jQuery.ajax({
                         type: "GET",
@@ -652,7 +666,7 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else
-                                alert("Error in addPurchasePolicy");
+                                alert("Error in add new purchase policy, does not meet the conditions");
                         },
                         error: function (response) {
                             alert('Error in addPurchasePolicy');
