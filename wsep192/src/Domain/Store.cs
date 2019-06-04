@@ -101,15 +101,13 @@ namespace src.Domain
                     if (opt.Equals("-"))
                     {
 
-                        if (p.Quantity <= this.products[p.Product.Id].Quantity)
-                            if (opt.Equals("-"))
-                                this.products[p.Product.Id].Quantity -= p.Quantity;
-
-                            else
-                            {
-                                p.Quantity = this.products[p.Product.Id].Quantity;
-                                this.products[p.Product.Id].Quantity = 0;
-                            }
+                        if (p.Quantity <= this.products[p.Product.Id].Quantity) //if quntity in store bigger then quntity to buy
+                            this.products[p.Product.Id].Quantity -= p.Quantity; //Save the quntity
+                        else
+                        {
+                            p.Quantity = this.products[p.Product.Id].Quantity;
+                            this.products[p.Product.Id].Quantity = 0;
+                        }
                     }
                     else
                     {
@@ -486,7 +484,9 @@ namespace src.Domain
         public PurchasePolicy addComplexPurchasePolicy(int ID, String purchesData)
         {
             String[] purchesDataArr = purchesData.Split(',');
-            return addComplexPurchasePolicyRec(0, purchesDataArr.Length - 1, ID, purchesDataArr, -1);
+            PurchasePolicy output = addComplexPurchasePolicyRec(0, purchesDataArr.Length - 1, ID, purchesDataArr, -1);
+            this.purchasePolicy.Add(output);
+            return output;
         }
 
         public PurchasePolicy addComplexPurchasePolicyRec(int begin, int end, int ID, String[] purchesData, int multiplcation)
@@ -520,7 +520,7 @@ namespace src.Domain
 
             }
 
-            
+
         }
 
 
@@ -567,7 +567,7 @@ namespace src.Domain
                 int SumMin = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 int SumMax = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })));
-                return new BuyConditionPolicy(ID,min,max, SumMin, SumMax, act);
+                return new BuyConditionPolicy(ID, min, max, SumMin, SumMax, act);
             }
             catch (Exception e)
             {
@@ -581,9 +581,9 @@ namespace src.Domain
             try
             {
                 String adress = purchesData[begin++].Trim(new char[] { ' ', '(', ')' });
-                bool Isregister = (purchesData[begin++].Trim(new char[] { ' ', '(', ')' })=="1");
+                bool Isregister = (purchesData[begin++].Trim(new char[] { ' ', '(', ')' }) == "1");
                 LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })));
-                return new UserConditionPolicy(ID, adress, Isregister,  act);
+                return new UserConditionPolicy(ID, adress, Isregister, act);
             }
             catch (Exception e)
             {
@@ -593,10 +593,10 @@ namespace src.Domain
 
         internal PurchasePolicy factoryIfThenCondition(int begin, int end, int ID, String[] purchesData, int multiplcation)
         {
-            int beginIf = -1, endIf = -1, beginThen = -1, endThen=-1, dif=0;
+            int beginIf = -1, endIf = -1, beginThen = -1, endThen = -1, dif = 0;
             ExtractOperand(begin, ref beginIf, ref endIf, purchesData);
-            ExtractOperand(endIf+1, ref beginThen, ref endThen, purchesData);
-            LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[endThen+1].Trim(new char[] { ' ', '(', ')' })));
+            ExtractOperand(endIf + 1, ref beginThen, ref endThen, purchesData);
+            LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[endThen + 1].Trim(new char[] { ' ', '(', ')' })));
             return new IfThenCondition(ID, addComplexPurchasePolicyRec(beginIf, endIf, 0, purchesData, multiplcation), addComplexPurchasePolicyRec(beginThen, endThen, 0, purchesData, multiplcation), act);
 
         }
@@ -621,19 +621,24 @@ namespace src.Domain
 
                 }
                 return output;
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return null;
             }
-            
+
         }
 
         private int ExtractOperand(int i, ref int begin, ref int end, String[] purchesData)
         {
             int diff = 0; //the current diff between open bracket to close bracket
+            begin = -1;
+            end = -1;
             bool done = false;
             while (i < purchesData.Length && !done)
             {
+                if (purchesData[i].Contains("(("))
+                    diff++;
                 if (purchesData[i].Contains("("))
                 {
                     if (begin == -1)
@@ -641,7 +646,8 @@ namespace src.Domain
                     else
                         diff++;
                 }
-
+                if (purchesData[i].Contains("))"))
+                    diff--;
                 if (purchesData[i].Contains(")"))
                 {
                     if (begin != -1 && diff == 0)
@@ -657,10 +663,23 @@ namespace src.Domain
             return i;
         }
 
-        public virtual int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
+        public virtual int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, DateTime expiredDate, int discountId, DuplicatePolicy logic)
         {
             logic = DuplicatePolicy.WithMultiplication;
-            RevealedDiscount newRevealedDiscount = new RevealedDiscount(discountId, discountPrecentage, products, expiredDate, logic);
+            Dictionary<int, KeyValuePair<ProductInStore, int>> relatedProduct = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
+            foreach (KeyValuePair<String, int> product in products)
+            {
+                bool found = false;
+                for (int i = 0; i < this.products.Count && !found; i++)
+                {
+                    if (this.products.ElementAt(i).Value.Product.ProductName.Equals(product.Key))
+                    {
+                        relatedProduct.Add(this.products.ElementAt(i).Value.Product.Id, new KeyValuePair<ProductInStore, int>(this.products.ElementAt(i).Value, product.Value));
+                        found = true;
+                    }
+                }
+            }
+            RevealedDiscount newRevealedDiscount = new RevealedDiscount(discountId, discountPrecentage, relatedProduct, expiredDate, logic);
             discountPolicy.Add(newRevealedDiscount);
             LogManager.Instance.WriteToLog("Store - addRevealedDiscountPolicy - new discount policy added\n");
             return discountId;
@@ -692,6 +711,94 @@ namespace src.Domain
                 }
             }
             return -1;
+        }
+        public virtual int addConditionalDiscuntPolicy(int discountId, List<String> productsList, String condition, double discountPrecentage, DateTime expiredDiscountDate, DuplicatePolicy dup, LogicalConnections logic)
+        {
+            Dictionary<int, ProductInStore> discountProduct = new Dictionary<int, ProductInStore>();
+            foreach (String product in productsList)
+            {
+                ProductInStore pis = ConvertProductNameToProductInStore(product);
+                discountProduct.Add(pis.Product.Id, pis);
+            }
+            LogicalCondition toAdd = new LogicalCondition(discountId, discountPrecentage, discountProduct, expiredDiscountDate, dup, logic);
+            conditionConvert(toAdd, 0, condition.Split(',').Length, condition.Split(','), 0);
+            this.discountPolicy.Add(toAdd);
+            return toAdd.Id1;
+        }
+
+        public virtual int conditionConvert(LogicalCondition father, int start, int end, String[] condition, int childID)
+        {
+            int diff = 0 ;
+            int s=0, e=0;
+            while (start < end)
+            {
+                if (condition[start].Contains("("))
+                {
+                    diff++;
+                }
+                else if (condition[start].Contains(")"))
+                {
+                    diff--;
+                }
+                //"( + , - ==conditional discount ||(product id , quntitiy)==leaf"
+                if (condition[start].Trim(new char[] { ' ', '(', ')' }).Contains("+"))
+                {
+                    start++;
+                    LogicalCondition toAdd = new LogicalCondition(childID++, 0, null, new DateTime(2222,1,1), DuplicatePolicy.WithMultiplication, LogicalConnections.and);
+                    ExtractOperand(start, ref s,ref e, condition);
+                    start = conditionConvert(toAdd, s,e+1, condition, 0);
+                    father.addChild(childID++,toAdd);
+                    start = e + 1;
+                }
+                else if (condition[start].Trim(new char[] { ' ', '(', ')' }).Contains("-"))
+                {
+                    start++;
+                    LogicalCondition toAdd = new LogicalCondition(childID++, 0, null, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication, LogicalConnections.or);
+                    ExtractOperand(start, ref s, ref e, condition);
+                    start = conditionConvert(toAdd, s, e + 1, condition, 0);
+                    father.addChild(childID++, toAdd);
+                    start = e + 1;
+
+                }
+                else if (condition[start].Trim(new char[] { ' ', '(', ')' }).Contains("#"))
+                {
+                    start++;
+                    LogicalCondition toAdd = new LogicalCondition(childID++, 0, null, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication, LogicalConnections.xor);
+                    ExtractOperand(start, ref s, ref e, condition);
+                    start = conditionConvert(toAdd, s, e + 1, condition, 0);
+                    father.addChild(childID++, toAdd);
+                    start = e + 1;
+                }
+                else
+                {
+                    try
+                    {
+                        ProductInStore product = ConvertProductNameToProductInStore(condition[start++].Trim(new char[] { ' ', '(', ')' }));
+                        int quntity = Int32.Parse(condition[start++].Trim(new char[] { ' ', '(', ')' }));
+                        Dictionary<int, KeyValuePair<ProductInStore, int>> ConditionProducts = new Dictionary<int, KeyValuePair<ProductInStore, int>>();
+                        ConditionProducts.Add(product.Product.Id, new KeyValuePair<ProductInStore, int>(product, quntity));
+                        father.addChild(childID++, new LeafCondition(ConditionProducts, childID++, 0, null, new DateTime(), DuplicatePolicy.WithMultiplication));
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                }
+            }
+            return start;
+        }
+
+        public ProductInStore ConvertProductNameToProductInStore(string name)
+        {
+            foreach (ProductInStore curProduct in this.products.Values)
+            {
+                if (curProduct.Product.ProductName.Equals(name))
+                {
+                    return curProduct;
+                }
+            }
+            return null;
         }
     }
 }

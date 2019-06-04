@@ -404,8 +404,8 @@ namespace UnitTests
             StubUser raul = new StubUser(7, null, null, false, false, false);
             raul.PcRet = bcp;
             sys.Users.Add(raul.Id, raul);
-            Assert.AreEqual(true, sys.addSimplePurchasePolicy(0, 1, 1, 1, 1, 1, null, false, store.Id, raul.Id), "ProductConditionPolicy check success");
-            Assert.AreEqual(false, sys.addSimplePurchasePolicy(0, -1, 1, 1, -1, -1, null, false, store.Id, raul.Id), "ProductConditionPolicy check fail");
+            Assert.AreEqual(0, sys.addSimplePurchasePolicy(0, 1, 1, 1, -1, 1, null, false, store.Id, raul.Id), "ProductConditionPolicy check success");
+            Assert.AreEqual(-1, sys.addSimplePurchasePolicy(0, -1, 1, 1, -1, -1, null, false, store.Id, raul.Id), "ProductConditionPolicy check fail");
         }
 
 
@@ -416,8 +416,8 @@ namespace UnitTests
             StubUser raul = new StubUser(7, null, null, false, false, false);
             raul.PcRet = bcp;
             sys.Users.Add(raul.Id, raul);
-            Assert.AreEqual(true, sys.addComplexPurchasePolicy("", store.Id, raul.Id), "good check");
-            Assert.AreEqual(false, sys.addComplexPurchasePolicy("", store.Id, raul.Id + 1), "ProductConditionPolicy check fail");
+            Assert.AreEqual(2, sys.addComplexPurchasePolicy("", store.Id, raul.Id), "good check");
+            Assert.AreEqual(-1, sys.addComplexPurchasePolicy("", store.Id, raul.Id + 1), "ProductConditionPolicy check fail");
         }
 
 

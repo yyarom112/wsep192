@@ -40,8 +40,8 @@
                                 </div>
                                 <div class="col-md-12 form-group p_star">
                                     <div class="col-md-6 form-group p_star">
-                                        <input type="text" class="form-control" id="expiredDate" placeholder="Expired date">
-                                        <span class="placeholder" data-placeholder="Expired date"></span>
+                                        <input type="text" class="form-control" id="expiredDate" placeholder="Expired date _/_/_">
+                                        <span class="placeholder" data-placeholder="Expired date _/_/_"></span>
                                     </div>
                                 </div>
                                 <div class="text-center">

@@ -97,6 +97,10 @@ namespace WebServices.Controllers
         {
             return View();
         }
+        public ActionResult AddDiscountPolicy()
+        {
+            return View();
+        }
 
     }
 
