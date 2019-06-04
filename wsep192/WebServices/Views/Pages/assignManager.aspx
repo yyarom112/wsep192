@@ -96,16 +96,16 @@
 
                             }
                             else {
-                                alert("Error" + response);
+                                alert('Manager cannot be assigned. The user does not exists or loggedin user cannot perform this act.');
                             }
                         },
                         error: function (response) {
-                            alert(response);
+                            alert('Manager cannot be assigned. The user does not exists or loggedin user cannot perform this act.');
                         }
                     });
                 }
                 else
-                    alert("User isn't logged in");
+                    alert('User is not an owner or a premissioned manager to preform this act.');
             });
         });
 

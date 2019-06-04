@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="addPurchasePolicy.aspx.cs" Inherits="WebServices.Views.Pages.purchasePolicy" %>
+﻿
+
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="addPurchasePolicy.aspx.cs" Inherits="WebServices.Views.Pages.purchasePolicy" %>
 
 <asp:Content ID="content1" ContentPlaceHolderID="MainContent" runat="server">
 

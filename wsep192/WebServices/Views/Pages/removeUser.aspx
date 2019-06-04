@@ -49,7 +49,7 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else {
-                                alert(response);
+                                alert('The user is not the system admin or the user to remove does not exists in the system. Please try again.');
                             }
                         },
                         error: function (response) {

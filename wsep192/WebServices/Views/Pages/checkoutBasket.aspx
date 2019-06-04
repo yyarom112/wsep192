@@ -169,10 +169,10 @@
                             document.getElementById('orderTable').style.visibility = "visible";
                         }
                         else
-                            alert(response);
+                            alert('Users date or card number are wrong. Please try again.');
                     },
                     error: function (response) {
-                        alert("Problem with pay for basket");
+                        alert('Something went wrong during the checkout. Please try again.');
                     }
                 });
 
