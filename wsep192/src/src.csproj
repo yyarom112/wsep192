@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataLayer\DBmanager.cs" />
     <Compile Include="Domain\BuyConditionPolicy.cs" />
     <Compile Include="Domain\Dataclass\UserDetailes.cs" />
     <Compile Include="Domain\DiscountPolicy.cs" />

@@ -21,8 +21,7 @@ namespace src.Domain
         private Dictionary<int, Role> roles;
         private List<String> orderStores;
         private List<String> messages;
-        private state signedIn;
-        private state visitor;
+
 
         public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
         {
