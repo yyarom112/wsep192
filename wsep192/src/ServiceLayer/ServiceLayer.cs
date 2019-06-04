@@ -135,6 +135,13 @@ namespace src.ServiceLayer
             return user;
         }
 
+        public int getUser(string user)
+        {
+            if (this.users.ContainsKey(user))
+                return this.users[user];
+            return -1;
+        }
+
         //req1.1
         public bool init(String adminName, String adminPassword)
         {

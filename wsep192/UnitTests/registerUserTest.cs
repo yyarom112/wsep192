@@ -21,6 +21,7 @@ namespace UnitTests
         public void TestMethod1_success_user_scenario()
         {
             setUp();
+            user1.db.IsTest = true;
             String userName = user1.UserName;
             String password = user1.Password;
             Assert.AreEqual(true, user1.register(userName, password));
@@ -93,6 +94,11 @@ namespace UnitTests
             system.Users.Add(tmpUser.Id, tmpUser);
             Assert.AreEqual(false, system.register(userName, password, userId));
         }
+
+
+
+
+
         /*------------------------stub-classes------------------------------------*/
 
         class StubUser : User

@@ -1,4 +1,5 @@
-﻿using src.Domain.Dataclass;
+﻿using src.DataLayer;
+using src.Domain.Dataclass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace src.Domain
         private Dictionary<int, Role> roles;
         private List<String> orderStores;
         private List<String> messages;
+        public DBmanager db;
 
 
         public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
@@ -36,6 +38,7 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
             this.orderStores = new List<String>();
             this.messages = new List<String>();
+            db = new DBmanager();
         }
 
         public int Id { get => id; set => id = value; }
@@ -73,7 +76,7 @@ namespace src.Domain
         public void setOrderStores()
         {
             this.orderStores = new List<String>();
-            foreach(ShoppingCart sc in basket.ShoppingCarts.Values)
+            foreach (ShoppingCart sc in basket.ShoppingCarts.Values)
             {
                 orderStores.Add(sc.Store.Name);
             }
@@ -152,8 +155,15 @@ namespace src.Domain
             this.userName = userName;
             this.password = password;
             this.IsRegistered = true;
-            LogManager.Instance.WriteToLog("Register - userName or password null\n");
-            return true;
+            if (!db.Isconnected())
+                db = new DBmanager();
+            if (db.Isconnected() && db.RegisterNewUser(this))
+            {
+                LogManager.Instance.WriteToLog("Register - userName or password null\n");
+                return true;
+            }
+            return false;
+
         }
 
         public void addRole(Role role)

@@ -1,12 +1,16 @@
 ﻿using src.Domain.Dataclass;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace src.Domain
 {
+    [Serializable]
     class ShoppingBasket
     {
         private Dictionary<int, ShoppingCart> shoppingCarts;
@@ -78,6 +82,31 @@ namespace src.Domain
 
             }
             return shoppingCarts[storeId].editProductQuantityInCart(productId, quantity);
+        }
+
+        public byte[] serialize()
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (MemoryStream ms = new MemoryStream())
+            {
+                bf.Serialize(ms, this);
+                return ms.ToArray();
+            }
+        }
+
+        public ShoppingBasket deserialize(byte[] arrBytes)
+        {
+            MemoryStream memStream = new MemoryStream();
+            BinaryFormatter binForm = new BinaryFormatter();
+            memStream.Write(arrBytes, 0, arrBytes.Length);
+            memStream.Seek(0, SeekOrigin.Begin);
+            ShoppingBasket basket = (ShoppingBasket)binForm.Deserialize(memStream);
+            foreach (ShoppingCart cart in basket.shoppingCarts.Values)
+            {
+                this.shoppingCarts.Add(cart.StoreId, cart);
+            }
+
+            return basket;
         }
     }
 }

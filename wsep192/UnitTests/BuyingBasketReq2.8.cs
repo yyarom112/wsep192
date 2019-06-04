@@ -478,7 +478,28 @@ namespace UnitTests
 
         }
 
+        [TestMethod]
+        public void TestMethod1_SerializeDeserializeTest()
+        {
+            setUp();
+            sys.FinancialSystem = new StubFinancialSystem(true);
+            sys.SupplySystem = new StubProductSupplySystem(false);
 
+            ShoppingCart cart = new ShoppingCart(store.Id, store);
+
+            cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
+            cart.Products.Add(p2.Id, new ProductInCart(1, cart, p2));
+            cart.Products.Add(p3.Id, new ProductInCart(1, cart, p3));
+            cart.Products.Add(p4.Id, new ProductInCart(1, cart, p4));
+
+            user.Basket.ShoppingCarts.Add(cart.Store.Id, cart);
+
+            Byte[] arr = user.Basket.serialize();
+            user.Basket = new ShoppingBasket();
+            Assert.AreEqual(cart.Products, user.Basket.deserialize(arr).ShoppingCarts[cart.StoreId].Products);
+
+
+        }
 
 
 

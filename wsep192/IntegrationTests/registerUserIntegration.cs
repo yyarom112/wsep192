@@ -27,6 +27,7 @@ namespace IntegrationTests
             String userName = user1.UserName;
             String password = "9898";
             int userId = user1.Id;
+            user1.db.IsTest = true;
             Assert.AreEqual(true, system.register(userName, password, userId));
         }
 

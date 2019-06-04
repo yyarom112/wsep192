@@ -3722,3 +3722,69 @@
 04/06/2019 10:57:24: Real Madrid
 04/06/2019 10:57:24: Real Madrid
 04/06/2019 10:57:49: Real Madrid
+04/06/2019 21:29:40: Register - userName or password null
+
+04/06/2019 21:32:01: Register - userName or password null
+
+04/06/2019 21:36:00: Register - userName or password null
+
+04/06/2019 21:36:01: TradingSystem - Register - userName or password in wrong format
+04/06/2019 21:36:15: TradingSystem - Register - userName or password in wrong format
+04/06/2019 21:37:02: Register - userName or password null
+
+04/06/2019 21:37:30: TradingSystem - Register - userName or password in wrong format
+04/06/2019 21:37:30: TradingSystem - Register - userName or password in wrong format
+04/06/2019 21:37:30: TradingSystem - Register - userName or password in wrong format
+04/06/2019 21:37:57: TradingSystem - Register - userName or password in wrong format
+04/06/2019 21:37:57: Register - userName or password null
+
+04/06/2019 21:37:57: TradingSystem - Register - userName or password in wrong format
+04/06/2019 21:37:57: TradingSystem - Register - userName or password in wrong format
+04/06/2019 21:38:30: Register - userName or password null
+
+04/06/2019 21:38:30: Register - userName or password null
+
+04/06/2019 21:38:30: TradingSystem-open storeZara success
+
+04/06/2019 21:38:30: TradingSystem-create new product in store0 -success
+
+04/06/2019 21:38:30: TradingSystem-add product to store0 -success
+04/06/2019 21:38:30: Store - assign manger succeed
+04/06/2019 21:38:30: User:signOut success - Aviv
+
+04/06/2019 21:38:31: Register - userName or password null
+
+04/06/2019 21:38:32: TradingSystem - Register - userName or password in wrong format
+04/06/2019 21:38:33: TradingSystem - Register - userName or password in wrong format
+04/06/2019 21:38:34: TradingSystem - Register - userName or password in wrong format
+04/06/2019 21:49:35: Register - userName or password null
+
+04/06/2019 21:49:49: Register - userName or password null
+
+04/06/2019 22:07:23: Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.
+
+04/06/2019 22:07:28: Successfully closed the basket.
+
+04/06/2019 22:07:29: Products have declined / returned to store stock successfully.
+
+04/06/2019 22:07:29: Products have declined / returned to store stock successfully.
+
+04/06/2019 22:07:29: Making the cart purchase succeeded
+
+04/06/2019 22:07:30: Products have declined / returned to store stock successfully.
+
+04/06/2019 22:07:30: Products have declined / returned to store stock successfully.
+
+04/06/2019 22:07:30: payForBasket - Purchase failed due to product billing failure.
+
+04/06/2019 22:07:30: Products have declined / returned to store stock successfully.
+
+04/06/2019 22:07:30: Products have declined / returned to store stock successfully.
+
+04/06/2019 22:07:30: payForBasket - The purchase failed due to a failure in the delivery system.
+
+04/06/2019 22:09:23: Register - userName or password null
+
+04/06/2019 22:09:23: TradingSystem - Register - userName or password in wrong format
+04/06/2019 22:10:16: Register - userName or password null
+

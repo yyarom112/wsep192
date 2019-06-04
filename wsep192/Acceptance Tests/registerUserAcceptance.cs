@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.ServiceLayer;
+using src.DataLayer;
 
 namespace Acceptance_Tests
 {
@@ -25,6 +26,8 @@ namespace Acceptance_Tests
             setUp();
             String userName = "Seifan";
             String password = "2345";
+            DBmanager db = new DBmanager();
+            db.removeUser(3);
             Assert.AreEqual(true, service.register(userName, password, id));
             service.shutDown();
         }
