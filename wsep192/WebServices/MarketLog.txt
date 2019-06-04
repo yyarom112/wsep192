@@ -1625,3 +1625,17 @@
 
 04/06/2019 17:59:05: User:signOut success - Aviv
 
+04/06/2019 18:01:53: Register - userName or password null
+
+04/06/2019 18:01:53: Register - userName or password null
+
+04/06/2019 18:01:53: TradingSystem-open storeZara success
+
+04/06/2019 18:01:53: TradingSystem-create new product in store0 -success
+
+04/06/2019 18:01:53: TradingSystem-add product to store0 -success
+04/06/2019 18:01:53: Store - assign manger succeed
+04/06/2019 18:01:53: User:signOut success - Aviv
+
+04/06/2019 18:04:18: User:signOut success - Aviv
+
