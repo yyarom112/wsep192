@@ -491,7 +491,6 @@ namespace src.ServiceLayer
             {
                 return -1;
             }
-
         }
 
 
@@ -517,7 +516,7 @@ namespace src.ServiceLayer
             {
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
                     return -1;
-                return system.addRevealedDiscountPolicy(products, Double.Parse(discountPrecentage), this.users[user], this.stores[store], Int32.Parse(expiredDiscountDate), Int32.Parse(logic));
+                return system.addRevealedDiscountPolicy(products, Double.Parse(discountPrecentage)/100.0, this.users[user], this.stores[store], Int32.Parse(expiredDiscountDate), Int32.Parse(logic));
             }
             catch (Exception e)
             {

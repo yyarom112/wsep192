@@ -101,6 +101,10 @@ namespace WebServices.Controllers
         {
             return View();
         }
+        public ActionResult RemovePolicy()
+        {
+            return View();
+        }
 
     }
 
