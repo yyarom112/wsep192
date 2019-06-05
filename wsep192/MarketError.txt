@@ -363,3 +363,55 @@
    ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
    ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
    ב-  src.DataLayer.DBmanager.RegisterNewUser(User user) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 72 .
+05/06/2019 16:55:51: DBmanager-RegisterNewUser- Add new user failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.Users index: _id_ dup key: { : 0 } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.Users index: _id_ dup key: { : 0 }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addNewUser(User user) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 71 .
+05/06/2019 17:13:43: DBmanager-RegisterNewUser- Add new user failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.Users index: _id_ dup key: { : 0 } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.Users index: _id_ dup key: { : 0 }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addNewUser(User user) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 71 .
+05/06/2019 17:25:20: DBmanager-RegisterNewUser- Add new user failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.Users index: _id_ dup key: { : 0 } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.Users index: _id_ dup key: { : 0 }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addNewUser(User user) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 71 .
+05/06/2019 17:49:22: DBmanager-RegisterNewUser- Add new user failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.Users index: _id_ dup key: { : 0 } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.Users index: _id_ dup key: { : 0 }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addNewUser(User user) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 71 .

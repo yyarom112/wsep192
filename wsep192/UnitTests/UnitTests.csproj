@@ -56,6 +56,7 @@
     <Compile Include="addPurchasePolicy.cs" />
     <Compile Include="addRevealedDiscountPolicy-unitTest.cs" />
     <Compile Include="assignManagerTest.cs" />
+    <Compile Include="DBmangerTest.cs" />
     <Compile Include="DiscountPolicyStructureTest.cs" />
     <Compile Include="InitSystemTest.cs" />
     <Compile Include="PurchasePolicyTest.cs" />

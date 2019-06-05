@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    enum state { visitor, signedIn }
+    public enum state { visitor, signedIn }
     class User
     {
         private int id;
@@ -156,7 +156,7 @@ namespace src.Domain
             this.IsRegistered = true;
             if (!db.Isconnected())
                 db = new DBmanager();
-            if (db.Isconnected() && db.RegisterNewUser(this))
+            if (db.Isconnected() && db.addNewUser(this))
             {
                 LogManager.Instance.WriteToLog("Register - userName or password null\n");
                 return true;

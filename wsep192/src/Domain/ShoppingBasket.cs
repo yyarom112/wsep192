@@ -86,21 +86,5 @@ namespace src.Domain
             }
             return shoppingCarts[storeId].editProductQuantityInCart(productId, quantity);
         }
-
-
-        public ShoppingBasket deserialize(byte[] arrBytes)
-        {
-            MemoryStream memStream = new MemoryStream();
-            BinaryFormatter binForm = new BinaryFormatter();
-            memStream.Write(arrBytes, 0, arrBytes.Length);
-            memStream.Seek(0, SeekOrigin.Begin);
-            ShoppingBasket basket = (ShoppingBasket)binForm.Deserialize(memStream);
-            foreach (ShoppingCart cart in basket.shoppingCarts.Values)
-            {
-                this.shoppingCarts.Add(cart.StoreId, cart);
-            }
-
-            return basket;
-        }
     }
 }
