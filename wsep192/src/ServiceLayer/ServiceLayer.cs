@@ -509,33 +509,35 @@ namespace src.ServiceLayer
             return sb.ToString();
         }
 
-        public bool addComplexPurchasePolicy(String purchaesData, String store, String user)
-        {
-            try
-            {
-                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
-                    return false;
-                return this.system.addComplexPurchasePolicy(purchaesData, this.stores[store], this.users[user]);
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
-
-        public int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
+        public int addComplexPurchasePolicy(String purchesData, String store, String user)
         {
             try
             {
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
                     return -1;
-                return system.addRevealedDiscountPolicy(products, Double.Parse(discountPrecentage), this.users[user], this.stores[store], Int32.Parse(expiredDiscountDate), Int32.Parse(logic));
+                return this.system.addComplexPurchasePolicy(purchesData, this.stores[store], this.users[user]);
+
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("ServiceLayer-addComplexPurchasePolicy- Search for user or store that not exist ");
                 return -1;
             }
+        }
 
+        public int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
+        {
+            try
+            {
+                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
+                    return -1;
+                return system.addRevealedDiscountPolicy(products, Double.Parse(discountPrecentage) / 100.0, this.users[user], this.stores[store], Int32.Parse(expiredDiscountDate), Int32.Parse(logic));
+            }
+            catch (Exception e)
+            {
+                ErrorManager.Instance.WriteToLog("ServiceLayer-removeDiscountPolicy- Search for user or store that not exist or parsing failed ");
+                return -1;
+            }
         }
 
         public int removeDiscountPolicy(String discountId, String store, String user)

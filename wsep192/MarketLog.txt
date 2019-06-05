@@ -3722,3 +3722,509 @@
 04/06/2019 10:57:24: Real Madrid
 04/06/2019 10:57:24: Real Madrid
 04/06/2019 10:57:49: Real Madrid
+6/5/2019 19:27:57: Add to cart success. /n
+6/5/2019 19:27:57: Add to cart success. /n
+6/5/2019 19:29:35: Add to cart success. /n
+6/5/2019 19:29:35: Add to cart success. /n
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Add to cart success. /n
+6/5/2019 19:31:40: Add to cart success. /n
+6/5/2019 19:31:40: Add to cart fail- one of the parameter Invalid. /n
+6/5/2019 19:31:40: Add to cart fail- one of the parameter Invalid. /n
+6/5/2019 19:31:40: Add to cart fail- one of the parameter Invalid. /n
+6/5/2019 19:31:40: Add to cart fail-Product 10 does not exist. 
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Store - assign manger succeed
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: User - assign manger fail - owner not signed in or manager not registered
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: User - assign manger fail - owner not signed in or manager not registered
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Store - assign manger fail - new manager already exist in the store
+6/5/2019 19:31:40: Store - assign manger fail - owner not exist in the tree
+6/5/2019 19:31:40: Successfully closed the basket.
+
+6/5/2019 19:31:40: Products have declined / returned to store stock successfully.
+
+6/5/2019 19:31:40: Products have declined / returned to store stock successfully.
+
+6/5/2019 19:31:40: Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.
+
+6/5/2019 19:31:40: The attempt to purchase product 0 failed because it does not belong to the store.
+
+6/5/2019 19:31:40: The attempt to purchase product 1 failed because it does not belong to the store.
+
+6/5/2019 19:31:40: The attempt to purchase product 2 failed because it does not belong to the store.
+
+6/5/2019 19:31:40: The attempt to purchase product 3 failed because it does not belong to the store.
+
+6/5/2019 19:31:40: Products have declined / returned to store stock successfully.
+
+6/5/2019 19:31:40: Making the cart purchase succeeded
+
+6/5/2019 19:31:40: Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.
+
+6/5/2019 19:31:40: The attempt to purchase product 0 failed because it does not belong to the store.
+
+6/5/2019 19:31:40: Products have declined / returned to store stock successfully.
+
+6/5/2019 19:31:40: Making the cart purchase succeeded
+
+6/5/2019 19:31:40: ShoppingBasket:editProductQuantityInCart failed - Shopping cart does not exist
+
+6/5/2019 19:31:40: ShoppingCart:editProductQuantityInCart success
+
+6/5/2019 19:31:40: ShoppingCart:editProductQuantityInCart success
+
+6/5/2019 19:31:40: ShoppingCart:editProductQuantityInCart success
+
+6/5/2019 19:31:40: ShoppingCart:editProductQuantityInCart success
+
+6/5/2019 19:31:40: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+6/5/2019 19:31:40: Manager:validatePermission failed - usermanager
+
+6/5/2019 19:31:40: User-search Role By StoreID With Validate Permmision fail- Manager does not have permissions
+
+6/5/2019 19:31:40: Manager:validatePermission success - usermanager
+
+6/5/2019 19:31:40: Product Condition Policy add to store store successfully
+6/5/2019 19:31:40: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+6/5/2019 19:31:40: Manager:validatePermission success - usermanager
+
+6/5/2019 19:31:40: Product Condition Policy add to store store successfully
+6/5/2019 19:31:40: Product Condition Policy add to store store successfully
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: TradingSystem - Register - userName or password in wrong format
+6/5/2019 19:31:40: TradingSystem - Register - userName or password in wrong format
+6/5/2019 19:31:40: TradingSystem - Register - userName or password in wrong format
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:40: Store - removeDiscountPolicy - discount policy removed
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:40: Store - removeDiscountPolicy - discount policy removed
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:40: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:40: Store - removeDiscountPolicy - discount policy removed
+
+6/5/2019 19:31:40: Register - userName or password null
+
+6/5/2019 19:31:41: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:41: Store - removeDiscountPolicy - discount policy removed
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:41: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+6/5/2019 19:31:41: Store-Remove manager Fail- The user 1 is not manger in the store -1.
+
+6/5/2019 19:31:41: User-Remove manager fail- User is not logged in
+
+6/5/2019 19:31:41: TradingSystem - Remove manager id2 from store -1 success
+
+6/5/2019 19:31:41: TradingSystem - Remove manager fail - The store or user is not exist.
+
+6/5/2019 19:31:41: Store-Remove manager Fail- The user 1 is not manger in the store -1.
+
+6/5/2019 19:31:41: ShoppingBasket:removeProductsFromCart failed - Shopping cart does not exist
+
+6/5/2019 19:31:41: ShoppingCart:removeProductQuantityFromCart failed - shopping cart does not contain the product or invalid quantity
+
+6/5/2019 19:31:41: ShoppingCart:removeProductsFromCart success
+
+6/5/2019 19:31:41: ShoppingCart:removeProductsFromCart success
+
+6/5/2019 19:31:41: ShoppingCart:removeProductsFromCart success
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: Store - removePurchasePolicy - purchase policy removed
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: Store - removePurchasePolicy - purchase policy removed
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: Store - removePurchasePolicy - purchase policy removed
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: Store - removePurchasePolicy - purchase policy removed
+
+6/5/2019 19:31:41: ShoppingBasket:showCart failed - Shopping basket does not contain the store
+
+6/5/2019 19:31:41: ShoppingCart:showCart success
+
+6/5/2019 19:31:41: ShoppingCart:showCart success
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: TradingSystem - Register - userName or password in wrong format
+6/5/2019 19:31:41: TradingSystem - signIn - user not register.
+
+6/5/2019 19:31:41: TradingSystem - Register - userName or password in wrong format
+6/5/2019 19:31:41: TradingSystem - signIn - user not register.
+
+6/5/2019 19:31:41: TradingSystem - Register - userName or password in wrong format
+6/5/2019 19:31:41: TradingSystem - signIn - user not register.
+
+6/5/2019 19:31:41: TradingSystem - signIn - user not register.
+
+6/5/2019 19:31:41: TradingSystem-create new product in store2 -success
+
+6/5/2019 19:31:41: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:41: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:41: TradingSystem-create new product in store2 -success
+
+6/5/2019 19:31:41: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+6/5/2019 19:31:41: TradingSystem-create new product in store fail- the store does not exists
+
+6/5/2019 19:31:41: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+6/5/2019 19:31:41: TradingSystem-create new product in store fail- the store does not exists
+
+6/5/2019 19:31:41: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:41: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:41: TradingSystem-add product to store2 -success
+6/5/2019 19:31:41: TradingSystem-add product to store2 -success
+6/5/2019 19:31:41: User-add products in store fail- the role does not exists or doesn't have permissions
+
+6/5/2019 19:31:41: TradingSystem-add product to store fail- the store does not exists
+
+6/5/2019 19:31:41: User-add products in store fail- the role does not exists or doesn't have permissions
+
+6/5/2019 19:31:41: TradingSystem-add product to store fail- the store does not exists
+
+6/5/2019 19:31:41: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:41: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:41: TradingSystem-remove product from store2 -success
+6/5/2019 19:31:41: TradingSystem-remove product from store2 -success
+6/5/2019 19:31:41: User-remove product in store fail- the role does not exists or doesn't have permissions
+
+6/5/2019 19:31:41: TradingSystem-remove product from store fail- the store does not exists
+
+6/5/2019 19:31:41: User-remove product in store fail- the role does not exists or doesn't have permissions
+
+6/5/2019 19:31:41: TradingSystem-remove product from store fail- the store does not exists
+
+6/5/2019 19:31:41: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:41: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:41: TradingSystem-edit product to store2 success
+6/5/2019 19:31:41: TradingSystem-edit product to store2 success
+6/5/2019 19:31:41: User-edit products in store fail- the role does not exists or doesn't have permissions
+
+6/5/2019 19:31:41: TradingSystem-edit product from store fail- the store does not exists
+
+6/5/2019 19:31:41: User-edit products in store fail- the role does not exists or doesn't have permissions
+
+6/5/2019 19:31:41: TradingSystem-edit product from store fail- the store does not exists
+
+6/5/2019 19:31:41: TradingSystem-Assign owner 301600802 -success
+6/5/2019 19:31:41: TradingSystem-Assign owner fail- the owner does not exists
+
+6/5/2019 19:31:41: TradingSystem-open storeUO success
+
+6/5/2019 19:31:41: TradingSystem - open store fail- the user does not exists or not registerd
+
+6/5/2019 19:31:41: TradingSystem - open store fail - the store id does not exists
+
+6/5/2019 19:31:41: TradingSystem-open storeTopShop success
+
+6/5/2019 19:31:41: TradingSystem - open store fail - the store id does not exists
+
+6/5/2019 19:31:41: TradingSystem - Remove user id203444912 success.
+
+6/5/2019 19:31:41: TradingSystem - Remove user fail - the removing user is not an admin.
+
+6/5/2019 19:31:41: User:signOut success - user
+
+6/5/2019 19:31:41: User:signOut failed - user user didn't sign in
+
+6/5/2019 19:31:41: User:signOut success - user
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:41: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Add to cart success. /n
+6/5/2019 19:31:42: Add to cart success. /n
+6/5/2019 19:31:42: Add to cart fail- one of the parameter Invalid. /n
+6/5/2019 19:31:42: Add to cart fail- one of the parameter Invalid. /n
+6/5/2019 19:31:42: Add to cart fail- one of the parameter Invalid. /n
+6/5/2019 19:31:42: Add to cart fail-Product 10 does not exist. 
+
+6/5/2019 19:31:42: Product Condition Policy add to store store successfully
+6/5/2019 19:31:42: inventory Condition Policy add to store store successfully
+6/5/2019 19:31:42: Buy Condition Policy add to store store successfully
+6/5/2019 19:31:42: User Condition Policy add to store store successfully
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - assign manger succeed
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Manager:validatePermission success - userbaba
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - assign manger fail - new manager already exist in the store
+6/5/2019 19:31:42: Store - assign manger fail - owner not exist in the tree
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - assign manger succeed
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - assign manger succeed
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: User - assign manger fail - owner not signed in or manager not registered
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: User - assign manger fail - owner not signed in or manager not registered
+6/5/2019 19:31:42: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+6/5/2019 19:31:42: User-search Role By StoreID With Validate Permmision fail- The user 1 does not have a role in the -1 store
+
+6/5/2019 19:31:42: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+6/5/2019 19:31:42: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+6/5/2019 19:31:42: Trading System- addComplexPurchasePolicy- User does not exist
+
+6/5/2019 19:31:42: Store-Remove manager Fail- The user 1 is not manger in the store -1.
+
+6/5/2019 19:31:42: User-Remove manager fail- User is not logged in
+
+6/5/2019 19:31:42: TradingSystem - Remove manager id0 from store -1 success
+
+6/5/2019 19:31:42: TradingSystem - Remove manager fail - The store or user is not exist.
+
+6/5/2019 19:31:42: ShoppingCart:removeProductQuantityFromCart failed - shopping cart does not contain the product or invalid quantity
+
+6/5/2019 19:31:42: ShoppingBasket:removeProductsFromCart failed - Shopping cart does not exist
+
+6/5/2019 19:31:42: ShoppingCart:removeProductsFromCart success
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:42: Store - removeDiscountPolicy - discount policy removed
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:42: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Store - removePurchasePolicy - purchase policy removed
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+6/5/2019 19:31:42: Real Madrid
+6/5/2019 19:31:42: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:42: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:42: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:42: Manager:validatePermission success - userNoy
+
+6/5/2019 19:31:42: TradingSystem - Remove user id203444912 success.
+
+6/5/2019 19:31:42: TradingSystem - Remove user fail - the removing user is not an admin.
+
+6/5/2019 19:31:42: TradingSystem - signIn - user not register.
+
+6/5/2019 19:31:42: TradingSystem - signIn - user not register.
+
+6/5/2019 19:31:42: TradingSystem - signIn - user not register.
+
+6/5/2019 19:31:42: TradingSystem - signIn - user not register.
+
+6/5/2019 19:31:42: Manager:validatePermission failed - useruser
+
+6/5/2019 19:31:42: Manager:validatePermission success - useruser
+
+6/5/2019 19:31:42: Manager:validatePermission success - useruser
+
+6/5/2019 19:31:42: Manager:validatePermission success - useruser
+
+6/5/2019 19:31:42: Manager:validatePermission failed - useruser
+
+6/5/2019 19:31:42: Register - userName or password null
+
+6/5/2019 19:31:42: TradingSystem - Register - userName or password in wrong format
+6/5/2019 19:31:42: ShoppingBasket:editProductQuantityInCart failed - Shopping cart does not exist
+
+6/5/2019 19:31:42: ShoppingCart:editProductQuantityInCart failed - shopping cart does not contain the product
+
+6/5/2019 19:31:42: ShoppingCart:editProductQuantityInCart success
+
+6/5/2019 19:31:42: ShoppingBasket:showCart failed - Shopping basket does not contain the store
+
+6/5/2019 19:31:42: ShoppingCart:showCart success
+
+6/5/2019 19:31:42: ShoppingCart:showCart success
+
+6/5/2019 19:31:42: Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.
+
+6/5/2019 19:31:42: Successfully closed the basket.
+
+6/5/2019 19:31:42: Products have declined / returned to store stock successfully.
+
+6/5/2019 19:31:42: Products have declined / returned to store stock successfully.
+
+6/5/2019 19:31:42: Making the cart purchase succeeded
+
+6/5/2019 19:31:42: Products have declined / returned to store stock successfully.
+
+6/5/2019 19:31:42: Products have declined / returned to store stock successfully.
+
+6/5/2019 19:31:42: payForBasket - Purchase failed due to product billing failure.
+
+6/5/2019 19:31:42: Products have declined / returned to store stock successfully.
+
+6/5/2019 19:31:42: Products have declined / returned to store stock successfully.
+
+6/5/2019 19:31:42: payForBasket - The purchase failed due to a failure in the delivery system.
+
+6/5/2019 19:31:42: Store-Remove owner Fail- The user 4
+6/5/2019 19:31:42: Store-Remove owner Succeeded- The user 2
+6/5/2019 19:31:42: User:signOut success - user
+
+6/5/2019 19:31:42: User:signOut failed - user user didn't sign in
+
+6/5/2019 19:31:42: User:signOut success - user
+
