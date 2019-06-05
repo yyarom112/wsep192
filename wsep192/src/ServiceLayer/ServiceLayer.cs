@@ -19,9 +19,11 @@ namespace src.ServiceLayer
         private Dictionary<String, int> permissions;
         private Dictionary<string, List<bool>> requests;
         private Dictionary<string, List<string>> storesStackholders = new Dictionary<string, List<string>>();
+        private Dictionary<int, OwnerRequest> systemRequests; //reqId - flag,count,tmpcount
         private NotificationsManager manager = new NotificationsManager();
         private int storeCounter;
         private int userCounter;
+        private int requestCounter;
 
 
         private ServiceLayer()
@@ -34,7 +36,7 @@ namespace src.ServiceLayer
             userCounter = 0;
             manager.init();
             addPermissions();
-            requests = new Dictionary<string, List<bool>>();
+            systemRequests = new Dictionary<int, OwnerRequest>();
 
             //setUp();
 
@@ -60,8 +62,8 @@ namespace src.ServiceLayer
         }
 
 
-        /*
-        public bool setUp()
+        
+        public bool setUp1()
         {
             bool flag = true;
             string user = instance.initUser();
@@ -75,7 +77,7 @@ namespace src.ServiceLayer
             flag = flag & instance.addProductsInStore(products, "store", "user");
             return flag;
 
-        }*/
+        }
 
         public bool setUp()
         {
@@ -160,6 +162,13 @@ namespace src.ServiceLayer
                 foreach (String message in system.getMessagesByUser(users[username]))
                     notify(username, message);
                 system.deleteMessagesByUser(users[username]);
+
+                foreach (OwnerRequest r in system.getRequestsByUser(users[username])) {
+                    request(username,r.message,r.id);
+                }
+                system.deleteRequestsByUser(users[username]);
+
+
             }
             return flag;
         }
@@ -339,6 +348,20 @@ namespace src.ServiceLayer
             return system.createNewProductInStore(productName, category, details, price, stores[store], users[user]);
         }
 
+        internal bool assignOwnerResult(int reqId, bool result)
+        {
+            if (!systemRequests.ContainsKey(reqId))
+                return false;
+            OwnerRequest r =systemRequests[reqId];
+            r.responsesCounter++;
+            r.result &= result;
+            if (r.result && r.responsesCounter==r.storesOwnersCount-1)
+            {
+                return assignOwner(r.owner,r.user,r.store);
+            }
+            return true;                                                           
+            }
+
         //pair of <produc,quantity>
         public bool addProductsInStore(List<KeyValuePair<String, int>> productsToAdd, String store, String user)
         {
@@ -375,29 +398,37 @@ namespace src.ServiceLayer
             if (flag)
             {
                 storesStackholders[store].Add(user);
-                String message = "You have successfully assigned as an owner in " + store;
-                if (system.isLoggedIn(users[user]))
-                    notify(user, message);
-                else
-                    system.addMessageToUser(users[user], message);
+                String message = user + " have successfully assigned as an owner in " + store;
+                notifyAll(store,message);
             }
             return flag;
         }
-        //
-        public async bool assignOwnerRequest(String owner, String user, String store)
+
+        public bool assignOwnerSetUp(String owner, String user, String store)
         {
-            bool flag = true;
             if (!users.ContainsKey(owner) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
-            String message = owner + "is requesting " + user + "to be assigned as owner in " + store;
-            requestAll(store, message, owner);
-            flag = await Result(message,store);
+            bool flag = system.assignOwner(stores[store], users[owner], users[user]);
             if (flag)
-                return assignOwner(owner, user, store);
-            return false;
+            {
+                storesStackholders[store].Add(user);
+                String message = user + " have successfully assigned as an owner in " + store;
+                notifyAllWithoutLoginUsers(store, message);
+            }
+            return flag;
         }
-        private async bool Result(String message,String store){
-            return requests[message].Count == storesStackholders[store].Count;
+
+        public bool assignOwnerRequest(String owner, String user, String store)
+        {
+
+            //store,user,owner
+            if (!users.ContainsKey(owner) || !users.ContainsKey(user) || !stores.ContainsKey(store))
+                return false;
+            String message = owner + " is requesting " + user + " to be assigned as owner in " + store;
+            systemRequests.Add(requestCounter,new OwnerRequest(message,requestCounter,user,store,owner,storesStackholders[store].Count));
+            requestAll(store, message, owner,requestCounter);
+            requestCounter++;
+            return true;
         }
 
 
@@ -534,13 +565,11 @@ namespace src.ServiceLayer
         }
 
 
-        public bool notify(string user, string message)
+        public void notify(string user, string message)
         {
             if (system.isLoggedIn(users[user]))
-            {
                 manager.notify(user, message);
-            }
-            return false;
+            
         }
 
         public void notifyAll(string store, string message)
@@ -553,10 +582,19 @@ namespace src.ServiceLayer
                     system.addMessageToUser(users[user], message);
             }
 
+        }
 
+        public void notifyAllWithoutLoginUsers(string store, string message)
+        {
+            foreach (string user in storesStackholders[store])
+            {
+                    system.addMessageToUser(users[user], message);
+            }
+
+            
 
         }
-        public void requestAll(string store, string message,string owner)
+        public void requestAll(string store, string message,string owner, int reqId)
         {
 
             foreach (string user in storesStackholders[store])
@@ -564,20 +602,18 @@ namespace src.ServiceLayer
                 if (owner == user)
                     continue;
                 if (system.isLoggedIn(users[user]))
-                    request(user, message,owner);
+                    request(user, message,reqId);
                 else
-                    system.addRequestToUser(users[user], message,users[owner]);
+                    system.addRequestToUser(users[user],systemRequests[reqId]);
             }
 
         }
 
-        public bool request(string user, string message,string owner)
+        public void request(string user, string message,int reqId)
         {
             if (system.isLoggedIn(users[user]))
-            {
-                manager.request(user, message,owner);
-            }
-            return false;
+                manager.request(user,message, reqId.ToString());
+            
         }
     }
 
