@@ -15,7 +15,7 @@ namespace src.Domain
             this.Permissions = permissions;
         }
 
-        private List<int> Permissions { get => permissions; set => permissions = value; }
+        public List<int> Permissions { get => permissions; set => permissions = value; }
 
         public virtual bool validatePermission(int permission)
         {

@@ -87,11 +87,6 @@ namespace src.Domain
             return shoppingCarts[storeId].editProductQuantityInCart(productId, quantity);
         }
 
-        public string serialize()
-        {
-            BsonWriter ms= new MongoDB.Bson.bsonwriter
-            return BsonSerializer.Serialize<ShoppingBasket>(this)
-        }
 
         public ShoppingBasket deserialize(byte[] arrBytes)
         {

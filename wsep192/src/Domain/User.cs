@@ -145,7 +145,6 @@ namespace src.Domain
             return basket.showCart(storeId);
         }
 
-
         public virtual Boolean register(string userName, string password)
         {
             if (userName == null || password == null)
@@ -165,6 +164,7 @@ namespace src.Domain
             return false;
 
         }
+
 
         public void addRole(Role role)
 
