@@ -107,5 +107,25 @@ namespace UnitTests
             Assert.AreEqual(true, db.removeAllProductInCartByUserId(user.Id));
             Assert.AreEqual(-1, db.getProductInCartquntity(user.Id, store.Id, p1.Id));
         }
+
+        [TestMethod]
+        public void TestMethod_ProductInStoreTable()
+        {
+            setUp();
+            DBmanager db = new DBmanager();
+            user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
+            Assert.AreEqual(true, db.addNewProductInStore(new ProductInStore(10,store,p1)));
+            try
+            {
+                Assert.AreEqual(true, db.addNewProductInStore(new ProductInStore(10, store, p1)));
+                Assert.AreEqual(true, false, " Insert to table same entry");
+            }
+            catch (Exception e) { };
+            Assert.AreEqual(10, db.getProductInStoreQuntity(store.Id, p1.Id));
+            Assert.AreEqual(true, db.updateProductInStore( store.Id, p1.Id, 20));
+            Assert.AreEqual(20, db.getProductInStoreQuntity(store.Id, p1.Id));
+            Assert.AreEqual(true, db.removeProductInStore(store.Id, p1.Id));
+            Assert.AreEqual(-1, db.getProductInCartquntity(user.Id, store.Id, p1.Id));
+        }
     }
 }
