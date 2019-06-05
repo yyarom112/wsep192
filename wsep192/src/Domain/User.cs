@@ -151,7 +151,6 @@ namespace src.Domain
         {
             if (userName == null || password == null)
             {
-                ErrorManager.Instance.WriteToLog("Error - Register - userName or password null");
                 return false;
             }
             this.userName = userName;
@@ -184,6 +183,8 @@ namespace src.Domain
             double basketSum = basket.basketCheckout(new UserDetailes(address, IsRegistered));
             if (basketSum == 0)
                 return 0;
+            if (basketSum == -1)
+                return -1;
             return basketSum + calcAddressFee(address);
         }
 
@@ -257,8 +258,7 @@ namespace src.Domain
             }
             catch (Exception)
             {
-                LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
-                ErrorManager.Instance.WriteToLog("Error - removeManager -" + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                ErrorManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
                 return false;
             }
 
@@ -298,8 +298,7 @@ namespace src.Domain
             }
             catch (Exception)
             {
-                LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
-                ErrorManager.Instance.WriteToLog("Error - assignOwner -" + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                ErrorManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
                 return false;
             }
         }
@@ -340,7 +339,7 @@ namespace src.Domain
             if (role != null && role.GetType() == typeof(Manager))
             {
                 Manager manager = (Manager)role;
-                if (!manager.validatePermission(2))
+                if (!manager.validatePermission(premmision))
                 {
                     LogManager.Instance.WriteToLog("User-search Role By StoreID With Validate Permmision fail- Manager does not have permissions\n");
                     return null;
@@ -348,6 +347,32 @@ namespace src.Domain
             }
             return role;
         }
+
+        public virtual int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, double discountPrecentage, int storeID, int expiredDiscountDate, int discountId, DuplicatePolicy logic)
+        {
+            Role role;
+            DateTime currentTime = DateTime.Now;
+            DateTime expiredDate = currentTime.AddDays(expiredDiscountDate);
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 1)) != null)
+            {
+                return role.addRevealedDiscountPolicy(products, discountPrecentage, expiredDate, discountId, logic);
+            }
+            return -1;
+        }
+
+        public virtual int addConditionalDiscuntPolicy(List<String> products, String condition, double discountPrecentage, int expiredDiscountDate, DuplicatePolicy duplicate, LogicalConnections logic, int discountId, int storeId)
+        {
+            Role role;
+            DateTime currentTime = DateTime.Now;
+            DateTime expiredDate = currentTime.AddDays(expiredDiscountDate);
+            if ((role = searchRoleByStoreIDWithValidatePermmision(storeId, 1)) != null)
+            {
+                return role.addConditionalDiscuntPolicy(products, condition, discountPrecentage, expiredDate, discountId, duplicate, logic);
+            }
+            return -1;
+        }
+
+
         public virtual int removeDiscountPolicy(int discountId, int storeId)
         {
             Role role;
@@ -364,18 +389,6 @@ namespace src.Domain
             if ((role = searchRoleByStoreIDWithValidatePermmision(storeId, 1)) != null)
             {
                 return role.removePurchasePolicy(purchaseId);
-            }
-            return -1;
-        }
-
-        public virtual int addRevealedDiscountPolicy(Dictionary<int, KeyValuePair<ProductInStore, int>> products, double discountPrecentage, int storeID, int expiredDiscountDate, int discountId, DuplicatePolicy logic)
-        {
-            Role role;
-            DateTime currentTime = DateTime.Now;
-            DateTime expiredDate = currentTime.AddDays(expiredDiscountDate);
-            if ((role = searchRoleByStoreIDWithValidatePermmision(storeID, 1)) != null)
-            {
-                return role.addRevealedDiscountPolicy(products, discountPrecentage, expiredDate, discountId, logic);
             }
             return -1;
         }

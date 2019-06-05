@@ -112,14 +112,14 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void removePurchasePolicy_tradingSystem_succ()
+        public void removePurchasePolicy_tradingSystem_fail()
         {
             setUp();
             StubStore sStore = new StubStore(1234, "nike", null, null, 0);
             StubUser tmpUser = new StubUser(2222, "owner", "7878", false, true, 0);
             system.Users.Add(tmpUser.Id, tmpUser);
             int ans = system.removePurchasePolicy(pcp.getId(), sStore.Id, tmpUser.Id);
-            Assert.AreEqual(0, ans);
+            Assert.AreEqual(-1, ans);
         }
 
 

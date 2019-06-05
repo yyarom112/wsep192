@@ -6,11 +6,8 @@ using src.Domain;
 
 namespace IntegrationTests
 {
-    /// <summary>
-    /// Summary description for addRevealedDiscountPolicy_integration
-    /// </summary>
     [TestClass]
-    public class addRevealedDiscountPolicy_integration
+    public class addConditionalDiscountPolicy
     {
         private TradingSystem system;
         private User admin;
@@ -29,8 +26,9 @@ namespace IntegrationTests
         private ProductInStore pis3;
         private ProductInStore pis4;
 
-        List<KeyValuePair<String, int>> products;
-        DuplicatePolicy logic;
+        List<String> products;
+        LogicalConnections logic;
+        DuplicatePolicy duplicate;
         DateTime date1;
 
         public void setUp()
@@ -59,59 +57,61 @@ namespace IntegrationTests
             store.Products.Add(p3.Id, pis3);
             store.Products.Add(p4.Id, pis4);
 
-            products = new List<KeyValuePair<String, int>>();
-            products.Add(new KeyValuePair<String, int>("first", 2));
-            products.Add(new KeyValuePair<String, int>("second", 10));
-            products.Add(new KeyValuePair<String, int>("third", 5));
-            products.Add(new KeyValuePair<String, int>("fourth", 4));
-            
+            products = new List<string>();
+            products.Add("first");
+            products.Add("second");
+            products.Add("third");
+            products.Add("fourth");
+
+
             system = new TradingSystem(null, null);
             system.Stores.Add(store.Id, store);
             system.Users.Add(admin.Id, admin);
             system.Users.Add(ownerUser.Id, ownerUser);
 
-            logic = DuplicatePolicy.WithMultiplication;
+            logic = LogicalConnections.and;
+            duplicate = DuplicatePolicy.WithMultiplication;
             date1 = new DateTime(2019, 10, 1);
+
         }
 
+        [TestMethod]
+        public void addRevealedDiscountPolicy_store_succ()
+        {
+            setUp();
+            Assert.AreEqual(1, store.addConditionalDiscuntPolicy(1, products, "", 20, date1, duplicate, logic));
+        }
 
-        //[TestMethod]
-        //public void addRevealedDiscountPolicy_store_succ()
-        //{
-        //    setUp();
-        //    Assert.AreEqual(1, store.addRevealedDiscountPolicy(products, 20, date1, 1, 0));
-        //}
+        [TestMethod]
+        public void addRevealedDiscountPolicy_role_succ()
+        {
+            setUp();
+            int ans = ownerRole.addConditionalDiscuntPolicy(products, "", 20, date1, 1, duplicate, logic);
+            Assert.AreEqual(1, ans);
+        }
 
-        //[TestMethod]
-        //public void addRevealedDiscountPolicy_role_succ()
-        //{
-        //    setUp();
-        //    int ans = ownerRole.addRevealedDiscountPolicy(products, 50, date1, 2, 0);
-        //    Assert.AreEqual(2, ans);
-        //}
+        [TestMethod]
+        public void addRevealedDiscountPolicy_user_succ()
+        {
+            setUp();
+            int ans = ownerUser.addConditionalDiscuntPolicy(products, "", 20, 40, duplicate, logic, 0, store.Id);
+            Assert.AreEqual(0, ans);
+        }
 
-        //[TestMethod]
-        //public void addRevealedDiscountPolicy_user_succ()
-        //{
-        //    setUp();
-        //    int ans = ownerUser.addRevealedDiscountPolicy(products, 50, store.Id, 20, 1, 0);
-        //    Assert.AreEqual(1, ans);
-        //}
+        [TestMethod]
+        public void addRevealedDiscountPolicy_user_fail()
+        {
+            setUp();
+            int ans = admin.addConditionalDiscuntPolicy(products, "", 20, 40, duplicate, logic, 0, store.Id);
+            Assert.AreEqual(-1, ans);
+        }
 
-        //[TestMethod]
-        //public void addRevealedDiscountPolicy_user_fail()
-        //{
-        //    setUp();
-        //    int ans = admin.addRevealedDiscountPolicy(products, 50, store.Id, 20, 1, 0);
-        //    Assert.AreEqual(-1, ans);
-        //}
-
-        //[TestMethod]
-        //public void addRevealedDiscountPolicy_tradingSystem_succ()
-        //{
-        //    setUp();
-        //    int ans = system.addRevealedDiscountPolicy(products, 20, ownerUser.Id, store.Id, 10, 0);
-        //    Assert.AreEqual(0, ans);
-        //}
+        [TestMethod]
+        public void addRevealedDiscountPolicy_tradingSystem_succ()
+        {
+            setUp();
+            int ans = system.addConditionalDiscuntPolicy(products, "", 20, 40, 0, 0, ownerUser.Id, store.Id);
+            Assert.AreEqual(0, ans);
+        }
     }
 }

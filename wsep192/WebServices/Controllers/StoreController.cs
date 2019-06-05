@@ -26,7 +26,7 @@ namespace WebServices.Controllers
             {
                 return "The price of the product shuld be number";
             }
-            bool ans = service.createNewProductInStore(productName, category, detail, price , storeName, userName);
+            bool ans = service.createNewProductInStore(productName, category, detail, price, storeName, userName);
             switch (ans)
             {
                 case true:
@@ -118,34 +118,104 @@ namespace WebServices.Controllers
 
         [Route("api/store/AddPurchasePolicy")]
         [HttpGet]
-        public string addPurchasePolicy(String details,string store,string user)
+        public int addPurchasePolicy(String details, string store, string user)
         {   //example  "(0,0,0,10,0)"
-            bool ans = service.addComplexPurchasePolicy(details, store,user);   ///AFTER CHANGE TO INT PRINT POLICY NUMBER
+            int ans = service.addComplexPurchasePolicy(details, store, user);
             switch (ans)
             {
-                case true:
-                    return "success";
-                case false:
-                    return "Error in addPurchasePolicy";
+                case -1:
+                    return -1;
+                default:
+                    return ans;
             }
-            return "Error in addPurchasePolicy";
         }
 
-        [Route("api/store/AddDiscountPolicy")]
+        [Route("api/store/AddRevealedDiscountPolicy")]
         [HttpGet]
-        public string addDiscountPolicy(String products,String discount,String expiredDate,String logic, String store, String user)
+        public int addRevealedDiscountPolicy(String products, String quantity, String discount, String expiredDate, String logic, String store, String user)
         {
-            Dictionary<int, KeyValuePair<src.Domain.ProductInStore, int>> productsTmp = new Dictionary<int, KeyValuePair<src.Domain.ProductInStore, int>>();
+            List<KeyValuePair<String, int>> productsTmp = new List<KeyValuePair<String, int>>();
+            productsTmp.Add(new KeyValuePair<string, int>(products, Int32.Parse(quantity)));
             int ans = service.addRevealedDiscountPolicy(productsTmp, discount, expiredDate, logic, user, store);
             switch (ans)
             {
                 case -1:
-                    return "Error in addDiscountPolicy";
+                    return -1;
                 default:
-                    return "success";
+                    return ans;
             }
         }
 
+        [Route("api/store/AddConditionalDiscountPolicy")]
+        [HttpGet]
+        public int addConditionalDiscuntPolicy(String products, String quantity, String condition, String discount, String expiredDate, String logic, String duplicate, String store, String user)
+        {
+            List<String> productTmp = new List<string>();
+            String tmpPair;
+            String fullString = "(";
+            if (condition.Equals("0"))
+            {
+                fullString += "+";
+            }
+            else if (condition.Equals("1"))
+            {
+                fullString += "-";
+            }
+            else
+            {
+                fullString += "#";
+            }
+            fullString += ",";
+            fullString += "(";
+            String[] splitProduct = products.Split(',');
+            String[] splitQuantity = quantity.Split(',');
+            for (int i = 0; i < splitProduct.Length; i++)
+            {
+                productTmp.Add(splitProduct[i]);
+                tmpPair = "(" + splitProduct[i] + "," + splitQuantity[i] + ")";
+                fullString += tmpPair;
+                fullString += ",";
+            }
+            fullString = fullString.Remove(fullString.Length - 1);
+            fullString += "))";
 
+            int ans = service.addConditionalDiscuntPolicy(productTmp, fullString, discount, expiredDate, duplicate, logic, user, store);
+            switch (ans)
+            {
+                case -1:
+                    return -1;
+                default:
+                    return ans;
+            }
+        }
+
+        [Route("api/store/RemovePurchasePolicy")]
+        [HttpGet]
+        public int removePurchasePolicy(String purchaseId, String store, String user)
+        {       
+            int ans = service.removePurchasePolicy(purchaseId, store, user);
+            switch (ans)
+            {
+                case -1:
+                    return -1;
+                default:
+                    return ans;
+            }
+        }
+
+        [Route("api/store/RemoveDiscountPolicy")]
+        [HttpGet]
+        public int removeDiscountPolicy(String discountId, String store, String user)
+        {
+
+            int ans = service.removeDiscountPolicy(discountId, store, user);
+            switch (ans)
+            {
+                case -1:
+                    return -1;
+                default:
+                    return ans;
+            }
+        }
     }
 }

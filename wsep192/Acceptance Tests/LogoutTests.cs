@@ -21,9 +21,9 @@ namespace Acceptance_Tests
         public void TestMethod1_success()
         {
             setUp();
-            service.register("user", "password", id);
-            service.signIn("user", "password");
-            Assert.AreEqual(true, service.signOut("user"));
+            service.register("raul", "password", id);
+            service.signIn("raul", "password");
+            Assert.AreEqual(true, service.signOut("raul"));
             service.shutDown();
         }
     }

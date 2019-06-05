@@ -1,0 +1,14 @@
+04/06/2019 10:56:05: Store- conditionConvert- Parge string to condition policy faild
+04/06/2019 10:56:07: Store- conditionConvert- Parge string to condition policy faild
+04/06/2019 10:56:07: Store- conditionConvert- Parge string to condition policy faild
+04/06/2019 10:56:07: Store- conditionConvert- Parge string to condition policy faild
+04/06/2019 10:56:07: Store- conditionConvert- Parge string to condition policy faild
+04/06/2019 10:56:07: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
+04/06/2019 10:56:07: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
+04/06/2019 10:56:08: Store- conditionConvert- Parge string to condition policy faild
+04/06/2019 10:56:08: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
+04/06/2019 10:56:08: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
