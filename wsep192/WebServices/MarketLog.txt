@@ -1653,3 +1653,32 @@
 
 04/06/2019 18:06:35: User:signOut success - Aviv
 
+04/06/2019 18:08:12: Register - userName or password null
+
+04/06/2019 18:08:12: Register - userName or password null
+
+04/06/2019 18:08:12: TradingSystem-open storeZara success
+
+04/06/2019 18:08:12: TradingSystem-create new product in store0 -success
+
+04/06/2019 18:08:12: TradingSystem-add product to store0 -success
+04/06/2019 18:08:12: Store - assign manger succeed
+04/06/2019 18:08:12: User:signOut success - Aviv
+
+04/06/2019 18:09:01: Add to cart success. /n
+04/06/2019 18:09:11: ShoppingCart:showCart success
+
+04/06/2019 18:09:14: ShoppingCart:removeProductsFromCart success
+
+04/06/2019 18:09:15: ShoppingCart:editProductQuantityInCart success
+
+04/06/2019 18:09:15: ShoppingCart:showCart success
+
+04/06/2019 18:09:19: Successfully closed the basket.
+
+04/06/2019 18:10:06: Products have declined / returned to store stock successfully.
+
+04/06/2019 18:10:06: Making the cart purchase succeeded
+
+04/06/2019 18:10:25: User:signOut success - Aviv
+

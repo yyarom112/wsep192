@@ -8,3 +8,7 @@
 
 5/25/2019 11:01:27: Error - createNewProductInStore - the store does not exists.
 
+04/06/2019 18:08:54: TradingSystem- searchProduct - Try parse int failed
+04/06/2019 18:08:55: TradingSystem- searchProduct - Try parse int failed
+04/06/2019 18:08:55: TradingSystem- searchProduct - Try parse int failed
+04/06/2019 18:08:55: TradingSystem- searchProduct - Try parse int failed
