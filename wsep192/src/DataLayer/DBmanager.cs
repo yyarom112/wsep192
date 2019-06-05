@@ -99,13 +99,18 @@ namespace src.DataLayer
             if (IsTest)
                 return true;
             var filter = Builders<BsonDocument>.Filter.Eq("_id", user.Id);
-            var update = Builders<BsonDocument>.Update.Set("username", user.UserName);
-            update.AddToSet("password", user.Password);
-            update.AddToSet("isAdmin", user.IsAdmin);
-            update.AddToSet("state", user.State);
+            var updateName = Builders<BsonDocument>.Update.Set("username", user.UserName);
+            var updatePassword = Builders<BsonDocument>.Update.Set("password", user.Password);
+            var updateIsAdmin = Builders<BsonDocument>.Update.Set("isAdmin", user.IsAdmin);
+            var updateState = Builders<BsonDocument>.Update.Set("state", user.State);
+
             try
             {
-                usersTable.UpdateOne(filter, update);
+                usersTable.UpdateOne(filter, updateName);
+                usersTable.UpdateOne(filter, updatePassword);
+                usersTable.UpdateOne(filter, updateIsAdmin);
+                usersTable.UpdateOne(filter, updateState);
+
             }
             catch (Exception e)
             {
@@ -115,7 +120,28 @@ namespace src.DataLayer
             return true;
         }
 
+        public User getUser(int UserID)
+        {
+            if (IsTest)
+                return null;
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", UserID);
 
+            var document = usersTable.Find(filter).ToList();
+            if (document==null || document.Count==0)
+            {
+                return null;
+            }
+            User output = new User(UserID, document[0]["username"].AsString,
+                               document[0]["password"].AsString, document[0]["isAdmin"].AsBoolean,
+                               true);
+            output.State = EnumActivaties.intToState(document[0]["state"].AsInt32);
+
+            //must add recover of basket
+
+            return output;
+
+
+         }
 
 
     }
