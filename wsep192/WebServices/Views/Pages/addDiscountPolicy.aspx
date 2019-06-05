@@ -107,11 +107,14 @@
                                     alert("Error in add discount policy");
                                     window.location.href = baseUrl + "/";
                                 }
-                                else
+                                else {
                                     alert("Discount id: " + response);
+                                    window.location.href = baseUrl + "/";
+                                }
                             },
                             error: function (response) {
                                 alert('Error in addDiscountPolicy');
+                                window.location.href = baseUrl + "/";
                             }
                         });
                     }
