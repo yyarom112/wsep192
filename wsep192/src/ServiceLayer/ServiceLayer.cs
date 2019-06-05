@@ -524,7 +524,19 @@ namespace src.ServiceLayer
                 return -1;
             }
         }
-
+        public int addConditionalDiscuntPolicy(List<String> products, String condition, String discountPrecentage, String expiredDiscountDate, String duplicate, String logic, String user, String store)
+        {
+            try
+            {
+                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
+                    return -1;
+                return system.addConditionalDiscuntPolicy(products, condition, Double.Parse(discountPrecentage), Int32.Parse(expiredDiscountDate), Int32.Parse(duplicate), Int32.Parse(logic), this.users[user], this.stores[store]);
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
         public int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
         {
             try
