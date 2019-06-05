@@ -20,8 +20,8 @@ namespace src.DataLayer
         private IMongoCollection<BsonDocument> ownersTable;
         private IMongoCollection<BsonDocument> managersTable;
         private IMongoCollection<BsonDocument> productsTable;
-        private IMongoCollection<BsonDocument> discountPoliciesTable;
-        private IMongoCollection<BsonDocument> purchasePoliciesTable;
+        private IMongoCollection<BsonDocument> productInCartTable;
+
 
         public bool IsTest { get => isTest; set => isTest = value; }
 
@@ -34,6 +34,7 @@ namespace src.DataLayer
             ownersTable = db.GetCollection<BsonDocument>("Owners");
             managersTable = db.GetCollection<BsonDocument>("Managers");
             productsTable = db.GetCollection<BsonDocument>("Products");
+            productInCartTable= db.GetCollection<BsonDocument>("ProductsInCart");
         }
 
         public void connect()
@@ -321,6 +322,122 @@ namespace src.DataLayer
                 return false;
             }
             return true;
+        }
+
+
+
+        //Product in cart table function
+
+        public bool addProductInCart(ProductInCart product, int userID)
+        {
+            if (IsTest)
+                return true;
+            var document = new BsonDocument
+            {
+                { "_id",  userID+"_"+product.ShoppingCart.StoreId+"_"+product.Product.Id } , 
+                { "_userid",  userID},
+                { "_storeid",  product.ShoppingCart.StoreId},
+                { "_productid",  product.Product.Id},
+                { "quantity", product.Quantity },
+            };
+            try
+            {
+                productInCartTable.InsertOne(document);
+            }
+            catch (Exception e)
+            {
+                ErrorManager.Instance.WriteToLog("DBmanager-addProductInCart- Add new ProductInCart failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+        public bool removeProductInCartBy(int userID,int storeID, int productID)
+        {
+            if (IsTest)
+                return true;
+            try
+            {
+                productInCartTable.DeleteOne(Builders<BsonDocument>.Filter.Eq("_storeid", storeID) & Builders<BsonDocument>.Filter.Eq("_userid", userID) & Builders<BsonDocument>.Filter.Eq("_productid", productID));
+            }
+            catch (Exception e)
+            {
+                ErrorManager.Instance.WriteToLog("DBmanager-removeProductInCartBy- Remove ProductInCart failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+
+        public bool removeAllProductInCartByStoreId(int storeId)
+        {
+            if (IsTest)
+                return true;
+            try
+            {
+                productInCartTable.DeleteMany(Builders<BsonDocument>.Filter.Eq("_storeid", storeId));
+            }
+            catch (Exception e)
+            {
+                ErrorManager.Instance.WriteToLog("DBmanager-removeAllProductInCartByStoreId- Remove ProductInCart failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+        public bool removeAllProductInCartByUserId(int userID)
+        {
+            if (IsTest)
+                return true;
+            try
+            {
+                productInCartTable.DeleteMany(Builders<BsonDocument>.Filter.Eq("_userid", userID));
+            }
+            catch (Exception e)
+            {
+                ErrorManager.Instance.WriteToLog("DBmanager-removeAllProductInCartByUserId- Remove ProductInCart failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+        public bool updateProductInCart(int userID, int storeID, int productID, int quantity)
+        {
+            if (IsTest)
+                return true;
+
+            var filter = Builders<BsonDocument>.Filter.Eq("_storeid", storeID) & Builders<BsonDocument>.Filter.Eq("_userid", userID) & Builders<BsonDocument>.Filter.Eq("_productid", productID);
+            var update = Builders<BsonDocument>.Update.Set("quantity", quantity);
+
+            try
+            {
+                productInCartTable.UpdateOne(filter, update);
+
+            }
+            catch (Exception e)
+            {
+                ErrorManager.Instance.WriteToLog("DBmanager-updateProductInCart- Update productInCart failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+        public int getProductInCartquntity(int userID, int storeID, int productID)
+        {
+            if (IsTest)
+                return 0;
+            var filter = Builders<BsonDocument>.Filter.Eq("_storeid", storeID) & Builders<BsonDocument>.Filter.Eq("_userid", userID) & Builders<BsonDocument>.Filter.Eq("_productid", productID);
+
+            var document = productInCartTable.Find(filter).ToList();
+            if (document == null || document.Count == 0)
+            {
+                return -1;
+            }
+            int output = document[0]["quantity"].AsInt32;
+            //must add recover of basket
+
+            return output;
+
         }
 
     }
