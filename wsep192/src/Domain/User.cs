@@ -156,15 +156,37 @@ namespace src.Domain
             this.IsRegistered = true;
             if (!db.Isconnected())
                 db = new DBmanager();
-            if (db.Isconnected() && db.addNewUser(this))
+            if (db.Isconnected() && registerNewUser(this))
             {
                 LogManager.Instance.WriteToLog("Register - userName or password null\n");
                 return true;
             }
+            
             return false;
 
         }
 
+        private bool registerNewUser(User user)
+        {
+            try
+            {
+                if (!db.addNewUser(user))
+                    return false;
+                foreach (ShoppingCart cart in user.Basket.ShoppingCarts.Values)
+                {
+                    foreach (ProductInCart product in cart.Products.Values)
+                    {
+                        db.addProductInCart(product, user.Id);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorManager.Instance.WriteToLog("User-registerNewUser- Add new user failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
 
         public void addRole(Role role)
 

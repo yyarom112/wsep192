@@ -62,6 +62,7 @@ namespace src.DataLayer
         }
 
         //User table functions
+
         public bool addNewUser(User user)
         {
             if (IsTest)
