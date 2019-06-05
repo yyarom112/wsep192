@@ -21,6 +21,11 @@ namespace src.ServiceLayer
             while (!started) ;
             hubProxy.Invoke("Send", userName, message);
         }
+        public void request(string userName, string message,string reqId)
+        {
+            while (!started) ;
+            hubProxy.Invoke("Request", userName, message, reqId);
+        }
 
     }
 }
