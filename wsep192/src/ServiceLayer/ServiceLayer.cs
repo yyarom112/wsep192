@@ -50,7 +50,8 @@ namespace src.ServiceLayer
 
         public static ServiceLayer getInstance()
         {
-            if (instance == null) {
+            if (instance == null)
+            {
                 instance = new ServiceLayer();
                 fileSetUp();
             }
@@ -62,7 +63,7 @@ namespace src.ServiceLayer
         }
 
 
-        
+
         public bool setUp1()
         {
             bool flag = true;
@@ -163,8 +164,9 @@ namespace src.ServiceLayer
                     notify(username, message);
                 system.deleteMessagesByUser(users[username]);
 
-                foreach (OwnerRequest r in system.getRequestsByUser(users[username])) {
-                    request(username,r.message,r.id);
+                foreach (OwnerRequest r in system.getRequestsByUser(users[username]))
+                {
+                    request(username, r.message, r.id);
                 }
                 system.deleteRequestsByUser(users[username]);
 
@@ -352,15 +354,15 @@ namespace src.ServiceLayer
         {
             if (!systemRequests.ContainsKey(reqId))
                 return false;
-            OwnerRequest r =systemRequests[reqId];
+            OwnerRequest r = systemRequests[reqId];
             r.responsesCounter++;
             r.result &= result;
-            if (r.result && r.responsesCounter==r.storesOwnersCount-1)
+            if (r.result && r.responsesCounter == r.storesOwnersCount - 1)
             {
-                return assignOwner(r.owner,r.user,r.store);
+                return assignOwner(r.owner, r.user, r.store);
             }
-            return true;                                                           
-            }
+            return true;
+        }
 
         //pair of <produc,quantity>
         public bool addProductsInStore(List<KeyValuePair<String, int>> productsToAdd, String store, String user)
@@ -399,7 +401,7 @@ namespace src.ServiceLayer
             {
                 storesStackholders[store].Add(user);
                 String message = user + " have successfully assigned as an owner in " + store;
-                notifyAll(store,message);
+                notifyAll(store, message);
             }
             return flag;
         }
@@ -425,8 +427,8 @@ namespace src.ServiceLayer
             if (!users.ContainsKey(owner) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
             String message = owner + " is requesting " + user + " to be assigned as owner in " + store;
-            systemRequests.Add(requestCounter,new OwnerRequest(message,requestCounter,user,store,owner,storesStackholders[store].Count));
-            requestAll(store, message, owner,requestCounter);
+            systemRequests.Add(requestCounter, new OwnerRequest(message, requestCounter, user, store, owner, storesStackholders[store].Count));
+            requestAll(store, message, owner, requestCounter);
             requestCounter++;
             return true;
         }
@@ -569,7 +571,7 @@ namespace src.ServiceLayer
         {
             if (system.isLoggedIn(users[user]))
                 manager.notify(user, message);
-            
+
         }
 
         public void notifyAll(string store, string message)
@@ -588,13 +590,13 @@ namespace src.ServiceLayer
         {
             foreach (string user in storesStackholders[store])
             {
-                    system.addMessageToUser(users[user], message);
+                system.addMessageToUser(users[user], message);
             }
 
-            
+
 
         }
-        public void requestAll(string store, string message,string owner, int reqId)
+        public void requestAll(string store, string message, string owner, int reqId)
         {
 
             foreach (string user in storesStackholders[store])
@@ -602,18 +604,18 @@ namespace src.ServiceLayer
                 if (owner == user)
                     continue;
                 if (system.isLoggedIn(users[user]))
-                    request(user, message,reqId);
+                    request(user, message, reqId);
                 else
-                    system.addRequestToUser(users[user],systemRequests[reqId]);
+                    system.addRequestToUser(users[user], systemRequests[reqId]);
             }
 
         }
 
-        public void request(string user, string message,int reqId)
+        public void request(string user, string message, int reqId)
         {
             if (system.isLoggedIn(users[user]))
-                manager.request(user,message, reqId.ToString());
-            
+                manager.request(user, message, reqId.ToString());
+
         }
     }
 
