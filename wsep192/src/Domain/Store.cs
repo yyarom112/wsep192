@@ -553,6 +553,7 @@ namespace src.Domain
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("Store- factoryinventoryConditionPolicy- Parge string to condition policy faild");
                 return null;
             }
 
@@ -571,6 +572,7 @@ namespace src.Domain
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("Store- factoryBuyConditionPolicy- Parge string to condition policy faild");
                 return null;
             }
 
@@ -587,6 +589,7 @@ namespace src.Domain
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("Store- factoryUserConditionPolicy- Parge string to condition policy faild");
                 return null;
             }
         }
@@ -624,6 +627,7 @@ namespace src.Domain
             }
             catch (Exception e)
             {
+                ErrorManager.Instance.WriteToLog("Store- factoryLogicalCondition- Parge string to condition policy faild");
                 return null;
             }
 
@@ -781,7 +785,7 @@ namespace src.Domain
                     }
                     catch (Exception ex)
                     {
-
+                        ErrorManager.Instance.WriteToLog("Store- conditionConvert- Parge string to condition policy faild");
                     }
 
                 }

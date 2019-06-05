@@ -17,21 +17,21 @@ namespace UnitTests
         }
 
 
-        [TestMethod]
-        public void TestMethod1_OpenNewLog()
-        {
-            LogManager log = LogManager.Instance;
-            log.WriteToLog("Real Madrid");
-            Assert.AreEqual(true, readLog().Contains("Real Madrid"));
-            log.OpenAnewLogFile();
-            Assert.AreEqual(false, readLog().Contains("Real Madrid"));
+        //[TestMethod]
+        //public void TestMethod1_OpenNewLog()
+        //{
+        //    LogManager log = LogManager.Instance;
+        //    log.WriteToLog("Real Madrid");
+        //    Assert.AreEqual(true, readLog().Contains("Real Madrid"));
+        //    log.OpenAnewLogFile();
+        //    Assert.AreEqual(false, readLog().Contains("Real Madrid"));
 
-        }
+        //}
 
 
         public String readLog()
         {
-            return System.IO.File.ReadAllText(@"MarketLog.txt");
+            return System.IO.File.ReadAllText(@"../../../MarketLog.txt");
 
         }
     }

@@ -13,16 +13,17 @@ namespace src
     {
         private static LogManager instance;
 
-        private String path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MarketLog.txt");
+        private String PresentionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MarketLog.txt");
+        private static String path = @"../../../MarketLog.txt";
 
 
         private LogManager()
         {
             // Delete the file if it exists.
-            if (!File.Exists(path))
+            if (!File.Exists(PresentionPath))
             {
                 // Create the file.
-                using (FileStream fs = File.Create(path))
+                using (FileStream fs = File.Create(PresentionPath))
                 {
                     Byte[] info = new UTF8Encoding(true).GetBytes("");
                     // Add some information to the file.
@@ -44,24 +45,32 @@ namespace src
 
         public void WriteToLog(String str)
         {
-
-            using (var streamWriter = new StreamWriter(path, true))
+            try
             {
                 DateTime localDate = DateTime.Now;
-                streamWriter.WriteLine(localDate.ToString() + ": " + str);
+                System.IO.File.AppendAllText(path, localDate.ToString() + ": " + str + System.Environment.NewLine);
             }
+            catch(Exception e)
+            {
+                using (var streamWriter = new StreamWriter(PresentionPath, true))
+                {
+                    DateTime localDate = DateTime.Now;
+                    streamWriter.WriteLine(localDate.ToString() + ": " + str);
+                }
+            }
+
         }
 
         public void OpenAnewLogFile()
         {
             // Delete the file if it exists.
-            if (File.Exists(path))
+            if (File.Exists(PresentionPath))
             {
-                File.Delete(path);
+                File.Delete(PresentionPath);
             }
 
             // Create the file.
-            using (FileStream fs = File.Create(path))
+            using (FileStream fs = File.Create(PresentionPath))
             {
                 Byte[] info = new UTF8Encoding(true).GetBytes("");
                 // Add some information to the file.
@@ -74,15 +83,16 @@ namespace src
     class ErrorManager
     {
         private static ErrorManager instance;
-        private String path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MarketError.txt");
+        private String PresentionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MarketError.txt");
+        private static String path = @"../../../MarketError.txt";
 
         private ErrorManager()
         {
             // Delete the file if it exists.
-            if (!File.Exists(path))
+            if (!File.Exists(PresentionPath))
             {
                 // Create the file.
-                using (FileStream fs = File.Create(path))
+                using (FileStream fs = File.Create(PresentionPath))
                 {
                     Byte[] info = new UTF8Encoding(true).GetBytes("");
                     // Add some information to the file.
@@ -104,23 +114,31 @@ namespace src
 
         public void WriteToLog(String str)
         {
-            using (var streamWriter = new StreamWriter(path, true))
+            try
             {
                 DateTime localDate = DateTime.Now;
-                streamWriter.WriteLine(localDate.ToString() + ": " + str);
+                System.IO.File.AppendAllText(path, localDate.ToString() + ": " + str + System.Environment.NewLine);
+            }
+            catch (Exception e)
+            {
+                using (var streamWriter = new StreamWriter(PresentionPath, true))
+                {
+                    DateTime localDate = DateTime.Now;
+                    streamWriter.WriteLine(localDate.ToString() + ": " + str);
+                }
             }
         }
 
         public void OpenAnewLogFile()
         {
             // Delete the file if it exists.
-            if (File.Exists(path))
+            if (File.Exists(PresentionPath))
             {
-                File.Delete(path);
+                File.Delete(PresentionPath);
             }
 
             // Create the file.
-            using (FileStream fs = File.Create(path))
+            using (FileStream fs = File.Create(PresentionPath))
             {
                 Byte[] info = new UTF8Encoding(true).GetBytes("");
                 // Add some information to the file.

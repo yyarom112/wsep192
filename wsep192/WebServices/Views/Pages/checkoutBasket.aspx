@@ -96,7 +96,7 @@
                     dataType: "json",
                     success: function (response) {
                         if (response == "-1") {
-                            alert("Error in checkout basket");
+                            alert("Purchase doesn't meet the conditions.");
                             window.location.href = baseUrl + "/";
                         }
                         else if (response == "0") {

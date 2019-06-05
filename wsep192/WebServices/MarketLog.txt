@@ -1779,27 +1779,3 @@
 
 05/06/2019 17:09:23: basketCheckout - Could not close basket.
 
-05/06/2019 17:18:24: Register - userName or password null
-
-05/06/2019 17:18:24: Register - userName or password null
-
-05/06/2019 17:18:24: TradingSystem-open storeZara success
-
-05/06/2019 17:18:24: TradingSystem-create new product in store0 -success
-
-05/06/2019 17:18:24: TradingSystem-add product to store0 -success
-05/06/2019 17:18:24: Store - assign manger succeed
-05/06/2019 17:18:24: User:signOut success - Aviv
-
-05/06/2019 17:18:43: Register - userName or password null
-
-05/06/2019 17:19:34: TradingSystem-open storezara success
-
-05/06/2019 17:24:49: User:signOut success - rotemi
-
-05/06/2019 17:24:50: TradingSystem - Remove user id3 success.
-
-05/06/2019 17:45:16: Store - removePurchasePolicy - purchase policy removed
-
-05/06/2019 17:52:42: Store - addRevealedDiscountPolicy - new discount policy added
-
