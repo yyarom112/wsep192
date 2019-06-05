@@ -1653,3 +1653,31 @@
 
 04/06/2019 18:06:35: User:signOut success - Aviv
 
+04/06/2019 20:50:10: Register - userName or password null
+
+04/06/2019 20:50:10: Register - userName or password null
+
+04/06/2019 20:50:10: TradingSystem-open storeZara success
+
+04/06/2019 20:50:10: TradingSystem-create new product in store0 -success
+
+04/06/2019 20:50:10: TradingSystem-add product to store0 -success
+04/06/2019 20:50:11: Store - assign manger succeed
+04/06/2019 20:50:11: User:signOut success - Aviv
+
+04/06/2019 20:50:41: Register - userName or password null
+
+04/06/2019 20:52:02: TradingSystem-open storebaba success
+
+05/06/2019 16:58:13: Register - userName or password null
+
+05/06/2019 16:58:16: Register - userName or password null
+
+05/06/2019 16:58:16: TradingSystem-open storeZara success
+
+05/06/2019 16:58:17: TradingSystem-create new product in store0 -success
+
+05/06/2019 16:58:17: TradingSystem-add product to store0 -success
+05/06/2019 16:58:17: Store - assign manger succeed
+05/06/2019 16:58:17: User:signOut success - Aviv
+
