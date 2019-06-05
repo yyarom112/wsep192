@@ -1,4 +1,7 @@
-﻿using src.Domain.Dataclass;
+﻿using MongoDB.Bson.IO;
+using MongoDB.Bson.Serialization;
+using Newtonsoft.Json;
+using src.Domain.Dataclass;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -84,14 +87,10 @@ namespace src.Domain
             return shoppingCarts[storeId].editProductQuantityInCart(productId, quantity);
         }
 
-        public byte[] serialize()
+        public string serialize()
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            using (MemoryStream ms = new MemoryStream())
-            {
-                bf.Serialize(ms, this);
-                return ms.ToArray();
-            }
+            BsonWriter ms= new MongoDB.Bson.bsonwriter
+            return BsonSerializer.Serialize<ShoppingBasket>(this)
         }
 
         public ShoppingBasket deserialize(byte[] arrBytes)

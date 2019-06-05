@@ -51,7 +51,10 @@ namespace src.DataLayer
             return db != null;
         }
 
-        public bool RegisterNewUser(User user)
+
+        //User table function
+
+        public bool addNewUser(User user)
         {
             if (IsTest)
                 return true;
@@ -61,12 +64,8 @@ namespace src.DataLayer
                 { "username", user.UserName },
                 { "password", user.Password },
                 { "isAdmin", user.IsAdmin },
-                { "Basket", user.Basket.serialize() }
+                { "state" , user.State},
             };
-            if (user.Address != "")
-            {
-                document.Add(new BsonElement("address", user.Address));
-            }
             try
             {
                 usersTable.InsertOne(document);
@@ -94,6 +93,29 @@ namespace src.DataLayer
             }
             return true;
         }
+
+        public bool updateUser(User user)
+        {
+            if (IsTest)
+                return true;
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", user.Id);
+            var update = Builders<BsonDocument>.Update.Set("username", user.UserName);
+            update.AddToSet("password", user.Password);
+            update.AddToSet("isAdmin", user.IsAdmin);
+            update.AddToSet("state", user.State);
+            try
+            {
+                usersTable.UpdateOne(filter, update);
+            }
+            catch (Exception e)
+            {
+                ErrorManager.Instance.WriteToLog("DBmanager-updateUser- Remove user failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+
 
 
     }

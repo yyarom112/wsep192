@@ -123,7 +123,7 @@ namespace src.ServiceLayer
         }
 
         public static void fileCreation(State state)
-        {
+         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\src\\State.json");
 
             if (!File.Exists(path))
