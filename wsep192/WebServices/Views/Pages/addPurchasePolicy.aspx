@@ -117,7 +117,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
 
                     }
@@ -126,7 +126,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
 
                     }
@@ -137,7 +137,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minSum" placeholder="Min price"><span class="placeholder" data-placeholder="Min price"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxSum" placeholder="Max price"><span class="placeholder" data-placeholder="Max price"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
                     }
                     if (type == 3) {
@@ -145,7 +145,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="address" placeholder="Address"><span class="placeholder" data-placeholder="Address"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="isRegister" placeholder="Is registered"><span class="placeholder" data-placeholder="Is registered"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>';
                     }
                     if (type == 4) {
@@ -461,7 +461,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
                     }
                     if (type == 1) {
@@ -469,7 +469,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
                     }
                     if (type == 2) {
@@ -479,7 +479,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minSum" placeholder="Min price"><span class="placeholder" data-placeholder="Min price"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxSum" placeholder="Max price"><span class="placeholder" data-placeholder="Max price"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
                     }
                     if (type == 3) {
@@ -487,7 +487,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="address" placeholder="Address"><span class="placeholder" data-placeholder="Address"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="isRegister" placeholder="Is registered"><span class="placeholder" data-placeholder="Is registered"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>';
                     }
                     if (type == 5) {
@@ -519,7 +519,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID2" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum2" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum2" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
                         + '</form>';
                     }
                     if (type == 1) {
@@ -527,7 +527,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store2" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID2" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum2" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
                         + '</form>';
                     }
                     if (type == 2) {
@@ -537,7 +537,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum2" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minSum2" placeholder="Min price"><span class="placeholder" data-placeholder="Min price"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxSum2" placeholder="Max price"><span class="placeholder" data-placeholder="Max price"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
                         + '</form>';
                     }
                     if (type == 3) {
@@ -545,7 +545,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store2" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="address2" placeholder="Address"><span class="placeholder" data-placeholder="Address"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="isRegister2" placeholder="Is registered"><span class="placeholder" data-placeholder="Is registered"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
                         + '</form>';
                     }
                     policyDetails += ")"
@@ -572,7 +572,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID3" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum3" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum3" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon3" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon3" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
                     }
                     if (type == 1) {
@@ -580,7 +580,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store3" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID3" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum3" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon3" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon3" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
                     }
                     if (type == 2) {
@@ -590,7 +590,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum3" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minSum3" placeholder="Min price"><span class="placeholder" data-placeholder="Min price"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxSum3" placeholder="Max price"><span class="placeholder" data-placeholder="Max price"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon3" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon3" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
                     }
                     if (type == 3) {
@@ -598,7 +598,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store3" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="address3" placeholder="Address"><span class="placeholder" data-placeholder="Address"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="isRegister3" placeholder="Is registered"><span class="placeholder" data-placeholder="Is registered"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon3" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon3" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>';
                     }
 
@@ -625,8 +625,8 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID4" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum4" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum4" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon4" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicConAll" placeholder="Logical condition for both"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon4" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicConAll" placeholder="Logical condition for both 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
                             + '</form>'
                     }
                     if (type == 1) {
@@ -634,8 +634,8 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store4" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID4" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum4" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon4" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicConAll" placeholder="Logical condition for both"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon4" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicConAll" placeholder="Logical condition for both 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
                             + '</form>'
                     }
                     if (type == 2) {
@@ -645,8 +645,8 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum4" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minSum4" placeholder="Min price"><span class="placeholder" data-placeholder="Min price"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxSum4" placeholder="Max price"><span class="placeholder" data-placeholder="Max price"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon4" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicConAll" placeholder="Logical condition for both"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon4" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicConAll" placeholder="Logical condition for both 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
                             + '</form>'
                     }
                     if (type == 3) {
@@ -654,8 +654,8 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store4" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="address4" placeholder="Address"><span class="placeholder" data-placeholder="Address"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="isRegister4" placeholder="Is registered"><span class="placeholder" data-placeholder="Is registered"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon4" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicConAll" placeholder="Logical condition for both"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon4" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicConAll" placeholder="Logical condition for both 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
                             + '</form>';
                     }
 

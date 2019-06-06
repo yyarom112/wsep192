@@ -1934,3 +1934,40 @@
 06/06/2019 12:58:09: TradingSystem-Assign owner 3 -success
 06/06/2019 12:58:09: User:signOut success - Aviv
 
+06/06/2019 13:10:55: Register - userName or password null
+
+06/06/2019 13:10:55: Register - userName or password null
+
+06/06/2019 13:10:55: Register - userName or password null
+
+06/06/2019 13:10:55: Register - userName or password null
+
+06/06/2019 13:10:55: Register - userName or password null
+
+06/06/2019 13:10:55: TradingSystem-open storeZara success
+
+06/06/2019 13:10:55: TradingSystem-create new product in store0 -success
+
+06/06/2019 13:10:55: TradingSystem-add product to store0 -success
+06/06/2019 13:10:55: Store - assign manger succeed
+06/06/2019 13:10:55: TradingSystem-Assign owner 2 -success
+06/06/2019 13:10:55: TradingSystem-Assign owner 3 -success
+06/06/2019 13:10:55: User:signOut success - Aviv
+
+06/06/2019 13:13:10: Add to cart success. /n
+06/06/2019 13:13:19: ShoppingCart:showCart success
+
+06/06/2019 13:13:30: ShoppingCart:showCart success
+
+06/06/2019 13:13:36: ShoppingCart:removeProductsFromCart success
+
+06/06/2019 13:13:36: ShoppingCart:editProductQuantityInCart success
+
+06/06/2019 13:13:36: ShoppingCart:showCart success
+
+06/06/2019 13:13:42: Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.
+
+06/06/2019 13:13:42: basketCheckout - Could not close basket.
+
+06/06/2019 13:17:52: User:signOut success - Aviv
+
