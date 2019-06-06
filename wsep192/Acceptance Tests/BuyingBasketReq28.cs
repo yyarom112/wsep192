@@ -89,7 +89,7 @@ namespace Acceptance_Tests
         {
             Setup();
             service.signIn("raul", "1234");
-            service.addComplexPurchasePolicy("(0,2,0,10,0)", "adidas", "raul");
+            service.addComplexPurchasePolicy("(0,p1,0,10,0)", "adidas", "raul");
             List<KeyValuePair<string, int>> toInsert = new List<KeyValuePair<string, int>>();
             toInsert.Add(new KeyValuePair<string, int>("p1", 11));
             service.addProductsToCart(toInsert, "adidas", "raul");

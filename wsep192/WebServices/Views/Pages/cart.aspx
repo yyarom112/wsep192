@@ -98,11 +98,11 @@
                                             dataType: "json",
                                             success: function (response) {
                                                 if (response == "false") {
-                                                    alert('Failure - edit product ' + product + ' failed');
+                                                    alert('Error- Couldnt edit the cart - invalid input of produc' + product + ' Please try again.');
                                                 }
                                             },
                                             error: function (response) {
-                                                alert('Failure - edit product ' + product + ' error');
+                                                alert('Somthing went wrong with editing this product.Please try again');
                                             }
                                         });
                                     }
@@ -119,21 +119,21 @@
                                             
                                         }
                                         else {
-                                            alert('Failure - show cart failed');
+                                            alert('Couldnt show the cart. Please make sure you have a cart.');
                                         }
                                     },
                                     error: function (response) {
-                                        alert('Failure - show cart error');
+                                        alert('Fatal error in showing the cart.Please check if you own a cart.');
                                     }
                                 });
 
                             }
                             else {
-                                alert('Remove products failed');
+                                alert('Could not remove this product. Please check the priduct exists.');
                             }
                         },
                         error: function (response) {
-                            alert('Failure - remove products error');
+                            alert('Somthing went wrong with removing this product. Please try again');
                         }
                     });
                 

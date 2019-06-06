@@ -119,7 +119,7 @@ namespace WebServices.Controllers
         [Route("api/store/AddPurchasePolicy")]
         [HttpGet]
         public int addPurchasePolicy(String details, string store, string user)
-        {   //example  "(0,0,0,10,0)"
+        {   
             int ans = service.addComplexPurchasePolicy(details, store, user);
             switch (ans)
             {
