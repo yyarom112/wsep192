@@ -63,11 +63,11 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else {
-                                alert(response);
+                                alert('Product does not exists or does not have this quantity. Please try again.');
                             }
                         },
                         error: function (response) {
-                            alert(response);
+                            alert('The user is not an owner or doest not have premmision to preform this act.');
                         }
                     });
                 }

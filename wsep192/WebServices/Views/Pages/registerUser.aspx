@@ -58,11 +58,11 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else {
-                                alert(response);
+                                alert('User name alleady exists or Passwords does not match. Please try again');
                             }
                         },
                         error: function (response) {
-                            alert(response);
+                            alert('User name alleady exists or Passwords does not match.Please try again');
                         }
                     });
                 }

@@ -55,12 +55,12 @@
                             }
                         },
                         error: function (response) {
-                            alert(response);
+                            alert('Store name allready exists. Please try again.');
                         }
                     });
                 }
                 else
-                    alert("User isn't logged in");
+                    alert('The User is not logged in');
             });
         });
 

@@ -86,11 +86,11 @@
                             alert('Products added to cart successfully');
                         }
                         else {
-                            alert('Failure - add to cart failed');
+                            alert('The store does not exists or one of the product does not exists in the system. Please try again.');
                         }
                     },
                     error: function (response) {
-                        alert('Failure - add to cart error');
+                        alert('Somthing went wrong with adding this product. Please try again.');
                     }
                 });
 

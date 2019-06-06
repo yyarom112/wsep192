@@ -56,12 +56,12 @@
                             }
                         },
                         error: function (response) {
-                            alert(response);
+                            alert("Owner cannot be assigned. The user does not exists or loggedin user cannot perform this act.");
                         }
                     });
                 }
                 else
-                    alert("User isn't logged in");
+                    alert("The user is not an owner");
             });
         });
     </script>
