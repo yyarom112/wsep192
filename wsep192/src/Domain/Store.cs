@@ -528,7 +528,7 @@ namespace src.Domain
         {
             try
             {
-                int productID = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
+                int productID = ConvertProductNameToProductInStore(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })).Product.Id;
                 int min = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 int max = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })));
@@ -546,7 +546,8 @@ namespace src.Domain
         {
             try
             {
-                int productID = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
+                int productID = ConvertProductNameToProductInStore(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })).Product.Id;
+                //int productID = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 int min = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })));
                 return new inventoryConditionPolicy(ID, productID, min, act);
