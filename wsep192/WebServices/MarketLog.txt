@@ -1888,3 +1888,49 @@
 
 06/06/2019 12:20:17: TradingSystem - Remove user id7 success.
 
+06/06/2019 12:54:33: Register - userName or password null
+
+06/06/2019 12:54:33: Register - userName or password null
+
+06/06/2019 12:54:33: Register - userName or password null
+
+06/06/2019 12:54:33: Register - userName or password null
+
+06/06/2019 12:54:33: Register - userName or password null
+
+06/06/2019 12:54:33: TradingSystem-open storeZara success
+
+06/06/2019 12:54:33: TradingSystem-create new product in store0 -success
+
+06/06/2019 12:54:33: TradingSystem-add product to store0 -success
+06/06/2019 12:54:33: Store - assign manger succeed
+06/06/2019 12:54:33: TradingSystem-Assign owner 2 -success
+06/06/2019 12:54:33: TradingSystem-Assign owner 3 -success
+06/06/2019 12:54:33: User:signOut success - Aviv
+
+06/06/2019 12:57:14: User:signOut success - Aviv
+
+06/06/2019 12:57:27: TradingSystem - signIn - user id not exist.
+
+06/06/2019 12:57:27: TradingSystem - Remove user id6 success.
+
+06/06/2019 12:58:09: Register - userName or password null
+
+06/06/2019 12:58:09: Register - userName or password null
+
+06/06/2019 12:58:09: Register - userName or password null
+
+06/06/2019 12:58:09: Register - userName or password null
+
+06/06/2019 12:58:09: Register - userName or password null
+
+06/06/2019 12:58:09: TradingSystem-open storeZara success
+
+06/06/2019 12:58:09: TradingSystem-create new product in store0 -success
+
+06/06/2019 12:58:09: TradingSystem-add product to store0 -success
+06/06/2019 12:58:09: Store - assign manger succeed
+06/06/2019 12:58:09: TradingSystem-Assign owner 2 -success
+06/06/2019 12:58:09: TradingSystem-Assign owner 3 -success
+06/06/2019 12:58:09: User:signOut success - Aviv
+

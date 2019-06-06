@@ -51,7 +51,7 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else {
-                                alert(response);
+                                alert("Store name allready exists. Please try again.");
                             }
                         },
                         error: function (response) {

@@ -32,3 +32,7 @@
 06/06/2019 12:18:53: TradingSystem- searchProduct - Try parse int failed
 06/06/2019 12:18:53: TradingSystem- searchProduct - Try parse int failed
 06/06/2019 12:18:53: TradingSystem- searchProduct - Try parse int failed
+06/06/2019 12:54:59: TradingSystem- searchProduct - Try parse int failed
+06/06/2019 12:54:59: TradingSystem- searchProduct - Try parse int failed
+06/06/2019 12:54:59: TradingSystem- searchProduct - Try parse int failed
+06/06/2019 12:54:59: TradingSystem- searchProduct - Try parse int failed
