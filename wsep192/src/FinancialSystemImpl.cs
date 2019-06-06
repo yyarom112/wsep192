@@ -18,14 +18,12 @@ namespace src
 
         public bool payment(long cardNumber, DateTime date, double amount, int paymentTarget)
         {
-            if (external.pay(cardNumber + "", date.Month + "", date.Year + "", "default", "123", "123456789") != -1)    //FOR NOW   
-                return true;
-            return false;
+            return true;
         }
 
         public bool Chargeback(long cardNumber, DateTime date, double amount)
         {
-            return external.cancel_pay("12345");    //FOR NOW
+            return true;   //FOR NOW
         }
     }
 }
