@@ -684,6 +684,11 @@ namespace src.Domain
         {
             users[userID].getMessages().Add(message);
         }
+        public void addRequestToUser(int userID, OwnerRequest request)
+        {
+            users[userID].getRequests().Add(request);
+        }
+
         public List<String> getMessagesByUser(int userID)
         {
             return users[userID].getMessages();
@@ -691,6 +696,16 @@ namespace src.Domain
         public void deleteMessagesByUser(int userID)
         {
             users[userID].deleteMessages();
+        }
+
+
+        public List<OwnerRequest> getRequestsByUser(int userID)
+        {
+            return users[userID].getRequests();
+        }
+        public void deleteRequestsByUser(int userID)
+        {
+            users[userID].deleteRequests();
         }
 
     }
