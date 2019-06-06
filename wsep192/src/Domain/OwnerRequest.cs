@@ -16,9 +16,9 @@ namespace src.Domain
         public int id { get; set; }
         public int responsesCounter { get; set; }
         public bool result { get; set; }
-        public int storesOwnersCount { get; set; }
+        public int storeOwnersCount { get; set; }
 
-        public OwnerRequest(string message , int id, string user, string store, string owner,int storesOwnersCount) {
+        public OwnerRequest(string message , int id, string user, string store, string owner,int storeOwnersCount) {
             this.message = message;
             this.id = id;
             this.user = user;
@@ -26,7 +26,7 @@ namespace src.Domain
             this.owner = owner;
             this.responsesCounter = 0;
             this.result = true;
-            this.storesOwnersCount = storesOwnersCount;
+            this.storeOwnersCount = storeOwnersCount;
         }
         
 
