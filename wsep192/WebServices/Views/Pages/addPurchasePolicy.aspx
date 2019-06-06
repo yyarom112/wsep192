@@ -1,6 +1,4 @@
-﻿
-
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="addPurchasePolicy.aspx.cs" Inherits="WebServices.Views.Pages.purchasePolicy" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="addPurchasePolicy.aspx.cs" Inherits="WebServices.Views.Pages.purchasePolicy" %>
 
 <asp:Content ID="content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -126,8 +124,8 @@
                     if (type == 1) {
                         details = '<form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate">'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID" placeholder="Product ID"><span class="placeholder" data-placeholder="Product ID"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
 
@@ -212,7 +210,7 @@
                         minNum = $("#minNum").val();
                         productID = $("#productID").val();
                         logicCon = $("#logicCon").val();
-                        policyDetails = "(" + type + "," + minNum + "," + productID + "," + logicCon + ")";
+                        policyDetails = "(" + type + "," + productID + "," + minNum + "," + logicCon + ")";
                     }
                     else if (type == 2) {
                         minNum = $("#minNum").val();
@@ -243,7 +241,7 @@
                             minNum = $("#minNum").val();
                             productID = $("#productID").val();
                             logicCon = $("#logicCon").val();
-                            policyDetails += "(" + type1 + "," + minNum + "," + productID + "," + logicCon + ")";
+                            policyDetails += "(" + type1 + "," + productID + "," + minNum + "," +  logicCon + ")";
                         }
                         if (type1 == 2) {
                             minNum = $("#minNum").val();
@@ -275,7 +273,7 @@
                                 minNum = $("#minNum3").val();
                                 productID = $("#productID3").val();
                                 logicCon = $("#logicCon3").val();
-                                policyDetails += "(" + type + ",(" + type1 + "," + minNum + "," + productID + "," + logicCon + "),";
+                                policyDetails += "(" + type + ",(" + type1 + "," +  productID + "," + minNum + "," + logicCon + "),";
                             }
                             if (type1 == 2) {
                                 minNum = $("#minNum3").val();
@@ -303,7 +301,7 @@
                                 minNum = $("#minNum4").val();
                                 productID = $("#productID4").val();
                                 logicCon = $("#logicCon4").val();
-                                policyDetails += "(" + type2 + "," + minNum + "," + productID + "," + logicCon + "),";
+                                policyDetails += "(" + type2 + "," + productID + "," + minNum + "," +  logicCon + "),";
                             }
                             if (type2 == 2) {
                                 minNum = $("#minNum4").val();
@@ -342,7 +340,7 @@
                             minNum = $("#minNum2").val();
                             productID = $("#productID2").val();
                             logicCon = $("#logicCon2").val();
-                            policyDetails += "(" + type1 + "," + minNum + "," + productID + "," + logicCon + ")";
+                            policyDetails += "(" + type1 + "," + productID + "," + minNum + "," +  logicCon + ")";
                         }
                         if (type1 == 2) {
                             minNum = $("#minNum2").val();
@@ -375,7 +373,7 @@
                             minNum = $("#minNum3").val();
                             productID = $("#productID3").val();
                             logicCon = $("#logicCon3").val();
-                            policyDetails = "(" + type + ",(" + type1 + "," + minNum + "," + productID + "," + logicCon + "),";
+                            policyDetails = "(" + type + ",(" + type1 + "," + productID + "," + minNum + "," +  logicCon + "),";
                         }
                         if (type1 == 2) {
                             minNum = $("#minNum3").val();
@@ -403,7 +401,7 @@
                             minNum = $("#minNum4").val();
                             productID = $("#productID4").val();
                             logicCon = $("#logicCon4").val();
-                            policyDetails += "(" + type2 + "," + minNum + "," + productID + "," + logicCon + "),";
+                            policyDetails += "(" + type2 + "," + productID + "," + minNum + "," +  logicCon + "),";
                         }
                         if (type2 == 2) {
                             minNum = $("#minNum4").val();
@@ -469,8 +467,8 @@
                     if (type == 1) {
                         details = '<form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate">'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID" placeholder="Product ID"><span class="placeholder" data-placeholder="Product ID"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
                     }
@@ -522,15 +520,15 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum2" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxNum2" placeholder="Max products"><span class="placeholder" data-placeholder="Max products"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
-                            + '</form>';
+                        + '</form>';
                     }
                     if (type == 1) {
                         details = '<form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate">'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store2" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID2" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum2" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID2" placeholder="Product ID"><span class="placeholder" data-placeholder="Product ID"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
-                            + '</form>';
+                        + '</form>';
                     }
                     if (type == 2) {
                         details = '<form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate">'
@@ -540,7 +538,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minSum2" placeholder="Min price"><span class="placeholder" data-placeholder="Min price"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="maxSum2" placeholder="Max price"><span class="placeholder" data-placeholder="Max price"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
-                            + '</form>';
+                        + '</form>';
                     }
                     if (type == 3) {
                         details = '<form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate">'
@@ -548,7 +546,7 @@
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="address2" placeholder="Address"><span class="placeholder" data-placeholder="Address"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="isRegister2" placeholder="Is registered"><span class="placeholder" data-placeholder="Is registered"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon2" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>';
-                            + '</form>';
+                        + '</form>';
                     }
                     policyDetails += ")"
 
@@ -580,8 +578,8 @@
                     if (type == 1) {
                         details = '<form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate">'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store3" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID3" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum3" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID3" placeholder="Product ID"><span class="placeholder" data-placeholder="Product ID"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon3" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '</form>'
                     }
@@ -634,8 +632,8 @@
                     if (type == 1) {
                         details = '<form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate">'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store4" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID4" placeholder="Product Name"><span class="placeholder" data-placeholder="Product Name"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="minNum4" placeholder="Min products"><span class="placeholder" data-placeholder="Min products"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="productID4" placeholder="Product ID"><span class="placeholder" data-placeholder="Product ID"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicCon4" placeholder="Logical condition"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logicConAll" placeholder="Logical condition for both"><span class="placeholder" data-placeholder="Logical condition for both"></span> </div> </div>'
                             + '</form>'
