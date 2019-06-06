@@ -39,3 +39,16 @@
 
 05/06/2019 19:51:35: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
 
+6/6/2019 12:09:11: Store- conditionConvert- Parge string to condition policy faild
+6/6/2019 12:09:11: Store- conditionConvert- Parge string to condition policy faild
+6/6/2019 12:09:11: Store- conditionConvert- Parge string to condition policy faild
+6/6/2019 12:09:11: Store- conditionConvert- Parge string to condition policy faild
+6/6/2019 12:09:12: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
+6/6/2019 12:09:12: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
+6/6/2019 12:09:13: Store- conditionConvert- Parge string to condition policy faild
+6/6/2019 12:09:13: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
+6/6/2019 12:09:14: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
