@@ -47,8 +47,10 @@ namespace IntegrationTests
 
             p1 = new Product(1, "p1", null, null, 1);
             ps1 = new ProductInStore(10, store, p1);
+            store.Products.Add(p1.Id, ps1);
             p2 = new Product(2, "p2", null, null, 10);
             ps2 = new ProductInStore(10, store, p2);
+            store.Products.Add(p2.Id, ps2);
             pcp = new ProductConditionPolicy(0, 1, 0, 10, LogicalConnections.and);
             icp = new inventoryConditionPolicy(1, 1, 5, LogicalConnections.and);
             bcp = new BuyConditionPolicy(2, 2, 5, 10, 20, LogicalConnections.and);
@@ -402,7 +404,7 @@ namespace IntegrationTests
             setup();
             String details = "";
 
-            details += " ( 0 , " + p1.Id + " , 0 , 10 , 0 )";
+            details += " ( 0 , " + "p1" + " , 0 , 10 , 0 )";
             PurchasePolicy pcp = store.factoryProductConditionPolicy(1, details.Split(',').Length - 1, 0, details.Split(','), -1);
             List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
@@ -423,7 +425,7 @@ namespace IntegrationTests
             setup();
             String details = "";
 
-            details += " ( 0 , " + p1.Id + " , 0 , 10 , 0 )";
+            details += " ( 0 , " + "p1" + " , 0 , 10 , 0 )";
             PurchasePolicy pcp = store.addComplexPurchasePolicy(0, details);
             List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps1, 5));
@@ -442,7 +444,7 @@ namespace IntegrationTests
         public void Store_factoryinventoryConditionPolicy()
         {
             setup();
-            String details = " ( 1 , 1, 5 , 0 )";
+            String details = " ( 1 , p1, 5 , 0 )";
             PurchasePolicy icp = store.factoryinventoryConditionPolicy(1, details.Split(',').Length - 1, 0, details.Split(','), -1);
             List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
             cart.Add(new KeyValuePair<ProductInStore, int>(ps2, 1));
@@ -587,7 +589,7 @@ namespace IntegrationTests
         {
 
             setup();
-            String details = "( 4 , ( 0 , " + p1.Id + " , 0 , 10 , 0 ) , ( 1 , 1, 5 , 0 ) , 0 )";
+            String details = "( 4 , ( 0 , " + "p1" + " , 0 , 10 , 0 ) , ( 1 , p1, 5 , 0 ) , 0 )";
             PurchasePolicy itcp = store.factoryIfThenCondition(1, details.Length - 1, 0, details.Split(','), 0);
 
             List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
@@ -616,7 +618,7 @@ namespace IntegrationTests
         {
 
             setup();
-            String details = "( 4 , ( 0 , " + p1.Id + " , 0 , 10 , 0 ) , ( 1 , 1, 5 , 0 ) , 0 )";
+            String details = "( 4 , ( 0 , " + "p1" + " , 0 , 10 , 0 ) , ( 1 , p1, 5 , 0 ) , 0 )";
             PurchasePolicy itcp = store.addComplexPurchasePolicy(0, details);
 
             List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
@@ -644,7 +646,7 @@ namespace IntegrationTests
 
             setup();
             // true if buy p1 between 0-10 and the min inventory 5
-            String details = "( 5 , ( 0 , " + p1.Id + " , 0 , 10 , 0 ) , ( 1 ," + p1.Id + ", 5 , 0 ) , 0 , 0)";
+            String details = "( 5 , ( 0 , " + "p1" + " , 0 , 10 , 0 ) , ( 1 ," + "p1" + ", 5 , 0 ) , 0 , 0)";
             PurchasePolicy lcp = store.factoryLogicalCondition(1, details.Split(',').Length - 1, 0, details.Split(','), 0);
 
             List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
@@ -673,7 +675,7 @@ namespace IntegrationTests
 
             setup();
             // true if buy p1 between 0-10 and the min inventory 5 or buy p2 between 0-10 and the min inventory 5
-            String details = "(5 ,( 5 , ( 0 , " + p1.Id + " , 0 , 10 , 0 ) , ( 1 ," + p1.Id + ", 5 , 0 ) , 0 , 0), ( 5 , ( 0 , " + p2.Id + " , 0 , 10 , 0 ) , ( 1 ," + p2.Id + ", 5 , 0 ) , 0 , 0) , 1 , 0 )";
+            String details = "(5 ,( 5 , ( 0 , " + "p1" + " , 0 , 10 , 0 ) , ( 1 ," + "p1" + ", 5 , 0 ) , 0 , 0), ( 5 , ( 0 , " + "p2" + " , 0 , 10 , 0 ) , ( 1 ," + "p2" + ", 5 , 0 ) , 0 , 0) , 1 , 0 )";
             PurchasePolicy lcp = store.factoryLogicalCondition(1, details.Split(',').Length - 1, 0, details.Split(','), 0);
 
             List<KeyValuePair<ProductInStore, int>> cart = new List<KeyValuePair<ProductInStore, int>>();
