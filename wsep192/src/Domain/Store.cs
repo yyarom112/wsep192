@@ -128,7 +128,7 @@ namespace src.Domain
         }
         public virtual bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products, UserDetailes user)
         {
-            if (this.PurchasePolicy == null)
+            if (this.PurchasePolicy == null || this.purchasePolicy.Count==0)
                 return true;
             List<KeyValuePair<ProductInStore, int>> productsInStore = new List<KeyValuePair<ProductInStore, int>>();
             foreach (ProductInCart p in products.Values)
