@@ -12,7 +12,7 @@ namespace WebServices
 
         public void Login(string username, string connID)
         {
-            WebsocketsController.Connections.Add(username, connID);
+                WebsocketsController.Connections.Add(username, connID);
         }
 
         public void Logout(string username)
@@ -23,8 +23,14 @@ namespace WebServices
 
         public void Send(string userName, string message)
         {
-            Clients.Client(WebsocketsController.Connections[userName]).addNewMessageToPage(userName, message);
+            Clients.Client(WebsocketsController.Connections[userName]).addNewMessageToPage(message);
         }
+
+        public void Request(string userName, string message,string reqId)
+        {
+            Clients.Client(WebsocketsController.Connections[userName]).addNewRequestToPage(message,reqId);
+        }
+
 
     }
 }

@@ -42,12 +42,12 @@
                             window.location.href = baseUrl + "/Cart?store=" + store + "&cart=" + response;
                         }
                         else {
-                            alert('Failure - store/cart not available');
+                            alert('Store name does not exists');
                         }
                     },
                     error: function (response) {
                         console.log(response);
-                        alert('Failure - show cart error');
+                        alert('Somthing went wrong with presenting the cart. Please try again.');
                     }
                 });
 

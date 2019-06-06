@@ -65,12 +65,12 @@
                             }
                         },
                         error: function (response) {
-                            alert(response);
+                            alert('Product does not exists in the system. Please Try again');
                         }
                     });
                 }
                 else {
-                    alert('User not logged in');
+                    alert('User is not premmsioned manager or an owner.');
                 }
             });
         });
