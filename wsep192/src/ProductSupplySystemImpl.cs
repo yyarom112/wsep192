@@ -9,9 +9,10 @@ namespace src
 {
     class ProductSupplySystemImpl : ProductSupplySystem
     {
+        ExternalAPIImpl external = new ExternalAPIImpl();
         public bool connect()
         {
-            return true;
+            return external.connect();
         }
 
         public bool deliverToCustomer(string address, string packageDetails)
