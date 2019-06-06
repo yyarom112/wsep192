@@ -11,7 +11,7 @@ namespace src.DataLayer
 {
     class DBmanager
     {
-        private bool isTest;
+        private bool isTest=true;
         private const string dbAdress = "mongodb+srv://wesp192:wesp192@cluster0-r882l.gcp.mongodb.net/test";
         private const string dbName = "wesp192";
         private IMongoDatabase db;
@@ -439,6 +439,26 @@ namespace src.DataLayer
                 return -1;
             }
             int output = document[0]["quantity"].AsInt32;
+            return output;
+        }
+
+        public List<int[]> getALLProductInCartPerUsers(int userID)
+        {
+            if (IsTest)
+                return null;
+            List<int[]> output = new List<int[]>();
+            var filter =  Builders<BsonDocument>.Filter.Eq("_userid", userID);
+
+            var document = productInCartTable.Find(filter).ToList();
+            if (document == null || document.Count == 0)
+            {
+                return null;
+            }
+            foreach (var doc in document)
+            {
+                int[] tmp = { doc["_userid"].AsInt32, doc["_storeid"].AsInt32, doc["_productid"].AsInt32, doc["quantity"].AsInt32 };
+                output.Add(tmp);
+            }
             return output;
         }
 
