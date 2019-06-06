@@ -1720,3 +1720,53 @@
 
 06/06/2019 11:36:07: User:signOut success - Aviv
 
+06/06/2019 11:49:37: Register - userName or password null
+
+06/06/2019 11:49:37: Register - userName or password null
+
+06/06/2019 11:49:37: Register - userName or password null
+
+06/06/2019 11:49:37: Register - userName or password null
+
+06/06/2019 11:49:37: Register - userName or password null
+
+06/06/2019 11:49:37: Register - userName or password null
+
+06/06/2019 11:49:37: TradingSystem-open storeZara success
+
+06/06/2019 11:49:37: TradingSystem-create new product in store0 -success
+
+06/06/2019 11:49:37: TradingSystem-add product to store0 -success
+06/06/2019 11:49:37: Store - assign manger succeed
+06/06/2019 11:49:37: TradingSystem-Assign owner 2 -success
+06/06/2019 11:49:37: TradingSystem-Assign owner 3 -success
+06/06/2019 11:49:37: TradingSystem-Assign owner 4 -success
+06/06/2019 11:49:37: User:signOut success - Aviv
+
+06/06/2019 11:51:04: User:signOut success - Aviv
+
+06/06/2019 11:53:09: Register - userName or password null
+
+06/06/2019 11:53:09: Register - userName or password null
+
+06/06/2019 11:53:09: Register - userName or password null
+
+06/06/2019 11:53:09: Register - userName or password null
+
+06/06/2019 11:53:09: Register - userName or password null
+
+06/06/2019 11:53:09: Register - userName or password null
+
+06/06/2019 11:53:09: TradingSystem-open storeZara success
+
+06/06/2019 11:53:09: TradingSystem-create new product in store0 -success
+
+06/06/2019 11:53:09: TradingSystem-add product to store0 -success
+06/06/2019 11:53:09: Store - assign manger succeed
+06/06/2019 11:53:09: TradingSystem-Assign owner 2 -success
+06/06/2019 11:53:09: TradingSystem-Assign owner 3 -success
+06/06/2019 11:53:09: TradingSystem-Assign owner 4 -success
+06/06/2019 11:53:09: User:signOut success - Aviv
+
+06/06/2019 11:54:57: User:signOut success - Aviv
+
