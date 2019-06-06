@@ -530,7 +530,7 @@ namespace src.ServiceLayer
             {
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
                     return -1;
-                return system.addConditionalDiscuntPolicy(products, condition, Double.Parse(discountPrecentage), Int32.Parse(expiredDiscountDate), Int32.Parse(duplicate), Int32.Parse(logic), this.users[user], this.stores[store]);
+                return system.addConditionalDiscuntPolicy(products, condition, Double.Parse(discountPrecentage) / 100.0, Int32.Parse(expiredDiscountDate), Int32.Parse(duplicate), Int32.Parse(logic), this.users[user], this.stores[store]);
             }
             catch (Exception e)
             {

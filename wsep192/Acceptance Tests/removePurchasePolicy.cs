@@ -46,7 +46,7 @@ namespace Acceptance_Tests
             productsInCart = new List<KeyValuePair<String, int>>();
             productsInCart.Add(new KeyValuePair<string, int>("milk", 10));
 
-            purchaseId = service.addComplexPurchasePolicy("(0,0,0,10,0)", "adidas", ownerUser);
+            purchaseId = service.addComplexPurchasePolicy("(0,milk,0,10,0)", "adidas", ownerUser);
         }
 
         [TestMethod]
