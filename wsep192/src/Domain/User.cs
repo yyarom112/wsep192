@@ -21,6 +21,7 @@ namespace src.Domain
         private Dictionary<int, Role> roles;
         private List<String> orderStores;
         private List<String> messages;
+        private List<OwnerRequest> requests;
         private state signedIn;
         private state visitor;
 
@@ -37,6 +38,8 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
             this.orderStores = new List<String>();
             this.messages = new List<String>();
+            //message , <store,owner>
+            this.requests = new List<OwnerRequest>();
         }
 
         public int Id { get => id; set => id = value; }
@@ -148,7 +151,6 @@ namespace src.Domain
         {
             if (userName == null || password == null)
             {
-                ErrorManager.Instance.WriteToLog("Error - Register - userName or password null");
                 return false;
             }
             this.userName = userName;
@@ -256,8 +258,7 @@ namespace src.Domain
             }
             catch (Exception)
             {
-                LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
-                ErrorManager.Instance.WriteToLog("Error - removeManager -" + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                ErrorManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
                 return false;
             }
 
@@ -270,6 +271,15 @@ namespace src.Domain
         {
             this.messages = new List<String>();
         }
+        public List<OwnerRequest> getRequests()
+        {
+            return this.requests;
+        }
+        public void deleteRequests()
+        {
+            this.requests = new List<OwnerRequest>();
+        }
+
 
         public bool assignOwner(int storeID, User assigned)
         {
@@ -288,8 +298,7 @@ namespace src.Domain
             }
             catch (Exception)
             {
-                LogManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
-                ErrorManager.Instance.WriteToLog("Error - assignOwner -" + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
+                ErrorManager.Instance.WriteToLog("User-remove manager fail- User " + this.id + " does not have appropriate permissions in Store " + storeID + " .\n");
                 return false;
             }
         }

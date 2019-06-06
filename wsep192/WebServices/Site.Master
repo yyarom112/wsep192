@@ -135,10 +135,30 @@
 
         var connection = $.connection.chatHub;
         // Start the connection.
-        connection.client.addNewMessageToPage = function (name, message) {
+        connection.client.addNewMessageToPage = function (message) {
             // Add the message to the page.
             alert(message);
         };
+        connection.client.addNewRequestToPage = function (message,id) {
+            // Add the request to the page.
+            var res = confirm(message);         
+            var user = getCookie("LoggedUser");
+            jQuery.ajax({
+                async: 'true',
+                type: "GET",
+                url: baseUrl + "/api/user/assignOwnerResult?userName=" + user +'&reqId='+id+'&result='+res,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "false")
+                        alert("Failed to send response");
+                },
+                error: function (response) {
+                    console.log("Error in assignOwnerResult");
+                }
+            });
+        };
+
         $.connection.hub.start();
 
         var Login = function (user) {

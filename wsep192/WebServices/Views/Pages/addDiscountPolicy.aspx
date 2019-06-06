@@ -104,14 +104,14 @@
                             dataType: "json",
                             success: function (response) {
                                 if (response == -1) {
-                                    alert("Error in add discount policy");
+                                    alert("Error in add discount policy, it does not meet the conditions");
                                     window.location.href = baseUrl + "/";
                                 }
                                 else
-                                    alert("Discount id: " + response);
+                                    alert("Policy " + response + " has created successfully");
                             },
                             error: function (response) {
-                                alert('Error in addDiscountPolicy');
+                                alert('Error in add discount policy, it does not meet the conditions');
                             }
                         });
                     }
@@ -134,14 +134,14 @@
                             dataType: "json",
                             success: function (response) {
                                 if (response == -1) {
-                                    alert("Error in add discount policy");
+                                    alert("Error in add discount policy, it does not meet the conditions");
                                     window.location.href = baseUrl + "/";
                                 }
                                 else
-                                    alert("Discount id: " + response);
+                                    alert("Policy " + response + " has created successfully");
                             },
                             error: function (response) {
-                                alert('Error in addDiscountPolicy');
+                                alert('Error in add discount policy, it does not meet the conditions');
                             }
                         });
                     }
