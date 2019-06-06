@@ -1695,3 +1695,28 @@
 
 06/06/2019 11:01:47: TradingSystem - Remove user id3 success.
 
+06/06/2019 11:34:57: Register - userName or password null
+
+06/06/2019 11:34:57: Register - userName or password null
+
+06/06/2019 11:34:57: Register - userName or password null
+
+06/06/2019 11:34:57: Register - userName or password null
+
+06/06/2019 11:34:57: Register - userName or password null
+
+06/06/2019 11:34:57: Register - userName or password null
+
+06/06/2019 11:34:57: TradingSystem-open storeZara success
+
+06/06/2019 11:34:57: TradingSystem-create new product in store0 -success
+
+06/06/2019 11:34:57: TradingSystem-add product to store0 -success
+06/06/2019 11:34:57: Store - assign manger succeed
+06/06/2019 11:34:57: TradingSystem-Assign owner 2 -success
+06/06/2019 11:34:57: TradingSystem-Assign owner 3 -success
+06/06/2019 11:34:57: TradingSystem-Assign owner 4 -success
+06/06/2019 11:34:57: User:signOut success - Aviv
+
+06/06/2019 11:36:07: User:signOut success - Aviv
+
