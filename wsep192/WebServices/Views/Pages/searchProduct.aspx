@@ -60,7 +60,7 @@
                         }
                     },
                     error: function (response) {
-                        alert(response);
+                        alert("The producdt does not exists in the system.");
                     }
                 });
             });

@@ -96,7 +96,7 @@
                     dataType: "json",
                     success: function (response) {
                         if (response == "-1") {
-                            alert("Error in checkout basket");
+                            alert("Purchase doesn't meet the conditions.");
                             window.location.href = baseUrl + "/";
                         }
                         else if (response == "0") {
@@ -169,10 +169,10 @@
                             document.getElementById('orderTable').style.visibility = "visible";
                         }
                         else
-                            alert(response);
+                            alert('Users date or card number are wrong. Please try again.');
                     },
                     error: function (response) {
-                        alert("Problem with pay for basket");
+                        alert('Something went wrong during the checkout. Please try again.');
                     }
                 });
 

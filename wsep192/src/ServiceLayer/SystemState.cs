@@ -91,7 +91,7 @@ namespace src.ServiceLayer
                             break;
                         case "AssignOwner":
                             if (r.User != null)
-                                flag = flag & service.assignOwner(r.Owner, r.User, r.Store);
+                                flag = flag & service.assignOwnerSetUp(r.User, r.Owner, r.Store);
                             else return false;
                             break;
                         case "RemoveOwner":

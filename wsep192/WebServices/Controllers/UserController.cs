@@ -190,13 +190,13 @@ namespace WebService.Controllers
         [HttpGet]
         public string assignOwner(String ownerName, String userToAssign, String storeName)
         {
-            bool ans = service.assignOwner(ownerName, userToAssign, storeName);
+            bool ans = service.assignOwnerRequest(ownerName, userToAssign, storeName);
             switch (ans)
             {
                 case true:
-                    return "User successfuly was assigned";
+                    return "Requests assigning "+userToAssign+" were successfully sent";
                 case false:
-                    return "Error in assigning owner";
+                    return "failed to send requests assigning owner";
             }
             return "Server error: assignOwner";
         }
@@ -387,6 +387,21 @@ namespace WebService.Controllers
             return "Error in removeGuestUser";
         }
 
+        [Route("api/user/assignOwnerResult")]
+        [HttpGet]
+        public string assignOwnerResult(String reqId,String result)
+        {
+
+            bool ans = service.assignOwnerResult(Int32.Parse(reqId),Boolean.Parse(result));
+            switch (ans)
+            {
+                case true:
+                    return "true";
+                case false:
+                    return "false";
+            }
+            return "Error in assignOwnerResult";
+        }
 
 
 

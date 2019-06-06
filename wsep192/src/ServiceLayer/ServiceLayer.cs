@@ -17,10 +17,13 @@ namespace src.ServiceLayer
         private Dictionary<String, int> users;
         private Dictionary<String, int> stores;
         private Dictionary<String, int> permissions;
+        private Dictionary<string, List<bool>> requests;
         private Dictionary<string, List<string>> storesStackholders = new Dictionary<string, List<string>>();
+        private Dictionary<int, OwnerRequest> systemRequests; //reqId - flag,count,tmpcount
         private NotificationsManager manager = new NotificationsManager();
         private int storeCounter;
         private int userCounter;
+        private int requestCounter;
 
 
         private ServiceLayer()
@@ -33,6 +36,8 @@ namespace src.ServiceLayer
             userCounter = 0;
             manager.init();
             addPermissions();
+            systemRequests = new Dictionary<int, OwnerRequest>();
+
             //setUp();
 
         }
@@ -45,9 +50,10 @@ namespace src.ServiceLayer
 
         public static ServiceLayer getInstance()
         {
-            if (instance == null) { 
-            instance = new ServiceLayer();
-            fileSetUp();
+            if (instance == null)
+            {
+                instance = new ServiceLayer();
+                fileSetUp();
             }
             return instance;
         }
@@ -57,8 +63,8 @@ namespace src.ServiceLayer
         }
 
 
-        /*
-        public bool setUp()
+
+        public bool setUp1()
         {
             bool flag = true;
             string user = instance.initUser();
@@ -72,7 +78,7 @@ namespace src.ServiceLayer
             flag = flag & instance.addProductsInStore(products, "store", "user");
             return flag;
 
-        }*/
+        }
 
         public bool setUp()
         {
@@ -164,6 +170,14 @@ namespace src.ServiceLayer
                 foreach (String message in system.getMessagesByUser(users[username]))
                     notify(username, message);
                 system.deleteMessagesByUser(users[username]);
+
+                foreach (OwnerRequest r in system.getRequestsByUser(users[username]))
+                {
+                    request(username, r.message, r.id);
+                }
+                system.deleteRequestsByUser(users[username]);
+
+
             }
             return flag;
         }
@@ -343,6 +357,20 @@ namespace src.ServiceLayer
             return system.createNewProductInStore(productName, category, details, price, stores[store], users[user]);
         }
 
+        internal bool assignOwnerResult(int reqId, bool result)
+        {
+            if (!systemRequests.ContainsKey(reqId))
+                return false;
+            OwnerRequest r = systemRequests[reqId];
+            r.responsesCounter++;
+            r.result &= result;
+            if (r.result && r.responsesCounter == r.storeOwnersCount - 1)
+            {
+                return assignOwner(r.owner, r.user, r.store);
+            }
+            return true;
+        }
+
         //pair of <produc,quantity>
         public bool addProductsInStore(List<KeyValuePair<String, int>> productsToAdd, String store, String user)
         {
@@ -379,14 +407,39 @@ namespace src.ServiceLayer
             if (flag)
             {
                 storesStackholders[store].Add(user);
-                String message = "You have successfully assigned as an owner in " + store;
-                if (system.isLoggedIn(users[user]))
-                    notify(user, message);
-                else
-                    system.addMessageToUser(users[user], message);
+                String message = user + " have successfully assigned as an owner in " + store;
+                notifyAll(store, message);
             }
             return flag;
         }
+
+        public bool assignOwnerSetUp(String owner, String user, String store)
+        {
+            if (!users.ContainsKey(owner) || !users.ContainsKey(user) || !stores.ContainsKey(store))
+                return false;
+            bool flag = system.assignOwner(stores[store], users[owner], users[user]);
+            if (flag)
+            {
+                storesStackholders[store].Add(user);
+                String message = user + " have successfully assigned as an owner in " + store;
+                notifyAllWithoutLoginUsers(store, message);
+            }
+            return flag;
+        }
+
+        public bool assignOwnerRequest(String owner, String user, String store)
+        {
+
+            //store,user,owner
+            if (!users.ContainsKey(owner) || !users.ContainsKey(user) || !stores.ContainsKey(store))
+                return false;
+            String message = owner + " is requesting " + user + " to be assigned as owner in " + store;
+            systemRequests.Add(requestCounter, new OwnerRequest(message, requestCounter, user, store, owner, storesStackholders[store].Count));
+            requestAll(store, message, owner, requestCounter);
+            requestCounter++;
+            return true;
+        }
+
 
         //req4.4
         public bool removeOwner(String ownerToRemove, String store, String user)
@@ -463,45 +516,6 @@ namespace src.ServiceLayer
             return sb.ToString();
         }
 
-
-        public bool notify(string user, string message)
-        {
-            if (system.isLoggedIn(users[user]))
-            {
-                manager.notify(user, message);
-            }
-            return false;
-        }
-
-        public void notifyAll(string store, string message)
-        {
-            foreach (string user in storesStackholders[store])
-            {
-                if (system.isLoggedIn(users[user]))
-                    notify(user, message);
-                else
-                    system.addMessageToUser(users[user], message);
-            }
-            
-        }
-
-
-        public int addSimplePurchasePolicy(String type, String first, String second, String third, String fourth, String act, string adress, String isregister, String store, String user)
-        {
-            try
-            {
-                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
-                    return -1;
-                return this.system.addSimplePurchasePolicy(Int32.Parse(type), Int32.Parse(first), Int32.Parse(second), Int32.Parse(third), Int32.Parse(fourth), Int32.Parse(act), adress, Int32.Parse(isregister) == 1, this.stores[store], this.users[user]);
-            }
-            catch (Exception e)
-            {
-                return -1;
-            }
-
-        }
-
-
         public int addComplexPurchasePolicy(String purchesData, String store, String user)
         {
             try
@@ -509,7 +523,7 @@ namespace src.ServiceLayer
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
                     return -1;
                 return this.system.addComplexPurchasePolicy(purchesData, this.stores[store], this.users[user]);
-        
+
             }
             catch (Exception e)
             {
@@ -517,29 +531,26 @@ namespace src.ServiceLayer
                 return -1;
             }
         }
-
-        public int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
-        {
-            try
-            {
-                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
-                    return -1;
-                return system.addRevealedDiscountPolicy(products, Double.Parse(discountPrecentage), this.users[user], this.stores[store], Int32.Parse(expiredDiscountDate), Int32.Parse(logic));
-            }
-            catch (Exception e)
-            {
-                ErrorManager.Instance.WriteToLog("ServiceLayer-removeDiscountPolicy- Search for user or store that not exist or parsing failed ");
-                return -1;
-            }
-        }
-
         public int addConditionalDiscuntPolicy(List<String> products, String condition, String discountPrecentage, String expiredDiscountDate, String duplicate, String logic, String user, String store)
         {
             try
             {
                 if (!users.ContainsKey(user) || !stores.ContainsKey(store))
                     return -1;
-                return system.addConditionalDiscuntPolicy(products, condition, Double.Parse(discountPrecentage), Int32.Parse(expiredDiscountDate), Int32.Parse(duplicate), Int32.Parse(logic), this.users[user], this.stores[store]);
+                return system.addConditionalDiscuntPolicy(products, condition, Double.Parse(discountPrecentage) / 100.0, Int32.Parse(expiredDiscountDate), Int32.Parse(duplicate), Int32.Parse(logic), this.users[user], this.stores[store]);
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+        public int addRevealedDiscountPolicy(List<KeyValuePair<String, int>> products, String discountPrecentage, String expiredDiscountDate, String logic, String user, String store)
+        {
+            try
+            {
+                if (!users.ContainsKey(user) || !stores.ContainsKey(store))
+                    return -1;
+                return system.addRevealedDiscountPolicy(products, Double.Parse(discountPrecentage) / 100.0, this.users[user], this.stores[store], Int32.Parse(expiredDiscountDate), Int32.Parse(logic));
             }
             catch (Exception e)
             {
@@ -558,7 +569,6 @@ namespace src.ServiceLayer
             }
             catch (Exception e)
             {
-                ErrorManager.Instance.WriteToLog("ServiceLayer-removeDiscountPolicy- Search for user or store that not exist or parsing failed ");
                 return -1;
             }
         }
@@ -573,10 +583,60 @@ namespace src.ServiceLayer
             }
             catch (Exception e)
             {
-                ErrorManager.Instance.WriteToLog("ServiceLayer-removeDiscountPolicy- Search for user or store that not exist or parsing failed ");
-
                 return -1;
             }
+        }
+
+
+        public void notify(string user, string message)
+        {
+            if (system.isLoggedIn(users[user]))
+                manager.notify(user, message);
+
+        }
+
+        public void notifyAll(string store, string message)
+        {
+            foreach (string user in storesStackholders[store])
+            {
+                if (system.isLoggedIn(users[user]))
+                    notify(user, message);
+                else
+                    system.addMessageToUser(users[user], message);
+            }
+
+        }
+
+        public void notifyAllWithoutLoginUsers(string store, string message)
+        {
+            foreach (string user in storesStackholders[store])
+            {
+                system.addMessageToUser(users[user], message);
+            }
+
+
+
+        }
+        public void requestAll(string store, string message, string owner, int reqId)
+        {
+
+            foreach (string user in storesStackholders[store])
+            {
+                if (owner == user)
+                    continue;
+                if (system.isLoggedIn(users[user]))
+                    request(user, message, reqId);
+                else
+                    system.addRequestToUser(users[user], systemRequests[reqId]);
+            }
+
+        }
+
+        public void request(string user, string message, int reqId)
+        {
+            if (system.isLoggedIn(users[user]))
+                manager.request(user, message, reqId.ToString());
+
         }
     }
 

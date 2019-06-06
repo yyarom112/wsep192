@@ -128,7 +128,7 @@ namespace src.Domain
         }
         public virtual bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products, UserDetailes user)
         {
-            if (this.PurchasePolicy == null)
+            if (this.PurchasePolicy == null || this.purchasePolicy.Count==0)
                 return true;
             List<KeyValuePair<ProductInStore, int>> productsInStore = new List<KeyValuePair<ProductInStore, int>>();
             foreach (ProductInCart p in products.Values)
@@ -155,7 +155,7 @@ namespace src.Domain
         //Initials list all products and all discounts
         public virtual double calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
         {
-            if (this.DiscountPolicy == null)
+            if (this.DiscountPolicy == null || this.DiscountPolicy.Count==0)
                 return 0;
             int sum = 0;
             List<KeyValuePair<ProductInStore, int>> productsInStore = new List<KeyValuePair<ProductInStore, int>>();
@@ -528,7 +528,7 @@ namespace src.Domain
         {
             try
             {
-                int productID = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
+                int productID = ConvertProductNameToProductInStore(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })).Product.Id;
                 int min = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 int max = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })));
@@ -546,7 +546,8 @@ namespace src.Domain
         {
             try
             {
-                int productID = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
+                int productID = ConvertProductNameToProductInStore(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })).Product.Id;
+                //int productID = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 int min = Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' }));
                 LogicalConnections act = EnumActivaties.ConvertIntToLogicalConnections(Int32.Parse(purchesData[begin++].Trim(new char[] { ' ', '(', ')' })));
                 return new inventoryConditionPolicy(ID, productID, min, act);

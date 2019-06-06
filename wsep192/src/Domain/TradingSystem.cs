@@ -109,8 +109,8 @@ namespace src.Domain
             Dictionary<int, double> storeToPay = new Dictionary<int, double>(); //<storeId,Sum>
             foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
             {
-                cart.Store.updateCart(cart, "-");
                 storeToPay.Add(cart.Store.Id, cart.cartCheckout(new UserDetailes(this.Users[userID].Address, this.Users[userID].IsRegistered)));
+                cart.Store.updateCart(cart, "-");
             }
             foreach (KeyValuePair<int, double> storeSum in storeToPay)
             {
@@ -684,6 +684,11 @@ namespace src.Domain
         {
             users[userID].getMessages().Add(message);
         }
+        public void addRequestToUser(int userID, OwnerRequest request)
+        {
+            users[userID].getRequests().Add(request);
+        }
+
         public List<String> getMessagesByUser(int userID)
         {
             return users[userID].getMessages();
@@ -691,6 +696,16 @@ namespace src.Domain
         public void deleteMessagesByUser(int userID)
         {
             users[userID].deleteMessages();
+        }
+
+
+        public List<OwnerRequest> getRequestsByUser(int userID)
+        {
+            return users[userID].getRequests();
+        }
+        public void deleteRequestsByUser(int userID)
+        {
+            users[userID].deleteRequests();
         }
 
     }

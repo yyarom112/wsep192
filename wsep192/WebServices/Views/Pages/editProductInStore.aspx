@@ -78,12 +78,12 @@
                             }
                         },
                         error: function (response) {
-                            alert(response);
+                            alert('Invalid new field to edit. Please try again.');
                         }
                     });
                 }
                 else {
-                    alert('User not logged in');
+                    alert('User is not an owner or premissioned manager');
                 }
             });
         });

@@ -1,5 +1,4 @@
-﻿using src.DataLayer;
-using src.Domain.Dataclass;
+﻿using src.Domain.Dataclass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    public enum state { visitor, signedIn }
+    enum state { visitor, signedIn }
     class User
     {
         private int id;
@@ -22,8 +21,9 @@ namespace src.Domain
         private Dictionary<int, Role> roles;
         private List<String> orderStores;
         private List<String> messages;
-        public DBmanager db;
-
+        private List<OwnerRequest> requests;
+        private state signedIn;
+        private state visitor;
 
         public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
         {
@@ -38,7 +38,8 @@ namespace src.Domain
             this.roles = new Dictionary<int, Role>();
             this.orderStores = new List<String>();
             this.messages = new List<String>();
-            db = new DBmanager();
+            //message , <store,owner>
+            this.requests = new List<OwnerRequest>();
         }
 
         public int Id { get => id; set => id = value; }
@@ -76,7 +77,7 @@ namespace src.Domain
         public void setOrderStores()
         {
             this.orderStores = new List<String>();
-            foreach (ShoppingCart sc in basket.ShoppingCarts.Values)
+            foreach(ShoppingCart sc in basket.ShoppingCarts.Values)
             {
                 orderStores.Add(sc.Store.Name);
             }
@@ -145,6 +146,7 @@ namespace src.Domain
             return basket.showCart(storeId);
         }
 
+
         public virtual Boolean register(string userName, string password)
         {
             if (userName == null || password == null)
@@ -154,37 +156,7 @@ namespace src.Domain
             this.userName = userName;
             this.password = password;
             this.IsRegistered = true;
-            if (!db.Isconnected())
-                db = new DBmanager();
-            if (db.Isconnected() && registerNewUser(this))
-            {
-                LogManager.Instance.WriteToLog("Register - userName or password null\n");
-                return true;
-            }
-            
-            return false;
-
-        }
-
-        private bool registerNewUser(User user)
-        {
-            try
-            {
-                if (!db.addNewUser(user))
-                    return false;
-                foreach (ShoppingCart cart in user.Basket.ShoppingCarts.Values)
-                {
-                    foreach (ProductInCart product in cart.Products.Values)
-                    {
-                        db.addProductInCart(product, user.Id);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                ErrorManager.Instance.WriteToLog("User-registerNewUser- Add new user failed - " + e + " .");
-                return false;
-            }
+            LogManager.Instance.WriteToLog("Register - userName or password null\n");
             return true;
         }
 
@@ -299,6 +271,15 @@ namespace src.Domain
         {
             this.messages = new List<String>();
         }
+        public List<OwnerRequest> getRequests()
+        {
+            return this.requests;
+        }
+        public void deleteRequests()
+        {
+            this.requests = new List<OwnerRequest>();
+        }
+
 
         public bool assignOwner(int storeID, User assigned)
         {

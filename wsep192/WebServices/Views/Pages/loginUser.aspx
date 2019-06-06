@@ -62,12 +62,12 @@
                             }
                         },
                         error: function (response) {
-                            alert(response);
+                            alert('User name or password is incorrect. Please try again.');
                         }
                     });
                 }
                 else
-                    alert("already logged in");
+                    alert('The user is already logged in');
 
             });
         });
