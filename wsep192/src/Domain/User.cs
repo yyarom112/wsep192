@@ -1,4 +1,5 @@
-﻿using src.Domain.Dataclass;
+﻿using src.DataLayer;
+using src.Domain.Dataclass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    enum state { visitor, signedIn }
+    public enum state { visitor, signedIn }
     class User
     {
         private int id;
@@ -24,6 +25,7 @@ namespace src.Domain
         private List<OwnerRequest> requests;
         private state signedIn;
         private state visitor;
+        public DBmanager db;
 
         public User(int id, string userName, string password, bool isAdmin, bool isRegistered)
         {
@@ -159,7 +161,27 @@ namespace src.Domain
             LogManager.Instance.WriteToLog("Register - userName or password null\n");
             return true;
         }
-
+        private bool registerNewUserDB(User user)
+        {
+            try
+            {
+                if (!db.addNewUser(user))
+                    return false;
+                foreach (ShoppingCart cart in user.Basket.ShoppingCarts.Values)
+                {
+                    foreach (ProductInCart product in cart.Products.Values)
+                    {
+                        db.addProductInCart(product, user.Id);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorManager.Instance.WriteToLog("User-registerNewUser- Add new user failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
         public void addRole(Role role)
 
         {

@@ -84,3 +84,28 @@
 
 06/06/2019 12:31:35: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
 
+06/06/2019 13:01:54: DBmanager-removeUser- Remove user failed - System.TimeoutException: A timeout occured after 30000ms selecting a server using CompositeServerSelector{ Selectors = MongoDB.Driver.MongoClient+AreSessionsSupportedServerSelector, LatencyLimitingServerSelector{ AllowedLatencyRange = 00:00:00.0150000 } }. Client view of cluster state is { ClusterId : "1", ConnectionMode : "ReplicaSet", Type : "ReplicaSet", State : "Disconnected", Servers : [{ ServerId: "{ ClusterId : 1, EndPoint : "Unspecified/cluster0-shard-00-00-r882l.gcp.mongodb.net:27017" }", EndPoint: "Unspecified/cluster0-shard-00-00-r882l.gcp.mongodb.net:27017", State: "Disconnected", Type: "Unknown", LastUpdateTimestamp: "2019-06-06T10:01:24.8298662Z" }, { ServerId: "{ ClusterId : 1, EndPoint : "Unspecified/cluster0-shard-00-01-r882l.gcp.mongodb.net:27017" }", EndPoint: "Unspecified/cluster0-shard-00-01-r882l.gcp.mongodb.net:27017", State: "Disconnected", Type: "Unknown", LastUpdateTimestamp: "2019-06-06T10:01:24.8248809Z" }, { ServerId: "{ ClusterId : 1, EndPoint : "Unspecified/cluster0-shard-00-02-r882l.gcp.mongodb.net:27017" }", EndPoint: "Unspecified/cluster0-shard-00-02-r882l.gcp.mongodb.net:27017", State: "Disconnected", Type: "Unknown", LastUpdateTimestamp: "2019-06-06T10:01:24.8298662Z" }] }.
+   ב-  MongoDB.Driver.Core.Clusters.Cluster.ThrowTimeoutException(IServerSelector selector, ClusterDescription description)
+   ב-  MongoDB.Driver.Core.Clusters.Cluster.WaitForDescriptionChangedHelper.HandleCompletedTask(Task completedTask)
+   ב-  MongoDB.Driver.Core.Clusters.Cluster.WaitForDescriptionChanged(IServerSelector selector, ClusterDescription description, Task descriptionChangedTask, TimeSpan timeout, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.Core.Clusters.Cluster.SelectServer(IServerSelector selector, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoClient.AreSessionsSupportedAfterServerSelection(CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoClient.AreSessionsSupported(CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.OperationExecutor.StartImplicitSession(CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass35_0.<DeleteOne>b__0(IEnumerable`1 requests)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.DeleteOne(FilterDefinition`1 filter, DeleteOptions options, Func`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.DeleteOne(FilterDefinition`1 filter, DeleteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.DeleteOne(FilterDefinition`1 filter, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.removeUser(Int32 id) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 96 .
+06/06/2019 13:01:56: Store- conditionConvert- Parge string to condition policy faild
+06/06/2019 13:01:56: Store- conditionConvert- Parge string to condition policy faild
+06/06/2019 13:01:56: Store- conditionConvert- Parge string to condition policy faild
+06/06/2019 13:01:56: Store- conditionConvert- Parge string to condition policy faild
+06/06/2019 13:01:56: Store- factoryinventoryConditionPolicy- Parge string to condition policy faild
+06/06/2019 13:01:56: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
+06/06/2019 13:01:56: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
+06/06/2019 13:01:56: Store- conditionConvert- Parge string to condition policy faild
