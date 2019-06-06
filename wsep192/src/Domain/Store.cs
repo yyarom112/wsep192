@@ -155,7 +155,7 @@ namespace src.Domain
         //Initials list all products and all discounts
         public virtual double calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
         {
-            if (this.DiscountPolicy == null)
+            if (this.DiscountPolicy == null || this.DiscountPolicy.Count==0)
                 return 0;
             int sum = 0;
             List<KeyValuePair<ProductInStore, int>> productsInStore = new List<KeyValuePair<ProductInStore, int>>();
