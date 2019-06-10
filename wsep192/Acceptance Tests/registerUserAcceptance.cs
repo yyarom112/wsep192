@@ -26,8 +26,7 @@ namespace Acceptance_Tests
             setUp();
             String userName = "Seifan";
             String password = "2345";
-            DBmanager db = new DBmanager();
-            db.removeUser(3);
+            DBtransactions db = DBtransactions.getInstance(true);
             Assert.AreEqual(true, service.register(userName, password, id));
             service.shutDown();
         }

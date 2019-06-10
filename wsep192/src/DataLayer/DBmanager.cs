@@ -15,6 +15,7 @@ namespace src.DataLayer
         private const string dbAdress = "mongodb+srv://wesp192:wesp192@cluster0-r882l.gcp.mongodb.net/test";
         private const string dbName = "wesp192";
         private IMongoDatabase db;
+        private MongoClient client;
         private IMongoCollection<BsonDocument> usersTable;
         private IMongoCollection<BsonDocument> storesTable;
         private IMongoCollection<BsonDocument> ownersTable;
@@ -26,6 +27,7 @@ namespace src.DataLayer
 
 
         public bool IsTest { get => isTest; set => isTest = value; }
+        public MongoClient Client { get => client; set => client = value; }
 
         public DBmanager()
         {
@@ -47,8 +49,8 @@ namespace src.DataLayer
                 return;
             try
             {
-                var client = new MongoClient(dbAdress);
-                db = client.GetDatabase(dbName);
+                Client = new MongoClient(dbAdress);
+                db = Client.GetDatabase(dbName);
             }
             catch (Exception e)
             {
@@ -284,6 +286,21 @@ namespace src.DataLayer
                 return false;
             }
             return true;
+        }
+
+        public int getPermission(int storeID, int userID)
+        {
+            if (IsTest)
+                return 0;
+            var filter = Builders<BsonDocument>.Filter.Eq("_store id", storeID) & Builders<BsonDocument>.Filter.Eq("_user id", userID);
+
+            var document = ProductInStoreTable.Find(filter).ToList();
+            if (document == null || document.Count == 0)
+            {
+                return -1;
+            }
+            int output = document[0]["quantity"].AsInt32;
+            return output;
         }
 
         //Products table functions

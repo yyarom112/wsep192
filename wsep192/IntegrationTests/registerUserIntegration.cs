@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
+using src.DataLayer;
 
 namespace IntegrationTests
 {
@@ -24,10 +25,11 @@ namespace IntegrationTests
         public void TestMethod1_success_scenario()
         {
             setUp();
+            DBtransactions db = DBtransactions.getInstance(true);
+            db.isTest(true);
             String userName = user1.UserName;
             String password = "9898";
             int userId = user1.Id;
-            user1.db.IsTest = true;
             Assert.AreEqual(true, system.register(userName, password, userId));
         }
 

@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataLayer\DBmanager.cs" />
+    <Compile Include="DataLayer\DBtransactions.cs" />
     <Compile Include="Domain\BuyConditionPolicy.cs" />
     <Compile Include="Domain\Dataclass\UserDetailes.cs" />
     <Compile Include="Domain\DiscountPolicy.cs" />

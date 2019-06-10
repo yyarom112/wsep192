@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using src.DataLayer;
 using src.ServiceLayer;
 
 
@@ -13,6 +14,8 @@ namespace Acceptance_Tests
         public void setUp()
         {
             service = ServiceLayer.getInstance();
+            DBtransactions db = DBtransactions.getInstance(true);
+            db.isTest(true);
             string owner=service.initUser();
             service.register("Rotem", "23&As2", owner);
             service.signIn("Rotem", "23&As2");

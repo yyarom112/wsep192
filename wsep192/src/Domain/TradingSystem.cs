@@ -1,4 +1,5 @@
-﻿using src.Domain.Dataclass;
+﻿using src.DataLayer;
+using src.Domain.Dataclass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -429,7 +430,12 @@ namespace src.Domain
                 if (currUser != null)
                 {
                     password = encryption.encrypt(userName + password);
-                    return currUser.register(userName, password);
+                    if( currUser.register(userName, password)  )
+                    {
+                        if(DBtransactions.getInstance(false).registerNewUserDB(currUser))
+                            return true;
+                        currUser.signOut();
+                    }
                 }
                 LogManager.Instance.WriteToLog("TradingSystem - Register - user not exist as guest.\n");
                 return false;
