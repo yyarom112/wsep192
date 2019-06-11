@@ -38,7 +38,7 @@ namespace UnitTests
 
 
         [TestMethod]
-        public void TestMethod_register_success()
+        public void TestMethod_register()
         {
             Setup();
             var session = db.Db.Client.StartSession();
@@ -51,6 +51,24 @@ namespace UnitTests
             Assert.AreEqual(true, checkDB.isOwnerDB(store.Id,admin.Id));
 
             session.AbortTransaction();
+        }
+
+
+        [TestMethod]
+        public void TestMethod_OpenStoreDB()
+        {
+            Setup();
+            var session = db.Db.Client.StartSession();
+            session.StartTransaction();
+
+            db.OpenStoreDB(store);
+            DBmanager checkDB = new DBmanager();
+            Assert.AreEqual(store.Name, checkDB.getStore(store.Id).Name);
+            Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, p1.Id));
+            Assert.AreEqual(true, checkDB.isOwnerDB(store.Id, admin.Id));
+
+            session.AbortTransaction();
+
         }
     }
 }

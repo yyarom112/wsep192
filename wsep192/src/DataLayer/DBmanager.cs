@@ -212,6 +212,22 @@ namespace src.DataLayer
             return true;
         }
 
+        public Store getStore(int StoreID)
+        {
+            if (IsTest)
+                return null;
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", StoreID);
+
+            var document = storesTable.Find(filter).ToList();
+            if (document == null || document.Count == 0)
+            {
+                return null;
+            }
+            Store output = new Store(StoreID, document[0]["store name"].AsString);
+            output.StoreRate = document[0]["rate"].AsInt32;
+            return output;
+        }
+
         //Owners table functions
         public bool addNewOwner(Owner owner)
         {
@@ -303,7 +319,7 @@ namespace src.DataLayer
         public string getPermission(int storeID, int userID)
         {
             if (IsTest)
-                return null;
+                return "";
             var filter = Builders<BsonDocument>.Filter.Eq("_store id", storeID) & Builders<BsonDocument>.Filter.Eq("_user id", userID);
 
             var document = managersTable.Find(filter).ToList();

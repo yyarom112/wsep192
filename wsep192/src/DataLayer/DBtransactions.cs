@@ -63,19 +63,25 @@ namespace src.DataLayer
                 {
                     if (role != null && role.GetType() == typeof(Manager))
                     {
-                        if (!Db.addNewManager((Manager)role))
+                        if (Db.getPermission(role.Store.Id, role.User.Id) == null)
                         {
-                            session.AbortTransaction();
-                            return false;
+                            if (!Db.addNewManager((Manager)role))
+                            {
+                                session.AbortTransaction();
+                                return false;
+                            }
                         }
                     }
 
                     else
                     {
-                        if (!Db.addNewOwner((Owner)role))
+                        if(!db.isOwnerDB(role.Store.Id, role.User.Id))
                         {
-                            session.AbortTransaction();
-                            return false;
+                            if (!Db.addNewOwner((Owner)role))
+                            {
+                                session.AbortTransaction();
+                                return false;
+                            }
                         }
                     }
                 }
@@ -84,6 +90,61 @@ namespace src.DataLayer
             {
                 session.AbortTransaction();
                 ErrorManager.Instance.WriteToLog("User-registerNewUser- Add new user failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+        public bool OpenStoreDB(Store store)
+        {
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try
+            {
+                if (!Db.addNewStore(store))
+                {
+                    session.AbortTransaction();
+                    return false;
+                }
+                foreach(ProductInStore product in store.Products.Values)
+                {
+                    if (!Db.addNewProductInStore(product))
+                    {
+                        session.AbortTransaction();
+                        return false;
+                    }
+                }
+                foreach(TreeNode<Role> nrole in store.RolesDictionary.Values)
+                {
+                    Role role = nrole.Data;
+                    if (role != null && role.GetType() == typeof(Manager))
+                    {
+                        if (Db.getPermission(role.Store.Id, role.User.Id) == null)
+                        {
+                            if (!Db.addNewManager((Manager)role))
+                            {
+                                session.AbortTransaction();
+                                return false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!db.isOwnerDB(role.Store.Id, role.User.Id))
+                        {
+                            if (!Db.addNewOwner((Owner)role))
+                            {
+                                session.AbortTransaction();
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                session.AbortTransaction();
+                ErrorManager.Instance.WriteToLog("User-OpenStoreDB- Open new store failed - " + e + " .");
                 return false;
             }
             return true;
