@@ -11,7 +11,7 @@ namespace src.DataLayer
 {
     class DBmanager
     {
-        private bool isTest=true;
+        private bool isTest = true;
         private const string dbAdress = "mongodb+srv://wesp192:wesp192@cluster0-r882l.gcp.mongodb.net/test";
         private const string dbName = "wesp192";
         private IMongoDatabase db;
@@ -38,7 +38,7 @@ namespace src.DataLayer
             ownersTable = db.GetCollection<BsonDocument>("Owners");
             managersTable = db.GetCollection<BsonDocument>("Managers");
             productsTable = db.GetCollection<BsonDocument>("Products");
-            productInCartTable= db.GetCollection<BsonDocument>("ProductsInCart");
+            productInCartTable = db.GetCollection<BsonDocument>("ProductsInCart");
             ProductInStoreTable = db.GetCollection<BsonDocument>("ProductInStore");
 
         }
@@ -54,7 +54,7 @@ namespace src.DataLayer
             }
             catch (Exception e)
             {
-                ErrorManager.Instance.WriteToLog("DBmanager- connect- Connect to db failed - "+e+" .");
+                ErrorManager.Instance.WriteToLog("DBmanager- connect- Connect to db failed - " + e + " .");
                 return;
             }
         }
@@ -249,6 +249,17 @@ namespace src.DataLayer
             }
             return true;
         }
+
+        public bool isOwnerDB(int storeID, int userID)
+        {
+            if (IsTest)
+                return true;
+            var filter = Builders<BsonDocument>.Filter.Eq("_store id", storeID) & Builders<BsonDocument>.Filter.Eq("_user id", userID);
+            var document = ownersTable.Find(filter).ToList();
+            if (document == null || document.Count == 0)
+                return false;
+            return true;
+        }
         //Managers table functions
         public bool addNewManager(Manager manager)
         {
@@ -264,8 +275,9 @@ namespace src.DataLayer
             {
                 managersTable.InsertOne(document);
             }
-            catch (Exception e) { 
-            
+            catch (Exception e)
+            {
+
                 ErrorManager.Instance.WriteToLog("DBmanager - AddNewManager - Add new manager failed - " + e + ".");
                 return false;
             }
@@ -288,18 +300,18 @@ namespace src.DataLayer
             return true;
         }
 
-        public int getPermission(int storeID, int userID)
+        public string getPermission(int storeID, int userID)
         {
             if (IsTest)
-                return 0;
+                return null;
             var filter = Builders<BsonDocument>.Filter.Eq("_store id", storeID) & Builders<BsonDocument>.Filter.Eq("_user id", userID);
 
-            var document = ProductInStoreTable.Find(filter).ToList();
+            var document = managersTable.Find(filter).ToList();
             if (document == null || document.Count == 0)
             {
-                return -1;
+                return null;
             }
-            int output = document[0]["quantity"].AsInt32;
+            string output = document[0]["permission"].AsString;
             return output;
         }
 
@@ -356,7 +368,7 @@ namespace src.DataLayer
                 return true;
             var document = new BsonDocument
             {
-                { "_id",  userID+"_"+product.ShoppingCart.StoreId+"_"+product.Product.Id } , 
+                { "_id",  userID+"_"+product.ShoppingCart.StoreId+"_"+product.Product.Id } ,
                 { "_userid",  userID},
                 { "_storeid",  product.ShoppingCart.StoreId},
                 { "_productid",  product.Product.Id},
@@ -374,7 +386,7 @@ namespace src.DataLayer
             return true;
         }
 
-        public bool removeProductInCartBy(int userID,int storeID, int productID)
+        public bool removeProductInCartBy(int userID, int storeID, int productID)
         {
             if (IsTest)
                 return true;
@@ -464,7 +476,7 @@ namespace src.DataLayer
             if (IsTest)
                 return null;
             List<int[]> output = new List<int[]>();
-            var filter =  Builders<BsonDocument>.Filter.Eq("_userid", userID);
+            var filter = Builders<BsonDocument>.Filter.Eq("_userid", userID);
 
             var document = productInCartTable.Find(filter).ToList();
             if (document == null || document.Count == 0)
@@ -511,7 +523,7 @@ namespace src.DataLayer
                 return true;
             try
             {
-                ProductInStoreTable.DeleteOne(Builders<BsonDocument>.Filter.Eq("_storeid", storeID)  & Builders<BsonDocument>.Filter.Eq("_productid", productID));
+                ProductInStoreTable.DeleteOne(Builders<BsonDocument>.Filter.Eq("_storeid", storeID) & Builders<BsonDocument>.Filter.Eq("_productid", productID));
             }
             catch (Exception e)
             {
@@ -546,7 +558,7 @@ namespace src.DataLayer
         {
             if (IsTest)
                 return 0;
-            var filter = Builders<BsonDocument>.Filter.Eq("_storeid", storeID) &  Builders<BsonDocument>.Filter.Eq("_productid", productID);
+            var filter = Builders<BsonDocument>.Filter.Eq("_storeid", storeID) & Builders<BsonDocument>.Filter.Eq("_productid", productID);
 
             var document = ProductInStoreTable.Find(filter).ToList();
             if (document == null || document.Count == 0)

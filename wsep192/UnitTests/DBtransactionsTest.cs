@@ -2,6 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.DataLayer;
 using src.Domain;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace UnitTests
 {
@@ -39,13 +41,16 @@ namespace UnitTests
         public void TestMethod_register_success()
         {
             Setup();
+            var session = db.Db.Client.StartSession();
+            session.StartTransaction();
+
             db.registerNewUserDB(admin);
             DBmanager checkDB = new DBmanager();
             Assert.AreEqual("guti", checkDB.getUser(admin.Id).UserName);
             Assert.AreEqual(1, checkDB.getProductInCartquntity(admin.Id,store.Id,p1.Id));
-            Assert.AreEqual(1, checkDB.geto);
+            Assert.AreEqual(true, checkDB.isOwnerDB(store.Id,admin.Id));
 
-
+            session.AbortTransaction();
         }
     }
 }

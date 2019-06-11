@@ -12,10 +12,12 @@ namespace src.DataLayer
         private DBmanager db;
         private static DBtransactions instance = null;
 
+        internal DBmanager Db { get => db; set => db = value; }
+
         private DBtransactions(bool isTest)
         {
-            this.db = new DBmanager();
-            db.IsTest = isTest;
+            this.Db = new DBmanager();
+            Db.IsTest = isTest;
         }
 
 
@@ -30,17 +32,17 @@ namespace src.DataLayer
 
         public void isTest(bool isTest)
         {
-            db.IsTest = isTest;
+            Db.IsTest = isTest;
         }
 
 
         public bool registerNewUserDB(User user)
         {
-            var session = db.Client.StartSession();
+            var session = Db.Client.StartSession();
             session.StartTransaction();
             try
             {
-                if (!db.addNewUser(user))
+                if (!Db.addNewUser(user))
                 {
                     session.AbortTransaction();
                     return false;
@@ -49,7 +51,7 @@ namespace src.DataLayer
                 {
                     foreach (ProductInCart product in cart.Products.Values)
                     {
-                        if (!db.addProductInCart(product, user.Id))
+                        if (!Db.addProductInCart(product, user.Id))
                         {
                             session.AbortTransaction();
                             return false;
@@ -61,7 +63,7 @@ namespace src.DataLayer
                 {
                     if (role != null && role.GetType() == typeof(Manager))
                     {
-                        if (!db.addNewManager((Manager)role))
+                        if (!Db.addNewManager((Manager)role))
                         {
                             session.AbortTransaction();
                             return false;
@@ -70,7 +72,7 @@ namespace src.DataLayer
 
                     else
                     {
-                        if (!db.addNewOwner((Owner)role))
+                        if (!Db.addNewOwner((Owner)role))
                         {
                             session.AbortTransaction();
                             return false;
