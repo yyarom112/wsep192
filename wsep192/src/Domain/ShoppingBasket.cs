@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
 using Newtonsoft.Json;
+using src.DataLayer;
 using src.Domain.Dataclass;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ namespace src.Domain
 
             return shoppingCarts[storeId].showCart();
         }
-        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeID)
+        public ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeID,int userId)
         {
             bool exist = true;
             if (productsToInsert.Count == 0)
@@ -62,6 +63,7 @@ namespace src.Domain
 
             }
             shoppingCarts[storeID].addProducts(productsToInsert);
+            DBtransactions.getInstance(false).AddProductToCart(shoppingCarts[storeID].Products, userId);
             if (!exist)
                 return shoppingCarts[storeID];
             return null;

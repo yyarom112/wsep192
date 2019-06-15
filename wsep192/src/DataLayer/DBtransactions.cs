@@ -35,6 +35,80 @@ namespace src.DataLayer
             Db.IsTest = isTest;
         }
 
+        public bool initSystem(TradingSystem sys)
+        {
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try
+            {
+                //restore store
+                List<int> storesIDList = db.getAllStoreID();
+                int maxStoreID = -1, maxProductID = -1;
+                foreach (int storeID in storesIDList)
+                {
+                    //create the store from db
+                    Store tmp = db.getStore(storeID);
+                    List<ProductInStore> products = db.getAllProductInStore(tmp);
+                    //restore the product in store
+                    foreach (ProductInStore product in products)
+                    {
+                        tmp.Products.Add(product.Product.Id, product);
+                        //find product counter
+                        if (maxProductID < product.Product.Id)
+                            maxProductID = product.Product.Id;
+                    }
+                    //find storeCounter For sys 
+                    if (maxStoreID < storeID)
+                        maxStoreID = storeID;
+                    sys.Stores.Add(storeID, tmp);
+                }
+                sys.StoreCounter = maxStoreID + 1;
+                sys.ProductCounter = maxProductID;
+
+                //restore user
+                int maxUserID = -1;
+                List<User> userList = db.getAllUser();
+                foreach (User user in userList)
+                {
+                    //restore product in cart
+                    //int[]={0-UserId,1-StoreID,2-ProductID,3-quantity}
+                    List<int[]> productList = db.getALLProductInCartPerUsers(user.Id);
+                    foreach (int[] product in productList)
+                    {
+                        Product p = sys.getProduct(product[2], product[1]);
+                        if (p == null)
+                            continue;
+                        LinkedList<KeyValuePair<Product, int>> productToInsert = new LinkedList<KeyValuePair<Product, int>>();
+                        productToInsert.AddFirst(new KeyValuePair<Product, int>(p, product[3]));
+                        user.Basket.addProductsToCart(productToInsert, product[1], product[0]);
+                    }
+                    //restore store in all cart like tha addProductTocart path
+                    foreach (ShoppingCart cart in user.Basket.ShoppingCarts.Values)
+                    {
+                        cart.Store = sys.Stores[cart.StoreId];
+                    }
+                    //find the user counter for sys
+                    if (maxUserID < user.Id)
+                        maxUserID = user.Id;
+                    sys.Users.Add(user.Id, user);
+                }
+
+                //restore roles
+                foreach (int storeID in storesIDList)
+                {
+                    Store store = sys.Stores[storeID];
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                session.AbortTransaction();
+                ErrorManager.Instance.WriteToLog("DBtransactions-initSystem- Restore system failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
 
         public bool registerNewUserDB(User user)
         {
@@ -42,11 +116,13 @@ namespace src.DataLayer
             session.StartTransaction();
             try
             {
+                //store the user
                 if (!Db.addNewUser(user))
                 {
                     session.AbortTransaction();
                     return false;
                 }
+                //store the basket
                 foreach (ShoppingCart cart in user.Basket.ShoppingCarts.Values)
                 {
                     foreach (ProductInCart product in cart.Products.Values)
@@ -56,35 +132,10 @@ namespace src.DataLayer
                             session.AbortTransaction();
                             return false;
                         }
+                        db.addNewProduct(product.Product);
                     }
                 }
 
-                foreach (Role role in user.Roles.Values)
-                {
-                    if (role != null && role.GetType() == typeof(Manager))
-                    {
-                        if (Db.getPermission(role.Store.Id, role.User.Id) == null)
-                        {
-                            if (!Db.addNewManager((Manager)role))
-                            {
-                                session.AbortTransaction();
-                                return false;
-                            }
-                        }
-                    }
-
-                    else
-                    {
-                        if(!db.isOwnerDB(role.Store.Id, role.User.Id))
-                        {
-                            if (!Db.addNewOwner((Owner)role))
-                            {
-                                session.AbortTransaction();
-                                return false;
-                            }
-                        }
-                    }
-                }
             }
             catch (Exception e)
             {
@@ -95,51 +146,56 @@ namespace src.DataLayer
             return true;
         }
 
-        public bool OpenStoreDB(Store store)
+        public bool AddProductToCart(Dictionary<int, ProductInCart> products, int userId)
         {
             var session = Db.Client.StartSession();
             session.StartTransaction();
             try
             {
+                foreach (ProductInCart product in products.Values)
+                {
+                    if(!db.addProductInCart(product, userId))
+                    {
+                        session.AbortTransaction();
+                        LogManager.Instance.WriteToLog("DBtransaction-AddProductToCart- Add new product to cart");
+                        return false;
+                    }
+                }
+
+            }
+            catch (Exception e)
+                {
+                    session.AbortTransaction();
+                    ErrorManager.Instance.WriteToLog("User-AddProductToCart- Add new product to cart - " + e + " .");
+                    return false;
+                }
+            return true;
+        }
+
+
+        public bool OpenStoreDB(Store store, Owner owner)
+        {
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try
+            {
+                //store the store
                 if (!Db.addNewStore(store))
                 {
                     session.AbortTransaction();
                     return false;
                 }
-                foreach(ProductInStore product in store.Products.Values)
+                //store the product
+                foreach (ProductInStore product in store.Products.Values)
                 {
-                    if (!Db.addNewProductInStore(product))
+                    if (!Db.addNewProductInStore(product) && !Db.addNewProduct(product.Product))
                     {
                         session.AbortTransaction();
                         return false;
                     }
                 }
-                foreach(TreeNode<Role> nrole in store.RolesDictionary.Values)
-                {
-                    Role role = nrole.Data;
-                    if (role != null && role.GetType() == typeof(Manager))
-                    {
-                        if (Db.getPermission(role.Store.Id, role.User.Id) == null)
-                        {
-                            if (!Db.addNewManager((Manager)role))
-                            {
-                                session.AbortTransaction();
-                                return false;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (!db.isOwnerDB(role.Store.Id, role.User.Id))
-                        {
-                            if (!Db.addNewOwner((Owner)role))
-                            {
-                                session.AbortTransaction();
-                                return false;
-                            }
-                        }
-                    }
-                }
+                //store the super owner
+                db.addNewOwner(owner, -1);
             }
             catch (Exception e)
             {

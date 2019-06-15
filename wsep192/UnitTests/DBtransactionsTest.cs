@@ -61,11 +61,28 @@ namespace UnitTests
             var session = db.Db.Client.StartSession();
             session.StartTransaction();
 
-            db.OpenStoreDB(store);
+            db.OpenStoreDB(store,this.adminOwner);
             DBmanager checkDB = new DBmanager();
             Assert.AreEqual(store.Name, checkDB.getStore(store.Id).Name);
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, p1.Id));
             Assert.AreEqual(true, checkDB.isOwnerDB(store.Id, admin.Id));
+
+            session.AbortTransaction();
+
+        }
+
+
+        [TestMethod]
+        public void TestMethod_AddProductToCart()
+        {
+            Setup();
+            var session = db.Db.Client.StartSession();
+            session.StartTransaction();
+
+            db.AddProductToCart(admin.Basket.ShoppingCarts[store.Id].Products,admin.Id);
+            DBmanager checkDB = new DBmanager();
+            Assert.AreEqual(1, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
+
 
             session.AbortTransaction();
 

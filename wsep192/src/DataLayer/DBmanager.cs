@@ -154,6 +154,23 @@ namespace src.DataLayer
 
         }
 
+        public List<User> getAllUser()
+        {
+            if (IsTest)
+                return null;
+            List<User> output = new List<User>();
+            var document = usersTable.Find(new BsonDocument()).ToList();
+            if (document == null || document.Count == 0)
+            {
+                return null;
+            }
+            foreach (var doc in document)
+            {
+                output.Add(getUser(doc["_id"].AsInt32));
+            }
+            return output;
+        }
+
         //Stores table functions
         public bool addNewStore(Store store)
         {
@@ -228,8 +245,25 @@ namespace src.DataLayer
             return output;
         }
 
+        public List<int> getAllStoreID()
+        {
+            if (IsTest)
+                return null;
+            List<int> output = new List<int>();
+           var document = storesTable.Find(new BsonDocument()).ToList();
+            if (document == null || document.Count == 0)
+            {
+                return null;
+            }
+            foreach(var doc in document)
+            {
+                output.Add(doc["_id"].AsInt32);
+            }
+            return output;
+        }
+
         //Owners table functions
-        public bool addNewOwner(Owner owner)
+        public bool addNewOwner(Owner owner,int father)
         {
             if (IsTest)
                 return true;
@@ -237,6 +271,7 @@ namespace src.DataLayer
             {
                  { "_store id", owner.Store.Id},
                 { "_user id", owner.User.Id},
+                { "Owner father", father },
             };
             try
             {
@@ -277,7 +312,7 @@ namespace src.DataLayer
             return true;
         }
         //Managers table functions
-        public bool addNewManager(Manager manager)
+        public bool addNewManager(Manager manager, int father)
         {
             if (IsTest)
                 return true;
@@ -286,6 +321,8 @@ namespace src.DataLayer
                 { "_store id", manager.Store.Id},
                 { "_user id", manager.User.Id},
                 { "permission", string.Join(",",manager.Permissions)},
+                { "Owner father", father },
+
             };
             try
             {
@@ -331,6 +368,25 @@ namespace src.DataLayer
             return output;
         }
 
+        //public List<Manager> getManegerByStoreID(int storeID, int father)
+        //{
+        //    if (IsTest)
+        //        return new List<KeyValuePair<int, string>>();
+        //    var filter = Builders<BsonDocument>.Filter.Eq("_store id", storeID) & Builders<BsonDocument>.Filter.Eq("Owner father", father);
+        //    List<KeyValuePair<int, string>> output = new List<KeyValuePair<int, string>>();
+        //    var document = managersTable.Find(filter).ToList();
+        //    if (document == null || document.Count == 0)
+        //    {
+        //        return null;
+        //    }
+        //    foreach(var doc in document)
+        //    {
+        //        output.Add()
+        //    }
+        //    string output = document[0]["permission"].AsString;
+        //    return output;
+        //}
+
         //Products table functions
         public bool addNewProduct(Product product)
         {
@@ -374,7 +430,22 @@ namespace src.DataLayer
             return true;
         }
 
+        public Product getProduct(int ProductID)
+        {
+            if (IsTest)
+                return null;
+            var filter = Builders<BsonDocument>.Filter.Eq("_product id", ProductID);
 
+            var document = storesTable.Find(filter).ToList();
+            if (document == null || document.Count == 0)
+            {
+                return null;
+            }
+            Product output = new Product(document[0]["_product id"].AsInt32, document[0]["_name"].AsString, document[0]["category"].AsString,
+                                        document[0]["details"].AsString, document[0]["price"].AsDouble);
+            output.ProductRate = document[0]["rate"].AsInt32;
+            return output;
+        }
 
         //Product in cart table function
 
@@ -582,6 +653,25 @@ namespace src.DataLayer
                 return -1;
             }
             int output = document[0]["quantity"].AsInt32;
+            return output;
+        }
+
+        public List<ProductInStore> getAllProductInStore(Store store)
+        {
+            if (IsTest)
+                return new List<ProductInStore>();
+            List<ProductInStore> output = new List<ProductInStore>();
+            var filter = Builders<BsonDocument>.Filter.Eq("_storeid", store.Id);
+
+            var document = ProductInStoreTable.Find(filter).ToList();
+            if (document == null || document.Count == 0)
+            {
+                return output;
+            }
+            foreach (var doc in document)
+            {
+                output.Add(new ProductInStore(doc["quantity"].AsInt32, store, getProduct(doc["_productid"].AsInt32)));
+            }
             return output;
         }
     }

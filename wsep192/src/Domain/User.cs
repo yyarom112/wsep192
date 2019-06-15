@@ -204,7 +204,7 @@ namespace src.Domain
 
         public virtual ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
         {
-            return this.basket.addProductsToCart(productsToInsert, storeId);
+            return this.basket.addProductsToCart(productsToInsert, storeId,this.id);
         }
 
         public virtual Boolean signIn(string userName, string password)

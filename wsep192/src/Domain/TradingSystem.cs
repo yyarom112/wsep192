@@ -538,6 +538,14 @@ namespace src.Domain
         {
             return Stores[store].getProduct(product);
         }
+        internal Product getProduct(int productID, int store)
+        {
+            if(this.stores.ContainsKey(store) && this.stores[store].Products.ContainsKey(productID))
+            {
+                return this.stores[store].Products[productID].Product;
+            }
+            return null;
+        }
 
         internal bool removeProductsInStore(List<KeyValuePair<int, int>> productsInStore, int storeID, int userID)
         {
