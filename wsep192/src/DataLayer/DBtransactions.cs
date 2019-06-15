@@ -140,7 +140,7 @@ namespace src.DataLayer
             catch (Exception e)
             {
                 session.AbortTransaction();
-                ErrorManager.Instance.WriteToLog("User-registerNewUser- Add new user failed - " + e + " .");
+                ErrorManager.Instance.WriteToLog("DBtransaction-registerNewUser- Add new user failed - " + e + " .");
                 return false;
             }
             return true;
@@ -154,33 +154,7 @@ namespace src.DataLayer
             {
                 foreach (ProductInCart product in products.Values)
                 {
-                    if(!db.addProductInCart(product, userId))
-                    {
-                        session.AbortTransaction();
-                        LogManager.Instance.WriteToLog("DBtransaction-AddProductToCart- Add new product to cart");
-                        return false;
-                    }
-                }
-
-            }
-            catch (Exception e)
-                {
-                    session.AbortTransaction();
-                    ErrorManager.Instance.WriteToLog("User-AddProductToCart- Add new product to cart - " + e + " .");
-                    return false;
-                }
-            return true;
-        }
-        
-        public bool removeProductsFromCart(List<int> products,int storeId, int userId)
-        {
-            var session = Db.Client.StartSession();
-            session.StartTransaction();
-            try
-            {
-                foreach (int productId in products)
-                {
-                    if (!db.removeProductInCartBy(userId, storeId, productId))
+                    if (!db.addProductInCart(product, userId))
                     {
                         session.AbortTransaction();
                         LogManager.Instance.WriteToLog("DBtransaction-AddProductToCart- Add new product to cart");
@@ -192,7 +166,56 @@ namespace src.DataLayer
             catch (Exception e)
             {
                 session.AbortTransaction();
-                ErrorManager.Instance.WriteToLog("User-AddProductToCart- Add new product to cart - " + e + " .");
+                ErrorManager.Instance.WriteToLog("DBtransaction-AddProductToCart- Add new product to cart - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+        public bool removeProductsFromCart(List<int> products, int storeId, int userId)
+        {
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try
+            {
+                foreach (int productId in products)
+                {
+                    if (!db.removeProductInCartBy(userId, storeId, productId))
+                    {
+                        session.AbortTransaction();
+                        LogManager.Instance.WriteToLog("DBtransaction-removeProductsFromCart- Add new product to cart");
+                        return false;
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                session.AbortTransaction();
+                ErrorManager.Instance.WriteToLog("DBtransaction-removeProductsFromCart- Add new product to cart - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+        public bool EditProductQuantityInCart(int productId, int storeId, int userId, int quntity)
+        {
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try
+            {
+
+                if (!db.updateProductInCart(userId,storeId,productId,quntity))
+                {
+                    session.AbortTransaction();
+                    LogManager.Instance.WriteToLog("DBtransaction-EditProductQuantityInCart- Add new product to cart");
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                session.AbortTransaction();
+                ErrorManager.Instance.WriteToLog("DBtransaction-EditProductQuantityInCart- Add new product to cart - " + e + " .");
                 return false;
             }
             return true;
@@ -225,7 +248,7 @@ namespace src.DataLayer
             catch (Exception e)
             {
                 session.AbortTransaction();
-                ErrorManager.Instance.WriteToLog("User-OpenStoreDB- Open new store failed - " + e + " .");
+                ErrorManager.Instance.WriteToLog("DBtransaction-OpenStoreDB- Open new store failed - " + e + " .");
                 return false;
             }
             return true;

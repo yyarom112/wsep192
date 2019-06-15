@@ -123,6 +123,8 @@ namespace IntegrationTests
         public void TestMethod1_basket_updateSenrio()
         {
             setUp();
+            DBtransactions.getInstance(true);
+
             Assert.AreEqual(0, basket_user.ShoppingCarts.Count);
             LinkedList<KeyValuePair<Product, int>> toInsert = new LinkedList<KeyValuePair<Product, int>>();
             Assert.AreEqual(null, basket_user.addProductsToCart(toInsert, store.Id, user.Id));

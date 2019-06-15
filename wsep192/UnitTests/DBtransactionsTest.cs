@@ -106,5 +106,26 @@ namespace UnitTests
             session.AbortTransaction();
 
         }
+
+        [TestMethod]
+        public void TestMethod_EditProductQuantityInCart()
+        {
+            Setup();
+            var session = db.Db.Client.StartSession();
+            session.StartTransaction();
+            List<int> productToremove = new List<int>();
+            productToremove.Add(p1.Id);
+
+            db.AddProductToCart(admin.Basket.ShoppingCarts[store.Id].Products, admin.Id);
+            DBmanager checkDB = new DBmanager();
+            Assert.AreEqual(1, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
+
+            admin.Basket.ShoppingCarts[store.Id].Products[p1.Id].Quantity = 7;
+
+            db.EditProductQuantityInCart(p1.Id, store.Id, admin.Id, 7);
+            Assert.AreEqual(7, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
+            session.AbortTransaction();
+
+        }
     }
 }

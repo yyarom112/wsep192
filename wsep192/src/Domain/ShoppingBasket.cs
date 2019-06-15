@@ -81,7 +81,7 @@ namespace src.Domain
                 return shoppingCarts[storeId].removeProductsFromCart(productsToRemove);
             return false;
         }
-        internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
+        internal bool editProductQuantityInCart(int productId, int quantity, int storeId, int userId)
         {
             if (!shoppingCarts.ContainsKey(storeId))
             {

@@ -241,7 +241,7 @@ namespace src.Domain
 
         internal virtual bool editProductQuantityInCart(int productId, int quantity, int storeId)
         {
-            return basket.editProductQuantityInCart(productId, quantity, storeId);
+            return basket.editProductQuantityInCart(productId, quantity, storeId,this.id);
         }
 
         public virtual bool removeManager(int userID, int storeID)
