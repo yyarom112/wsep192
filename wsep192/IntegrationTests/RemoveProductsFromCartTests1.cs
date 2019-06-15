@@ -56,7 +56,7 @@ namespace IntegrationTests
                 Assert.AreEqual(false, system.removeProductsFromCart(null, store.Id, user.Id));
 
                 //failure basket remove
-                Assert.AreEqual(false, user.Basket.removeProductsFromCart(null, store.Id));
+                Assert.AreEqual(false, user.Basket.removeProductsFromCart(null, store.Id, user.Id));
 
                 //failure cart remove
                 user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
@@ -81,7 +81,7 @@ namespace IntegrationTests
             {
                 setup();
                 successsetup();
-                Assert.AreEqual(true, user.Basket.removeProductsFromCart(productsToRemove, store.Id));
+                Assert.AreEqual(true, user.Basket.removeProductsFromCart(productsToRemove, store.Id, user.Id));
                
             }
 

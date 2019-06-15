@@ -62,21 +62,24 @@ namespace src.Domain
                 shoppingCarts.Add(storeID, new ShoppingCart(storeID, null));
 
             }
+            if (!DBtransactions.getInstance(false).AddProductToCart(shoppingCarts[storeID].Products, userId))
+                return null;
             shoppingCarts[storeID].addProducts(productsToInsert);
-            DBtransactions.getInstance(false).AddProductToCart(shoppingCarts[storeID].Products, userId);
             if (!exist)
                 return shoppingCarts[storeID];
             return null;
         }
 
-        internal bool removeProductsFromCart(List<int> productsToRemove, int storeId)
+        internal bool removeProductsFromCart(List<int> productsToRemove, int storeId,int userID)
         {
             if (!shoppingCarts.ContainsKey(storeId))
             {
                 LogManager.Instance.WriteToLog("ShoppingBasket:removeProductsFromCart failed - Shopping cart does not exist\n");
                 return false;
             }
-            return shoppingCarts[storeId].removeProductsFromCart(productsToRemove);
+            if(DBtransactions.getInstance(false).removeProductsFromCart(productsToRemove, storeId,userID))
+                return shoppingCarts[storeId].removeProductsFromCart(productsToRemove);
+            return false;
         }
         internal bool editProductQuantityInCart(int productId, int quantity, int storeId)
         {

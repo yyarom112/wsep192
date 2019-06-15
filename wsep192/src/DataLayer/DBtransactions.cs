@@ -171,7 +171,32 @@ namespace src.DataLayer
                 }
             return true;
         }
+        
+        public bool removeProductsFromCart(List<int> products,int storeId, int userId)
+        {
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try
+            {
+                foreach (int productId in products)
+                {
+                    if (!db.removeProductInCartBy(userId, storeId, productId))
+                    {
+                        session.AbortTransaction();
+                        LogManager.Instance.WriteToLog("DBtransaction-AddProductToCart- Add new product to cart");
+                        return false;
+                    }
+                }
 
+            }
+            catch (Exception e)
+            {
+                session.AbortTransaction();
+                ErrorManager.Instance.WriteToLog("User-AddProductToCart- Add new product to cart - " + e + " .");
+                return false;
+            }
+            return true;
+        }
 
         public bool OpenStoreDB(Store store, Owner owner)
         {

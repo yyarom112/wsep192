@@ -4,6 +4,7 @@ using src.DataLayer;
 using src.Domain;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 namespace UnitTests
 {
@@ -48,7 +49,6 @@ namespace UnitTests
             DBmanager checkDB = new DBmanager();
             Assert.AreEqual("guti", checkDB.getUser(admin.Id).UserName);
             Assert.AreEqual(1, checkDB.getProductInCartquntity(admin.Id,store.Id,p1.Id));
-            Assert.AreEqual(true, checkDB.isOwnerDB(store.Id,admin.Id));
 
             session.AbortTransaction();
         }
@@ -84,6 +84,25 @@ namespace UnitTests
             Assert.AreEqual(1, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
 
 
+            session.AbortTransaction();
+
+        }
+
+        [TestMethod]
+        public void TestMethod_removeProductsFromCart()
+        {
+            Setup();
+            var session = db.Db.Client.StartSession();
+            session.StartTransaction();
+            List<int> productToremove = new List<int>();
+            productToremove.Add(p1.Id);
+
+            db.AddProductToCart(admin.Basket.ShoppingCarts[store.Id].Products, admin.Id);
+            DBmanager checkDB = new DBmanager();
+            Assert.AreEqual(1, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
+
+            db.removeProductsFromCart(productToremove,store.Id,admin.Id);
+            Assert.AreEqual(-1, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
             session.AbortTransaction();
 
         }

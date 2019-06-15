@@ -236,7 +236,7 @@ namespace src.Domain
 
         internal virtual bool removeProductsFromCart(List<int> productsToRemove, int storeId)
         {
-            return basket.removeProductsFromCart(productsToRemove, storeId);
+            return basket.removeProductsFromCart(productsToRemove, storeId,this.id);
         }
 
         internal virtual bool editProductQuantityInCart(int productId, int quantity, int storeId)

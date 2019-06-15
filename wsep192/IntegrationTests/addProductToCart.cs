@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using src.DataLayer;
 using src.Domain;
 
 namespace IntegrationTests
@@ -146,7 +147,7 @@ namespace IntegrationTests
         public void TestMethod1_system_successSenrio()
         {
             setUp();
-
+            DBtransactions.getInstance(true);
             List<KeyValuePair<int, int>> toInsert = new List<KeyValuePair<int, int>>();
 
             toInsert.Add(new KeyValuePair<int, int>(p1.Id, 1));
