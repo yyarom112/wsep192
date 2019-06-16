@@ -61,10 +61,12 @@
                     }
                     if (type == 1) {
                         details = '<form class="row contact_form" action="#" id="policyDetails" method="post" novalidate="novalidate">'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="product" placeholder="Product name"><span class="placeholder" data-placeholder="Product name"></span> </div> </div>'
-                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="quantity" placeholder="Product quantity"><span class="placeholder" data-placeholder="Product quantity"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="product" placeholder="Products the custumer bought (seperate by ,)"><span class="placeholder" data-placeholder="Product name"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="quantity" placeholder="Products quantity (seperate by ,)"><span class="placeholder" data-placeholder="Product quantity"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="condition" placeholder="Condition 0 = and, 1 = or, 2 = xor"><span class="placeholder" data-placeholder="Condition"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="store" placeholder="Store name"><span class="placeholder" data-placeholder="Store name"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="product2" placeholder="Product for adding a discount "><span class="placeholder" data-placeholder="Product for adding a discount"></span> </div> </div>'
+                            + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="quantity2" placeholder="Product quantity"><span class="placeholder" data-placeholder="Product quantity"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="discount" placeholder="Discount percentage"><span class="placeholder" data-placeholder="Discount percentage"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="expiredDate" placeholder="Num of Days to be expired"><span class="placeholder" data-placeholder="Num of Days to be expired"></span> </div> </div>'
                             + '<div class="col-md-12 form-group p_star"><div class="col-md-6 form-group p_star"><input type="text" class="form-control" id="logic" placeholder="Logical condition - 0 = and or 1 = or"><span class="placeholder" data-placeholder="Logical condition"></span> </div> </div>'
@@ -123,12 +125,15 @@
                         condition = $("#condition").val();
                         logic = $("#logic").val();
                         duplicate = $("#duplicate").val();
+                        product2 = $("#product2").val();
+                        quantity2 = $("#quantity2").val();
 
                         jQuery.ajax({
                             type: "GET",
                             url: baseUrl + "/api/store/AddConditionalDiscountPolicy?products="
-                                + products + "&quantity=" + quantity + "&condition=" + condition + "&discount=" + discount + "&expiredDate=" + expiredDate
-                                + "&logic=" + logic + "&duplicate=" + duplicate + "&store=" + store + "&user=" + userName,
+                                + products + "&quantity=" + quantity + "&condition=" + condition + "&product2=" + product2 + "&quantity2=" + quantity
+                                + "&discount=" + discount + "&expiredDate=" + expiredDate + "&logic=" + logic
+                                + "&duplicate=" + duplicate + "&store=" + store + "&user=" + userName,
 
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
