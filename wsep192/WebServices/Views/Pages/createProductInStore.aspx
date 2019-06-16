@@ -70,7 +70,7 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else {
-                                alert(response);
+                                alert("Product name allready exists or store does not exists. Please try again.");
                             }
                         },
                         error: function (response) {

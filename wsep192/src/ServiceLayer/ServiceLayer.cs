@@ -357,7 +357,7 @@ namespace src.ServiceLayer
             OwnerRequest r = systemRequests[reqId];
             r.responsesCounter++;
             r.result &= result;
-            if (r.result && r.responsesCounter == r.storesOwnersCount - 1)
+            if (r.result && r.responsesCounter == r.storeOwnersCount - 1)
             {
                 return assignOwner(r.owner, r.user, r.store);
             }

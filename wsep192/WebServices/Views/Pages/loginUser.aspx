@@ -58,7 +58,7 @@
                             }
                             else {
                                 Logout(username);
-                                alert(response);
+                                alert("User name or password is incorrect. Please try again.");
                             }
                         },
                         error: function (response) {

@@ -42,7 +42,7 @@
                             window.location.href = baseUrl + "/Cart?store=" + store + "&cart=" + response;
                         }
                         else {
-                            alert('Store name does not exists');
+                            alert('The store name does not exists. Please try entring her name again.');
                         }
                     },
                     error: function (response) {

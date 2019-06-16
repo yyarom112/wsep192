@@ -57,6 +57,8 @@
     <Compile Include="addRevealedDiscountPolicy-unitTest.cs" />
     <Compile Include="assignManagerTest.cs" />
     <Compile Include="DiscountPolicyStructureTest.cs" />
+    <Compile Include="ExternalAPIImplTest.cs" />
+    <Compile Include="FinancialSystemImplTest.cs" />
     <Compile Include="InitSystemTest.cs" />
     <Compile Include="PurchasePolicyTest.cs" />
     <Compile Include="RemoveManager_Req46.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Req4.1UnitTests.cs" />
     <Compile Include="Req6.2UnitTest.cs" />
     <Compile Include="Req4.3UnitTests.cs" />
+    <Compile Include="SupplySystemImplTest.cs" />
     <Compile Include="UserLogoutTest.cs" />
     <Compile Include="loginUserTest.cs" />
     <Compile Include="ManagerPermissionTest.cs" />

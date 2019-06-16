@@ -1770,237 +1770,204 @@
 
 06/06/2019 11:54:57: User:signOut success - Aviv
 
-16/06/2019 19:03:53: Register - userName or password null
+06/06/2019 11:58:14: Register - userName or password null
 
-16/06/2019 19:03:53: Register - userName or password null
+06/06/2019 11:58:14: Register - userName or password null
 
-16/06/2019 19:03:53: Register - userName or password null
+06/06/2019 11:58:14: Register - userName or password null
 
-16/06/2019 19:03:53: Register - userName or password null
+06/06/2019 11:58:14: Register - userName or password null
 
-16/06/2019 19:03:53: Register - userName or password null
+06/06/2019 11:58:14: Register - userName or password null
 
-16/06/2019 19:03:53: Register - userName or password null
+06/06/2019 11:58:14: Register - userName or password null
 
-16/06/2019 19:03:53: TradingSystem-open storeZara success
+06/06/2019 11:58:14: TradingSystem-open storeZara success
 
-16/06/2019 19:03:53: TradingSystem-create new product in store0 -success
+06/06/2019 11:58:14: TradingSystem-create new product in store0 -success
 
-16/06/2019 19:03:53: TradingSystem-add product to store0 -success
-16/06/2019 19:03:53: Store - assign manger succeed
-16/06/2019 19:03:53: TradingSystem-Assign owner 2 -success
-16/06/2019 19:03:53: TradingSystem-Assign owner 3 -success
-16/06/2019 19:03:53: TradingSystem-Assign owner 4 -success
-16/06/2019 19:03:53: User:signOut success - Aviv
+06/06/2019 11:58:14: TradingSystem-add product to store0 -success
+06/06/2019 11:58:14: Store - assign manger succeed
+06/06/2019 11:58:15: TradingSystem-Assign owner 2 -success
+06/06/2019 11:58:15: TradingSystem-Assign owner 3 -success
+06/06/2019 11:58:15: TradingSystem-Assign owner 4 -success
+06/06/2019 11:58:15: User:signOut success - Aviv
 
-16/06/2019 19:17:35: Register - userName or password null
+06/06/2019 11:58:33: TradingSystem-open storerami success
 
-16/06/2019 19:17:35: Register - userName or password null
+06/06/2019 11:58:49: TradingSystem-create new product in store1 -success
 
-16/06/2019 19:17:35: Register - userName or password null
+06/06/2019 11:59:00: TradingSystem-add product to store1 -success
+06/06/2019 11:59:54: Store - addRevealedDiscountPolicy - new discount policy added
 
-16/06/2019 19:17:35: Register - userName or password null
+06/06/2019 12:00:13: Add to cart success. /n
+06/06/2019 12:00:18: Successfully closed the basket.
 
-16/06/2019 19:17:35: Register - userName or password null
+06/06/2019 12:00:55: ShoppingCart:showCart success
 
-16/06/2019 19:17:35: Register - userName or password null
+06/06/2019 12:03:00: Add to cart success. /n
+06/06/2019 12:03:10: ShoppingCart:showCart success
 
-16/06/2019 19:17:35: TradingSystem-open storeZara success
+06/06/2019 12:03:17: ShoppingCart:removeProductsFromCart success
 
-16/06/2019 19:17:35: TradingSystem-create new product in store0 -success
+06/06/2019 12:03:17: ShoppingCart:editProductQuantityInCart success
 
-16/06/2019 19:17:35: TradingSystem-add product to store0 -success
-16/06/2019 19:17:36: Store - assign manger succeed
-16/06/2019 19:17:36: TradingSystem-Assign owner 2 -success
-16/06/2019 19:17:36: TradingSystem-Assign owner 3 -success
-16/06/2019 19:17:36: TradingSystem-Assign owner 4 -success
-16/06/2019 19:17:36: User:signOut success - Aviv
+06/06/2019 12:03:17: ShoppingCart:showCart success
 
-16/06/2019 19:17:38: User:signOut failed - user Aviv didn't sign in
+06/06/2019 12:11:40: User:signOut success - Aviv
 
-16/06/2019 19:19:01: User:signOut success - Aviv
+06/06/2019 12:12:07: Register - userName or password null
 
-16/06/2019 19:19:01: TradingSystem - Remove user id7 success.
+06/06/2019 12:12:07: Register - userName or password null
 
-16/06/2019 19:19:58: Register - userName or password null
+06/06/2019 12:12:07: Register - userName or password null
 
-16/06/2019 19:19:58: Register - userName or password null
+06/06/2019 12:12:07: Register - userName or password null
 
-16/06/2019 19:19:58: Register - userName or password null
+06/06/2019 12:12:07: Register - userName or password null
 
-16/06/2019 19:19:58: Register - userName or password null
+06/06/2019 12:12:07: Register - userName or password null
 
-16/06/2019 19:19:58: Register - userName or password null
+06/06/2019 12:12:07: TradingSystem-open storeZara success
 
-16/06/2019 19:19:58: Register - userName or password null
+06/06/2019 12:12:07: TradingSystem-create new product in store0 -success
 
-16/06/2019 19:19:58: TradingSystem-open storeZara success
+06/06/2019 12:12:07: TradingSystem-add product to store0 -success
+06/06/2019 12:12:07: Store - assign manger succeed
+06/06/2019 12:12:07: TradingSystem-Assign owner 2 -success
+06/06/2019 12:12:08: TradingSystem-Assign owner 3 -success
+06/06/2019 12:12:08: TradingSystem-Assign owner 4 -success
+06/06/2019 12:12:08: User:signOut success - Aviv
 
-16/06/2019 19:19:58: TradingSystem-create new product in store0 -success
+06/06/2019 12:12:31: TradingSystem-create new product in store0 -success
 
-16/06/2019 19:19:58: TradingSystem-add product to store0 -success
-16/06/2019 19:19:58: Store - assign manger succeed
-16/06/2019 19:19:59: TradingSystem-Assign owner 2 -success
-16/06/2019 19:19:59: TradingSystem-Assign owner 3 -success
-16/06/2019 19:19:59: TradingSystem-Assign owner 4 -success
-16/06/2019 19:19:59: User:signOut success - Aviv
+06/06/2019 12:12:40: TradingSystem-add product to store0 -success
+06/06/2019 12:13:19: Add to cart success. /n
+06/06/2019 12:13:35: ShoppingCart:showCart success
 
-16/06/2019 19:21:13: User:signOut success - Aviv
+06/06/2019 12:16:54: Successfully closed the basket.
 
-16/06/2019 19:22:34: Register - userName or password null
+06/06/2019 12:18:02: Register - userName or password null
 
-16/06/2019 19:22:34: Register - userName or password null
+06/06/2019 12:18:02: Register - userName or password null
 
-16/06/2019 19:22:34: Register - userName or password null
+06/06/2019 12:18:02: Register - userName or password null
 
-16/06/2019 19:22:34: Register - userName or password null
+06/06/2019 12:18:02: Register - userName or password null
 
-16/06/2019 19:22:34: Register - userName or password null
+06/06/2019 12:18:02: Register - userName or password null
 
-16/06/2019 19:22:34: Register - userName or password null
+06/06/2019 12:18:02: Register - userName or password null
 
-16/06/2019 19:22:34: TradingSystem-open storeZara success
+06/06/2019 12:18:02: TradingSystem-open storeZara success
 
-16/06/2019 19:22:35: TradingSystem-create new product in store0 -success
+06/06/2019 12:18:03: TradingSystem-create new product in store0 -success
 
-16/06/2019 19:22:35: TradingSystem-add product to store0 -success
-16/06/2019 19:22:35: Store - assign manger succeed
-16/06/2019 19:22:35: TradingSystem-Assign owner 2 -success
-16/06/2019 19:22:35: TradingSystem-Assign owner 3 -success
-16/06/2019 19:22:35: TradingSystem-Assign owner 4 -success
-16/06/2019 19:22:35: User:signOut success - Aviv
+06/06/2019 12:18:03: TradingSystem-add product to store0 -success
+06/06/2019 12:18:03: Store - assign manger succeed
+06/06/2019 12:18:03: TradingSystem-Assign owner 2 -success
+06/06/2019 12:18:03: TradingSystem-Assign owner 3 -success
+06/06/2019 12:18:03: TradingSystem-Assign owner 4 -success
+06/06/2019 12:18:03: User:signOut success - Aviv
 
-16/06/2019 19:24:45: TradingSystem-create new product in store0 -success
+06/06/2019 12:18:06: User:signOut failed - user Aviv didn't sign in
 
-16/06/2019 19:24:55: TradingSystem-add product to store0 -success
-16/06/2019 19:25:52: Add to cart success. /n
-16/06/2019 19:25:57: ShoppingCart:showCart success
+06/06/2019 12:18:21: TradingSystem-create new product in store0 -success
 
-16/06/2019 19:26:16: User:signOut success - Aviv
+06/06/2019 12:18:31: TradingSystem-add product to store0 -success
+06/06/2019 12:18:58: Add to cart success. /n
+06/06/2019 12:19:04: ShoppingCart:showCart success
 
-16/06/2019 19:28:23: Register - userName or password null
+06/06/2019 12:19:14: Successfully closed the basket.
 
-16/06/2019 19:28:23: Register - userName or password null
+06/06/2019 12:19:40: Successfully closed the basket.
 
-16/06/2019 19:28:23: Register - userName or password null
+06/06/2019 12:19:59: Successfully closed the basket.
 
-16/06/2019 19:28:23: Register - userName or password null
+06/06/2019 12:20:17: User:signOut success - Aviv
 
-16/06/2019 19:28:23: Register - userName or password null
+06/06/2019 12:20:17: TradingSystem - Remove user id7 success.
 
-16/06/2019 19:28:23: Register - userName or password null
+06/06/2019 12:54:33: Register - userName or password null
 
-16/06/2019 19:28:23: TradingSystem-open storeZara success
+06/06/2019 12:54:33: Register - userName or password null
 
-16/06/2019 19:28:23: TradingSystem-create new product in store0 -success
+06/06/2019 12:54:33: Register - userName or password null
 
-16/06/2019 19:28:23: TradingSystem-add product to store0 -success
-16/06/2019 19:28:23: Store - assign manger succeed
-16/06/2019 19:28:24: TradingSystem-Assign owner 2 -success
-16/06/2019 19:28:24: TradingSystem-Assign owner 3 -success
-16/06/2019 19:28:24: TradingSystem-Assign owner 4 -success
-16/06/2019 19:28:24: User:signOut success - Aviv
+06/06/2019 12:54:33: Register - userName or password null
 
-16/06/2019 19:28:44: TradingSystem-create new product in store0 -success
+06/06/2019 12:54:33: Register - userName or password null
 
-16/06/2019 19:28:51: TradingSystem-add product to store0 -success
-16/06/2019 19:29:40: Add to cart success. /n
-16/06/2019 19:29:45: ShoppingCart:showCart success
+06/06/2019 12:54:33: TradingSystem-open storeZara success
 
-16/06/2019 19:30:08: Successfully closed the basket.
+06/06/2019 12:54:33: TradingSystem-create new product in store0 -success
 
-16/06/2019 19:31:43: User:signOut success - Aviv
+06/06/2019 12:54:33: TradingSystem-add product to store0 -success
+06/06/2019 12:54:33: Store - assign manger succeed
+06/06/2019 12:54:33: TradingSystem-Assign owner 2 -success
+06/06/2019 12:54:33: TradingSystem-Assign owner 3 -success
+06/06/2019 12:54:33: User:signOut success - Aviv
 
-16/06/2019 19:32:06: Register - userName or password null
+06/06/2019 12:57:14: User:signOut success - Aviv
 
-16/06/2019 19:32:06: Register - userName or password null
+06/06/2019 12:57:27: TradingSystem - signIn - user id not exist.
 
-16/06/2019 19:32:06: Register - userName or password null
+06/06/2019 12:57:27: TradingSystem - Remove user id6 success.
 
-16/06/2019 19:32:07: Register - userName or password null
+06/06/2019 12:58:09: Register - userName or password null
 
-16/06/2019 19:32:07: Register - userName or password null
+06/06/2019 12:58:09: Register - userName or password null
 
-16/06/2019 19:32:07: Register - userName or password null
+06/06/2019 12:58:09: Register - userName or password null
 
-16/06/2019 19:32:07: TradingSystem-open storeZara success
+06/06/2019 12:58:09: Register - userName or password null
 
-16/06/2019 19:32:07: TradingSystem-create new product in store0 -success
+06/06/2019 12:58:09: Register - userName or password null
 
-16/06/2019 19:32:07: TradingSystem-add product to store0 -success
-16/06/2019 19:32:07: Store - assign manger succeed
-16/06/2019 19:32:07: TradingSystem-Assign owner 2 -success
-16/06/2019 19:32:07: TradingSystem-Assign owner 3 -success
-16/06/2019 19:32:07: TradingSystem-Assign owner 4 -success
-16/06/2019 19:32:07: User:signOut success - Aviv
+06/06/2019 12:58:09: TradingSystem-open storeZara success
 
-16/06/2019 19:32:30: TradingSystem-create new product in store0 -success
+06/06/2019 12:58:09: TradingSystem-create new product in store0 -success
 
-16/06/2019 19:32:37: TradingSystem-add product to store0 -success
-16/06/2019 19:33:14: Add to cart success. /n
-16/06/2019 19:41:44: Successfully closed the basket.
+06/06/2019 12:58:09: TradingSystem-add product to store0 -success
+06/06/2019 12:58:09: Store - assign manger succeed
+06/06/2019 12:58:09: TradingSystem-Assign owner 2 -success
+06/06/2019 12:58:09: TradingSystem-Assign owner 3 -success
+06/06/2019 12:58:09: User:signOut success - Aviv
 
-16/06/2019 19:42:54: Register - userName or password null
+06/06/2019 13:10:55: Register - userName or password null
 
-16/06/2019 19:42:54: Register - userName or password null
+06/06/2019 13:10:55: Register - userName or password null
 
-16/06/2019 19:42:54: Register - userName or password null
+06/06/2019 13:10:55: Register - userName or password null
 
-16/06/2019 19:42:54: Register - userName or password null
+06/06/2019 13:10:55: Register - userName or password null
 
-16/06/2019 19:42:54: Register - userName or password null
+06/06/2019 13:10:55: Register - userName or password null
 
-16/06/2019 19:42:54: Register - userName or password null
+06/06/2019 13:10:55: TradingSystem-open storeZara success
 
-16/06/2019 19:42:55: TradingSystem-open storeZara success
+06/06/2019 13:10:55: TradingSystem-create new product in store0 -success
 
-16/06/2019 19:42:55: TradingSystem-create new product in store0 -success
+06/06/2019 13:10:55: TradingSystem-add product to store0 -success
+06/06/2019 13:10:55: Store - assign manger succeed
+06/06/2019 13:10:55: TradingSystem-Assign owner 2 -success
+06/06/2019 13:10:55: TradingSystem-Assign owner 3 -success
+06/06/2019 13:10:55: User:signOut success - Aviv
 
-16/06/2019 19:42:55: TradingSystem-add product to store0 -success
-16/06/2019 19:42:55: Store - assign manger succeed
-16/06/2019 19:42:55: TradingSystem-Assign owner 2 -success
-16/06/2019 19:42:55: TradingSystem-Assign owner 3 -success
-16/06/2019 19:42:55: TradingSystem-Assign owner 4 -success
-16/06/2019 19:42:55: User:signOut success - Aviv
+06/06/2019 13:13:10: Add to cart success. /n
+06/06/2019 13:13:19: ShoppingCart:showCart success
 
-16/06/2019 19:42:57: User:signOut failed - user Aviv didn't sign in
+06/06/2019 13:13:30: ShoppingCart:showCart success
 
-16/06/2019 19:43:48: User:signOut success - Aviv
+06/06/2019 13:13:36: ShoppingCart:removeProductsFromCart success
 
-16/06/2019 19:43:48: TradingSystem - Remove user id7 success.
+06/06/2019 13:13:36: ShoppingCart:editProductQuantityInCart success
 
-16/06/2019 19:44:47: Register - userName or password null
+06/06/2019 13:13:36: ShoppingCart:showCart success
 
-16/06/2019 19:44:47: Register - userName or password null
+06/06/2019 13:13:42: Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.
 
-16/06/2019 19:44:48: Register - userName or password null
+06/06/2019 13:13:42: basketCheckout - Could not close basket.
 
-16/06/2019 19:44:48: Register - userName or password null
-
-16/06/2019 19:44:48: Register - userName or password null
-
-16/06/2019 19:44:48: Register - userName or password null
-
-16/06/2019 19:44:48: TradingSystem-open storeZara success
-
-16/06/2019 19:44:48: TradingSystem-create new product in store0 -success
-
-16/06/2019 19:44:48: TradingSystem-add product to store0 -success
-16/06/2019 19:44:48: Store - assign manger succeed
-16/06/2019 19:44:48: TradingSystem-Assign owner 2 -success
-16/06/2019 19:44:48: TradingSystem-Assign owner 3 -success
-16/06/2019 19:44:48: TradingSystem-Assign owner 4 -success
-16/06/2019 19:44:48: User:signOut success - Aviv
-
-16/06/2019 19:45:11: TradingSystem-create new product in store0 -success
-
-16/06/2019 19:45:20: TradingSystem-add product to store0 -success
-16/06/2019 19:45:51: Add to cart success. /n
-16/06/2019 19:45:56: Successfully closed the basket.
-
-16/06/2019 19:47:30: Products have declined / returned to store stock successfully.
-
-16/06/2019 19:47:30: Making the cart purchase succeeded
-
-16/06/2019 19:50:00: User:signOut success - Aviv
+06/06/2019 13:17:52: User:signOut success - Aviv
 

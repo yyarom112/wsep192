@@ -52,7 +52,7 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else {
-                                alert(response);
+                                alert("Owner cannot be assigned. The user does not exists or loggedin user cannot perform this act.");
                             }
                         },
                         error: function (response) {

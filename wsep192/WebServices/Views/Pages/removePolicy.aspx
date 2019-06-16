@@ -88,7 +88,7 @@
                             dataType: "json",
                             success: function (response) {
                                 if (response == -1) {
-                                    alert("Error in remove purchase policy");
+                                    alert("Error in remove purchase policy, the id is incorrect");
                                     window.location.href = baseUrl + "/";
                                 }
                                 else
