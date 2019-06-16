@@ -1779,3 +1779,78 @@
 
 05/06/2019 17:09:23: basketCheckout - Could not close basket.
 
+06/06/2019 15:55:35: Register - userName or password null
+
+06/06/2019 15:55:35: Register - userName or password null
+
+06/06/2019 15:55:35: Register - userName or password null
+
+06/06/2019 15:55:35: Register - userName or password null
+
+06/06/2019 15:55:35: Register - userName or password null
+
+06/06/2019 15:55:35: Register - userName or password null
+
+06/06/2019 15:55:35: TradingSystem-open storeZara success
+
+06/06/2019 15:55:35: TradingSystem-create new product in store0 -success
+
+06/06/2019 15:55:35: TradingSystem-add product to store0 -success
+06/06/2019 15:55:35: Store - assign manger succeed
+06/06/2019 15:55:35: TradingSystem-Assign owner 2 -success
+06/06/2019 15:55:36: TradingSystem-Assign owner 3 -success
+06/06/2019 15:55:36: TradingSystem-Assign owner 4 -success
+06/06/2019 15:55:36: User:signOut success - Aviv
+
+06/06/2019 15:55:39: User:signOut failed - user Aviv didn't sign in
+
+06/06/2019 15:56:00: Register - userName or password null
+
+06/06/2019 15:56:00: Register - userName or password null
+
+06/06/2019 15:56:00: Register - userName or password null
+
+06/06/2019 15:56:00: Register - userName or password null
+
+06/06/2019 15:56:00: Register - userName or password null
+
+06/06/2019 15:56:00: Register - userName or password null
+
+06/06/2019 15:56:00: TradingSystem-open storeZara success
+
+06/06/2019 15:56:01: TradingSystem-create new product in store0 -success
+
+06/06/2019 15:56:01: TradingSystem-add product to store0 -success
+06/06/2019 15:56:01: Store - assign manger succeed
+06/06/2019 15:56:01: TradingSystem-Assign owner 2 -success
+06/06/2019 15:56:01: TradingSystem-Assign owner 3 -success
+06/06/2019 15:56:01: TradingSystem-Assign owner 4 -success
+06/06/2019 15:56:01: User:signOut success - Aviv
+
+06/06/2019 15:56:43: User:signOut success - Aviv
+
+06/06/2019 15:57:28: User:signOut success - Seifan
+
+06/06/2019 15:57:28: TradingSystem - Remove user id7 success.
+
+06/06/2019 15:57:47: TradingSystem - Remove user id8 success.
+
+06/06/2019 15:57:47: User:signOut success - Maor
+
+06/06/2019 15:58:11: TradingSystem-Assign owner 6 -success
+06/06/2019 15:58:18: User:signOut success - Rotem
+
+06/06/2019 15:58:18: TradingSystem - Remove user id9 success.
+
+06/06/2019 15:59:19: Store-Remove manager Fail- The user 5 is not manger in the store 0.
+
+06/06/2019 15:59:39: User:signOut success - Maor
+
+06/06/2019 15:59:39: TradingSystem - Remove user id10 success.
+
+06/06/2019 16:00:01: TradingSystem - Remove manager id5 from store 0 success
+
+06/06/2019 16:01:13: User:signOut success - Aviv
+
+06/06/2019 16:01:13: TradingSystem - Remove user id11 success.
+
