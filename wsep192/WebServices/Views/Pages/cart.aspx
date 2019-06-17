@@ -102,7 +102,7 @@
                                                 }
                                             },
                                             error: function (response) {
-                                                alert('Somthing went wrong with editing this product.Please try again');
+                                                alert('Somthing went wrong with editing this product, the product is not exist.Please try again');
                                             }
                                         });
                                     }

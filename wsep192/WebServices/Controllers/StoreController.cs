@@ -148,7 +148,7 @@ namespace WebServices.Controllers
 
         [Route("api/store/AddConditionalDiscountPolicy")]
         [HttpGet]
-        public int addConditionalDiscuntPolicy(String products, String quantity, String condition, String discount, String expiredDate, String logic, String duplicate, String store, String user)
+        public int addConditionalDiscuntPolicy(String products, String quantity, String condition, String product2, String quantity2, String discount, String expiredDate, String logic, String duplicate, String store, String user)
         {
             List<String> productTmp = new List<string>();
             String tmpPair;
@@ -171,13 +171,15 @@ namespace WebServices.Controllers
             String[] splitQuantity = quantity.Split(',');
             for (int i = 0; i < splitProduct.Length; i++)
             {
-                productTmp.Add(splitProduct[i]);
+                //productTmp.Add(splitProduct[i]);
                 tmpPair = "(" + splitProduct[i] + "," + splitQuantity[i] + ")";
                 fullString += tmpPair;
                 fullString += ",";
             }
             fullString = fullString.Remove(fullString.Length - 1);
             fullString += "))";
+
+            productTmp.Add(product2);
 
             int ans = service.addConditionalDiscuntPolicy(productTmp, fullString, discount, expiredDate, duplicate, logic, user, store);
             switch (ans)

@@ -17,7 +17,7 @@ namespace InputCreation
             requests.Add(new Request{ RequestName = "Register", User="Aviv" , Password= "Aviv" });
             requests.Add(new Request { RequestName = "InitUser" });
             requests.Add(new Request { RequestName = "Register", User = "Maor", Password = "Maor" });
-            requests.Add(new Request { RequestName = "InitUser" });
+            //requests.Add(new Request { RequestName = "InitUser" });
             //requests.Add(new Request { RequestName = "Register", User = "Seifan", Password = "Seifan" });
             requests.Add(new Request { RequestName = "InitUser" });
             requests.Add(new Request { RequestName = "Register", User = "Rotem", Password = "Rotem" });
