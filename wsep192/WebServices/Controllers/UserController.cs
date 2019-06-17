@@ -196,7 +196,7 @@ namespace WebService.Controllers
                 case true:
                     return "Requests assigning "+userToAssign+" were successfully sent";
                 case false:
-                    return "failed to send requests assigning owner";
+                    return "false";
             }
             return "Server error: assignOwner";
         }

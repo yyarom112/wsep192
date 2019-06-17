@@ -19,8 +19,15 @@ namespace src.ServiceLayer
             ServiceLayer service = ServiceLayer.getInstance();
             // Open the file to read from.
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\src\\State.json");
-
-            using (StreamReader sr = new StreamReader(path))
+            StreamReader sr=null;
+            try {
+                sr = new StreamReader(path);
+            }
+            catch (Exception e) {
+                ErrorManager.Instance.WriteToLog("SystemState - fileSetUp - File not exist");
+                return false;
+            }
+            using (sr)
             {
 
                 string json = sr.ReadToEnd();
