@@ -46,7 +46,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            if (response == "User successfuly was assigned") {
+                            if (response != "false") {
                                 document.cookie = "LoggedUser=" + ownerName
                                 alert(response);
                                 window.location.href = baseUrl + "/";
