@@ -33,6 +33,7 @@ namespace IntegrationTests
 
         public void setUp()
         {
+            DBtransactions db = DBtransactions.getInstance(true);
             admin = new User(0, "admin", "123456", true, true);
             basket_admin = admin.Basket;
             user = new User(1, null, null, false, false);
