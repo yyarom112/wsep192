@@ -111,7 +111,7 @@ namespace src.Domain
             foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
             {
                 storeToPay.Add(cart.Store.Id, cart.cartCheckout(new UserDetailes(this.Users[userID].Address, this.Users[userID].IsRegistered)));
-                cart.Store.updateCart(cart, "-");
+                cart.Store.updateCart(cart, "-",userID);
             }
             foreach (KeyValuePair<int, double> storeSum in storeToPay)
             {
@@ -119,7 +119,7 @@ namespace src.Domain
                 {
                     foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
                     {
-                        cart.Store.updateCart(cart, "+");
+                        cart.Store.updateCart(cart, "+", userID);
                     }
                     LogManager.Instance.WriteToLog("payForBasket - Purchase failed due to product billing failure.\n");
                     return null;
@@ -133,7 +133,7 @@ namespace src.Domain
                 }
                 foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
                 {
-                    cart.Store.updateCart(cart, "+");
+                    cart.Store.updateCart(cart, "+", userID);
                 }
                 LogManager.Instance.WriteToLog("payForBasket - The purchase failed due to a failure in the delivery system.\n");
 

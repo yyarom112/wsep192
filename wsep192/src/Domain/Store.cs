@@ -1,4 +1,5 @@
-﻿using src.Domain.Dataclass;
+﻿using src.DataLayer;
+using src.Domain.Dataclass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,12 +87,14 @@ namespace src.Domain
             return false;
         }
 
-        public virtual void updateCart(ShoppingCart cart, String opt)
+        public virtual void updateCart(ShoppingCart cart, String opt,int userId)
         {
             foreach (ProductInCart p in cart.Products.Values)
             {
                 if (!this.products.ContainsKey(p.Product.Id))
                 {
+                    if (!DBtransactions.getInstance(false).EditProductQuantityInCart(p.Product.Id, cart.StoreId,userId, 0))
+                        return;
                     cart.Products[p.Product.Id].Quantity = 0;
                     LogManager.Instance.WriteToLog("The attempt to purchase product " + p.Product.Id + " failed because it does not belong to the store.\n");
 
@@ -101,11 +104,20 @@ namespace src.Domain
                     if (opt.Equals("-"))
                     {
 
-                        if (p.Quantity <= this.products[p.Product.Id].Quantity) //if quntity in store bigger then quntity to buy
+                        if (p.Quantity <= this.products[p.Product.Id].Quantity)
+                        { //if quntity in store bigger then quntity to buy
+                            int quantity = this.products[p.Product.Id].Quantity - p.Quantity;
+                            if (!DBtransactions.getInstance(false).editProductInStore(p.Product.Id, cart.StoreId, userId, quantity))
+                                return;
                             this.products[p.Product.Id].Quantity -= p.Quantity; //Save the quntity
+                        }
                         else
                         {
+                            if (!DBtransactions.getInstance(false).EditProductQuantityInCart(p.Product.Id, cart.StoreId, userId, this.products[p.Product.Id].Quantity))
+                                return;
                             p.Quantity = this.products[p.Product.Id].Quantity;
+                            if (!DBtransactions.getInstance(false).editProductInStore(p.Product.Id, cart.StoreId, userId, 0))
+                                return;
                             this.products[p.Product.Id].Quantity = 0;
                         }
                     }
