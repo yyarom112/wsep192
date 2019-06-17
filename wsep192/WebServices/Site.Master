@@ -17,8 +17,6 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <script src="vendor/JS/temp.js" type="text/javascript"></script>
-    <script src="js/validators.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">

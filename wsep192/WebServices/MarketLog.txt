@@ -1890,3 +1890,183 @@
 
 17/06/2019 20:59:16: Register - userName or password null
 
+6/18/2019 12:07:16 AM: Register - userName or password null
+
+6/18/2019 12:07:26 AM: User:signOut failed - user Aviv didn't sign in
+
+6/18/2019 12:07:27 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:07:27 AM: Register - userName or password null
+
+6/18/2019 12:07:29 AM: User:signOut failed - user Maor didn't sign in
+
+6/18/2019 12:07:29 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:07:30 AM: Register - userName or password null
+
+6/18/2019 12:07:31 AM: User:signOut failed - user Rotem didn't sign in
+
+6/18/2019 12:07:32 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:07:32 AM: Register - userName or password null
+
+6/18/2019 12:07:34 AM: User:signOut failed - user Yuval didn't sign in
+
+6/18/2019 12:07:34 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:07:34 AM: Register - userName or password null
+
+6/18/2019 12:07:37 AM: User:signOut failed - user Gal didn't sign in
+
+6/18/2019 12:07:37 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:09:19 AM: Register - userName or password null
+
+6/18/2019 12:09:29 AM: User:signOut failed - user Aviv didn't sign in
+
+6/18/2019 12:09:29 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:09:30 AM: Register - userName or password null
+
+6/18/2019 12:09:32 AM: User:signOut failed - user Maor didn't sign in
+
+6/18/2019 12:09:32 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:09:32 AM: Register - userName or password null
+
+6/18/2019 12:09:34 AM: User:signOut failed - user Rotem didn't sign in
+
+6/18/2019 12:09:34 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:09:34 AM: Register - userName or password null
+
+6/18/2019 12:09:36 AM: User:signOut failed - user Yuval didn't sign in
+
+6/18/2019 12:09:36 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:09:37 AM: Register - userName or password null
+
+6/18/2019 12:09:38 AM: User:signOut failed - user Gal didn't sign in
+
+6/18/2019 12:09:39 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:27:36 AM: Register - userName or password null
+
+6/18/2019 12:27:43 AM: User:signOut failed - user Aviv didn't sign in
+
+6/18/2019 12:27:43 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:27:43 AM: Register - userName or password null
+
+6/18/2019 12:27:45 AM: User:signOut failed - user Maor didn't sign in
+
+6/18/2019 12:27:45 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:27:46 AM: Register - userName or password null
+
+6/18/2019 12:27:48 AM: User:signOut failed - user Rotem didn't sign in
+
+6/18/2019 12:27:48 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:27:49 AM: Register - userName or password null
+
+6/18/2019 12:27:51 AM: User:signOut failed - user Yuval didn't sign in
+
+6/18/2019 12:27:51 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:27:51 AM: Register - userName or password null
+
+6/18/2019 12:27:53 AM: User:signOut failed - user Gal didn't sign in
+
+6/18/2019 12:27:53 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:35:40 AM: Register - userName or password null
+
+6/18/2019 12:35:45 AM: User:signOut failed - user Aviv didn't sign in
+
+6/18/2019 12:35:45 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:35:45 AM: Register - userName or password null
+
+6/18/2019 12:35:46 AM: User:signOut failed - user Maor didn't sign in
+
+6/18/2019 12:35:46 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:35:46 AM: Register - userName or password null
+
+6/18/2019 12:35:47 AM: User:signOut failed - user Rotem didn't sign in
+
+6/18/2019 12:35:47 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:35:47 AM: Register - userName or password null
+
+6/18/2019 12:35:48 AM: User:signOut failed - user Yuval didn't sign in
+
+6/18/2019 12:35:48 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:35:48 AM: Register - userName or password null
+
+6/18/2019 12:35:48 AM: User:signOut failed - user Gal didn't sign in
+
+6/18/2019 12:35:49 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:39:23 AM: Register - userName or password null
+
+6/18/2019 12:39:31 AM: User:signOut failed - user Aviv didn't sign in
+
+6/18/2019 12:39:32 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:39:33 AM: Register - userName or password null
+
+6/18/2019 12:39:41 AM: User:signOut failed - user Maor didn't sign in
+
+6/18/2019 12:39:42 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:39:42 AM: Register - userName or password null
+
+6/18/2019 12:39:43 AM: User:signOut failed - user Rotem didn't sign in
+
+6/18/2019 12:39:44 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:39:44 AM: Register - userName or password null
+
+6/18/2019 12:39:47 AM: User:signOut failed - user Yuval didn't sign in
+
+6/18/2019 12:39:47 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:39:47 AM: Register - userName or password null
+
+6/18/2019 12:39:48 AM: User:signOut failed - user Gal didn't sign in
+
+6/18/2019 12:39:49 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:44:06 AM: Register - userName or password null
+
+6/18/2019 12:44:16 AM: User:signOut failed - user Aviv didn't sign in
+
+6/18/2019 12:44:16 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:44:17 AM: Register - userName or password null
+
+6/18/2019 12:44:19 AM: User:signOut failed - user Maor didn't sign in
+
+6/18/2019 12:44:20 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:44:20 AM: Register - userName or password null
+
+6/18/2019 12:44:22 AM: User:signOut failed - user Rotem didn't sign in
+
+6/18/2019 12:44:23 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:44:23 AM: Register - userName or password null
+
+6/18/2019 12:44:24 AM: User:signOut failed - user Yuval didn't sign in
+
+6/18/2019 12:44:25 AM: TradingSystem - Register - user not exist as guest.
+
+6/18/2019 12:44:25 AM: Register - userName or password null
+
+6/18/2019 12:44:26 AM: User:signOut failed - user Gal didn't sign in
+
+6/18/2019 12:44:26 AM: TradingSystem - Register - user not exist as guest.
+
