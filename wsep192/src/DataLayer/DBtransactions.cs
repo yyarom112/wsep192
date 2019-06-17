@@ -253,5 +253,79 @@ namespace src.DataLayer
             }
             return true;
         }
+
+        public bool addProductInstore(Dictionary<int, ProductInStore> products, int userId)
+        {
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try
+            {
+                foreach(ProductInStore product in products.Values)
+                {
+                    if (!db.addNewProductInStore(product))
+                    {
+                        session.AbortTransaction();
+                        LogManager.Instance.WriteToLog("DBtransaction-AddProductInStore- Add new product in store");
+                        return false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                session.AbortTransaction();
+                ErrorManager.Instance.WriteToLog("DBtransaction-AddProductInStore- Add new product in store - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+        public bool removeProductInStore(List<int> products, int storeId, int userId)
+        {
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try
+            {
+                foreach (int productId in products)
+                {
+                    if (!db.removeProductInStore(storeId, productId))
+                    {
+                        session.AbortTransaction();
+                        LogManager.Instance.WriteToLog("DBtransaction-removeProductInStore- Add new product in store");
+                        return false;
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                session.AbortTransaction();
+                ErrorManager.Instance.WriteToLog("DBtransaction-removeProductInStore- Add new product in store - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+        public bool editProductInStore(int productId, int storeId, int userId, int quntity)
+        {
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try
+            {
+
+                if (!db.updateProductInStore(storeId, productId, quntity))
+                {
+                    session.AbortTransaction();
+                    LogManager.Instance.WriteToLog("DBtransaction-editProductInStore- edit product in store");
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                session.AbortTransaction();
+                ErrorManager.Instance.WriteToLog("DBtransaction-editProductInStore- edit product in store - " + e + " .");
+                return false;
+            }
+            return true;
+        }
     }
 }

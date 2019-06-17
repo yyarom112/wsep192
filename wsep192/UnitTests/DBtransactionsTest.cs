@@ -127,5 +127,62 @@ namespace UnitTests
             session.AbortTransaction();
 
         }
+
+        [TestMethod]
+        public void TestMethod_AddProductInstore()
+        {
+            Setup();
+            var session = db.Db.Client.StartSession();
+            session.StartTransaction();
+
+            Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
+            products.Add(10, pis1);
+            db.addProductInstore(products, admin.Id);
+            DBmanager checkDB = new DBmanager();
+            Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
+
+            session.AbortTransaction();
+        }
+
+        [TestMethod]
+        public void TestMethod_removeProductsInSrore()
+        {
+            Setup();
+            var session = db.Db.Client.StartSession();
+            session.StartTransaction();
+
+            List<int> productToremove = new List<int>();
+            productToremove.Add(pis1.Product.Id);
+
+            Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
+            products.Add(10, pis1);
+            db.addProductInstore(products, admin.Id);
+            DBmanager checkDB = new DBmanager();
+            Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
+
+            db.removeProductInStore(productToremove, store.Id, admin.Id);
+            Assert.AreEqual(-1, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
+            session.AbortTransaction();
+        }
+
+        [TestMethod]
+        public void TestMethod_EditProductQuantityInStore()
+        {
+            Setup();
+            var session = db.Db.Client.StartSession();
+            session.StartTransaction();
+
+            Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
+            products.Add(10, pis1);
+            db.addProductInstore(products, admin.Id);
+            DBmanager checkDB = new DBmanager();
+            Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
+
+            store.Products[pis1.Product.Id].Quantity = 5;
+
+            db.editProductInStore(pis1.Product.Id, store.Id, admin.Id, 5);
+            Assert.AreEqual(5, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
+            session.AbortTransaction();
+        }
     }
 }
