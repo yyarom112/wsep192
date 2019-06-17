@@ -51,7 +51,9 @@ namespace src.ServiceLayer
             if (instance == null)
             {
                 instance = new ServiceLayer();
-                fileSetUp();
+                if (!fileSetUp())
+                    Environment.Exit(0);
+
             }
             return instance;
         }
@@ -59,7 +61,6 @@ namespace src.ServiceLayer
         {
             instance = null;
         }
-
 
 
         public bool setUp1()
