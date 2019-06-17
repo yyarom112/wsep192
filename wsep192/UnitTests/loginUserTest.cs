@@ -1,6 +1,7 @@
 ﻿using System;
 using src.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using src.DataLayer;
 
 namespace UnitTests
 {
@@ -13,6 +14,7 @@ namespace UnitTests
 
         public void setUp()
         {
+            DBtransactions db = DBtransactions.getInstance(true);
             system = new TradingSystem(null, null);
             user1 = new User(4567, "Yuval", "3399", false, false);
             system.Users.Add(user1.Id, user1);
