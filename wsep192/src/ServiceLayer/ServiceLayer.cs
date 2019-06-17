@@ -33,7 +33,7 @@ namespace src.ServiceLayer
             userCounter = 0;
             manager.init();
             addPermissions();
-            //setUp();
+            setUp();
 
         }
 
@@ -47,7 +47,7 @@ namespace src.ServiceLayer
         {
             if (instance == null) { 
             instance = new ServiceLayer();
-            fileSetUp();
+            //fileSetUp();
             }
             return instance;
         }
