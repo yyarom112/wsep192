@@ -19,6 +19,7 @@ namespace src.Domain
         private int purchasePolicyCounter;
         private int discountPolicyCounter;
         private Encryption encryption;
+        private Dictionary<int, OwnerRequest> systemRequests; //reqId - flag,count,tmpcount
 
         public TradingSystem(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
         {
@@ -30,6 +31,7 @@ namespace src.Domain
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter = 0;
             this.encryption = new EncryptionImpl();
+            systemRequests = new Dictionary<int, OwnerRequest>();
         }
 
 
@@ -42,6 +44,7 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+        internal Dictionary<int, OwnerRequest> SystemRequests { get => systemRequests; set => systemRequests = value; }
 
         public bool[] getVisibility(int userID,String userName)
         {
