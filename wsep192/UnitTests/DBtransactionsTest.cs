@@ -161,7 +161,7 @@ namespace UnitTests
             Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
             products.Add(10, pis1);
             db.addProductInstore(products, admin.Id);
-            DBmanager checkDB = new DBmanager();
+            DBmanager checkDB = new DBmanager(false);
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
 
             session.AbortTransaction();
@@ -180,7 +180,7 @@ namespace UnitTests
             Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
             products.Add(10, pis1);
             db.addProductInstore(products, admin.Id);
-            DBmanager checkDB = new DBmanager();
+            DBmanager checkDB = new DBmanager(false);
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
 
             db.removeProductInStore(productToremove, store.Id, admin.Id);
@@ -198,7 +198,7 @@ namespace UnitTests
             Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
             products.Add(10, pis1);
             db.addProductInstore(products, admin.Id);
-            DBmanager checkDB = new DBmanager();
+            DBmanager checkDB = new DBmanager(false);
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
 
             store.Products[pis1.Product.Id].Quantity = 5;
