@@ -365,7 +365,7 @@ namespace src.DataLayer
             return output;
         }
         //Managers table functions
-        public bool addNewManager(Manager manager, int father)
+        public bool addNewManager(Manager manager)
         {
             if (IsTest)
                 return true;
@@ -396,6 +396,7 @@ namespace src.DataLayer
             try
             {
                 managersTable.DeleteOneAsync(Builders<BsonDocument>.Filter.Eq("_user id", user_id));
+                return true;
             }
             catch (Exception e)
             {

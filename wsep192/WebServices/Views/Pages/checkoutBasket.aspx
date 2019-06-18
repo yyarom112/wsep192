@@ -100,7 +100,7 @@
                             window.location.href = baseUrl + "/";
                         }
                         else if (response == "0") {
-                            alert("Basket is empty");
+                            alert("Error: can't checkout! Basket is empty");
                         }
                         else {
                             document.getElementById('price').textContent = response;

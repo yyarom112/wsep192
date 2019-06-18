@@ -199,6 +199,91 @@ namespace src.DataLayer
 
         }
 
+        public bool assignManagerDB(Manager manager)
+        {
+            if (!Db.IsTest)
+            {
+                var session = Db.Client.StartSession();
+                session.StartTransaction();
+                try
+                {
+                    //store the manager
+                    if (!Db.addNewManager(manager))
+                    {
+                        session.AbortTransaction();
+                        return false;
+                    }
+                    session.CommitTransaction();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    session.AbortTransaction();
+                    ErrorManager.Instance.WriteToLog("DBtransaction-assignManager- Add new manager failed - " + e + " .");
+                    return false;
+                }
+                
+            }
+            return true;
+
+        }
+
+        public bool removeManagerDB(int manager_id)
+        {
+            if (!Db.IsTest)
+            {
+                var session = Db.Client.StartSession();
+                session.StartTransaction();
+                try
+                {
+                    //removes the manager
+                    if (!Db.removeManager(manager_id))
+                    {
+                        session.AbortTransaction();
+                        return false;
+                    }
+                    session.CommitTransaction();
+                }
+                catch (Exception e)
+                {
+                    session.AbortTransaction();
+                    ErrorManager.Instance.WriteToLog("DBtransaction-removeManager- remove manager failed - " + e + " .");
+                    return false;
+                }
+                return true;
+            }
+            return true;
+
+        }
+
+        public bool removeUserDB(int user_id)
+        {
+            if (!Db.IsTest)
+            {
+                var session = Db.Client.StartSession();
+                session.StartTransaction();
+                try
+                {
+                    //removes the manager
+                    if (!Db.removeUser(user_id))
+                    {
+                        session.AbortTransaction();
+                        return false;
+                    }
+                    session.CommitTransaction();
+                }
+                catch (Exception e)
+                {
+                    session.AbortTransaction();
+                    ErrorManager.Instance.WriteToLog("DBtransaction-removeUser- remove user failed - " + e + " .");
+                    return false;
+                }
+                return true;
+            }
+            return true;
+
+        }
+
         public bool AddProductToCart(Dictionary<int, ProductInCart> products, int userId)
         {
             if (db.IsTest)
@@ -280,6 +365,33 @@ namespace src.DataLayer
             }
             return true;
         }
+
+
+
+        public bool assignOwner(Owner owner)
+        {
+            if (db.IsTest)
+                return true;
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try{
+
+                if (!db.addNewOwner(owner, -1)){
+                    session.AbortTransaction();
+                    return false;
+                }
+                session.CommitTransaction();
+            }
+            catch (Exception e) {
+                session.AbortTransaction();
+                ErrorManager.Instance.WriteToLog("DBtransaction - assignOwner - failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+
+
 
         public bool OpenStoreDB(Store store, Owner owner)
         {

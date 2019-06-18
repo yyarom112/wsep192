@@ -61,11 +61,11 @@
                                 window.location.href = baseUrl + "/";
                             }
                             else {
-                                alert(response);
+                                alert('Product does not exists in the system. Create the product first and then add it to your store.');
                             }
                         },
                         error: function (response) {
-                            alert('Product does not exists in the system. Please Try again');
+                            alert('Product does not exists in the system. Create the product first and then add it to your store.');
                         }
                     });
                 }

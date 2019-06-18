@@ -20,6 +20,7 @@ namespace src.Domain
         private int purchasePolicyCounter;
         private int discountPolicyCounter;
         private Encryption encryption;
+        private Dictionary<int, OwnerRequest> systemRequests; //reqId - flag,count,tmpcount
 
         public TradingSystem(ProductSupplySystem supplySystem, FinancialSystem financialSystem)
         {
@@ -31,6 +32,7 @@ namespace src.Domain
             this.purchasePolicyCounter = 0;
             this.discountPolicyCounter = 0;
             this.encryption = new EncryptionImpl();
+            systemRequests = new Dictionary<int, OwnerRequest>();
         }
 
 
@@ -43,6 +45,7 @@ namespace src.Domain
         internal Dictionary<int, Store> Stores { get => stores; set => stores = value; }
         internal ProductSupplySystem SupplySystem { get => supplySystem; set => supplySystem = value; }
         internal FinancialSystem FinancialSystem { get => financialSystem; set => financialSystem = value; }
+        internal Dictionary<int, OwnerRequest> SystemRequests { get => systemRequests; set => systemRequests = value; }
 
         public bool[] getVisibility(int userID,String userName)
         {
@@ -111,7 +114,7 @@ namespace src.Domain
             foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
             {
                 storeToPay.Add(cart.Store.Id, cart.cartCheckout(new UserDetailes(this.Users[userID].Address, this.Users[userID].IsRegistered)));
-                cart.Store.updateCart(cart, "-");
+                cart.Store.updateCart(cart, "-",userID);
             }
             foreach (KeyValuePair<int, double> storeSum in storeToPay)
             {
@@ -119,7 +122,7 @@ namespace src.Domain
                 {
                     foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
                     {
-                        cart.Store.updateCart(cart, "+");
+                        cart.Store.updateCart(cart, "+", userID);
                     }
                     LogManager.Instance.WriteToLog("payForBasket - Purchase failed due to product billing failure.\n");
                     return null;
@@ -133,7 +136,7 @@ namespace src.Domain
                 }
                 foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
                 {
-                    cart.Store.updateCart(cart, "+");
+                    cart.Store.updateCart(cart, "+", userID);
                 }
                 LogManager.Instance.WriteToLog("payForBasket - The purchase failed due to a failure in the delivery system.\n");
 
@@ -221,6 +224,8 @@ namespace src.Domain
                 LogManager.Instance.WriteToLog("TradingSystem - Remove user fail - the removing user is not an admin.\n");
                 return false;
             }
+            if (!DBtransactions.getInstance(false).removeUserDB(removingID))
+                return false;
 
             if (users.Remove(toRemoveID))
             {
@@ -239,7 +244,7 @@ namespace src.Domain
                 {
                     Stores.Add(storeCounter, store);
                     User user = searchUser(userID);
-                    Owner owner = (Owner)store.initOwner(user);
+                    Owner owner = (Owner) store.initOwner(user);
                     if (!DBtransactions.getInstance(false).OpenStoreDB(store, owner))
                     {
                         user.Roles.Remove(StoreCounter);
@@ -520,6 +525,7 @@ namespace src.Domain
             if (Stores.ContainsKey(storeID))
                 if (users[userID].createNewProductInStore(productName, category, details, price, ProductCounter++, storeID))
                 {
+
                     LogManager.Instance.WriteToLog("TradingSystem-create new product in store" + storeID + " -success\n");
                     return true;
                 }

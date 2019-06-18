@@ -13,11 +13,13 @@ namespace UnitTests
     {
         private Store store;
         private User admin;
+        private User user;
         private Product p1;
         private ProductInStore pis1;
         private ProductInCart pic1;
         private Owner adminOwner;
         private DBtransactions db;
+        private Manager manager;
 
         public void Setup()
         {
@@ -25,9 +27,11 @@ namespace UnitTests
             db.Db = new DBmanager(false);
             store = new Store(7, "adidas");
             admin = new User(14, "guti", "1234", true, true);
+            user = new User(18, "halo", "halo", false, true);
             p1 = new Product(4, "ramos", "", "", 10);
             pis1 = new ProductInStore(10, store, p1);
             store.Products.Add(p1.Id, pis1);
+            manager = new Manager(store, user, new List<int>());
             admin.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
             pic1 = new ProductInCart(1, admin.Basket.ShoppingCarts[store.Id], p1);
             admin.Basket.ShoppingCarts[store.Id].Products.Add(p1.Id, pic1);
@@ -48,6 +52,20 @@ namespace UnitTests
             Assert.AreEqual("guti", checkDB.getUser(admin.Id).UserName);
             Assert.AreEqual(1, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
         }
+
+
+
+        [TestMethod]
+        public void TestMethod_assignOwner()
+        {
+            Setup();
+            db.assignOwner(adminOwner);
+            DBmanager checkDB = db.Db;
+            Assert.AreEqual(store.Id, checkDB.getAllOwnerDBbyUserID(admin.Id)[0]);
+            checkDB.removeOwner(admin.Id);
+        }
+
+
 
 
         [TestMethod]
@@ -73,6 +91,38 @@ namespace UnitTests
 
         }
 
+        [TestMethod]
+        public void TestMethod_assignManager()
+        {
+            Setup();
+            db.assignManagerDB(manager);
+            DBmanager checkDB = db.Db;
+            List<KeyValuePair<int,string>> output = checkDB.getManegerByUserID(manager.User.Id);
+            int expected = output[0].Key;
+            Assert.AreEqual(store.Id,expected);
+        
+        }
+
+        [TestMethod]
+        public void TestMethod_removeUser()
+        {
+            Setup();
+            DBmanager checkDB = db.Db;
+            checkDB.addNewUser(admin);
+            db.removeUserDB(admin.Id);
+            Assert.AreEqual(null, checkDB.getUser(admin.Id));
+        }
+
+        [TestMethod]
+        public void TestMethod_removeManager()
+        {
+            Setup();
+            DBmanager checkDB = db.Db;
+            checkDB.addNewManager(manager);
+            db.removeManagerDB(manager.User.Id);
+            List<KeyValuePair<int, string>> output = checkDB.getManegerByUserID(manager.User.Id);
+            Assert.AreEqual(null,output );
+        }
 
         [TestMethod]
         public void TestMethod_signIn()
