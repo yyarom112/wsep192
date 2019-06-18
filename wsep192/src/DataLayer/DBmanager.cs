@@ -68,7 +68,6 @@ namespace src.DataLayer
             try
             {
                 var session = client.StartSession();
-                productsTable = session.Client.GetDatabase(dbName).GetCollection<BsonDocument>("Products");
                 session.StartTransaction();
                 var document = new BsonDocument
             {
@@ -307,6 +306,7 @@ namespace src.DataLayer
                 return true;
             var document = new BsonDocument
             {
+                 { "_id", owner.Store.Id+"_"+owner.User.Id },
                  { "_store id", owner.Store.Id},
                 { "_user id", owner.User.Id},
             };
@@ -371,6 +371,7 @@ namespace src.DataLayer
                 return true;
             var document = new BsonDocument
             {
+               { "_id", manager.Store.Id+"_"+manager.User.Id },
                 { "_store id", manager.Store.Id},
                 { "_user id", manager.User.Id},
                 { "permission", string.Join(",",manager.Permissions)},
@@ -447,6 +448,7 @@ namespace src.DataLayer
                 return true;
             var document = new BsonDocument
             {
+                { "_id", product.Id },
                 { "_product id", product.Id},
                 { "_name", product.ProductName},
                 { "category",product.Category},
@@ -473,7 +475,7 @@ namespace src.DataLayer
                 return true;
             try
             {
-                productsTable.DeleteOneAsync(Builders<BsonDocument>.Filter.Eq("_product id", product_id));
+                productsTable.DeleteOneAsync(Builders<BsonDocument>.Filter.Eq("_id", product_id));
             }
             catch (Exception e)
             {
@@ -487,14 +489,14 @@ namespace src.DataLayer
         {
             if (IsTest)
                 return null;
-            var filter = Builders<BsonDocument>.Filter.Eq("_product id", ProductID);
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", ProductID);
 
             var document = productsTable.Find(filter).ToList();
             if (document == null || document.Count == 0)
             {
                 return null;
             }
-            Product output = new Product(document[0]["_product id"].AsInt32, document[0]["_name"].AsString, document[0]["category"].AsString,
+            Product output = new Product(document[0]["_id"].AsInt32, document[0]["_name"].AsString, document[0]["category"].AsString,
                                         document[0]["details"].AsString, document[0]["price"].AsDouble);
             output.ProductRate = document[0]["rate"].AsInt32;
             return output;
