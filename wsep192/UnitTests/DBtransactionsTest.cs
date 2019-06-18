@@ -50,6 +50,20 @@ namespace UnitTests
         }
 
 
+
+        [TestMethod]
+        public void TestMethod_assignOwner()
+        {
+            Setup();
+            db.assignOwner(adminOwner);
+            DBmanager checkDB = db.Db;
+            Assert.AreEqual(store.Id, checkDB.getAllOwnerDBbyUserID(admin.Id)[0]);
+            checkDB.removeOwner(admin.Id);
+        }
+
+
+
+
         [TestMethod]
         public void TestMethod_OpenStoreDB()
         {

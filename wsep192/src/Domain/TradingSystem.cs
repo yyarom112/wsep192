@@ -243,7 +243,7 @@ namespace src.Domain
                     Stores.Add(storeCounter, store);
                     User user = searchUser(userID);
                     Owner owner = (Owner) store.initOwner(user);
-                    if (!DBtransactions.getInstance(false).OpenStoreDB(stores[StoreCounter], owner))
+                    if (!DBtransactions.getInstance(false).OpenStoreDB(store, owner))
                     {
                         user.Roles.Remove(StoreCounter);
                         stores.Remove(StoreCounter);
