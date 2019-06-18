@@ -78,13 +78,15 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void TestMethod_assignManager()      //NEED TO FIX
+        public void TestMethod_assignManager()
         {
             Setup();
-            db.assignManagerDB(manager,adminOwner.User.Id);
+            db.assignManagerDB(manager);
             DBmanager checkDB = db.Db;
-            Assert.AreEqual(store.Id, checkDB.getManegerByUserID(manager.User.Id)[0]);
-            checkDB.removeManager(manager.User.Id);
+            List<KeyValuePair<int,string>> output = checkDB.getManegerByUserID(manager.User.Id);
+            int expected = output[0].Key;
+            Assert.AreEqual(store.Id,expected);
+        
         }
 
         [TestMethod]
@@ -98,13 +100,14 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void TestMethod_removeManager()      //NEED TO FIX
+        public void TestMethod_removeManager()
         {
             Setup();
             DBmanager checkDB = db.Db;
-            checkDB.addNewManager(manager, -1);
+            checkDB.addNewManager(manager);
             db.removeManagerDB(manager.User.Id);
-            Assert.AreEqual(null, checkDB.getManegerByUserID(manager.User.Id));
+            List<KeyValuePair<int, string>> output = checkDB.getManegerByUserID(manager.User.Id);
+            Assert.AreEqual(null,output );
         }
 
         [TestMethod]

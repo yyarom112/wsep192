@@ -74,7 +74,7 @@ namespace src.Domain
             {
                 if (!RolesDictionary.ContainsKey(newManager.User.Id))
                 {
-                    if (!DBtransactions.getInstance(false).assignManagerDB((Manager)newManager, owner.User.Id))
+                    if (!DBtransactions.getInstance(false).assignManagerDB((Manager)newManager))
                         return false;
                     TreeNode<Role> managerRole = currOwner.AddChild(newManager);
                     RolesDictionary.Add(newManager.User.Id, managerRole);

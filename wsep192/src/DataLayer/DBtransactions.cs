@@ -199,7 +199,7 @@ namespace src.DataLayer
 
         }
 
-        public bool assignManagerDB(Manager manager,int father)
+        public bool assignManagerDB(Manager manager)
         {
             if (!Db.IsTest)
             {
@@ -208,12 +208,13 @@ namespace src.DataLayer
                 try
                 {
                     //store the manager
-                    if (!Db.addNewManager(manager,father))
+                    if (!Db.addNewManager(manager))
                     {
                         session.AbortTransaction();
                         return false;
                     }
                     session.CommitTransaction();
+                    return true;
                 }
                 catch (Exception e)
                 {
@@ -221,7 +222,7 @@ namespace src.DataLayer
                     ErrorManager.Instance.WriteToLog("DBtransaction-assignManager- Add new manager failed - " + e + " .");
                     return false;
                 }
-                return true;
+                
             }
             return true;
 
