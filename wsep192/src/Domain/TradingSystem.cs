@@ -224,6 +224,8 @@ namespace src.Domain
                 LogManager.Instance.WriteToLog("TradingSystem - Remove user fail - the removing user is not an admin.\n");
                 return false;
             }
+            if (!DBtransactions.getInstance(false).removeUserDB(removingID))
+                return false;
 
             if (users.Remove(toRemoveID))
             {

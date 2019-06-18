@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using src.DataLayer;
+using src.Domain.Dataclass;
 //using Common;
 
 namespace src.Domain
@@ -72,7 +74,8 @@ namespace src.Domain
             {
                 if (!RolesDictionary.ContainsKey(newManager.User.Id))
                 {
-
+                    if (!DBtransactions.getInstance(false).assignManagerDB((Manager)newManager, owner.User.Id))
+                        return false;
                     TreeNode<Role> managerRole = currOwner.AddChild(newManager);
                     RolesDictionary.Add(newManager.User.Id, managerRole);
                     newManager.User.Roles.Add(this.Id, newManager);
@@ -287,6 +290,8 @@ namespace src.Domain
             }
             if (roleNode != null)
             {
+                if (!DBtransactions.getInstance(false).removeManagerDB(userID))
+                    return false;
                 if (ownerNode.RemoveChild(roleNode)
                      && RolesDictionary.Remove(userID)
                     && roleNode.Data.User.Roles.Remove(this.Id))
