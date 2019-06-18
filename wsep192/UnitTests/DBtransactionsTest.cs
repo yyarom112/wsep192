@@ -68,7 +68,6 @@ namespace UnitTests
             Assert.AreEqual(true, checkDB.isOwnerDB(store.Id, admin.Id));
 
             session.AbortTransaction();
-
         }
 
 
@@ -137,7 +136,8 @@ namespace UnitTests
 
             Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
             products.Add(10, pis1);
-            db.addProductInstore(products, admin.Id);
+            db.createProductInstore(products, admin.Id);
+            db.editProductInStore(pis1.Product.Id, store.Id, admin.Id, 10);
             DBmanager checkDB = new DBmanager();
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
 
@@ -156,7 +156,8 @@ namespace UnitTests
 
             Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
             products.Add(10, pis1);
-            db.addProductInstore(products, admin.Id);
+            db.createProductInstore(products, admin.Id);
+            db.editProductInStore(pis1.Product.Id, store.Id, admin.Id, 10);
             DBmanager checkDB = new DBmanager();
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
 
@@ -174,7 +175,8 @@ namespace UnitTests
 
             Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
             products.Add(10, pis1);
-            db.addProductInstore(products, admin.Id);
+            db.createProductInstore(products, admin.Id);
+            db.editProductInStore(pis1.Product.Id, store.Id, admin.Id, 10);
             DBmanager checkDB = new DBmanager();
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
 

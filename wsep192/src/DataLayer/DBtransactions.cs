@@ -254,7 +254,7 @@ namespace src.DataLayer
             return true;
         }
 
-        public bool addProductInstore(Dictionary<int, ProductInStore> products, int userId)
+        public bool createProductInstore(Dictionary<int, ProductInStore> products, int userId)
         {
             var session = Db.Client.StartSession();
             session.StartTransaction();
