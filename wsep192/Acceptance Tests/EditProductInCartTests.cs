@@ -13,7 +13,7 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = ServiceLayer.getInstance();
+            service = ServiceLayer.getInstance(false);
             string tmp = service.initUser();
             service.register("user", "password", tmp);
             service.signIn("user", "password");

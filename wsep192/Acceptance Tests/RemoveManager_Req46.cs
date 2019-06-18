@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using src.DataLayer;
 using src.ServiceLayer;
 
 namespace Acceptance_Tests
@@ -12,7 +13,8 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = ServiceLayer.getInstance();
+            DBtransactions.getInstance(true);
+            service = ServiceLayer.getInstance(false);
             service.register("user", "1234", service.initUser());
             service.signIn("admin", "admin");
             service.openStore("store", "admin");
@@ -27,14 +29,7 @@ namespace Acceptance_Tests
 
         }
 
-        //A store owner subscription removes a store manager subscription
-        [TestMethod]
-        public void TestMethod_StoreOwnerSubscriptionRemovesStoreManagerSubscription()
-        {
-            setUp();
-            Assert.AreEqual(true, service.removeManager("manager","store","admin"));
-            service.shutDown();
-        }
+
 
         //A store owner is trying to unsubscribe a subscription that is not a store manager
         [TestMethod]

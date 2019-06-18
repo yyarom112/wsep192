@@ -6546,3 +6546,45 @@
    ב-  src.DataLayer.DBtransactions.signIn(Int32 userID, TradingSystem sys) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 126 .
 18/06/2019 11:59:48: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
 
+18/06/2019 12:37:06: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 12:37:06: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 12:37:06: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 12:37:06: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 12:37:08: Store- factoryinventoryConditionPolicy- Parge string to condition policy faild
+18/06/2019 12:37:08: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
+18/06/2019 12:37:08: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
+18/06/2019 12:37:09: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 12:37:26: DBtransactions-initSystem- Restore system failed - System.ArgumentException: פריט עם מפתח זהה נוסף כבר.
+   ב-  System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   ב-  System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   ב-  System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   ב-  src.DataLayer.DBtransactions.signIn(Int32 userID, TradingSystem sys) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 129 .
+18/06/2019 12:37:42: Store- factoryinventoryConditionPolicy- Parge string to condition policy faild
+18/06/2019 12:37:42: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
+18/06/2019 12:37:42: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
+18/06/2019 12:46:54: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 12:47:56: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 12:47:56: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 12:47:56: Store- factoryinventoryConditionPolicy- Parge string to condition policy faild
+18/06/2019 12:47:56: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
+18/06/2019 12:47:56: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 12:47:57: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 12:47:59: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
+18/06/2019 12:48:19: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: ההפניה לאובייקט לא הוגדרה למופע של אובייקט.
+   ב-  src.DataLayer.DBmanager.addNewManager(Manager manager) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 372
+   ב-  src.DataLayer.DBtransactions.assignManagerDB(Manager manager) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 214 .
+18/06/2019 12:48:28: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
+18/06/2019 12:48:31: Store- factoryinventoryConditionPolicy- Parge string to condition policy faild
+18/06/2019 12:48:33: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 12:48:40: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
+18/06/2019 12:48:42: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: ההפניה לאובייקט לא הוגדרה למופע של אובייקט.
+   ב-  src.DataLayer.DBmanager.addNewManager(Manager manager) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 372
+   ב-  src.DataLayer.DBtransactions.assignManagerDB(Manager manager) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 214 .

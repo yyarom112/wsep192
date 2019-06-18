@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using src.DataLayer;
 using src.Domain;
 
 namespace UnitTests
@@ -19,6 +20,7 @@ namespace UnitTests
 
         public void setUp()
         {
+            DBtransactions.getInstance(true);
             system = new TradingSystem(null, null);
             ownerUser = new User(1234, "Seifan", "2457", false, false);
             ownerUser.register(ownerUser.UserName, ownerUser.Password);

@@ -16,7 +16,7 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = ServiceLayer.getInstance();
+            service = ServiceLayer.getInstance(false);
             idOwner = service.initUser();
             ownerUser = "Rotem";
             passwordUser = "2eRt58!@";
@@ -24,15 +24,7 @@ namespace Acceptance_Tests
             service.signIn(ownerUser, passwordUser);
         }
 
-        [TestMethod]
-        //The admin removes an existing user - valid
-        public void removeUserTest1()
-        {
-            setUp();
-            bool x = service.removeUser("Rotem","admin");
-            Assert.IsTrue(x);
-            service.shutDown();
-        }
+        
 
         [TestMethod]
         //Not the admin removes an existing user - invalid

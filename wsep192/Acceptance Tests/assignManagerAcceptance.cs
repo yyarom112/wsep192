@@ -24,7 +24,7 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = ServiceLayer.getInstance();
+            service = ServiceLayer.getInstance(false);
             idOwner = service.initUser();
             DBtransactions db = DBtransactions.getInstance(true);
             db.isTest(true);

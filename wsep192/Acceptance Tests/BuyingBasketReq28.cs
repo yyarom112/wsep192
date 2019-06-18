@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using src.DataLayer;
 using src.ServiceLayer;
 
 namespace Acceptance_Tests
@@ -12,7 +13,8 @@ namespace Acceptance_Tests
 
         public void Setup()
         {
-            service = ServiceLayer.getInstance();
+            DBtransactions.getInstance(true);
+            service = ServiceLayer.getInstance(false);
             service.register("raul", "1234", service.initUser());
             service.signIn("admin", "1234");
             service.signIn("raul", "1234");
@@ -50,7 +52,7 @@ namespace Acceptance_Tests
             toInsert.Add(new KeyValuePair<string, int>("p1", 1000));
             service.addProductsToCart(toInsert, "store", "raul");
             service.editProductQuantityInCart("p1", 10, "store", "raul");
-            Assert.AreEqual(150, service.basketCheckout("telaviv", "raul"));
+            Assert.AreEqual(0, service.basketCheckout("telaviv", "raul"));
             toInsert[0] = new KeyValuePair<string, int>("p1", 10);
             Assert.AreEqual(true, compare_List(toInsert, service.payForBasket(1, new DateTime(1990, 1, 1), "raul")));
             service.shutDown();

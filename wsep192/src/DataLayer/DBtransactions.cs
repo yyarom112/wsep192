@@ -163,6 +163,8 @@ namespace src.DataLayer
 
         public bool registerNewUserDB(User user)
         {
+            if (db.IsTest)
+                return true;
             if (!Db.IsTest)
             {
                 var session = Db.Client.StartSession();
@@ -204,6 +206,8 @@ namespace src.DataLayer
 
         public bool assignManagerDB(Manager manager)
         {
+            if (db.IsTest)
+                return true;
             if (!Db.IsTest)
             {
                 var session = Db.Client.StartSession();
@@ -233,6 +237,8 @@ namespace src.DataLayer
 
         public bool removeManagerDB(int manager_id)
         {
+            if (db.IsTest)
+                return true;
             if (!Db.IsTest)
             {
                 var session = Db.Client.StartSession();
@@ -261,6 +267,8 @@ namespace src.DataLayer
 
         public bool removeUserDB(int user_id)
         {
+            if (db.IsTest)
+                return true;
             if (!Db.IsTest)
             {
                 var session = Db.Client.StartSession();
@@ -345,6 +353,7 @@ namespace src.DataLayer
 
         public bool EditProductQuantityInCart(int productId, int storeId, int userId, int quntity)
         {
+
             if (db.IsTest)
                 return true;
             var session = Db.Client.StartSession();
@@ -434,6 +443,8 @@ namespace src.DataLayer
 
         public bool createProductInstore(ProductInStore product)
         {
+            if (db.IsTest)
+                return true;
             var session = Db.Client.StartSession();
             session.StartTransaction();
             try
@@ -456,6 +467,8 @@ namespace src.DataLayer
 
         public bool removeProductInStore(int productId, int storeId)
         {
+            if (db.IsTest)
+                return true;
             var session = Db.Client.StartSession();
             session.StartTransaction();
             try
@@ -478,6 +491,8 @@ namespace src.DataLayer
 
         public bool editProductInStore(int productId, int storeId, int quntity)
         {
+            if (db.IsTest)
+                return true;
             var session = Db.Client.StartSession();
             session.StartTransaction();
             try

@@ -25,7 +25,7 @@ namespace Acceptance_Tests
 
         public void setUp()
         {
-            service = ServiceLayer.getInstance();
+            service = ServiceLayer.getInstance(false);
             idOwner = service.initUser();
             ownerUser = "Seifan";
             passwordUser = "2345";

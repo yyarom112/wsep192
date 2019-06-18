@@ -55649,3 +55649,2004 @@
 18/06/2019 10:36:07: DBtransaction-AddProductInStore- Add new product in store
 6/18/2019 12:17:38 PM: Add to cart success. /n
 6/18/2019 12:17:38 PM: Add to cart success. /n
+18/06/2019 12:32:06: Add to cart success. /n
+18/06/2019 12:32:06: Add to cart success. /n
+18/06/2019 12:36:46: Register - userName or password null
+
+18/06/2019 12:36:46: Register - userName or password null
+
+18/06/2019 12:36:46: Register - userName or password null
+
+18/06/2019 12:36:46: Register - userName or password null
+
+18/06/2019 12:36:46: Register - userName or password null
+
+18/06/2019 12:36:47: TradingSystem-open storeZara success
+
+18/06/2019 12:36:47: Register - userName or password null
+
+18/06/2019 12:36:47: Register - userName or password null
+
+18/06/2019 12:36:47: TradingSystem-open storeadidas success
+
+18/06/2019 12:36:47: Add to cart success. /n
+18/06/2019 12:36:47: Add to cart success. /n
+18/06/2019 12:36:47: Store - assign manger succeed
+18/06/2019 12:36:48: Register - userName or password null
+
+18/06/2019 12:36:48: Register - userName or password null
+
+18/06/2019 12:36:48: Register - userName or password null
+
+18/06/2019 12:36:48: Register - userName or password null
+
+18/06/2019 12:36:48: Register - userName or password null
+
+18/06/2019 12:36:48: TradingSystem-open storeZara success
+
+18/06/2019 12:36:48: Register - userName or password null
+
+18/06/2019 12:36:48: TradingSystem-open storeadidas success
+
+18/06/2019 12:36:49: Register - userName or password null
+
+18/06/2019 12:36:49: Register - userName or password null
+
+18/06/2019 12:36:49: Register - userName or password null
+
+18/06/2019 12:36:49: Register - userName or password null
+
+18/06/2019 12:36:49: Register - userName or password null
+
+18/06/2019 12:36:49: TradingSystem-open storeZara success
+
+18/06/2019 12:36:49: Register - userName or password null
+
+18/06/2019 12:36:49: TradingSystem-open storeadidas success
+
+18/06/2019 12:36:50: Register - userName or password null
+
+18/06/2019 12:36:50: Register - userName or password null
+
+18/06/2019 12:36:50: Register - userName or password null
+
+18/06/2019 12:36:50: Register - userName or password null
+
+18/06/2019 12:36:50: Register - userName or password null
+
+18/06/2019 12:36:50: TradingSystem-open storeZara success
+
+18/06/2019 12:36:50: Register - userName or password null
+
+18/06/2019 12:36:50: Register - userName or password null
+
+18/06/2019 12:36:50: TradingSystem-open storestore success
+
+18/06/2019 12:36:50: Store - assign manger succeed
+18/06/2019 12:36:50: Manager:validatePermission failed - useruser
+
+18/06/2019 12:36:50: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:36:50: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:36:52: Register - userName or password null
+
+18/06/2019 12:36:52: Register - userName or password null
+
+18/06/2019 12:36:52: Register - userName or password null
+
+18/06/2019 12:36:52: Register - userName or password null
+
+18/06/2019 12:36:52: Register - userName or password null
+
+18/06/2019 12:36:52: TradingSystem-open storeZara success
+
+18/06/2019 12:36:52: Register - userName or password null
+
+18/06/2019 12:36:52: Register - userName or password null
+
+18/06/2019 12:36:52: TradingSystem-open storeadidas success
+
+18/06/2019 12:36:52: Register - userName or password null
+
+18/06/2019 12:36:52: TradingSystem-open storestore success
+
+18/06/2019 12:36:52: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:36:52: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:36:52: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:36:52: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:36:52: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:36:52: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:36:52: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:36:52: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:36:52: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:36:52: ShoppingBasket:showCart failed - Shopping basket does not contain the store
+
+18/06/2019 12:36:52: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:36:52: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:36:52: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:36:52: ShoppingBasket:showCart failed - Shopping basket does not contain the store
+
+18/06/2019 12:36:54: Register - userName or password null
+
+18/06/2019 12:36:54: Register - userName or password null
+
+18/06/2019 12:36:54: Register - userName or password null
+
+18/06/2019 12:36:54: Register - userName or password null
+
+18/06/2019 12:36:54: Register - userName or password null
+
+18/06/2019 12:36:54: TradingSystem-open storeZara success
+
+18/06/2019 12:36:54: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:36:55: Register - userName or password null
+
+18/06/2019 12:36:55: Register - userName or password null
+
+18/06/2019 12:36:55: Register - userName or password null
+
+18/06/2019 12:36:55: Register - userName or password null
+
+18/06/2019 12:36:55: Register - userName or password null
+
+18/06/2019 12:36:55: TradingSystem-open storeZara success
+
+18/06/2019 12:36:55: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:36:56: Register - userName or password null
+
+18/06/2019 12:36:56: Register - userName or password null
+
+18/06/2019 12:36:56: Register - userName or password null
+
+18/06/2019 12:36:56: Register - userName or password null
+
+18/06/2019 12:36:56: Register - userName or password null
+
+18/06/2019 12:36:56: TradingSystem-open storeZara success
+
+18/06/2019 12:36:56: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:36:58: Register - userName or password null
+
+18/06/2019 12:36:58: Register - userName or password null
+
+18/06/2019 12:36:58: Register - userName or password null
+
+18/06/2019 12:36:58: Register - userName or password null
+
+18/06/2019 12:36:58: Register - userName or password null
+
+18/06/2019 12:36:58: TradingSystem-open storeZara success
+
+18/06/2019 12:36:58: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:36:59: Register - userName or password null
+
+18/06/2019 12:36:59: Register - userName or password null
+
+18/06/2019 12:36:59: Register - userName or password null
+
+18/06/2019 12:36:59: Register - userName or password null
+
+18/06/2019 12:36:59: Register - userName or password null
+
+18/06/2019 12:36:59: TradingSystem-open storeZara success
+
+18/06/2019 12:36:59: Register - userName or password null
+
+18/06/2019 12:36:59: User:signOut success - raul
+
+18/06/2019 12:37:00: Register - userName or password null
+
+18/06/2019 12:37:00: Register - userName or password null
+
+18/06/2019 12:37:00: Register - userName or password null
+
+18/06/2019 12:37:00: Register - userName or password null
+
+18/06/2019 12:37:00: Register - userName or password null
+
+18/06/2019 12:37:00: TradingSystem-open storeZara success
+
+18/06/2019 12:37:00: Register - userName or password null
+
+18/06/2019 12:37:00: TradingSystem-open storefootlocker success
+
+18/06/2019 12:37:00: Register - userName or password null
+
+18/06/2019 12:37:00: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:00: TradingSystem - Remove user id3 success.
+
+18/06/2019 12:37:02: Register - userName or password null
+
+18/06/2019 12:37:02: Register - userName or password null
+
+18/06/2019 12:37:02: Register - userName or password null
+
+18/06/2019 12:37:02: Register - userName or password null
+
+18/06/2019 12:37:02: Register - userName or password null
+
+18/06/2019 12:37:02: TradingSystem-open storeZara success
+
+18/06/2019 12:37:03: Register - userName or password null
+
+18/06/2019 12:37:03: Register - userName or password null
+
+18/06/2019 12:37:03: Register - userName or password null
+
+18/06/2019 12:37:03: Register - userName or password null
+
+18/06/2019 12:37:03: Register - userName or password null
+
+18/06/2019 12:37:03: TradingSystem-open storeZara success
+
+18/06/2019 12:37:03: Register - userName or password null
+
+18/06/2019 12:37:03: TradingSystem-open storeBershka success
+
+18/06/2019 12:37:03: Register - userName or password null
+
+18/06/2019 12:37:03: TradingSystem-Assign owner 7 -success
+18/06/2019 12:37:04: Register - userName or password null
+
+18/06/2019 12:37:04: Register - userName or password null
+
+18/06/2019 12:37:04: Register - userName or password null
+
+18/06/2019 12:37:04: Register - userName or password null
+
+18/06/2019 12:37:04: Register - userName or password null
+
+18/06/2019 12:37:04: TradingSystem-open storeZara success
+
+18/06/2019 12:37:04: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:04: TradingSystem-open storeZARA success
+
+18/06/2019 12:37:04: Register - userName or password null
+
+18/06/2019 12:37:04: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:04: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:37:04: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:37:05: Register - userName or password null
+
+18/06/2019 12:37:05: Register - userName or password null
+
+18/06/2019 12:37:05: Register - userName or password null
+
+18/06/2019 12:37:05: Register - userName or password null
+
+18/06/2019 12:37:05: Register - userName or password null
+
+18/06/2019 12:37:05: TradingSystem-open storeZara success
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem-open storeZARA success
+
+18/06/2019 12:37:05: Register - userName or password null
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: Register - userName or password null
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem-open storestore success
+
+18/06/2019 12:37:05: TradingSystem-open storeadidas success
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:05: TradingSystem - signIn - user id not exist.
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Add to cart success. /n
+18/06/2019 12:37:06: Add to cart success. /n
+18/06/2019 12:37:06: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:37:06: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:37:06: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:37:06: Add to cart fail-Product 10 does not exist. 
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Store - assign manger succeed
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: User - assign manger fail - owner not signed in or manager not registered
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: User - assign manger fail - owner not signed in or manager not registered
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Register - userName or password null
+
+18/06/2019 12:37:06: Store - assign manger fail - new manager already exist in the store
+18/06/2019 12:37:06: Store - assign manger fail - owner not exist in the tree
+18/06/2019 12:37:06: Successfully closed the basket.
+
+18/06/2019 12:37:06: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:37:06: The attempt to purchase product 0 failed because it does not belong to the store.
+
+18/06/2019 12:37:06: The attempt to purchase product 1 failed because it does not belong to the store.
+
+18/06/2019 12:37:06: The attempt to purchase product 2 failed because it does not belong to the store.
+
+18/06/2019 12:37:06: The attempt to purchase product 3 failed because it does not belong to the store.
+
+18/06/2019 12:37:06: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:37:06: Making the cart purchase succeeded
+
+18/06/2019 12:37:06: The attempt to purchase product 0 failed because it does not belong to the store.
+
+18/06/2019 12:37:06: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:37:06: Making the cart purchase succeeded
+
+18/06/2019 12:37:06: ShoppingBasket:editProductQuantityInCart failed - Shopping cart does not exist
+
+18/06/2019 12:37:06: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:37:06: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:37:06: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:37:06: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:37:08: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+18/06/2019 12:37:08: Manager:validatePermission failed - usermanager
+
+18/06/2019 12:37:08: User-search Role By StoreID With Validate Permmision fail- Manager does not have permissions
+
+18/06/2019 12:37:08: Manager:validatePermission success - usermanager
+
+18/06/2019 12:37:08: Product Condition Policy add to store store successfully
+18/06/2019 12:37:08: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+18/06/2019 12:37:08: Manager:validatePermission success - usermanager
+
+18/06/2019 12:37:08: Product Condition Policy add to store store successfully
+18/06/2019 12:37:08: Product Condition Policy add to store store successfully
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:37:08: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:37:08: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:08: Store - removeDiscountPolicy - discount policy removed
+
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:08: Store - removeDiscountPolicy - discount policy removed
+
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:08: Store - removeDiscountPolicy - discount policy removed
+
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:08: Store - removeDiscountPolicy - discount policy removed
+
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:08: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:37:08: Store-Remove manager Fail- The user 1 is not manger in the store -1.
+
+18/06/2019 12:37:08: User-Remove manager fail- User is not logged in
+
+18/06/2019 12:37:08: TradingSystem - Remove manager id2 from store -1 success
+
+18/06/2019 12:37:08: TradingSystem - Remove manager fail - The store or user is not exist.
+
+18/06/2019 12:37:08: Store-Remove manager Fail- The user 1 is not manger in the store -1.
+
+18/06/2019 12:37:08: ShoppingBasket:removeProductsFromCart failed - Shopping cart does not exist
+
+18/06/2019 12:37:08: ShoppingCart:removeProductQuantityFromCart failed - shopping cart does not contain the product or invalid quantity
+
+18/06/2019 12:37:08: ShoppingCart:removeProductsFromCart success
+
+18/06/2019 12:37:08: ShoppingCart:removeProductsFromCart success
+
+18/06/2019 12:37:08: ShoppingCart:removeProductsFromCart success
+
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: Store - removePurchasePolicy - purchase policy removed
+
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: Store - removePurchasePolicy - purchase policy removed
+
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: Store - removePurchasePolicy - purchase policy removed
+
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: Store - removePurchasePolicy - purchase policy removed
+
+18/06/2019 12:37:08: ShoppingBasket:showCart failed - Shopping basket does not contain the store
+
+18/06/2019 12:37:08: ShoppingCart:showCart success
+
+18/06/2019 12:37:08: ShoppingCart:showCart success
+
+18/06/2019 12:37:08: Register - userName or password null
+
+18/06/2019 12:37:08: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:37:08: TradingSystem - signIn - user not register.
+
+18/06/2019 12:37:08: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:37:08: TradingSystem - signIn - user not register.
+
+18/06/2019 12:37:08: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:37:08: TradingSystem - signIn - user not register.
+
+18/06/2019 12:37:08: TradingSystem - signIn - user not register.
+
+18/06/2019 12:37:08: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:08: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:08: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:37:08: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:37:08: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:37:08: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:37:08: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:08: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:08: User-add products in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:37:08: TradingSystem-add product to store fail- the store does not exists
+
+18/06/2019 12:37:08: User-add products in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:37:08: TradingSystem-add product to store fail- the store does not exists
+
+18/06/2019 12:37:08: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:08: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:08: User-remove product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:37:08: TradingSystem-remove product from store fail- the store does not exists
+
+18/06/2019 12:37:08: User-remove product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:37:08: TradingSystem-remove product from store fail- the store does not exists
+
+18/06/2019 12:37:08: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:08: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:08: TradingSystem-edit product to store2 success
+18/06/2019 12:37:08: TradingSystem-edit product to store2 success
+18/06/2019 12:37:08: User-edit products in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:37:08: TradingSystem-edit product from store fail- the store does not exists
+
+18/06/2019 12:37:08: User-edit products in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:37:08: TradingSystem-edit product from store fail- the store does not exists
+
+18/06/2019 12:37:08: TradingSystem-Assign owner 301600802 -success
+18/06/2019 12:37:08: TradingSystem-Assign owner fail- the owner does not exists
+
+18/06/2019 12:37:08: TradingSystem-open storeUO success
+
+18/06/2019 12:37:08: TradingSystem - open store fail- the user does not exists or not registerd
+
+18/06/2019 12:37:08: TradingSystem - open store fail - the store id does not exists
+
+18/06/2019 12:37:08: TradingSystem-open storeTopShop success
+
+18/06/2019 12:37:08: TradingSystem - open store fail - the store id does not exists
+
+18/06/2019 12:37:08: TradingSystem - Remove user id203444912 success.
+
+18/06/2019 12:37:08: TradingSystem - Remove user fail - the removing user is not an admin.
+
+18/06/2019 12:37:08: User:signOut success - user
+
+18/06/2019 12:37:08: User:signOut failed - user user didn't sign in
+
+18/06/2019 12:37:08: User:signOut success - user
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Add to cart success. /n
+18/06/2019 12:37:09: Add to cart success. /n
+18/06/2019 12:37:09: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:37:09: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:37:09: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:37:09: Add to cart fail-Product 10 does not exist. 
+
+18/06/2019 12:37:09: Product Condition Policy add to store store successfully
+18/06/2019 12:37:09: inventory Condition Policy add to store store successfully
+18/06/2019 12:37:09: Buy Condition Policy add to store store successfully
+18/06/2019 12:37:09: User Condition Policy add to store store successfully
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Store - assign manger succeed
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Manager:validatePermission success - userbaba
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Store - assign manger fail - new manager already exist in the store
+18/06/2019 12:37:09: Store - assign manger fail - owner not exist in the tree
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Store - assign manger succeed
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Store - assign manger succeed
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: User - assign manger fail - owner not signed in or manager not registered
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: Register - userName or password null
+
+18/06/2019 12:37:09: User - assign manger fail - owner not signed in or manager not registered
+18/06/2019 12:37:42: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+18/06/2019 12:37:42: User-search Role By StoreID With Validate Permmision fail- The user 1 does not have a role in the -1 store
+
+18/06/2019 12:37:42: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+18/06/2019 12:37:42: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+18/06/2019 12:37:42: Trading System- addComplexPurchasePolicy- User does not exist
+
+18/06/2019 12:37:42: Store-Remove manager Fail- The user 1 is not manger in the store -1.
+
+18/06/2019 12:37:42: User-Remove manager fail- User is not logged in
+
+18/06/2019 12:37:42: TradingSystem - Remove manager id0 from store -1 success
+
+18/06/2019 12:37:42: TradingSystem - Remove manager fail - The store or user is not exist.
+
+18/06/2019 12:37:42: ShoppingCart:removeProductQuantityFromCart failed - shopping cart does not contain the product or invalid quantity
+
+18/06/2019 12:37:42: ShoppingBasket:removeProductsFromCart failed - Shopping cart does not exist
+
+18/06/2019 12:37:42: ShoppingCart:removeProductsFromCart success
+
+18/06/2019 12:37:42: Register - userName or password null
+
+18/06/2019 12:37:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:42: Store - removeDiscountPolicy - discount policy removed
+
+18/06/2019 12:37:42: Register - userName or password null
+
+18/06/2019 12:37:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:42: Register - userName or password null
+
+18/06/2019 12:37:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:42: Register - userName or password null
+
+18/06/2019 12:37:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:42: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:37:42: Register - userName or password null
+
+18/06/2019 12:37:42: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:37:42: Register - userName or password null
+
+18/06/2019 12:37:42: Store - removePurchasePolicy - purchase policy removed
+
+18/06/2019 12:37:42: Register - userName or password null
+
+18/06/2019 12:37:42: Register - userName or password null
+
+18/06/2019 12:37:42: Register - userName or password null
+
+18/06/2019 12:37:42: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:37:42: Register - userName or password null
+
+18/06/2019 12:37:42: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:37:42: Real Madrid
+18/06/2019 12:37:42: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:42: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:42: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:42: Manager:validatePermission success - userNoy
+
+18/06/2019 12:37:42: TradingSystem - Remove user id203444912 success.
+
+18/06/2019 12:37:42: TradingSystem - Remove user fail - the removing user is not an admin.
+
+18/06/2019 12:37:44: TradingSystem - signIn - user not register.
+
+18/06/2019 12:37:44: TradingSystem - signIn - user not register.
+
+18/06/2019 12:37:44: TradingSystem - signIn - user not register.
+
+18/06/2019 12:37:44: TradingSystem - signIn - user not register.
+
+18/06/2019 12:37:44: Manager:validatePermission failed - useruser
+
+18/06/2019 12:37:44: Manager:validatePermission success - useruser
+
+18/06/2019 12:37:44: Manager:validatePermission success - useruser
+
+18/06/2019 12:37:44: Manager:validatePermission success - useruser
+
+18/06/2019 12:37:44: Manager:validatePermission failed - useruser
+
+18/06/2019 12:37:44: Register - userName or password null
+
+18/06/2019 12:37:44: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:37:44: TradingSystem - Register - user not exist as guest.
+
+18/06/2019 12:37:44: TradingSystem - Register - user not exist as guest.
+
+18/06/2019 12:37:44: ShoppingBasket:editProductQuantityInCart failed - Shopping cart does not exist
+
+18/06/2019 12:37:44: ShoppingCart:editProductQuantityInCart failed - shopping cart does not contain the product
+
+18/06/2019 12:37:44: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:37:44: ShoppingBasket:showCart failed - Shopping basket does not contain the store
+
+18/06/2019 12:37:44: ShoppingCart:showCart success
+
+18/06/2019 12:37:44: ShoppingCart:showCart success
+
+18/06/2019 12:37:44: Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.
+
+18/06/2019 12:37:44: Successfully closed the basket.
+
+18/06/2019 12:37:44: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:37:44: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:37:44: Making the cart purchase succeeded
+
+18/06/2019 12:37:44: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:37:44: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:37:44: payForBasket - Purchase failed due to product billing failure.
+
+18/06/2019 12:37:44: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:37:44: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:37:44: payForBasket - The purchase failed due to a failure in the delivery system.
+
+18/06/2019 12:37:44: Store-Remove owner Fail- The user 4
+18/06/2019 12:37:44: Store-Remove owner Succeeded- The user 2
+18/06/2019 12:37:44: User:signOut success - user
+
+18/06/2019 12:37:44: User:signOut failed - user user didn't sign in
+
+18/06/2019 12:37:44: User:signOut success - user
+
+18/06/2019 12:46:48: Register - userName or password null
+
+18/06/2019 12:46:51: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:51: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:51: TradingSystem-add product to store0 -success
+18/06/2019 12:46:51: Successfully closed the basket.
+
+18/06/2019 12:46:51: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:46:51: TradingSystem-add product to store0 -success
+18/06/2019 12:46:51: Register - userName or password null
+
+18/06/2019 12:46:51: TradingSystem-open storestore success
+
+18/06/2019 12:46:51: TradingSystem-create new product in store1 -success
+
+18/06/2019 12:46:51: TradingSystem-add product to store1 -success
+18/06/2019 12:46:52: Add to cart success. /n
+18/06/2019 12:46:52: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:46:52: ShoppingCart:removeProductsFromCart success
+
+18/06/2019 12:46:52: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:46:52: Register - userName or password null
+
+18/06/2019 12:46:52: Register - userName or password null
+
+18/06/2019 12:46:52: TradingSystem-open storefootlocker success
+
+18/06/2019 12:46:52: TradingSystem-Assign owner 1 -success
+18/06/2019 12:46:52: Store-Remove owner Succeeded- The user 1
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storestore success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Add to cart success. /n
+18/06/2019 12:46:54: ShoppingCart:showCart success
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storefootlocker success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeZARA success
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: TradingSystem-remove product from store0 -success
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:46:54: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeZARA success
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storefootlocker success
+
+18/06/2019 12:46:54: TradingSystem-Assign owner 2 -success
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: User:signOut success - raul
+
+18/06/2019 12:46:54: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeZARA success
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: User-edit products in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:46:54: TradingSystem-edit product from store fail- the store does not exists
+
+18/06/2019 12:46:54: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storestore success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: Store - assign manger succeed
+18/06/2019 12:46:54: Manager:validatePermission success - useruser
+
+18/06/2019 12:46:54: Manager:validatePermission success - useruser
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:46:54: Store - removeDiscountPolicy - discount policy removed
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storestore success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Add to cart success. /n
+18/06/2019 12:46:54: ShoppingCart:removeProductsFromCart success
+
+18/06/2019 12:46:54: ShoppingCart:showCart success
+
+18/06/2019 12:46:54: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Store - removePurchasePolicy - purchase policy removed
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Successfully closed the basket.
+
+18/06/2019 12:46:54: Making the cart purchase succeeded
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeZARA success
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeZARA success
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: TradingSystem-edit product to store0 success
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeZARA success
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: TradingSystem-remove product from store fail- the store does not exists
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeZARA success
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:46:54: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:54: Store - assign manger succeed
+18/06/2019 12:46:54: Store - assign manger fail - new manager already exist in the store
+18/06/2019 12:46:54: Store - assign manger fail - owner not exist in the tree
+18/06/2019 12:46:54: Register - userName or password null
+
+18/06/2019 12:46:54: TradingSystem-open storestore success
+
+18/06/2019 12:46:54: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:54: TradingSystem-add product to store0 -success
+18/06/2019 12:46:54: Add to cart success. /n
+18/06/2019 12:46:54: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:46:54: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: TradingSystem-add product to store0 -success
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeZARA success
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: TradingSystem-add product to store0 -success
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: TradingSystem-add product to store0 -success
+18/06/2019 12:46:55: Add to cart success. /n
+18/06/2019 12:46:55: Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.
+
+18/06/2019 12:46:55: basketCheckout - Could not close basket.
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: TradingSystem-add product to store0 -success
+18/06/2019 12:46:55: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: TradingSystem-add product to store0 -success
+18/06/2019 12:46:55: Successfully closed the basket.
+
+18/06/2019 12:46:55: Making the cart purchase succeeded
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: TradingSystem-add product to store0 -success
+18/06/2019 12:46:55: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: TradingSystem-add product to store0 -success
+18/06/2019 12:46:55: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeZARA success
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeBershka success
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storestore success
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: TradingSystem-add product to store0 -success
+18/06/2019 12:46:55: Add to cart success. /n
+18/06/2019 12:46:55: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:46:55: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:46:55: ShoppingCart:removeProductsFromCart success
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeBershka success
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-Assign owner 1 -success
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:55: Store - assign manger succeed
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storefootlocker success
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: TradingSystem - search Product blabla,adidas,shoe10,150,0,0 bad input
+18/06/2019 12:46:55: Add to cart success. /n
+18/06/2019 12:46:55: Add to cart success. /n
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeadidas success
+
+18/06/2019 12:46:55: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:46:55: TradingSystem-add product to store0 -success
+18/06/2019 12:46:55: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:46:55: Add to cart success. /n
+18/06/2019 12:46:55: Successfully closed the basket.
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storestore success
+
+18/06/2019 12:46:55: Store - assign manger succeed
+18/06/2019 12:46:55: Manager:validatePermission failed - useruser
+
+18/06/2019 12:46:55: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:46:55: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storefootlocker success
+
+18/06/2019 12:46:55: TradingSystem-Assign owner 1 -success
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:46:55: TradingSystem-open storeBershka success
+
+18/06/2019 12:46:55: Register - userName or password null
+
+18/06/2019 12:47:53: Manager:validatePermission success - userNoy
+
+18/06/2019 12:47:53: Manager:validatePermission success - userNoy
+
+18/06/2019 12:47:56: TradingSystem-remove product from store2 -success
+18/06/2019 12:47:56: TradingSystem-add product to store2 -success
+18/06/2019 12:47:56: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:47:56: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:47:56: Store - removeDiscountPolicy - discount policy removed
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Store - removePurchasePolicy - purchase policy removed
+
+18/06/2019 12:47:56: Store-Remove manager Fail- The user 1 is not manger in the store -1.
+
+18/06/2019 12:47:56: The attempt to purchase product 0 failed because it does not belong to the store.
+
+18/06/2019 12:47:56: The attempt to purchase product 1 failed because it does not belong to the store.
+
+18/06/2019 12:47:56: The attempt to purchase product 2 failed because it does not belong to the store.
+
+18/06/2019 12:47:56: The attempt to purchase product 3 failed because it does not belong to the store.
+
+18/06/2019 12:47:56: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:47:56: Making the cart purchase succeeded
+
+18/06/2019 12:47:56: User:signOut success - user
+
+18/06/2019 12:47:56: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:47:56: User-remove product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:47:56: TradingSystem-remove product from store fail- the store does not exists
+
+18/06/2019 12:47:56: User-add products in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:47:56: TradingSystem-add product to store fail- the store does not exists
+
+18/06/2019 12:47:56: TradingSystem - Remove user id203444912 success.
+
+18/06/2019 12:47:56: TradingSystem - Remove manager id2 from store -1 success
+
+18/06/2019 12:47:56: TradingSystem-remove product from store2 -success
+18/06/2019 12:47:56: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Store-Remove manager Fail- The user 1 is not manger in the store -1.
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: User - assign manger fail - owner not signed in or manager not registered
+18/06/2019 12:47:56: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:47:56: User:signOut failed - user user didn't sign in
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: User - assign manger fail - owner not signed in or manager not registered
+18/06/2019 12:47:56: ShoppingBasket:showCart failed - Shopping basket does not contain the store
+
+18/06/2019 12:47:56: Product Condition Policy add to store store successfully
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:47:56: Store - removeDiscountPolicy - discount policy removed
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:47:56: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:47:56: User:signOut success - user
+
+18/06/2019 12:47:56: TradingSystem - open store fail- the user does not exists or not registerd
+
+18/06/2019 12:47:56: TradingSystem - open store fail - the store id does not exists
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:47:56: Store - removeDiscountPolicy - discount policy removed
+
+18/06/2019 12:47:56: TradingSystem - signIn - user not register.
+
+18/06/2019 12:47:56: Manager:validatePermission success - userNoy
+
+18/06/2019 12:47:56: Manager:validatePermission success - userNoy
+
+18/06/2019 12:47:56: TradingSystem-edit product to store2 success
+18/06/2019 12:47:56: Product Condition Policy add to store store successfully
+18/06/2019 12:47:56: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+18/06/2019 12:47:56: Manager:validatePermission success - usermanager
+
+18/06/2019 12:47:56: Product Condition Policy add to store store successfully
+18/06/2019 12:47:56: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+18/06/2019 12:47:56: Manager:validatePermission failed - usermanager
+
+18/06/2019 12:47:56: User-search Role By StoreID With Validate Permmision fail- Manager does not have permissions
+
+18/06/2019 12:47:56: Manager:validatePermission success - usermanager
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: ShoppingCart:showCart success
+
+18/06/2019 12:47:56: ShoppingCart:showCart success
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Store - removePurchasePolicy - purchase policy removed
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Store - removePurchasePolicy - purchase policy removed
+
+18/06/2019 12:47:56: TradingSystem-Assign owner 301600802 -success
+18/06/2019 12:47:56: Add to cart success. /n
+18/06/2019 12:47:56: Add to cart success. /n
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:47:56: Store - removeDiscountPolicy - discount policy removed
+
+18/06/2019 12:47:56: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: User-add products in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:47:56: TradingSystem-add product to store fail- the store does not exists
+
+18/06/2019 12:47:56: ShoppingBasket:editProductQuantityInCart failed - Shopping cart does not exist
+
+18/06/2019 12:47:56: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:47:56: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:47:56: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:47:56: TradingSystem - signIn - user not register.
+
+18/06/2019 12:47:56: TradingSystem-create new product in store2 -success
+
+18/06/2019 12:47:56: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:47:56: TradingSystem - signIn - user not register.
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Store - removePurchasePolicy - purchase policy removed
+
+18/06/2019 12:47:56: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:47:56: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:47:56: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:47:56: Add to cart fail-Product 10 does not exist. 
+
+18/06/2019 12:47:56: TradingSystem-open storeTopShop success
+
+18/06/2019 12:47:56: TradingSystem - open store fail - the store id does not exists
+
+18/06/2019 12:47:56: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:47:56: Successfully closed the basket.
+
+18/06/2019 12:47:56: TradingSystem-edit product to store2 success
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: ShoppingCart:removeProductsFromCart success
+
+18/06/2019 12:47:56: User-edit products in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:47:56: TradingSystem-edit product from store fail- the store does not exists
+
+18/06/2019 12:47:56: TradingSystem - Remove user fail - the removing user is not an admin.
+
+18/06/2019 12:47:56: TradingSystem-Assign owner fail- the owner does not exists
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Store - assign manger fail - new manager already exist in the store
+18/06/2019 12:47:56: Store - assign manger fail - owner not exist in the tree
+18/06/2019 12:47:56: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:47:56: Register - userName or password null
+
+18/06/2019 12:47:56: Manager:validatePermission success - userNoy
+
+18/06/2019 12:47:56: Manager:validatePermission success - userNoy
+
+18/06/2019 12:47:56: TradingSystem-add product to store2 -success
+18/06/2019 12:47:57: Register - userName or password null
+
+18/06/2019 12:47:57: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:47:57: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:47:57: ShoppingBasket:removeProductsFromCart failed - Shopping cart does not exist
+
+18/06/2019 12:47:57: ShoppingCart:removeProductQuantityFromCart failed - shopping cart does not contain the product or invalid quantity
+
+18/06/2019 12:47:59: User-Remove manager fail- User is not logged in
+
+18/06/2019 12:47:59: ShoppingCart:removeProductsFromCart success
+
+18/06/2019 12:47:59: User-remove product in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:47:59: TradingSystem-remove product from store fail- the store does not exists
+
+18/06/2019 12:47:59: The attempt to purchase product 0 failed because it does not belong to the store.
+
+18/06/2019 12:47:59: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:47:59: Making the cart purchase succeeded
+
+18/06/2019 12:47:59: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:47:59: TradingSystem - signIn - user not register.
+
+18/06/2019 12:47:59: TradingSystem - Remove manager fail - The store or user is not exist.
+
+18/06/2019 12:47:59: User-edit products in store fail- the role does not exists or doesn't have permissions
+
+18/06/2019 12:47:59: TradingSystem-edit product from store fail- the store does not exists
+
+18/06/2019 12:47:59: Register - userName or password null
+
+18/06/2019 12:47:59: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:47:59: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:47:59: ShoppingCart:removeProductsFromCart success
+
+18/06/2019 12:47:59: Manager:validatePermission success - userNoy
+
+18/06/2019 12:47:59: Manager:validatePermission success - userNoy
+
+18/06/2019 12:47:59: TradingSystem-create new product in store2 -success
+
+18/06/2019 12:47:59: TradingSystem-open storeUO success
+
+18/06/2019 12:47:59: Register - userName or password null
+
+18/06/2019 12:47:59: Register - userName or password null
+
+18/06/2019 12:47:59: Store - assign manger succeed
+18/06/2019 12:48:10: User:signOut failed - user user didn't sign in
+
+18/06/2019 12:48:10: Product Condition Policy add to store store successfully
+18/06/2019 12:48:10: inventory Condition Policy add to store store successfully
+18/06/2019 12:48:10: Buy Condition Policy add to store store successfully
+18/06/2019 12:48:10: User Condition Policy add to store store successfully
+18/06/2019 12:48:13: Register - userName or password null
+
+18/06/2019 12:48:13: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:48:15: ShoppingCart:editProductQuantityInCart failed - shopping cart does not contain the product
+
+18/06/2019 12:48:15: ShoppingBasket:editProductQuantityInCart failed - Shopping cart does not exist
+
+18/06/2019 12:48:16: Register - userName or password null
+
+18/06/2019 12:48:16: ShoppingCart:removeProductsFromCart success
+
+18/06/2019 12:48:16: Manager:validatePermission success - userNoy
+
+18/06/2019 12:48:16: Register - userName or password null
+
+18/06/2019 12:48:16: Register - userName or password null
+
+18/06/2019 12:48:17: Register - userName or password null
+
+18/06/2019 12:48:17: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:48:17: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:48:19: Store-Remove owner Fail- The user 4
+18/06/2019 12:48:19: Store-Remove owner Succeeded- The user 2
+18/06/2019 12:48:19: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:48:19: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:48:19: Add to cart fail- one of the parameter Invalid. /n
+18/06/2019 12:48:19: Add to cart fail-Product 10 does not exist. 
+
+18/06/2019 12:48:19: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+18/06/2019 12:48:19: Add to cart success. /n
+18/06/2019 12:48:19: Add to cart success. /n
+18/06/2019 12:48:19: TradingSystem - Remove user fail - the removing user is not an admin.
+
+18/06/2019 12:48:19: Register - userName or password null
+
+18/06/2019 12:48:19: Register - userName or password null
+
+18/06/2019 12:48:19: TradingSystem - signIn - user not register.
+
+18/06/2019 12:48:19: Register - userName or password null
+
+18/06/2019 12:48:19: Register - userName or password null
+
+18/06/2019 12:48:19: Manager:validatePermission success - userbaba
+
+18/06/2019 12:48:19: Register - userName or password null
+
+18/06/2019 12:48:19: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:48:19: Store - removeDiscountPolicy - discount policy removed
+
+18/06/2019 12:48:23: Register - userName or password null
+
+18/06/2019 12:48:23: Manager:validatePermission success - userNoy
+
+18/06/2019 12:48:23: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:48:23: ShoppingCart:showCart success
+
+18/06/2019 12:48:23: ShoppingCart:showCart success
+
+18/06/2019 12:48:24: Manager:validatePermission success - userNoy
+
+18/06/2019 12:48:28: ShoppingCart:removeProductQuantityFromCart failed - shopping cart does not contain the product or invalid quantity
+
+18/06/2019 12:48:28: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+18/06/2019 12:48:28: User-search Role By StoreID With Validate Permmision fail- The user 1 does not have a role in the -1 store
+
+18/06/2019 12:48:28: Register - userName or password null
+
+18/06/2019 12:48:28: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:48:28: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:48:28: payForBasket - The purchase failed due to a failure in the delivery system.
+
+18/06/2019 12:48:28: Making the cart purchase succeeded
+
+18/06/2019 12:48:28: Register - userName or password null
+
+18/06/2019 12:48:28: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:48:28: User:signOut success - user
+
+18/06/2019 12:48:28: Register - userName or password null
+
+18/06/2019 12:48:28: ShoppingBasket:removeProductsFromCart failed - Shopping cart does not exist
+
+18/06/2019 12:48:28: Store-Remove manager Fail- The user 1 is not manger in the store -1.
+
+18/06/2019 12:48:31: Register - userName or password null
+
+18/06/2019 12:48:31: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:48:31: Manager:validatePermission failed - useruser
+
+18/06/2019 12:48:31: Manager:validatePermission success - useruser
+
+18/06/2019 12:48:31: Manager:validatePermission success - useruser
+
+18/06/2019 12:48:31: Manager:validatePermission success - useruser
+
+18/06/2019 12:48:31: Manager:validatePermission failed - useruser
+
+18/06/2019 12:48:32: TradingSystem - signIn - user not register.
+
+18/06/2019 12:48:32: Register - userName or password null
+
+18/06/2019 12:48:32: ShoppingCart:editProductQuantityInCart success
+
+18/06/2019 12:48:32: Register - userName or password null
+
+18/06/2019 12:48:32: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:48:33: Register - userName or password null
+
+18/06/2019 12:48:33: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:48:33: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:48:33: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:48:33: payForBasket - Purchase failed due to product billing failure.
+
+18/06/2019 12:48:33: Register - userName or password null
+
+18/06/2019 12:48:33: Store - removePurchasePolicy - purchase policy removed
+
+18/06/2019 12:48:33: Successfully closed the basket.
+
+18/06/2019 12:48:33: Register - userName or password null
+
+18/06/2019 12:48:33: Real Madrid
+18/06/2019 12:48:33: TradingSystem - Register - user not exist as guest.
+
+18/06/2019 12:48:34: User-search Role By StoreID With Validate Permmision fail- The user 0 does not have a role in the 1 store
+
+18/06/2019 12:48:34: Register - userName or password null
+
+18/06/2019 12:48:34: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:48:34: TradingSystem - Register - user not exist as guest.
+
+18/06/2019 12:48:34: User:signOut success - user
+
+18/06/2019 12:48:34: Register - userName or password null
+
+18/06/2019 12:48:34: Register - userName or password null
+
+18/06/2019 12:48:34: TradingSystem - Remove user id203444912 success.
+
+18/06/2019 12:48:34: TradingSystem - Register - userName or password in wrong format
+18/06/2019 12:48:34: Trading System- addComplexPurchasePolicy- User does not exist
+
+18/06/2019 12:48:34: Register - userName or password null
+
+18/06/2019 12:48:34: Register - userName or password null
+
+18/06/2019 12:48:34: Register - userName or password null
+
+18/06/2019 12:48:34: Register - userName or password null
+
+18/06/2019 12:48:34: ShoppingBasket:showCart failed - Shopping basket does not contain the store
+
+18/06/2019 12:48:34: Register - userName or password null
+
+18/06/2019 12:48:34: Register - userName or password null
+
+18/06/2019 12:48:34: User - assign manger fail - owner not signed in or manager not registered
+18/06/2019 12:48:34: Register - userName or password null
+
+18/06/2019 12:48:34: Register - userName or password null
+
+18/06/2019 12:48:34: Store - assign manger fail - new manager already exist in the store
+18/06/2019 12:48:34: Store - assign manger fail - owner not exist in the tree
+18/06/2019 12:48:35: Register - userName or password null
+
+18/06/2019 12:48:35: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:48:35: Register - userName or password null
+
+18/06/2019 12:48:35: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:48:35: TradingSystem - signIn - user not register.
+
+18/06/2019 12:48:40: Register - userName or password null
+
+18/06/2019 12:48:40: Register - userName or password null
+
+18/06/2019 12:48:40: Store - assign manger succeed
+18/06/2019 12:48:40: Register - userName or password null
+
+18/06/2019 12:48:40: TradingSystem - signIn - user not register.
+
+18/06/2019 12:48:40: Register - userName or password null
+
+18/06/2019 12:48:40: TradingSystem - Remove manager fail - The store or user is not exist.
+
+18/06/2019 12:48:41: Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.
+
+18/06/2019 12:48:41: Products have declined / returned to store stock successfully.
+
+18/06/2019 12:48:41: User-Remove manager fail- User is not logged in
+
+18/06/2019 12:48:42: TradingSystem - Remove manager id0 from store -1 success
+
+18/06/2019 12:48:42: Register - userName or password null
+
+18/06/2019 12:48:42: Register - userName or password null
+
+18/06/2019 12:48:42: User - assign manger fail - owner not signed in or manager not registered
+18/06/2019 12:48:42: Register - userName or password null
+
+18/06/2019 12:48:42: Register - userName or password null
+
+18/06/2019 12:48:42: Register - userName or password null
+
+18/06/2019 12:48:42: User-search Role By StoreID With Validate Permmision fail- User is not logged in
+
+18/06/2019 12:48:42: Manager:validatePermission success - userNoy
+
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Store - assign manger succeed
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Manager:validatePermission success - userbaba
+
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: User - assign manger fail - owner not signed in or manager not registered
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Store - assign manger fail - new manager already exist in the store
+18/06/2019 12:50:38: Store - assign manger fail - owner not exist in the tree
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Store - assign manger succeed
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: User - assign manger fail - owner not signed in or manager not registered
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Register - userName or password null
+
+18/06/2019 12:50:38: Store - assign manger succeed
+18/06/2019 12:53:26: Register - userName or password null
+
+18/06/2019 12:53:26: TradingSystem-open storeadidas success
+
+18/06/2019 12:53:48: Register - userName or password null
+
+18/06/2019 12:53:48: TradingSystem-open storeadidas success
+
+18/06/2019 12:53:56: Register - userName or password null
+
+18/06/2019 12:53:59: TradingSystem-open storeadidas success
+
+18/06/2019 12:53:59: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:53:59: TradingSystem-add product to store0 -success
+18/06/2019 12:53:59: Successfully closed the basket.
+
+18/06/2019 12:53:59: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:53:59: TradingSystem-add product to store0 -success
+18/06/2019 12:53:59: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:53:59: TradingSystem-add product to store0 -success
+18/06/2019 12:53:59: Successfully closed the basket.
+
+18/06/2019 12:53:59: Making the cart purchase succeeded
+
+18/06/2019 12:53:59: Register - userName or password null
+
+18/06/2019 12:53:59: TradingSystem-open storeadidas success
+
+18/06/2019 12:53:59: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:53:59: TradingSystem-add product to store0 -success
+18/06/2019 12:53:59: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:53:59: TradingSystem-add product to store0 -success
+18/06/2019 12:53:59: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 12:53:59: TradingSystem-add product to store0 -success
+18/06/2019 12:53:59: Add to cart success. /n
+18/06/2019 12:53:59: Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.
+
+18/06/2019 12:53:59: basketCheckout - Could not close basket.
+
+18/06/2019 12:53:59: Register - userName or password null
+
+18/06/2019 12:53:59: TradingSystem-open storeadidas success
+
+18/06/2019 12:53:59: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:53:59: TradingSystem-add product to store0 -success
+18/06/2019 12:53:59: Successfully closed the basket.
+
+18/06/2019 12:53:59: Making the cart purchase succeeded
+
+18/06/2019 12:53:59: Register - userName or password null
+
+18/06/2019 12:53:59: TradingSystem-open storeadidas success
+
+18/06/2019 12:53:59: TradingSystem-create new product in store0 -success
+
+18/06/2019 12:53:59: TradingSystem-add product to store0 -success
+18/06/2019 12:53:59: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 12:53:59: Add to cart success. /n
+18/06/2019 12:53:59: Successfully closed the basket.
+
+18/06/2019 12:57:03: Register - userName or password null
+
+18/06/2019 12:57:21: Register - userName or password null
+
+18/06/2019 12:58:06: Register - userName or password null
+
+18/06/2019 12:58:06: Register - userName or password null
+
+18/06/2019 12:58:06: Register - userName or password null
+
+18/06/2019 12:58:06: Register - userName or password null
+
+18/06/2019 12:58:45: Register - userName or password null
+
+18/06/2019 12:58:45: TradingSystem-open storeadidas success
+
+18/06/2019 13:00:14: Register - userName or password null
+
+18/06/2019 13:00:14: TradingSystem-open storeadidas success
+
+18/06/2019 13:00:14: TradingSystem-create new product in store0 -success
+
+18/06/2019 13:00:14: TradingSystem-add product to store0 -success
+18/06/2019 13:00:14: Successfully closed the basket.
+
+18/06/2019 13:00:14: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 13:00:14: TradingSystem-add product to store0 -success
+18/06/2019 13:00:14: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 13:00:14: TradingSystem-add product to store0 -success
+18/06/2019 13:00:14: Successfully closed the basket.
+
+18/06/2019 13:00:14: Making the cart purchase succeeded
+
+18/06/2019 13:00:14: Register - userName or password null
+
+18/06/2019 13:00:14: TradingSystem-open storeadidas success
+
+18/06/2019 13:00:14: TradingSystem-create new product in store0 -success
+
+18/06/2019 13:00:14: TradingSystem-add product to store0 -success
+18/06/2019 13:00:14: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 13:00:14: TradingSystem-add product to store0 -success
+18/06/2019 13:00:14: TradingSystem-create new product in store fail- the store does not exists
+
+18/06/2019 13:00:14: TradingSystem-add product to store0 -success
+18/06/2019 13:00:14: Add to cart success. /n
+18/06/2019 13:00:14: Failed to close cart due to a purchase attempt that contradicts the store's purchase policy.
+
+18/06/2019 13:00:14: basketCheckout - Could not close basket.
+
+18/06/2019 13:00:14: Register - userName or password null
+
+18/06/2019 13:00:14: TradingSystem-open storeadidas success
+
+18/06/2019 13:00:14: TradingSystem-create new product in store0 -success
+
+18/06/2019 13:00:14: TradingSystem-add product to store0 -success
+18/06/2019 13:00:14: Successfully closed the basket.
+
+18/06/2019 13:00:14: Making the cart purchase succeeded
+
+18/06/2019 13:00:14: Register - userName or password null
+
+18/06/2019 13:00:14: TradingSystem-open storeadidas success
+
+18/06/2019 13:00:14: TradingSystem-create new product in store0 -success
+
+18/06/2019 13:00:14: TradingSystem-add product to store0 -success
+18/06/2019 13:00:14: Store - addRevealedDiscountPolicy - new discount policy added
+
+18/06/2019 13:00:14: Add to cart success. /n
+18/06/2019 13:00:14: Successfully closed the basket.
+
+18/06/2019 13:00:36: Register - userName or password null
+
+18/06/2019 13:00:36: TradingSystem-open storeadidas success
+
+18/06/2019 13:00:36: TradingSystem-create new product in store0 -success
+
+18/06/2019 13:00:36: TradingSystem-add product to store0 -success
+18/06/2019 13:00:36: Successfully closed the basket.
+
+18/06/2019 13:00:36: Making the cart purchase succeeded
+
+18/06/2019 13:01:15: Register - userName or password null
+
+18/06/2019 13:01:15: TradingSystem-open storeadidas success
+
+18/06/2019 13:01:15: TradingSystem-create new product in store0 -success
+
+18/06/2019 13:01:15: TradingSystem-add product to store0 -success
+18/06/2019 13:01:28: Register - userName or password null
+
+18/06/2019 13:01:28: TradingSystem-open storeadidas success
+
+18/06/2019 13:01:28: TradingSystem-create new product in store0 -success
+
+18/06/2019 13:01:28: TradingSystem-add product to store0 -success

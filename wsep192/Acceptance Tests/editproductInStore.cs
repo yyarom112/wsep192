@@ -14,7 +14,7 @@ namespace Acceptance_Tests
         private List<KeyValuePair<String, int>> products;
         public void setUp()
         {
-            service = ServiceLayer.getInstance();
+            service = ServiceLayer.getInstance(false);
             DBtransactions db = DBtransactions.getInstance(true);
             db.isTest(true);
             string owner = service.initUser();

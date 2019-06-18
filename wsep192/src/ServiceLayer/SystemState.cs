@@ -16,7 +16,7 @@ namespace src.ServiceLayer
         {
             string user = "";
             bool flag = true;
-            ServiceLayer service = ServiceLayer.getInstance();
+            ServiceLayer service = ServiceLayer.getInstance(true);
             // Open the file to read from.
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\src\\State.json");
             StreamReader sr=null;

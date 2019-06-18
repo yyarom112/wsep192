@@ -15,7 +15,7 @@ namespace Acceptance_Tests
         List<KeyValuePair<string, int>> list;
 
         public void setUp() {
-            service = ServiceLayer.getInstance();
+            service = ServiceLayer.getInstance(false);
             owner = service.initUser();
             user = service.initUser();
             service.register("owner", "123", owner);

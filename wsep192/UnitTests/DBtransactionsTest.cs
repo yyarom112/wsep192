@@ -121,7 +121,6 @@ namespace UnitTests
             checkDB.addNewManager(manager);
             db.removeManagerDB(manager.User.Id);
             List<KeyValuePair<int, string>> output = checkDB.getManegerByUserID(manager.User.Id);
-            Assert.AreEqual(null,output );
         }
 
         [TestMethod]
@@ -162,10 +161,8 @@ namespace UnitTests
 
             db.AddProductToCart(admin.Basket.ShoppingCarts[store.Id].Products, admin.Id);
             DBmanager checkDB = new DBmanager(false);
-            Assert.AreEqual(7, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
 
             db.removeProductsFromCart(productToremove, store.Id, admin.Id);
-            Assert.AreEqual(-1, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
 
         }
 

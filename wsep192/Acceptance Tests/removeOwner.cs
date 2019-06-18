@@ -14,7 +14,7 @@ namespace Acceptance_Tests
         ServiceLayer service;
         public void setUp()
         {
-            service = ServiceLayer.getInstance();
+            service = ServiceLayer.getInstance(false);
             String tmpuser = service.initUser();
             service.register("aviv", "1234", tmpuser);
             tmpuser = service.initUser();
