@@ -16,7 +16,7 @@ namespace src.DataLayer
 
         private DBtransactions(bool isTest)
         {
-            this.Db = new DBmanager();
+            this.Db = new DBmanager(isTest);
             Db.IsTest = isTest;
         }
 
@@ -37,6 +37,8 @@ namespace src.DataLayer
 
         public bool initSystem(TradingSystem sys)
         {
+            if (db.IsTest)
+                return true;
             var session = Db.Client.StartSession();
             session.StartTransaction();
             try
@@ -65,41 +67,87 @@ namespace src.DataLayer
                 sys.StoreCounter = maxStoreID + 1;
                 sys.ProductCounter = maxProductID;
 
-                //restore user
+                //find user counter
                 int maxUserID = -1;
-                List<User> userList = db.getAllUser();
-                foreach (User user in userList)
+                List<User> userList= db.getAllUser();
+                foreach(User user in userList)
                 {
-                    //restore product in cart
-                    //int[]={0-UserId,1-StoreID,2-ProductID,3-quantity}
-                    List<int[]> productList = db.getALLProductInCartPerUsers(user.Id);
-                    foreach (int[] product in productList)
-                    {
-                        Product p = sys.getProduct(product[2], product[1]);
-                        if (p == null)
-                            continue;
-                        LinkedList<KeyValuePair<Product, int>> productToInsert = new LinkedList<KeyValuePair<Product, int>>();
-                        productToInsert.AddFirst(new KeyValuePair<Product, int>(p, product[3]));
-                        user.Basket.addProductsToCart(productToInsert, product[1], product[0]);
-                    }
-                    //restore store in all cart like tha addProductTocart path
-                    foreach (ShoppingCart cart in user.Basket.ShoppingCarts.Values)
-                    {
-                        cart.Store = sys.Stores[cart.StoreId];
-                    }
-                    //find the user counter for sys
                     if (maxUserID < user.Id)
                         maxUserID = user.Id;
-                    sys.Users.Add(user.Id, user);
                 }
+                sys.UserCounter = maxUserID;
+                session.CommitTransaction();
+            }
+            catch (Exception e)
+            {
+                session.AbortTransaction();
+                ErrorManager.Instance.WriteToLog("DBtransactions-initSystem- Restore system failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
 
-                //restore roles
-                foreach (int storeID in storesIDList)
+        public bool signIn(int userID, TradingSystem sys)
+        {
+            if (db.IsTest)
+                return true;
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try
+            {
+                //restore user
+                User userToRestore = db.getUser(userID);
+
+            //restore product in cart
+            //int[]={0-UserId,1-StoreID,2-ProductID,3-quantity}
+            List<int[]> productList = db.getALLProductInCartPerUsers(userToRestore.Id);
+            foreach (int[] product in productList)
+            {
+                Product p = sys.getProduct(product[2], product[1]);
+                if (p == null)
+                    continue;
+                LinkedList<KeyValuePair<Product, int>> productToInsert = new LinkedList<KeyValuePair<Product, int>>();
+                productToInsert.AddFirst(new KeyValuePair<Product, int>(p, product[3]));
+                userToRestore.Basket.addProductsToCart(productToInsert, product[1], product[0]);
+            }
+
+            //restore store in all cart like tha addProductTocart path
+            foreach (ShoppingCart cart in userToRestore.Basket.ShoppingCarts.Values)
+            {
+                cart.Store = sys.Stores[cart.StoreId];
+            }
+            //restore owners
+            List<int> storeIDList = db.getAllOwnerDBbyUserID(userID);
+                if (storeIDList != null)
                 {
-                    Store store = sys.Stores[storeID];
-
+                    foreach (int storeId in storeIDList)
+                    {
+                        Owner toinsert = new Owner(sys.Stores[storeId], userToRestore);
+                        sys.Stores[storeId].RolesDictionary.Add(userToRestore.Id, sys.Stores[storeId].Roles.AddChild(toinsert));
+                        userToRestore.Roles.Add(storeId, toinsert);
+                    }
                 }
-
+            
+            //restore manger
+            List<KeyValuePair<int, string>> managerList = db.getManegerByUserID(userID);
+                if (managerList != null)
+                {
+                    foreach (KeyValuePair<int, string> managerDetails in managerList)
+                    {
+                        List<String> stringpre = managerDetails.Value.Split(',').ToList();
+                        List<int> premissions = new List<int>();
+                        foreach (string premission in stringpre)
+                        {
+                            premissions.Add(Int32.Parse(premission));
+                        }
+                        Manager manager = new Manager(sys.Stores[managerDetails.Key], userToRestore, premissions);
+                        sys.Stores[managerDetails.Key].RolesDictionary.Add(userToRestore.Id, sys.Stores[managerDetails.Key].Roles.AddChild(manager));
+                        userToRestore.Roles.Add(managerDetails.Key, manager);
+                    }
+                }
+            
+                sys.Users.Add(userToRestore.Id, userToRestore);
+                session.CommitTransaction();
             }
             catch (Exception e)
             {
@@ -112,42 +160,49 @@ namespace src.DataLayer
 
         public bool registerNewUserDB(User user)
         {
-            var session = Db.Client.StartSession();
-            session.StartTransaction();
-            try
+            if (!Db.IsTest)
             {
-                //store the user
-                if (!Db.addNewUser(user))
+                var session = Db.Client.StartSession();
+                //session.StartTransaction();
+                try
+                {
+                    //store the user
+                    if (!Db.addNewUser(user))
+                    {
+                        session.AbortTransaction();
+                        return false;
+                    }
+                    //store the basket
+                    foreach (ShoppingCart cart in user.Basket.ShoppingCarts.Values)
+                    {
+                        foreach (ProductInCart product in cart.Products.Values)
+                        {
+                            if (!Db.addProductInCart(product, user.Id))
+                            {
+                                session.AbortTransaction();
+                                return false;
+                            }
+                            db.addNewProduct(product.Product);
+                        }
+                    }
+                    //session.CommitTransaction();
+                }
+                catch (Exception e)
                 {
                     session.AbortTransaction();
+                    ErrorManager.Instance.WriteToLog("DBtransaction-registerNewUser- Add new user failed - " + e + " .");
                     return false;
                 }
-                //store the basket
-                foreach (ShoppingCart cart in user.Basket.ShoppingCarts.Values)
-                {
-                    foreach (ProductInCart product in cart.Products.Values)
-                    {
-                        if (!Db.addProductInCart(product, user.Id))
-                        {
-                            session.AbortTransaction();
-                            return false;
-                        }
-                        db.addNewProduct(product.Product);
-                    }
-                }
-
-            }
-            catch (Exception e)
-            {
-                session.AbortTransaction();
-                ErrorManager.Instance.WriteToLog("DBtransaction-registerNewUser- Add new user failed - " + e + " .");
-                return false;
+                return true;
             }
             return true;
+
         }
 
         public bool AddProductToCart(Dictionary<int, ProductInCart> products, int userId)
         {
+            if (db.IsTest)
+                return true;
             var session = Db.Client.StartSession();
             session.StartTransaction();
             try
@@ -161,7 +216,7 @@ namespace src.DataLayer
                         return false;
                     }
                 }
-
+                session.CommitTransaction();
             }
             catch (Exception e)
             {
@@ -174,6 +229,8 @@ namespace src.DataLayer
 
         public bool removeProductsFromCart(List<int> products, int storeId, int userId)
         {
+            if (db.IsTest)
+                return true;
             var session = Db.Client.StartSession();
             session.StartTransaction();
             try
@@ -187,7 +244,7 @@ namespace src.DataLayer
                         return false;
                     }
                 }
-
+                session.CommitTransaction();
             }
             catch (Exception e)
             {
@@ -200,17 +257,20 @@ namespace src.DataLayer
 
         public bool EditProductQuantityInCart(int productId, int storeId, int userId, int quntity)
         {
+            if (db.IsTest)
+                return true;
             var session = Db.Client.StartSession();
             session.StartTransaction();
             try
             {
 
-                if (!db.updateProductInCart(userId,storeId,productId,quntity))
+                if (!db.updateProductInCart(userId, storeId, productId, quntity))
                 {
                     session.AbortTransaction();
                     LogManager.Instance.WriteToLog("DBtransaction-EditProductQuantityInCart- Add new product to cart");
                     return false;
                 }
+                session.CommitTransaction();
             }
             catch (Exception e)
             {
@@ -223,6 +283,8 @@ namespace src.DataLayer
 
         public bool OpenStoreDB(Store store, Owner owner)
         {
+            if (db.IsTest)
+                return true;
             var session = Db.Client.StartSession();
             session.StartTransaction();
             try
@@ -236,7 +298,7 @@ namespace src.DataLayer
                 //store the product
                 foreach (ProductInStore product in store.Products.Values)
                 {
-                    if (!Db.addNewProductInStore(product) && !Db.addNewProduct(product.Product))
+                    if (!Db.addNewProductInStore(product) || !Db.addNewProduct(product.Product))
                     {
                         session.AbortTransaction();
                         return false;
@@ -244,6 +306,7 @@ namespace src.DataLayer
                 }
                 //store the super owner
                 db.addNewOwner(owner, -1);
+                session.CommitTransaction();
             }
             catch (Exception e)
             {
