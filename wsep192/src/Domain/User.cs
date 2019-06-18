@@ -1,4 +1,5 @@
-﻿using src.Domain.Dataclass;
+﻿using src.DataLayer;
+using src.Domain.Dataclass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
-    enum state { visitor, signedIn }
+    public enum state { visitor, signedIn }
     class User
     {
         private int id;
@@ -159,7 +160,7 @@ namespace src.Domain
             LogManager.Instance.WriteToLog("Register - userName or password null\n");
             return true;
         }
-
+ 
         public void addRole(Role role)
 
         {
@@ -203,7 +204,7 @@ namespace src.Domain
 
         public virtual ShoppingCart addProductsToCart(LinkedList<KeyValuePair<Product, int>> productsToInsert, int storeId)
         {
-            return this.basket.addProductsToCart(productsToInsert, storeId);
+            return this.basket.addProductsToCart(productsToInsert, storeId,this.id);
         }
 
         public virtual Boolean signIn(string userName, string password)
@@ -235,12 +236,12 @@ namespace src.Domain
 
         internal virtual bool removeProductsFromCart(List<int> productsToRemove, int storeId)
         {
-            return basket.removeProductsFromCart(productsToRemove, storeId);
+            return basket.removeProductsFromCart(productsToRemove, storeId,this.id);
         }
 
         internal virtual bool editProductQuantityInCart(int productId, int quantity, int storeId)
         {
-            return basket.editProductQuantityInCart(productId, quantity, storeId);
+            return basket.editProductQuantityInCart(productId, quantity, storeId,this.id);
         }
 
         public virtual bool removeManager(int userID, int storeID)

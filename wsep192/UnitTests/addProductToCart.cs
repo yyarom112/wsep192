@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
 using System.Collections.Generic;
+using src.DataLayer;
 
 namespace UnitTests
 {
@@ -32,6 +33,7 @@ namespace UnitTests
 
         public void setUp()
         {
+            DBtransactions db = DBtransactions.getInstance(true);
             admin = new User(0, "admin", "123456", true, true);
             basket_admin = admin.Basket;
             user = new User(1, null, null, false, false);
@@ -108,12 +110,12 @@ namespace UnitTests
             setUp();
             Assert.AreEqual(0, basket_user.ShoppingCarts.Count);
             LinkedList<KeyValuePair<Product, int>> toInsert = new LinkedList<KeyValuePair<Product, int>>();
-            Assert.AreEqual(null, basket_user.addProductsToCart(toInsert, store.Id));
+            Assert.AreEqual(null, basket_user.addProductsToCart(toInsert, store.Id,user.Id));
 
             toInsert.AddLast(new KeyValuePair<Product, int>(this.p1, 10000000));
 
             Assert.AreEqual(0, basket_user.ShoppingCarts.Count);
-            Assert.AreEqual(expected: store.Id, actual: basket_user.addProductsToCart(toInsert, store.Id).StoreId);
+            Assert.AreEqual(expected: store.Id, actual: basket_user.addProductsToCart(toInsert, store.Id, user.Id).StoreId);
             Assert.AreEqual(1, basket_user.ShoppingCarts.Count);
         }
 
@@ -122,14 +124,16 @@ namespace UnitTests
         public void TestMethod1_basket_updateSenrio()
         {
             setUp();
+            DBtransactions.getInstance(true);
+
             Assert.AreEqual(0, basket_user.ShoppingCarts.Count);
             LinkedList<KeyValuePair<Product, int>> toInsert = new LinkedList<KeyValuePair<Product, int>>();
-            Assert.AreEqual(null, basket_user.addProductsToCart(toInsert, store.Id));
+            Assert.AreEqual(null, basket_user.addProductsToCart(toInsert, store.Id, user.Id));
 
             toInsert.AddLast(new KeyValuePair<Product, int>(this.p1, 10));
 
             Assert.AreEqual(0, basket_user.ShoppingCarts.Count);
-            Assert.AreEqual(expected: store.Id, actual: basket_user.addProductsToCart(toInsert, store.Id).StoreId);
+            Assert.AreEqual(expected: store.Id, actual: basket_user.addProductsToCart(toInsert, store.Id, user.Id).StoreId);
             Assert.AreEqual(1, basket_user.ShoppingCarts.Count);
 
 
@@ -141,7 +145,7 @@ namespace UnitTests
             Assert.AreEqual(1, basket_user.ShoppingCarts.Count);
             Assert.AreEqual(10, basket_user.ShoppingCarts[cart.StoreId].Products[this.p1.Id].Quantity);
 
-            Assert.AreEqual(expected: null, actual: basket_user.addProductsToCart(toInsert, store.Id));
+            Assert.AreEqual(expected: null, actual: basket_user.addProductsToCart(toInsert, store.Id, user.Id));
             Assert.AreEqual(1, basket_user.ShoppingCarts.Count);
             Assert.AreEqual(20, basket_user.ShoppingCarts[cart.StoreId].Products[this.p1.Id].Quantity);
 

@@ -29,6 +29,20 @@ namespace src.Domain
                 return DuplicatePolicy.WithoutMultiplication;
         }
 
+        public static int stateToInt(state s)
+        {
+            if (s.Equals(state.visitor))
+                return 0;
+            return 1;
+        }
+
+
+        public static state intToState(int s)
+        {
+            if (s==0)
+                return state.visitor;
+            return state.signedIn;
+        }
 
 
     }

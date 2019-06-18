@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace src.Domain
 {
+    [Serializable]
     class ShoppingCart
     {
         private int storeId;

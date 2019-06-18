@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using src.DataLayer;
 using src.Domain;
 
 namespace UnitTests
@@ -41,7 +42,8 @@ namespace UnitTests
         {
             setup();
             ShoppingBasket basket = new ShoppingBasket();
-            Assert.AreEqual(false, basket.removeProductsFromCart(null, store.Id));
+            DBtransactions.getInstance(true);
+            Assert.AreEqual(false, basket.removeProductsFromCart(null, store.Id,1));
 
         }
 
@@ -81,7 +83,8 @@ namespace UnitTests
             ShoppingBasket basket = new ShoppingBasket();
             ShoppingCart cart = new StubCart(store.Id, null, true);
             basket.ShoppingCarts.Add(store.Id, cart);
-            Assert.AreEqual(true, basket.removeProductsFromCart(productsToRemove, store.Id));
+            DBtransactions.getInstance(true);
+            Assert.AreEqual(true, basket.removeProductsFromCart(productsToRemove, store.Id,-1));
         }
 
         [TestMethod]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using src.DataLayer;
 using src.Domain;
 
 namespace IntegrationTests
@@ -19,6 +20,7 @@ namespace IntegrationTests
 
             public void setup()
             {
+                DBtransactions db = DBtransactions.getInstance(true);
                 system = new TradingSystem(null, null);
                 user = new User(1, "user", "1234", false, false);
                 store = new Store(1, "store");
@@ -56,7 +58,7 @@ namespace IntegrationTests
                 Assert.AreEqual(false, system.removeProductsFromCart(null, store.Id, user.Id));
 
                 //failure basket remove
-                Assert.AreEqual(false, user.Basket.removeProductsFromCart(null, store.Id));
+                Assert.AreEqual(false, user.Basket.removeProductsFromCart(null, store.Id, user.Id));
 
                 //failure cart remove
                 user.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
@@ -81,7 +83,7 @@ namespace IntegrationTests
             {
                 setup();
                 successsetup();
-                Assert.AreEqual(true, user.Basket.removeProductsFromCart(productsToRemove, store.Id));
+                Assert.AreEqual(true, user.Basket.removeProductsFromCart(productsToRemove, store.Id, user.Id));
                
             }
 

@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.ServiceLayer;
+using src.DataLayer;
 
 namespace Acceptance_Tests
 {
@@ -25,6 +26,8 @@ namespace Acceptance_Tests
         {
             service = ServiceLayer.getInstance();
             idOwner = service.initUser();
+            DBtransactions db = DBtransactions.getInstance(true);
+            db.isTest(true);
             ownerUser = "Seifan";
             passwordUser = "2345";
             service.register(ownerUser, passwordUser, idOwner);

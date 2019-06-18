@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using src.Domain;
+using src.DataLayer;
 
 namespace IntegrationTests
 {
@@ -15,6 +16,7 @@ namespace IntegrationTests
 
         public void setUp()
         {
+            DBtransactions db = DBtransactions.getInstance(true);
             system = new TradingSystem(null, null);
             user1 = new User(4567, "Yuval", null, false, false);
             system.Users.Add(user1.Id, user1);
