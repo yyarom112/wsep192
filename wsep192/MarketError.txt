@@ -6535,3 +6535,14 @@
    ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
    ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
    ב-  src.DataLayer.DBmanager.addNewProductInStore(ProductInStore product) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 597 .
+18/06/2019 11:59:44: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
+18/06/2019 11:59:45: Store- factoryinventoryConditionPolicy- Parge string to condition policy faild
+18/06/2019 11:59:45: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 11:59:46: DBtransactions-initSystem- Restore system failed - System.ArgumentException: פריט עם מפתח זהה נוסף כבר.
+   ב-  System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   ב-  System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   ב-  System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   ב-  src.DataLayer.DBtransactions.signIn(Int32 userID, TradingSystem sys) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 126 .
+18/06/2019 11:59:48: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
