@@ -55640,3 +55640,8 @@
 17/06/2019 20:20:08: DBtransaction-AddProductToCart- Add new product to cart
 17/06/2019 20:20:17: DBtransaction-AddProductToCart- Add new product to cart
 17/06/2019 20:21:07: DBtransaction-AddProductToCart- Add new product to cart
+18/06/2019 10:25:26: DBtransaction-AddProductToCart- Add new product to cart
+18/06/2019 10:25:26: DBtransaction-AddProductToCart- Add new product to cart
+18/06/2019 10:25:27: DBtransaction-AddProductToCart- Add new product to cart
+18/06/2019 10:25:28: DBtransaction-AddProductInStore- Add new product in store
+18/06/2019 10:25:28: DBtransaction-AddProductInStore- Add new product in store
