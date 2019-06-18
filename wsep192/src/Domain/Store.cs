@@ -110,7 +110,7 @@ namespace src.Domain
                         if (p.Quantity <= this.products[p.Product.Id].Quantity)
                         { //if quntity in store bigger then quntity to buy
                             int quantity = this.products[p.Product.Id].Quantity - p.Quantity;
-                            if (!DBtransactions.getInstance(false).editProductInStore(p.Product.Id, cart.StoreId, userId, quantity))
+                            if (!DBtransactions.getInstance(false).editProductInStore(p.Product.Id, cart.StoreId, quantity))
                                 return;
                             this.products[p.Product.Id].Quantity -= p.Quantity; //Save the quntity
                         }
@@ -119,7 +119,7 @@ namespace src.Domain
                             if (!DBtransactions.getInstance(false).EditProductQuantityInCart(p.Product.Id, cart.StoreId, userId, this.products[p.Product.Id].Quantity))
                                 return;
                             p.Quantity = this.products[p.Product.Id].Quantity;
-                            if (!DBtransactions.getInstance(false).editProductInStore(p.Product.Id, cart.StoreId, userId, 0))
+                            if (!DBtransactions.getInstance(false).editProductInStore(p.Product.Id, cart.StoreId, 0))
                                 return;
                             this.products[p.Product.Id].Quantity = 0;
                         }

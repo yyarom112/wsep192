@@ -40,3 +40,38 @@
 06/06/2019 13:13:06: TradingSystem- searchProduct - Try parse int failed
 06/06/2019 13:13:06: TradingSystem- searchProduct - Try parse int failed
 06/06/2019 13:13:06: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:30:33: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:30:33: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:30:33: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:30:33: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:34:44: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:34:44: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:34:44: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:34:44: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:37:58: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:37:58: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:37:58: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:37:58: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:41:19: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:41:19: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:41:19: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:41:19: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:43:49: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:43:49: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:43:49: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:43:49: TradingSystem- searchProduct - Try parse int failed
+18/06/2019 12:46:45: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: ההפניה לאובייקט לא הוגדרה למופע של אובייקט.
+   ב-  src.DataLayer.DBmanager.addNewManager(Manager manager) ב- C:\Users\seifa\source\repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 372
+   ב-  src.DataLayer.DBtransactions.assignManagerDB(Manager manager) ב- C:\Users\seifa\source\repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 211 .
+18/06/2019 12:51:39: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: ההפניה לאובייקט לא הוגדרה למופע של אובייקט.
+   ב-  src.DataLayer.DBmanager.addNewManager(Manager manager) ב- C:\Users\seifa\source\repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 372
+   ב-  src.DataLayer.DBtransactions.assignManagerDB(Manager manager) ב- C:\Users\seifa\source\repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 211 .
+18/06/2019 12:52:46: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: ההפניה לאובייקט לא הוגדרה למופע של אובייקט.
+   ב-  src.DataLayer.DBmanager.addNewManager(Manager manager) ב- C:\Users\seifa\source\repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 372
+   ב-  src.DataLayer.DBtransactions.assignManagerDB(Manager manager) ב- C:\Users\seifa\source\repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 211 .
+18/06/2019 12:53:12: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: ההפניה לאובייקט לא הוגדרה למופע של אובייקט.
+   ב-  src.DataLayer.DBmanager.addNewManager(Manager manager) ב- C:\Users\seifa\source\repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 372
+   ב-  src.DataLayer.DBtransactions.assignManagerDB(Manager manager) ב- C:\Users\seifa\source\repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 211 .
+18/06/2019 12:54:39: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: ההפניה לאובייקט לא הוגדרה למופע של אובייקט.
+   ב-  src.DataLayer.DBmanager.addNewManager(Manager manager) ב- C:\Users\seifa\source\repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 372
+   ב-  src.DataLayer.DBtransactions.assignManagerDB(Manager manager) ב- C:\Users\seifa\source\repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 211 .
