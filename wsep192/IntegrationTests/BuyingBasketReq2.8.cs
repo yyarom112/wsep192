@@ -292,7 +292,7 @@ namespace IntegrationTests
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
 
-            store.updateCart(cart, "-");
+            store.updateCart(cart, "-",user.Id);
 
             Assert.AreEqual(9999999, store.Products[p1.Id].Quantity);
 
@@ -306,7 +306,7 @@ namespace IntegrationTests
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
 
-            store.updateCart(cart, "+");
+            store.updateCart(cart, "+",user.Id);
 
             Assert.AreEqual(10000001, store.Products[p1.Id].Quantity);
 

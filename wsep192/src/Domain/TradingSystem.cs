@@ -114,7 +114,7 @@ namespace src.Domain
             foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
             {
                 storeToPay.Add(cart.Store.Id, cart.cartCheckout(new UserDetailes(this.Users[userID].Address, this.Users[userID].IsRegistered)));
-                cart.Store.updateCart(cart, "-");
+                cart.Store.updateCart(cart, "-",userID);
             }
             foreach (KeyValuePair<int, double> storeSum in storeToPay)
             {
@@ -122,7 +122,7 @@ namespace src.Domain
                 {
                     foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
                     {
-                        cart.Store.updateCart(cart, "+");
+                        cart.Store.updateCart(cart, "+", userID);
                     }
                     LogManager.Instance.WriteToLog("payForBasket - Purchase failed due to product billing failure.\n");
                     return null;
@@ -136,7 +136,7 @@ namespace src.Domain
                 }
                 foreach (ShoppingCart cart in basket.ShoppingCarts.Values)
                 {
-                    cart.Store.updateCart(cart, "+");
+                    cart.Store.updateCart(cart, "+", userID);
                 }
                 LogManager.Instance.WriteToLog("payForBasket - The purchase failed due to a failure in the delivery system.\n");
 
@@ -244,7 +244,13 @@ namespace src.Domain
                 {
                     Stores.Add(storeCounter, store);
                     User user = searchUser(userID);
-                    store.initOwner(user);
+                    Owner owner = (Owner) store.initOwner(user);
+                    if (!DBtransactions.getInstance(false).OpenStoreDB(stores[StoreCounter], owner))
+                    {
+                        user.Roles.Remove(StoreCounter);
+                        stores.Remove(StoreCounter);
+                        return false;
+                    }
                     LogManager.Instance.WriteToLog("TradingSystem-open store" + storeName + " success\n");
                     return true;
                 }
@@ -519,6 +525,7 @@ namespace src.Domain
             if (Stores.ContainsKey(storeID))
                 if (users[userID].createNewProductInStore(productName, category, details, price, ProductCounter++, storeID))
                 {
+
                     LogManager.Instance.WriteToLog("TradingSystem-create new product in store" + storeID + " -success\n");
                     return true;
                 }

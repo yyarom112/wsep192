@@ -384,7 +384,7 @@ namespace UnitTests
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
 
-            store.updateCart(cart, "-");
+            store.updateCart(cart, "-",user.Id);
 
             Assert.AreEqual(9999999, store.Products[p1.Id].Quantity);
 
@@ -398,7 +398,7 @@ namespace UnitTests
 
             cart.Products.Add(p1.Id, new ProductInCart(1, cart, p1));
 
-            store.updateCart(cart, "+");
+            store.updateCart(cart, "+",user.Id);
 
             Assert.AreEqual(10000001, store.Products[p1.Id].Quantity);
 
@@ -512,7 +512,7 @@ namespace UnitTests
             return discount;
         }
 
-        public override void updateCart(ShoppingCart cart, String opt)
+        public override void updateCart(ShoppingCart cart, String opt,int userId)
         {
             if (!policy)
                 cart.Products[1].Quantity--;
