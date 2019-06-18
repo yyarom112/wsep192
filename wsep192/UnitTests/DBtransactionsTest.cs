@@ -13,11 +13,13 @@ namespace UnitTests
     {
         private Store store;
         private User admin;
+        private User user;
         private Product p1;
         private ProductInStore pis1;
         private ProductInCart pic1;
         private Owner adminOwner;
         private DBtransactions db;
+        private Manager manager;
 
         public void Setup()
         {
@@ -25,9 +27,11 @@ namespace UnitTests
             db.Db = new DBmanager(false);
             store = new Store(7, "adidas");
             admin = new User(14, "guti", "1234", true, true);
+            user = new User(18, "halo", "halo", false, true);
             p1 = new Product(4, "ramos", "", "", 10);
             pis1 = new ProductInStore(10, store, p1);
             store.Products.Add(p1.Id, pis1);
+            manager = new Manager(store, user, new List<int>());
             admin.Basket.ShoppingCarts.Add(store.Id, new ShoppingCart(store.Id, store));
             pic1 = new ProductInCart(1, admin.Basket.ShoppingCarts[store.Id], p1);
             admin.Basket.ShoppingCarts[store.Id].Products.Add(p1.Id, pic1);
@@ -47,9 +51,21 @@ namespace UnitTests
             DBmanager checkDB = db.Db;
             Assert.AreEqual("guti", checkDB.getUser(admin.Id).UserName);
             Assert.AreEqual(1, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
-            checkDB.removeUser(admin.Id);
-            checkDB.removeProductInCartBy(admin.Id, store.Id, p1.Id);
         }
+
+
+
+        [TestMethod]
+        public void TestMethod_assignOwner()
+        {
+            Setup();
+            db.assignOwner(adminOwner);
+            DBmanager checkDB = db.Db;
+            Assert.AreEqual(store.Id, checkDB.getAllOwnerDBbyUserID(admin.Id)[0]);
+            checkDB.removeOwner(admin.Id);
+        }
+
+
 
 
         [TestMethod]
@@ -61,32 +77,58 @@ namespace UnitTests
             Assert.AreEqual(store.Name, checkDB.getStore(store.Id).Name);
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, p1.Id));
             Assert.AreEqual(true, checkDB.isOwnerDB(store.Id, admin.Id));
-            checkDB.removeStore(store.Id);
-            checkDB.removeProductInStore(store.Id, p1.Id);
-            checkDB.removeOwner(admin.Id);
         }
         [TestMethod]
         public void TestMethod_initsystem()
         {
             Setup();
-            DBmanager checkDB = new DBmanager(false);
+
             db.OpenStoreDB(store, this.adminOwner);
             TradingSystem sysTest = new TradingSystem(null, null);
             db.initSystem(sysTest);
             Assert.AreEqual(true, sysTest.Stores.ContainsKey(store.Id));
-            checkDB.removeStore(store.Id);
-            checkDB.removeProductInStore(store.Id, p1.Id);
-            checkDB.removeOwner(admin.Id);
 
 
         }
 
+        [TestMethod]
+        public void TestMethod_assignManager()
+        {
+            Setup();
+            db.assignManagerDB(manager);
+            DBmanager checkDB = db.Db;
+            List<KeyValuePair<int,string>> output = checkDB.getManegerByUserID(manager.User.Id);
+            int expected = output[0].Key;
+            Assert.AreEqual(store.Id,expected);
+        
+        }
+
+        [TestMethod]
+        public void TestMethod_removeUser()
+        {
+            Setup();
+            DBmanager checkDB = db.Db;
+            checkDB.addNewUser(admin);
+            db.removeUserDB(admin.Id);
+            Assert.AreEqual(null, checkDB.getUser(admin.Id));
+        }
+
+        [TestMethod]
+        public void TestMethod_removeManager()
+        {
+            Setup();
+            DBmanager checkDB = db.Db;
+            checkDB.addNewManager(manager);
+            db.removeManagerDB(manager.User.Id);
+            List<KeyValuePair<int, string>> output = checkDB.getManegerByUserID(manager.User.Id);
+            Assert.AreEqual(null,output );
+        }
 
         [TestMethod]
         public void TestMethod_signIn()
         {
             Setup();
-            DBmanager checkDB = new DBmanager(false);
+
             db.registerNewUserDB(admin);
             store.Roles = new TreeNode<Role>(new Role(store, admin));
             store.RolesDictionary = new Dictionary<int, TreeNode<Role>>();
@@ -94,8 +136,6 @@ namespace UnitTests
             sysTest.Stores.Add(store.Id, store);
             db.signIn(admin.Id, sysTest);
             Assert.AreEqual(true, sysTest.Users.ContainsKey(admin.Id));
-            checkDB.removeUser(admin.Id);
-            checkDB.removeProductInCartBy(admin.Id, store.Id, p1.Id);
 
         }
 
@@ -107,7 +147,7 @@ namespace UnitTests
             db.AddProductToCart(admin.Basket.ShoppingCarts[store.Id].Products, admin.Id);
             DBmanager checkDB = new DBmanager(false);
             Assert.AreEqual(1, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
-            checkDB.removeProductInCartBy(admin.Id, store.Id, p1.Id);
+
 
 
         }
@@ -122,7 +162,7 @@ namespace UnitTests
 
             db.AddProductToCart(admin.Basket.ShoppingCarts[store.Id].Products, admin.Id);
             DBmanager checkDB = new DBmanager(false);
-            Assert.AreEqual(1, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
+            Assert.AreEqual(7, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
 
             db.removeProductsFromCart(productToremove, store.Id, admin.Id);
             Assert.AreEqual(-1, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
@@ -145,7 +185,6 @@ namespace UnitTests
 
             db.EditProductQuantityInCart(p1.Id, store.Id, admin.Id, 7);
             Assert.AreEqual(7, checkDB.getProductInCartquntity(admin.Id, store.Id, p1.Id));
-            db.removeProductsFromCart(productToremove, store.Id, admin.Id);
         }
 
 
@@ -169,12 +208,11 @@ namespace UnitTests
             var session = db.Db.Client.StartSession();
             session.StartTransaction();
 
-            Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
-            products.Add(10, pis1);
-            db.addProductInstore(products, admin.Id);
+            db.createProductInstore(pis1);
+            db.editProductInStore(pis1.Product.Id, store.Id, 10);
             DBmanager checkDB = new DBmanager(false);
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
-
+            checkDB.removeProductInStore(store.Id,pis1.Product.Id);
             session.AbortTransaction();
         }
 
@@ -185,16 +223,12 @@ namespace UnitTests
             var session = db.Db.Client.StartSession();
             session.StartTransaction();
 
-            List<int> productToremove = new List<int>();
-            productToremove.Add(pis1.Product.Id);
-
-            Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
-            products.Add(10, pis1);
-            db.addProductInstore(products, admin.Id);
+            db.createProductInstore(pis1);
+            db.editProductInStore(pis1.Product.Id, store.Id, 10);
             DBmanager checkDB = new DBmanager(false);
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
 
-            db.removeProductInStore(productToremove, store.Id, admin.Id);
+            db.removeProductInStore(pis1.Product.Id, store.Id);
             Assert.AreEqual(-1, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
             session.AbortTransaction();
         }
@@ -203,20 +237,16 @@ namespace UnitTests
         public void TestMethod_EditProductQuantityInStore()
         {
             Setup();
-            var session = db.Db.Client.StartSession();
-            session.StartTransaction();
 
-            Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
-            products.Add(10, pis1);
-            db.addProductInstore(products, admin.Id);
+            db.createProductInstore(pis1);
+            db.editProductInStore(pis1.Product.Id, store.Id, 10);
             DBmanager checkDB = new DBmanager(false);
-            Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
-
             store.Products[pis1.Product.Id].Quantity = 5;
 
-            db.editProductInStore(pis1.Product.Id, store.Id, admin.Id, 5);
+            db.editProductInStore(pis1.Product.Id, store.Id, 5);
             Assert.AreEqual(5, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
-            session.AbortTransaction();
+            //checkDB.removeProductInStore(store.Id, pis1.Product.Id);
         }
     }
 }
+

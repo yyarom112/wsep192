@@ -105,6 +105,7 @@
     <Compile Include="Domain\Manager.cs" />
     <Compile Include="Domain\Owner.cs" />
     <Compile Include="Domain\Product.cs" />
+    <Compile Include="ExternalAPIImpl.cs" />
     <Compile Include="Domain\ProductInCart.cs" />
     <Compile Include="Domain\ProductInStore.cs" />
     <Compile Include="Domain\ProductSupplySystem.cs" />

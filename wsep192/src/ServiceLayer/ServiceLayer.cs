@@ -17,9 +17,7 @@ namespace src.ServiceLayer
         private Dictionary<String, int> users;
         private Dictionary<String, int> stores;
         private Dictionary<String, int> permissions;
-        private Dictionary<string, List<bool>> requests;
         private Dictionary<string, List<string>> storesStackholders = new Dictionary<string, List<string>>();
-        private Dictionary<int, OwnerRequest> systemRequests; //reqId - flag,count,tmpcount
         private NotificationsManager manager = new NotificationsManager();
         private int storeCounter;
         private int userCounter;
@@ -36,7 +34,7 @@ namespace src.ServiceLayer
             userCounter = 0;
             manager.init();
             addPermissions();
-            systemRequests = new Dictionary<int, OwnerRequest>();
+            
 
             //setUp();
 
@@ -53,7 +51,9 @@ namespace src.ServiceLayer
             if (instance == null)
             {
                 instance = new ServiceLayer();
-                fileSetUp();
+                if (!fileSetUp())
+                    Environment.Exit(0);
+
             }
             return instance;
         }
@@ -61,7 +61,6 @@ namespace src.ServiceLayer
         {
             instance = null;
         }
-
 
 
         public bool setUp1()
@@ -359,9 +358,9 @@ namespace src.ServiceLayer
 
         internal bool assignOwnerResult(int reqId, bool result)
         {
-            if (!systemRequests.ContainsKey(reqId))
+            if (!system.SystemRequests.ContainsKey(reqId))
                 return false;
-            OwnerRequest r = systemRequests[reqId];
+            OwnerRequest r = system.SystemRequests[reqId];
             r.responsesCounter++;
             r.result &= result;
             if (r.result && r.responsesCounter == r.storeOwnersCount - 1)
@@ -434,7 +433,7 @@ namespace src.ServiceLayer
             if (!users.ContainsKey(owner) || !users.ContainsKey(user) || !stores.ContainsKey(store))
                 return false;
             String message = owner + " is requesting " + user + " to be assigned as owner in " + store;
-            systemRequests.Add(requestCounter, new OwnerRequest(message, requestCounter, user, store, owner, storesStackholders[store].Count));
+            system.SystemRequests.Add(requestCounter, new OwnerRequest(message, requestCounter, user, store, owner, storesStackholders[store].Count));
             requestAll(store, message, owner, requestCounter);
             requestCounter++;
             return true;
@@ -627,7 +626,7 @@ namespace src.ServiceLayer
                 if (system.isLoggedIn(users[user]))
                     request(user, message, reqId);
                 else
-                    system.addRequestToUser(users[user], systemRequests[reqId]);
+                    system.addRequestToUser(users[user], system.SystemRequests[reqId]);
             }
 
         }

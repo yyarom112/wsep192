@@ -46,13 +46,13 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            if (response == "User successfuly was assigned") {
+                            if (response != "false") {
                                 document.cookie = "LoggedUser=" + ownerName
                                 alert(response);
                                 window.location.href = baseUrl + "/";
                             }
                             else {
-                                alert(response);
+                                alert("Owner cannot be assigned. The user does not exists or loggedin user cannot perform this act.");
                             }
                         },
                         error: function (response) {

@@ -6418,3 +6418,131 @@
    ב-  MongoDB.Driver.DatabaseNamespace..ctor(String databaseName)
    ב-  MongoDB.Driver.MongoClient.GetDatabase(String name, MongoDatabaseSettings settings)
    ב-  src.DataLayer.DBmanager.stupidtransaction(Boolean iswork) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 71 .
+18/06/2019 10:25:23: DBmanager-RegisterNewUser- Add new user failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.Users index: _id_ dup key: { : 14 } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.Users index: _id_ dup key: { : 14 }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addNewUser(User user) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 82 .
+18/06/2019 10:25:24: DBmanager - Create Store - Create new store failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.Stores index: _id_ dup key: { : 7 } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.Stores index: _id_ dup key: { : 7 }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addNewStore(Store store) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 187 .
+18/06/2019 10:25:26: DBmanager-addProductInCart- Add new ProductInCart failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.ProductsInCart index: _id_ dup key: { : "14_7_4" } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.ProductsInCart index: _id_ dup key: { : "14_7_4" }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addProductInCart(ProductInCart product, Int32 userID) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 466 .
+18/06/2019 10:25:26: DBmanager-addProductInCart- Add new ProductInCart failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.ProductsInCart index: _id_ dup key: { : "14_7_4" } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.ProductsInCart index: _id_ dup key: { : "14_7_4" }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addProductInCart(ProductInCart product, Int32 userID) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 466 .
+18/06/2019 10:25:27: DBmanager-addProductInCart- Add new ProductInCart failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.ProductsInCart index: _id_ dup key: { : "14_7_4" } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.ProductsInCart index: _id_ dup key: { : "14_7_4" }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addProductInCart(ProductInCart product, Int32 userID) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 466 .
+18/06/2019 10:25:28: DBmanager-addNewProductInStore- Add new productInStore failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.ProductInStore index: _id_ dup key: { : "7_4" } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.ProductInStore index: _id_ dup key: { : "7_4" }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addNewProductInStore(ProductInStore product) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 597 .
+18/06/2019 10:25:28: DBmanager-addNewProductInStore- Add new productInStore failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.ProductInStore index: _id_ dup key: { : "7_4" } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.ProductInStore index: _id_ dup key: { : "7_4" }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addNewProductInStore(ProductInStore product) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 597 .
+18/06/2019 10:35:40: DBmanager-addNewProductInStore- Add new productInStore failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.ProductInStore index: _id_ dup key: { : "7_4" } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.ProductInStore index: _id_ dup key: { : "7_4" }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addNewProductInStore(ProductInStore product) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 597 .
+18/06/2019 10:36:07: DBmanager-addNewProductInStore- Add new productInStore failed - MongoDB.Driver.MongoWriteException: A write operation resulted in an error.
+  E11000 duplicate key error collection: wesp192.ProductInStore index: _id_ dup key: { : "7_4" } ---> MongoDB.Driver.MongoBulkWriteException`1[MongoDB.Bson.BsonDocument]: A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: wesp192.ProductInStore index: _id_ dup key: { : "7_4" }
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.<>c__DisplayClass23_0.<BulkWrite>b__0(IClientSessionHandle session)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass64_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   --- סוף רכיב מעקב אחר מחסנית של מצב חריג פנימי ---
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   ב-  MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   ב-  src.DataLayer.DBmanager.addNewProductInStore(ProductInStore product) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 597 .
+18/06/2019 11:59:44: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
+18/06/2019 11:59:45: Store- factoryinventoryConditionPolicy- Parge string to condition policy faild
+18/06/2019 11:59:45: Store- conditionConvert- Parge string to condition policy faild
+18/06/2019 11:59:46: DBtransactions-initSystem- Restore system failed - System.ArgumentException: פריט עם מפתח זהה נוסף כבר.
+   ב-  System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   ב-  System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   ב-  System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   ב-  src.DataLayer.DBtransactions.signIn(Int32 userID, TradingSystem sys) ב- C:\Users\seifa\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 126 .
+18/06/2019 11:59:48: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
