@@ -427,6 +427,8 @@ namespace src.Domain
             if (ownerNode != null)
             {
                 Owner assignedOwner = new Owner(this, assignedUser);
+                if (!DBtransactions.getInstance(false).assignOwner(assignedOwner))
+                    return false;
                 assignedNode = ownerNode.AddChild(assignedOwner);
                 RolesDictionary.Add(assignedOwner.User.Id, assignedNode);
                 assignedNode.Data.User.Roles.Add(this.Id, assignedNode.Data);

@@ -366,6 +366,33 @@ namespace src.DataLayer
             return true;
         }
 
+
+
+        public bool assignOwner(Owner owner)
+        {
+            if (db.IsTest)
+                return true;
+            var session = Db.Client.StartSession();
+            session.StartTransaction();
+            try{
+
+                if (!db.addNewOwner(owner, -1)){
+                    session.AbortTransaction();
+                    return false;
+                }
+                session.CommitTransaction();
+            }
+            catch (Exception e) {
+                session.AbortTransaction();
+                ErrorManager.Instance.WriteToLog("DBtransaction - assignOwner - failed - " + e + " .");
+                return false;
+            }
+            return true;
+        }
+
+
+
+
         public bool OpenStoreDB(Store store, Owner owner)
         {
             if (db.IsTest)
