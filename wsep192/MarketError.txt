@@ -6588,3 +6588,20 @@
 18/06/2019 12:48:42: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: ההפניה לאובייקט לא הוגדרה למופע של אובייקט.
    ב-  src.DataLayer.DBmanager.addNewManager(Manager manager) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBmanager.cs:שורה 372
    ב-  src.DataLayer.DBtransactions.assignManagerDB(Manager manager) ב- C:\Users\Yuval Yarom\Source\Repos\wsep192\wsep192\src\DataLayer\DBtransactions.cs:שורה 214 .
+6/18/2019 1:52:22 PM: Store- conditionConvert- Parge string to condition policy faild
+6/18/2019 1:52:22 PM: Store- conditionConvert- Parge string to condition policy faild
+6/18/2019 1:52:22 PM: Store- conditionConvert- Parge string to condition policy faild
+6/18/2019 1:52:22 PM: Store- conditionConvert- Parge string to condition policy faild
+6/18/2019 1:52:27 PM: Store- factoryinventoryConditionPolicy- Parge string to condition policy faild
+6/18/2019 1:52:27 PM: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
+6/18/2019 1:52:28 PM: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+
+6/18/2019 1:52:30 PM: Store- conditionConvert- Parge string to condition policy faild
+6/18/2019 1:52:44 PM: DBtransactions-initSystem- Restore system failed - System.NullReferenceException: Object reference not set to an instance of an object.
+   at src.DataLayer.DBtransactions.signIn(Int32 userID, TradingSystem sys) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:line 106 .
+6/18/2019 1:53:03 PM: Store- factoryinventoryConditionPolicy- Parge string to condition policy faild
+6/18/2019 1:53:03 PM: User-remove manager fail- User 0 does not have appropriate permissions in Store -1 .
+
+6/18/2019 1:53:03 PM: User-remove manager fail- User 205667112 does not have appropriate permissions in Store 2 .
+

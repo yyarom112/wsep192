@@ -46,18 +46,14 @@ namespace src.ServiceLayer
         }
 
 
-        public static ServiceLayer getInstance(bool flag)
+        public static ServiceLayer getInstance()
         {
             if (instance == null)
             {
                 instance = new ServiceLayer();
-                if (flag)
-                {
-                    if (!fileSetUp())
+                   if (!fileSetUp())
                         Environment.Exit(0);
-                }
-
-
+                
             }
             return instance;
         }

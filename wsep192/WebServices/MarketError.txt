@@ -40,3 +40,41 @@
 06/06/2019 13:13:06: TradingSystem- searchProduct - Try parse int failed
 06/06/2019 13:13:06: TradingSystem- searchProduct - Try parse int failed
 06/06/2019 13:13:06: TradingSystem- searchProduct - Try parse int failed
+6/18/2019 1:57:12 PM: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: Object reference not set to an instance of an object.
+   at src.DataLayer.DBmanager.addNewManager(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:line 372
+   at src.DataLayer.DBtransactions.assignManagerDB(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:line 218 .
+6/18/2019 2:18:07 PM: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: Object reference not set to an instance of an object.
+   at src.DataLayer.DBmanager.addNewManager(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:line 372
+   at src.DataLayer.DBtransactions.assignManagerDB(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:line 218 .
+6/18/2019 2:19:40 PM: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: Object reference not set to an instance of an object.
+   at src.DataLayer.DBmanager.addNewManager(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:line 372
+   at src.DataLayer.DBtransactions.assignManagerDB(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:line 218 .
+6/18/2019 2:23:51 PM: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: Object reference not set to an instance of an object.
+   at src.DataLayer.DBmanager.addNewManager(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:line 372
+   at src.DataLayer.DBtransactions.assignManagerDB(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:line 218 .
+6/18/2019 2:40:17 PM: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: Object reference not set to an instance of an object.
+   at src.DataLayer.DBmanager.addNewManager(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:line 372
+   at src.DataLayer.DBtransactions.assignManagerDB(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:line 218 .
+6/18/2019 3:06:41 PM: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: Object reference not set to an instance of an object.
+   at src.DataLayer.DBmanager.addNewManager(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:line 372
+   at src.DataLayer.DBtransactions.assignManagerDB(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:line 218 .
+6/18/2019 3:08:48 PM: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: Object reference not set to an instance of an object.
+   at src.DataLayer.DBmanager.addNewManager(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:line 372
+   at src.DataLayer.DBtransactions.assignManagerDB(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:line 218 .
+6/18/2019 3:09:41 PM: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: Object reference not set to an instance of an object.
+   at src.DataLayer.DBmanager.addNewManager(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:line 372
+   at src.DataLayer.DBtransactions.assignManagerDB(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:line 218 .
+6/18/2019 3:12:55 PM: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: Object reference not set to an instance of an object.
+   at src.DataLayer.DBmanager.addNewManager(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:line 372
+   at src.DataLayer.DBtransactions.assignManagerDB(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:line 218 .
+6/18/2019 3:14:49 PM: DBtransaction-assignManager- Add new manager failed - System.NullReferenceException: Object reference not set to an instance of an object.
+   at src.DataLayer.DBmanager.addNewManager(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBmanager.cs:line 372
+   at src.DataLayer.DBtransactions.assignManagerDB(Manager manager) in C:\Users\Aviv\Source\Repos\yyarom112\wsep192\wsep192\src\DataLayer\DBtransactions.cs:line 218 .
+6/18/2019 3:33:54 PM: TradingSystem- searchProduct - Try parse int failed
+6/18/2019 3:33:54 PM: TradingSystem- searchProduct - Try parse int failed
+6/18/2019 3:33:54 PM: TradingSystem- searchProduct - Try parse int failed
+6/18/2019 3:33:54 PM: TradingSystem- searchProduct - Try parse int failed
+6/18/2019 4:15:53 PM: TradingSystem- searchProduct - Try parse int failed
+6/18/2019 4:15:54 PM: TradingSystem- searchProduct - Try parse int failed
+6/18/2019 4:15:54 PM: TradingSystem- searchProduct - Try parse int failed
+6/18/2019 4:15:55 PM: TradingSystem- searchProduct - Try parse int failed

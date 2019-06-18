@@ -457,6 +457,8 @@ namespace src.Domain
         public Boolean signIn(String userName, String password, int userId)
         {
             int currUserId = userId;
+            if (!this.users.ContainsKey(currUserId))
+                DBtransactions.getInstance(false).signIn(userId, this);
             if (this.users.ContainsKey(currUserId))
             {
                 User currUser = this.users[currUserId];

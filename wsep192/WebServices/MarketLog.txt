@@ -1890,3 +1890,952 @@
 
 17/06/2019 20:59:16: Register - userName or password null
 
+6/18/2019 1:57:01 PM: Register - userName or password null
+
+6/18/2019 1:57:07 PM: Register - userName or password null
+
+6/18/2019 1:57:09 PM: Register - userName or password null
+
+6/18/2019 1:57:09 PM: Register - userName or password null
+
+6/18/2019 1:57:10 PM: Register - userName or password null
+
+6/18/2019 1:57:11 PM: TradingSystem-open storeZara success
+
+6/18/2019 1:57:11 PM: TradingSystem-create new product in store0 -success
+
+6/18/2019 1:57:11 PM: TradingSystem-add product to store0 -success
+6/18/2019 1:57:13 PM: TradingSystem-Assign owner 2 -success
+6/18/2019 1:57:13 PM: TradingSystem-Assign owner 3 -success
+6/18/2019 1:57:13 PM: User:signOut success - Aviv
+
+6/18/2019 2:17:45 PM: Register - userName or password null
+
+6/18/2019 2:17:50 PM: Register - userName or password null
+
+6/18/2019 2:17:51 PM: Register - userName or password null
+
+6/18/2019 2:17:51 PM: Register - userName or password null
+
+6/18/2019 2:17:51 PM: Register - userName or password null
+
+6/18/2019 2:18:05 PM: TradingSystem-open storeZara success
+
+6/18/2019 2:18:06 PM: TradingSystem-create new product in store0 -success
+
+6/18/2019 2:18:06 PM: TradingSystem-add product to store0 -success
+6/18/2019 2:18:08 PM: TradingSystem-Assign owner 2 -success
+6/18/2019 2:18:08 PM: TradingSystem-Assign owner 3 -success
+6/18/2019 2:18:09 PM: User:signOut success - Aviv
+
+6/18/2019 2:19:33 PM: Register - userName or password null
+
+6/18/2019 2:19:36 PM: Register - userName or password null
+
+6/18/2019 2:19:37 PM: Register - userName or password null
+
+6/18/2019 2:19:37 PM: Register - userName or password null
+
+6/18/2019 2:19:37 PM: Register - userName or password null
+
+6/18/2019 2:19:38 PM: TradingSystem-open storeZara success
+
+6/18/2019 2:19:38 PM: TradingSystem-create new product in store0 -success
+
+6/18/2019 2:19:39 PM: TradingSystem-add product to store0 -success
+6/18/2019 2:19:41 PM: TradingSystem-Assign owner 2 -success
+6/18/2019 2:19:42 PM: TradingSystem-Assign owner 3 -success
+6/18/2019 2:19:42 PM: User:signOut success - Aviv
+
+6/18/2019 2:21:26 PM: Register - userName or password null
+
+6/18/2019 2:21:51 PM: Register - userName or password null
+
+6/18/2019 2:22:11 PM: Register - userName or password null
+
+6/18/2019 2:22:34 PM: Register - userName or password null
+
+6/18/2019 2:22:54 PM: Register - userName or password null
+
+6/18/2019 2:23:13 PM: TradingSystem-open storeZara success
+
+6/18/2019 2:23:26 PM: TradingSystem-create new product in store0 -success
+
+6/18/2019 2:23:40 PM: TradingSystem-add product to store0 -success
+6/18/2019 2:26:10 PM: Register - userName or password null
+
+6/18/2019 2:26:51 PM: Register - userName or password null
+
+6/18/2019 2:26:57 PM: Register - userName or password null
+
+6/18/2019 2:27:01 PM: Register - userName or password null
+
+6/18/2019 2:27:04 PM: Register - userName or password null
+
+6/18/2019 2:27:07 PM: TradingSystem-open storeZara success
+
+6/18/2019 2:27:09 PM: TradingSystem-create new product in store0 -success
+
+6/18/2019 2:27:10 PM: TradingSystem-add product to store0 -success
+6/18/2019 2:27:13 PM: TradingSystem-Assign owner 2 -success
+6/18/2019 2:27:37 PM: TradingSystem-Assign owner 3 -success
+6/18/2019 2:27:43 PM: User:signOut success - Aviv
+
+6/18/2019 2:35:57 PM: User:signOut success - Aviv
+
+6/18/2019 2:38:28 PM: User:signOut success - Aviv
+
+6/18/2019 2:38:29 PM: TradingSystem - Remove user id6 success.
+
+6/18/2019 2:45:39 PM: Register - userName or password null
+
+6/18/2019 2:45:43 PM: Register - userName or password null
+
+6/18/2019 2:45:44 PM: Register - userName or password null
+
+6/18/2019 2:45:44 PM: Register - userName or password null
+
+6/18/2019 2:45:45 PM: Register - userName or password null
+
+6/18/2019 2:45:45 PM: TradingSystem-open storeZara success
+
+6/18/2019 2:45:46 PM: TradingSystem-create new product in store0 -success
+
+6/18/2019 2:45:47 PM: TradingSystem-add product to store0 -success
+6/18/2019 2:45:47 PM: TradingSystem-Assign owner 2 -success
+6/18/2019 2:45:48 PM: TradingSystem-Assign owner 3 -success
+6/18/2019 2:45:48 PM: User:signOut success - Aviv
+
+6/18/2019 2:49:02 PM: User:signOut failed - user Aviv didn't sign in
+
+6/18/2019 2:51:34 PM: Register - userName or password null
+
+6/18/2019 2:51:39 PM: Register - userName or password null
+
+6/18/2019 2:51:40 PM: Register - userName or password null
+
+6/18/2019 2:51:40 PM: Register - userName or password null
+
+6/18/2019 2:51:40 PM: Register - userName or password null
+
+6/18/2019 2:51:41 PM: TradingSystem-open storeZara success
+
+6/18/2019 2:51:41 PM: TradingSystem-create new product in store0 -success
+
+6/18/2019 2:51:43 PM: TradingSystem-add product to store0 -success
+6/18/2019 2:51:44 PM: TradingSystem-Assign owner 2 -success
+6/18/2019 2:51:45 PM: TradingSystem-Assign owner 3 -success
+6/18/2019 2:51:45 PM: User:signOut success - Aviv
+
+6/18/2019 3:01:36 PM: Register - userName or password null
+
+6/18/2019 3:01:40 PM: Register - userName or password null
+
+6/18/2019 3:01:40 PM: Register - userName or password null
+
+6/18/2019 3:01:41 PM: Register - userName or password null
+
+6/18/2019 3:01:41 PM: Register - userName or password null
+
+6/18/2019 3:01:41 PM: TradingSystem-open storeZara success
+
+6/18/2019 3:01:41 PM: TradingSystem-create new product in store0 -success
+
+6/18/2019 3:01:42 PM: TradingSystem-add product to store0 -success
+6/18/2019 3:01:43 PM: TradingSystem-Assign owner 2 -success
+6/18/2019 3:01:43 PM: TradingSystem-Assign owner 3 -success
+6/18/2019 3:01:43 PM: User:signOut success - Aviv
+
+6/18/2019 3:02:10 PM: User:signOut failed - user Aviv didn't sign in
+
+6/18/2019 3:02:28 PM: User:signOut success - Aviv
+
+6/18/2019 3:02:28 PM: TradingSystem - Remove user id6 success.
+
+6/18/2019 3:02:44 PM: Register - userName or password null
+
+6/18/2019 3:03:05 PM: TradingSystem - signIn - user id not exist.
+
+6/18/2019 3:03:05 PM: TradingSystem - Remove user id7 success.
+
+6/18/2019 3:04:54 PM: User:signOut success - Shahaf
+
+6/18/2019 3:06:47 PM: User:signOut success - Aviv
+
+6/18/2019 3:06:47 PM: TradingSystem - Remove user id9 success.
+
+6/18/2019 3:07:23 PM: TradingSystem-open storeFox success
+
+6/18/2019 3:18:41 PM: Register - userName or password null
+
+6/18/2019 3:18:45 PM: Register - userName or password null
+
+6/18/2019 3:18:45 PM: Register - userName or password null
+
+6/18/2019 3:18:45 PM: Register - userName or password null
+
+6/18/2019 3:18:46 PM: Register - userName or password null
+
+6/18/2019 3:18:46 PM: TradingSystem-open storeZara success
+
+6/18/2019 3:18:47 PM: TradingSystem-create new product in store0 -success
+
+6/18/2019 3:18:47 PM: TradingSystem-add product to store0 -success
+6/18/2019 3:18:48 PM: TradingSystem-Assign owner 2 -success
+6/18/2019 3:18:48 PM: TradingSystem-Assign owner 3 -success
+6/18/2019 3:18:48 PM: User:signOut success - Aviv
+
+6/18/2019 3:19:08 PM: Register - userName or password null
+
+6/18/2019 3:19:26 PM: TradingSystem-open storeFox success
+
+6/18/2019 3:20:17 PM: Store - assign manger succeed
+6/18/2019 3:21:16 PM: Store - assign manger succeed
+6/18/2019 3:22:03 PM: User:signOut success - Shahaf
+
+6/18/2019 3:22:04 PM: TradingSystem - Remove user id6 success.
+
+6/18/2019 3:24:54 PM: Manager:validatePermission failed - userMaor
+
+6/18/2019 3:24:54 PM: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+6/18/2019 3:24:54 PM: TradingSystem-create new product in store fail- the store does not exists
+
+6/18/2019 3:25:09 PM: Manager:validatePermission failed - userMaor
+
+6/18/2019 3:25:09 PM: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+6/18/2019 3:25:09 PM: TradingSystem-create new product in store fail- the store does not exists
+
+6/18/2019 3:27:20 PM: Manager:validatePermission failed - userMaor
+
+6/18/2019 3:27:20 PM: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+6/18/2019 3:27:20 PM: TradingSystem-create new product in store fail- the store does not exists
+
+6/18/2019 3:27:40 PM: Manager:validatePermission failed - userMaor
+
+6/18/2019 3:27:40 PM: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+6/18/2019 3:27:40 PM: TradingSystem-create new product in store fail- the store does not exists
+
+6/18/2019 3:28:20 PM: Manager:validatePermission failed - userMaor
+
+6/18/2019 3:28:41 PM: User-create new product in store fail- the role does not exists or doesn't have permissions
+
+6/18/2019 3:28:41 PM: TradingSystem-create new product in store fail- the store does not exists
+
+6/18/2019 3:28:54 PM: User:signOut success - Maor
+
+6/18/2019 3:28:54 PM: TradingSystem - Remove user id8 success.
+
+6/18/2019 3:29:16 PM: Register - userName or password null
+
+6/18/2019 3:29:39 PM: TradingSystem-open storekapara success
+
+6/18/2019 3:30:04 PM: Store - assign manger succeed
+6/18/2019 3:30:10 PM: User:signOut success - Seifan
+
+6/18/2019 3:30:10 PM: TradingSystem - Remove user id9 success.
+
+6/18/2019 3:30:22 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:22 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:22 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:23 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:23 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:23 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:23 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:24 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:24 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:24 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:24 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:24 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:24 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:24 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:24 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:24 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:29 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:29 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:29 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:30 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:30 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:30 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:30 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:30 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:30 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:30 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:31 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:31 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:31 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:31 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:31 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:31 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:45 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:45 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:54 PM: TradingSystem-create new product in store2 -success
+
+6/18/2019 3:30:58 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:58 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:58 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:58 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:58 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:58 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:58 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:58 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:59 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:59 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:30:59 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:30:59 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:00 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:00 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:00 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:00 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:06 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:07 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:07 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:07 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:07 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:07 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:07 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:08 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:08 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:08 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:08 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:08 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:08 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:08 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:08 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:09 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:13 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:13 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:13 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:13 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:13 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:13 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:13 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:13 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:13 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:13 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:13 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:14 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:14 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:14 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:31:14 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:31:14 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:39 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:39 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:40 PM: TradingSystem-add product to store2 -success
+6/18/2019 3:32:42 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:43 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:43 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:44 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:44 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:44 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:44 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:44 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:49 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:49 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:50 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:50 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:50 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:50 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:50 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:50 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:50 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:50 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:50 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:51 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:51 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:51 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:32:51 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:32:51 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:13 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:13 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:17 PM: TradingSystem-create new product in store2 -success
+
+6/18/2019 3:33:20 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:20 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:20 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:21 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:26 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:26 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:26 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:26 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:27 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:35 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:35 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:35 PM: TradingSystem-add product to store2 -success
+6/18/2019 3:33:38 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:38 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:38 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:39 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:39 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:39 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:40 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:40 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:40 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:40 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:40 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:40 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:41 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:41 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:41 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:41 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:41 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:41 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:42 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:42 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:42 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:42 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:42 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:42 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:42 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:56 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:56 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:56 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:56 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:56 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:56 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:56 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:56 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:56 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:56 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:57 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:57 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:57 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:57 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:33:57 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:33:57 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:34:48 PM: User:signOut success - Yuval
+
+6/18/2019 3:34:48 PM: TradingSystem - Remove user id11 success.
+
+6/18/2019 3:35:35 PM: User-search Role By StoreID With Validate Permmision fail- The user 2 does not have a role in the 2 store
+
+6/18/2019 3:35:43 PM: User:signOut success - Maor
+
+6/18/2019 3:35:43 PM: TradingSystem - Remove user id12 success.
+
+6/18/2019 3:36:09 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:36:09 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:36:09 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:36:09 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:36:09 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:36:10 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:36:10 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:36:10 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:36:10 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:36:10 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:36:10 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:36:10 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:36:10 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:36:10 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:36:10 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:36:10 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:36:34 PM: User:signOut success - Yuval
+
+6/18/2019 3:36:34 PM: TradingSystem - Remove user id13 success.
+
+6/18/2019 3:37:18 PM: User-search Role By StoreID With Validate Permmision fail- The user 1 does not have a role in the 2 store
+
+6/18/2019 3:37:23 PM: User:signOut success - Aviv
+
+6/18/2019 3:37:23 PM: TradingSystem - Remove user id14 success.
+
+6/18/2019 3:37:34 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:34 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:34 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:34 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:34 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:35 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:35 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:35 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:35 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:35 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:35 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:35 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:35 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:35 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:35 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:35 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:43 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:43 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:43 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:44 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:44 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:44 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:44 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:45 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:45 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:45 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:45 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:45 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:37:45 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:45 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:58 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:37:58 PM: User-search Role By StoreID With Validate Permmision fail- Manager does not have permissions
+
+6/18/2019 3:38:01 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:38:01 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:38:01 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission success - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:38:02 PM: Manager:validatePermission failed - userYuval
+
+6/18/2019 3:39:16 PM: User:signOut success - Yuval
+
+6/18/2019 3:39:16 PM: TradingSystem - Remove user id15 success.
+
+6/18/2019 3:40:11 PM: User - assign manger fail -owner not exist in roles
+6/18/2019 3:42:19 PM: User:signOut success - Rotem
+
+6/18/2019 3:42:21 PM: TradingSystem - Remove user id16 success.
+
+6/18/2019 3:42:49 PM: Register - userName or password null
+
+6/18/2019 3:43:14 PM: User:signOut success - user
+
+6/18/2019 3:43:14 PM: TradingSystem - Remove user id18 success.
+
+6/18/2019 3:44:04 PM: User-search Role By StoreID With Validate Permmision fail- The user 7 does not have a role in the 2 store
+
+6/18/2019 3:44:11 PM: User:signOut success - Shahaf
+
+6/18/2019 3:44:12 PM: TradingSystem - Remove user id20 success.
+
+6/18/2019 3:44:43 PM: User - assign manger fail -owner not exist in roles
+6/18/2019 3:47:09 PM: Register - userName or password null
+
+6/18/2019 3:47:13 PM: Register - userName or password null
+
+6/18/2019 3:47:13 PM: Register - userName or password null
+
+6/18/2019 3:47:14 PM: Register - userName or password null
+
+6/18/2019 3:47:14 PM: Register - userName or password null
+
+6/18/2019 3:47:14 PM: TradingSystem-open storeZara success
+
+6/18/2019 3:47:15 PM: TradingSystem-create new product in store0 -success
+
+6/18/2019 3:47:15 PM: TradingSystem-add product to store0 -success
+6/18/2019 3:47:16 PM: TradingSystem-Assign owner 2 -success
+6/18/2019 3:47:16 PM: TradingSystem-Assign owner 3 -success
+6/18/2019 3:47:16 PM: User:signOut success - Aviv
+
+6/18/2019 3:48:41 PM: User:signOut success - Aviv
+
+6/18/2019 3:48:42 PM: TradingSystem - Remove user id6 success.
+
+6/18/2019 3:48:52 PM: TradingSystem - Remove user id7 success.
+
+6/18/2019 3:49:02 PM: Register - userName or password null
+
+6/18/2019 3:49:44 PM: TradingSystem-open storefox success
+
+6/18/2019 3:50:14 PM: User:signOut success - Shahaf
+
+6/18/2019 3:50:14 PM: TradingSystem - Remove user id8 success.
+
+6/18/2019 3:50:29 PM: Register - userName or password null
+
+6/18/2019 3:51:24 PM: Store - assign manger succeed
+6/18/2019 3:51:30 PM: User:signOut success - Shahaf
+
+6/18/2019 3:51:31 PM: TradingSystem - Remove user id10 success.
+
+6/18/2019 3:53:11 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:12 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:12 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:12 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:12 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:12 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:12 PM: Manager:validatePermission failed - useruser
+
+6/18/2019 3:53:13 PM: Manager:validatePermission failed - useruser
+
+6/18/2019 3:53:18 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:18 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:18 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:18 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:18 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:18 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:53:19 PM: Manager:validatePermission failed - useruser
+
+6/18/2019 3:53:19 PM: Manager:validatePermission failed - useruser
+
+6/18/2019 3:57:18 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:57:18 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:57:18 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:57:19 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:57:19 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:57:19 PM: Manager:validatePermission success - useruser
+
+6/18/2019 3:57:19 PM: Manager:validatePermission failed - useruser
+
+6/18/2019 3:57:19 PM: Manager:validatePermission failed - useruser
+
+6/18/2019 4:02:00 PM: User:signOut success - user
+
+6/18/2019 4:02:32 PM: Manager:validatePermission success - useruser
+
+6/18/2019 4:02:33 PM: Manager:validatePermission success - useruser
+
+6/18/2019 4:02:34 PM: Manager:validatePermission success - useruser
+
+6/18/2019 4:02:35 PM: Manager:validatePermission success - useruser
+
+6/18/2019 4:02:36 PM: Manager:validatePermission success - useruser
+
+6/18/2019 4:02:36 PM: Manager:validatePermission success - useruser
+
+6/18/2019 4:02:36 PM: Manager:validatePermission failed - useruser
+
+6/18/2019 4:02:37 PM: Manager:validatePermission failed - useruser
+
+6/18/2019 4:15:03 PM: User:signOut success - user
+
+6/18/2019 4:15:03 PM: TradingSystem - Remove user id13 success.
+
+6/18/2019 4:16:42 PM: Add to cart success. /n
+6/18/2019 4:16:51 PM: Successfully closed the basket.
+
+6/18/2019 4:18:53 PM: Products have declined / returned to store stock successfully.
+
+6/18/2019 4:18:53 PM: Making the cart purchase succeeded
+
+6/18/2019 4:22:58 PM: TradingSystem-open storeFox success
+
+6/18/2019 4:24:01 PM: User:signOut success - Shahaf
+
+6/18/2019 4:24:02 PM: TradingSystem - Remove user id14 success.
+
+6/18/2019 4:24:58 PM: User:signOut success - Yuval
+
+6/18/2019 4:24:59 PM: TradingSystem - Remove user id15 success.
+
+6/18/2019 4:28:33 PM: User:signOut success - Shahaf
+
+6/18/2019 4:28:34 PM: TradingSystem - Remove user id16 success.
+

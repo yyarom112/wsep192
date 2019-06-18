@@ -75,13 +75,14 @@ namespace src.Domain
             {
                 if (!RolesDictionary.ContainsKey(newManager.User.Id))
                 {
-                    if (!DBtransactions.getInstance(false).assignManagerDB((Manager)newManager))
-                        return false;
+                    
                     TreeNode<Role> managerRole = currOwner.AddChild(newManager);
                     RolesDictionary.Add(newManager.User.Id, managerRole);
                     newManager.User.Roles.Add(this.Id, newManager);
                     newManager.Store = this;
                     LogManager.Instance.WriteToLog("Store - assign manger succeed");
+                    if (!DBtransactions.getInstance(false).assignManagerDB((Manager)newManager))
+                        return false;
                     return true;
                 }
                 LogManager.Instance.WriteToLog("Store - assign manger fail - new manager already exist in the store");

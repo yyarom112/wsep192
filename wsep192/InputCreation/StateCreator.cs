@@ -35,7 +35,7 @@ namespace InputCreation
             List<string> permissions = new List<string>();
             permissions.Add("AddProductsInStore");
             permissions.Add("RemoveProductsInStore");
-            requests.Add(new Request { RequestName = "AssignManager", Store="Zara" , Manager="Yuval" , Permissions=permissions , User="Aviv" } );
+           // requests.Add(new Request { RequestName = "AssignManager", Store="Zara" , Manager="Yuval" , Permissions=permissions , User="Aviv" } );
             requests.Add(new Request { RequestName = "AssignOwner", Store = "Zara", Owner = "Maor", User = "Aviv" });
             //requests.Add(new Request { RequestName = "AssignOwner", Store = "Zara", Owner = "Seifan",  User = "Aviv" });
             requests.Add(new Request { RequestName = "AssignOwner", Store = "Zara", Owner = "Rotem",  User = "Aviv" });
