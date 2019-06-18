@@ -89,7 +89,9 @@ namespace src.Domain
                 return false;
 
             }
-            return shoppingCarts[storeId].editProductQuantityInCart(productId, quantity);
+            if(DBtransactions.getInstance(false).EditProductQuantityInCart(productId, storeId, userId, quantity))
+                return shoppingCarts[storeId].editProductQuantityInCart(productId, quantity);
+            return false;
         }
     }
 }

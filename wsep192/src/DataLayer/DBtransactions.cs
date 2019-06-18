@@ -48,21 +48,24 @@ namespace src.DataLayer
                 int maxStoreID = -1, maxProductID = -1;
                 foreach (int storeID in storesIDList)
                 {
-                    //create the store from db
-                    Store tmp = db.getStore(storeID);
-                    List<ProductInStore> products = db.getAllProductInStore(tmp);
-                    //restore the product in store
-                    foreach (ProductInStore product in products)
+                    if (!sys.Stores.ContainsKey(storeID))
                     {
-                        tmp.Products.Add(product.Product.Id, product);
-                        //find product counter
-                        if (maxProductID < product.Product.Id)
-                            maxProductID = product.Product.Id;
+                        //create the store from db
+                        Store tmp = db.getStore(storeID);
+                        List<ProductInStore> products = db.getAllProductInStore(tmp);
+                        //restore the product in store
+                        foreach (ProductInStore product in products)
+                        {
+                            tmp.Products.Add(product.Product.Id, product);
+                            //find product counter
+                            if (maxProductID < product.Product.Id)
+                                maxProductID = product.Product.Id;
+                        }
+                        //find storeCounter For sys 
+                        if (maxStoreID < storeID)
+                            maxStoreID = storeID;
+                        sys.Stores.Add(storeID, tmp);
                     }
-                    //find storeCounter For sys 
-                    if (maxStoreID < storeID)
-                        maxStoreID = storeID;
-                    sys.Stores.Add(storeID, tmp);
                 }
                 sys.StoreCounter = maxStoreID + 1;
                 sys.ProductCounter = maxProductID;
@@ -163,7 +166,7 @@ namespace src.DataLayer
             if (!Db.IsTest)
             {
                 var session = Db.Client.StartSession();
-                //session.StartTransaction();
+                session.StartTransaction();
                 try
                 {
                     //store the user
@@ -185,7 +188,7 @@ namespace src.DataLayer
                             db.addNewProduct(product.Product);
                         }
                     }
-                    //session.CommitTransaction();
+                    session.CommitTransaction();
                 }
                 catch (Exception e)
                 {
