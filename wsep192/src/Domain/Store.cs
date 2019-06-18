@@ -1,4 +1,5 @@
-﻿using src.Domain.Dataclass;
+﻿using src.DataLayer;
+using src.Domain.Dataclass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -128,7 +129,7 @@ namespace src.Domain
         }
         public virtual bool confirmPurchasePolicy(Dictionary<int, ProductInCart> products, UserDetailes user)
         {
-            if (this.PurchasePolicy == null || this.purchasePolicy.Count==0)
+            if (this.PurchasePolicy == null || this.purchasePolicy.Count == 0)
                 return true;
             List<KeyValuePair<ProductInStore, int>> productsInStore = new List<KeyValuePair<ProductInStore, int>>();
             foreach (ProductInCart p in products.Values)
@@ -155,7 +156,7 @@ namespace src.Domain
         //Initials list all products and all discounts
         public virtual double calculateDiscountPolicy(Dictionary<int, ProductInCart> products)
         {
-            if (this.DiscountPolicy == null || this.DiscountPolicy.Count==0)
+            if (this.DiscountPolicy == null || this.DiscountPolicy.Count == 0)
                 return 0;
             int sum = 0;
             List<KeyValuePair<ProductInStore, int>> productsInStore = new List<KeyValuePair<ProductInStore, int>>();
@@ -331,6 +332,8 @@ namespace src.Domain
                     foreach (ProductInStore pp in Products.Values)
                         if (pp.Product.ProductName == productName)
                             return false;
+                    if (!DBtransactions.getInstance(false).createProductInstore(pis))
+                        return false;
                     Products.Add(productID, pis);
                     return true;
                 }
@@ -349,8 +352,15 @@ namespace src.Domain
                 if ((roleNode.Data.GetType() == typeof(Owner)) || (roleNode.Data.GetType() == typeof(Manager) && ((Manager)(roleNode.Data)).validatePermission(4)))
                 {
                     foreach (KeyValuePair<int, int> p in productsQuantityList)
+                    {
                         if (Products.ContainsKey(p.Key))
+                        {
+                            if (!DBtransactions.getInstance(false).editProductInStore(p.Key, this.Id, p.Value))
+                                return false;
                             Products[p.Key].Quantity += p.Value;
+                        }
+                            
+                    }
                     return true;
                 }
             }
@@ -369,7 +379,11 @@ namespace src.Domain
                 {
                     foreach (KeyValuePair<int, int> p in productsQuantityList)
                         if (Products.ContainsKey(p.Key) && Products[p.Key].Quantity >= p.Value)
+                        {
+                            if (!DBtransactions.getInstance(false).removeProductInStore(p.Key, this.Id))
+                                return false;
                             Products[p.Key].Quantity -= p.Value;
+                        }
                         else return false;
                     return true;
                 }
@@ -733,8 +747,8 @@ namespace src.Domain
 
         public virtual int conditionConvert(LogicalCondition father, int start, int end, String[] condition, int childID)
         {
-            int diff = 0 ;
-            int s=0, e=0;
+            int diff = 0;
+            int s = 0, e = 0;
             while (start < end)
             {
                 if (condition[start].Contains("("))
@@ -749,10 +763,10 @@ namespace src.Domain
                 if (condition[start].Trim(new char[] { ' ', '(', ')' }).Contains("+"))
                 {
                     start++;
-                    LogicalCondition toAdd = new LogicalCondition(childID++, 0, null, new DateTime(2222,1,1), DuplicatePolicy.WithMultiplication, LogicalConnections.and);
-                    ExtractOperand(start, ref s,ref e, condition);
-                    start = conditionConvert(toAdd, s,e+1, condition, 0);
-                    father.addChild(childID++,toAdd);
+                    LogicalCondition toAdd = new LogicalCondition(childID++, 0, null, new DateTime(2222, 1, 1), DuplicatePolicy.WithMultiplication, LogicalConnections.and);
+                    ExtractOperand(start, ref s, ref e, condition);
+                    start = conditionConvert(toAdd, s, e + 1, condition, 0);
+                    father.addChild(childID++, toAdd);
                     start = e + 1;
                 }
                 else if (condition[start].Trim(new char[] { ' ', '(', ')' }).Contains("-"))

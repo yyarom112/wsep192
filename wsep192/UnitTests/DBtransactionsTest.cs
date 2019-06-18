@@ -158,13 +158,11 @@ namespace UnitTests
             var session = db.Db.Client.StartSession();
             session.StartTransaction();
 
-            Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
-            products.Add(10, pis1);
-            db.createProductInstore(products, admin.Id);
-            db.editProductInStore(pis1.Product.Id, store.Id, admin.Id, 10);
+            db.createProductInstore(pis1);
+            db.editProductInStore(pis1.Product.Id, store.Id, 10);
             DBmanager checkDB = new DBmanager(false);
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
-
+            checkDB.removeProductInStore(store.Id,pis1.Product.Id);
             session.AbortTransaction();
         }
 
@@ -175,17 +173,12 @@ namespace UnitTests
             var session = db.Db.Client.StartSession();
             session.StartTransaction();
 
-            List<int> productToremove = new List<int>();
-            productToremove.Add(pis1.Product.Id);
-
-            Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
-            products.Add(10, pis1);
-            db.createProductInstore(products, admin.Id);
-            db.editProductInStore(pis1.Product.Id, store.Id, admin.Id, 10);
+            db.createProductInstore(pis1);
+            db.editProductInStore(pis1.Product.Id, store.Id, 10);
             DBmanager checkDB = new DBmanager(false);
             Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
 
-            db.removeProductInStore(productToremove, store.Id, admin.Id);
+            db.removeProductInStore(pis1.Product.Id, store.Id);
             Assert.AreEqual(-1, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
             session.AbortTransaction();
         }
@@ -194,22 +187,16 @@ namespace UnitTests
         public void TestMethod_EditProductQuantityInStore()
         {
             Setup();
-            var session = db.Db.Client.StartSession();
-            session.StartTransaction();
 
-            Dictionary<int, ProductInStore> products = new Dictionary<int, ProductInStore>();
-            products.Add(10, pis1);
-            db.createProductInstore(products, admin.Id);
-            db.editProductInStore(pis1.Product.Id, store.Id, admin.Id, 10);
+            db.createProductInstore(pis1);
+            db.editProductInStore(pis1.Product.Id, store.Id, 10);
             DBmanager checkDB = new DBmanager(false);
-            Assert.AreEqual(10, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
-
             store.Products[pis1.Product.Id].Quantity = 5;
 
-            db.editProductInStore(pis1.Product.Id, store.Id, admin.Id, 5);
+            db.editProductInStore(pis1.Product.Id, store.Id, 5);
             Assert.AreEqual(5, checkDB.getProductInStoreQuntity(store.Id, pis1.Product.Id));
-            session.AbortTransaction();
+            //checkDB.removeProductInStore(store.Id, pis1.Product.Id);
         }
     }
 }
-}
+

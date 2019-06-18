@@ -69,8 +69,8 @@ namespace src.DataLayer
 
                 //find user counter
                 int maxUserID = -1;
-                List<User> userList= db.getAllUser();
-                foreach(User user in userList)
+                List<User> userList = db.getAllUser();
+                foreach (User user in userList)
                 {
                     if (maxUserID < user.Id)
                         maxUserID = user.Id;
@@ -98,26 +98,26 @@ namespace src.DataLayer
                 //restore user
                 User userToRestore = db.getUser(userID);
 
-            //restore product in cart
-            //int[]={0-UserId,1-StoreID,2-ProductID,3-quantity}
-            List<int[]> productList = db.getALLProductInCartPerUsers(userToRestore.Id);
-            foreach (int[] product in productList)
-            {
-                Product p = sys.getProduct(product[2], product[1]);
-                if (p == null)
-                    continue;
-                LinkedList<KeyValuePair<Product, int>> productToInsert = new LinkedList<KeyValuePair<Product, int>>();
-                productToInsert.AddFirst(new KeyValuePair<Product, int>(p, product[3]));
-                userToRestore.Basket.addProductsToCart(productToInsert, product[1], product[0]);
-            }
+                //restore product in cart
+                //int[]={0-UserId,1-StoreID,2-ProductID,3-quantity}
+                List<int[]> productList = db.getALLProductInCartPerUsers(userToRestore.Id);
+                foreach (int[] product in productList)
+                {
+                    Product p = sys.getProduct(product[2], product[1]);
+                    if (p == null)
+                        continue;
+                    LinkedList<KeyValuePair<Product, int>> productToInsert = new LinkedList<KeyValuePair<Product, int>>();
+                    productToInsert.AddFirst(new KeyValuePair<Product, int>(p, product[3]));
+                    userToRestore.Basket.addProductsToCart(productToInsert, product[1], product[0]);
+                }
 
-            //restore store in all cart like tha addProductTocart path
-            foreach (ShoppingCart cart in userToRestore.Basket.ShoppingCarts.Values)
-            {
-                cart.Store = sys.Stores[cart.StoreId];
-            }
-            //restore owners
-            List<int> storeIDList = db.getAllOwnerDBbyUserID(userID);
+                //restore store in all cart like tha addProductTocart path
+                foreach (ShoppingCart cart in userToRestore.Basket.ShoppingCarts.Values)
+                {
+                    cart.Store = sys.Stores[cart.StoreId];
+                }
+                //restore owners
+                List<int> storeIDList = db.getAllOwnerDBbyUserID(userID);
                 if (storeIDList != null)
                 {
                     foreach (int storeId in storeIDList)
@@ -127,9 +127,9 @@ namespace src.DataLayer
                         userToRestore.Roles.Add(storeId, toinsert);
                     }
                 }
-            
-            //restore manger
-            List<KeyValuePair<int, string>> managerList = db.getManegerByUserID(userID);
+
+                //restore manger
+                List<KeyValuePair<int, string>> managerList = db.getManegerByUserID(userID);
                 if (managerList != null)
                 {
                     foreach (KeyValuePair<int, string> managerDetails in managerList)
@@ -145,7 +145,7 @@ namespace src.DataLayer
                         userToRestore.Roles.Add(managerDetails.Key, manager);
                     }
                 }
-            
+
                 sys.Users.Add(userToRestore.Id, userToRestore);
                 session.CommitTransaction();
             }
@@ -317,20 +317,17 @@ namespace src.DataLayer
             return true;
         }
 
-        public bool createProductInstore(Dictionary<int, ProductInStore> products, int userId)
+        public bool createProductInstore(ProductInStore product)
         {
             var session = Db.Client.StartSession();
             session.StartTransaction();
             try
             {
-                foreach(ProductInStore product in products.Values)
+                if (!db.addNewProductInStore(product))
                 {
-                    if (!db.addNewProductInStore(product))
-                    {
-                        session.AbortTransaction();
-                        LogManager.Instance.WriteToLog("DBtransaction-AddProductInStore- Add new product in store");
-                        return false;
-                    }
+                    session.AbortTransaction();
+                    LogManager.Instance.WriteToLog("DBtransaction-AddProductInStore- Add new product in store");
+                    return false;
                 }
             }
             catch (Exception e)
@@ -342,22 +339,18 @@ namespace src.DataLayer
             return true;
         }
 
-        public bool removeProductInStore(List<int> products, int storeId, int userId)
+        public bool removeProductInStore(int productId, int storeId)
         {
             var session = Db.Client.StartSession();
             session.StartTransaction();
             try
             {
-                foreach (int productId in products)
+                if (!db.removeProductInStore(storeId, productId))
                 {
-                    if (!db.removeProductInStore(storeId, productId))
-                    {
-                        session.AbortTransaction();
-                        LogManager.Instance.WriteToLog("DBtransaction-removeProductInStore- Add new product in store");
-                        return false;
-                    }
+                    session.AbortTransaction();
+                    LogManager.Instance.WriteToLog("DBtransaction-removeProductInStore- Add new product in store");
+                    return false;
                 }
-
             }
             catch (Exception e)
             {
@@ -368,7 +361,7 @@ namespace src.DataLayer
             return true;
         }
 
-        public bool editProductInStore(int productId, int storeId, int userId, int quntity)
+        public bool editProductInStore(int productId, int storeId, int quntity)
         {
             var session = Db.Client.StartSession();
             session.StartTransaction();
@@ -381,6 +374,8 @@ namespace src.DataLayer
                     LogManager.Instance.WriteToLog("DBtransaction-editProductInStore- edit product in store");
                     return false;
                 }
+                session.CommitTransaction();
+                return true;
             }
             catch (Exception e)
             {
@@ -388,7 +383,6 @@ namespace src.DataLayer
                 ErrorManager.Instance.WriteToLog("DBtransaction-editProductInStore- edit product in store - " + e + " .");
                 return false;
             }
-            return true;
         }
     }
 }

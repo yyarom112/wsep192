@@ -239,7 +239,13 @@ namespace src.Domain
                 {
                     Stores.Add(storeCounter, store);
                     User user = searchUser(userID);
-                    store.initOwner(user);
+                    Owner owner = (Owner)store.initOwner(user);
+                    if (!DBtransactions.getInstance(false).OpenStoreDB(store, owner))
+                    {
+                        user.Roles.Remove(StoreCounter);
+                        stores.Remove(StoreCounter);
+                        return false;
+                    }
                     LogManager.Instance.WriteToLog("TradingSystem-open store" + storeName + " success\n");
                     return true;
                 }
